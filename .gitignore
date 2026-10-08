@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+# Your data is committed (notes database + uploaded PDFs) so a laptop gets it too; scratch files are not.
+.openlecture/agent/
+.openlecture/*.lock
+.openlecture/*-wal
+.openlecture/*-shm
+.openlecture/*-journal
+dist/
+*.egg-info/
+.env
+frontend/node_modules/
+frontend/screenshots/
+# Built by `npm run build` in frontend/; packaged into the wheel as a hatch artifact.
+src/open_lecture/web/
+.openlecture/review-elec221/

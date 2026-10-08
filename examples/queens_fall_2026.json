@@ -1,0 +1,64 @@
+{
+  "term": "Fall 2026",
+  "courses": [
+    {
+      "code": "ELEC 221", "title": "Electric Circuits", "filename": "ELEC 221_Syllabus_Fall2026.pdf",
+      "pack_ids": ["circuits", "pdf_study"], "scope_pages": [2],
+      "topics": [
+        {"key": "circuit_fundamentals", "title": "Circuit elements, Ohm's law, KCL and KVL"},
+        {"key": "resistive_analysis", "title": "Dividers, nodal and mesh analysis, Thevenin and Norton"},
+        {"key": "first_order_circuits", "title": "RC and RL initial-condition and step responses"},
+        {"key": "second_order_circuits", "title": "RLC models, initial conditions and step responses"},
+        {"key": "sinusoidal_steady_state", "title": "Sinusoidal response, phasors and AC power"}
+      ]
+    },
+    {
+      "code": "ELEC 226/326", "title": "Probability & Random Processes", "filename": "ELEC226_326_Fall2026_Syllabus-1.pdf",
+      "pack_ids": ["probability", "pdf_study"], "scope_pages": [7, 8, 9],
+      "topics": [
+        {"key": "probability_models", "title": "Probability models, sets, sample spaces and events", "week": 1},
+        {"key": "conditional_probability", "title": "Axioms, sampling, conditional probability and Bayes", "week": 2},
+        {"key": "discrete_random_variables", "title": "Random variables, discrete PMFs and CDFs", "week": 3},
+        {"key": "continuous_random_variables", "title": "Continuous distributions, densities and CDFs", "week": 4},
+        {"key": "moments", "title": "Expectation, variance, moments and bounds", "week": 5},
+        {"key": "transformations_information", "title": "Functions of random variables, moments and information", "week": 6},
+        {"key": "transformations_entropy", "title": "Transformations, characteristic functions and entropy", "week": 7},
+        {"key": "joint_distributions", "title": "Multiple random variables and decision-making", "week": 8},
+        {"key": "marginals_conditionals", "title": "Pairs, marginals, conditional distributions and independence", "week": 9},
+        {"key": "one_function_of_two", "title": "One function of two random variables", "week": 10},
+        {"key": "jacobian_transformations", "title": "Two functions, Jacobians and Gaussian random vectors", "week": 11},
+        {"key": "limit_theorems", "title": "Limit theorems and basic stochastic processes", "week": 12}
+      ]
+    },
+    {
+      "code": "ELEC 231", "title": "Mathematical Methods I for Electrical and Computer Engineering",
+      "filename": "Syllabus 2026Fall-1.pdf", "pack_ids": ["differential_equations", "pdf_study"], "scope_pages": [2, 3, 4, 5, 6],
+      "topics": [
+        {"key": "complex_numbers", "title": "Modelling and complex numbers", "week": 1},
+        {"key": "initial_value_problems", "title": "ODE classification and initial value problems", "week": 2},
+        {"key": "first_order_odes", "title": "Separable and linear ODEs; existence and uniqueness", "week": 3},
+        {"key": "exact_odes", "title": "Exact equations, integrating factors and second-order equations", "week": 4},
+        {"key": "homogeneous_second_order", "title": "Constant-coefficient second-order equations and RLC models", "week": 5},
+        {"key": "nonhomogeneous_odes", "title": "Reduction of order and undetermined coefficients", "week": 6},
+        {"key": "laplace_transform", "title": "Laplace transforms and the Heaviside step function", "week": 7},
+        {"key": "laplace_ivps", "title": "Laplace initial-value problems, discontinuities and impulses", "week": 8},
+        {"key": "convolution", "title": "Convolution and first-order systems", "week": 9},
+        {"key": "linear_systems", "title": "Linear systems and real/complex eigenvalues", "week": 10},
+        {"key": "phase_planes", "title": "Repeated eigenvalues, variation of parameters and phase planes", "week": 11},
+        {"key": "numerical_odes", "title": "Euler, Runge-Kutta and error analysis", "week": 12}
+      ]
+    },
+    {
+      "code": "ELEC 271", "title": "Digital Systems", "filename": "ELEC271_Syllabus_2026-1.pdf",
+      "pack_ids": ["digital_systems", "pdf_study"], "scope_pages": [3, 4],
+      "topics": [
+        {"key": "boolean_algebra", "title": "Boolean algebra, logic gates and representations"},
+        {"key": "combinational_logic", "title": "Multiplexers, encoders, decoders and arithmetic circuits"},
+        {"key": "karnaugh_maps", "title": "Karnaugh-map optimization and don't-care values"},
+        {"key": "sequential_elements", "title": "Latches, flip-flops, registers, counters and timing"},
+        {"key": "finite_state_machines", "title": "Synchronous sequential logic and finite-state machines"},
+        {"key": "hardware_description", "title": "Hardware description and programmable-logic implementation"}
+      ]
+    }
+  ]
+}

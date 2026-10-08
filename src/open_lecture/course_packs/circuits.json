@@ -1,0 +1,16 @@
+{
+  "id": "circuits", "version": 1, "title": "Electric circuits",
+  "description": "Circuit reasoning, schematics, sign conventions, and model verification.",
+  "guidance": [
+    "Begin examples with a labeled topology, ground node, current reference directions, polarity, and units.",
+    "Explain why a technique applies before doing algebra: KCL/KVL, nodal, mesh, source transformations, or equivalent circuits.",
+    "Use circuit_validate and circuit_simulate for supported resistive DC examples. Keep verified outputs separate from explanations.",
+    "Check KCL residuals and total absorbed/delivered power. Explain negative power using the passive sign convention.",
+    "For RC/RL/RLC problems, state switching conditions, initial energy, continuity constraints, and the final state.",
+    "linear_ode explores an explicitly derived constant-coefficient equation; it is not a general circuit transient simulator.",
+    "For sinusoidal steady state state the phasor convention, angular frequency, and RMS versus peak quantities.",
+    "Never invent measured lab data or cite a syllabus as evidence for a tutorial problem."
+  ],
+  "tools_available": ["circuit_validate", "circuit_create", "circuit_simulate", "math_evaluate", "math_linear_ode"],
+  "tools_planned": ["ngspice RC/RL/RLC transient and AC simulation", "dependent sources", "editable schematic renderer"]
+}

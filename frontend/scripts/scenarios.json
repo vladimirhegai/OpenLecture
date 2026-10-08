@@ -1,0 +1,23 @@
+[
+  { "name": "home-light", "path": "/" },
+  { "name": "home-dark", "theme": "dark", "path": "/" },
+  { "name": "model-picker", "path": "/", "steps": [{ "click": ".model-btn" }, { "wait": 300 }] },
+  { "name": "settings-dark", "theme": "dark", "path": "/", "steps": [{ "click": "button[title='Settings']" }, { "wait": 1500 }] },
+  { "name": "search", "path": "/", "steps": [{ "press": "Control+k" }, { "type": "exam" }, { "wait": 900 }] },
+  {
+    "name": "signed-out",
+    "path": "/",
+    "mocks": [
+      {
+        "url": "**/api/v1/agents*",
+        "json": [
+          { "id": "claude", "name": "Claude", "installed": true, "signed_in": false, "account": null, "plan": null, "method": null, "login_command": "claude auth login", "models": [{ "id": "default", "label": "Default", "efforts": [] }], "default_model": null },
+          { "id": "codex", "name": "Codex", "installed": false, "signed_in": false, "account": null, "plan": null, "method": null, "login_command": "codex login", "models": [{ "id": "default", "label": "Default", "efforts": [] }], "default_model": null }
+        ]
+      }
+    ],
+    "steps": [{ "click": "button[aria-label='New chat']" }, { "wait": 300 }]
+  },
+  { "name": "mobile-light", "viewport": { "width": 390, "height": 844 }, "scale": 2, "path": "/", "storage": { "ol-chat-open": "false" } },
+  { "name": "mobile-chat-dark", "theme": "dark", "viewport": { "width": 390, "height": 844 }, "scale": 2, "path": "/", "storage": { "ol-chat-open": "true" } }
+]

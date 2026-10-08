@@ -1,0 +1,16 @@
+{
+  "id": "differential_equations", "version": 1, "title": "Mathematical methods and differential equations",
+  "description": "Complex numbers, ODEs, Laplace methods, linear systems, and numerical reasoning.",
+  "guidance": [
+    "Classify order, linearity, homogeneity, and initial or boundary conditions before selecting a solution method.",
+    "Explain each derivation step and verify a proposed solution by substitution and by checking initial conditions.",
+    "State the domain and assumptions for existence and uniqueness; do not divide by an expression without checking lost solutions.",
+    "For complex numbers keep rectangular, polar, and exponential forms consistent and specify the angle convention.",
+    "For Laplace problems state the transform convention, initial values, convergence assumptions, and shifting conditions.",
+    "Use math_linear_ode for constant-forcing first/second-order systems with explicit initial conditions; label numerical matrix-exponential results accurately.",
+    "For phase planes explain equilibria, eigenvalues, and stability rather than presenting unlabeled curves.",
+    "For numerical methods explain step size, local versus global error, and convergence; never imply a numeric trajectory is a symbolic proof."
+  ],
+  "tools_available": ["math_evaluate", "math_linear_ode"],
+  "tools_planned": ["general symbolic ODE solver", "Laplace and convolution tools", "phase-plane explorer", "Euler and Runge-Kutta comparison"]
+}

@@ -1,0 +1,37 @@
+[project]
+name = "open-lecture"
+version = "0.1.0"
+description = "Local-first study workspace with shared HTTP and MCP tools"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic-settings>=2.7,<3",
+  "python-multipart>=0.0.20,<1", "mcp>=1.12,<2", "sympy>=1.13,<2",
+  "numpy>=2.2,<3", "scipy>=1.15,<2", "pymupdf>=1.25,<2", "python-docx>=1.1,<2", "python-pptx>=1,<2",
+  "schemdraw>=0.20,<1", "ziamath>=0.11,<1",
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "httpx>=0.28,<1", "ruff>=0.11,<1"]
+
+[project.scripts]
+open-lecture = "open_lecture.cli:main"
+open-lecture-mcp = "open_lecture.mcp_server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+# The built frontend is git-ignored; include it in distributions when present.
+artifacts = ["src/open_lecture/web/**"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

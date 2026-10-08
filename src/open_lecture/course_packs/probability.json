@@ -1,0 +1,17 @@
+{
+  "id": "probability", "version": 1, "title": "Probability and random processes",
+  "description": "Probability models, distributions, conditioning, transformations, and stochastic reasoning.",
+  "guidance": [
+    "Define the sample space, event, random variable, support, and assumptions before choosing a formula.",
+    "Distinguish independence from mutual exclusivity and conditional probability from joint probability.",
+    "For every distribution include parameters, support, PMF or PDF, CDF, mean, variance, and when the model applies.",
+    "Use probability_distribution or math_binomial for supported distributions and embed the returned chart artifact.",
+    "Distinguish probability density from point probability; continuous random variables have zero point mass.",
+    "For transformations, derive the valid domain, inverse branches, and absolute Jacobian before substitution.",
+    "For joint distributions, verify normalization and derive marginals before assuming independence.",
+    "State convergence and approximation assumptions for limit theorems; distinguish random variables from sample paths.",
+    "Label created practice questions as original and use actual uploaded tutorial citations for sourced questions."
+  ],
+  "tools_available": ["math_binomial", "probability_distribution", "math_evaluate"],
+  "tools_planned": ["joint-distribution explorer", "random-process sample paths", "symbolic multivariate integration"]
+}
