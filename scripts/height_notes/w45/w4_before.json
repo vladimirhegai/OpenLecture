@@ -1,0 +1,1072 @@
+{
+ "academic_week": 4,
+ "blocks": [
+  {
+   "citations": [],
+   "id": "3e287e92-a4a7-4776-a850-14081c92d5f5",
+   "level": 1,
+   "text": "Overview",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "3287aa5a-9c26-4dcc-ac0a-239b77ff5eba",
+   "text": "Week 3 gave you two general solvers, the node-voltage and mesh-current methods. This week is about shortcuts: choosing the cheaper solver, simplifying a circuit by swapping voltage and current sources, and replacing everything a load can \"see\" by a small Thévenin or Norton equivalent. All three ideas build on the series/parallel reductions of Week 2 and the node and mesh equations of Week 3.",
+   "tone": "info",
+   "type": "callout"
+  },
+  {
+   "citations": [],
+   "id": "7eb427e8-a452-4b8f-9559-9e795e3bd6d7",
+   "items": [
+    "Choose between the node-voltage and mesh-current methods by counting the equations each one needs (Nilsson 4.8).",
+    "Use source transformations to simplify a circuit, and know when a resistor has no effect on the terminal behaviour (Nilsson 4.9).",
+    "Find Thévenin and Norton equivalents for circuits with independent sources and with dependent sources (Nilsson 4.10–4.11)."
+   ],
+   "ordered": false,
+   "type": "list"
+  },
+  {
+   "citations": [
+    {
+     "chunk_id": "4e76b24d-c542-46df-a87b-8e37d11bfd11",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "b37b413a-8d4c-48f8-b8c2-92048495ce83",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "be4a6a4c-6634-47c2-9444-1fc12c98d054",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "a095d659-ed31-48d2-a133-871922a77554",
+   "level": 1,
+   "text": "Topic 1: Choosing between node-voltage and mesh-current analysis",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "86b4f45e-4db2-4209-bb82-1bdee05e8ae3",
+   "text": "Both methods can solve any planar circuit, but they do not cost the same. The cost is the number of simultaneous equations you must solve, so before writing anything you count the unknowns for each method and take the smaller set.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [],
+   "id": "aab2b594-a907-4483-ba3f-cc5e6f44cbd1",
+   "text": "Let $n_e$ be the number of essential nodes and $b_e$ the number of branches between them. Begin with $n_e-1$ node voltages or $b_e-n_e+1$ mesh currents (planar circuits). Reduce the unknowns using independent source constraints that actually determine a variable, or substitute a dependent source relation expressed in the remaining unknowns. Do not subtract one automatically for every source.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [],
+   "display": true,
+   "id": "f0eb32c6-dc37-4a1e-9003-a4a55e126669",
+   "latex": "N_{\\text{node}} = (n_e - 1) - N_{\\text{fixed nodes}}, \\qquad N_{\\text{mesh}} = (b_e - n_e + 1) - N_{\\text{fixed meshes}}",
+   "type": "equation"
+  },
+  {
+   "citations": [],
+   "id": "f50c58b5-b257-4d9f-b590-aeb70ee962c2",
+   "text": "The counts below describe the reduced simultaneous system after source relations have been substituted. An independent voltage source to the reference fixes its node voltage; an independent current source belonging to one mesh fixes its mesh current. A dependent source gives a relation, not a known numerical value. Write its controlling voltage or current in terms of the remaining unknowns before counting the reduced equations. Floating voltage sources and shared current sources require supernode or supermesh constraints.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [],
+   "columns": [
+    "Situation in the circuit",
+    "Lean toward",
+    "Why"
+   ],
+   "id": "6e3835ab-0e7c-4f0f-8cf1-dd10405a5003",
+   "rows": [
+    [
+     "A voltage source between the reference node and an essential node",
+     "Node-voltage",
+     "An independent source fixes that voltage; a dependent source gives a control relation that may allow substitution."
+    ],
+    [
+     "A voltage source between two essential nodes (a supernode)",
+     "Node-voltage",
+     "The source ties two node voltages together, so one can be eliminated (lecture rule: supernodes favour node-voltage)."
+    ],
+    [
+     "A current source in only one mesh",
+     "Mesh-current",
+     "The mesh current equals the source current, so there is one fewer unknown."
+    ],
+    [
+     "A current source shared by two meshes (a supermesh)",
+     "Mesh-current",
+     "The source ties two mesh currents together, so one can be eliminated (lecture rule: supermeshes favour mesh-current)."
+    ],
+    [
+     "Many essential nodes but few meshes, or the reverse",
+     "Whichever has the smaller count",
+     "Fewer equations means less algebra and fewer chances for a slip."
+    ]
+   ],
+   "type": "table"
+  },
+  {
+   "citations": [],
+   "id": "841c78f0-46e3-4cef-bc51-1db3a6c8d566",
+   "text": "Method choice rule: count $N_{\\text{node}}$ and $N_{\\text{mesh}}$ first, then also look at what you are asked for. If the answer is a node voltage or a power in a resistor to ground, node-voltage hands it to you almost directly; if it is a branch current, mesh-current often does.",
+   "tone": "tip",
+   "type": "callout"
+  },
+  {
+   "citations": [],
+   "id": "a060fd1b-fbe2-457c-92f4-3663c665ef52",
+   "text": "Common mistakes: counting every junction as a node instead of only the essential nodes, counting series elements as separate branches, and forgetting that mesh-current analysis needs a planar circuit. Also remember that a dependent source's control variable must be written in terms of your unknowns (for example $i_\\Delta = \\dfrac{v_c-v_a}{300}$).",
+   "tone": "warning",
+   "type": "callout"
+  },
+  {
+   "answer": "Node-voltage is better (2 equations against 5 for mesh-current). $v_a = 62.5\\,\\mathrm{V}$, $v_c = -8\\,\\mathrm{V}$, $i_\\Delta = -0.235\\,\\mathrm{A}$, so the $300\\,\\Omega$ resistor dissipates $p \\approx 16.57\\,\\mathrm{W}$.",
+   "citations": [
+    {
+     "chunk_id": "be4a6a4c-6634-47c2-9444-1fc12c98d054",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "23142947-c1b8-4118-8cec-67062acd5cb4",
+   "prompt": "A circuit has independent sources of 256 V and 128 V and a dependent voltage source $50i_\\Delta$ controlled by the current in the $300\\,\\Omega$ resistor. Decide which method needs fewer equations and find the power dissipated in the $300\\,\\Omega$ resistor.\n\n```schematic\nV1 0,4 -> 0,0 \"$256\\,\\mathrm{V}$\"\nR1 0,4 -> 3,4 \"$150\\,\\Omega$\"\nR2 3,4 -> 3,0 \"$200\\,\\Omega$\"\nR3 3,4 -> 6,4 \"$100\\,\\Omega$\"\nE1 6,4 -> 6,0 \"$50i_\\Delta$\"\nR4 6,4 -> 9,4 \"$250\\,\\Omega$\"\nR5 9,4 -> 9,0 \"$400\\,\\Omega$\"\nR6 9,4 -> 12,4 \"$500\\,\\Omega$\"\nV2 12,0 -> 12,4 \"$128\\,\\mathrm{V}$\"\nwire 3,4 -> 3,6\nwire 9,4 -> 9,6\nR7 9,6 -> 3,6 \"$300\\,\\Omega$\" i=\"$i_\\Delta$\"\nwire 0,0 -> 12,0\nlabel 3,4 \"$a$\" below\nlabel 6,4 \"$b$\" above\nlabel 9,4 \"$c$\" below\nground 0,0\n```\n\nFind:\n\n1. the better method and the number of equations it needs;\n2. the power dissipated in the $300\\,\\Omega$ resistor.",
+   "steps": [
+    {
+     "explanation": "Count for mesh-current analysis. There are 4 essential nodes (ground, $a$, $b$, $c$) and 8 branches, so $8 - 4 + 1 = 5$ meshes. No current source fixes a mesh, so mesh-current needs 5 equations.",
+     "latex": "N_{\\text{mesh}} = b_e - n_e + 1 = 8 - 4 + 1 = 5"
+    },
+    {
+     "explanation": "Count for node-voltage analysis. Taking the bottom wire as reference leaves 3 unknown node voltages, but the dependent source connects node $b$ to ground, so $v_b$ is not independent. Node-voltage needs only 2 equations, so it is the better method.",
+     "latex": "N_{\\text{node}} = (4-1) - 1 = 2"
+    },
+    {
+     "explanation": "Write the known voltages and the constraint from the dependent source. The 256 V source fixes the left end of the 150 Ω resistor at 256 V, and the 128 V source (negative terminal at the top) fixes the end of the 500 Ω resistor at $-128$ V.",
+     "latex": "i_\\Delta = \\frac{v_c - v_a}{300}, \\qquad v_b = 50\\,i_\\Delta = \\frac{v_c - v_a}{6}"
+    },
+    {
+     "explanation": "Apply KCL at node $a$ (all currents leaving) and clear the fractions by multiplying by 600.",
+     "latex": "\\frac{v_a-256}{150}+\\frac{v_a}{200}+\\frac{v_a-v_b}{100}+\\frac{v_a-v_c}{300}=0 \\;\\Rightarrow\\; 15v_a - 6v_b - 2v_c = 1024"
+    },
+    {
+     "explanation": "Apply KCL at node $c$ and multiply by 6000.",
+     "latex": "\\frac{v_c-v_b}{250}+\\frac{v_c-v_a}{300}+\\frac{v_c}{400}+\\frac{v_c+128}{500}=0 \\;\\Rightarrow\\; 71v_c - 24v_b - 20v_a = -1536"
+    },
+    {
+     "explanation": "Substitute $6v_b = v_c - v_a$ into both equations to leave two equations in $v_a$ and $v_c$.",
+     "latex": "\\begin{aligned} 16v_a - 3v_c &= 1024 \\\\ -16v_a + 67v_c &= -1536 \\end{aligned}"
+    },
+    {
+     "explanation": "Add the equations to eliminate $v_a$, then back-substitute.",
+     "latex": "64v_c = -512 \\Rightarrow v_c = -8\\,\\mathrm{V}, \\quad v_a = \\frac{1024 + 3(-8)}{16} = 62.5\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Find the control current and the power in the $300\\,\\Omega$ resistor.",
+     "latex": "i_\\Delta = \\frac{-8 - 62.5}{300} = -0.235\\,\\mathrm{A}, \\qquad p = i_\\Delta^2(300) = 16.57\\,\\mathrm{W}"
+    }
+   ],
+   "title": "Which method? Power in the 300 Ω resistor",
+   "type": "worked_example"
+  },
+  {
+   "citations": [
+    {
+     "chunk_id": "048807fa-dc38-41ac-92f6-8b9d8b5b44d5",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "40b0f9cf-a232-47f2-9978-6d307332724d",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "421b66bd-7da0-4692-85f0-583f44c6943a",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "610f8015-fddb-484e-8f73-fe94f27d03bf",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "42e0cd2e-4853-40e8-82d7-b4aacf5c24cc",
+   "level": 1,
+   "text": "Topic 2: Source transformations",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "bf4f7c4e-3afb-47b8-a60f-f248188b9ab3",
+   "text": "Series and parallel reductions only combine resistors. A source transformation lets you also move between source types: a voltage source in series with a resistor and a current source in parallel with the same resistor look identical from the outside, so you may swap one for the other whenever that makes the circuit easier to reduce.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [],
+   "id": "86d13a18-a5b9-4db8-9eaf-375b78ffe501",
+   "level": 2,
+   "text": "The transformation rule",
+   "type": "heading"
+  },
+  {
+   "caption": "Voltage-source form: source $v_s$ in series with $R$.",
+   "citations": [
+    {
+     "chunk_id": "048807fa-dc38-41ac-92f6-8b9d8b5b44d5",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "ecb6385f-75cb-418e-b121-a06dce151fb1",
+   "source": "V1 0,3 -> 0,0 \"$v_s$\"\nR1 0,3 -> 3,3 \"$R$\"\nterminal 3,3 \"$a$\" right\nterminal 3,0 \"$b$\" right\nwire 0,0 -> 3,0",
+   "type": "schematic"
+  },
+  {
+   "caption": "Current-source form: source $i_s$ in parallel with the same $R$.",
+   "citations": [],
+   "id": "f6e46bff-755d-49fe-9f20-c2599280fa26",
+   "source": "I1 0,0 -> 0,3 \"$i_s$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$R$\"\nwire 3,3 -> 5,3\nterminal 5,3 \"$a$\" right\nwire 0,0 -> 5,0\nterminal 5,0 \"$b$\" right",
+   "type": "schematic"
+  },
+  {
+   "citations": [],
+   "display": true,
+   "id": "35522872-7509-4e92-8f0b-4d22b2837ae7",
+   "latex": "i_s = \\frac{v_s}{R}, \\qquad v_s = R\\,i_s",
+   "type": "equation"
+  },
+  {
+   "citations": [],
+   "id": "21013e9a-b6a7-44cf-9ccb-3877f34b5cbb",
+   "text": "Here $v_s$ is the source voltage, $i_s$ the source current and $R$ the one resistor that is in series (voltage form) or in parallel (current form) with the source. The resistor keeps the same value, and the current-source arrow points toward the terminal where the voltage source has its $+$ sign. The rule holds whatever load is attached to $a$ and $b$.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [
+    {
+     "chunk_id": "40b0f9cf-a232-47f2-9978-6d307332724d",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "e2278dc6-bed3-411d-9739-447a37b84da3",
+   "steps": [
+    {
+     "explanation": "Attach a load $R_L$ to the voltage-source form and apply KVL around the single loop.",
+     "latex": "i_L = \\frac{v_s}{R + R_L}"
+    },
+    {
+     "explanation": "Attach the same load to the current-source form. The source current splits between $R$ and $R_L$, so the current divider gives the load current.",
+     "latex": "i_L = \\frac{R}{R + R_L}\\,i_s"
+    },
+    {
+     "explanation": "The two circuits are equivalent only if the load current is the same for every $R_L$, so equate the expressions.",
+     "latex": "\\frac{v_s}{R + R_L} = \\frac{R\\,i_s}{R + R_L}"
+    },
+    {
+     "explanation": "Cancel the common denominator to get the transformation rule.",
+     "latex": "v_s = R\\,i_s \\;\\Longleftrightarrow\\; i_s = \\frac{v_s}{R}"
+    }
+   ],
+   "title": "Why the two forms are equivalent",
+   "type": "derivation"
+  },
+  {
+   "citations": [],
+   "id": "a96be4ab-531f-4bff-ba89-eb369341f72f",
+   "level": 2,
+   "text": "Special cases and power",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "8892ea02-6b31-450d-8c34-dfe31c34f075",
+   "text": "A resistor in parallel with an ideal voltage source, or in series with an ideal current source, has no effect on the equivalent circuit seen at the terminals: the source alone fixes the voltage (or current) there. The resistor can therefore be deleted while you find terminal quantities.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [],
+   "id": "7f026662-975f-43eb-b252-ff1cc585a10c",
+   "text": "Only the terminal behaviour is preserved. The deleted resistor (and the resistor of a transformed pair) still absorbs power in the real circuit, so power in the original sources must be found by working back to the original circuit. For example, a $125\\,\\Omega$ resistor across a $250\\,\\mathrm{V}$ source draws $2\\,\\mathrm{A}$ that changes the power the source develops even though it does not change $v_o$.",
+   "tone": "warning",
+   "type": "callout"
+  },
+  {
+   "citations": [],
+   "id": "fb4f5815-b90b-427d-a65b-a3d8beac268c",
+   "text": "Watch polarity: a voltage source with its $+$ at the top becomes a current source pointing up, and the other way round. A source with no series (or parallel) resistor cannot be transformed, and the load itself must never be absorbed into a transformation.",
+   "tone": "warning",
+   "type": "callout"
+  },
+  {
+   "citations": [],
+   "id": "19ef716c-274f-49ac-b49d-d6061fd24844",
+   "text": "Strategy: transform toward the part of the circuit you care about, then combine parallel current sources, parallel resistors, series voltage sources and series resistors. Repeat until one loop or one node is left, solve it, and work back through the original circuit for any current, voltage or power you removed along the way.",
+   "tone": "tip",
+   "type": "callout"
+  },
+  {
+   "answer": "**(a)** $v_o = 20\\,\\mathrm{V}$; **(b)** the $250\\,\\mathrm{V}$ source develops $2800\\,\\mathrm{W}$; **(c)** the $8\\,\\mathrm{A}$ source develops $480\\,\\mathrm{W}$ (total developed $3280\\,\\mathrm{W}$ = total dissipated).",
+   "citations": [
+    {
+     "chunk_id": "32c97bee-a719-42fc-99da-13aca12ed138",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "69cd6730-083a-4c6b-ac01-3859fd915724",
+   "prompt": "Use source transformations to find $v_o$ in the circuit below, then find the power developed by the $250\\,\\mathrm{V}$ source and by the $8\\,\\mathrm{A}$ source.\n\n```schematic\nV1 0,4 -> 0,0 \"$250\\,\\mathrm{V}$\"\nR2 3,4 -> 3,0 \"$125\\,\\Omega$\"\nR1 3,4 -> 7,4 \"$25\\,\\Omega$\"\nR4 7,4 -> 7,0 \"$100\\,\\Omega$\" v=\"$v_o$\"\nwire 0,4 -> 3,4\nwire 7,4 -> 10,4\nI1 10,4 -> 10,2 \"$8\\,\\mathrm{A}$\"\nR3 10,2 -> 10,0 \"$10\\,\\Omega$\"\nR5 10,4 -> 13,4 \"$5\\,\\Omega$\"\nR6 13,4 -> 13,0 \"$15\\,\\Omega$\"\nwire 0,0 -> 13,0\nground 0,0\n```\n\nFind:\n\n1. $v_o$;\n2. the power developed by the $250\\,\\mathrm{V}$ source;\n3. the power developed by the $8\\,\\mathrm{A}$ source.",
+   "steps": [
+    {
+     "explanation": "Delete the elements that do not affect $v_o$: the $125\\,\\Omega$ resistor is in parallel with the $250\\,\\mathrm{V}$ source, and the $10\\,\\Omega$ resistor is in series with the $8\\,\\mathrm{A}$ source.",
+     "latex": ""
+    },
+    {
+     "explanation": "Transform the $250\\,\\mathrm{V}$ source and its series $25\\,\\Omega$ resistor into a current source with the same resistor in parallel. The arrow points toward node $b$.",
+     "latex": "i_s = \\frac{250}{25} = 10\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "At node $b$ the transformed source pushes $10\\,\\mathrm{A}$ in and the original source takes $8\\,\\mathrm{A}$ out, leaving a net $2\\,\\mathrm{A}$ into $b$.",
+     "latex": ""
+    },
+    {
+     "explanation": "Combine the resistors from $b$ to ground in parallel: $25\\,\\Omega$, $100\\,\\Omega$ and the series $5 + 15 = 20\\,\\Omega$ branch.",
+     "latex": "R_{eq} = \\left(\\frac{1}{25} + \\frac{1}{100} + \\frac{1}{20}\\right)^{-1} = 10\\,\\Omega"
+    },
+    {
+     "explanation": "Ohm's law across the equivalent resistor gives $v_o$.",
+     "latex": "v_o = (2\\,\\mathrm{A})(10\\,\\Omega) = 20\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Work back to the original circuit for the $250\\,\\mathrm{V}$ source. The $25\\,\\Omega$ resistor carries $\\dfrac{250-20}{25} = 9.2\\,\\mathrm{A}$ and the $125\\,\\Omega$ resistor carries $2\\,\\mathrm{A}$, both supplied by the source.",
+     "latex": "p_{250} = 250(9.2 + 2) = 2800\\,\\mathrm{W}\\ \\text{developed}"
+    },
+    {
+     "explanation": "For the $8\\,\\mathrm{A}$ source the current flows through the $10\\,\\Omega$ resistor to ground, so $v_d = 80\\,\\mathrm{V}$. The voltage from $b$ to $d$ is $20 - 80 = -60\\,\\mathrm{V}$ in the direction of the current, so the source absorbs $-480\\,\\mathrm{W}$.",
+     "latex": "p_{8\\,\\mathrm{A}} = (20 - 80)(8) = -480\\,\\mathrm{W} \\;\\Rightarrow\\; 480\\,\\mathrm{W}\\ \\text{developed}"
+    },
+    {
+     "explanation": "Check the power balance: the resistors dissipate $500 + 2116 + 4 + 5 + 15 + 640 = 3280\\,\\mathrm{W}$, which equals $2800 + 480$.",
+     "latex": ""
+    }
+   ],
+   "title": "Source transformations: voltage and powers",
+   "type": "worked_example"
+  },
+  {
+   "citations": [
+    {
+     "chunk_id": "6d8a52b3-b3b6-4d40-9a21-8e9cfb402144",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "dcae2d68-98b6-4d6d-8c53-e8ea13e45587",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "547a07fd-48bb-4079-8d73-bcb170ea568f",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "19879c94-72dc-4c58-9ebc-cb0cec14685c",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "2a5b0fd5-6b1c-495c-9b95-c41440ba4a18",
+   "level": 1,
+   "text": "Topic 3: Thévenin and Norton equivalents",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "f735dc5e-897b-4096-bc8f-a3708d6b7b82",
+   "text": "A linear resistive network that admits a finite Thévenin equivalent behaves at a chosen pair of terminals like a voltage source in series with a resistance. Replacing the network by that pair saves a new analysis for each load. Degenerate ideal sources need care: an ideal current source alone has a Norton form but no finite Thévenin voltage.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [],
+   "id": "4e736110-ac25-4961-87fd-c930a2be0743",
+   "level": 2,
+   "text": "The two equivalent forms",
+   "type": "heading"
+  },
+  {
+   "caption": "Thévenin equivalent: voltage source $V_{Th}$ in series with $R_{Th}$.",
+   "citations": [],
+   "id": "914acc88-d616-4c9f-8fb2-bd81c306fd19",
+   "source": "V1 0,3 -> 0,0 \"$V_{Th}$\"\nR1 0,3 -> 3,3 \"$R_{Th}$\"\nterminal 3,3 \"$a$\" right\nterminal 3,0 \"$b$\" right\ngap 3,3 -> 3,0 v=\"$v_{ab}$\"\nwire 0,0 -> 3,0",
+   "type": "schematic"
+  },
+  {
+   "caption": "Norton equivalent: current source $I_N$ in parallel with $R_N$. It is the source transformation of the Thévenin circuit.",
+   "citations": [],
+   "id": "c1244874-3420-43c3-9a1c-efcf29db7de9",
+   "source": "I1 0,0 -> 0,3 \"$I_N$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$R_N$\"\nwire 3,3 -> 5,3\nterminal 5,3 \"$a$\" right\nwire 0,0 -> 5,0\nterminal 5,0 \"$b$\" right\ngap 5,3 -> 5,0 v=\"$v_{ab}$\"",
+   "type": "schematic"
+  },
+  {
+   "citations": [],
+   "columns": [
+    "Term",
+    "Meaning"
+   ],
+   "id": "6fd1a1e3-645b-4c57-aa6e-cbcface60a60",
+   "rows": [
+    [
+     "Open-circuit voltage $v_{oc}$",
+     "The voltage $v_{ab}$ with nothing connected to $a$ and $b$ (no load current)."
+    ],
+    [
+     "Short-circuit current $i_{sc}$",
+     "The current from $a$ to $b$ through a wire placed across the terminals."
+    ],
+    [
+     "Thévenin voltage $V_{Th}$",
+     "Equals $v_{oc}$, measured with $+$ at $a$."
+    ],
+    [
+     "Thévenin resistance $R_{Th}$",
+     "The resistance seen into the terminals; the same value is used in the Norton form, $R_N = R_{Th}$."
+    ],
+    [
+     "Norton current $I_N$",
+     "Equals $i_{sc}$, pointing from $b$ to $a$ inside the source."
+    ]
+   ],
+   "type": "table"
+  },
+  {
+   "citations": [],
+   "display": true,
+   "id": "ff5ea7d5-5816-4b2e-bd79-167ece6707a4",
+   "latex": "V_{Th} = v_{oc}, \\qquad I_N = i_{sc}, \\qquad R_{Th} = R_N = \\frac{v_{oc}}{i_{sc}}, \\qquad I_N = \\frac{V_{Th}}{R_{Th}}",
+   "type": "equation"
+  },
+  {
+   "citations": [],
+   "id": "795109f6-58a8-4fc2-b5b7-a2bd976bc561",
+   "text": "Fix $v_{ab}$ positive at $a$ and define $i_{sc}$ from $a$ to $b$ through the external short. The ratio $\\dfrac{v_{oc}}{i_{sc}}$ gives the resistance when $i_{sc}\\ne0$. If both are zero, use a test source; $\\dfrac{0}{0}$ gives no resistance information. Norton conversion $I_N=\\dfrac{V_{Th}}{R_{Th}}$ also requires $R_{Th}\\ne0$. For a finite Thévenin equivalent and a nonsingular load, $v_L=\\dfrac{V_{Th}R_L}{R_{Th}+R_L}$.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [
+    {
+     "chunk_id": "dcae2d68-98b6-4d6d-8c53-e8ea13e45587",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "e6a5d8a8-815e-4ebd-a2a1-519b95a67ba9",
+   "steps": [
+    {
+     "explanation": "Write the terminal law of the Thévenin circuit with $i$ flowing out of terminal $a$ into the load.",
+     "latex": "v_{ab} = V_{Th} - R_{Th}\\,i"
+    },
+    {
+     "explanation": "Open circuit: no current flows, so $i = 0$ and the terminal voltage is the Thévenin voltage.",
+     "latex": "v_{oc} = V_{Th}"
+    },
+    {
+     "explanation": "Short circuit: $v_{ab} = 0$, so the current is limited only by $R_{Th}$.",
+     "latex": "0 = V_{Th} - R_{Th}\\,i_{sc} \\;\\Rightarrow\\; i_{sc} = \\frac{V_{Th}}{R_{Th}}"
+    },
+    {
+     "explanation": "Solve for the resistance.",
+     "latex": "R_{Th} = \\frac{V_{Th}}{i_{sc}} = \\frac{v_{oc}}{i_{sc}}"
+    }
+   ],
+   "title": "Why $R_{Th} = \\dfrac{v_{oc}}{i_{sc}}$",
+   "type": "derivation"
+  },
+  {
+   "citations": [],
+   "id": "cdceb6c1-5768-4620-b5bd-4bd58fa6e946",
+   "level": 2,
+   "text": "Finding the equivalent",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "6545a97f-34c7-4a92-8ec6-cd04741a44f9",
+   "items": [
+    "Compute the open-circuit voltage $v_{ab}$ with the terminals open. This is $V_{Th}$.",
+    "Compute the short-circuit current $i_{sc}$ from $a$ to $b$ with a wire across the terminals.",
+    "Find $R_{Th}=\\dfrac{V_{Th}}{i_{sc}}$ when $i_{sc}\\ne0$, or use a test source or the independent-source reduction below. Use a test source for $v_{oc}=i_{sc}=0$.",
+    "Draw the Thévenin form ($V_{Th}$ in series with $R_{Th}$) or the Norton form ($i_{sc}$ in parallel with $R_{Th}$)."
+   ],
+   "ordered": true,
+   "type": "list"
+  },
+  {
+   "citations": [],
+   "id": "5557c03a-a030-4074-94b2-42688fe0d287",
+   "text": "If the circuit contains only independent sources, there is a quicker route to $R_{Th}$: deactivate every independent source (replace voltage sources by short circuits and current sources by open circuits) and find the resistance between $a$ and $b$ by series-parallel reduction. If dependent sources are present, deactivate only the independent sources, connect a test source to the terminals and compute the ratio below.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [],
+   "display": true,
+   "id": "aedc97ac-678d-4b9d-af27-827d2130b6c1",
+   "latex": "R_{Th} = \\frac{v_T}{i_T}",
+   "type": "equation"
+  },
+  {
+   "citations": [],
+   "id": "f53dd9e8-252e-46b2-b020-dce3e95330c8",
+   "text": "Here $v_T$ is a test voltage source placed across $a$–$b$ (or the voltage that results from a test current source) and $i_T$ is the current it pushes into the circuit. Pick whichever test source makes the algebra easier, and solve the circuit for the ratio; the value of $v_T$ or $i_T$ cancels.",
+   "type": "paragraph"
+  },
+  {
+   "citations": [],
+   "id": "b47353b4-ce6c-49aa-85ef-a7c88d25c1b4",
+   "text": "Keep dependent sources active and retain their control relations. Fix $v_{ab}$ positive at $a$ and $i_{sc}$ from $a$ to $b$ in the short. Opposite signs give a negative $R_{Th}$ when the ratio is defined. That can be correct for an active network with dependent sources; verify it with a test source. In a network containing only positive resistors and independent sources, it indicates a sign or analysis error.",
+   "tone": "warning",
+   "type": "callout"
+  },
+  {
+   "citations": [],
+   "id": "dbc6a377-5c0a-4c32-8a7c-1a0a98b6d432",
+   "text": "With only independent sources, deactivate them and find the resistance seen at the terminals. With dependent sources, retain them and use a test source, or use $\\dfrac{v_{oc}}{i_{sc}}$ if $i_{sc}\\ne0$. An already computed, nonzero short-circuit current makes the ratio a useful cross-check.",
+   "tone": "tip",
+   "type": "callout"
+  },
+  {
+   "answer": "$V_{Th} = 32\\,\\mathrm{V}$, $R_{Th} = 8\\,\\Omega$; Norton: $I_N = 4\\,\\mathrm{A}$ in parallel with $R_N = 8\\,\\Omega$.",
+   "citations": [
+    {
+     "chunk_id": "e2c7d1d9-3d19-4dbd-a3ad-9d2e1463fdfe",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "70301a22-1db1-4057-a945-67fc586ed00d",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "7266b713-170e-4455-b1f8-53f97816ea21",
+   "prompt": "Find the Thévenin and Norton equivalent circuits with respect to terminals $a$ and $b$.\n\n```schematic\nV1 0,4 -> 0,0 \"$25\\,\\mathrm{V}$\"\nR1 0,4 -> 4,4 \"$5\\,\\Omega$\"\nR2 4,4 -> 4,0 \"$20\\,\\Omega$\"\nwire 4,4 -> 7,4\nI1 7,0 -> 7,4 \"$3\\,\\mathrm{A}$\"\nR3 7,4 -> 11,4 \"$4\\,\\Omega$\"\nterminal 11,4 \"$a$\" right\nterminal 11,0 \"$b$\" right\ngap 11,4 -> 11,0 v=\"$v_{ab}$\"\nlabel 4,4 \"$v_1$\" above\nwire 0,0 -> 11,0\nground 0,0\n```\n\nFind $V_{Th}$, $R_{Th}$, the Norton current $I_N$, and check $R_{Th}$ by deactivating the sources.",
+   "steps": [
+    {
+     "explanation": "Open circuit: no current flows in the $4\\,\\Omega$ resistor, so $V_{Th} = v_1$. Apply KCL at node $n$, with the $3\\,\\mathrm{A}$ source entering.",
+     "latex": "\\frac{v_1 - 25}{5} + \\frac{v_1}{20} = 3 \\;\\Rightarrow\\; 5v_1 = 160 \\;\\Rightarrow\\; V_{Th} = v_{oc} = 32\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Short circuit: the $4\\,\\Omega$ resistor now connects node $n$ to ground, so it carries the short-circuit current. Repeat KCL with this extra branch.",
+     "latex": "\\frac{v_1 - 25}{5} + \\frac{v_1}{20} + \\frac{v_1}{4} = 3 \\;\\Rightarrow\\; 10v_1 = 160 \\;\\Rightarrow\\; v_1 = 16\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "The short-circuit current is the current in the $4\\,\\Omega$ resistor.",
+     "latex": "i_{sc} = \\frac{16}{4} = 4\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "Divide the open-circuit voltage by the short-circuit current.",
+     "latex": "R_{Th} = \\frac{v_{oc}}{i_{sc}} = \\frac{32}{4} = 8\\,\\Omega"
+    },
+    {
+     "explanation": "Check by deactivating the sources: the $25\\,\\mathrm{V}$ source becomes a short and the $3\\,\\mathrm{A}$ source an open circuit, leaving $5\\,\\Omega$ in parallel with $20\\,\\Omega$ in series with $4\\,\\Omega$.",
+     "latex": "R_{Th} = (5 \\parallel 20) + 4 = 4 + 4 = 8\\,\\Omega"
+    },
+    {
+     "explanation": "Draw the equivalents: the Thévenin circuit is a $32\\,\\mathrm{V}$ source ($+$ at $a$) in series with $8\\,\\Omega$; the Norton circuit is a $4\\,\\mathrm{A}$ source pointing toward $a$ in parallel with $8\\,\\Omega$.",
+     "latex": ""
+    }
+   ],
+   "title": "Thévenin and Norton equivalents, independent sources",
+   "type": "worked_example"
+  },
+  {
+   "citations": [],
+   "id": "52200d38-4093-4208-a1f0-63d48a1594e1",
+   "level": 2,
+   "text": "Circuits with dependent sources",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "cd851b98-34c9-4a7e-835a-b1a72651159b",
+   "text": "A dependent source follows a voltage or current elsewhere in the circuit, so it cannot be \"turned off\" and the control variable has to be solved together with everything else. The open-circuit and short-circuit calculations still work, and the test-source method gives a cross-check for $R_{Th}$. It is also possible for $V_{Th}$ and $i_{sc}$ to both be negative, which is fine: the ratio $R_{Th}$ is then still positive.",
+   "type": "paragraph"
+  },
+  {
+   "answer": "$V_{Th} = -5\\,\\mathrm{V}$ and $R_{Th} = 100\\,\\Omega$ (Thévenin: a $-5\\,\\mathrm{V}$ source in series with $100\\,\\Omega$). Norton: $I_N = i_{sc} = -50\\,\\mathrm{mA}$ in parallel with $100\\,\\Omega$.",
+   "citations": [
+    {
+     "chunk_id": "58465f9f-fd48-475f-99f3-ef018f4e7d28",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    },
+    {
+     "chunk_id": "4108c7d7-180c-4d1f-8ea1-aecfb2746e2a",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "id": "e94d55f5-8be4-4af7-8bea-9b6e9bf09d97",
+   "prompt": "Find the Thévenin equivalent with respect to terminals $a$ and $b$.\n\n```schematic\nV1 0,4 -> 0,0 \"$5\\,\\mathrm{V}$\"\nR1 0,4 -> 4,4 \"$2\\,\\mathrm{k}\\Omega$\" i=\"$i$\"\nE1 4,4 -> 4,0 \"$3v$\"\nG1 7,4 -> 7,0 \"$20i$\"\nwire 7,4 -> 10,4\nR2 10,4 -> 10,0 \"$25\\,\\Omega$\" v=\"$v$\"\nwire 10,4 -> 13,4\nterminal 13,4 \"$a$\" right\nterminal 13,0 \"$b$\" right\nwire 0,0 -> 13,0\nground 0,0\n```\n\nFind $V_{Th}$, $i_{sc}$ and $R_{Th}$, and check $R_{Th}$ with a test source.",
+   "steps": [
+    {
+     "explanation": "Open circuit: the $25\\,\\Omega$ resistor and the dependent current source are the only elements at node $a$, so their currents must cancel.",
+     "latex": "\\frac{v}{25} + 20i = 0 \\;\\Rightarrow\\; v = -500\\,i"
+    },
+    {
+     "explanation": "The left loop contains the $5\\,\\mathrm{V}$ source, the $2\\,\\mathrm{k}\\Omega$ resistor and the dependent source $3v$. Apply KVL.",
+     "latex": "5 = 2000\\,i + 3v"
+    },
+    {
+     "explanation": "Substitute $v = -500\\,i$ and solve for the current, then for $v$.",
+     "latex": "5 = 2000i - 1500i \\Rightarrow i = 10\\,\\mathrm{mA}, \\quad V_{Th} = v_{oc} = -5\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Short circuit: $v = 0$, so the dependent voltage source $3v$ is $0$ and the loop current is set by the $5\\,\\mathrm{V}$ source alone.",
+     "latex": "i = \\frac{5}{2000} = 2.5\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "With the $25\\,\\Omega$ resistor shorted, the dependent current source $20i = 50\\,\\mathrm{mA}$ pulls current down from $a$, and the wire must supply it from $b$. Measured from $a$ to $b$, the short-circuit current is therefore negative.",
+     "latex": "i_{sc} = -20i = -50\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "Divide the open-circuit voltage by the short-circuit current.",
+     "latex": "R_{Th} = \\frac{-5}{-0.05} = 100\\,\\Omega"
+    },
+    {
+     "explanation": "Check with a test source: replace the $5\\,\\mathrm{V}$ source by a short, apply $v_T$ at $a$–$b$ so $v = v_T$, and note $i = -\\dfrac{3v_T}{2000}$. KCL at $a$ gives the current $i_T$ that the test source supplies.",
+     "latex": "i_T = \\frac{v_T}{25} + 20i = v_T(0.04 - 0.03) = \\frac{v_T}{100} \\;\\Rightarrow\\; R_{Th} = \\frac{v_T}{i_T} = 100\\,\\Omega"
+    }
+   ],
+   "title": "Thévenin equivalent with a dependent source",
+   "type": "worked_example"
+  },
+  {
+   "citations": [],
+   "id": "6f5119ea-452a-4bfc-ac98-6573bc60eb04",
+   "level": 1,
+   "text": "Practice problems",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "7b8965a4-ab03-4755-bea9-d6af00cdbf5c",
+   "text": "Work each problem on paper first, choosing the method before you start, and open the solution only to check your steps. The set runs from direct applications to a multi-part problem and a Thévenin problem with a dependent source; the textbook problems are from Chapter 4 of Nilsson, and every circuit has been checked with a simulator or by an independent hand calculation.",
+   "type": "paragraph"
+  },
+  {
+   "answer": "**(a)** $i_o = 3\\,\\mathrm{mA}$ (from the right node to the left node through the $2.7\\,\\mathrm{k}\\Omega$ resistor). **(b)** The node-voltage method gives $v_a = -6.9\\,\\mathrm{V}$, $v_b = 1.2\\,\\mathrm{V}$ and the same $i_o = 3\\,\\mathrm{mA}$.",
+   "citations": [
+    {
+     "chunk_id": "89f45bb9-f9a6-46e8-b911-f38a65e4ba84",
+     "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+     "version": 1
+    }
+   ],
+   "difficulty": "introductory",
+   "id": "fa1f48b0-d644-4aa0-925e-58d96c49791e",
+   "origin": "source",
+   "prompt": "Use source transformations to find the current $i_o$ in the circuit below, then verify your answer with the node-voltage method.\n\n```schematic\nI1 0,4 -> 0,0 \"$6\\,\\mathrm{mA}$\"\nwire 0,4 -> 3,4\nR1 3,4 -> 3,0 \"$2.3\\,\\mathrm{k}\\Omega$\"\nR2 7,4 -> 3,4 \"$2.7\\,\\mathrm{k}\\Omega$\" i=\"$i_o$\"\nR3 7,4 -> 7,0 \"$1\\,\\mathrm{k}\\Omega$\"\nwire 7,4 -> 10,4\nI2 10,0 -> 10,4 \"$4.2\\,\\mathrm{mA}$\"\nwire 0,0 -> 10,0\nground 0,0\n```\n\nFind:\n\n1. $i_o$ by source transformations;\n2. $i_o$ by node-voltage analysis.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Transform the $6\\,\\mathrm{mA}$ source (pulling current down out of the left node) with its parallel $2.3\\,\\mathrm{k}\\Omega$ into a voltage source in series with $2.3\\,\\mathrm{k}\\Omega$. Its $+$ terminal is at the ground side.",
+     "latex": "v_1 = (6\\,\\mathrm{mA})(2.3\\,\\mathrm{k}\\Omega) = 13.8\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Transform the $4.2\\,\\mathrm{mA}$ source (pushing current up into the right node) with the parallel $1\\,\\mathrm{k}\\Omega$ into a voltage source in series with $1\\,\\mathrm{k}\\Omega$, with $+$ toward the circuit.",
+     "latex": "v_2 = (4.2\\,\\mathrm{mA})(1\\,\\mathrm{k}\\Omega) = 4.2\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Everything is now one series loop. Both voltage sources help drive current around the loop in the direction of $i_o$ (right node to left node through $2.7\\,\\mathrm{k}\\Omega$, then down through $2.3\\,\\mathrm{k}\\Omega$). Apply KVL.",
+     "latex": "13.8 + 4.2 = i_o(2.3 + 2.7 + 1)\\times 10^{3}"
+    },
+    {
+     "explanation": "Solve for the current.",
+     "latex": "i_o = \\frac{18\\,\\mathrm{V}}{6\\,\\mathrm{k}\\Omega} = 3\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "Verify with node-voltage analysis: KCL at the left node $a$ and the right node $b$ (currents leaving, with the $6\\,\\mathrm{mA}$ source taking current out of $a$).",
+     "latex": "\\begin{aligned} \\frac{v_a}{2300} + \\frac{v_a - v_b}{2700} + 0.006 &= 0 \\\\ \\frac{v_b}{1000} + \\frac{v_b - v_a}{2700} &= 0.0042 \\end{aligned}"
+    },
+    {
+     "explanation": "Solving gives $v_a = -6.9\\,\\mathrm{V}$ and $v_b = 1.2\\,\\mathrm{V}$, and the current from $b$ to $a$ is $i_o$.",
+     "latex": "i_o = \\frac{v_b - v_a}{2700} = \\frac{8.1}{2700} = 3\\,\\mathrm{mA}"
+    }
+   ],
+   "title": "Textbook P4.59 · Source transformations on a ladder",
+   "type": "practice_problem"
+  },
+  {
+   "answer": "$V_{Th} = 60\\,\\mathrm{V}$ (with $+$ at $a$) and $R_{Th} = 10\\,\\Omega$.",
+   "citations": [
+    {
+     "chunk_id": "b0340958-02ef-4cf3-a7c0-cbd0e26f0065",
+     "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+     "version": 1
+    }
+   ],
+   "difficulty": "introductory",
+   "id": "f6a54ee6-1ba5-406d-9099-bd743cbd83e6",
+   "origin": "source",
+   "prompt": "Find the Thévenin equivalent with respect to the terminals $a$, $b$ of the circuit below.\n\n```schematic\nV1 0,4 -> 0,0 \"$80\\,\\mathrm{V}$\"\nR1 0,4 -> 4,4 \"$10\\,\\Omega$\"\nR2 4,4 -> 4,0 \"$30\\,\\Omega$\"\nR3 4,4 -> 8,4 \"$2.5\\,\\Omega$\"\nterminal 8,4 \"$a$\" right\nterminal 8,0 \"$b$\" right\nwire 0,0 -> 8,0\n```\n\nFind $V_{Th}$ and $R_{Th}$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Open circuit: no current flows in the $2.5\\,\\Omega$ resistor, so $v_{ab}$ equals the voltage across the $30\\,\\Omega$ resistor, a voltage divider.",
+     "latex": "V_{Th} = 80\\cdot\\frac{30}{10 + 30} = 60\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Deactivate the $80\\,\\mathrm{V}$ source (replace it by a short). The $10\\,\\Omega$ and $30\\,\\Omega$ resistors are then in parallel, in series with the $2.5\\,\\Omega$ resistor.",
+     "latex": "R_{Th} = (10 \\parallel 30) + 2.5 = 7.5 + 2.5 = 10\\,\\Omega"
+    },
+    {
+     "explanation": "Check with the short-circuit current. With $a$ shorted to $b$, the source sees $10 + (30 \\parallel 2.5)$, and the current divider sends most of its current through the short.",
+     "latex": "i_{sc} = \\frac{80}{10 + 2.3077}\\cdot\\frac{30}{30 + 2.5} = 6\\,\\mathrm{A} = \\frac{60}{10}"
+    }
+   ],
+   "title": "Textbook P4.65 · Thévenin equivalent of a divider",
+   "type": "practice_problem"
+  },
+  {
+   "answer": "$I_N = 6\\,\\mathrm{A}$ (flowing from $b$ to $a$ inside the source) in parallel with $R_N = 7.5\\,\\Omega$; the equivalent Thévenin voltage is $45\\,\\mathrm{V}$.",
+   "citations": [
+    {
+     "chunk_id": "b0340958-02ef-4cf3-a7c0-cbd0e26f0065",
+     "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+     "version": 1
+    }
+   ],
+   "difficulty": "intermediate",
+   "id": "7a54b8b5-9264-42ff-a6f7-b30175a0b0bd",
+   "origin": "source",
+   "prompt": "Find the Norton equivalent with respect to the terminals $a$, $b$ of the circuit below.\n\n```schematic\nI1 0,0 -> 0,4 \"$15\\,\\mathrm{A}$\"\nwire 0,4 -> 3,4\nR1 3,4 -> 3,0 \"$8\\,\\Omega$\"\nR2 3,4 -> 6,4 \"$2\\,\\Omega$\"\nR3 6,4 -> 6,0 \"$12\\,\\Omega$\"\nwire 6,4 -> 9,4\nterminal 9,4 \"$a$\" right\nwire 0,0 -> 3,0\nR4 3,0 -> 6,0 \"$10\\,\\Omega$\"\nwire 6,0 -> 9,0\nterminal 9,0 \"$b$\" right\n```\n\nFind $I_N$ and $R_N$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Put a wire across $a$–$b$. This shorts out the $12\\,\\Omega$ resistor, so the $15\\,\\mathrm{A}$ source drives the $8\\,\\Omega$ branch in parallel with the series branch $2 + 10 = 12\\,\\Omega$ that now contains the short.",
+     "latex": ""
+    },
+    {
+     "explanation": "Use the current divider to find the short-circuit current from $a$ to $b$.",
+     "latex": "I_N = i_{sc} = 15\\cdot\\frac{8}{8 + 12} = 6\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "Open the current source and look into $a$–$b$. The $12\\,\\Omega$ resistor is in parallel with the series string $2 + 8 + 10$.",
+     "latex": "R_N = 12 \\parallel (2 + 8 + 10) = \\frac{12\\cdot 20}{32} = 7.5\\,\\Omega"
+    },
+    {
+     "explanation": "Check: the open-circuit voltage should be $I_N R_N = 45\\,\\mathrm{V}$, which agrees with $12\\,\\Omega$ carrying $3.75\\,\\mathrm{A}$ when the terminals are open.",
+     "latex": ""
+    }
+   ],
+   "title": "Textbook P4.64 · Norton equivalent with a shunt resistor",
+   "type": "practice_problem"
+  },
+  {
+   "answer": "The $6\\,\\mathrm{V}$ source **absorbs** $4.95\\,\\mathrm{W}$ ($0.825\\,\\mathrm{A}$ flows into its $+$ terminal).",
+   "citations": [
+    {
+     "chunk_id": "ea10afb9-d962-408e-a775-ca77c13fa488",
+     "source_id": "67209eb7-82f0-48d1-9be4-753156a96440",
+     "version": 1
+    }
+   ],
+   "difficulty": "intermediate",
+   "id": "e7878a40-91e1-427a-932e-e888b95e8019",
+   "origin": "source",
+   "prompt": "What is the power associated with the $6\\,\\mathrm{V}$ source in the circuit below, and is it absorbed or delivered?\n\n```schematic\nV1 0,4 -> 0,0 \"$6\\,\\mathrm{V}$\"\nR1 0,4 -> 4,4 \"$4\\,\\Omega$\"\nR2 4,4 -> 4,0 \"$30\\,\\Omega$\"\nR3 4,4 -> 8,4 \"$6\\,\\Omega$\"\nR4 8,4 -> 8,0 \"$20\\,\\Omega$\"\nR5 8,4 -> 12,4 \"$5\\,\\Omega$\"\nV2 12,4 -> 12,0 \"$40\\,\\mathrm{V}$\"\nwire 0,0 -> 4,0\nR6 4,0 -> 8,0 \"$10\\,\\Omega$\"\nwire 8,0 -> 12,0\nground 0,0\n```\n\nFind the power in the $6\\,\\mathrm{V}$ source and state whether it is absorbed or delivered.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Transform the $40\\,\\mathrm{V}$ source with its series $5\\,\\Omega$ resistor into a current source with a parallel resistor. It sits between the right end of the $6\\,\\Omega$ resistor and the bottom node, and the arrow points up into that node.",
+     "latex": "i_s = \\frac{40}{5} = 8\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "The new $5\\,\\Omega$ resistor is now in parallel with the $20\\,\\Omega$ resistor.",
+     "latex": "5 \\parallel 20 = 4\\,\\Omega"
+    },
+    {
+     "explanation": "Transform the $8\\,\\mathrm{A}$ source with $4\\,\\Omega$ back into a voltage source (+ up) in series with $4\\,\\Omega$.",
+     "latex": "v_s = 8 \\times 4 = 32\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "The $32\\,\\mathrm{V}$ source and the series resistors $6\\,\\Omega + 4\\,\\Omega + 10\\,\\Omega = 20\\,\\Omega$ form one branch from the middle node to ground. Transform it into a $1.6\\,\\mathrm{A}$ source in parallel with $20\\,\\Omega$.",
+     "latex": "i_s = \\frac{32}{20} = 1.6\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "Transform the left source: the $6\\,\\mathrm{V}$ source with its series $4\\,\\Omega$ becomes a $1.5\\,\\mathrm{A}$ source in parallel with $4\\,\\Omega$.",
+     "latex": "i_s = \\frac{6}{4} = 1.5\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "At the middle node $c$ the two current sources add, and the resistors $4$, $20$ and $30\\,\\Omega$ are in parallel.",
+     "latex": "v_c = (1.5 + 1.6)\\,(4 \\parallel 20 \\parallel 30) = 3.1 \\times 3 = 9.3\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Work back to the original circuit. The current in the $4\\,\\Omega$ resistor from the source's $+$ terminal toward $c$ is negative, so current actually flows into the $+$ terminal of the $6\\,\\mathrm{V}$ source.",
+     "latex": "i = \\frac{6 - 9.3}{4} = -0.825\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "Current enters the $+$ terminal, so the source absorbs power.",
+     "latex": "p = (6)(0.825) = 4.95\\,\\mathrm{W}\\ \\text{absorbed}"
+    }
+   ],
+   "title": "Lecture 4 p. 9 · Power in the 6 V source",
+   "type": "practice_problem"
+  },
+  {
+   "answer": "**(a)** Mesh-current (2 equations against 3 for node-voltage, because the current source fixes one mesh current). **(b)** $p_{10\\,\\Omega} = 3.6\\,\\mathrm{W}$. **(c)** The $4\\,\\mathrm{A}$ source delivers $52.8\\,\\mathrm{W}$.",
+   "citations": [
+    {
+     "chunk_id": "89f45bb9-f9a6-46e8-b911-f38a65e4ba84",
+     "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+     "version": 1
+    }
+   ],
+   "difficulty": "intermediate",
+   "id": "0640ae72-5fe0-4ad0-aa15-77ee65272351",
+   "origin": "source",
+   "prompt": "You must find the power dissipated in the $10\\,\\Omega$ resistor of the bridge below, which is driven by a $4\\,\\mathrm{A}$ source.\n\n```schematic\nI1 0,0 -> 0,6 \"$4\\,\\mathrm{A}$\"\nwire 0,6 -> 9,6\nR1 3,6 -> 3,3 \"$8\\,\\Omega$\"\nR3 3,3 -> 3,0 \"$1\\,\\Omega$\"\nR2 9,6 -> 9,3 \"$2\\,\\Omega$\"\nR4 9,3 -> 9,0 \"$4\\,\\Omega$\"\nR5 3,3 -> 9,3 \"$10\\,\\Omega$\" i=\"$i_{10}$\"\nwire 0,0 -> 9,0\nground 0,0\n```\n\nFind:\n\n1. which method you would recommend, and why;\n2. the power dissipated in the $10\\,\\Omega$ resistor;\n3. the power delivered by the $4\\,\\mathrm{A}$ source.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Count the unknowns. With the bottom wire as reference there are 3 essential nodes besides ground (top, left and right), so node-voltage needs 3 equations. There are 3 meshes, and the $4\\,\\mathrm{A}$ source lies in only one of them, so that mesh current is known and mesh-current needs only 2 equations. Mesh-current is better.",
+     "latex": "N_{\\text{node}} = 3, \\qquad N_{\\text{mesh}} = 3 - 1 = 2"
+    },
+    {
+     "explanation": "Take clockwise mesh currents: $i_1 = 4\\,\\mathrm{A}$ in the left mesh (source, $8\\,\\Omega$, $1\\,\\Omega$), $i_2$ in the upper triangle ($2\\,\\Omega$, $10\\,\\Omega$, $8\\,\\Omega$) and $i_3$ in the lower triangle ($10\\,\\Omega$, $4\\,\\Omega$, $1\\,\\Omega$). Write KVL for the upper triangle.",
+     "latex": "2i_2 + 10(i_2 - i_3) + 8(i_2 - 4) = 0 \\;\\Rightarrow\\; 20i_2 - 10i_3 = 32"
+    },
+    {
+     "explanation": "Write KVL for the lower triangle.",
+     "latex": "10(i_3 - i_2) + 4i_3 + 1(i_3 - 4) = 0 \\;\\Rightarrow\\; -10i_2 + 15i_3 = 4"
+    },
+    {
+     "explanation": "Solve the two equations.",
+     "latex": "i_3 = 2\\,\\mathrm{A}, \\qquad i_2 = 2.6\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "The current in the $10\\,\\Omega$ resistor is the difference of its two mesh currents, so its power follows.",
+     "latex": "i_{10} = i_3 - i_2 = -0.6\\,\\mathrm{A}, \\qquad p_{10} = (0.6)^2(10) = 3.6\\,\\mathrm{W}"
+    },
+    {
+     "explanation": "Find the source voltage as the sum of the drops down the left branch: the $8\\,\\Omega$ carries $4 - 2.6 = 1.4\\,\\mathrm{A}$ and the $1\\,\\Omega$ carries $4 - 2 = 2\\,\\mathrm{A}$.",
+     "latex": "v_{src} = 8(1.4) + 1(2) = 13.2\\,\\mathrm{V}, \\qquad p = 4(13.2) = 52.8\\,\\mathrm{W}"
+    }
+   ],
+   "title": "Textbook P4.54 · Choosing the method for a bridge",
+   "type": "practice_problem"
+  },
+  {
+   "answer": "**(a)** $v_o = -135\\,\\mathrm{V}$. **(b)** The $340\\,\\mathrm{V}$ source develops $2465\\,\\mathrm{W}$. **(c)** The $5\\,\\mathrm{A}$ source develops $1000\\,\\mathrm{W}$. **(d)** Total developed $= 3465\\,\\mathrm{W}$ = total dissipated.",
+   "citations": [
+    {
+     "chunk_id": "b0340958-02ef-4cf3-a7c0-cbd0e26f0065",
+     "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+     "version": 1
+    }
+   ],
+   "difficulty": "advanced",
+   "id": "e65165c9-adf8-40f5-893a-4bbd3d9eb774",
+   "origin": "source",
+   "prompt": "Use source transformations to find $v_o$ in the circuit below, then find the power developed by the $340\\,\\mathrm{V}$ source and by the $5\\,\\mathrm{A}$ source, and verify that total developed power equals total dissipated power.\n\n```schematic\nI1 0,0 -> 0,4 \"$5\\,\\mathrm{A}$\"\nR1 0,4 -> 3,4 \"$8\\,\\Omega$\"\nR2 3,4 -> 3,0 \"$20\\,\\Omega$\"\nwire 3,4 -> 3,7\nV1 3,7 -> 6,7 \"$340\\,\\mathrm{V}$\"\nwire 6,7 -> 6,4\nR3 3,4 -> 6,4 \"$80\\,\\Omega$\"\nR4 6,4 -> 9,4 \"$5\\,\\Omega$\"\nwire 9,4 -> 12,4\nR5 12,4 -> 12,0 \"$45\\,\\Omega$\"\nwire 0,0 -> 3,0\nR6 3,0 -> 9,0 \"$10\\,\\Omega$\"\nwire 9,0 -> 12,0\ngap 9,4 -> 9,0 v=\"$v_o$\"\nground 0,0\n```\n\nFind:\n\n1. $v_o$;\n2. the power developed by the $340\\,\\mathrm{V}$ source;\n3. the power developed by the $5\\,\\mathrm{A}$ source;\n4. the total developed power and the total dissipated power.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Remove the elements that do not affect the rest of the circuit: the $8\\,\\Omega$ resistor in series with the $5\\,\\mathrm{A}$ source and the $80\\,\\Omega$ resistor in parallel with the $340\\,\\mathrm{V}$ source.",
+     "latex": ""
+    },
+    {
+     "explanation": "Transform the $5\\,\\mathrm{A}$ source with its parallel $20\\,\\Omega$ resistor into a voltage source in series with $20\\,\\Omega$ ($+$ at the top node).",
+     "latex": "v_s = 5 \\times 20 = 100\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "The circuit is now one series loop containing $100\\,\\mathrm{V}$ (a rise), $340\\,\\mathrm{V}$ (a drop, because its $+$ terminal is at the left) and the resistors $20 + 5 + 45 + 10 = 80\\,\\Omega$. Apply KVL with a clockwise loop current.",
+     "latex": "100 - 340 = 80\\,i \\;\\Rightarrow\\; i = -3\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "So $3\\,\\mathrm{A}$ actually circulates counterclockwise, flowing up through the $45\\,\\Omega$ resistor from bottom to top, and $v_o$ is negative.",
+     "latex": "v_o = i(45) = -135\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Work back for the $340\\,\\mathrm{V}$ source. The $80\\,\\Omega$ resistor carries $\\dfrac{340}{80} = 4.25\\,\\mathrm{A}$ from the $+$ side to the $-$ side, and the $3\\,\\mathrm{A}$ loop current flows the opposite way, so the source supplies the rest.",
+     "latex": "i_{340} = 3 + 4.25 = 7.25\\,\\mathrm{A}, \\qquad p_{340} = 340(7.25) = 2465\\,\\mathrm{W}\\ \\text{developed}"
+    },
+    {
+     "explanation": "Work back for the $5\\,\\mathrm{A}$ source. The $20\\,\\Omega$ resistor carries $5 + 3 = 8\\,\\mathrm{A}$, so the top node is at $160\\,\\mathrm{V}$, and the $8\\,\\Omega$ resistor adds $5(8) = 40\\,\\mathrm{V}$.",
+     "latex": "v_{5\\,\\mathrm{A}} = 160 + 40 = 200\\,\\mathrm{V}, \\qquad p_{5\\,\\mathrm{A}} = 5(200) = 1000\\,\\mathrm{W}\\ \\text{developed}"
+    },
+    {
+     "explanation": "Check the power balance. The resistors dissipate $200 + 1280 + 1445 + 45 + 405 + 90$ watts, which equals the developed power.",
+     "latex": "2465 + 1000 = 3465\\,\\mathrm{W} = 200 + 1280 + 1445 + 45 + 405 + 90"
+    }
+   ],
+   "title": "Textbook P4.63 · Series of source transformations and power balance",
+   "type": "practice_problem"
+  },
+  {
+   "answer": "$V_{Th} = 0\\,\\mathrm{V}$ and $R_{Th} = 8\\,\\Omega$. The terminals behave like an $8\\,\\Omega$ resistor, so the Norton current is also $0$.",
+   "citations": [
+    {
+     "chunk_id": "11bd02ab-ca60-4fbc-9f85-243a3e08a576",
+     "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+     "version": 1
+    }
+   ],
+   "difficulty": "advanced",
+   "id": "b52c111f-4819-4b13-8f3a-879817dc80fc",
+   "origin": "source",
+   "prompt": "Find the Thévenin equivalent with respect to the terminals $a$, $b$ of the circuit below. The dependent voltage source is controlled by the current $i_\\Delta$ in the $12\\,\\Omega$ resistor.\n\n```schematic\nE1 0,4 -> 0,0 \"$10i_\\Delta$\"\nwire 0,4 -> 0,7\nR1 0,7 -> 8,7 \"$6\\,\\Omega$\"\nwire 8,7 -> 8,4\nR2 0,4 -> 4,4 \"$10\\,\\Omega$\"\nR3 8,4 -> 4,4 \"$12\\,\\Omega$\" i=\"$i_\\Delta$\"\nR4 4,4 -> 4,0 \"$2.5\\,\\Omega$\"\nwire 8,4 -> 11,4\nterminal 11,4 \"$a$\" right\nterminal 11,0 \"$b$\" right\nwire 0,0 -> 11,0\n```\n\nFind $V_{Th}$ and $R_{Th}$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "With terminal $a$ open, name the right node $y$ and the middle node $m$. The controlling current $i_\\Delta$ flows from $y$ to $m$ through $12\\,\\Omega$. KCL at $y$ gives $\\dfrac{v_y-v_x}{6}+i_\\Delta=0$, so the current through $6\\,\\Omega$ from $x$ to $y$ equals $i_\\Delta$. The two resistors are separate branches at $y$.",
+     "latex": "v_x = 10i_\\Delta, \\quad \\frac{v_x - v_y}{6} = i_\\Delta \\Rightarrow v_y = 4i_\\Delta, \\quad v_m = v_y - 12 i_\\Delta = -8i_\\Delta"
+    },
+    {
+     "explanation": "Apply KCL at the middle node $m$: current in from the $10\\,\\Omega$ and the $12\\,\\Omega$ equals the current down the $2.5\\,\\Omega$.",
+     "latex": "\\frac{10i_\\Delta + 8i_\\Delta}{10} + i_\\Delta = \\frac{-8i_\\Delta}{2.5} \\;\\Rightarrow\\; 6i_\\Delta = 0"
+    },
+    {
+     "explanation": "So $i_\\Delta = 0$, every node voltage is zero, and the open-circuit voltage is zero: a circuit with no independent source has no Thévenin voltage.",
+     "latex": "V_{Th} = v_{oc} = 0"
+    },
+    {
+     "explanation": "Find $R_{Th}$ with a test source $v_T$ at $a$–$b$ (so $v_y = v_T$). Then $v_x = 10i_\\Delta$ and the $12\\,\\Omega$ current gives $v_m = v_T - 12i_\\Delta$. KCL at $m$ reads:",
+     "latex": "i_\\Delta + \\frac{10i_\\Delta - v_m}{10} = \\frac{v_m}{2.5} \\;\\Rightarrow\\; 8i_\\Delta = 0.5\\,v_T \\;\\Rightarrow\\; i_\\Delta = \\frac{v_T}{16}"
+    },
+    {
+     "explanation": "The current supplied by the test source leaves node $y$ through the $6\\,\\Omega$ resistor (to $x$) and the $12\\,\\Omega$ resistor.",
+     "latex": "i_T = \\frac{v_T - 10i_\\Delta}{6} + i_\\Delta = \\frac{6v_T/16}{6} + \\frac{v_T}{16} = \\frac{v_T}{8}"
+    },
+    {
+     "explanation": "Divide.",
+     "latex": "R_{Th} = \\frac{v_T}{i_T} = 8\\,\\Omega"
+    }
+   ],
+   "title": "Textbook P4.80 · Thévenin equivalent with a dependent source",
+   "type": "practice_problem"
+  },
+  {
+   "citations": [],
+   "id": "8369e411-9a3e-4653-887f-1b216e7e5cb5",
+   "level": 1,
+   "text": "Summary",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "id": "c45ed914-09b2-4b0a-b268-bb5fdf70b044",
+   "items": [
+    "Count the equations before you start: node-voltage needs $(n_e - 1)$ minus the nodes fixed by voltage sources; mesh-current needs $(b_e - n_e + 1)$ minus the meshes fixed by current sources. Count dependent control constraints after substitution; a source does not automatically remove an unknown.",
+    "Supernodes favour node-voltage and supermeshes favour mesh-current, because the source ties two unknowns together and one can be eliminated.",
+    "A source transformation swaps a voltage source in series with $R$ for a current source in parallel with $R$ using $i_s = \\dfrac{v_s}{R}$, and keeps the terminal behaviour unchanged.",
+    "A resistor in parallel with an ideal voltage source or in series with an ideal current source does not change the terminal equivalent, but it does change power, so work back to the original circuit for powers.",
+    "For a linear resistive port with a finite equivalent, $V_{Th}=v_{oc}$ and $I_N=i_{sc}$. Use $R_{Th}=\\dfrac{v_{oc}}{i_{sc}}$ only for $i_{sc}\\ne0$, and a test source when both are zero.",
+    "With independent sources only, find $R_{Th}$ by zeroing the sources; with dependent sources present, keep them and use a test source, $R_{Th} = \\dfrac{v_T}{i_T}$, or the ratio $\\dfrac{v_{oc}}{i_{sc}}$.",
+    "Signs matter: $v_{ab}$ is positive at $a$, $i_{sc}$ flows from $a$ to $b$, and a negative $V_{Th}$ with a negative $i_{sc}$ still gives a positive $R_{Th}$."
+   ],
+   "ordered": false,
+   "type": "list"
+  },
+  {
+   "citations": [],
+   "id": "79fa8745-02e0-4d37-b796-ac13450c87da",
+   "level": 2,
+   "text": "Formula sheet",
+   "type": "heading"
+  },
+  {
+   "citations": [],
+   "columns": [
+    "Result",
+    "Formula",
+    "Use when"
+   ],
+   "id": "b4ae4842-2bda-4501-a01e-13833cb7cb12",
+   "rows": [
+    [
+     "Equations for node-voltage",
+     "$N_{\\text{node}} = (n_e - 1) - N_{\\text{fixed nodes}}$",
+     "Deciding between the two methods"
+    ],
+    [
+     "Equations for mesh-current",
+     "$N_{\\text{mesh}} = (b_e - n_e + 1) - N_{\\text{fixed meshes}}$",
+     "Deciding between the two methods (planar circuits only)"
+    ],
+    [
+     "Source transformation",
+     "$i_s = \\dfrac{v_s}{R}$, $\\;v_s = R\\,i_s$",
+     "A source with a series (voltage) or parallel (current) resistor"
+    ],
+    [
+     "Thévenin voltage",
+     "$V_{Th} = v_{oc}$",
+     "Terminals $a$, $b$ open"
+    ],
+    [
+     "Norton current",
+     "$I_N = i_{sc}$",
+     "Wire placed across $a$, $b$"
+    ],
+    [
+     "Equivalent resistance",
+     "$R_{Th} = R_N = \\dfrac{v_{oc}}{i_{sc}}$",
+     "Finite equivalent and $i_{sc}\\ne0$; use a test source for $\\dfrac{0}{0}$"
+    ],
+    [
+     "Resistance by zeroing sources",
+     "$R_{Th} = R_{ab}$ with sources off",
+     "Independent sources only"
+    ],
+    [
+     "Test-source method",
+     "$R_{Th} = \\dfrac{v_T}{i_T}$",
+     "Dependent sources present"
+    ],
+    [
+     "Thévenin–Norton conversion",
+     "$I_N = \\dfrac{V_{Th}}{R_{Th}}$",
+     "Finite nonzero $R_{Th}$"
+    ],
+    [
+     "Load voltage from the equivalent",
+     "$v_L = \\dfrac{V_{Th}R_L}{R_{Th}+R_L}$",
+     "Different loads on the same terminals"
+    ]
+   ],
+   "type": "table"
+  }
+ ],
+ "course_id": "4f61c7c9-90ce-4e64-8e1b-b7fb2f198e0b",
+ "created_at": "2026-10-08T03:30:15.868865+00:00",
+ "deleted": false,
+ "document_id": "97feb831-f3e8-453c-98bd-daeae3555e36",
+ "document_type": "study_notes",
+ "folder_id": null,
+ "revision": 4,
+ "schema_version": 1,
+ "title": "Week 4: Method Choice, Source Transformations and Thévenin–Norton Equivalents",
+ "topic_keys": [
+  "method_choice",
+  "source_transformation",
+  "thevenin_norton"
+ ],
+ "updated_at": "2026-10-08T17:04:37.898121+00:00",
+ "reference": {
+  "document_id": "97feb831-f3e8-453c-98bd-daeae3555e36",
+  "course_id": "4f61c7c9-90ce-4e64-8e1b-b7fb2f198e0b",
+  "revision": 4,
+  "title": "Week 4: Method Choice, Source Transformations and Thévenin–Norton Equivalents",
+  "route": "/courses/4f61c7c9-90ce-4e64-8e1b-b7fb2f198e0b/docs/97feb831-f3e8-453c-98bd-daeae3555e36"
+ },
+ "potentially_outdated": false,
+ "outdated_source_ids": []
+}

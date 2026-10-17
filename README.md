@@ -33,7 +33,7 @@ The local workspace has been initialized with these four courses, syllabus origi
 
 The example creates a small demonstration course using original sample material, retrieves a cited passage, creates notes, and makes a targeted revision. It needs the HTTP server running. Re-running it reuses its course and document.
 
-Read [FRONTEND.md](FRONTEND.md), [API.md](API.md), [MCP.md](MCP.md), [DOCUMENT_FORMAT.md](DOCUMENT_FORMAT.md), [CONTEXT_ENGINE.md](CONTEXT_ENGINE.md), [CIRCUIT_LANGUAGE.md](CIRCUIT_LANGUAGE.md), and [DEVELOPMENT.md](DEVELOPMENT.md) for contracts and setup. Design decisions are in [ARCHITECTURE.md](ARCHITECTURE.md).
+Read [FRONTEND.md](FRONTEND.md), [API.md](API.md), [MCP.md](MCP.md), [DOCUMENT_FORMAT.md](DOCUMENT_FORMAT.md), [CONTEXT_ENGINE.md](CONTEXT_ENGINE.md), [CIRCUIT_LANGUAGE.md](CIRCUIT_LANGUAGE.md), [HEIGHT_METHOD.md](HEIGHT_METHOD.md) (the height/river method used by the circuit notes), and [DEVELOPMENT.md](DEVELOPMENT.md) for contracts and setup. Design decisions are in [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Local configuration
 
@@ -48,7 +48,7 @@ The API is single-user. Keep it on loopback unless you provide authentication an
 
 ## Quick start on Windows
 
-Install [uv](https://docs.astral.sh/uv/) and Node.js once, then double-click `Open-Lecture.bat`. It reuses the server if one is already running, otherwise starts it (building the interface on the first run) and opens the browser. `Stop-Open-Lecture.bat` stops it.
+Install Python 3.12+ and Node.js once ([uv](https://docs.astral.sh/uv/) is optional), then double-click `Open-Lecture.bat`. It reuses the server if one is already running; otherwise it sets up `.venv` when it is missing or broken, rebuilds the interface when its sources changed, starts the server in the background (on the next free port if 8000 is taken by another program) and opens the browser. `Stop-Open-Lecture.bat` stops only Open Lecture. Both call `scripts\launcher.ps1` (`start`, `stop`, `status`). The server log is `.openlecture\server.log`, and a failed start prints its last lines.
 
 ## Your data
 

@@ -13,10 +13,15 @@ to the second, matching the netlist convention in CIRCUIT_LANGUAGE.md. See skill
 
 import re
 import shlex
+import threading
 from functools import lru_cache
 from math import hypot
 
 from .errors import DomainError
+
+# schemdraw keeps the drawing being built in global state, and the API renders on a thread pool:
+# without this, drawings requested together (a note page loads all of them at once) mix elements.
+_render_lock = threading.Lock()
 
 PREFIXES = [  # longest first
     ("AM", "ammeter"),
@@ -299,24 +304,49 @@ def check_fences(text: str):
 # ---------- Rendering ----------
 
 
+def upright(text: str) -> str:
+    """Plain text as upright math, so it uses the same (complete) font as the math."""
+    escaped = re.sub(r"([#%&_{}])", r"\\\1", text).replace(" ", r"\ ")
+    return f"\\mathrm{{{escaped}}}"
+
+
 def math_label(text: str) -> str:
-    """Labels are LaTeX when they contain $; other labels render upright in the same math font."""
-    if not text or "$" in text:
+    """Labels are LaTeX when they contain $; other labels render upright in the same math font.
+
+    Mixed labels such as `car A, $12\\,\\mathrm{V}$` become one math expression: plain text set in
+    the renderer's text font loses glyphs (a lowercase c drew as a stray stroke).
+    """
+    if not text:
         return text
+    if "$" in text:
+        parts = text.split("$")
+        if len(parts) % 2 == 0:  # unbalanced $: leave it for the renderer to report
+            return text
+        if all(not part.strip() for part in parts[::2]):
+            return text
+        return (
+            "$"
+            + "".join(upright(part) if i % 2 == 0 and part else part for i, part in enumerate(parts))
+            + "$"
+        )
     if re.fullmatch(r"[A-Za-z]", text):  # node names such as a, b are italic like math
         return f"${text}$"
-    escaped = re.sub(r"([#%&_{}])", r"\\\1", text).replace(" ", r"\ ")
-    return f"$\\mathrm{{{escaped}}}$"
+    return f"${upright(text)}$"
 
 
 @lru_cache(maxsize=256)
 def render_svg(source: str) -> str:
     """Render a validated schematic to a standalone SVG (black on transparent)."""
+    items = check(source) and parse(source)["items"]
+    with _render_lock:
+        return _draw(items)
+
+
+def _draw(items: list[dict]) -> str:
     import schemdraw
     import schemdraw.elements as elm
     from schemdraw.segments import Segment
 
-    items = check(source) and parse(source)["items"]
     schemdraw.use("svg")
     schemdraw.svgconfig.text = "path"  # glyphs as paths: no fonts or text injection in the SVG
     classes = {

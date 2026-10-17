@@ -1,0 +1,1478 @@
+[
+ {
+  "type": "callout",
+  "id": "c83c7903-0b78-5fd6-af55-a61c641ed708",
+  "tone": "info",
+  "text": "**Week 3 in one line:** two step-by-step ways to find every voltage in a big circuit. **Node voltages** = give each unknown height a letter and use in = out. **Mesh currents** = give each window a loop current and use climbs = falls.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "a8648164-df17-5965-b9c6-2678ba6ade21",
+  "level": 1,
+  "text": "The height method (read this first)",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "1d536b8e-d2b7-577e-b632-0adb208fcd6e",
+  "columns": [
+   "Part",
+   "In the height picture",
+   "Rule"
+  ],
+  "rows": [
+   [
+    "Ground",
+    "the floor, $0\\,\\mathrm{V}$",
+    "Pick one wire. The lowest one keeps the picture tidy."
+   ],
+   [
+    "Wire (node)",
+    "one flat level",
+    "Every point on a wire is at the same height. Its voltage **is** its height."
+   ],
+   [
+    "Battery (voltage source)",
+    "a fixed staircase",
+    "Its $+$ end is exactly $V$ higher than its $-$ end. Any current can flow."
+   ],
+   [
+    "Pump (current source)",
+    "a lift with a fixed flow",
+    "It forces its current. How far it lifts is whatever the circuit needs."
+   ],
+   [
+    "Resistor",
+    "a slide",
+    "Current slides **downhill**. Current $=\\dfrac{\\text{fall}}{R}$, fall $=$ current $\\times R$."
+   ],
+   [
+    "Diamond (dependent source)",
+    "a battery or pump whose size is set elsewhere",
+    "Find the thing it depends on first, then treat it like a normal source."
+   ]
+  ],
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "07604410-1ad1-55cb-8287-0d43a4fc24f9",
+  "tone": "tip",
+  "text": "**Two laws and one power rule.** At every wire: **current in = current out**. Around any loop: **total climbs = total falls** (you end at the height you started). Power = current $\\times$ height change: climbing **gives** energy (green ▲), falling **uses** it (orange ▼).",
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "c6796ab0-6370-593d-8cd0-ecd296820a60",
+  "tone": "info",
+  "text": "**The recipe (every example uses it).** ① Ground the lowest wire. ② Place the heights the batteries fix. ③ Give each unknown height a letter and write **in = out** there. ④ Solve. ⑤ Currents $=$ fall $\\div R$. ⑥ Power: climbs = falls.\n\n**New this week:** **node voltages are just heights.** The whole node-voltage method is the recipe above, done carefully.",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "d3886574-91bf-5f68-bf53-17dd135582c6",
+  "title": "Example 0 · The recipe on one small circuit",
+  "prompt": "Find the height of $x$, every current, and the power of each source.\n\n```schematic\nV1 0,3 -> 0,0 \"$10\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$4\\,\\Omega$\" flip\nwire 3,3 -> 6,3\nI1 6,0 -> 6,3 \"$1\\,\\mathrm{A}$\" flip\nwire 6,0 -> 0,0\nlabel 3,3 \"$x$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node t 10 \"top: $10\\,\\mathrm{V}$\"\n#@ node x 8 \"$x$: $8\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V t g \"$10\\,\\mathrm{V}$\" col=0 i=\"$1\\,\\mathrm{A}$\" to=t id=eV1\n#@ el R t x \"$2\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=x id=eR1\n#@ el R x g2 \"$4\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el I g3 x \"$1\\,\\mathrm{A}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=x id=eI1\n#@ step \"① Ground: the bottom wire is $0\\,\\mathrm{V}$.\"\n#@ step \"② The battery lifts its top to $10\\,\\mathrm{V}$.\" show=t,eV1\n#@ step \"③ One unknown height, $x$. The pump pushes $1\\,\\mathrm{A}$ into it. In = out at $x$: in from the $2\\,\\Omega$ slide, $\\dfrac{10-x}{2}$, plus the pump's $1\\,\\mathrm{A}$; out down the $4\\,\\Omega$, $\\dfrac{x}{4}$.\" show=eI1\n#@ step \"④ Solve $\\dfrac{10-x}{2}+1=\\dfrac{x}{4}$: $x=8\\,\\mathrm{V}$.\" show=x\n#@ step \"⑤ Currents = fall ÷ R: the $2\\,\\Omega$ falls $2\\,\\mathrm{V}$ ($1\\,\\mathrm{A}$), the $4\\,\\Omega$ falls $8\\,\\mathrm{V}$ ($2\\,\\mathrm{A}$). In = out: $1+1=2$ ✓\" show=eR1,eR2\n#@ step \"⑥ Power: the battery lifts $1\\,\\mathrm{A}$ by $10\\,\\mathrm{V}$ ($10\\,\\mathrm{W}$), the pump lifts $1\\,\\mathrm{A}$ by $8\\,\\mathrm{V}$ ($8\\,\\mathrm{W}$). The slides use $2+16=18\\,\\mathrm{W}$ ✓\"\n```",
+  "steps": [
+   {
+    "explanation": "In = out at $x$.",
+    "latex": "\\frac{10-x}{2}+1=\\frac{x}{4}\\;\\Rightarrow\\;x=8\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Power: climbs = falls.",
+    "latex": "(10)(1)+(8)(1)=18\\,\\mathrm{W}=(2)(1)+(8)(2)"
+   }
+  ],
+  "answer": "$x=8\\,\\mathrm{V}$; $1\\,\\mathrm{A}$ and $2\\,\\mathrm{A}$; the battery gives $10\\,\\mathrm{W}$, the pump $8\\,\\mathrm{W}$.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "fb0ba5f5-7378-50a9-95e9-3947de7d364e",
+  "level": 1,
+  "text": "Topic 1: Node voltages are heights",
+  "citations": [
+   {
+    "chunk_id": "3d430349-a0f3-4dca-91dd-086cb8c6da41",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   },
+   {
+    "chunk_id": "b1e890e2-d4f2-4448-9e3b-206d39b90486",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   },
+   {
+    "chunk_id": "d1fceda6-5105-4189-97c0-4991a3fa3b2f",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "callout",
+  "id": "3d78438c-79dc-500f-8487-65d83e78e99b",
+  "tone": "tip",
+  "text": "**How it looks in heights.**\n\n- Every unknown wire gets a letter (its height). At each one: **in = out**, with every slide's current $=\\dfrac{\\text{fall}}{R}$.\n- A battery from ground gives a height for free. A pump never fixes a height; it pushes current in (up) or pulls it out (down).\n- A battery (or diamond) **between two unknown wires** locks them a fixed distance apart. Draw a **bubble** around both and write in = out for the whole bubble (a *supernode*).\n- A **diamond**: first write the thing it depends on using your letters.",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "d88f15b5-946d-5144-b4e8-953bc8ccf993",
+  "title": "Example 1 · One pump, two slides",
+  "prompt": "Find the height of $x$ and the current in each resistor.\n\n```schematic\nI1 0,0 -> 0,3 \"$3\\,\\mathrm{A}$\"\nwire 0,3 -> 6,3\nR1 3,3 -> 3,0 \"$4\\,\\Omega$\"\nR2 6,3 -> 6,0 \"$12\\,\\Omega$\"\nwire 0,0 -> 6,0\nlabel 3,3 \"$x$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node x 9 \"$x$: $9\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el I g x \"$3\\,\\mathrm{A}$\" col=0 i=\"$3\\,\\mathrm{A}$\" to=x id=eI1\n#@ el R x g2 \"$4\\,\\Omega$: falls $9\\,\\mathrm{V}$\" col=1 i=\"$2.25\\,\\mathrm{A}$\" to=g2 id=eR1\n#@ el R x g3 \"$12\\,\\Omega$: falls $9\\,\\mathrm{V}$\" col=2 i=\"$0.75\\,\\mathrm{A}$\" to=g3 id=eR2\n#@ step \"Ground the bottom wire. No battery here, only a pump.\"\n#@ step \"The pump pushes $3\\,\\mathrm{A}$ up into $x$. All of it has to slide back down through the $4\\,\\Omega$ and the $12\\,\\Omega$.\" show=eI1\n#@ step \"In = out at $x$: $3=\\dfrac{x}{4}+\\dfrac{x}{12}=\\dfrac{x}{3}$, so $x=9\\,\\mathrm{V}$.\" show=x\n#@ step \"Currents = fall ÷ R: $\\dfrac94=2.25\\,\\mathrm{A}$ and $\\dfrac{9}{12}=0.75\\,\\mathrm{A}$. The easier slide (smaller $R$) takes more.\" show=eR1,eR2\n#@ step \"Power: the pump lifts $3\\,\\mathrm{A}$ by $9\\,\\mathrm{V}=27\\,\\mathrm{W}$; the slides use $20.25+6.75=27\\,\\mathrm{W}$ ✓\"\n```",
+  "steps": [
+   {
+    "explanation": "In = out at $x$.",
+    "latex": "3=\\frac{x}{4}+\\frac{x}{12}\\;\\Rightarrow\\;x=9\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$x=9\\,\\mathrm{V}$; $2.25\\,\\mathrm{A}$ in the $4\\,\\Omega$, $0.75\\,\\mathrm{A}$ in the $12\\,\\Omega$.",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "d11bb827-f69a-5c40-931a-c6c75b56d352",
+  "title": "Example 2 · A battery and a pump feed one wire (Lecture 3)",
+  "prompt": "Use the node-voltage method to find $i_a$, $i_b$ and $i_c$.\n\n```schematic\nV1 0,3 -> 0,0 \"$50\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$5\\,\\Omega$\" i=\"$i_a$\"\nR2 3,3 -> 3,0 \"$10\\,\\Omega$\" i=\"$i_b$\"\nwire 3,3 -> 6,3\nR3 6,3 -> 6,0 \"$40\\,\\Omega$\" i=\"$i_c$\"\nwire 6,3 -> 9,3\nI1 9,0 -> 9,3 \"$3\\,\\mathrm{A}$\"\nwire 9,0 -> 0,0\nlabel 3,3 \"$a$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 50 \"battery top: $50\\,\\mathrm{V}$\"\n#@ node a 40 \"$a$: $40\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$50\\,\\mathrm{V}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$5\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$10\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=1 i=\"$4\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R a g3 \"$40\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ el I g4 a \"$3\\,\\mathrm{A}$\" col=3 i=\"$3\\,\\mathrm{A}$\" to=a id=eI1\n#@ step \"Ground the bottom wire. The battery lifts its top to $50\\,\\mathrm{V}$.\"\n#@ step \"One unknown height, $a$. In = out at $a$: in from the $5\\,\\Omega$, $\\dfrac{50-a}{5}$, plus the pump's $3\\,\\mathrm{A}$; out down the $10\\,\\Omega$ and $40\\,\\Omega$.\"\n#@ step \"$\\dfrac{50-a}{5}+3=\\dfrac{a}{10}+\\dfrac{a}{40}$, so $a=40\\,\\mathrm{V}$.\" show=a\n#@ step \"Currents = fall ÷ R: $i_a=\\dfrac{10}{5}=2$, $i_b=\\dfrac{40}{10}=4$, $i_c=\\dfrac{40}{40}=1\\,\\mathrm{A}$. In = out: $2+3=4+1$ ✓\" show=eR1,eR2,eR3,eV1,eI1\n#@ step \"Power: battery $2\\times50=100\\,\\mathrm{W}$, pump $3\\times40=120\\,\\mathrm{W}$; the slides use $20+160+40=220\\,\\mathrm{W}$.\"\n```",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire; only $a$ is unknown. KCL at $a$, currents out; the $3\\,\\mathrm{A}$ comes in.",
+    "latex": "\\frac{v_a-50}{5}+\\frac{v_a}{10}+\\frac{v_a}{40}=3"
+   },
+   {
+    "explanation": "Multiply by 40 and solve.",
+    "latex": "8v_a-400+4v_a+v_a=120\\;\\Rightarrow\\;v_a=40\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Currents = fall ÷ R, in the arrow directions.",
+    "latex": "i_a=\\frac{50-40}{5}=2\\,\\mathrm{A},\\quad i_b=4\\,\\mathrm{A},\\quad i_c=1\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Check KCL at $a$.",
+    "latex": "2+3=4+1"
+   }
+  ],
+  "answer": "$v_a=40\\,\\mathrm{V}$; $i_a=2\\,\\mathrm{A}$, $i_b=4\\,\\mathrm{A}$, $i_c=1\\,\\mathrm{A}$",
+  "citations": [
+   {
+    "chunk_id": "d1fceda6-5105-4189-97c0-4991a3fa3b2f",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "fa91daad-0155-5670-9db1-e144598d4d05",
+  "title": "Example 3 · Two batteries pull on one wire",
+  "prompt": "Find the height of $x$.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$4\\,\\Omega$\" flip\nR3 3,3 -> 6,3 \"$4\\,\\Omega$\"\nV2 6,3 -> 6,0 \"$6\\,\\mathrm{V}$\"\nwire 6,0 -> 0,0\nlabel 3,3 \"$x$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 12 \"left top: $12\\,\\mathrm{V}$\"\n#@ node x 7.5 \"$x$: $7.5\\,\\mathrm{V}$\"\n#@ node r 6 \"right top: $6\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$12\\,\\mathrm{V}$\" col=0 i=\"$2.25\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s x \"$2\\,\\Omega$: falls $4.5\\,\\mathrm{V}$\" col=1 i=\"$2.25\\,\\mathrm{A}$\" to=x id=eR1\n#@ el R x g2 \"$4\\,\\Omega$: falls $7.5\\,\\mathrm{V}$\" col=1 i=\"$1.875\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R x r \"$4\\,\\Omega$: falls $1.5\\,\\mathrm{V}$\" col=2 i=\"$0.375\\,\\mathrm{A}$\" to=r id=eR3\n#@ el V r g3 \"$6\\,\\mathrm{V}$\" col=2 i=\"$0.375\\,\\mathrm{A}$\" to=g3 id=eV2\n#@ step \"Ground the bottom wire. Left battery top: $12\\,\\mathrm{V}$. Right battery top: $6\\,\\mathrm{V}$.\"\n#@ step \"$x$ is joined by slides to $12\\,\\mathrm{V}$ ($2\\,\\Omega$), to $0$ ($4\\,\\Omega$) and to $6\\,\\mathrm{V}$ ($4\\,\\Omega$). In = out: $\\dfrac{12-x}{2}=\\dfrac{x}{4}+\\dfrac{x-6}{4}$, so $x=7.5\\,\\mathrm{V}$.\" show=x\n#@ step \"$x$ always lands **between** its neighbours, closest to the one with the smallest $R$ (that slide pulls hardest). Here: closest to $12\\,\\mathrm{V}$.\"\n#@ step \"Currents: $2.25\\,\\mathrm{A}$ in from the left, $1.875\\,\\mathrm{A}$ down, $0.375\\,\\mathrm{A}$ on to the right, where it falls **into** the $6\\,\\mathrm{V}$ battery (that battery absorbs).\" show=eR1,eR2,eR3,eV1,eV2\n```",
+  "steps": [
+   {
+    "explanation": "In = out at $x$.",
+    "latex": "\\frac{12-x}{2}=\\frac{x}{4}+\\frac{x-6}{4}\\;\\Rightarrow\\;x=7.5\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$x=7.5\\,\\mathrm{V}$, between $6$ and $12\\,\\mathrm{V}$ and closest to $12\\,\\mathrm{V}$.",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "4a3fa6b5-b1bf-59b8-b295-4a190b15e0e7",
+  "title": "Example 4 · Two unknown heights (Lecture 3)",
+  "prompt": "Use the node-voltage method to find $v_1$ and $v_2$.\n\n```schematic\nV1 0,3 -> 0,0 \"$10\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$1\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$5\\,\\Omega$\" v=\"$v_1$\"\nR3 3,3 -> 6,3 \"$2\\,\\Omega$\"\nR4 6,3 -> 6,0 \"$10\\,\\Omega$\" v=\"$v_2$\"\nwire 6,3 -> 9,3\nI1 9,0 -> 9,3 \"$2\\,\\mathrm{A}$\"\nwire 9,0 -> 0,0\nlabel 3,3 \"1\" above\nlabel 6,3 \"2\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node n2 10.91 \"node 2: $10.91\\,\\mathrm{V}$\"\n#@ node s 10 \"battery top: $10\\,\\mathrm{V}$\"\n#@ node n1 9.09 \"node 1: $9.09\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$10\\,\\mathrm{V}$\" col=0 i=\"$0.9091\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n1 \"$1\\,\\Omega$: falls $0.9091\\,\\mathrm{V}$\" col=1 i=\"$0.9091\\,\\mathrm{A}$\" to=n1 id=eR1\n#@ el R n1 g2 \"$5\\,\\Omega$: falls $9.09\\,\\mathrm{V}$\" col=1 i=\"$1.818\\,\\mathrm{A}$\" to=g2 id=eR2 plus=n1 v=\"$v_1$\"\n#@ el R n1 n2 \"$2\\,\\Omega$: falls $1.82\\,\\mathrm{V}$\" col=2 i=\"$0.9091\\,\\mathrm{A}$\" to=n1 id=eR3\n#@ el R n2 g3 \"$10\\,\\Omega$: falls $10.91\\,\\mathrm{V}$\" col=3 i=\"$1.091\\,\\mathrm{A}$\" to=g3 id=eR4 plus=n2 v=\"$v_2$\"\n#@ el I g4 n2 \"$2\\,\\mathrm{A}$\" col=4 i=\"$2\\,\\mathrm{A}$\" to=n2 id=eI1\n#@ step \"Ground the bottom wire. The battery lifts its top to $10\\,\\mathrm{V}$.\"\n#@ step \"Two unknown heights, $v_1$ and $v_2$: one in = out for each. Node 1: $\\dfrac{10-v_1}{1}+\\dfrac{v_2-v_1}{2}=\\dfrac{v_1}{5}$. Node 2: $2=\\dfrac{v_2-v_1}{2}+\\dfrac{v_2}{10}$.\"\n#@ step \"Solve the pair: $v_1=9.09\\,\\mathrm{V}$, $v_2=10.91\\,\\mathrm{V}$. Node 2 is **higher than the battery**: the pump pushed it up there.\" show=n1,n2\n#@ step \"Currents = fall ÷ R: $0.909\\,\\mathrm{A}$ from the battery, $1.818\\,\\mathrm{A}$ down the $5\\,\\Omega$, $0.909\\,\\mathrm{A}$ from node 2 **back** to node 1, $1.091\\,\\mathrm{A}$ down the $10\\,\\Omega$.\" show=eR1,eR2,eR3,eR4,eV1,eI1\n#@ step \"Power: battery $9.09\\,\\mathrm{W}$ + pump $2\\times10.91=21.82\\,\\mathrm{W}$ = what the four slides use.\"\n```",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. KCL at node 1 (currents out).",
+    "latex": "\\frac{v_1-10}{1}+\\frac{v_1}{5}+\\frac{v_1-v_2}{2}=0"
+   },
+   {
+    "explanation": "KCL at node 2; the $2\\,\\mathrm{A}$ comes in.",
+    "latex": "\\frac{v_2-v_1}{2}+\\frac{v_2}{10}=2"
+   },
+   {
+    "explanation": "Multiply both by 10.",
+    "latex": "17v_1-5v_2=100,\\qquad -5v_1+6v_2=20"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "v_1=\\frac{100}{11}\\approx9.09\\,\\mathrm{V},\\qquad v_2=\\frac{120}{11}\\approx10.91\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "The $2\\,\\Omega$ current from 1 to 2 is negative: it really flows from 2 to 1.",
+    "latex": "i_{1\\to2}=\\frac{v_1-v_2}{2}=-\\frac{10}{11}\\,\\mathrm{A}"
+   }
+  ],
+  "answer": "$v_1=\\dfrac{100}{11}\\approx9.09\\,\\mathrm{V}$, $v_2=\\dfrac{120}{11}\\approx10.91\\,\\mathrm{V}$",
+  "citations": [
+   {
+    "chunk_id": "b1e890e2-d4f2-4448-9e3b-206d39b90486",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "d000d30c-d4f0-5268-b3cb-592adc353e79",
+  "title": "Example 5 · A battery from ground gives a height for free (Lecture 3)",
+  "prompt": "Solve for $v_1$ and $v_2$.\n\n```schematic\nV1 0,3 -> 0,0 \"$100\\,\\mathrm{V}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$25\\,\\Omega$\" v=\"$v_1$\"\nR2 3,3 -> 6,3 \"$10\\,\\Omega$\"\nR3 6,3 -> 6,0 \"$50\\,\\Omega$\" v=\"$v_2$\"\nwire 6,3 -> 9,3\nI1 9,0 -> 9,3 \"$5\\,\\mathrm{A}$\"\nwire 9,0 -> 0,0\nlabel 3,3 \"1\" above\nlabel 6,3 \"2\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node n2 125 \"node 2: $125\\,\\mathrm{V}$\"\n#@ node n1 100 \"node 1: $100\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V n1 g \"$100\\,\\mathrm{V}$\" col=0 i=\"$1.5\\,\\mathrm{A}$\" to=n1 id=eV1\n#@ el R n1 g2 \"$25\\,\\Omega$: falls $100\\,\\mathrm{V}$\" col=1 i=\"$4\\,\\mathrm{A}$\" to=g2 id=eR1 plus=n1 v=\"$v_1$\"\n#@ el R n1 n2 \"$10\\,\\Omega$: falls $25\\,\\mathrm{V}$\" col=2 i=\"$2.5\\,\\mathrm{A}$\" to=n1 id=eR2\n#@ el R n2 g3 \"$50\\,\\Omega$: falls $125\\,\\mathrm{V}$\" col=3 i=\"$2.5\\,\\mathrm{A}$\" to=g3 id=eR3 plus=n2 v=\"$v_2$\"\n#@ el I g4 n2 \"$5\\,\\mathrm{A}$\" col=4 i=\"$5\\,\\mathrm{A}$\" to=n2 id=eI1\n#@ step \"Ground the bottom wire. The $100\\,\\mathrm{V}$ battery goes straight from ground to node 1: $v_1=100\\,\\mathrm{V}$, no equation needed.\" show=n1\n#@ step \"Only $v_2$ is unknown. In = out at node 2: $5=\\dfrac{v_2-100}{10}+\\dfrac{v_2}{50}$, so $v_2=125\\,\\mathrm{V}$.\" show=n2\n#@ step \"Currents: $2.5\\,\\mathrm{A}$ slides from node 2 down to node 1 and $2.5\\,\\mathrm{A}$ down the $50\\,\\Omega$. Node 1 sends $4\\,\\mathrm{A}$ down the $25\\,\\Omega$, so the battery only adds $1.5\\,\\mathrm{A}$.\" show=eR1,eR2,eR3,eV1,eI1\n#@ step \"Power: battery $1.5\\times100=150\\,\\mathrm{W}$ + pump $5\\times125=625\\,\\mathrm{W}$ = slides $400+62.5+312.5=775\\,\\mathrm{W}$ ✓\"\n```",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. The $100\\,\\mathrm{V}$ source sits between node 1 and ground.",
+    "latex": "v_1=100\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "KCL at node 2 only (the $5\\,\\mathrm{A}$ comes in).",
+    "latex": "\\frac{v_2-100}{10}+\\frac{v_2}{50}=5"
+   },
+   {
+    "explanation": "Multiply by 50.",
+    "latex": "5v_2-500+v_2=250\\;\\Rightarrow\\;v_2=125\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v_1=100\\,\\mathrm{V}$, $v_2=125\\,\\mathrm{V}$",
+  "citations": [
+   {
+    "chunk_id": "7e82cc00-3297-4348-9376-98aa2d6f2788",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "a1faa6bf-7833-5864-a429-d266ee3b8f4e",
+  "title": "Example 6 · Two pumps, no battery: ground the lowest wire",
+  "prompt": "Find $V_1$ and the currents $I_1$–$I_4$. (The diagonal $4\\,\\mathrm{mA}$ source is redrawn straight down from node 2; it still joins node 2 to the bottom wire.)\n\n```schematic\nR1 0,3 -> 0,0 \"$3\\,\\mathrm{k\\Omega}$\" v=\"$V_1$\" i=\"$I_1$\"\nwire 0,3 -> 3,3\nI1 3,3 -> 3,0 \"$6\\,\\mathrm{mA}$\"\nR2 3,3 -> 7,3 \"$2\\,\\mathrm{k\\Omega}$\" i=\"$I_2$\"\nI2 7,3 -> 7,0 \"$4\\,\\mathrm{mA}$\"\nwire 7,3 -> 10,3\nR3 10,3 -> 10,0 \"$2\\,\\mathrm{k\\Omega}$\" i=\"$I_3$\"\nwire 10,3 -> 13,3\nR4 13,3 -> 13,0 \"$2\\,\\mathrm{k\\Omega}$\" i=\"$I_4$\"\nwire 13,0 -> 0,0\nlabel 3,3 \"1\" above\nlabel 7,3 \"2\" above\nground 3,0\n#@ inline\n#@ straight off\n#@ node z0 11 \"bottom wire: $11\\,\\mathrm{V}$\"\n#@ node n2 4.67 \"node 2: $4.67\\,\\mathrm{V}$\"\n#@ node g 0 \"node 1: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"node 1: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"node 1: $0\\,\\mathrm{V}$\" ground\n#@ el R g z0 \"$3\\,\\mathrm{k\\Omega}$: falls $11\\,\\mathrm{V}$\" col=0 i=\"$3.667\\,\\mathrm{mA}$\" to=g id=eR1 plus=g v=\"$V_1$\"\n#@ el I g2 z0 \"$6\\,\\mathrm{mA}$\" col=1 i=\"$6\\,\\mathrm{mA}$\" to=z0 id=eI1\n#@ el R g3 n2 \"$2\\,\\mathrm{k\\Omega}$: falls $4.67\\,\\mathrm{V}$\" col=2 i=\"$2.333\\,\\mathrm{mA}$\" to=g3 id=eR2\n#@ el I n2 z0 \"$4\\,\\mathrm{mA}$\" col=3 i=\"$4\\,\\mathrm{mA}$\" to=z0 id=eI2\n#@ el R n2 z0 \"$2\\,\\mathrm{k\\Omega}$: falls $6.33\\,\\mathrm{V}$\" col=4 i=\"$3.167\\,\\mathrm{mA}$\" to=n2 id=eR3\n#@ el R n2 z0 \"$2\\,\\mathrm{k\\Omega}$: falls $6.33\\,\\mathrm{V}$\" col=5 i=\"$3.167\\,\\mathrm{mA}$\" to=n2 id=eR4\n#@ step \"Ground **node 1**, the lowest wire (step 2 shows why). Moving ground never changes an answer: $V_1$ is still node 1 measured from the bottom wire.\"\n#@ step \"Read the pumps: both pull current **out of** their node and push it into the bottom wire. That current must slide back down to the nodes, so the bottom wire sits **above** both of them.\" show=eI1,eI2\n#@ step \"In = out at each node (mA, kΩ, measured from the bottom wire): $\\dfrac{V_1}{3}+6+\\dfrac{V_1-V_2}{2}=0$ and $\\dfrac{V_2-V_1}{2}+4+\\dfrac{V_2}{2}+\\dfrac{V_2}{2}=0$. So $V_1=-11$, $V_2=-6.33\\,\\mathrm{V}$: here the bottom wire is $11\\,\\mathrm{V}$ up and node 2 is $4.67\\,\\mathrm{V}$ up.\" show=z0,n2\n#@ step \"Currents = fall ÷ R: $3.67\\,\\mathrm{mA}$ slides from the bottom wire to node 1, $2.33\\,\\mathrm{mA}$ from node 2 to node 1, $3.17\\,\\mathrm{mA}$ in each right $2\\,\\mathrm{k\\Omega}$. All flow **up** the drawing, so $I_1=-3.67$, $I_2=-2.33$, $I_3=I_4=-3.17\\,\\mathrm{mA}$.\" show=eR1,eR2,eR3,eR4\n#@ step \"Power: both pumps lift current up to the bottom wire ($66+25.3=91.3\\,\\mathrm{mW}$); the slides use the same.\"\n```",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. No voltage source, so both node heights are unknown. KCL at node 1 (currents out, mA and kΩ).",
+    "latex": "\\frac{V_1}{3}+6+\\frac{V_1-V_2}{2}=0"
+   },
+   {
+    "explanation": "KCL at node 2.",
+    "latex": "\\frac{V_2-V_1}{2}+4+\\frac{V_2}{2}+\\frac{V_2}{2}=0\\;\\Rightarrow\\;V_1=3V_2+8"
+   },
+   {
+    "explanation": "Substitute into node 1.",
+    "latex": "\\tfrac56(3V_2+8)-\\tfrac12V_2=-6\\;\\Rightarrow\\;V_2=-\\tfrac{19}{3}\\,\\mathrm{V},\\quad V_1=-11\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Branch currents in their arrow directions.",
+    "latex": "\\begin{aligned}&I_1=\\frac{V_1}{3}=-3.67\\,\\mathrm{mA},\\quad I_2=\\frac{V_1-V_2}{2}=-2.33\\,\\mathrm{mA}\\\\&I_3=I_4=\\frac{V_2}{2}=-3.17\\,\\mathrm{mA}\\end{aligned}"
+   },
+   {
+    "explanation": "Power check: both sources deliver, the resistors absorb.",
+    "latex": "(6)(11)+(4)(6.33)=91.3\\,\\mathrm{mW}=40.3+10.9+20.1+20.1"
+   }
+  ],
+  "answer": "$V_1=-11\\,\\mathrm{V}$ ($V_2=-6.33\\,\\mathrm{V}$); $I_1=-3.67\\,\\mathrm{mA}$, $I_2=-2.33\\,\\mathrm{mA}$, $I_3=I_4=-3.17\\,\\mathrm{mA}$. Both current sources deliver power.",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "59448a24-00e4-5ddf-918d-93b7ea7140f9",
+  "title": "Example 7 · Three pumps, two of them absorbing",
+  "prompt": "Find $I_0$. The right edge runs down into the bottom wire, so the $2\\,\\mathrm{mA}$ source and the horizontal $4\\,\\mathrm{k\\Omega}$ both end on the ground node.\n\n```schematic\nR1 0,6 -> 0,0 \"$2\\,\\mathrm{k\\Omega}$\"\nwire 0,6 -> 6,6\nI1 3,3 -> 3,6 \"$4\\,\\mathrm{mA}$\"\nI2 3,0 -> 3,3 \"$6\\,\\mathrm{mA}$\"\nR2 6,6 -> 6,3 \"$4\\,\\mathrm{k\\Omega}$\"\nR3 6,3 -> 6,0 \"$12\\,\\mathrm{k\\Omega}$\" i=\"$I_0$\"\nwire 3,3 -> 6,3\nR4 6,3 -> 9,3 \"$4\\,\\mathrm{k\\Omega}$\"\nI3 6,6 -> 9,6 \"$2\\,\\mathrm{mA}$\"\nwire 9,6 -> 9,0\nwire 9,0 -> 0,0\nlabel 0,6 \"$a$\" left\nlabel 4.5,3 \"$b$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node b 5.33 \"$b$ (middle): $5.33\\,\\mathrm{V}$\"\n#@ node a 4.44 \"$a$ (top): $4.44\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g5 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el R a b \"$4\\,\\mathrm{k\\Omega}$: falls $0.8889\\,\\mathrm{V}$\" col=0 i=\"$0.2222\\,\\mathrm{mA}$\" to=a id=eR2\n#@ el R a g \"$2\\,\\mathrm{k\\Omega}$: falls $4.44\\,\\mathrm{V}$\" col=0 i=\"$2.222\\,\\mathrm{mA}$\" to=g id=eR1\n#@ el I b a \"$4\\,\\mathrm{mA}$\" col=1 i=\"$4\\,\\mathrm{mA}$\" to=a id=eI1\n#@ el I a g2 \"$2\\,\\mathrm{mA}$\" col=1 i=\"$2\\,\\mathrm{mA}$\" to=g2 id=eI3\n#@ el I g3 b \"$6\\,\\mathrm{mA}$\" col=2 i=\"$6\\,\\mathrm{mA}$\" to=b id=eI2\n#@ el R b g4 \"$12\\,\\mathrm{k\\Omega}$: falls $5.33\\,\\mathrm{V}$\" col=3 i=\"$0.4444\\,\\mathrm{mA}$\" to=g4 id=eR3\n#@ el R b g5 \"$4\\,\\mathrm{k\\Omega}$: falls $5.33\\,\\mathrm{V}$\" col=4 i=\"$1.333\\,\\mathrm{mA}$\" to=g5 id=eR4\n#@ step \"Ground the bottom wire. No battery, so no height is given: $a$ (top wire) and $b$ (middle wire) are both unknown.\"\n#@ step \"Read the pumps: $6\\,\\mathrm{mA}$ pushed up into $b$; $4\\,\\mathrm{mA}$ moved from $b$ to $a$; $2\\,\\mathrm{mA}$ drained from $a$ to ground.\" show=eI1,eI2,eI3\n#@ step \"In = out (mA, kΩ). At $a$: $4=\\dfrac{a}{2}+\\dfrac{a-b}{4}+2$. At $b$: $6=\\dfrac{b-a}{4}+\\dfrac{b}{12}+\\dfrac{b}{4}+4$. So $a=4.44$, $b=5.33\\,\\mathrm{V}$.\" show=a,b\n#@ step \"$I_0=\\dfrac{5.33}{12}=0.444\\,\\mathrm{mA}$. And $b$ is above $a$, so $0.222\\,\\mathrm{mA}$ slides from $b$ to $a$.\" show=eR1,eR2,eR3,eR4\n#@ step \"Power: only the $6\\,\\mathrm{mA}$ pump climbs ($32\\,\\mathrm{mW}$). The other two carry current **downhill**, so they absorb.\"\n```",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire; name the top wire $a$ and the middle wire $b$. KCL at $a$ (mA and kΩ): the $4\\,\\mathrm{mA}$ comes in, the $2\\,\\mathrm{mA}$ goes out.",
+    "latex": "\\frac{a}{2}+\\frac{a-b}{4}+2=4\\;\\Rightarrow\\;3a-b=8"
+   },
+   {
+    "explanation": "KCL at $b$: the $6\\,\\mathrm{mA}$ comes in, the $4\\,\\mathrm{mA}$ goes out.",
+    "latex": "\\frac{b-a}{4}+\\frac{b}{12}+\\frac{b}{4}+4=6\\;\\Rightarrow\\;-3a+7b=24"
+   },
+   {
+    "explanation": "Add the two equations.",
+    "latex": "6b=32\\;\\Rightarrow\\;b=\\tfrac{16}{3}\\,\\mathrm{V},\\qquad a=\\tfrac{40}{9}\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "$I_0$ is the current down the $12\\,\\mathrm{k\\Omega}$.",
+    "latex": "I_0=\\frac{16/3}{12}=\\frac{4}{9}\\approx0.444\\,\\mathrm{mA}"
+   }
+  ],
+  "answer": "$I_0=\\dfrac{4}{9}\\,\\mathrm{mA}\\approx0.444\\,\\mathrm{mA}$ (with $a=4.44\\,\\mathrm{V}$, $b=5.33\\,\\mathrm{V}$). Only the $6\\,\\mathrm{mA}$ source delivers power; the other two absorb.",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "730a8234-6556-5be0-a8d3-057d1d5627d7",
+  "title": "Example 8 · A battery between two unknown wires: the bubble",
+  "prompt": "Find $p$ and $q$.\n\n```schematic\nI1 0,0 -> 0,3 \"$3\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$2\\,\\Omega$\" flip\nV1 6,3 -> 3,3 \"$6\\,\\mathrm{V}$\"\nR2 6,3 -> 6,0 \"$4\\,\\Omega$\"\nwire 6,0 -> 0,0\nlabel 3,3 \"$p$\" above\nlabel 6,3 \"$q$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node q 8 \"$q$: $8\\,\\mathrm{V}$\"\n#@ node p 2 \"$p$: $2\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el I g p \"$3\\,\\mathrm{A}$\" col=0 i=\"$3\\,\\mathrm{A}$\" to=p id=eI1\n#@ el R p g2 \"$2\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=g2 id=eR1\n#@ el V q p \"$6\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=q id=eV1\n#@ el R q g3 \"$4\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=3 i=\"$2\\,\\mathrm{A}$\" to=g3 id=eR2\n#@ step \"Ground the bottom wire. The $6\\,\\mathrm{V}$ battery sits between $p$ and $q$, and **neither** is known. It locks them: $q=p+6$, always.\"\n#@ step \"So draw a bubble around $p$ and $q$ and treat it as one wire. In = out for the bubble: the pump pushes $3\\,\\mathrm{A}$ in; it leaves down the $2\\,\\Omega$ and the $4\\,\\Omega$: $3=\\dfrac{p}{2}+\\dfrac{p+6}{4}$, so $p=2$, $q=8\\,\\mathrm{V}$.\" show=p,q\n#@ step \"Currents: $1\\,\\mathrm{A}$ down the $2\\,\\Omega$, $2\\,\\mathrm{A}$ down the $4\\,\\Omega$. The other $2\\,\\mathrm{A}$ climbs through the battery from $p$ to $q$. (The battery's own current never goes into the bubble equation: it stays inside.)\" show=eR1,eR2,eV1,eI1\n```",
+  "steps": [
+   {
+    "explanation": "Bubble (supernode): the battery fixes the difference; in = out for the bubble.",
+    "latex": "q=p+6,\\qquad 3=\\frac{p}{2}+\\frac{p+6}{4}\\;\\Rightarrow\\;p=2\\,\\mathrm{V},\\;q=8\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$p=2\\,\\mathrm{V}$, $q=8\\,\\mathrm{V}$",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "1481649e-1844-50d6-8cd1-d3e8ab2a9302",
+  "title": "Example 9 · A diamond: find what it depends on first (Lecture 3)",
+  "prompt": "Use the node-voltage method to find the power dissipated in the $5\\,\\Omega$ resistor.\n\n```schematic\nV1 0,3 -> 0,0 \"$20\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$20\\,\\Omega$\"\nR3 3,3 -> 6,3 \"$5\\,\\Omega$\" i=\"$i_\\Phi$\"\nR4 6,3 -> 6,0 \"$10\\,\\Omega$\"\nR5 6,3 -> 9,3 \"$2\\,\\Omega$\"\nE1 9,3 -> 9,0 \"$8i_\\Phi$\"\nwire 9,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$b$\" above\nlabel 9,3 \"$c$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 20 \"battery top: $20\\,\\mathrm{V}$\"\n#@ node a 16 \"$a$: $16\\,\\mathrm{V}$\"\n#@ node b 10 \"$b$: $10\\,\\mathrm{V}$\"\n#@ node c 9.6 \"$c$: $9.6\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$20\\,\\mathrm{V}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$2\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$20\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=1 i=\"$0.8\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R a b \"$5\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=2 i=\"$1.2\\,\\mathrm{A}$\" to=b id=eR3\n#@ el R b g3 \"$10\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=g3 id=eR4\n#@ el R b c \"$2\\,\\Omega$: falls $0.4\\,\\mathrm{V}$\" col=3 i=\"$0.2\\,\\mathrm{A}$\" to=c id=eR5\n#@ el E c g4 \"$8i_\\Phi$: $9.6\\,\\mathrm{V}$\" col=3 i=\"$0.2\\,\\mathrm{A}$\" to=g4 id=eE1\n#@ step \"Ground the bottom wire. The $20\\,\\mathrm{V}$ battery lifts its top to $20\\,\\mathrm{V}$.\"\n#@ step \"The diamond is a battery of $8i_\\Phi$ volts from ground to $c$. It depends on $i_\\Phi$, the current in the $5\\,\\Omega$: $i_\\Phi=\\dfrac{a-b}{5}$. So $c=8i_\\Phi=1.6(a-b)$.\"\n#@ step \"Unknowns $a$ and $b$ (with $c=1.6(a-b)$). In = out at $a$ and at $b$ gives $a=16\\,\\mathrm{V}$, $b=10\\,\\mathrm{V}$.\" show=a,b\n#@ step \"Now the diamond: $i_\\Phi=\\dfrac{16-10}{5}=1.2\\,\\mathrm{A}$, so $c=8(1.2)=9.6\\,\\mathrm{V}$.\" show=c,eR3,eE1\n#@ step \"The rest: $2\\,\\mathrm{A}$ from the battery, $0.8$ and $1\\,\\mathrm{A}$ down the $20\\,\\Omega$ and $10\\,\\Omega$, $0.2\\,\\mathrm{A}$ from $b$ to $c$ that then falls through the diamond (it absorbs). The $5\\,\\Omega$ uses $1.2\\times6=7.2\\,\\mathrm{W}$.\" show=eR1,eR2,eR4,eR5,eV1\n```",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. Control first: the diamond fixes $v_c$ in terms of $a$ and $b$.",
+    "latex": "i_\\Phi=\\frac{v_a-v_b}{5},\\qquad v_c=8i_\\Phi=1.6(v_a-v_b)"
+   },
+   {
+    "explanation": "KCL at $a$ and $b$.",
+    "latex": "\\begin{aligned}&\\frac{v_a-20}{2}+\\frac{v_a}{20}+\\frac{v_a-v_b}{5}=0\\\\&\\frac{v_b-v_a}{5}+\\frac{v_b}{10}+\\frac{v_b-v_c}{2}=0\\end{aligned}"
+   },
+   {
+    "explanation": "Substitute $v_c$ and collect.",
+    "latex": "0.75v_a-0.2v_b=10,\\qquad -v_a+1.6v_b=0"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "v_a=16\\,\\mathrm{V},\\quad v_b=10\\,\\mathrm{V},\\quad i_\\Phi=1.2\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Power in the $5\\,\\Omega$.",
+    "latex": "p_{5\\Omega}=(1.2)^2(5)=7.2\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "$v_a=16\\,\\mathrm{V}$, $v_b=10\\,\\mathrm{V}$, $i_\\Phi=1.2\\,\\mathrm{A}$; $p_{5\\Omega}=7.2\\,\\mathrm{W}$",
+  "citations": [
+   {
+    "chunk_id": "d7aac84b-e088-4388-bb21-fcbc266d3289",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "5e5f677b-fbc1-5bf5-bd52-b90af6022ca1",
+  "title": "Example 10 · A bubble with a diamond inside (Lecture 3)",
+  "prompt": "Use a supernode around $b$ and $c$ to find the node voltages.\n\n```schematic\nV1 0,3 -> 0,0 \"$50\\,\\mathrm{V}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$40\\,\\Omega$\"\nR2 6,3 -> 3,3 \"$5\\,\\Omega$\" i=\"$i_\\Phi$\"\nR3 6,3 -> 6,0 \"$50\\,\\Omega$\"\nE1 9,3 -> 6,3 \"$10i_\\Phi$\"\nR4 9,3 -> 9,0 \"$100\\,\\Omega$\"\nwire 9,3 -> 12,3\nI1 12,0 -> 12,3 \"$4\\,\\mathrm{A}$\"\nwire 12,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$b$\" below\nlabel 9,3 \"$c$\" below\nground 0,0\n#@ inline\n#@ straight off\n#@ node c 80 \"$c$: $80\\,\\mathrm{V}$\"\n#@ node b 60 \"$b$: $60\\,\\mathrm{V}$\"\n#@ node a 50 \"$a$: $50\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g5 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el I g c \"$4\\,\\mathrm{A}$\" col=0 i=\"$4\\,\\mathrm{A}$\" to=c id=eI1\n#@ el R c g2 \"$100\\,\\Omega$: falls $80\\,\\mathrm{V}$\" col=1 i=\"$0.8\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ el E c b \"$10i_\\Phi$: $20\\,\\mathrm{V}$\" col=2 i=\"$3.2\\,\\mathrm{A}$\" to=b id=eE1\n#@ el R b g3 \"$50\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=2 i=\"$1.2\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ el R b a \"$5\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=3 i=\"$2\\,\\mathrm{A}$\" to=a id=eR2\n#@ el R a g4 \"$40\\,\\Omega$: falls $50\\,\\mathrm{V}$\" col=3 i=\"$1.25\\,\\mathrm{A}$\" to=g4 id=eR1\n#@ el V a g5 \"$50\\,\\mathrm{V}$\" col=4 i=\"$0.75\\,\\mathrm{A}$\" to=g5 id=eV1\n#@ step \"Ground the bottom wire. The $50\\,\\mathrm{V}$ battery fixes $a=50\\,\\mathrm{V}$.\" show=a\n#@ step \"The diamond ($10i_\\Phi$) sits between $b$ and $c$, both unknown: it locks $c=b+10i_\\Phi$. It depends on $i_\\Phi$, the current from $b$ to $a$ through $5\\,\\Omega$: $i_\\Phi=\\dfrac{b-50}{5}$. So $c=3b-100$.\"\n#@ step \"Bubble around $b$ and $c$. In = out for the bubble: the $4\\,\\mathrm{A}$ pump comes in; out go $\\dfrac{b-50}{5}$, $\\dfrac{b}{50}$ and $\\dfrac{c}{100}$. So $b=60$, $c=80\\,\\mathrm{V}$.\" show=b,c,eE1\n#@ step \"Currents: $i_\\Phi=2\\,\\mathrm{A}$ from $b$ to $a$, $1.2\\,\\mathrm{A}$ down the $50\\,\\Omega$, $0.8\\,\\mathrm{A}$ down the $100\\,\\Omega$. The other $3.2\\,\\mathrm{A}$ goes **down** through the diamond (it absorbs).\" show=eR2,eR3,eR4,eI1\n#@ step \"At $a$: $2\\,\\mathrm{A}$ arrives, the $40\\,\\Omega$ takes $1.25\\,\\mathrm{A}$, so $0.75\\,\\mathrm{A}$ falls into the $50\\,\\mathrm{V}$ battery (it absorbs). Only the pump climbs: $4\\times80=320\\,\\mathrm{W}$.\" show=eR1,eV1\n```",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. The grounded source fixes $v_a$; the control uses the leftward arrow.",
+    "latex": "v_a=50\\,\\mathrm{V},\\qquad i_\\Phi=\\frac{v_b-50}{5}"
+   },
+   {
+    "explanation": "The rod: the diamond fixes $v_c-v_b$.",
+    "latex": "v_c-v_b=10i_\\Phi=2(v_b-50)\\;\\Rightarrow\\;v_c=3v_b-100"
+   },
+   {
+    "explanation": "KCL around the rod: only currents crossing its boundary.",
+    "latex": "\\frac{v_b-50}{5}+\\frac{v_b}{50}+\\frac{v_c}{100}=4"
+   },
+   {
+    "explanation": "Substitute and solve.",
+    "latex": "0.25v_b=15\\;\\Rightarrow\\;v_b=60\\,\\mathrm{V},\\quad v_c=80\\,\\mathrm{V},\\quad i_\\Phi=2\\,\\mathrm{A}"
+   }
+  ],
+  "answer": "$v_a=50\\,\\mathrm{V}$, $v_b=60\\,\\mathrm{V}$, $v_c=80\\,\\mathrm{V}$, $i_\\Phi=2\\,\\mathrm{A}$",
+  "citations": [
+   {
+    "chunk_id": "15a937fa-3a2a-4dc6-8e5f-eb13383e1092",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   },
+   {
+    "chunk_id": "591a590f-ec96-408a-930d-645cc903a2da",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "callout",
+  "id": "97960dd4-8e6b-5f4f-a3ca-14c432a85ecf",
+  "tone": "warning",
+  "text": "**Bubble traps.** The two wires in a bubble are **not** equal: they differ by the battery's $V$. The battery's own current never appears in the bubble's in = out. And a diamond's control arrow decides the sign: $\\dfrac{b-a}{R}$ is not $\\dfrac{a-b}{R}$.",
+  "citations": []
+ },
+ {
+  "type": "practice_problem",
+  "id": "d44a0bfc-8ec0-5820-8dbc-81628bcba54e",
+  "title": "Try it 1 · How much does the pump take? (Textbook P4.6)",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "Use the node-voltage method to find how much power the $2\\,\\mathrm{A}$ source extracts from the circuit.\n\n```schematic\nI1 0,3 -> 0,0 \"$2\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$4\\,\\Omega$\"\nR2 3,3 -> 6,3 \"$2\\,\\Omega$\"\nV1 6,3 -> 6,0 \"$55\\,\\mathrm{V}$\"\nR3 3,0 -> 6,0 \"$3\\,\\Omega$\"\nwire 0,0 -> 3,0\nlabel 3,3 \"$a$\" above\nlabel 6,0 \"$d$\" below\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node c 55 \"battery top: $55\\,\\mathrm{V}$\"\n#@ node a 41 \"$a$: $41\\,\\mathrm{V}$\"\n#@ node z0 21 \"bottom-left: $21\\,\\mathrm{V}$\"\n#@ node g 0 \"$d$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$d$: $0\\,\\mathrm{V}$\" ground\n#@ el I a z0 \"$2\\,\\mathrm{A}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=z0 id=eI1\n#@ el R a z0 \"$4\\,\\Omega$: falls $20\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{A}$\" to=z0 id=eR1\n#@ el R z0 g \"$3\\,\\Omega$: falls $21\\,\\mathrm{V}$\" col=2 i=\"$7\\,\\mathrm{A}$\" to=g id=eR3\n#@ el R a c \"$2\\,\\Omega$: falls $14\\,\\mathrm{V}$\" col=3 i=\"$7\\,\\mathrm{A}$\" to=a id=eR2\n#@ el V c g2 \"$55\\,\\mathrm{V}$\" col=4 i=\"$7\\,\\mathrm{A}$\" to=c id=eV1\n#@ step \"Ground $d$, the lowest wire (the $55\\,\\mathrm{V}$ battery's $-$ end). Answers are still read from the bottom-left wire.\"\n#@ step \"The right side is one path: $a$ → $2\\,\\Omega$ → battery → $3\\,\\Omega$ → bottom-left. Its current toward $a$ is $\\dfrac{55-a}{5}$ (the battery climbs $55$, the slides fall $5\\,\\Omega$ worth).\"\n#@ step \"In = out at $a$ (from the bottom-left wire): $\\dfrac{55-a}{5}=\\dfrac{a}{4}+2$, so $a=20\\,\\mathrm{V}$.\" show=a\n#@ step \"So $7\\,\\mathrm{A}$ climbs the battery and slides into $a$; $5\\,\\mathrm{A}$ goes down the $4\\,\\Omega$ and $2\\,\\mathrm{A}$ down through the pump.\" show=c,z0,eR1,eR2,eR3,eV1\n#@ step \"The pump carries $2\\,\\mathrm{A}$ **downhill** by $20\\,\\mathrm{V}$: it extracts $40\\,\\mathrm{W}$.\" show=eI1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "One unknown, $a$. The right branch: battery and $2+3\\,\\Omega$ in series.",
+    "latex": "\\frac{55-v_a}{5}=\\frac{v_a}{4}+2\\;\\Rightarrow\\;v_a=20\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "The pump carries its current from $a$ down to the bottom wire.",
+    "latex": "p=(20)(2)=40\\,\\mathrm{W}\\text{ absorbed}"
+   }
+  ],
+  "answer": "The $2\\,\\mathrm{A}$ source extracts (absorbs) $40\\,\\mathrm{W}$.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6f65d933-a15b-447a-9680-a12d46ee264d"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "62fd6731-418c-5f1f-a1a8-a8b3eff2d538",
+  "title": "Try it 2 · Find v_o, then every power (Textbook P4.8 and P4.9)",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "**(a)** Use the node-voltage method to find $v_o$. **(b)** Find the power developed by the $5\\,\\mathrm{A}$ source and by the $180\\,\\mathrm{V}$ source, and check the balance.\n\n```schematic\nV1 0,2 -> 0,0 \"$180\\,\\mathrm{V}$\"\nR1 0,4 -> 0,2 \"$12\\,\\Omega$\"\nR2 0,4 -> 3,4 \"$5\\,\\Omega$\"\nR3 3,4 -> 3,0 \"$2\\,\\Omega$\" v=\"$v_o$\"\nwire 3,4 -> 6,4\nI1 6,4 -> 6,0 \"$5\\,\\mathrm{A}$\"\nwire 0,0 -> 6,0\nlabel 0,4 \"$t$\" left\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node s 180 \"battery top: $180\\,\\mathrm{V}$\"\n#@ node t 60 \"$t$: $60\\,\\mathrm{V}$\"\n#@ node o 10 \"$v_o$: $10\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$180\\,\\mathrm{V}$\" col=0 i=\"$10\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R t s \"$12\\,\\Omega$: falls $120\\,\\mathrm{V}$\" col=1 i=\"$10\\,\\mathrm{A}$\" to=t id=eR1\n#@ el R t o \"$5\\,\\Omega$: falls $50\\,\\mathrm{V}$\" col=1 i=\"$10\\,\\mathrm{A}$\" to=o id=eR2\n#@ el R o g2 \"$2\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{A}$\" to=g2 id=eR3 plus=o v=\"$v_o$\"\n#@ el I o g3 \"$5\\,\\mathrm{A}$\" col=2 i=\"$5\\,\\mathrm{A}$\" to=g3 id=eI1\n#@ step \"Ground the bottom wire. The battery lifts its top to $180\\,\\mathrm{V}$.\"\n#@ step \"The $12\\,\\Omega$ and $5\\,\\Omega$ are one path ($17\\,\\Omega$) from $180\\,\\mathrm{V}$ to $v_o$. In = out at $v_o$: $\\dfrac{180-v_o}{17}=\\dfrac{v_o}{2}+5$, so $v_o=10\\,\\mathrm{V}$.\" show=o,t\n#@ step \"Currents: $10\\,\\mathrm{A}$ down the $12\\,\\Omega$ and $5\\,\\Omega$, $5\\,\\mathrm{A}$ down the $2\\,\\Omega$, $5\\,\\mathrm{A}$ down through the pump.\" show=eR1,eR2,eR3,eI1,eV1\n#@ step \"Power: the battery lifts $10\\,\\mathrm{A}$ by $180\\,\\mathrm{V}$: $1800\\,\\mathrm{W}$. The pump carries $5\\,\\mathrm{A}$ **down** $10\\,\\mathrm{V}$: it absorbs $50\\,\\mathrm{W}$ (develops $-50\\,\\mathrm{W}$). Slides: $1200+500+50=1750$ ✓\"\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "In = out at $v_o$.",
+    "latex": "\\frac{180-v_o}{12+5}=\\frac{v_o}{2}+5\\;\\Rightarrow\\;v_o=10\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Powers.",
+    "latex": "\\begin{aligned}p_{180}&=180(10)=1800\\,\\mathrm{W}\\text{ developed}\\\\p_{5\\mathrm{A}}&=-(10)(5)=-50\\,\\mathrm{W}\\text{ developed}\\end{aligned}"
+   }
+  ],
+  "answer": "**(a)** $v_o=10\\,\\mathrm{V}$. **(b)** $180\\,\\mathrm{V}$: $1800\\,\\mathrm{W}$; $5\\,\\mathrm{A}$: $-50\\,\\mathrm{W}$ (it absorbs $50\\,\\mathrm{W}$). Total $1750\\,\\mathrm{W}$ developed = dissipated.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6f65d933-a15b-447a-9680-a12d46ee264d"
+   },
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6cbf46aa-f872-4630-9c72-127d07730807"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "7ad7d2b7-fa77-5eb7-b67d-a089a8e03d33",
+  "title": "Try it 3 · One wire above both batteries (Assessment AP 4.13)",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "Use the node-voltage method to find $v_1$ and the power delivered by the $2\\,\\mathrm{A}$ current source.\n\n```schematic\nV1 0,3 -> 0,0 \"$20\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$15\\,\\Omega$\"\nI1 3,0 -> 3,3 \"$2\\,\\mathrm{A}$\"\nR2 3,3 -> 6,3 \"$10\\,\\Omega$\"\nV2 6,3 -> 6,0 \"$25\\,\\mathrm{V}$\"\nwire 6,0 -> 0,0\nlabel 3,3 \"$v_1$\" above\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node n1 35 \"$v_1$: $35\\,\\mathrm{V}$\"\n#@ node r 25 \"right top: $25\\,\\mathrm{V}$\"\n#@ node s 20 \"left top: $20\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el I g n1 \"$2\\,\\mathrm{A}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=n1 id=eI1\n#@ el R s n1 \"$15\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=s id=eR1\n#@ el V s g2 \"$20\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=g2 id=eV1\n#@ el R n1 r \"$10\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=r id=eR2\n#@ el V r g3 \"$25\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=g3 id=eV2\n#@ step \"Ground the bottom wire. Left battery top: $20\\,\\mathrm{V}$. Right battery top: $25\\,\\mathrm{V}$.\"\n#@ step \"One unknown, $v_1$. In = out: $2=\\dfrac{v_1-20}{15}+\\dfrac{v_1-25}{10}$, so $v_1=35\\,\\mathrm{V}$.\" show=n1\n#@ step \"$v_1$ is above both batteries, so $1\\,\\mathrm{A}$ slides away on each side and falls **into** both batteries (both absorb).\" show=eR1,eR2,eV1,eV2\n#@ step \"The pump lifts $2\\,\\mathrm{A}$ by $35\\,\\mathrm{V}$: it delivers $70\\,\\mathrm{W}=20+25+15+10$.\" show=eI1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. KCL at $v_1$ (currents out); the $2\\,\\mathrm{A}$ comes in.",
+    "latex": "\\frac{v_1-20}{15}+\\frac{v_1-25}{10}=2"
+   },
+   {
+    "explanation": "Multiply by 30.",
+    "latex": "2v_1-40+3v_1-75=60\\;\\Rightarrow\\;v_1=35\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "The source lifts $2\\,\\mathrm{A}$ from $0$ to $35\\,\\mathrm{V}$.",
+    "latex": "p_{2\\mathrm{A}}=(35)(2)=70\\,\\mathrm{W}\\text{ delivered}"
+   }
+  ],
+  "answer": "$v_1=35\\,\\mathrm{V}$; the $2\\,\\mathrm{A}$ source delivers $70\\,\\mathrm{W}$.",
+  "citations": [
+   {
+    "chunk_id": "cc04109f-7d5d-4f90-8089-ceb5166c591c",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   },
+   {
+    "chunk_id": "b477b4ec-60b8-40a7-9700-ef0c8f55590e",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "5cbb5c5e-039a-5004-8c6f-250fb8eab678",
+  "title": "Try it 4 · Two pumps, no battery (Textbook P4.13)",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "Use the node-voltage method to find $v_1$ and $v_2$.\n\n```schematic\nI1 0,3 -> 0,0 \"$2.4\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$125\\,\\Omega$\" v=\"$v_1$\"\nR2 3,3 -> 6,3 \"$25\\,\\Omega$\"\nR3 6,3 -> 6,0 \"$250\\,\\Omega$\"\nwire 6,3 -> 9,3\nR4 9,3 -> 9,0 \"$375\\,\\Omega$\" v=\"$v_2$\"\nwire 9,3 -> 12,3\nI2 12,0 -> 12,3 \"$3.2\\,\\mathrm{A}$\"\nwire 12,0 -> 0,0\nlabel 3,3 \"1\" above\nlabel 6,3 \"2\" above\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node n2 90 \"$v_2$: $90\\,\\mathrm{V}$\"\n#@ node n1 25 \"$v_1$: $25\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g5 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el I g n2 \"$3.2\\,\\mathrm{A}$\" col=0 i=\"$3.2\\,\\mathrm{A}$\" to=n2 id=eI2\n#@ el R n2 g2 \"$375\\,\\Omega$: falls $90\\,\\mathrm{V}$\" col=1 i=\"$0.24\\,\\mathrm{A}$\" to=g2 id=eR4 plus=n2 v=\"$v_2$\"\n#@ el R n2 g3 \"$250\\,\\Omega$: falls $90\\,\\mathrm{V}$\" col=2 i=\"$0.36\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ el R n1 n2 \"$25\\,\\Omega$: falls $65\\,\\mathrm{V}$\" col=3 i=\"$2.6\\,\\mathrm{A}$\" to=n1 id=eR2\n#@ el R n1 g4 \"$125\\,\\Omega$: falls $25\\,\\mathrm{V}$\" col=4 i=\"$0.2\\,\\mathrm{A}$\" to=g4 id=eR1 plus=n1 v=\"$v_1$\"\n#@ el I n1 g5 \"$2.4\\,\\mathrm{A}$\" col=5 i=\"$2.4\\,\\mathrm{A}$\" to=g5 id=eI1\n#@ step \"Ground the bottom wire. No battery: $v_1$ and $v_2$ are both unknown.\"\n#@ step \"In = out at each. Node 1: $\\dfrac{v_1}{125}+\\dfrac{v_1-v_2}{25}+2.4=0$. Node 2: $\\dfrac{v_2}{250}+\\dfrac{v_2}{375}+\\dfrac{v_2-v_1}{25}=3.2$.\"\n#@ step \"Solve: $v_1=25\\,\\mathrm{V}$, $v_2=90\\,\\mathrm{V}$.\" show=n1,n2\n#@ step \"$2.6\\,\\mathrm{A}$ slides from node 2 to node 1; $0.2\\,\\mathrm{A}$ goes down the $125\\,\\Omega$ and $2.4\\,\\mathrm{A}$ down through the left pump (it absorbs). Only the $3.2\\,\\mathrm{A}$ pump climbs.\" show=eR1,eR2,eR3,eR4,eI1,eI2\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. KCL at node 1 (out = in; the $2.4\\,\\mathrm{A}$ leaves).",
+    "latex": "\\frac{v_1}{125}+\\frac{v_1-v_2}{25}=-2.4"
+   },
+   {
+    "explanation": "KCL at node 2 (the $3.2\\,\\mathrm{A}$ comes in).",
+    "latex": "\\frac{v_2}{250}+\\frac{v_2}{375}+\\frac{v_2-v_1}{25}=3.2"
+   },
+   {
+    "explanation": "Clear fractions (×125 and ×750).",
+    "latex": "6v_1-5v_2=-300,\\qquad -30v_1+35v_2=2400"
+   },
+   {
+    "explanation": "Add 5× the first to the second.",
+    "latex": "10v_2=900\\;\\Rightarrow\\;v_2=90\\,\\mathrm{V},\\quad v_1=25\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v_1=25\\,\\mathrm{V}$, $v_2=90\\,\\mathrm{V}$",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6cbf46aa-f872-4630-9c72-127d07730807"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "43e0211c-3424-5b63-b695-d0b11edd8602",
+  "title": "Try it 5 · The top wire lands at the average (Textbook P4.16)",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "**(a)** Show that $v_o$ is the average of the source voltages. **(b)** Find $v_o$ if $v_1=150\\,\\mathrm{V}$, $v_2=200\\,\\mathrm{V}$ and $v_3=-50\\,\\mathrm{V}$.\n\n```schematic\nV1 0,2 -> 0,0 \"$v_1$\"\nR1 0,4 -> 0,2 \"$R$\"\nV2 3,2 -> 3,0 \"$v_2$\"\nR2 3,4 -> 3,2 \"$R$\"\nV3 6,2 -> 6,0 \"$v_3$\"\nR3 6,4 -> 6,2 \"$R$\"\nwire 0,4 -> 8,4\nwire 0,0 -> 8,0\nterminal 8,4 \"$+$\" right\nterminal 8,0 \"$-$\" right\nlabel 8,2 \"$v_o$\" right\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node p2 250 \"$v_2$ top: $250\\,\\mathrm{V}$\"\n#@ node p1 200 \"$v_1$ top: $200\\,\\mathrm{V}$\"\n#@ node o 150 \"$v_o$: $150\\,\\mathrm{V}$\"\n#@ node z0 50 \"bottom: $50\\,\\mathrm{V}$\"\n#@ node g 0 \"$v_3$ top: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$v_3$ top: $0\\,\\mathrm{V}$\" ground\n#@ el V p2 z0 \"$200\\,\\mathrm{V}$\" col=0 i=\"$10\\,\\mathrm{A}$\" to=p2 id=eV2\n#@ el V p1 z0 \"$150\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{A}$\" to=p1 id=eV1\n#@ el V g z0 \"$-50\\,\\mathrm{V}$\" col=1 i=\"$15\\,\\mathrm{A}$\" to=z0 id=eV3\n#@ el R o p1 \"$10\\,\\Omega$: falls $50\\,\\mathrm{V}$\" col=2 i=\"$5\\,\\mathrm{A}$\" to=o id=eR1\n#@ el R o p2 \"$10\\,\\Omega$: falls $100\\,\\mathrm{V}$\" col=3 i=\"$10\\,\\mathrm{A}$\" to=o id=eR2\n#@ el R o g2 \"$10\\,\\Omega$: falls $150\\,\\mathrm{V}$\" col=3 i=\"$15\\,\\mathrm{A}$\" to=g2 id=eR3\n#@ step \"Ground the lowest wire, the top of $v_3$ ($-50\\,\\mathrm{V}$). Answers are still read from the bottom wire.\"\n#@ step \"In = out at the top wire, all slides equal: $\\dfrac{v_1-v_o}{R}+\\dfrac{v_2-v_o}{R}+\\dfrac{v_3-v_o}{R}=0$, so $v_o=\\dfrac{v_1+v_2+v_3}{3}$.\"\n#@ step \"$v_o=\\dfrac{150+200-50}{3}=100\\,\\mathrm{V}$: the top wire settles at the **average** height of the three battery tops.\" show=o\n#@ step \"Drawn with $R=10\\,\\Omega$: $5$ and $10\\,\\mathrm{A}$ slide in from $v_1$ and $v_2$; $15\\,\\mathrm{A}$ slides down into $v_3$ (that battery absorbs).\" show=eR1,eR2,eR3,eV1,eV2,eV3\n#@ note \"Any $R$ gives the same $v_o$; only the currents change.\"\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "In = out at the top wire.",
+    "latex": "\\sum_k\\frac{v_k-v_o}{R}=0\\;\\Rightarrow\\;v_o=\\frac{v_1+v_2+\\cdots+v_n}{n}"
+   },
+   {
+    "explanation": "Numbers.",
+    "latex": "v_o=\\frac{150+200-50}{3}=100\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v_o$ is the average; with these values $v_o=100\\,\\mathrm{V}$.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6cbf46aa-f872-4630-9c72-127d07730807"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "f76d14d9-a78c-538d-96be-2785c2dcedb7",
+  "title": "Try it 6 · Three unknown heights (Textbook P4.11)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "**(a)** Use the node-voltage method to find the branch currents $i_a$ to $i_f$. **(b)** Find the total power developed.\n\n```schematic\nV1 0,3 -> 0,0 \"$80\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$800\\,\\Omega$\" i=\"$i_b$\"\nR2 3,3 -> 6,3 \"$500\\,\\Omega$\" i=\"$i_c$\"\nR3 6,3 -> 9,3 \"$2\\,\\mathrm{k\\Omega}$\" i=\"$i_d$\"\nwire 3,3 -> 3,5\nR4 3,5 -> 9,5 \"$1\\,\\mathrm{k\\Omega}$\" i=\"$i_a$\"\nwire 9,5 -> 9,3\nR5 6,3 -> 6,0 \"$3\\,\\mathrm{k\\Omega}$\" i=\"$i_e$\"\nR6 9,3 -> 9,0 \"$250\\,\\Omega$\" i=\"$i_f$\"\nwire 0,0 -> 9,0\nlabel 3,3 \"$p$\" below\nlabel 6,3 \"$q$\" above\nlabel 9,3 \"$r$\" right\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node s 80 \"battery top: $80\\,\\mathrm{V}$\"\n#@ node p 40 \"$p$: $40\\,\\mathrm{V}$\"\n#@ node q 30 \"$q$: $30\\,\\mathrm{V}$\"\n#@ node r 10 \"$r$: $10\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$80\\,\\mathrm{V}$\" col=0 i=\"$50\\,\\mathrm{mA}$\" to=s id=eV1\n#@ el R s p \"$800\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=1 i=\"$50\\,\\mathrm{mA}$\" to=p id=eR1\n#@ el R p q \"$500\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=2 i=\"$20\\,\\mathrm{mA}$\" to=q id=eR2\n#@ el R q g2 \"$3\\,\\mathrm{k\\Omega}$: falls $30\\,\\mathrm{V}$\" col=2 i=\"$10\\,\\mathrm{mA}$\" to=g2 id=eR5\n#@ el R q r \"$2\\,\\mathrm{k\\Omega}$: falls $20\\,\\mathrm{V}$\" col=3 i=\"$10\\,\\mathrm{mA}$\" to=r id=eR3\n#@ el R r g3 \"$250\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=3 i=\"$40\\,\\mathrm{mA}$\" to=g3 id=eR6\n#@ el R p r \"$1\\,\\mathrm{k\\Omega}$: falls $30\\,\\mathrm{V}$\" col=4 i=\"$30\\,\\mathrm{mA}$\" to=r id=eR4\n#@ step \"Ground the bottom wire. The battery lifts its top to $80\\,\\mathrm{V}$.\"\n#@ step \"Three unknowns: $p$, $q$, $r$. In = out at each (mA, kΩ). $p$: $\\dfrac{80-p}{0.8}=\\dfrac{p-q}{0.5}+\\dfrac{p-r}{1}$. $q$: $\\dfrac{p-q}{0.5}=\\dfrac{q}{3}+\\dfrac{q-r}{2}$. $r$: $\\dfrac{p-r}{1}+\\dfrac{q-r}{2}=\\dfrac{r}{0.25}$.\"\n#@ step \"Solve: $p=40$, $q=30$, $r=10\\,\\mathrm{V}$.\" show=p,q,r\n#@ step \"Currents = fall ÷ R: $i_b=50$, $i_c=20$, $i_d=10$, $i_a=30$, $i_e=10$, $i_f=40\\,\\mathrm{mA}$.\" show=eR1,eR2,eR3,eR4,eR5,eR6,eV1\n#@ step \"Power: the battery lifts $50\\,\\mathrm{mA}$ by $80\\,\\mathrm{V}$: $4\\,\\mathrm{W}$, all used by the slides.\"\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "In = out at $p$, $q$, $r$ (mA, kΩ).",
+    "latex": "\\begin{aligned}&\\tfrac{80-p}{0.8}=\\tfrac{p-q}{0.5}+\\tfrac{p-r}{1}\\\\&\\tfrac{p-q}{0.5}=\\tfrac{q}{3}+\\tfrac{q-r}{2}\\\\&\\tfrac{p-r}{1}+\\tfrac{q-r}{2}=\\tfrac{r}{0.25}\\end{aligned}"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "p=40,\\quad q=30,\\quad r=10\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Currents and power.",
+    "latex": "\\begin{aligned}&i_a=30,\\;i_b=50,\\;i_c=20,\\;i_d=10,\\;i_e=10,\\;i_f=40\\,\\mathrm{mA}\\\\&p=80(0.05)=4\\,\\mathrm{W}\\end{aligned}"
+   }
+  ],
+  "answer": "$i_a=30$, $i_b=50$, $i_c=20$, $i_d=10$, $i_e=10$, $i_f=40\\,\\mathrm{mA}$; $4\\,\\mathrm{W}$ developed.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6cbf46aa-f872-4630-9c72-127d07730807"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "65c5c2c3-476e-5031-b584-ebcad71efadd",
+  "title": "Try it 7 · A pump lifts a wire above the battery (Textbook P4.25)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Use the node-voltage method to find $v_o$.\n\n```schematic\nV1 0,3 -> 0,0 \"$50\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$80\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$50\\,\\Omega$\"\nR3 3,3 -> 6,3 \"$40\\,\\Omega$\"\nI1 6,0 -> 6,3 \"$750\\,\\mathrm{mA}$\"\nwire 6,3 -> 9,3\nR4 9,3 -> 9,0 \"$200\\,\\Omega$\"\nwire 0,3 -> 0,5\nR5 6,5 -> 0,5 \"$800\\,\\Omega$\" v=\"$v_o$\"\nwire 6,5 -> 6,3\nwire 0,0 -> 9,0\nlabel 3,3 \"$m$\" below\nlabel 6,3 \"$r$\" below\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node r 53.2 \"$r$: $53.2\\,\\mathrm{V}$\"\n#@ node s 50 \"battery top: $50\\,\\mathrm{V}$\"\n#@ node m 34 \"$m$: $34\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$50\\,\\mathrm{V}$\" col=0 i=\"$0.196\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R r s \"$800\\,\\Omega$: falls $3.2\\,\\mathrm{V}$\" col=1 i=\"$0.004\\,\\mathrm{A}$\" to=s id=eR5 plus=r v=\"$v_o$\"\n#@ el R s m \"$80\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=2 i=\"$0.2\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m g2 \"$50\\,\\Omega$: falls $34\\,\\mathrm{V}$\" col=2 i=\"$0.68\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R m r \"$40\\,\\Omega$: falls $19.2\\,\\mathrm{V}$\" col=3 i=\"$0.48\\,\\mathrm{A}$\" to=m id=eR3\n#@ el I g3 r \"$0.75\\,\\mathrm{A}$\" col=4 i=\"$0.75\\,\\mathrm{A}$\" to=r id=eI1\n#@ el R r g4 \"$200\\,\\Omega$: falls $53.2\\,\\mathrm{V}$\" col=5 i=\"$0.266\\,\\mathrm{A}$\" to=g4 id=eR4\n#@ step \"Ground the bottom wire. The battery lifts its top to $50\\,\\mathrm{V}$.\"\n#@ step \"Unknowns $m$ and $r$. In = out at $m$: $\\dfrac{50-m}{80}+\\dfrac{r-m}{40}=\\dfrac{m}{50}$. At $r$: $0.75=\\dfrac{r-m}{40}+\\dfrac{r}{200}+\\dfrac{r-50}{800}$.\"\n#@ step \"Solve: $m=34\\,\\mathrm{V}$, $r=53.2\\,\\mathrm{V}$. The pump lifted $r$ above the battery.\" show=m,r\n#@ step \"$v_o$ is $r$ measured from the $800\\,\\Omega$'s left end (the battery top): $v_o=53.2-50=3.2\\,\\mathrm{V}$. Only $4\\,\\mathrm{mA}$ trickles back through it.\" show=eR1,eR2,eR3,eR4,eR5,eV1,eI1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "In = out at $m$ and $r$.",
+    "latex": "\\begin{aligned}&\\tfrac{50-m}{80}+\\tfrac{r-m}{40}=\\tfrac{m}{50}\\\\&0.75=\\tfrac{r-m}{40}+\\tfrac{r}{200}+\\tfrac{r-50}{800}\\end{aligned}"
+   },
+   {
+    "explanation": "Solve and subtract.",
+    "latex": "m=34,\\quad r=53.2\\,\\mathrm{V},\\qquad v_o=r-50=3.2\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v_o=3.2\\,\\mathrm{V}$",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "03690d12-5cc2-452b-8d95-ea17d0ba1ae7"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "2d4b5c70-2188-5044-aeeb-9bf4a0386ccb",
+  "title": "Try it 8 · A diamond between two unknown wires (Textbook P4.27)",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "Use the node-voltage method to find $v$.\n\n```schematic\nI1 0,0 -> 0,3 \"$4.8\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$7.5\\,\\Omega$\" i=\"$i_x$\"\nR2 3,3 -> 6,3 \"$2.5\\,\\Omega$\"\nR3 6,3 -> 6,0 \"$10\\,\\Omega$\" v=\"$v$\"\nE1 9,3 -> 6,3 \"$i_x$\"\nR4 9,3 -> 9,0 \"$2.5\\,\\Omega$\"\nR5 9,3 -> 12,3 \"$1\\,\\Omega$\"\nV1 12,3 -> 12,0 \"$12\\,\\mathrm{V}$\"\nwire 12,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$b$\" above\nlabel 9,3 \"$c$\" above\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node a 15 \"$a$: $15\\,\\mathrm{V}$\"\n#@ node d 12 \"12 V top: $12\\,\\mathrm{V}$\"\n#@ node c 10 \"$c$: $10\\,\\mathrm{V}$\"\n#@ node b 8 \"$b$ ($v$): $8\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g5 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el I g a \"$4.8\\,\\mathrm{A}$\" col=0 i=\"$4.8\\,\\mathrm{A}$\" to=a id=eI1\n#@ el R a g2 \"$7.5\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=g2 id=eR1\n#@ el R a b \"$2.5\\,\\Omega$: falls $7\\,\\mathrm{V}$\" col=2 i=\"$2.8\\,\\mathrm{A}$\" to=b id=eR2\n#@ el R b g3 \"$10\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=2 i=\"$0.8\\,\\mathrm{A}$\" to=g3 id=eR3 plus=b v=\"$v$\"\n#@ el E c b \"$i_x$: $2\\,\\mathrm{V}$\" col=3 i=\"$2\\,\\mathrm{A}$\" to=c id=eE1\n#@ el R c g4 \"$2.5\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=4 i=\"$4\\,\\mathrm{A}$\" to=g4 id=eR4\n#@ el R c d \"$1\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=5 i=\"$2\\,\\mathrm{A}$\" to=c id=eR5\n#@ el V d g5 \"$12\\,\\mathrm{V}$\" col=6 i=\"$2\\,\\mathrm{A}$\" to=d id=eV1\n#@ step \"Ground the bottom wire. The $12\\,\\mathrm{V}$ battery lifts its top to $12\\,\\mathrm{V}$.\"\n#@ step \"The diamond sits between $b$ and $c$: it locks $c=v+i_x$ (it is $1\\,\\Omega\\times i_x$ volts). It depends on $i_x=\\dfrac{a}{7.5}$, the current down the $7.5\\,\\Omega$.\"\n#@ step \"In = out at $a$: $4.8=\\dfrac{a}{7.5}+\\dfrac{a-v}{2.5}$. Bubble around $b$ and $c$: $\\dfrac{a-v}{2.5}+\\dfrac{12-c}{1}=\\dfrac{v}{10}+\\dfrac{c}{2.5}$. Solve: $a=15$, $v=8$, $c=10\\,\\mathrm{V}$.\" show=a,b,c,eE1\n#@ step \"Currents: $i_x=2\\,\\mathrm{A}$, $2.8\\,\\mathrm{A}$ from $a$ to $b$, $0.8\\,\\mathrm{A}$ down the $10\\,\\Omega$, $4\\,\\mathrm{A}$ down the $2.5\\,\\Omega$ at $c$, $2\\,\\mathrm{A}$ into $c$ from the $12\\,\\mathrm{V}$ side.\" show=eR1,eR2,eR3,eR4,eR5,eV1,eI1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. $b$ and $c$ form a supernode (the diamond joins them). Control: $i_x$ runs down the $7.5\\,\\Omega$.",
+    "latex": "i_x=\\frac{v_a}{7.5},\\qquad v_c-v=(1\\,\\Omega)\\,i_x"
+   },
+   {
+    "explanation": "KCL at $a$ (the $4.8\\,\\mathrm{A}$ comes in).",
+    "latex": "\\frac{v_a}{7.5}+\\frac{v_a-v}{2.5}=4.8\\;\\Rightarrow\\;v_a=9+0.75v"
+   },
+   {
+    "explanation": "So the rod is",
+    "latex": "v_c=v+\\frac{v_a}{7.5}=1.1v+1.2"
+   },
+   {
+    "explanation": "KCL around the rod.",
+    "latex": "\\frac{v-v_a}{2.5}+\\frac{v}{10}+\\frac{v_c}{2.5}+\\frac{v_c-12}{1}=0"
+   },
+   {
+    "explanation": "Substitute and solve.",
+    "latex": "1.74v-13.92=0\\;\\Rightarrow\\;v=8\\,\\mathrm{V},\\quad v_a=15\\,\\mathrm{V},\\quad v_c=10\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v=8\\,\\mathrm{V}$ (with $v_a=15\\,\\mathrm{V}$, $v_c=10\\,\\mathrm{V}$, $i_x=2\\,\\mathrm{A}$)",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "03690d12-5cc2-452b-8d95-ea17d0ba1ae7"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "0ce5e750-fdaa-5e27-ac77-1ac15426e47f",
+  "title": "Try it 9 · A diamond hanging from a battery (Assessment AP 4.6)",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "Use the node-voltage method to find $v_1$ and $i_\\phi$.\n\n```schematic\nV1 0,3 -> 0,0 \"$60\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$24\\,\\Omega$\"\nR3 6,3 -> 3,3 \"$3\\,\\Omega$\" i=\"$i_\\phi$\"\nR4 6,3 -> 6,0 \"$3\\,\\Omega$\"\nwire 0,3 -> 0,5\nE1 6,5 -> 0,5 \"$6i_\\phi$\"\nwire 6,5 -> 6,3\nwire 6,0 -> 0,0\nlabel 3,3 \"$v_1$\" above\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node s 60 \"battery top: $60\\,\\mathrm{V}$\"\n#@ node n1 48 \"$v_1$: $48\\,\\mathrm{V}$\"\n#@ node r 36 \"right wire: $36\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$60\\,\\mathrm{V}$\" col=0 i=\"$14\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n1 \"$2\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=1 i=\"$6\\,\\mathrm{A}$\" to=n1 id=eR1\n#@ el R n1 g2 \"$24\\,\\Omega$: falls $48\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R r n1 \"$3\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=2 i=\"$4\\,\\mathrm{A}$\" to=r id=eR3\n#@ el E r s \"$6i_\\phi$: $-24\\,\\mathrm{V}$\" col=3 i=\"$8\\,\\mathrm{A}$\" to=r id=eE1\n#@ el R r g3 \"$3\\,\\Omega$: falls $36\\,\\mathrm{V}$\" col=3 i=\"$12\\,\\mathrm{A}$\" to=g3 id=eR4\n#@ step \"Ground the bottom wire. The $60\\,\\mathrm{V}$ battery lifts the left wire to $60\\,\\mathrm{V}$.\"\n#@ step \"The diamond hangs from that wire: the right wire is $6i_\\phi$ above it (below it if $i_\\phi$ is negative). $i_\\phi$ is the current from the right wire to $v_1$ through $3\\,\\Omega$.\"\n#@ step \"In = out at $v_1$, with the right wire at $60+6i_\\phi$ and $i_\\phi=\\dfrac{60+6i_\\phi-v_1}{3}$: $i_\\phi=-4\\,\\mathrm{A}$, $v_1=48\\,\\mathrm{V}$, right wire $36\\,\\mathrm{V}$.\" show=n1,r,eE1\n#@ step \"Negative $i_\\phi$: $4\\,\\mathrm{A}$ really flows from $v_1$ to the right wire. The diamond steps **down** $24\\,\\mathrm{V}$ and $8\\,\\mathrm{A}$ falls through it (it absorbs $192\\,\\mathrm{W}$).\" show=eR1,eR2,eR3,eR4,eV1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. The right node is the $60\\,\\mathrm{V}$ node plus the diamond's step.",
+    "latex": "v_r=60+6i_\\phi"
+   },
+   {
+    "explanation": "KCL at $v_1$.",
+    "latex": "\\frac{v_1-60}{2}+\\frac{v_1}{24}+\\frac{v_1-(60+6i_\\phi)}{3}=0"
+   },
+   {
+    "explanation": "Control: $i_\\phi$ flows from the right node to $v_1$.",
+    "latex": "i_\\phi=\\frac{60+6i_\\phi-v_1}{3}\\;\\Rightarrow\\;v_1=60+3i_\\phi"
+   },
+   {
+    "explanation": "Substitute and solve.",
+    "latex": "i_\\phi=-4\\,\\mathrm{A},\\qquad v_1=48\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v_1=48\\,\\mathrm{V}$, $i_\\phi=-4\\,\\mathrm{A}$",
+  "citations": [
+   {
+    "chunk_id": "871ad2b4-3d46-4914-8093-1c82fcbb764b",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "3098b470-53da-581f-ad96-94e3034b4bce",
+  "level": 1,
+  "text": "Topic 2: Mesh currents are loop walks",
+  "citations": [
+   {
+    "chunk_id": "1a74a548-e571-4119-9cc5-0ebe24fca7f9",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   },
+   {
+    "chunk_id": "43c51a64-1f93-459f-8c66-8b6c91ffba0e",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   },
+   {
+    "chunk_id": "b208bed4-cc39-40fa-8d73-0d31aaa14429",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   },
+   {
+    "chunk_id": "2523e6e0-c912-411e-bd8f-6a70dce44d39",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   },
+   {
+    "chunk_id": "2dd511b9-76b3-409e-8179-fdb1f7907a12",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "callout",
+  "id": "569f97a9-3209-5ab2-b08a-3e955fe6f58d",
+  "tone": "tip",
+  "text": "**How it looks in heights.**\n\n- Give each window of the circuit a **loop current** (clockwise). Walk around each window: **climbs = falls**.\n- A resistor shared by two windows carries the **difference** of their loop currents.\n- A pump on a window's **outside edge** gives that loop current for free. A pump **between** two windows: walk around both windows as one big loop, skipping the pump (a *supermesh*), and add *difference of the two loop currents = pump current*.\n- Loop currents are bookkeeping. Turn them into real currents, then place the heights by walking down the slides.",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "67bfcc07-7ce7-528f-ab80-52290b9b9077",
+  "title": "Example 11 · One window",
+  "prompt": "Find the loop current and the height of $x$.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$4\\,\\Omega$\"\nwire 3,0 -> 0,0\nlabel 3,3 \"$x$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 12 \"battery top: $12\\,\\mathrm{V}$\"\n#@ node x 8 \"$x$: $8\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$12\\,\\mathrm{V}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s x \"$2\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=x id=eR1\n#@ el R x g2 \"$4\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ step \"Ground the bottom wire. One window, one loop current $I$ (clockwise).\"\n#@ step \"Walk around: climb $12\\,\\mathrm{V}$ through the battery, fall $2I$ and $4I$ through the slides. Climbs = falls: $12=6I$, so $I=2\\,\\mathrm{A}$.\" show=eR1,eR2,eV1\n#@ step \"Place heights by walking down: $x=12-(2)(2)=8\\,\\mathrm{V}$. That is the whole mesh method: one loop walk per window.\" show=x\n```",
+  "steps": [
+   {
+    "explanation": "Loop walk.",
+    "latex": "12=2I+4I\\;\\Rightarrow\\;I=2\\,\\mathrm{A},\\qquad x=4I=8\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$I=2\\,\\mathrm{A}$, $x=8\\,\\mathrm{V}$",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "06a0c5bc-46c6-59d7-b56a-ba0e1e7da4d9",
+  "title": "Example 12 · Two windows (same answer as node voltages)",
+  "prompt": "Find the loop currents and the height of $x$.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$4\\,\\Omega$\"\nR3 3,3 -> 6,3 \"$2\\,\\Omega$\"\nV2 6,3 -> 6,0 \"$6\\,\\mathrm{V}$\"\nwire 6,0 -> 0,0\nlabel 3,3 \"$x$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 12 \"left top: $12\\,\\mathrm{V}$\"\n#@ node x 7.2 \"$x$: $7.2\\,\\mathrm{V}$\"\n#@ node r 6 \"right top: $6\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$12\\,\\mathrm{V}$\" col=0 i=\"$2.4\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s x \"$2\\,\\Omega$: falls $4.8\\,\\mathrm{V}$\" col=1 i=\"$2.4\\,\\mathrm{A}$\" to=x id=eR1\n#@ el R x g2 \"$4\\,\\Omega$: falls $7.2\\,\\mathrm{V}$\" col=1 i=\"$1.8\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R x r \"$2\\,\\Omega$: falls $1.2\\,\\mathrm{V}$\" col=2 i=\"$0.6\\,\\mathrm{A}$\" to=r id=eR3\n#@ el V r g3 \"$6\\,\\mathrm{V}$\" col=2 i=\"$0.6\\,\\mathrm{A}$\" to=g3 id=eV2\n#@ step \"Ground the bottom wire. Battery tops: $12\\,\\mathrm{V}$ (left) and $6\\,\\mathrm{V}$ (right).\"\n#@ step \"Loop currents $I_1$ (left window) and $I_2$ (right), both clockwise. The middle $4\\,\\Omega$ is shared: it carries $I_1-I_2$.\"\n#@ step \"Left walk: $12=2I_1+4(I_1-I_2)$. Right walk: $0=4(I_2-I_1)+2I_2+6$ (walking down through the $6\\,\\mathrm{V}$ battery is a fall). So $I_1=2.4$, $I_2=0.6\\,\\mathrm{A}$.\"\n#@ step \"Real currents: $2.4\\,\\mathrm{A}$ in, $1.8\\,\\mathrm{A}$ down the middle, $0.6\\,\\mathrm{A}$ into the $6\\,\\mathrm{V}$ battery. Height: $x=(1.8)(4)=7.2\\,\\mathrm{V}$. In = out at $x$ (Topic 1) gives the same $7.2\\,\\mathrm{V}$.\" show=x,eR1,eR2,eR3,eV1,eV2\n```",
+  "steps": [
+   {
+    "explanation": "Two loop walks.",
+    "latex": "6I_1-4I_2=12,\\qquad -4I_1+6I_2=-6\\;\\Rightarrow\\;I_1=2.4\\,\\mathrm{A},\\;I_2=0.6\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Height.",
+    "latex": "x=4(I_1-I_2)=7.2\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$I_1=2.4\\,\\mathrm{A}$, $I_2=0.6\\,\\mathrm{A}$, $x=7.2\\,\\mathrm{V}$",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "189d5e9b-9420-57bf-991a-9df887b31b16",
+  "title": "Example 13 · A pump on the outside edge",
+  "prompt": "Find both loop currents and the heights of $m$ and $r$.\n\n```schematic\nV1 0,3 -> 0,0 \"$20\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$4\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$6\\,\\Omega$\"\nR3 3,3 -> 6,3 \"$3\\,\\Omega$\"\nI1 6,3 -> 6,0 \"$2\\,\\mathrm{A}$\"\nwire 6,0 -> 0,0\nlabel 3,3 \"$m$\" above\nlabel 6,3 \"$r$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 20 \"battery top: $20\\,\\mathrm{V}$\"\n#@ node m 7.2 \"$m$: $7.2\\,\\mathrm{V}$\"\n#@ node r 1.2 \"$r$: $1.2\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$20\\,\\mathrm{V}$\" col=0 i=\"$3.2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s m \"$4\\,\\Omega$: falls $12.8\\,\\mathrm{V}$\" col=1 i=\"$3.2\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m g2 \"$6\\,\\Omega$: falls $7.2\\,\\mathrm{V}$\" col=1 i=\"$1.2\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R m r \"$3\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=r id=eR3\n#@ el I r g3 \"$2\\,\\mathrm{A}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=g3 id=eI1\n#@ step \"Ground the bottom wire. The battery lifts the left top to $20\\,\\mathrm{V}$.\"\n#@ step \"The $2\\,\\mathrm{A}$ pump is on the right window's outside edge, pointing the same way as the clockwise loop. So $I_2=2\\,\\mathrm{A}$: no equation needed.\" show=eI1\n#@ step \"Only the left walk is left: $20=4I_1+6(I_1-2)$, so $I_1=3.2\\,\\mathrm{A}$.\" show=eR1\n#@ step \"Heights: $m=20-(3.2)(4)=7.2\\,\\mathrm{V}$; the $6\\,\\Omega$ carries $1.2\\,\\mathrm{A}$ down ($7.2\\,\\mathrm{V}$ ✓); $r=7.2-(2)(3)=1.2\\,\\mathrm{V}$.\" show=m,r,eR2,eR3,eV1\n#@ step \"The pump carries $2\\,\\mathrm{A}$ **down** from $1.2\\,\\mathrm{V}$ to $0$: it absorbs $2.4\\,\\mathrm{W}$.\"\n```",
+  "steps": [
+   {
+    "explanation": "The pump fixes the right loop.",
+    "latex": "I_2=2\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Left loop walk.",
+    "latex": "20=4I_1+6(I_1-2)\\;\\Rightarrow\\;I_1=3.2\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Heights.",
+    "latex": "m=6(3.2-2)=7.2\\,\\mathrm{V},\\qquad r=7.2-3(2)=1.2\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$I_1=3.2\\,\\mathrm{A}$, $I_2=2\\,\\mathrm{A}$; $m=7.2\\,\\mathrm{V}$, $r=1.2\\,\\mathrm{V}$",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "9c584125-ccf8-5ed8-8921-d46fc17ab2c3",
+  "title": "Example 14 · Three windows (Lecture 3)",
+  "prompt": "Use the mesh-current method to find **(a)** the power of each voltage source and **(b)** $v_o$.\n\n```schematic\nV1 0,3 -> 0,0 \"$40\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$8\\,\\Omega$\" v=\"$v_o$\"\nR3 3,3 -> 6,3 \"$6\\,\\Omega$\"\nR4 6,3 -> 6,0 \"$6\\,\\Omega$\"\nR5 6,3 -> 9,3 \"$4\\,\\Omega$\"\nV2 9,3 -> 9,0 \"$20\\,\\mathrm{V}$\"\nwire 9,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$b$\" above\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 40 \"40 V top: $40\\,\\mathrm{V}$\"\n#@ node a 28.8 \"$a$: $28.8\\,\\mathrm{V}$\"\n#@ node c 20 \"20 V top: $20\\,\\mathrm{V}$\"\n#@ node b 16.8 \"$b$: $16.8\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$40\\,\\mathrm{V}$\" col=0 i=\"$5.6\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$2\\,\\Omega$: falls $11.2\\,\\mathrm{V}$\" col=1 i=\"$5.6\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$8\\,\\Omega$: falls $28.8\\,\\mathrm{V}$\" col=1 i=\"$3.6\\,\\mathrm{A}$\" to=g2 id=eR2 plus=a v=\"$v_o$\"\n#@ el R a b \"$6\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=b id=eR3\n#@ el R b g3 \"$6\\,\\Omega$: falls $16.8\\,\\mathrm{V}$\" col=2 i=\"$2.8\\,\\mathrm{A}$\" to=g3 id=eR4\n#@ el R b c \"$4\\,\\Omega$: falls $3.2\\,\\mathrm{V}$\" col=3 i=\"$0.8\\,\\mathrm{A}$\" to=b id=eR5\n#@ el V c g4 \"$20\\,\\mathrm{V}$\" col=4 i=\"$0.8\\,\\mathrm{A}$\" to=c id=eV2\n#@ step \"Ground the bottom wire. Battery tops: $40\\,\\mathrm{V}$ and $20\\,\\mathrm{V}$.\"\n#@ step \"Three clockwise loop currents. One walk per window: $10I_1-8I_2=40$, $-8I_1+20I_2-6I_3=0$, $-6I_2+10I_3=-20$.\"\n#@ step \"Solve: $I_1=5.6$, $I_2=2$, $I_3=-0.8\\,\\mathrm{A}$. Real currents: $5.6\\,\\mathrm{A}$ in the $2\\,\\Omega$, $3.6\\,\\mathrm{A}$ down the $8\\,\\Omega$, $2\\,\\mathrm{A}$ across, $2.8\\,\\mathrm{A}$ down the right $6\\,\\Omega$, $0.8\\,\\mathrm{A}$ leftward in the $4\\,\\Omega$.\" show=eR1,eR2,eR3,eR4,eR5,eV1,eV2\n#@ step \"Walk down from $40\\,\\mathrm{V}$: $a=40-(5.6)(2)=28.8\\,\\mathrm{V}=v_o$, $b=28.8-(2)(6)=16.8\\,\\mathrm{V}$. From the right: $20-(0.8)(4)=16.8$ ✓\" show=a,b\n#@ step \"Both batteries climb: they deliver $224\\,\\mathrm{W}$ and $16\\,\\mathrm{W}$.\"\n```",
+  "steps": [
+   {
+    "explanation": "KVL around each mesh, clockwise. Shared resistors carry differences; walking down through the $20\\,\\mathrm{V}$ source is a fall.",
+    "latex": "\\begin{aligned}&-40+2I_1+8(I_1-I_2)=0\\\\&8(I_2-I_1)+6I_2+6(I_2-I_3)=0\\\\&6(I_3-I_2)+4I_3+20=0\\end{aligned}"
+   },
+   {
+    "explanation": "Collect.",
+    "latex": "\\begin{aligned}10I_1-8I_2&=40\\\\-8I_1+20I_2-6I_3&=0\\\\-6I_2+10I_3&=-20\\end{aligned}"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "I_1=5.6\\,\\mathrm{A},\\quad I_2=2\\,\\mathrm{A},\\quad I_3=-0.8\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "**(b)** The $8\\,\\Omega$ carries $I_1-I_2$.",
+    "latex": "v_o=8(5.6-2)=28.8\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "**(a)** Absorbed power uses the current entering $+$. Negative = delivering.",
+    "latex": "p_{40\\mathrm{V}}=-40(5.6)=-224\\,\\mathrm{W},\\qquad p_{20\\mathrm{V}}=20(-0.8)=-16\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "**(a)** The $40\\,\\mathrm{V}$ source delivers $224\\,\\mathrm{W}$; the $20\\,\\mathrm{V}$ source delivers $16\\,\\mathrm{W}$. **(b)** $v_o=28.8\\,\\mathrm{V}$",
+  "citations": [
+   {
+    "chunk_id": "b208bed4-cc39-40fa-8d73-0d31aaa14429",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "a74792c2-fe22-51a2-9be4-95006d988183",
+  "title": "Example 15 · A pump between two windows: walk around both (Assessment AP 4.12)",
+  "prompt": "Use the mesh-current method to find the power dissipated in the $1\\,\\Omega$ resistor. Mesh $a$ is lower-left, $b$ the top, $c$ lower-right (all clockwise).\n\n```schematic\nV1 0,3 -> 0,0 \"$10\\,\\mathrm{V}$\"\nI1 0,3 -> 3,3 \"$2\\,\\mathrm{A}$\"\nwire 0,3 -> 0,6\nR1 0,6 -> 6,6 \"$2\\,\\Omega$\"\nwire 6,6 -> 6,3\nR2 3,3 -> 6,3 \"$2\\,\\Omega$\"\nR3 3,3 -> 3,0 \"$2\\,\\Omega$\"\nV2 6,0 -> 6,3 \"$6\\,\\mathrm{V}$\"\nR4 6,0 -> 3,0 \"$1\\,\\Omega$\"\nwire 3,0 -> 0,0\nlabel 3,3 \"$m$\" above\nlabel 6,3 \"$r$\" right\nlabel 6,0 \"$q$\" right\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 10 \"battery top: $10\\,\\mathrm{V}$\"\n#@ node q 6 \"$q$: $6\\,\\mathrm{V}$\"\n#@ node m 2 \"$m$: $2\\,\\mathrm{V}$\"\n#@ node r 0 \"$r$ = ground: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$r$ = ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$r$ = ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$r$ = ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$10\\,\\mathrm{V}$\" col=0 i=\"$7\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s r \"$2\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{A}$\" to=r id=eR1\n#@ el I s m \"$2\\,\\mathrm{A}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=m id=eI1\n#@ el R m g2 \"$2\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=g2 id=eR3\n#@ el R m r \"$2\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=3 i=\"$1\\,\\mathrm{A}$\" to=r id=eR2\n#@ el V q r \"$6\\,\\mathrm{V}$\" col=4 i=\"$6\\,\\mathrm{A}$\" to=q id=eV2\n#@ el R q g3 \"$1\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=5 i=\"$6\\,\\mathrm{A}$\" to=g3 id=eR4\n#@ step \"Ground the bottom wire. The $10\\,\\mathrm{V}$ battery lifts its top to $10\\,\\mathrm{V}$.\"\n#@ step \"The $2\\,\\mathrm{A}$ pump sits between windows $a$ and $b$: $I_a-I_b=2$. Its height change is unknown, so walk around $a$ and $b$ together, skipping it: $-10+2I_b+2(I_b-I_c)+2(I_a-I_c)=0$.\"\n#@ step \"Window $c$: $-6+I_c+2(I_c-I_a)+2(I_c-I_b)=0$. Solve: $I_a=7$, $I_b=5$, $I_c=6\\,\\mathrm{A}$.\"\n#@ step \"Real currents → heights: $5\\,\\mathrm{A}$ down the top $2\\,\\Omega$ to $r$ ($0\\,\\mathrm{V}$); $m=2\\,\\mathrm{V}$; $q=6\\,\\mathrm{V}$ above the $1\\,\\Omega$, which carries $6\\,\\mathrm{A}$: $36\\,\\mathrm{W}$.\" show=m,q,r,eR1,eR2,eR3,eR4,eV1,eV2\n#@ step \"The pump carries $2\\,\\mathrm{A}$ **down** from $10\\,\\mathrm{V}$ to $2\\,\\mathrm{V}$: it absorbs $16\\,\\mathrm{W}$.\" show=eI1\n```",
+  "steps": [
+   {
+    "explanation": "The $2\\,\\mathrm{A}$ source is shared by meshes $a$ and $b$.",
+    "latex": "I_a-I_b=2"
+   },
+   {
+    "explanation": "KVL around the supermesh (skip the source branch).",
+    "latex": "-10+2I_b+2(I_b-I_c)+2(I_a-I_c)=0"
+   },
+   {
+    "explanation": "KVL around mesh $c$.",
+    "latex": "-6+I_c+2(I_c-I_a)+2(I_c-I_b)=0"
+   },
+   {
+    "explanation": "Solve the three equations.",
+    "latex": "I_a=7\\,\\mathrm{A},\\quad I_b=5\\,\\mathrm{A},\\quad I_c=6\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "The $1\\,\\Omega$ is only in mesh $c$.",
+    "latex": "p_{1\\Omega}=I_c^2(1)=36\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "$I_a=7\\,\\mathrm{A}$, $I_b=5\\,\\mathrm{A}$, $I_c=6\\,\\mathrm{A}$; $p_{1\\Omega}=36\\,\\mathrm{W}$",
+  "citations": [
+   {
+    "chunk_id": "cc04109f-7d5d-4f90-8089-ceb5166c591c",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "f5f22019-4b42-5981-af2a-513fbaec019d",
+  "title": "Example 16 · A diamond in a window (Lecture 3)",
+  "prompt": "Use the mesh-current method to find the power dissipated in the $4\\,\\Omega$ resistor. Mesh $a$ is lower-left, $b$ the top triangle, $c$ lower-right (all clockwise).\n\n```schematic\nV1 0,3 -> 0,0 \"$50\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$5\\,\\Omega$\"\nR2 3,3 -> 6,3 \"$4\\,\\Omega$\"\nR3 3,3 -> 3,0 \"$20\\,\\Omega$\" i=\"$i_\\phi$\"\nE1 6,3 -> 6,0 \"$15i_\\phi$\"\nwire 0,3 -> 0,5\nR4 0,5 -> 6,5 \"$1\\,\\Omega$\"\nwire 6,5 -> 6,3\nwire 6,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$b$\" right\nground 0,0\n#@ inline\n#@ straight off\n#@ node s 50 \"battery top: $50\\,\\mathrm{V}$\"\n#@ node a 32 \"$a$: $32\\,\\mathrm{V}$\"\n#@ node b 24 \"$b$: $24\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$50\\,\\mathrm{V}$\" col=0 i=\"$29.6\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$5\\,\\Omega$: falls $18\\,\\mathrm{V}$\" col=1 i=\"$3.6\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$20\\,\\Omega$: falls $32\\,\\mathrm{V}$\" col=1 i=\"$1.6\\,\\mathrm{A}$\" to=g2 id=eR3\n#@ el R a b \"$4\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=b id=eR2\n#@ el E b g3 \"$15i_\\phi$: $24\\,\\mathrm{V}$\" col=2 i=\"$28\\,\\mathrm{A}$\" to=g3 id=eE1\n#@ el R s b \"$1\\,\\Omega$: falls $26\\,\\mathrm{V}$\" col=3 i=\"$26\\,\\mathrm{A}$\" to=b id=eR4\n#@ step \"Ground the bottom wire. The battery lifts its top to $50\\,\\mathrm{V}$.\"\n#@ step \"The diamond is a battery of $15i_\\phi$. It depends on $i_\\phi$, the current down the $20\\,\\Omega$: $i_\\phi=I_a-I_c$ (two windows share it).\"\n#@ step \"Three loop walks with that control: $I_a=29.6$, $I_b=26$, $I_c=28\\,\\mathrm{A}$, so $i_\\phi=1.6\\,\\mathrm{A}$.\"\n#@ step \"Heights: $a=20i_\\phi=32\\,\\mathrm{V}$, the diamond's top $b=15i_\\phi=24\\,\\mathrm{V}$. The $4\\,\\Omega$ falls $8\\,\\mathrm{V}$ with $2\\,\\mathrm{A}$: $16\\,\\mathrm{W}$.\" show=a,b,eR1,eR2,eR3,eR4,eV1,eE1\n```",
+  "steps": [
+   {
+    "explanation": "Control first: both lower meshes cross the $20\\,\\Omega$.",
+    "latex": "i_\\phi=I_a-I_c"
+   },
+   {
+    "explanation": "Loop walks.",
+    "latex": "\\begin{aligned}&-50+5(I_a-I_b)+20(I_a-I_c)=0\\\\&I_b+4(I_b-I_c)+5(I_b-I_a)=0\\\\&15i_\\phi+20(I_c-I_a)+4(I_c-I_b)=0\\end{aligned}"
+   },
+   {
+    "explanation": "Substitute the control and collect.",
+    "latex": "\\begin{aligned}25I_a-5I_b-20I_c&=50\\\\-5I_a+10I_b-4I_c&=0\\\\-5I_a-4I_b+9I_c&=0\\end{aligned}"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "I_a=29.6\\,\\mathrm{A},\\quad I_b=26\\,\\mathrm{A},\\quad I_c=28\\,\\mathrm{A},\\quad i_\\phi=1.6\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "The $4\\,\\Omega$ carries $I_c-I_b$.",
+    "latex": "p_{4\\Omega}=4(28-26)^2=16\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "$i_\\phi=1.6\\,\\mathrm{A}$; $p_{4\\Omega}=16\\,\\mathrm{W}$",
+  "citations": [
+   {
+    "chunk_id": "2523e6e0-c912-411e-bd8f-6a70dce44d39",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "d3ef81af-82c6-5309-88bd-a7d0df67e300",
+  "title": "Example 17 · Count the unknowns before you start (Lecture 3)",
+  "prompt": "Count the nodes, essential nodes, branches, essential branches and meshes.\n\n```schematic\nV1 0,6 -> 0,3 \"$v_1$\"\nV2 0,3 -> 0,0 \"$v_2$\"\nR1 0,6 -> 4,6 \"$R_1$\"\nR5 4,6 -> 4,3 \"$R_5$\"\nR2 0,3 -> 2,3 \"$R_2$\"\nR3 2,3 -> 4,3 \"$R_3$\"\nR6 4,3 -> 4,0 \"$R_6$\"\nR4 0,0 -> 4,0 \"$R_4$\"\nwire 4,6 -> 9,6\nwire 4,0 -> 9,0\nR7 6.5,6 -> 6.5,0 \"$R_7$\"\nI1 9,0 -> 9,6 \"$I$\"\nlabel 0,6 \"$a$\" left\nlabel 4,6 \"$b$\" above\nlabel 0,3 \"$c$\" left\nlabel 2,3 \"$d$\" above\nlabel 4,3 \"$e$\" right\nlabel 0,0 \"$f$\" left\nlabel 4,0 \"$g$\" below\n```\n\n",
+  "steps": [
+   {
+    "explanation": "Nodes $a$–$g$; ten elements, so ten branches.",
+    "latex": "n=7,\\qquad b=10"
+   },
+   {
+    "explanation": "Essential nodes meet three or more elements: $b$, $c$, $e$, $g$. ($a$, $d$, $f$ only join two.)",
+    "latex": "n_e=4"
+   },
+   {
+    "explanation": "Essential branches: $c$–$a$–$b$, $c$–$f$–$g$, $c$–$d$–$e$, $b$–$e$, $e$–$g$, and the two $b$–$g$ paths ($R_7$ and $I$).",
+    "latex": "b_e=7"
+   },
+   {
+    "explanation": "Meshes, checked both ways.",
+    "latex": "M=10-7+1=7-4+1=4"
+   }
+  ],
+  "answer": "$7$ nodes, $4$ essential nodes, $10$ branches, $7$ essential branches, $4$ meshes. Node-voltage would need $4-1=3$ unknown heights. **So:** node voltages need $n_e-1$ equations, mesh currents need $b_e-n_e+1$.",
+  "citations": [
+   {
+    "chunk_id": "281e662e-bfd9-4a81-9104-c7f5a079f666",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "callout",
+  "id": "a411dcd2-f2c1-59ad-b28d-1b72d4053f1a",
+  "tone": "warning",
+  "text": "**Loop-walk traps.** Through a battery from $-$ to $+$ is a **climb**; $+$ to $-$ is a **fall**. A shared resistor carries a **difference** of loop currents. A pump's height change is unknown: never write $R\\times I$ for it (that is why you walk around it).",
+  "citations": []
+ },
+ {
+  "type": "practice_problem",
+  "id": "febdf322-9de6-5280-8056-87ad90912543",
+  "title": "Try it 10 · Count everything (Textbook P4.1)",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "Find the number of **(a)** branches, **(b)** branches with unknown current, **(c)** essential branches, **(d)** essential branches with unknown current, **(e)** nodes, **(f)** essential nodes, **(g)** meshes.\n\n```schematic\nV1 0,4 -> 0,0 \"$18\\,\\mathrm{V}$\"\nwire 0,4 -> 0,7\nR1 0,7 -> 10,7 \"$R_1$\"\nwire 10,7 -> 10,4\nR2 0,6 -> 3,6 \"$R_2$\" i_rev=\"$i_\\Delta$\"\nR3 0,4 -> 3,4 \"$R_3$\"\nwire 3,6 -> 3,4\nG1 3,6 -> 10,6 \"$2v_\\Delta$\"\nR6 3,4 -> 3,0 \"$R_6$\" v=\"$v_\\Delta$\"\nR4 3,4 -> 6,4 \"$R_4$\"\nR5 6,4 -> 10,4 \"$R_5$\"\nE1 6,4 -> 6,0 \"$25i_\\Delta$\"\nR7 10,4 -> 10,0 \"$R_7$\"\nwire 10,4 -> 13,4\nI1 13,0 -> 13,4 \"$5\\,\\mathrm{mA}$\"\nwire 13,0 -> 0,0\nlabel 0,4 \"$a$\" left\nlabel 3,6 \"$b$\" above\nlabel 6,4 \"$c$\" above\nlabel 10,7 \"$d$\" right\nlabel 13,0 \"$e$\" right\n```\n\n",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Branches: seven resistors and four sources.",
+    "latex": "b=11"
+   },
+   {
+    "explanation": "Only the $5\\,\\mathrm{mA}$ source has a known current; the diamond $2v_\\Delta$ depends on an unknown, so it does not count as known.",
+    "latex": "b_{\\text{unknown}}=10"
+   },
+   {
+    "explanation": "Nodes: $a$ (top-left wire), $b$, $c$, $d$ and the bottom wire $e$. Each joins at least three elements.",
+    "latex": "n=n_e=5"
+   },
+   {
+    "explanation": "Every branch runs between essential nodes, so every branch is essential.",
+    "latex": "b_e=11,\\quad b_{e,\\text{unknown}}=10"
+   },
+   {
+    "explanation": "Meshes.",
+    "latex": "M=b-n+1=11-5+1=7"
+   }
+  ],
+  "answer": "**(a)** $11$ **(b)** $10$ **(c)** $11$ **(d)** $10$ **(e)** $5$ **(f)** $5$ **(g)** $7$",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6f65d933-a15b-447a-9680-a12d46ee264d"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "ad2c69f2-16b3-5081-bc0f-0680c4b9a00b",
+  "title": "Try it 11 · A pump on the outside edge (Assessment AP 4.10)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Use the mesh-current method to find the power dissipated in the $2\\,\\Omega$ resistor.\n\n```schematic\nV1 0,3 -> 0,0 \"$30\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$3\\,\\Omega$\"\nR2 0,0 -> 3,0 \"$6\\,\\Omega$\"\nR3 3,3 -> 3,0 \"$2\\,\\Omega$\"\nR4 3,3 -> 6,3 \"$8\\,\\Omega$\"\nR5 3,0 -> 6,0 \"$4\\,\\Omega$\"\nR6 6,3 -> 6,0 \"$5\\,\\Omega$\"\nwire 6,3 -> 9,3\nI1 9,0 -> 9,3 \"$16\\,\\mathrm{A}$\"\nwire 9,0 -> 6,0\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node r 60 \"top right: $60\\,\\mathrm{V}$\"\n#@ node s 34 \"battery top: $34\\,\\mathrm{V}$\"\n#@ node m 28 \"top middle: $28\\,\\mathrm{V}$\"\n#@ node q 16 \"bottom middle: $16\\,\\mathrm{V}$\"\n#@ node z0 4 \"bottom-left: $4\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom right: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom right: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom right: $0\\,\\mathrm{V}$\" ground\n#@ el V s z0 \"$30\\,\\mathrm{V}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s m \"$3\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m q \"$2\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=1 i=\"$6\\,\\mathrm{A}$\" to=q id=eR3\n#@ el R z0 q \"$6\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=z0 id=eR2\n#@ el R m r \"$8\\,\\Omega$: falls $32\\,\\mathrm{V}$\" col=2 i=\"$4\\,\\mathrm{A}$\" to=m id=eR4\n#@ el R q g \"$4\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=2 i=\"$4\\,\\mathrm{A}$\" to=g id=eR5\n#@ el R r g2 \"$5\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=3 i=\"$12\\,\\mathrm{A}$\" to=g2 id=eR6\n#@ el I g3 r \"$16\\,\\mathrm{A}$\" col=4 i=\"$16\\,\\mathrm{A}$\" to=r id=eI1\n#@ step \"Ground the bottom-right wire, the lowest. Heights are measured from it (the bottom-left wire sits $4\\,\\mathrm{V}$ up).\"\n#@ step \"The $16\\,\\mathrm{A}$ pump is on mesh 3's outside edge, pointing **against** clockwise: $I_3=-16\\,\\mathrm{A}$.\" show=eI1\n#@ step \"Walk meshes 1 and 2: $11I_1-2I_2=30$ and $-2I_1+19I_2=-80$, so $I_1=2$, $I_2=-4\\,\\mathrm{A}$.\"\n#@ step \"The $2\\,\\Omega$ carries $I_1-I_2=6\\,\\mathrm{A}$: $6^2\\times2=72\\,\\mathrm{W}$.\" show=eR3\n#@ step \"All real currents → heights. The pump lifts $16\\,\\mathrm{A}$ by $60\\,\\mathrm{V}$: the big climb in this circuit.\" show=s,m,q,r,eR1,eR2,eR4,eR5,eR6,eV1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "The perimeter source fixes mesh 3: clockwise $I_3$ opposes its upward arrow.",
+    "latex": "I_3=-16\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "KVL in mesh 1.",
+    "latex": "-30+3I_1+2(I_1-I_2)+6I_1=0\\;\\Rightarrow\\;11I_1-2I_2=30"
+   },
+   {
+    "explanation": "KVL in mesh 2.",
+    "latex": "8I_2+5(I_2-I_3)+4I_2+2(I_2-I_1)=0\\;\\Rightarrow\\;-2I_1+19I_2=-80"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "I_1=2\\,\\mathrm{A},\\qquad I_2=-4\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "The $2\\,\\Omega$ carries $I_1-I_2$ downward.",
+    "latex": "p_{2\\Omega}=(6)^2(2)=72\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "$p_{2\\Omega}=72\\,\\mathrm{W}$",
+  "citations": [
+   {
+    "chunk_id": "b424062b-f59f-47c1-b08b-81c45ecae319",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   },
+   {
+    "chunk_id": "41f6ae5a-5f7a-4739-a989-3c42552040fb",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "6f3e8dbd-4e26-5266-b06e-fd97bd810ae4",
+  "title": "Try it 12 · Flip one battery (Textbook P4.37)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "**(a)** Use the mesh-current method to find $i_a$, $i_b$ and $i_c$. **(b)** Repeat with the polarity of the $64\\,\\mathrm{V}$ source reversed.\n\n```schematic\nV1 0,3 -> 0,0 \"$40\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$3\\,\\Omega$\" i=\"$i_a$\"\nR2 0,0 -> 3,0 \"$2\\,\\Omega$\"\nR3 3,3 -> 3,0 \"$45\\,\\Omega$\" i=\"$i_b$\"\nR4 6,3 -> 3,3 \"$4\\,\\Omega$\" i=\"$i_c$\"\nR5 3,0 -> 6,0 \"$1.5\\,\\Omega$\"\nV2 6,0 -> 6,3 \"$64\\,\\mathrm{V}$\"\nground 0,0\n#@ spoiler\n#@ view \"As drawn\"\n#@ straight off\n#@ node s 69.4 \"battery top: $69.4\\,\\mathrm{V}$\"\n#@ node p 64 \"bottom right: $64\\,\\mathrm{V}$\"\n#@ node q 49 \"bottom middle: $49\\,\\mathrm{V}$\"\n#@ node m 40 \"top middle: $40\\,\\mathrm{V}$\"\n#@ node z0 29.4 \"bottom-left: $29.4\\,\\mathrm{V}$\"\n#@ node g 0 \"top right: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"top right: $0\\,\\mathrm{V}$\" ground\n#@ el V s z0 \"$40\\,\\mathrm{V}$\" col=0 i=\"$9.8\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s m \"$3\\,\\Omega$: falls $29.4\\,\\mathrm{V}$\" col=1 i=\"$9.8\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R g m \"$4\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=1 i=\"$10\\,\\mathrm{A}$\" to=g id=eR4\n#@ el R q p \"$1.5\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=2 i=\"$10\\,\\mathrm{A}$\" to=q id=eR5\n#@ el R m q \"$45\\,\\Omega$: falls $9\\,\\mathrm{V}$\" col=2 i=\"$0.2\\,\\mathrm{A}$\" to=m id=eR3\n#@ el R z0 q \"$2\\,\\Omega$: falls $19.6\\,\\mathrm{V}$\" col=3 i=\"$9.8\\,\\mathrm{A}$\" to=z0 id=eR2\n#@ el V p g2 \"$64\\,\\mathrm{V}$\" col=4 i=\"$10\\,\\mathrm{A}$\" to=p id=eV2\n#@ step \"Ground the lowest wire, the $64\\,\\mathrm{V}$ battery's $-$ end. Answers don't change.\"\n#@ step \"Loop currents $I_L$, $I_R$ (clockwise): $i_a=I_L$, $i_b=I_L-I_R$, $i_c=-I_R$. Walks: $50I_L-45I_R=40$ and $-45I_L+50.5I_R=64$, so $I_L=9.8$, $I_R=10\\,\\mathrm{A}$.\"\n#@ step \"So $i_a=9.8\\,\\mathrm{A}$, $i_b=-0.2\\,\\mathrm{A}$ ($0.2\\,\\mathrm{A}$ goes **up** the $45\\,\\Omega$), $i_c=-10\\,\\mathrm{A}$.\" show=eR1,eR2,eR3,eR4,eR5,eV1,eV2\n#@ view \"64 V flipped\"\n#@ straight off\n#@ node r 64 \"top right: $64\\,\\mathrm{V}$\"\n#@ node m 52.8 \"top middle: $52.8\\,\\mathrm{V}$\"\n#@ node s 47.64 \"battery top: $47.64\\,\\mathrm{V}$\"\n#@ node z0 7.64 \"bottom-left: $7.64\\,\\mathrm{V}$\"\n#@ node q 4.2 \"bottom middle: $4.2\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom right: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom right: $0\\,\\mathrm{V}$\" ground\n#@ el V r g \"$64\\,\\mathrm{V}$\" col=0 i=\"$2.8\\,\\mathrm{A}$\" to=r id=eV2\n#@ el R r m \"$4\\,\\Omega$: falls $11.2\\,\\mathrm{V}$\" col=1 i=\"$2.8\\,\\mathrm{A}$\" to=m id=eR4\n#@ el R s m \"$3\\,\\Omega$: falls $5.16\\,\\mathrm{V}$\" col=1 i=\"$1.72\\,\\mathrm{A}$\" to=s id=eR1\n#@ el V s z0 \"$40\\,\\mathrm{V}$\" col=1 i=\"$1.72\\,\\mathrm{A}$\" to=z0 id=eV1\n#@ el R z0 q \"$2\\,\\Omega$: falls $3.44\\,\\mathrm{V}$\" col=1 i=\"$1.72\\,\\mathrm{A}$\" to=q id=eR2\n#@ el R q g2 \"$1.5\\,\\Omega$: falls $4.2\\,\\mathrm{V}$\" col=1 i=\"$2.8\\,\\mathrm{A}$\" to=g2 id=eR5\n#@ el R m q \"$45\\,\\Omega$: falls $48.6\\,\\mathrm{V}$\" col=2 i=\"$1.08\\,\\mathrm{A}$\" to=q id=eR3\n#@ step \"Ground the lowest wire again. Only the $64\\,\\mathrm{V}$ walk sign changes: $-45I_L+50.5I_R=-64$.\"\n#@ step \"$I_L=-1.72$, $I_R=-2.8\\,\\mathrm{A}$: $i_a=-1.72$, $i_b=1.08$, $i_c=2.8\\,\\mathrm{A}$.\" show=eR1,eR2,eR3,eR4,eR5,eV1,eV2\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Clockwise mesh currents $I_L$, $I_R$. From the arrows: $i_a=I_L$, $i_b=I_L-I_R$, $i_c=-I_R$ (it points left).",
+    "latex": ""
+   },
+   {
+    "explanation": "Left mesh.",
+    "latex": "-40+(3+2)I_L+45(I_L-I_R)=0\\;\\Rightarrow\\;50I_L-45I_R=40"
+   },
+   {
+    "explanation": "**(a)** Right mesh: clockwise through the $64\\,\\mathrm{V}$ source is a climb.",
+    "latex": "45(I_R-I_L)+5.5I_R-64=0\\;\\Rightarrow\\;-45I_L+50.5I_R=64"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "I_R=10\\,\\mathrm{A},\\quad I_L=9.8\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "**(b)** Only the source sign flips.",
+    "latex": "-45I_L+50.5I_R=-64\\;\\Rightarrow\\;I_R=-2.8\\,\\mathrm{A},\\quad I_L=-1.72\\,\\mathrm{A}"
+   }
+  ],
+  "answer": "**(a)** $i_a=9.8\\,\\mathrm{A}$, $i_b=-0.2\\,\\mathrm{A}$, $i_c=-10\\,\\mathrm{A}$. **(b)** $i_a=-1.72\\,\\mathrm{A}$, $i_b=1.08\\,\\mathrm{A}$, $i_c=2.8\\,\\mathrm{A}$.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "bd420eb3-c2c5-415b-96c4-51dee9674f2b"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "c2003169-83ad-50b0-8714-c16b0d9c4eed",
+  "title": "Try it 13 · Three batteries, three windows (Textbook P4.36)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "**(a)** Use the mesh-current method to find the total power developed. **(b)** Check that it equals the total power dissipated.\n\n```schematic\nV1 0,3 -> 0,0 \"$110\\,\\mathrm{V}$\"\nR1 0,3 -> 4,3 \"$10\\,\\Omega$\"\nR2 4,3 -> 8,3 \"$12\\,\\Omega$\"\nV2 8,3 -> 8,0 \"$70\\,\\mathrm{V}$\"\nwire 0,3 -> 0,5\nR3 0,5 -> 8,5 \"$6\\,\\Omega$\"\nwire 8,5 -> 8,3\nR4 4,3 -> 4,1.8 \"$3\\,\\Omega$\"\nV3 4,0 -> 4,1.8 \"$12\\,\\mathrm{V}$\"\nR5 0,0 -> 4,0 \"$4\\,\\Omega$\"\nR6 4,0 -> 8,0 \"$2\\,\\Omega$\"\nlabel 0,3 \"$a$\" left\nlabel 4,3 \"$m$\" above\nlabel 8,3 \"$b$\" right\nlabel 0,0 \"$l$\" left\nlabel 8,0 \"$r$\" right\nground 4,0\n#@ spoiler\n#@ straight off\n#@ node a 110 \"$a$: $110\\,\\mathrm{V}$\"\n#@ node b 98 \"$b$: $98\\,\\mathrm{V}$\"\n#@ node m 50 \"$m$: $50\\,\\mathrm{V}$\"\n#@ node z0 32 \"bottom middle: $32\\,\\mathrm{V}$\"\n#@ node r 28 \"$r$: $28\\,\\mathrm{V}$\"\n#@ node n 20 \"12 V top: $20\\,\\mathrm{V}$\"\n#@ node g 0 \"$l$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$l$: $0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$110\\,\\mathrm{V}$\" col=0 i=\"$8\\,\\mathrm{A}$\" to=a id=eV1\n#@ el R a b \"$6\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=b id=eR3\n#@ el V b r \"$70\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=b id=eV2\n#@ el R m b \"$12\\,\\Omega$: falls $48\\,\\mathrm{V}$\" col=2 i=\"$4\\,\\mathrm{A}$\" to=m id=eR2\n#@ el R z0 r \"$2\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=r id=eR6\n#@ el R a m \"$10\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=3 i=\"$6\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m n \"$3\\,\\Omega$: falls $30\\,\\mathrm{V}$\" col=3 i=\"$10\\,\\mathrm{A}$\" to=n id=eR4\n#@ el V z0 n \"$12\\,\\mathrm{V}$\" col=4 i=\"$10\\,\\mathrm{A}$\" to=z0 id=eV3\n#@ el R g2 z0 \"$4\\,\\Omega$: falls $32\\,\\mathrm{V}$\" col=5 i=\"$8\\,\\mathrm{A}$\" to=g2 id=eR5\n#@ step \"Ground $l$, the lowest wire (the $110\\,\\mathrm{V}$ battery's $-$ end). Heights are measured from $l$.\"\n#@ step \"Clockwise loops: $i_1$ lower left, $i_2$ lower right, $i_3$ top. Walks: $17i_1-3i_2-10i_3=122$, $-3i_1+17i_2-12i_3=-82$, $-10i_1-12i_2+28i_3=0$.\"\n#@ step \"Solve: $i_1=8$, $i_2=-2$, $i_3=2\\,\\mathrm{A}$. Real currents: $6\\,\\mathrm{A}$ in the $10\\,\\Omega$, $4\\,\\mathrm{A}$ from $b$ to $m$, $2\\,\\mathrm{A}$ in the $6\\,\\Omega$, $10\\,\\mathrm{A}$ down the $3\\,\\Omega$ and up through the $12\\,\\mathrm{V}$ battery, $8\\,\\mathrm{A}$ in the $4\\,\\Omega$, $2\\,\\mathrm{A}$ in the $2\\,\\Omega$.\" show=eR1,eR2,eR3,eR4,eR5,eR6\n#@ step \"Heights by walking down the slides.\" show=a,b,m,n,r,z0\n#@ step \"All three batteries climb: $880+140+120=1140\\,\\mathrm{W}$ developed = $1140\\,\\mathrm{W}$ in the six slides.\" show=eV1,eV2,eV3\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Loop walks (clockwise; $-\\to+$ through a battery is a climb).",
+    "latex": "\\begin{aligned}17i_1-3i_2-10i_3&=122\\\\-3i_1+17i_2-12i_3&=-82\\\\-10i_1-12i_2+28i_3&=0\\end{aligned}"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "i_1=8\\,\\mathrm{A},\\quad i_2=-2\\,\\mathrm{A},\\quad i_3=2\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Developed power.",
+    "latex": "110(8)+70(2)+12(10)=880+140+120=1140\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "Dissipated.",
+    "latex": "360+192+24+300+256+8=1140\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "$1140\\,\\mathrm{W}$ developed $=1140\\,\\mathrm{W}$ dissipated.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "bd420eb3-c2c5-415b-96c4-51dee9674f2b"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "fd1142ff-58a9-56ae-8094-97b4e7e26916",
+  "title": "Try it 14 · A diamond controlled by a shared resistor (Textbook P4.42)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Use the mesh-current method to find the power dissipated in the $10\\,\\Omega$ resistor.\n\n```schematic\nV1 0,3 -> 0,0 \"$60\\,\\mathrm{V}$\"\nR1 0,3 -> 4,3 \"$4\\,\\Omega$\"\nR2 4,3 -> 4,0 \"$10\\,\\Omega$\" v=\"$v_\\Delta$\"\nR3 4,3 -> 8,3 \"$2.5\\,\\Omega$\"\nE1 8,0 -> 8,3 \"$\\tfrac{v_\\Delta}{2}$\"\nR4 0,0 -> 4,0 \"$2\\,\\Omega$\"\nR5 4,0 -> 8,0 \"$20\\,\\Omega$\"\nlabel 4,3 \"$m$\" above\nlabel 0,0 \"$l$\" left\nlabel 8,0 \"$r$\" right\nground 4,0\n#@ spoiler\n#@ straight off\n#@ node s 60 \"battery top: $60\\,\\mathrm{V}$\"\n#@ node r 50 \"$r$: $50\\,\\mathrm{V}$\"\n#@ node m 40 \"$m$: $40\\,\\mathrm{V}$\"\n#@ node t 35 \"diamond $-$: $35\\,\\mathrm{V}$\"\n#@ node z0 10 \"bottom middle: $10\\,\\mathrm{V}$\"\n#@ node g 0 \"$l$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$l$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$60\\,\\mathrm{V}$\" col=0 i=\"$5\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s m \"$4\\,\\Omega$: falls $20\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m z0 \"$10\\,\\Omega$: falls $30\\,\\mathrm{V}$\" col=1 i=\"$3\\,\\mathrm{A}$\" to=z0 id=eR2 plus=m v=\"$v_\\Delta$\"\n#@ el R g2 z0 \"$2\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ el R m t \"$2.5\\,\\Omega$: falls $5\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=t id=eR3\n#@ el E r t \"$\\tfrac{v_\\Delta}{2}$: $15\\,\\mathrm{V}$\" col=3 i=\"$2\\,\\mathrm{A}$\" to=r id=eE1\n#@ el R z0 r \"$20\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=4 i=\"$2\\,\\mathrm{A}$\" to=z0 id=eR5\n#@ step \"Ground $l$, the lowest wire. Heights are measured from $l$.\"\n#@ step \"The diamond is a battery of $\\dfrac{v_\\Delta}{2}$ ($+$ at the bottom). It depends on $v_\\Delta$, across the shared $10\\,\\Omega$: $v_\\Delta=10(i_1-i_2)$.\"\n#@ step \"Walk both windows: left $60=4i_1+10(i_1-i_2)+2i_1$; right $2.5i_2-\\dfrac{v_\\Delta}{2}+20i_2+10(i_2-i_1)=0$. So $i_1=5$, $i_2=2\\,\\mathrm{A}$, $v_\\Delta=30\\,\\mathrm{V}$.\" show=eE1\n#@ step \"The $10\\,\\Omega$ carries $3\\,\\mathrm{A}$ and falls $30\\,\\mathrm{V}$: $90\\,\\mathrm{W}$.\" show=m,eR2\n#@ step \"The rest: the diamond lifts $2\\,\\mathrm{A}$ by $15\\,\\mathrm{V}$ (gives $30\\,\\mathrm{W}$); the battery gives $300\\,\\mathrm{W}$.\" show=t,r,eR1,eR3,eR4,eR5,eV1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Control.",
+    "latex": "v_\\Delta=10(i_1-i_2)"
+   },
+   {
+    "explanation": "Loop walks.",
+    "latex": "\\begin{aligned}60&=4i_1+10(i_1-i_2)+2i_1\\\\0&=2.5i_2-\\tfrac{v_\\Delta}{2}+20i_2+10(i_2-i_1)\\end{aligned}"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "i_1=5\\,\\mathrm{A},\\quad i_2=2\\,\\mathrm{A},\\quad v_\\Delta=30\\,\\mathrm{V},\\qquad p_{10\\Omega}=\\frac{30^2}{10}=90\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "$p_{10\\,\\Omega}=90\\,\\mathrm{W}$",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "bd420eb3-c2c5-415b-96c4-51dee9674f2b"
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "5da5344a-77f3-5c0e-8fbd-a210efd9b6e3",
+  "level": 1,
+  "text": "Practice set",
+  "citations": []
+ },
+ {
+  "type": "paragraph",
+  "id": "c8167f1d-ede0-52fe-acad-1fa14232b110",
+  "text": "Exam-style, mixing both topics. Try each for 10–15 minutes before opening the solution, then check your picture against the height view.",
+  "citations": []
+ },
+ {
+  "type": "practice_problem",
+  "id": "0989b255-ec8d-545c-8e42-b7427e9d406e",
+  "title": "P4.30 · Where should ground go?",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "**(a)** Use the node-voltage method with node $a$ as the reference to find $v_o$ and the power delivered by the $0.5\\,\\mathrm{A}$ source. **(b)** Repeat with node $b$ as the reference. **(c)** Which reference is better, and why?\n\n```schematic\nI1 0,0 -> 0,3 \"$0.5\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$40\\,\\Omega$\"\nV1 6,3 -> 3,3 \"$12\\,\\mathrm{V}$\"\nR2 6,3 -> 6,0 \"$100\\,\\Omega$\" v=\"$v_o$\"\nR3 6,3 -> 9,3 \"$150\\,\\Omega$\"\nR4 9,3 -> 9,0 \"$50\\,\\Omega$\"\nwire 9,0 -> 0,0\nlabel 3,3 \"b\" above\nlabel 3,0 \"a\" below\n#@ spoiler\n#@ straight off\n#@ node c 20 \"$c$: $20\\,\\mathrm{V}$\"\n#@ node b 8 \"$b$: $8\\,\\mathrm{V}$\"\n#@ node d 5 \"$d$: $5\\,\\mathrm{V}$\"\n#@ node g 0 \"$a$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$a$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$a$: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"$a$: $0\\,\\mathrm{V}$\" ground\n#@ el I g b \"$0.5\\,\\mathrm{A}$\" col=0 i=\"$0.5\\,\\mathrm{A}$\" to=b id=eI1\n#@ el V c b \"$12\\,\\mathrm{V}$\" col=1 i=\"$0.3\\,\\mathrm{A}$\" to=c id=eV1\n#@ el R b g2 \"$40\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=1 i=\"$0.2\\,\\mathrm{A}$\" to=g2 id=eR1\n#@ el R c g3 \"$100\\,\\Omega$: falls $20\\,\\mathrm{V}$\" col=2 i=\"$0.2\\,\\mathrm{A}$\" to=g3 id=eR2 plus=c v=\"$v_o$\"\n#@ el R c d \"$150\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=3 i=\"$0.1\\,\\mathrm{A}$\" to=d id=eR3\n#@ el R d g4 \"$50\\,\\Omega$: falls $5\\,\\mathrm{V}$\" col=3 i=\"$0.1\\,\\mathrm{A}$\" to=g4 id=eR4\n#@ step \"Ground $a$ (the bottom wire).\"\n#@ step \"The $12\\,\\mathrm{V}$ battery joins $b$ and $c$, both unknown: $c=b+12$. Bubble around them: the $0.5\\,\\mathrm{A}$ pump comes in; out go $\\dfrac{b}{40}$, $\\dfrac{c}{100}$ and $\\dfrac{c}{200}$. So $b=8$, $c=20\\,\\mathrm{V}=v_o$.\" show=b,c\n#@ step \"Currents: $0.2\\,\\mathrm{A}$, $0.2\\,\\mathrm{A}$, and $0.1\\,\\mathrm{A}$ through $150+50\\,\\Omega$ ($d=5\\,\\mathrm{V}$). The pump lifts $0.5\\,\\mathrm{A}$ by $8\\,\\mathrm{V}$: $4\\,\\mathrm{W}$.\" show=d,eR1,eR2,eR3,eR4,eV1,eI1\n#@ step \"(b) Grounding $b$ instead just shifts every height down $8\\,\\mathrm{V}$: $v_o=c-a$ is still $20\\,\\mathrm{V}$. (c) $b$ is better: the battery then gives $c=12\\,\\mathrm{V}$ directly, so one plain in = out is enough.\"\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "**(a)** Reference $a$: $b$ and $c$ form a supernode with $v_c=v_b+12$. KCL around it (the $0.5\\,\\mathrm{A}$ comes in).",
+    "latex": "\\frac{v_b}{40}+\\frac{v_b+12}{100}+\\frac{v_b+12}{200}=0.5"
+   },
+   {
+    "explanation": "Multiply by 200 and solve.",
+    "latex": "8v_b+36=100\\;\\Rightarrow\\;v_b=8\\,\\mathrm{V},\\quad v_o=v_c=20\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "The source lifts $0.5\\,\\mathrm{A}$ from $a$ to $b$.",
+    "latex": "p=(8)(0.5)=4\\,\\mathrm{W}\\text{ delivered}"
+   },
+   {
+    "explanation": "**(b)** Reference $b$: the source fixes $v_c=12\\,\\mathrm{V}$. One KCL, at $a$ (the $0.5\\,\\mathrm{A}$ leaves $a$).",
+    "latex": "\\frac{v_a}{40}+\\frac{v_a-12}{100}+\\frac{v_a-12}{200}+0.5=0\\;\\Rightarrow\\;v_a=-8\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Same answers.",
+    "latex": "v_o=v_c-v_a=20\\,\\mathrm{V},\\qquad p=(0-(-8))(0.5)=4\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "**(c)** Reference $b$ is better: the voltage source then fixes a node directly, so one plain KCL replaces the supernode.",
+    "latex": ""
+   }
+  ],
+  "answer": "**(a)** $v_o=20\\,\\mathrm{V}$; the source delivers $4\\,\\mathrm{W}$. **(b)** Same: $v_o=20\\,\\mathrm{V}$, $4\\,\\mathrm{W}$ (with $v_a=-8\\,\\mathrm{V}$). **(c)** $b$: the $12\\,\\mathrm{V}$ source then fixes $v_c$, leaving one equation.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "03690d12-5cc2-452b-8d95-ea17d0ba1ae7"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "bac770eb-0c2d-5bfd-b21c-73349197efbc",
+  "title": "P4.24 · Wires below ground",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "**(a)** Use the node-voltage method to find $i_1$, $i_2$ and $i_3$. **(b)** Check by showing the power dissipated equals the power developed.\n\n```schematic\nV1 0,3 -> 0,0 \"$20\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$25\\,\\mathrm{k\\Omega}$\" i=\"$i_1$\"\nR2 3,3 -> 3,0 \"$250\\,\\Omega$\" i=\"$i_2$\"\nI1 3,3 -> 6,3 \"$11\\,\\mathrm{mA}$\"\nR3 6,3 -> 6,0 \"$1\\,\\mathrm{k\\Omega}$\"\nwire 6,3 -> 9,3\nV2 9,0 -> 9,3 \"$10\\,\\mathrm{V}$\" i_rev=\"$i_3$\"\nwire 3,3 -> 3,5\nR4 3,5 -> 9,5 \"$500\\,\\Omega$\"\nwire 9,5 -> 9,3\nwire 9,0 -> 0,0\nlabel 3,5 \"$a$\" left\nlabel 6,3 \"$b$\" above\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node s 30 \"battery top: $30\\,\\mathrm{V}$\"\n#@ node z0 10 \"bottom wire: $10\\,\\mathrm{V}$\"\n#@ node a 5 \"$a$: $5\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el R s a \"$25\\,\\mathrm{k\\Omega}$: falls $25\\,\\mathrm{V}$\" col=0 i=\"$1\\,\\mathrm{mA}$\" to=a id=eR1\n#@ el V s z0 \"$20\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{mA}$\" to=s id=eV1\n#@ el R a z0 \"$250\\,\\Omega$: falls $5\\,\\mathrm{V}$\" col=1 i=\"$20\\,\\mathrm{mA}$\" to=a id=eR2\n#@ el I a g \"$11\\,\\mathrm{mA}$\" col=1 i=\"$11\\,\\mathrm{mA}$\" to=g id=eI1\n#@ el R a g2 \"$500\\,\\Omega$: falls $5\\,\\mathrm{V}$\" col=2 i=\"$10\\,\\mathrm{mA}$\" to=g2 id=eR4\n#@ el R g3 z0 \"$1\\,\\mathrm{k\\Omega}$: falls $10\\,\\mathrm{V}$\" col=3 i=\"$10\\,\\mathrm{mA}$\" to=g3 id=eR3\n#@ el V z0 g4 \"$10\\,\\mathrm{V}$\" col=4 i=\"$31\\,\\mathrm{mA}$\" to=z0 id=eV2\n#@ step \"Ground $b$, the lowest wire: the $10\\,\\mathrm{V}$ battery hangs it $10\\,\\mathrm{V}$ below the bottom wire. The question's voltages are from the bottom wire.\"\n#@ step \"One unknown, $a$. In = out at $a$ (mA, kΩ, from the bottom wire): $\\dfrac{20-a}{25}=\\dfrac{a}{0.25}+11+\\dfrac{a+10}{0.5}$, so $a=-5\\,\\mathrm{V}$.\" show=a\n#@ step \"Currents: $i_1=1\\,\\mathrm{mA}$; $20\\,\\mathrm{mA}$ slides **up** the $250\\,\\Omega$ to $a$ ($i_2=-20$); $i_3=31\\,\\mathrm{mA}$ through the $10\\,\\mathrm{V}$ battery.\" show=eR1,eR2,eR3,eR4,eV1,eV2\n#@ step \"The pump carries $11\\,\\mathrm{mA}$ **down** from $a$ to $b$: it absorbs $55\\,\\mathrm{mW}$. The batteries give $20+310=330\\,\\mathrm{mW}$.\" show=eI1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire. The $10\\,\\mathrm{V}$ source has its $+$ at ground, so $v_b=-10\\,\\mathrm{V}$. KCL at $a$ (currents out, in mA and kΩ).",
+    "latex": "\\frac{v_a-20}{25}+\\frac{v_a}{0.25}+11+\\frac{v_a+10}{0.5}=0"
+   },
+   {
+    "explanation": "Multiply by 25.",
+    "latex": "v_a-20+100v_a+275+50v_a+500=0\\;\\Rightarrow\\;v_a=-5\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Branch currents in their arrow directions.",
+    "latex": "i_1=\\frac{20-(-5)}{25}=1\\,\\mathrm{mA},\\qquad i_2=\\frac{-5}{0.25}=-20\\,\\mathrm{mA}"
+   },
+   {
+    "explanation": "KCL at $b$: in from the source ($11$), the $500\\,\\Omega$ ($10$) and the $1\\,\\mathrm{k\\Omega}$ ($10$); out down through the $10\\,\\mathrm{V}$ source.",
+    "latex": "i_3=11+\\frac{-5+10}{0.5}+\\frac{0+10}{1}=31\\,\\mathrm{mA}"
+   },
+   {
+    "explanation": "**(b)** Developed: both voltage sources. Dissipated: the resistors plus the $11\\,\\mathrm{mA}$ source (which absorbs).",
+    "latex": "20(1)+10(31)=330\\,\\mathrm{mW}=25+100+50+100+55"
+   }
+  ],
+  "answer": "**(a)** $i_1=1\\,\\mathrm{mA}$, $i_2=-20\\,\\mathrm{mA}$, $i_3=31\\,\\mathrm{mA}$. **(b)** $330\\,\\mathrm{mW}$ developed $=330\\,\\mathrm{mW}$ absorbed.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6158b3a5-2d2a-4ae9-8a58-bf3cfc9aba39"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "c36d2e46-ee1e-513d-9e05-45ee8a1274af",
+  "title": "P4.18 · A diamond that gives power",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Use the node-voltage method to find the power delivered by the dependent voltage source.\n\n```schematic\nV1 0,3 -> 0,0 \"$80\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$5\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$50\\,\\Omega$\" i=\"$i_\\sigma$\"\nR3 3,3 -> 6,3 \"$10\\,\\Omega$\"\nE1 6,0 -> 6,3 \"$75i_\\sigma$\"\nR4 3,0 -> 6,0 \"$15\\,\\Omega$\"\nwire 3,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$c$\" right\nlabel 6,0 \"$d$\" right\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node s 80 \"battery top: $80\\,\\mathrm{V}$\"\n#@ node d 75 \"$d$: $75\\,\\mathrm{V}$\"\n#@ node a 50 \"$a$: $50\\,\\mathrm{V}$\"\n#@ node c 0 \"$c$ = ground: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$c$ = ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$c$ = ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$c$ = ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$80\\,\\mathrm{V}$\" col=0 i=\"$6\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$5\\,\\Omega$: falls $30\\,\\mathrm{V}$\" col=1 i=\"$6\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$50\\,\\Omega$: falls $50\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R a c \"$10\\,\\Omega$: falls $50\\,\\mathrm{V}$\" col=2 i=\"$5\\,\\mathrm{A}$\" to=c id=eR3\n#@ el E d c \"$75i_\\sigma$: $75\\,\\mathrm{V}$\" col=3 i=\"$5\\,\\mathrm{A}$\" to=d id=eE1\n#@ el R g3 d \"$15\\,\\Omega$: falls $75\\,\\mathrm{V}$\" col=4 i=\"$5\\,\\mathrm{A}$\" to=g3 id=eR4\n#@ step \"Ground the bottom-left wire. The battery lifts its top to $80\\,\\mathrm{V}$.\"\n#@ step \"The diamond locks $d=c+75i_\\sigma$, with $i_\\sigma=\\dfrac{a}{50}$ (the current down the $50\\,\\Omega$).\"\n#@ step \"In = out at $a$, and for the bubble around $c$ and $d$: $a=50$, $c=0$, $d=75\\,\\mathrm{V}$, $i_\\sigma=1\\,\\mathrm{A}$.\" show=a,c,d\n#@ step \"$5\\,\\mathrm{A}$ slides from $a$ to $c$, **climbs** $75\\,\\mathrm{V}$ through the diamond, then falls down the $15\\,\\Omega$. Climbing means it gives $5\\times75=375\\,\\mathrm{W}$.\" show=eR1,eR2,eR3,eR4,eV1,eE1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Ground the bottom-left wire. Name $a$, the diamond's $-$ end $c$ and $+$ end $d$. Control and rod.",
+    "latex": "i_\\sigma=\\frac{v_a}{50},\\qquad v_d-v_c=75i_\\sigma=1.5v_a"
+   },
+   {
+    "explanation": "KCL at $a$, times 50.",
+    "latex": "10(v_a-80)+v_a+5(v_a-v_c)=0\\;\\Rightarrow\\;16v_a-5v_c=800"
+   },
+   {
+    "explanation": "KCL around the rod: in through the $10\\,\\Omega$, out through the $15\\,\\Omega$.",
+    "latex": "\\frac{v_a-v_c}{10}=\\frac{v_d}{15}=\\frac{v_c+1.5v_a}{15}\\;\\Rightarrow\\;v_c=0"
+   },
+   {
+    "explanation": "So",
+    "latex": "v_a=50\\,\\mathrm{V},\\quad i_\\sigma=1\\,\\mathrm{A},\\quad v_d=75\\,\\mathrm{V},\\quad i=\\frac{50-0}{10}=5\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "The $5\\,\\mathrm{A}$ enters the diamond's $-$ end and leaves its $+$ end: it climbs.",
+    "latex": "p=(75)(5)=375\\,\\mathrm{W}\\text{ delivered}"
+   }
+  ],
+  "answer": "The dependent source delivers $375\\,\\mathrm{W}$ ($i_\\sigma=1\\,\\mathrm{A}$, $75\\,\\mathrm{V}$ step, $5\\,\\mathrm{A}$).",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6158b3a5-2d2a-4ae9-8a58-bf3cfc9aba39"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "58ce08b2-b833-5b24-8b9a-65183e1c114b",
+  "title": "P4.49 · A battery that gets charged",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Use the mesh-current method to find the total power dissipated in the circuit.\n\n```schematic\nV1 0,3 -> 0,0 \"$18\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$3\\,\\Omega$\"\nR2 3,3 -> 6,3 \"$9\\,\\Omega$\"\nI1 3,0 -> 3,3 \"$3\\,\\mathrm{A}$\"\nV2 6,0 -> 6,3 \"$15\\,\\mathrm{V}$\"\nR3 0,0 -> 3,0 \"$2\\,\\Omega$\"\nR4 3,0 -> 6,0 \"$6\\,\\Omega$\"\nlabel 3,3 \"$m$\" above\nlabel 3,0 \"$q$\" below\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node m 21.6 \"$m$: $21.6\\,\\mathrm{V}$\"\n#@ node s 19.8 \"battery top: $19.8\\,\\mathrm{V}$\"\n#@ node p 15 \"bottom right: $15\\,\\mathrm{V}$\"\n#@ node z0 1.8 \"bottom-left: $1.8\\,\\mathrm{V}$\"\n#@ node q 0.6 \"$q$: $0.6\\,\\mathrm{V}$\"\n#@ node g 0 \"top right: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"top right: $0\\,\\mathrm{V}$\" ground\n#@ el R s m \"$3\\,\\Omega$: falls $1.8\\,\\mathrm{V}$\" col=0 i=\"$0.6\\,\\mathrm{A}$\" to=s id=eR1\n#@ el V s z0 \"$18\\,\\mathrm{V}$\" col=0 i=\"$0.6\\,\\mathrm{A}$\" to=z0 id=eV1\n#@ el R z0 q \"$2\\,\\Omega$: falls $1.2\\,\\mathrm{V}$\" col=0 i=\"$0.6\\,\\mathrm{A}$\" to=q id=eR3\n#@ el I q m \"$3\\,\\mathrm{A}$\" col=1 i=\"$3\\,\\mathrm{A}$\" to=m id=eI1\n#@ el R q p \"$6\\,\\Omega$: falls $14.4\\,\\mathrm{V}$\" col=2 i=\"$2.4\\,\\mathrm{A}$\" to=q id=eR4\n#@ el V p g \"$15\\,\\mathrm{V}$\" col=3 i=\"$2.4\\,\\mathrm{A}$\" to=p id=eV2\n#@ el R m g2 \"$9\\,\\Omega$: falls $21.6\\,\\mathrm{V}$\" col=4 i=\"$2.4\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ step \"Ground the lowest wire (top right). Heights are measured from it.\"\n#@ step \"The $3\\,\\mathrm{A}$ pump is shared: $I_b-I_a=3$. Walk around the outside, skipping it: $5I_a+15I_b=33$. So $I_a=-0.6$, $I_b=2.4\\,\\mathrm{A}$.\"\n#@ step \"Real currents → heights. The slides use $88.2\\,\\mathrm{W}$.\" show=s,m,p,q,z0,eR1,eR2,eR3,eR4\n#@ step \"$0.6\\,\\mathrm{A}$ falls **into** the $18\\,\\mathrm{V}$ battery: it absorbs $10.8\\,\\mathrm{W}$. The pump ($63\\,\\mathrm{W}$) and the $15\\,\\mathrm{V}$ battery ($36\\,\\mathrm{W}$) climb.\" show=eV1,eV2,eI1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Clockwise $I_a$ (left) and $I_b$ (right). The shared $3\\,\\mathrm{A}$ source points up; $I_b$ goes up through it and $I_a$ down.",
+    "latex": "I_b-I_a=3"
+   },
+   {
+    "explanation": "Supermesh KVL around the outside (the $15\\,\\mathrm{V}$ source is walked $-\\to+$: a climb).",
+    "latex": "-18+3I_a+9I_b-15+6I_b+2I_a=0\\;\\Rightarrow\\;5I_a+15I_b=33"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "I_a=-0.6\\,\\mathrm{A},\\qquad I_b=2.4\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Resistor powers.",
+    "latex": "(0.6)^2(3+2)+(2.4)^2(9+6)=1.8+86.4=88.2\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "Check: developed $63+36=99\\,\\mathrm{W}$; absorbed $88.2\\,\\mathrm{W}$ plus $10.8\\,\\mathrm{W}$ in the $18\\,\\mathrm{V}$ source.",
+    "latex": ""
+   }
+  ],
+  "answer": "$88.2\\,\\mathrm{W}$ dissipated in the resistors (and the $18\\,\\mathrm{V}$ source absorbs another $10.8\\,\\mathrm{W}$).",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "6011993f-3c2e-4dd5-90d1-9ba11990ec2a"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "50e726f9-8ce8-5793-b06e-1ab21188d785",
+  "title": "Tutorial · A bridge by node voltages",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "Find $i_o$, $i_1$, $i_2$ and the power delivered by the current source. (The tutorial uses a Y–Δ swap; solve it with node voltages.)\n\n```schematic\nI1 0,0 -> 0,3 \"$1\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$240\\,\\Omega$\"\nR2 3,3 -> 6,3 \"$20\\,\\Omega$\"\nR3 6,3 -> 6,0 \"$100\\,\\Omega$\" i=\"$i_2$\"\nR4 6,3 -> 9,3 \"$50\\,\\Omega$\"\nR5 9,3 -> 9,0 \"$600\\,\\Omega$\" i=\"$i_o$\"\nwire 3,3 -> 3,5\nR6 3,5 -> 9,5 \"$320\\,\\Omega$\" i=\"$i_1$\"\nwire 9,5 -> 9,3\nwire 9,0 -> 0,0\nlabel 3,5 \"$a$\" left\nlabel 6,3 \"$b$\" above\nlabel 9,3 \"$c$\" right\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node a 72.96 \"$a$: $72.96\\,\\mathrm{V}$\"\n#@ node b 60 \"$b$: $60\\,\\mathrm{V}$\"\n#@ node c 57.6 \"$c$: $57.6\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el I g a \"$1\\,\\mathrm{A}$\" col=0 i=\"$1\\,\\mathrm{A}$\" to=a id=eI1\n#@ el R a g2 \"$240\\,\\Omega$: falls $72.96\\,\\mathrm{V}$\" col=1 i=\"$0.304\\,\\mathrm{A}$\" to=g2 id=eR1\n#@ el R a b \"$20\\,\\Omega$: falls $12.96\\,\\mathrm{V}$\" col=2 i=\"$0.648\\,\\mathrm{A}$\" to=b id=eR2\n#@ el R b g3 \"$100\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=2 i=\"$0.6\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ el R b c \"$50\\,\\Omega$: falls $2.4\\,\\mathrm{V}$\" col=3 i=\"$0.048\\,\\mathrm{A}$\" to=c id=eR4\n#@ el R c g4 \"$600\\,\\Omega$: falls $57.6\\,\\mathrm{V}$\" col=3 i=\"$0.096\\,\\mathrm{A}$\" to=g4 id=eR5\n#@ el R a c \"$320\\,\\Omega$: falls $15.36\\,\\mathrm{V}$\" col=4 i=\"$0.048\\,\\mathrm{A}$\" to=c id=eR6\n#@ step \"Ground the bottom wire. The $1\\,\\mathrm{A}$ pump pushes into $a$.\"\n#@ step \"Three unknowns $a$, $b$, $c$: one in = out each. Solve: $a=72.96$, $b=60$, $c=57.6\\,\\mathrm{V}$.\" show=a,b,c\n#@ step \"Currents = fall ÷ R: $i_o=\\dfrac{57.6}{600}=0.096\\,\\mathrm{A}$, $i_1=0.048\\,\\mathrm{A}$, $i_2=\\dfrac{60}{100}=0.6\\,\\mathrm{A}$.\" show=eR1,eR2,eR3,eR4,eR5,eR6\n#@ step \"The pump lifts $1\\,\\mathrm{A}$ by $72.96\\,\\mathrm{V}$: $72.96\\,\\mathrm{W}$.\" show=eI1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Ground the bottom wire; KCL at $a$, $b$, $c$.",
+    "latex": "\\begin{aligned}&\\frac{v_a}{240}+\\frac{v_a-v_b}{20}+\\frac{v_a-v_c}{320}=1\\\\&\\frac{v_b}{100}+\\frac{v_b-v_a}{20}+\\frac{v_b-v_c}{50}=0\\\\&\\frac{v_c}{600}+\\frac{v_c-v_b}{50}+\\frac{v_c-v_a}{320}=0\\end{aligned}"
+   },
+   {
+    "explanation": "The second gives $v_b$ as a weighted average; substitute into the third.",
+    "latex": "v_b=\\tfrac58v_a+\\tfrac14v_c,\\qquad v_c=\\tfrac{15}{19}v_a,\\qquad v_b=\\tfrac{125}{152}v_a"
+   },
+   {
+    "explanation": "Substitute into the first.",
+    "latex": "v_a=72.96\\,\\mathrm{V},\\quad v_b=60\\,\\mathrm{V},\\quad v_c=57.6\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Currents and source power.",
+    "latex": "i_o=\\frac{57.6}{600}=0.096\\,\\mathrm{A},\\quad i_1=0.048\\,\\mathrm{A},\\quad i_2=0.6\\,\\mathrm{A},\\quad p=72.96\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "$i_o=0.096\\,\\mathrm{A}$, $i_1=0.048\\,\\mathrm{A}$, $i_2=0.6\\,\\mathrm{A}$; the source delivers $72.96\\,\\mathrm{W}$.",
+  "citations": [
+   {
+    "chunk_id": "087e8718-a332-4caf-b01e-160758731932",
+    "source_id": "6aad60b9-910d-4700-985f-68a4fa9278b3",
+    "version": 1
+   },
+   {
+    "chunk_id": "1746e892-6453-4f04-b7da-73b907b47031",
+    "source_id": "6aad60b9-910d-4700-985f-68a4fa9278b3",
+    "version": 1
+   },
+   {
+    "chunk_id": "19d01aed-f19b-4677-ae23-19f2f7e3fe25",
+    "source_id": "6aad60b9-910d-4700-985f-68a4fa9278b3",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "e3dfcaac-1d64-5d37-b260-31c8a08c5379",
+  "title": "Lecture 3 p.22 · A shared pump",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "Use the mesh-current method to find the clockwise mesh currents $i_a$ (lower left), $i_b$ (top), $i_c$ (lower right) and the voltage $v$ across the current source.\n\n```schematic\nwire 0,3 -> 0,6\nR1 0,6 -> 8,6 \"$10\\,\\Omega$\"\nwire 8,6 -> 8,3\nR2 0,3 -> 4,3 \"$3\\,\\Omega$\"\nR3 4,3 -> 8,3 \"$2\\,\\Omega$\"\nI1 4,0 -> 4,3 \"$5\\,\\mathrm{A}$\" v_rev=\"$v$\"\nV1 0,3 -> 0,0 \"$100\\,\\mathrm{V}$\"\nV2 8,3 -> 8,0 \"$50\\,\\mathrm{V}$\"\nR4 0,0 -> 4,0 \"$6\\,\\Omega$\"\nR5 4,0 -> 8,0 \"$4\\,\\Omega$\"\nlabel 4,3 \"$m$\" above\nlabel 4,0 \"$q$\" below\nlabel 8,3 \"$r$\" right\nlabel 8,0 \"$p$\" right\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node l 100 \"battery top: $100\\,\\mathrm{V}$\"\n#@ node m 98.5 \"$m$: $98.5\\,\\mathrm{V}$\"\n#@ node r 87.5 \"$r$: $87.5\\,\\mathrm{V}$\"\n#@ node p 37.5 \"$p$: $37.5\\,\\mathrm{V}$\"\n#@ node q 10.5 \"$q$: $10.5\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V l g \"$100\\,\\mathrm{V}$\" col=0 i=\"$1.75\\,\\mathrm{A}$\" to=l id=eV1\n#@ el R l m \"$3\\,\\Omega$: falls $1.5\\,\\mathrm{V}$\" col=1 i=\"$0.5\\,\\mathrm{A}$\" to=m id=eR2\n#@ el R m r \"$2\\,\\Omega$: falls $11\\,\\mathrm{V}$\" col=1 i=\"$5.5\\,\\mathrm{A}$\" to=r id=eR3\n#@ el V r p \"$50\\,\\mathrm{V}$\" col=1 i=\"$6.75\\,\\mathrm{A}$\" to=p id=eV2\n#@ el R q p \"$4\\,\\Omega$: falls $27\\,\\mathrm{V}$\" col=1 i=\"$6.75\\,\\mathrm{A}$\" to=q id=eR5\n#@ el R g2 q \"$6\\,\\Omega$: falls $10.5\\,\\mathrm{V}$\" col=1 i=\"$1.75\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ el I q m \"$5\\,\\mathrm{A}$\" col=2 i=\"$5\\,\\mathrm{A}$\" to=m id=eI1 plus=m v=\"$v$\"\n#@ el R l r \"$10\\,\\Omega$: falls $12.5\\,\\mathrm{V}$\" col=3 i=\"$1.25\\,\\mathrm{A}$\" to=r id=eR1\n#@ step \"Ground the bottom wire. The $100\\,\\mathrm{V}$ battery lifts its top to $100\\,\\mathrm{V}$.\"\n#@ step \"The $5\\,\\mathrm{A}$ pump is shared by windows $a$ and $c$: $i_c-i_a=5$. Walk around $a$ and $c$ together (skip the pump), and around $b$: $i_a=1.75$, $i_b=1.25$, $i_c=6.75\\,\\mathrm{A}$.\"\n#@ step \"Heights: $m=100-3(0.5)=98.5\\,\\mathrm{V}$, $q=6(1.75)=10.5\\,\\mathrm{V}$. The pump spans them: $v=88\\,\\mathrm{V}$.\" show=m,q\n#@ step \"$6.75\\,\\mathrm{A}$ falls through the $50\\,\\mathrm{V}$ battery ($r=87.5$ down to $p=37.5$): it absorbs. The pump lifts $5\\,\\mathrm{A}$ by $88\\,\\mathrm{V}$: $440\\,\\mathrm{W}$.\" show=r,p,eR1,eR2,eR3,eR4,eR5,eV1,eV2,eI1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "The shared source points up; $i_c$ goes up through it, $i_a$ down.",
+    "latex": "i_c-i_a=5"
+   },
+   {
+    "explanation": "Top mesh.",
+    "latex": "10i_b+2(i_b-i_c)+3(i_b-i_a)=0\\;\\Rightarrow\\;15i_b-3i_a-2i_c=0"
+   },
+   {
+    "explanation": "Supermesh around the bottom two meshes, skipping the source.",
+    "latex": "\\begin{aligned}&-100+3(i_a-i_b)+2(i_c-i_b)+50+4i_c+6i_a=0\\\\&\\Rightarrow\\;9i_a-5i_b+6i_c=50\\end{aligned}"
+   },
+   {
+    "explanation": "Substitute $i_c=i_a+5$: $i_a=3i_b-2$ from the top mesh, then $15i_a-5i_b=20$.",
+    "latex": "i_b=1.25\\,\\mathrm{A},\\quad i_a=1.75\\,\\mathrm{A},\\quad i_c=6.75\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Heights at the source's ends.",
+    "latex": "v=\\big(100-3(0.5)\\big)-6(1.75)=98.5-10.5=88\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$i_a=1.75\\,\\mathrm{A}$, $i_b=1.25\\,\\mathrm{A}$, $i_c=6.75\\,\\mathrm{A}$; $v=88\\,\\mathrm{V}$",
+  "citations": [
+   {
+    "chunk_id": "2dd511b9-76b3-409e-8179-fdb1f7907a12",
+    "source_id": "03e42107-1bed-45b1-88bc-73ce82fd2acb",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "051b8098-0a39-53bb-bdd9-0c4eddc687f5",
+  "title": "P4.41 · A diamond in three windows",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "Use the mesh-current method to find the power developed in the dependent voltage source. Mesh 1 is lower left, mesh 2 the top, mesh 3 lower right (all clockwise).\n\n```schematic\nV1 0,4 -> 0,0 \"$25\\,\\mathrm{V}$\"\nR1 0,4 -> 3,4 \"$2\\,\\Omega$\"\nR2 3,4 -> 6,4 \"$3\\,\\Omega$\" v=\"$v_\\phi$\"\nR3 3,4 -> 3,2 \"$5\\,\\Omega$\"\nV2 3,2 -> 3,0 \"$10\\,\\mathrm{V}$\"\nR4 6,4 -> 6,0 \"$1\\,\\Omega$\"\nwire 6,0 -> 0,0\nwire 0,4 -> 0,6\nE1 3,6 -> 0,6 \"$-3v_\\phi$\"\nR5 3,6 -> 6,6 \"$14\\,\\Omega$\"\nwire 6,6 -> 6,4\nlabel 3,4 \"$m$\" above\nground 0,0\n#@ spoiler\n#@ straight off\n#@ node s 36 \"battery top: $36\\,\\mathrm{V}$\"\n#@ node m 26 \"$m$: $26\\,\\mathrm{V}$\"\n#@ node n 21 \"10 V top: $21\\,\\mathrm{V}$\"\n#@ node r 14 \"right wire: $14\\,\\mathrm{V}$\"\n#@ node z0 11 \"bottom: $11\\,\\mathrm{V}$\"\n#@ node g 0 \"diamond $+$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"diamond $+$: $0\\,\\mathrm{V}$\" ground\n#@ el V s z0 \"$25\\,\\mathrm{V}$\" col=0 i=\"$4\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s m \"$2\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m n \"$5\\,\\Omega$: falls $5\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=n id=eR3\n#@ el V n z0 \"$10\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=z0 id=eV2\n#@ el R m r \"$3\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=2 i=\"$4\\,\\mathrm{A}$\" to=r id=eR2 plus=m v=\"$v_\\phi$\"\n#@ el R r z0 \"$1\\,\\Omega$: falls $3\\,\\mathrm{V}$\" col=2 i=\"$3\\,\\mathrm{A}$\" to=z0 id=eR4\n#@ el R g r \"$14\\,\\Omega$: falls $14\\,\\mathrm{V}$\" col=3 i=\"$1\\,\\mathrm{A}$\" to=g id=eR5\n#@ el E g2 s \"$-3v_\\phi$: $-36\\,\\mathrm{V}$\" col=4 i=\"$1\\,\\mathrm{A}$\" to=s id=eE1\n#@ step \"Ground the lowest wire, the diamond's $+$ end. Heights are measured from it.\"\n#@ step \"The diamond depends on $v_\\phi=3(i_3-i_2)$. Walk the three windows: $i_1=4$, $i_2=-1$, $i_3=3\\,\\mathrm{A}$, $v_\\phi=12\\,\\mathrm{V}$.\"\n#@ step \"The diamond is a battery of $-3v_\\phi=-36\\,\\mathrm{V}$: its $+$ end sits $36\\,\\mathrm{V}$ **below** its $-$ end.\" show=eE1\n#@ step \"$1\\,\\mathrm{A}$ falls down the $14\\,\\Omega$ to the diamond, then climbs $36\\,\\mathrm{V}$ through it: it delivers $36\\,\\mathrm{W}$.\" show=s,m,n,r,z0,eR1,eR2,eR3,eR4,eR5,eV1,eV2\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Control first: $v_\\phi$ is across the $3\\,\\Omega$ shared by meshes 2 and 3.",
+    "latex": "v_\\phi=3(i_3-i_2)"
+   },
+   {
+    "explanation": "Loop walks.",
+    "latex": "\\begin{aligned}&-25+2(i_1-i_2)+5(i_1-i_3)+10=0\\\\&3v_\\phi+14i_2+3(i_2-i_3)+2(i_2-i_1)=0\\\\&i_3-10+5(i_3-i_1)+3(i_3-i_2)=0\\end{aligned}"
+   },
+   {
+    "explanation": "Solve with the control.",
+    "latex": "i_1=4\\,\\mathrm{A},\\quad i_2=-1\\,\\mathrm{A},\\quad i_3=3\\,\\mathrm{A},\\quad v_\\phi=12\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "The diamond carries $i_2$; absorbed power with current entering $-$ means delivering.",
+    "latex": "p=-(-3v_\\phi)\\,i_2=3(12)(-1)=-36\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "The dependent source delivers $36\\,\\mathrm{W}$ (absorbs $-36\\,\\mathrm{W}$).",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "bd420eb3-c2c5-415b-96c4-51dee9674f2b"
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "8e920a16-ad24-5a3b-98bd-5ada942239aa",
+  "level": 1,
+  "text": "Cheat sheet",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "bee4f7b3-9746-553b-856b-381f77ca9ff5",
+  "columns": [
+   "Idea",
+   "In heights",
+   "Write"
+  ],
+  "rows": [
+   [
+    "Node voltage",
+    "height of a wire above ground",
+    "$v_k$"
+   ],
+   [
+    "In = out (KCL)",
+    "what slides in = what slides out",
+    "$\\sum\\dfrac{v_k-v_j}{R}=$ pump current in"
+   ],
+   [
+    "Battery from ground",
+    "a height for free",
+    "$v_k=V$"
+   ],
+   [
+    "Battery between two unknown wires",
+    "a locked pair: one bubble",
+    "$v_p-v_q=V$, in = out for the bubble"
+   ],
+   [
+    "Diamond",
+    "a source whose size is set elsewhere",
+    "write its control in your letters first"
+   ],
+   [
+    "Loop walk (KVL)",
+    "around a window: climbs = falls",
+    "$\\sum$ climbs $=\\sum$ falls"
+   ],
+   [
+    "Shared resistor",
+    "carries the difference",
+    "$I_1-I_2$"
+   ],
+   [
+    "Pump on an outside edge",
+    "gives that loop current",
+    "$I=\\pm I_s$"
+   ],
+   [
+    "Pump between two windows",
+    "walk around both, skip the pump",
+    "$I_a-I_b=I_s$"
+   ],
+   [
+    "How many equations",
+    "unknown heights / windows",
+    "node: $n_e-1$; mesh: $b_e-n_e+1$"
+   ],
+   [
+    "Power",
+    "current × height change",
+    "climb gives, fall uses"
+   ]
+  ],
+  "citations": []
+ }
+]

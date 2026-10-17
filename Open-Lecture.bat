@@ -1,40 +1,17 @@
 @echo off
-rem Starts Open Lecture (or reuses the running server) and opens it in the browser.
-rem Needs uv (https://docs.astral.sh/uv/) and, for the first run only, Node.js to build the UI.
+rem Double-click: starts Open Lecture (or reuses the one already running) and opens it in your browser.
+rem The server runs in the background; stop it with Stop-Open-Lecture.bat. Log: .openlecture\server.log
+rem The first run sets up Python (3.12+) and builds the interface (Node.js); later runs only rebuild what changed.
 setlocal
 cd /d "%~dp0"
-set PORT=8000
-set URL=http://127.0.0.1:%PORT%
-
-powershell -NoProfile -Command "try { (Invoke-WebRequest -UseBasicParsing -TimeoutSec 2 '%URL%/api/v1/health').StatusCode } catch { exit 1 }" >nul 2>&1
-if %errorlevel%==0 (
-  echo Open Lecture is already running.
-  start "" %URL%
-  exit /b 0
-)
-
-powershell -NoProfile -Command "if (Get-NetTCPConnection -LocalPort %PORT% -State Listen -ErrorAction SilentlyContinue) { exit 0 } else { exit 1 }" >nul 2>&1
-if %errorlevel%==0 (
-  echo Port %PORT% is used by another program that is not Open Lecture. Close it or edit PORT in this file.
+title Open Lecture
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\launcher.ps1" start
+if errorlevel 1 (
+  echo.
+  echo Something went wrong. The details are above.
   pause
   exit /b 1
 )
-
-if not exist "src\open_lecture\web\index.html" (
-  echo First run: building the interface...
-  pushd frontend
-  call npm ci && call npm run build
-  popd
-)
-
-echo Starting Open Lecture...
-start "Open Lecture server (close this window to stop)" /min cmd /c "uv run open-lecture serve --port %PORT%"
-for /l %%i in (1,1,40) do (
-  powershell -NoProfile -Command "try { (Invoke-WebRequest -UseBasicParsing -TimeoutSec 1 '%URL%/api/v1/health').StatusCode } catch { exit 1 }" >nul 2>&1 && goto ready
-  timeout /t 1 /nobreak >nul
-)
-echo The server did not start. Run "uv run open-lecture serve" to see the error.
-pause
-exit /b 1
-:ready
-start "" %URL%
+rem Leave the message on screen for a moment, then close.
+ping -n 6 127.0.0.1 >nul
+exit /b 0

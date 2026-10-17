@@ -747,6 +747,59 @@ kbd {
   margin-top: 0.9em;
 }
 
+.block[hidden] {
+  display: none;
+}
+
+.collapsible-heading {
+  position: relative;
+}
+
+/* Arrow in the left margin that folds a section up to the next heading of the same level. */
+.collapse-toggle {
+  position: absolute;
+  top: 50%;
+  left: -34px;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: none;
+  color: var(--ink-3);
+  cursor: pointer;
+  opacity: 0.45;
+  transform: translateY(-50%);
+  transition: opacity 120ms, background 120ms;
+}
+
+.heading-1 > .collapse-toggle {
+  /* keep the arrow level with the text, not the underline padding */
+  top: calc(50% - 4px);
+}
+
+.collapse-toggle svg {
+  transform: rotate(90deg);
+  transition: transform 150ms;
+}
+
+.collapse-toggle.closed svg {
+  transform: rotate(0deg);
+}
+
+.collapse-toggle.closed,
+.collapsible-heading:hover .collapse-toggle,
+.collapse-toggle:focus-visible {
+  opacity: 1;
+}
+
+.collapse-toggle:hover {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
 .sheet p {
   margin: 0;
 }
@@ -1013,6 +1066,365 @@ kbd {
 
 .schematic.broken {
   text-align: left;
+}
+
+/* ---------- Height view (voltage as height) ---------- */
+
+.schematic.has-elevation {
+  position: relative;
+  padding-top: 30px;
+}
+
+.elev-open {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--raised);
+  color: var(--accent);
+  font: 500 12px/1 var(--sans);
+  cursor: pointer;
+  transition: background 120ms, border-color 120ms;
+}
+
+.elev-open:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* The height view is tall: center it and keep it inside the window instead of starting 12vh down. */
+.scrim:has(> .elev-dialog) {
+  place-items: center;
+  padding: 16px;
+}
+
+.dialog.elev-dialog {
+  max-width: min(980px, 94vw);
+  max-height: calc(100dvh - 32px);
+}
+
+.elev-body {
+  --elev-bg: var(--raised);
+  text-align: left; /* the dialog opens inside a centered figure */
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.elev-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.elev-controls:empty {
+  display: none;
+}
+
+.elev-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.elev-mode {
+  display: inline-flex;
+  margin-left: auto;
+  padding: 2px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.elev-mode button {
+  padding: 4px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-3);
+  font: 500 12.5px/1.3 var(--sans);
+  cursor: pointer;
+}
+
+.elev-mode button.active {
+  background: var(--accent);
+  color: var(--raised);
+}
+
+.elev-tabs button {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-2, var(--ink));
+  font: 13px/1.3 var(--sans);
+  cursor: pointer;
+}
+
+.elev-tabs button.active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.elev-stage {
+  position: relative;
+}
+
+.elev-stage.hidden-answer > .elev-scroll,
+.elev-stage.hidden-answer > .elev-notes {
+  filter: blur(9px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.elev-spoiler {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.elev-spoiler p {
+  max-width: 340px;
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  background: var(--raised);
+  font: 14px/1.45 var(--sans);
+}
+
+.elev-spoiler button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.elev-scroll {
+  overflow-x: auto;
+}
+
+/* `#@ inline`: the finished height picture drawn in the page under its circuit. */
+.elev-inline {
+  --elev-bg: var(--raised);
+  margin: 10px 0 0;
+  padding: 10px 12px 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--raised);
+  text-align: left;
+}
+
+.elev-inline-title {
+  margin-bottom: 4px;
+  color: var(--ink-3);
+  font: 600 11px/1.3 var(--sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.elev-inline-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 4px;
+  color: var(--ink-3);
+  font: 12px/1.4 var(--sans);
+}
+
+.elev-canvas {
+  position: relative;
+  margin: 0 auto;
+}
+
+.elev-svg {
+  display: block;
+  overflow: visible;
+}
+
+.elev-ink {
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.elev-guides line {
+  stroke: var(--line);
+  stroke-dasharray: 3 5;
+}
+
+.elev-axis {
+  stroke: var(--ink-3);
+  stroke-width: 1.4;
+}
+
+.elev-axis-title {
+  position: absolute;
+  top: 0;
+  left: 150px;
+  transform: translateX(-50%);
+  color: var(--ink-3);
+  font: 11px/1 var(--sans);
+  white-space: nowrap;
+}
+
+.elev-label {
+  position: absolute;
+  font-size: 15px;
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.elev-label.small {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.elev-label.sign {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.elev-label.fresh {
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 1.5px var(--accent);
+}
+
+.elev-steps {
+  margin-top: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--elev-bg);
+}
+
+.elev-steps-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.elev-steps-title {
+  font: 600 14px/1.3 var(--sans);
+}
+
+.elev-steps-count {
+  color: var(--ink-3);
+  font: 12.5px/1 var(--sans);
+}
+
+.elev-steps-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.elev-steps-buttons button,
+.elev-spoiler-buttons button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--raised);
+  color: var(--ink);
+  font: 500 12.5px/1.2 var(--sans);
+  cursor: pointer;
+}
+
+.elev-steps-buttons button.primary,
+.elev-spoiler-buttons button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--raised);
+}
+
+.elev-steps-buttons button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.elev-spoiler-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.elev-steps-hint {
+  margin: 0;
+  color: var(--ink-2, var(--ink));
+  font-size: 14.5px;
+  line-height: 1.5;
+}
+
+.elev-step-list {
+  margin: 0;
+  padding-left: 22px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.elev-step-list li + li {
+  margin-top: 6px;
+}
+
+.elev-step-list li.current {
+  margin-left: -8px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+}
+
+.elev-notes {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.elev-notes li + li {
+  margin-top: 4px;
+}
+
+.elev-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  color: var(--ink-3);
+  font: 12.5px/1.45 var(--sans);
+}
+
+.elev-legend i {
+  font-style: normal;
+}
+
+.elev-legend .elev-scale {
+  margin-top: 2px;
 }
 
 .schematic-wait {
@@ -2493,6 +2905,10 @@ kbd {
 
   .block-ask {
     display: none;
+  }
+
+  .collapse-toggle {
+    left: -26px;
   }
 
   .pages {

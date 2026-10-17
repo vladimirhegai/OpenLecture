@@ -89,3 +89,26 @@ def test_bare_current_and_voltage_marks_have_no_label():
     svg = schematic.render_svg('L1 0,3 -> 0,0 "$L$" i v\nwire 0,0 -> 0,3')
     assert "<svg" in svg
     assert schematic.parse('V1 0,3 -> 0,0 "$v$" i="$i_s$" i_rev')["items"][0]["options"] == {"i_rev": "$i_s$"}
+
+
+def test_concurrent_renders_match_sequential():
+    # A note page requests all its drawings at once; schemdraw's drawing state is global, so
+    # renders on parallel server threads must not leak elements into each other's drawings.
+    import sys
+    from concurrent.futures import ThreadPoolExecutor
+
+    sources = [
+        f'X1 0,3 -> 0,0 "A"\nwire 0,3 -> {w},3\nwire 0,0 -> {w},0\nX2 {w},3 -> {w},0 "B" flip\n'
+        f'gap {w / 2},3 -> {w / 2},0 v="$v$"\nR1 0,0 -> 0,-3 "$R$" i="$i$"'
+        for w in range(2, 26)
+    ]
+    render = schematic.render_svg.__wrapped__  # bypass the cache so every call really draws
+    expected = [render(s) for s in sources]
+    interval = sys.getswitchinterval()
+    sys.setswitchinterval(1e-6)  # switch threads often so overlapping renders actually interleave
+    try:
+        for _ in range(3):
+            with ThreadPoolExecutor(len(sources)) as pool:
+                assert list(pool.map(render, sources)) == expected
+    finally:
+        sys.setswitchinterval(interval)

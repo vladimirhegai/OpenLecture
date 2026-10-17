@@ -1,0 +1,1031 @@
+[
+ {
+  "type": "heading",
+  "id": "b826edb5-d190-5b9d-a0bd-0c9edf9fcf34",
+  "level": 1,
+  "text": "Overview",
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "2d34fc69-088e-533b-aeec-acf67c0ed5db",
+  "tone": "info",
+  "text": "Week 5 finishes Thévenin (dependent sources inside), then uses it twice. **Maximum power:** the best load sits at **half the open height**. **Superposition:** one source at a time, then **add the voltages** (never the powers).",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "d399d952-e985-56d9-a57b-4d0aaa7d4623",
+  "level": 2,
+  "text": "Topic map",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "c63fb340-2f99-5df4-a714-2e8b9a341794",
+  "columns": [
+   "#",
+   "Topic",
+   "Key result",
+   "In heights"
+  ],
+  "rows": [
+   [
+    "1",
+    "Thévenin with dependent sources",
+    "$R_{\\mathrm{Th}}=\\dfrac{v_T}{i_T}$",
+    "push current into $a$ and watch how far it climbs"
+   ],
+   [
+    "2",
+    "Maximum power transfer",
+    "$R_L=R_{\\mathrm{Th}}$",
+    "the load sits at $\\dfrac{V_{\\mathrm{Th}}}{2}$"
+   ],
+   [
+    "3",
+    "Superposition",
+    "$y=y_1+y_2+\\cdots$",
+    "one picture per source; add the height differences"
+   ]
+  ],
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "80e332af-0928-5b4e-b9bb-1b83fd87b4ff",
+  "tone": "tip",
+  "text": "**How to use this note.** Shaky on Week 4? Read **Start here**. Each topic: rules → example → **Try it** (answer on paper first). Every circuit has a **Height view** (Full loop) with **Walk me through it**. The **Summary** at the end is a one-read crash course.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "c0010da7-9757-53ed-b5da-0b155a677bdc",
+  "level": 1,
+  "text": "Start here: the only Week 4 you need",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "f9f6c5d0-97dc-5eba-8671-9f3341951279",
+  "columns": [
+   "#",
+   "Rule",
+   "Picture it as"
+  ],
+  "rows": [
+   [
+    "1",
+    "Seen from $a$–$b$, a circuit is **one step $V_{\\mathrm{Th}}$ + one slope $R_{\\mathrm{Th}}$**.",
+    "an escalator, then a ramp"
+   ],
+   [
+    "2",
+    "**$V_{\\mathrm{Th}}$** = height of $a$ with nothing attached (ground $b$).",
+    "open terminal"
+   ],
+   [
+    "3",
+    "**$I_N$** = current through a wire $a\\to b$. $R_{\\mathrm{Th}}=\\dfrac{V_{\\mathrm{Th}}}{I_N}$.",
+    "pull $a$ down to $b$"
+   ],
+   [
+    "4",
+    "**Sources off:** voltage → wire, current → gap. Push $1\\,\\mathrm{A}$ into $a$: its height is $R_{\\mathrm{Th}}$.",
+    "sag per amp"
+   ],
+   [
+    "5",
+    "**A load** draws $i$, so $a$ sags: $v_{ab}=V_{\\mathrm{Th}}-R_{\\mathrm{Th}}i$.",
+    "the ramp"
+   ]
+  ],
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "650397c4-0f33-5fa0-8944-a8e20adc43a9",
+  "title": "S · Open, short, sources off",
+  "prompt": "Find $V_{\\mathrm{Th}}$, $I_N$ and $R_{\\mathrm{Th}}$ at $a$–$b$.\n\n```schematic\nV1 0,3 -> 0,0 \"$24\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$4\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$12\\,\\Omega$\"\nwire 3,3 -> 6,3\nwire 3,0 -> 6,0\nterminal 6,3 \"$a$\" right\nterminal 6,0 \"$b$\" right\nwire 0,0 -> 3,0\nground 0,0\n#@ inline\n#@ view \"Open\"\n#@ straight off\n#@ node s 24 \"source top: $24\\,\\mathrm{V}$\"\n#@ node a 18 \"$a$: $18\\,\\mathrm{V}$\" terminal\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$24\\,\\mathrm{V}$\" col=0 i=\"$1.5\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$4\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=1 i=\"$1.5\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$12\\,\\Omega$: falls $18\\,\\mathrm{V}$\" col=1 i=\"$1.5\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ step \"Ground $b$. The source steps up $24\\,\\mathrm{V}$.\"\n#@ step \"Divider: $\\dfrac{24}{16}=1.5\\,\\mathrm{A}$; the $4\\,\\Omega$ falls $6\\,\\mathrm{V}$, so $a=18\\,\\mathrm{V}=V_{\\mathrm{Th}}$.\" show=a,eR1,eR2,eV1\n#@ view \"Short\"\n#@ straight off\n#@ node s 24 \"source top: $24\\,\\mathrm{V}$\"\n#@ node a 0 \"$a$ = $b$: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$a$ = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$a$ = $b$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$24\\,\\mathrm{V}$\" col=0 i=\"$6\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$4\\,\\Omega$: falls $24\\,\\mathrm{V}$\" col=1 i=\"$6\\,\\mathrm{A}$\" to=a id=eR1\n#@ el W a g2 \"short: no step\" col=1 i=\"$6\\,\\mathrm{A}$\" to=g2 id=eSC\n#@ step \"Same ground. A wire pins $a$ to $b$. The $4\\,\\Omega$ falls all $24\\,\\mathrm{V}$: $I_N=6\\,\\mathrm{A}$, so $R_{\\mathrm{Th}}=\\dfrac{18}{6}=3\\,\\Omega$.\" show=a,eR1,eSC,eV1\n#@ note \"The $12\\,\\Omega$ sits across the short (no fall, no current), so it is left out of this tab.\"\n#@ view \"Sources off, push 1 A\"\n#@ straight off\n#@ node a 3 \"$a$: $3\\,\\mathrm{V}$\" terminal\n#@ node s 0 \"source top = $b$: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ el W s g \"$24\\,\\mathrm{V}$ off: a wire\" col=0 i=\"$0.75\\,\\mathrm{A}$\" to=g id=eV1\n#@ el R s a \"$4\\,\\Omega$: falls $3\\,\\mathrm{V}$\" col=1 i=\"$0.75\\,\\mathrm{A}$\" to=s id=eR1\n#@ el R a g2 \"$12\\,\\Omega$: falls $3\\,\\mathrm{V}$\" col=2 i=\"$0.25\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el I g3 a \"test $1\\,\\mathrm{A}$\" col=3 i=\"$1\\,\\mathrm{A}$\" to=a id=eIT\n#@ step \"Same ground. Flatten the $24\\,\\mathrm{V}$. $1\\,\\mathrm{A}$ into $4\\parallel12=3\\,\\Omega$: $a=3\\,\\mathrm{V}$, so $R_{\\mathrm{Th}}=3\\,\\Omega$ ✓.\" show=a,eR1,eR2,eIT\n```",
+  "steps": [
+   {
+    "explanation": "Three numbers, one check.",
+    "latex": "V_{\\mathrm{Th}}=24\\cdot\\tfrac{12}{16}=18\\,\\mathrm{V},\\quad I_N=\\tfrac{24}{4}=6\\,\\mathrm{A},\\quad R_{\\mathrm{Th}}=4\\parallel12=3\\,\\Omega=\\tfrac{18}{6}"
+   }
+  ],
+  "answer": "$V_{\\mathrm{Th}}=18\\,\\mathrm{V}$, $I_N=6\\,\\mathrm{A}$, $R_{\\mathrm{Th}}=3\\,\\Omega$.",
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "c368c528-abb1-538a-aa2f-e49ff131989b",
+  "tone": "info",
+  "text": "**Signs.** $V_{\\mathrm{Th}}<0$ means $a$ sits **below** $b$ when nothing is attached; then $I_N<0$ too (it flows $b\\to a$) and $R_{\\mathrm{Th}}=\\dfrac{V_{\\mathrm{Th}}}{I_N}$ stays positive.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "ab6e898f-3002-5eb6-b53d-ce791501acfa",
+  "level": 1,
+  "text": "Topic 1: Thévenin with dependent sources",
+  "citations": [
+   {
+    "chunk_id": "177daa5c-c4b4-4794-8bfa-2bdd4b5fc2c0",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "0f1f3713-160b-424c-9817-f4710d5346ce",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "c53c6ac5-6656-400d-94c5-a92d939da038",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "f5183970-da0c-485c-bfdd-4f25966eea3c",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "list",
+  "id": "dc320ad4-a0db-56e9-9179-ee0917c7d5d0",
+  "items": [
+   "A dependent source **can't be turned off**: keep it in every picture, with its control.",
+   "**Test source:** independent sources off, push $1\\,\\mathrm{A}$ into $a$. $a$'s height per amp $=R_{\\mathrm{Th}}$.",
+   "**One shot (all sources on):** push $i_T$ into $a$; then $a=V_{\\mathrm{Th}}+R_{\\mathrm{Th}}\\,i_T$. Intercept = $V_{\\mathrm{Th}}$, slope = $R_{\\mathrm{Th}}$.",
+   "**No independent source** → nothing lifts $a$: $V_{\\mathrm{Th}}=0$, $I_N=0$. Only a test source gives $R_{\\mathrm{Th}}$.",
+   "**$R_{\\mathrm{Th}}$ can be negative:** pull current out of $a$ and $a$ *rises*. The dependent source is delivering; don't draw it as a slope.",
+   "Keep a dependent source and its control on the same side of $a$–$b$."
+  ],
+  "ordered": false,
+  "citations": []
+ },
+ {
+  "type": "equation",
+  "id": "52f242e2-6d1c-5608-ac36-db8984ba0fbb",
+  "latex": "R_{\\mathrm{Th}}=\\frac{v_T}{i_T}\\;(\\text{independent sources off}),\\qquad v_T=V_{\\mathrm{Th}}+R_{\\mathrm{Th}}\\,i_T\\;(\\text{all on})",
+  "display": true,
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "7eb7f47c-bf7e-564d-99c8-8cb234f32af3",
+  "columns": [
+   "Inside the circuit",
+   "Fastest route to $R_{\\mathrm{Th}}$"
+  ],
+  "rows": [
+   [
+    "independent sources only",
+    "sources off, combine resistors (or $V_{\\mathrm{Th}}/I_N$)"
+   ],
+   [
+    "independent + dependent",
+    "$V_{\\mathrm{Th}}/I_N$, or a test source"
+   ],
+   [
+    "dependent only",
+    "test source ($V_{\\mathrm{Th}}=I_N=0$)"
+   ]
+  ],
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "dd6e6774-8598-5f41-ad36-0b6c877b1b56",
+  "title": "Pull current out, and a rises (Lecture 5)",
+  "prompt": "The network has only a dependent source. Find $V_{\\mathrm{Th}}$ and $R_{\\mathrm{Th}}$.\n\n```schematic\nE1 0,3 -> 0,0 \"$12i_\\Delta$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$4\\,\\Omega$\" i=\"$i_\\Delta$\"\nwire 3,3 -> 6,3\nwire 3,0 -> 6,0\nterminal 6,3 \"$a$\" right\nterminal 6,0 \"$b$\" right\nwire 0,0 -> 3,0\nlabel 0,3 \"$s$\" left\nground 0,0\n#@ spoiler\n#@ view \"Pull 1 A out of a\"\n#@ straight off\n#@ node s 4 \"$s$: $4\\,\\mathrm{V}$\"\n#@ node a 1.33 \"$a$: $1.33\\,\\mathrm{V}$\" terminal\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el E s g \"$12i_\\Delta$: $4\\,\\mathrm{V}$\" col=0 i=\"$1.333\\,\\mathrm{A}$\" to=s id=eE1\n#@ el R s a \"$2\\,\\Omega$: falls $2.67\\,\\mathrm{V}$\" col=1 i=\"$1.333\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$4\\,\\Omega$: falls $1.33\\,\\mathrm{V}$\" col=1 i=\"$0.3333\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el I a g3 \"test: pulls $1\\,\\mathrm{A}$ out\" col=2 i=\"$1\\,\\mathrm{A}$\" to=g3 id=eIT\n#@ step \"Ground $b$. No independent source: with nothing attached every height is $0$, so $V_{\\mathrm{Th}}=0$ and $I_N=0$. Only a test source can find $R_{\\mathrm{Th}}$.\"\n#@ step \"Pull $1\\,\\mathrm{A}$ out of $a$. Control: $i_\\Delta=\\dfrac{a}{4}$, so the diamond's step is $12i_\\Delta=3a$.\" show=eIT\n#@ step \"KCL at $a$: in from the $2\\,\\Omega$, $\\dfrac{3a-a}{2}=a$; out, $\\dfrac{a}{4}+1$. So $a=\\tfrac43\\,\\mathrm{V}$ and $s=4\\,\\mathrm{V}$.\" show=a,s\n#@ step \"A normal circuit sags when you pull current out. Here $a$ **rises**: $R_{\\mathrm{Th}}=\\dfrac{4/3}{-1}=-\\tfrac43\\,\\Omega$. The diamond climbs $1.33\\,\\mathrm{A}$ through $4\\,\\mathrm{V}$: it delivers $5.33\\,\\mathrm{W}$.\" show=eE1,eR1,eR2\n#@ note \"A negative $R_{\\mathrm{Th}}$ is a source that pushes back, not a resistor.\"\n```",
+  "steps": [
+   {
+    "explanation": "No independent source.",
+    "latex": "V_{\\mathrm{Th}}=0,\\qquad I_N=0"
+   },
+   {
+    "explanation": "Test current $i_T$ into $a$, control $i_\\Delta=\\dfrac{v_T}{4}$; KCL at $a$.",
+    "latex": "i_T+\\frac{12i_\\Delta-v_T}{2}=i_\\Delta\\;\\Rightarrow\\;i_T=-\\tfrac34v_T"
+   },
+   {
+    "explanation": "Ratio.",
+    "latex": "R_{\\mathrm{Th}}=\\frac{v_T}{i_T}=-\\tfrac43\\,\\Omega"
+   }
+  ],
+  "answer": "$V_{\\mathrm{Th}}=0$, $R_{\\mathrm{Th}}=-\\tfrac43\\,\\Omega$.",
+  "citations": [
+   {
+    "chunk_id": "e7921b71-52f4-44ff-b2b0-d1a70c5555c7",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "aff67011-13db-589f-81c6-561193245cef",
+  "title": "One shot: the test source as a variable (Lecture 5)",
+  "prompt": "Keep every source on and push a test current $i_T$ into $a$. Find $v_T$ as a function of $i_T$, then read off $V_{\\mathrm{Th}}$, $R_{\\mathrm{Th}}$ and $I_N$.\n\n```schematic\nV1 0,3 -> 0,0 \"$5\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\mathrm{k\\Omega}$\" i=\"$i$\"\nE1 3,3 -> 3,0 \"$3v$\"\nG1 6,3 -> 6,0 \"$20i$\"\nwire 6,3 -> 8,3\nR2 8,3 -> 8,0 \"$25\\,\\Omega$\" v=\"$v$\"\nwire 8,3 -> 10,3\nterminal 10,3 \"$a$\" right\nterminal 10,0 \"$b$\" right\nwire 0,0 -> 10,0\nlabel 3,3 \"$m$\" above\nground 0,0\n#@ spoiler\n#@ view \"Open (no test current)\"\n#@ straight off\n#@ node s 20 \"5 V top: $20\\,\\mathrm{V}$\"\n#@ node z0 15 \"$b$: $15\\,\\mathrm{V}$\"\n#@ node a 10 \"$a$: $10\\,\\mathrm{V}$\" terminal\n#@ node g 0 \"$m$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$m$: $0\\,\\mathrm{V}$\" ground\n#@ el R s g \"$2\\,\\mathrm{k\\Omega}$: falls $20\\,\\mathrm{V}$\" col=0 i=\"$10\\,\\mathrm{mA}$\" to=g id=eR1\n#@ el V s z0 \"$5\\,\\mathrm{V}$\" col=1 i=\"$10\\,\\mathrm{mA}$\" to=s id=eV1\n#@ el E g2 z0 \"$3v$: $-15\\,\\mathrm{V}$\" col=2 i=\"$10\\,\\mathrm{mA}$\" to=z0 id=eE1\n#@ el G a z0 \"$20i$: $200\\,\\mathrm{mA}$\" col=3 i=\"$200\\,\\mathrm{mA}$\" to=z0 id=eG1\n#@ el R a z0 \"$25\\,\\Omega$: falls $5\\,\\mathrm{V}$\" col=4 i=\"$200\\,\\mathrm{mA}$\" to=a id=eR2 plus=a v=\"$v$\"\n#@ step \"Ground $m$, the lowest node. Every answer is a height **above $b$** (the bottom wire).\"\n#@ step \"All sources on, test current $i_T$ in. KCL at $a$: $i_T=\\dfrac{v}{25}+20i$. Left loop: $5=2000i+3v$. With $v=v_T$: $v_T=100\\,i_T-5$.\"\n#@ step \"With $i_T=0$, $a$ sits $5\\,\\mathrm{V}$ **below** $b$: $V_{\\mathrm{Th}}=-5\\,\\mathrm{V}$. The diamond pump lifts $200\\,\\mathrm{mA}$ from $a$ up to $b$.\" show=a,eG1,eR2\n#@ view \"Push 0.1 A into a\"\n#@ straight off\n#@ node m 15 \"$m$: $15\\,\\mathrm{V}$\"\n#@ node a 5 \"$a$ = 5 V top: $5\\,\\mathrm{V}$\" terminal\n#@ node s 5 \"$a$ = 5 V top: $5\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g5 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$5\\,\\mathrm{V}$\" col=0 i=\"$5\\,\\mathrm{mA}$\" to=g id=eV1\n#@ el R s m \"$2\\,\\mathrm{k\\Omega}$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{mA}$\" to=s id=eR1\n#@ el E m g2 \"$3v$: $15\\,\\mathrm{V}$\" col=2 i=\"$5\\,\\mathrm{mA}$\" to=m id=eE1\n#@ el G a g3 \"$20i$: $100\\,\\mathrm{mA}$\" col=3 i=\"$100\\,\\mathrm{mA}$\" to=a id=eG1\n#@ el R a g4 \"$25\\,\\Omega$: falls $5\\,\\mathrm{V}$\" col=4 i=\"$200\\,\\mathrm{mA}$\" to=g4 id=eR2 plus=a v=\"$v$\"\n#@ el I g5 a \"test $100\\,\\mathrm{mA}$\" col=5 i=\"$100\\,\\mathrm{mA}$\" to=a id=eIT\n#@ step \"Ground $b$ (now the lowest node). Push $0.1\\,\\mathrm{A}$ into $a$.\"\n#@ step \"$a$ rises to $100(0.1)-5=5\\,\\mathrm{V}$: $10\\,\\mathrm{V}$ higher for $0.1\\,\\mathrm{A}$, so $R_{\\mathrm{Th}}=100\\,\\Omega$. And $I_N=\\dfrac{-5}{100}=-50\\,\\mathrm{mA}$.\" show=a,eIT,eR2,eG1\n```",
+  "steps": [
+   {
+    "explanation": "KCL at $a$ ($v=v_T$).",
+    "latex": "v_T=25\\,(i_T-20i)"
+   },
+   {
+    "explanation": "Left loop.",
+    "latex": "5=2000\\,i+3v_T\\;\\Rightarrow\\;i=\\frac{5-3v_T}{2000}"
+   },
+   {
+    "explanation": "Substitute.",
+    "latex": "v_T=25\\,i_T-1.25+0.75\\,v_T\\;\\Rightarrow\\;v_T=100\\,i_T-5"
+   },
+   {
+    "explanation": "Read off.",
+    "latex": "V_{\\mathrm{Th}}=-5\\,\\mathrm{V},\\quad R_{\\mathrm{Th}}=100\\,\\Omega,\\quad I_N=\\frac{-5}{100}=-50\\,\\mathrm{mA}"
+   }
+  ],
+  "answer": "$v_T=100\\,i_T-5$: $V_{\\mathrm{Th}}=-5\\,\\mathrm{V}$, $R_{\\mathrm{Th}}=100\\,\\Omega$, $I_N=-50\\,\\mathrm{mA}$.",
+  "citations": [
+   {
+    "chunk_id": "4dfa6825-60c5-4464-85be-d5b54555faf7",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "ccfabe12-0fa2-457a-8176-2c1ec135d181",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "209e99c7-2565-5667-91d4-dacb6165628d",
+  "title": "Try it 1 · A diamond that feeds back (Assessment AP 4.19)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Find the Thévenin equivalent at $a$–$b$. **(a)** $V_{\\mathrm{Th}}$ **(b)** $R_{\\mathrm{Th}}$ with a test source **(c)** check with $I_N$.\n\n```schematic\nV1 0,3 -> 0,0 \"$24\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nwire 0,3 -> 0,6\nG1 3,6 -> 0,6 \"$3i_x$\"\nwire 3,6 -> 3,3\nwire 3,3 -> 5,3\nI1 5,3 -> 5,0 \"$4\\,\\mathrm{A}$\"\nwire 5,3 -> 7,3\nR2 7,3 -> 7,0 \"$8\\,\\Omega$\" i=\"$i_x$\"\nwire 7,3 -> 9,3\nterminal 9,3 \"$a$\" right\nterminal 9,0 \"$b$\" right\nwire 0,0 -> 9,0\nground 0,0\n#@ spoiler\n#@ view \"Open\"\n#@ straight off\n#@ node s 24 \"source top: $24\\,\\mathrm{V}$\"\n#@ node a 8 \"$a$: $8\\,\\mathrm{V}$\" terminal\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$24\\,\\mathrm{V}$\" col=0 i=\"$5\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$2\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=1 i=\"$8\\,\\mathrm{A}$\" to=a id=eR1\n#@ el G a s \"$3i_x$: $3\\,\\mathrm{A}$\" col=2 i=\"$3\\,\\mathrm{A}$\" to=s id=eG1\n#@ el I a g2 \"$4\\,\\mathrm{A}$\" col=3 i=\"$4\\,\\mathrm{A}$\" to=g2 id=eI1\n#@ el R a g3 \"$8\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=4 i=\"$1\\,\\mathrm{A}$\" to=g3 id=eR2\n#@ step \"Ground $b$. The source fixes its top at $24\\,\\mathrm{V}$.\"\n#@ step \"Control: $i_x=\\dfrac{a}{8}$. KCL at $a$: $\\dfrac{a-24}{2}+\\dfrac{3a}{8}+4+\\dfrac{a}{8}=0$, so $a=8\\,\\mathrm{V}=V_{\\mathrm{Th}}$.\" show=a\n#@ step \"$8\\,\\mathrm{A}$ falls into $a$; the diamond lifts $3\\,\\mathrm{A}$ back up (delivers), the $4\\,\\mathrm{A}$ pump carries its current **down** (absorbs), $1\\,\\mathrm{A}$ goes down the $8\\,\\Omega$.\" show=eR1,eG1,eI1,eR2,eV1\n#@ view \"Sources off, push 1 A\"\n#@ straight off\n#@ node a 1 \"$a$: $1\\,\\mathrm{V}$\" terminal\n#@ node s 0 \"source top = $b$: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ el W s g \"$24\\,\\mathrm{V}$ off: a wire\" col=0 i=\"$0.875\\,\\mathrm{A}$\" to=g id=eV1\n#@ el R s a \"$2\\,\\Omega$: falls $1\\,\\mathrm{V}$\" col=1 i=\"$0.5\\,\\mathrm{A}$\" to=s id=eR1\n#@ el G a s \"$3i_x$: $0.375\\,\\mathrm{A}$\" col=2 i=\"$0.375\\,\\mathrm{A}$\" to=s id=eG1\n#@ el S a g2 \"$4\\,\\mathrm{A}$ off: a gap\" col=3 id=eI1\n#@ el R a g3 \"$8\\,\\Omega$: falls $1\\,\\mathrm{V}$\" col=4 i=\"$0.125\\,\\mathrm{A}$\" to=g3 id=eR2\n#@ el I g4 a \"test $1\\,\\mathrm{A}$\" col=5 i=\"$1\\,\\mathrm{A}$\" to=a id=eIT\n#@ step \"Same ground. $24\\,\\mathrm{V}$ → wire, $4\\,\\mathrm{A}$ → gap. The diamond **stays on**.\"\n#@ step \"Push $1\\,\\mathrm{A}$ into $a$: $1=\\dfrac{a}{2}+\\dfrac{3a}{8}+\\dfrac{a}{8}=a$. So $a=1\\,\\mathrm{V}$: $R_{\\mathrm{Th}}=1\\,\\Omega$.\" show=a,eR1,eG1,eR2,eIT,eV1\n#@ step \"Check with a short: $a=b$ makes $i_x=0$ (diamond off), so $I_N=\\dfrac{24}{2}-4=8\\,\\mathrm{A}$ and $\\dfrac{8}{8}=1\\,\\Omega$ ✓.\"\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Open, KCL at $a$ with $i_x=\\dfrac{v_a}{8}$.",
+    "latex": "\\frac{v_a-24}{2}+\\frac{3v_a}{8}+4+\\frac{v_a}{8}=0\\;\\Rightarrow\\;V_{\\mathrm{Th}}=8\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Test source, independent sources off.",
+    "latex": "i_T=\\frac{v_T}{2}+\\frac{3v_T}{8}+\\frac{v_T}{8}=v_T\\;\\Rightarrow\\;R_{\\mathrm{Th}}=1\\,\\Omega"
+   },
+   {
+    "explanation": "Check.",
+    "latex": "i_{sc}=\\tfrac{24}{2}-4=8\\,\\mathrm{A},\\qquad \\tfrac{8}{8}=1\\,\\Omega"
+   }
+  ],
+  "answer": "**(a)** $8\\,\\mathrm{V}$ **(b)** $1\\,\\Omega$ **(c)** $I_N=8\\,\\mathrm{A}$ ✓",
+  "citations": [
+   {
+    "chunk_id": "e9afc18b-d6ad-428f-a81c-685ede4bcf36",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   },
+   {
+    "chunk_id": "779ae69c-1fee-4836-824c-5ceac9749991",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "7c8b5adc-82b1-5942-804a-8c18085cc594",
+  "title": "Try it 2 · No independent source (Textbook P4.80)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Find the Thévenin equivalent at $a$–$b$. The dependent source is controlled by $i_\\Delta$ in the $12\\,\\Omega$.\n\n```schematic\nE1 0,4 -> 0,0 \"$10i_\\Delta$\"\nwire 0,4 -> 0,7\nR1 0,7 -> 8,7 \"$6\\,\\Omega$\"\nwire 8,7 -> 8,4\nR2 0,4 -> 4,4 \"$10\\,\\Omega$\"\nR3 8,4 -> 4,4 \"$12\\,\\Omega$\" i=\"$i_\\Delta$\"\nR4 4,4 -> 4,0 \"$2.5\\,\\Omega$\"\nwire 8,4 -> 11,4\nterminal 11,4 \"$a$\" right\nterminal 11,0 \"$b$\" right\nwire 0,0 -> 11,0\nlabel 0,4 \"$x$\" left\nlabel 4,4 \"$m$\" above\nground 0,0\n#@ spoiler\n#@ view \"Push 1 A into a\"\n#@ straight off\n#@ node a 8 \"$a$: $8\\,\\mathrm{V}$\" terminal\n#@ node x 5 \"$x$: $5\\,\\mathrm{V}$\"\n#@ node m 2 \"$m$: $2\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el E x g \"$10i_\\Delta$: $5\\,\\mathrm{V}$\" col=0 i=\"$0.2\\,\\mathrm{A}$\" to=g id=eE1\n#@ el R x a \"$6\\,\\Omega$: falls $3\\,\\mathrm{V}$\" col=1 i=\"$0.5\\,\\mathrm{A}$\" to=x id=eR1\n#@ el R x m \"$10\\,\\Omega$: falls $3\\,\\mathrm{V}$\" col=1 i=\"$0.3\\,\\mathrm{A}$\" to=m id=eR2\n#@ el R m g2 \"$2.5\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=1 i=\"$0.8\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ el R a m \"$12\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=2 i=\"$0.5\\,\\mathrm{A}$\" to=m id=eR3\n#@ el I g3 a \"test $1\\,\\mathrm{A}$\" col=3 i=\"$1\\,\\mathrm{A}$\" to=a id=eIT\n#@ step \"Ground $b$. No independent source, so with nothing attached every height is $0$: $V_{\\mathrm{Th}}=0$.\"\n#@ step \"Push $1\\,\\mathrm{A}$ into $a$. Control: $i_\\Delta=\\dfrac{a-m}{12}$, and the diamond holds $x=10i_\\Delta$.\" show=eIT\n#@ step \"KCL at $a$ and $m$: $a=8$, $m=2$, $x=5\\,\\mathrm{V}$ ($i_\\Delta=0.5\\,\\mathrm{A}$).\" show=a,m,x\n#@ step \"Currents = fall ÷ R; the diamond carries $0.2\\,\\mathrm{A}$ **down** (it absorbs here). $a$ sits at $8\\,\\mathrm{V}$ per amp: $R_{\\mathrm{Th}}=8\\,\\Omega$.\" show=eE1,eR1,eR2,eR3,eR4\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "No independent source.",
+    "latex": "V_{\\mathrm{Th}}=0"
+   },
+   {
+    "explanation": "Test voltage $v_T$ at $a$; $x=10i_\\Delta$, $v_m=v_T-12i_\\Delta$. KCL at $m$.",
+    "latex": "i_\\Delta+\\frac{10i_\\Delta-v_m}{10}=\\frac{v_m}{2.5}\\;\\Rightarrow\\;i_\\Delta=\\frac{v_T}{16}"
+   },
+   {
+    "explanation": "Test current: through the $6\\,\\Omega$ and the $12\\,\\Omega$.",
+    "latex": "i_T=\\frac{v_T-10i_\\Delta}{6}+i_\\Delta=\\frac{v_T}{8}\\;\\Rightarrow\\;R_{\\mathrm{Th}}=8\\,\\Omega"
+   }
+  ],
+  "answer": "$V_{\\mathrm{Th}}=0$, $R_{\\mathrm{Th}}=8\\,\\Omega$: the terminals act like an $8\\,\\Omega$ resistor.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "11bd02ab-ca60-4fbc-9f85-243a3e08a576"
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "08adf391-80fe-5497-82c9-4fa2543bee07",
+  "level": 1,
+  "text": "Topic 2: Maximum power transfer",
+  "citations": [
+   {
+    "chunk_id": "fb526078-9e4b-4af4-bba1-2dcc4e2abf7d",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "60d07ba0-54d8-405f-8577-687fc97aec6c",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "bce377c0-f647-4492-bc52-a30d657da419",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "list",
+  "id": "cc72cad0-bf5f-5933-a7cf-5aaf8ffa7b2e",
+  "items": [
+   "A load on a Thévenin source sits at height $h$. It gets current $\\dfrac{V_{\\mathrm{Th}}-h}{R_{\\mathrm{Th}}}$, so $p=h\\cdot\\dfrac{V_{\\mathrm{Th}}-h}{R_{\\mathrm{Th}}}$.",
+   "$h$ and $V_{\\mathrm{Th}}-h$ add to $V_{\\mathrm{Th}}$. Their product is largest when they are equal: **$h=\\dfrac{V_{\\mathrm{Th}}}{2}$**, which happens at $R_L=R_{\\mathrm{Th}}$.",
+   "Half of $V_{\\mathrm{Th}}$, **not** half of the supply.",
+   "Max power ≠ max efficiency: at the match $R_{\\mathrm{Th}}$ burns as much as the load, and the real sources may waste more. For efficiency, go back to the original circuit.",
+   "Load fixed, series $R$ adjustable? That $R$ only steals height: pick $0$."
+  ],
+  "ordered": false,
+  "citations": []
+ },
+ {
+  "type": "equation",
+  "id": "9e3eeaec-e91a-5dd1-a222-5124fd3dee9b",
+  "latex": "R_L=R_{\\mathrm{Th}},\\qquad h=\\frac{V_{\\mathrm{Th}}}{2},\\qquad p_{\\max}=\\frac{V_{\\mathrm{Th}}^2}{4R_{\\mathrm{Th}}}",
+  "display": true,
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "2f5aeba8-b7dc-5bf5-8812-c53afbaf18cf",
+  "title": "Half the open height (Lecture 5)",
+  "prompt": "$R_L$ is adjustable. **(a)** Which $R_L$ gets the most power? **(b)** How much? **(c)** What fraction of the source's power reaches $R_L$?\n\n```schematic\nV1 0,3 -> 0,0 \"$360\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$30\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$150\\,\\Omega$\"\nwire 3,3 -> 6,3\nR3 6,3 -> 6,0 \"$R_L$\"\nwire 0,0 -> 6,0\nlabel 3,3 \"$a$\" above\nground 0,0\n#@ spoiler\n#@ view \"Open\"\n#@ straight off\n#@ node s 360 \"source top: $360\\,\\mathrm{V}$\"\n#@ node a 300 \"$a$: $300\\,\\mathrm{V}$\" terminal\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$360\\,\\mathrm{V}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$30\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$150\\,\\Omega$: falls $300\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ step \"Ground the bottom wire. Open: divider, $a=360\\cdot\\tfrac{150}{180}=300\\,\\mathrm{V}=V_{\\mathrm{Th}}$. Sources off: $R_{\\mathrm{Th}}=30\\parallel150=25\\,\\Omega$.\" show=a\n#@ view \"Load 5 Ω\"\n#@ straight off\n#@ node s 360 \"source top: $360\\,\\mathrm{V}$\"\n#@ node a 50 \"$a$: $50\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$360\\,\\mathrm{V}$\" col=0 i=\"$10.33\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$30\\,\\Omega$: falls $310\\,\\mathrm{V}$\" col=1 i=\"$10.33\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$150\\,\\Omega$: falls $50\\,\\mathrm{V}$\" col=2 i=\"$0.3333\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R a g3 \"$5\\,\\Omega$: falls $50\\,\\mathrm{V}$\" col=3 i=\"$10\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ note \"Too small: $a$ sits low ($50\\,\\mathrm{V}$). Load gets $50\\times10=500\\,\\mathrm{W}$.\"\n#@ view \"Load 25 Ω (matched)\"\n#@ straight off\n#@ node s 360 \"source top: $360\\,\\mathrm{V}$\"\n#@ node a 150 \"$a$: $150\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$360\\,\\mathrm{V}$\" col=0 i=\"$7\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$30\\,\\Omega$: falls $210\\,\\mathrm{V}$\" col=1 i=\"$7\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$150\\,\\Omega$: falls $150\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R a g3 \"$25\\,\\Omega$: falls $150\\,\\mathrm{V}$\" col=3 i=\"$6\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ step \"Same ground. Matched: $a$ sits at half the open height, $150\\,\\mathrm{V}$.\" show=a\n#@ step \"Load current $\\dfrac{150}{25}=6\\,\\mathrm{A}$: $p_{\\max}=(150)(6)=900\\,\\mathrm{W}$.\" show=eR3\n#@ step \"Source: $\\dfrac{360-150}{30}=7\\,\\mathrm{A}$ climbs $360\\,\\mathrm{V}$: $2520\\,\\mathrm{W}$. Only $\\dfrac{900}{2520}=35.7\\%$ reaches the load.\" show=eR1,eR2,eV1\n#@ view \"Load 100 Ω\"\n#@ straight off\n#@ node s 360 \"source top: $360\\,\\mathrm{V}$\"\n#@ node a 240 \"$a$: $240\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$360\\,\\mathrm{V}$\" col=0 i=\"$4\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$30\\,\\Omega$: falls $120\\,\\mathrm{V}$\" col=1 i=\"$4\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$150\\,\\Omega$: falls $240\\,\\mathrm{V}$\" col=2 i=\"$1.6\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R a g3 \"$100\\,\\Omega$: falls $240\\,\\mathrm{V}$\" col=3 i=\"$2.4\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ note \"Too big: $a$ sits high ($240\\,\\mathrm{V}$) but little current. Load gets $240\\times2.4=576\\,\\mathrm{W}$.\"\n```",
+  "steps": [
+   {
+    "explanation": "Thévenin.",
+    "latex": "V_{\\mathrm{Th}}=360\\cdot\\frac{150}{180}=300\\,\\mathrm{V},\\qquad R_{\\mathrm{Th}}=30\\parallel150=25\\,\\Omega"
+   },
+   {
+    "explanation": "Match.",
+    "latex": "R_L=25\\,\\Omega,\\qquad p_{\\max}=\\frac{300^2}{4(25)}=900\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "Back to the original.",
+    "latex": "v_a=150\\,\\mathrm{V},\\quad i_s=\\frac{360-150}{30}=7\\,\\mathrm{A},\\quad \\eta=\\frac{900}{360(7)}=35.7\\%"
+   }
+  ],
+  "answer": "**(a)** $25\\,\\Omega$ **(b)** $900\\,\\mathrm{W}$ **(c)** $35.7\\%$",
+  "citations": [
+   {
+    "chunk_id": "1d8ee7df-87fe-4dac-bd68-032d8382b56e",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "60a0069e-baff-44de-889b-982ad4072b3a",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "0f820bcd-609c-5b41-a2fa-f82ba575834c",
+  "title": "Two sources, then match (Lecture 5)",
+  "prompt": "$R_L$ is adjustable. Find the Thévenin equivalent at $a$–$b$ ($b$ is the bottom wire), then the best $R_L$ and $p_{\\max}$.\n\n```schematic\nV1 0,0 -> 0,3 \"$3\\,\\mathrm{V}$\"\nI1 0,3 -> 0,6 \"$2\\,\\mathrm{mA}$\"\nwire 0,6 -> 8,6\nR2 0,3 -> 3,3 \"$3\\,\\mathrm{k\\Omega}$\"\nwire 3,3 -> 4,3\nR1 4,6 -> 4,3 \"$4\\,\\mathrm{k\\Omega}$\"\nR3 4,3 -> 4,0 \"$6\\,\\mathrm{k\\Omega}$\"\nR4 8,6 -> 8,3 \"$R_L$\"\nwire 8,3 -> 8,0\nwire 0,0 -> 8,0\nlabel 8,6 \"$a$\" right\nlabel 4,3 \"$m$\" right\nlabel 0,3 \"$c$\" left\nground 4,0\n#@ spoiler\n#@ view \"Open\"\n#@ straight off\n#@ node a 13 \"$a$: $13\\,\\mathrm{V}$\" terminal\n#@ node m 5 \"$m$: $5\\,\\mathrm{V}$\"\n#@ node z0 3 \"$b$: $3\\,\\mathrm{V}$\"\n#@ node g 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ el R g m \"$3\\,\\mathrm{k\\Omega}$: falls $5\\,\\mathrm{V}$\" col=0 i=\"$1.667\\,\\mathrm{mA}$\" to=g id=eR2\n#@ el R a m \"$4\\,\\mathrm{k\\Omega}$: falls $8\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{mA}$\" to=m id=eR1\n#@ el R m z0 \"$6\\,\\mathrm{k\\Omega}$: falls $2\\,\\mathrm{V}$\" col=1 i=\"$0.3333\\,\\mathrm{mA}$\" to=z0 id=eR3\n#@ el V z0 g2 \"$3\\,\\mathrm{V}$\" col=2 i=\"$0.3333\\,\\mathrm{mA}$\" to=g2 id=eV1\n#@ el I g3 a \"$2\\,\\mathrm{mA}$\" col=3 i=\"$2\\,\\mathrm{mA}$\" to=a id=eI1\n#@ step \"Ground $c$, the lowest node: the $3\\,\\mathrm{V}$ source hangs it below $b$. Read every answer as a height **above $b$**.\"\n#@ step \"The pump forces $2\\,\\mathrm{mA}$ through $R_1$: it falls $8\\,\\mathrm{V}$.\" show=eI1,eR1\n#@ step \"Lower mesh: $i_2=\\dfrac{3(2)-3}{3+6}=\\tfrac13\\,\\mathrm{mA}$ down $R_3$, so $m$ is $2\\,\\mathrm{V}$ above $b$ and $a$ is $10\\,\\mathrm{V}$ above: $V_{\\mathrm{Th}}=10\\,\\mathrm{V}$.\" show=m,a,eR2,eR3,eV1\n#@ step \"Sources off: pump → gap, $3\\,\\mathrm{V}$ → wire, so $R_{\\mathrm{Th}}=4+(3\\parallel6)=6\\,\\mathrm{k\\Omega}$.\"\n#@ view \"Matched: 6 kΩ\"\n#@ straight off\n#@ node a 8 \"$a$: $8\\,\\mathrm{V}$\"\n#@ node m 3.33 \"$m$: $3.33\\,\\mathrm{V}$\"\n#@ node z0 3 \"$b$: $3\\,\\mathrm{V}$\"\n#@ node g 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ el R g m \"$3\\,\\mathrm{k\\Omega}$: falls $3.33\\,\\mathrm{V}$\" col=0 i=\"$1.111\\,\\mathrm{mA}$\" to=g id=eR2\n#@ el R a m \"$4\\,\\mathrm{k\\Omega}$: falls $4.67\\,\\mathrm{V}$\" col=1 i=\"$1.167\\,\\mathrm{mA}$\" to=m id=eR1\n#@ el R m z0 \"$6\\,\\mathrm{k\\Omega}$: falls $0.3333\\,\\mathrm{V}$\" col=1 i=\"$0.05556\\,\\mathrm{mA}$\" to=z0 id=eR3\n#@ el R a z0 \"$6\\,\\mathrm{k\\Omega}$: falls $5\\,\\mathrm{V}$\" col=2 i=\"$0.8333\\,\\mathrm{mA}$\" to=z0 id=eR4\n#@ el V z0 g2 \"$3\\,\\mathrm{V}$\" col=2 i=\"$0.8889\\,\\mathrm{mA}$\" to=g2 id=eV1\n#@ el I g3 a \"$2\\,\\mathrm{mA}$\" col=3 i=\"$2\\,\\mathrm{mA}$\" to=a id=eI1\n#@ step \"Same ground. Matched: $a$ sits $5\\,\\mathrm{V}$ above $b$, half of $V_{\\mathrm{Th}}$.\" show=a\n#@ step \"The load carries $\\dfrac{5}{6}\\,\\mathrm{mA}$: $p_{\\max}=\\dfrac{10^2}{4(6000)}=4.17\\,\\mathrm{mW}$.\" show=eR4\n```",
+  "steps": [
+   {
+    "explanation": "Pump fixes mesh 1; KVL on the lower mesh (kΩ, mA).",
+    "latex": "3+3(i_2-2)+6i_2=0\\;\\Rightarrow\\;i_2=\\tfrac13\\,\\mathrm{mA}"
+   },
+   {
+    "explanation": "Open height of $a$.",
+    "latex": "V_{\\mathrm{Th}}=4(2)+6(\\tfrac13)=10\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Sources off.",
+    "latex": "R_{\\mathrm{Th}}=4+(3\\parallel6)=6\\,\\mathrm{k\\Omega}"
+   },
+   {
+    "explanation": "Match.",
+    "latex": "R_L=6\\,\\mathrm{k\\Omega},\\qquad p_{\\max}=\\frac{10^2}{4(6000)}=4.17\\,\\mathrm{mW}"
+   }
+  ],
+  "answer": "$V_{\\mathrm{Th}}=10\\,\\mathrm{V}$, $R_{\\mathrm{Th}}=6\\,\\mathrm{k\\Omega}$; $R_L=6\\,\\mathrm{k\\Omega}$ gets $4.17\\,\\mathrm{mW}$.",
+  "citations": [
+   {
+    "chunk_id": "1d8ee7df-87fe-4dac-bd68-032d8382b56e",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "60a0069e-baff-44de-889b-982ad4072b3a",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "0d5a7568-1829-5b4c-a69c-bc594cf191a7",
+  "title": "Try it 3 · The matching trap (Textbook P4.84)",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "**(a)** Which $R_o$ gives the most power in the $6\\,\\Omega$? (Hint: hasty conclusions could be hazardous to your career.) **(b)** What is that power?\n\n```schematic\nV1 0,3 -> 0,0 \"$30\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$R_o$\"\nR2 3,3 -> 3,0 \"$6\\,\\Omega$\"\nwire 0,0 -> 3,0\nlabel 3,3 \"$a$\" above\nground 0,0\n#@ spoiler\n#@ view \"6 Ω (the trap)\"\n#@ straight off\n#@ node s 30 \"source top: $30\\,\\mathrm{V}$\"\n#@ node a 15 \"$a$: $15\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$30\\,\\mathrm{V}$\" col=0 i=\"$2.5\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$R_o=6\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=1 i=\"$2.5\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$6\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=1 i=\"$2.5\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ step \"Ground the bottom wire. Matching says $R_o=6\\,\\Omega$: $a$ sits at $15\\,\\mathrm{V}$, $p_6=\\dfrac{15^2}{6}=37.5\\,\\mathrm{W}$.\" show=a,eR1,eR2\n#@ view \"0 Ω\"\n#@ straight off\n#@ node s 30 \"source top = $a$: $30\\,\\mathrm{V}$\"\n#@ node a 30 \"source top = $a$: $30\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$30\\,\\mathrm{V}$\" col=0 i=\"$5\\,\\mathrm{A}$\" to=s id=eV1\n#@ el W s a \"$R_o=0$: no step\" col=1 i=\"$5\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$6\\,\\Omega$: falls $30\\,\\mathrm{V}$\" col=2 i=\"$5\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ step \"Same ground. But here the **load is fixed** and $R_o$ is the knob. $R_o$ only steals height, so set it to $0$: $a$ sits at the full $30\\,\\mathrm{V}$.\" show=a\n#@ step \"$p_6=\\dfrac{30^2}{6}=150\\,\\mathrm{W}$, four times the trap.\" show=eR2,eR1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Write the load power directly.",
+    "latex": "p_6=\\Big(\\frac{30}{R_o+6}\\Big)^2(6)"
+   },
+   {
+    "explanation": "It falls as $R_o$ grows: pick the smallest.",
+    "latex": "R_o=0,\\qquad p_{\\max}=\\frac{30^2}{6}=150\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "**(a)** $R_o=0$ (not $6\\,\\Omega$) **(b)** $150\\,\\mathrm{W}$",
+  "citations": [
+   {
+    "chunk_id": "11bd02ab-ca60-4fbc-9f85-243a3e08a576",
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1
+   },
+   {
+    "chunk_id": "214ce707-5384-4d62-a006-74f1460864bd",
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "1b9f86bb-39da-5413-bcd0-c253a89ec127",
+  "title": "Try it 4 · Two loads, same power (Textbook P4.88)",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "$R_o$ is adjusted until it dissipates $1.5\\,\\mathrm{W}$. Find **both** values of $R_o$.\n\n```schematic\nV1 0,3 -> 0,0 \"$100\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$50\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$200\\,\\Omega$\"\nR3 3,3 -> 6,3 \"$60\\,\\Omega$\" i=\"$i_x$\"\nR4 6,3 -> 6,1.5 \"$40\\,\\Omega$\"\nE1 6,0 -> 6,1.5 \"$60i_x$\"\nwire 6,3 -> 9,3\nR5 9,3 -> 9,0 \"$R_o$\"\nwire 0,0 -> 9,0\nlabel 3,3 \"$n$\" above\nlabel 6,3 \"$a$\" above\nlabel 6,1.5 \"$k$\" right\nground 0,0\n#@ spoiler\n#@ view \"Open\"\n#@ straight off\n#@ node s 160 \"source top: $160\\,\\mathrm{V}$\"\n#@ node n 100 \"$n$: $100\\,\\mathrm{V}$\"\n#@ node z0 60 \"$b$: $60\\,\\mathrm{V}$\"\n#@ node a 40 \"$a$: $40\\,\\mathrm{V}$\" terminal\n#@ node g 0 \"$k$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$k$: $0\\,\\mathrm{V}$\" ground\n#@ el V s z0 \"$100\\,\\mathrm{V}$\" col=0 i=\"$1.2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n \"$50\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=1 i=\"$1.2\\,\\mathrm{A}$\" to=n id=eR1\n#@ el R n z0 \"$200\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=1 i=\"$0.2\\,\\mathrm{A}$\" to=z0 id=eR2\n#@ el E z0 g \"$60i_x$: $60\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=z0 id=eE1\n#@ el R n a \"$60\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=4 i=\"$1\\,\\mathrm{A}$\" to=a id=eR3\n#@ el R a g2 \"$40\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=4 i=\"$1\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ step \"Ground $k$, the lowest node (the diamond hangs it below $b$). Read answers as heights relative to $b$.\"\n#@ step \"Open: $i_x$ runs through $60+40\\,\\Omega$ into the diamond. $a=-20i_x$, $n=40i_x$; KCL at $n$: $\\dfrac{100-n}{50}=\\dfrac{n}{200}+i_x$, so $i_x=1\\,\\mathrm{A}$.\" show=n,eR3,eR4,eE1\n#@ step \"$a$ sits $20\\,\\mathrm{V}$ **below** $b$: $V_{\\mathrm{Th}}=-20\\,\\mathrm{V}$. With a short, $I_N=-0.4\\,\\mathrm{A}$, so $R_{\\mathrm{Th}}=50\\,\\Omega$.\" show=a,eR1,eR2,eV1\n#@ view \"16.7 Ω\"\n#@ straight off\n#@ node s 151 \"source top: $151\\,\\mathrm{V}$\"\n#@ node n 97 \"$n$: $97\\,\\mathrm{V}$\"\n#@ node z0 51 \"$b$: $51\\,\\mathrm{V}$\"\n#@ node a 46 \"$a$: $46\\,\\mathrm{V}$\"\n#@ node g 0 \"$k$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$k$: $0\\,\\mathrm{V}$\" ground\n#@ el V s z0 \"$100\\,\\mathrm{V}$\" col=0 i=\"$1.08\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n \"$50\\,\\Omega$: falls $54\\,\\mathrm{V}$\" col=1 i=\"$1.08\\,\\mathrm{A}$\" to=n id=eR1\n#@ el R n z0 \"$200\\,\\Omega$: falls $46\\,\\mathrm{V}$\" col=1 i=\"$0.23\\,\\mathrm{A}$\" to=z0 id=eR2\n#@ el E z0 g \"$60i_x$: $51\\,\\mathrm{V}$\" col=2 i=\"$1.15\\,\\mathrm{A}$\" to=z0 id=eE1\n#@ el R n a \"$60\\,\\Omega$: falls $51\\,\\mathrm{V}$\" col=4 i=\"$0.85\\,\\mathrm{A}$\" to=a id=eR3\n#@ el R a g2 \"$40\\,\\Omega$: falls $46\\,\\mathrm{V}$\" col=4 i=\"$1.15\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ el R a z0 \"$16.67\\,\\Omega$: falls $5\\,\\mathrm{V}$\" col=3 i=\"$0.3\\,\\mathrm{A}$\" to=a id=eR5\n#@ step \"Same ground. Let the load's fall be $h$: $p=h\\cdot\\dfrac{20-h}{50}=1.5$, so $h^2-20h+75=0$: $h=5$ or $15\\,\\mathrm{V}$.\"\n#@ step \"$h=5\\,\\mathrm{V}$: current $\\dfrac{20-5}{50}=0.3\\,\\mathrm{A}$, so $R_o=\\dfrac{5}{0.3}=16.7\\,\\Omega$.\" show=a,eR5\n#@ view \"150 Ω\"\n#@ straight off\n#@ node s 157 \"source top: $157\\,\\mathrm{V}$\"\n#@ node n 99 \"$n$: $99\\,\\mathrm{V}$\"\n#@ node z0 57 \"$b$: $57\\,\\mathrm{V}$\"\n#@ node a 42 \"$a$: $42\\,\\mathrm{V}$\"\n#@ node g 0 \"$k$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$k$: $0\\,\\mathrm{V}$\" ground\n#@ el V s z0 \"$100\\,\\mathrm{V}$\" col=0 i=\"$1.16\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n \"$50\\,\\Omega$: falls $58\\,\\mathrm{V}$\" col=1 i=\"$1.16\\,\\mathrm{A}$\" to=n id=eR1\n#@ el R n z0 \"$200\\,\\Omega$: falls $42\\,\\mathrm{V}$\" col=1 i=\"$0.21\\,\\mathrm{A}$\" to=z0 id=eR2\n#@ el E z0 g \"$60i_x$: $57\\,\\mathrm{V}$\" col=2 i=\"$1.05\\,\\mathrm{A}$\" to=z0 id=eE1\n#@ el R n a \"$60\\,\\Omega$: falls $57\\,\\mathrm{V}$\" col=4 i=\"$0.95\\,\\mathrm{A}$\" to=a id=eR3\n#@ el R a g2 \"$40\\,\\Omega$: falls $42\\,\\mathrm{V}$\" col=4 i=\"$1.05\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ el R a z0 \"$150\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=3 i=\"$0.1\\,\\mathrm{A}$\" to=a id=eR5\n#@ step \"Same ground ($k$). $h=15\\,\\mathrm{V}$: current $\\dfrac{5}{50}=0.1\\,\\mathrm{A}$, so $R_o=150\\,\\Omega$.\" show=a,eR5\n#@ note \"The two loads fall $5$ and $15\\,\\mathrm{V}$: mirror images around half of $|V_{\\mathrm{Th}}|=10\\,\\mathrm{V}$, where the power would peak ($2\\,\\mathrm{W}$).\"\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Open circuit ($i_x$ through $60+40\\,\\Omega$ and the diamond).",
+    "latex": "\\begin{aligned}&v_a=-20i_x,\\quad v_n=40i_x,\\quad \\frac{100-v_n}{50}=\\frac{v_n}{200}+i_x\\\\&\\Rightarrow\\;i_x=1\\,\\mathrm{A},\\quad V_{\\mathrm{Th}}=-20\\,\\mathrm{V}\\end{aligned}"
+   },
+   {
+    "explanation": "Short circuit gives $I_N=-0.4\\,\\mathrm{A}$.",
+    "latex": "R_{\\mathrm{Th}}=\\frac{-20}{-0.4}=50\\,\\Omega"
+   },
+   {
+    "explanation": "Power equation.",
+    "latex": "\\Big(\\frac{20}{50+R_o}\\Big)^2R_o=1.5\\;\\Rightarrow\\;3R_o^2-500R_o+7500=0"
+   },
+   {
+    "explanation": "Two roots.",
+    "latex": "R_o=\\frac{500\\pm400}{6}=150\\,\\Omega\\;\\text{ or }\\;16.7\\,\\Omega"
+   }
+  ],
+  "answer": "$R_o=16.7\\,\\Omega$ or $R_o=150\\,\\Omega$.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "214ce707-5384-4d62-a006-74f1460864bd"
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "8dc34f50-03f0-59bb-9362-8fc4bd5694be",
+  "level": 1,
+  "text": "Topic 3: Superposition",
+  "citations": [
+   {
+    "chunk_id": "334d6bc7-8bec-4b8e-b7c5-b344f91ec1e1",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "e850298a-ff7e-4c51-bf40-274fb99ae4d0",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "adf6bce7-40e2-4848-91a3-f833eb292c20",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "695ce8a7-97c0-49df-9260-9217731135b6",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "list",
+  "id": "9c0133b6-6900-5e6e-846f-1e8a1251e13d",
+  "items": [
+   "Linear circuit: every voltage and current = the sum of what each **independent** source makes alone.",
+   "One picture per source. Other voltage sources → wires; other current sources → gaps (left out of the pictures below). **Dependent sources stay on.**",
+   "**Add voltages (height differences) and currents. Never powers:** $p$ is current × fall, a product. Compute it once from the sums.",
+   "Keep the same reference directions in every picture. A partial picture may run a resistor \"backwards\"; only the sum must run downhill.",
+   "Worth it when each one-source picture is a divider or a series–parallel reduction."
+  ],
+  "ordered": false,
+  "citations": []
+ },
+ {
+  "type": "equation",
+  "id": "e1763d66-0874-5612-843b-ee10d377bf51",
+  "latex": "y=y_1+y_2+\\cdots,\\qquad p=(v_1+v_2)(i_1+i_2)\\neq p_1+p_2",
+  "display": true,
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "76b517df-315f-5946-933d-625f28b8b07d",
+  "title": "One source at a time (Lecture 5)",
+  "prompt": "Use superposition to find $v_o$ and $i_o$.\n\n```schematic\nV1 0,3 -> 0,0 \"$120\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$6\\,\\Omega$\"\nR3 3,3 -> 3,0 \"$3\\,\\Omega$\" i=\"$i_o$\"\nR2 3,3 -> 6,3 \"$2\\,\\Omega$\"\nR4 6,3 -> 6,0 \"$4\\,\\Omega$\" v=\"$v_o$\"\nwire 6,3 -> 9,3\nI1 9,3 -> 9,0 \"$12\\,\\mathrm{A}$\"\nwire 0,0 -> 9,0\nlabel 0,3 \"$s$\" above\nlabel 3,3 \"$1$\" above\nlabel 6,3 \"$2$\" above\nground 0,0\n#@ spoiler\n#@ view \"120 V alone\"\n#@ straight off\n#@ node s 120 \"$s$: $120\\,\\mathrm{V}$\"\n#@ node n1 30 \"node 1: $30\\,\\mathrm{V}$\"\n#@ node n2 20 \"node 2: $20\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$120\\,\\mathrm{V}$\" col=0 i=\"$15\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n1 \"$6\\,\\Omega$: falls $90\\,\\mathrm{V}$\" col=1 i=\"$15\\,\\mathrm{A}$\" to=n1 id=eR1\n#@ el R n1 g2 \"$3\\,\\Omega$: falls $30\\,\\mathrm{V}$\" col=2 i=\"$10\\,\\mathrm{A}$\" to=g2 id=eR3\n#@ el R n1 n2 \"$2\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=3 i=\"$5\\,\\mathrm{A}$\" to=n2 id=eR2\n#@ el R n2 g3 \"$4\\,\\Omega$: falls $20\\,\\mathrm{V}$\" col=3 i=\"$5\\,\\mathrm{A}$\" to=g3 id=eR4 plus=n2 v=\"$v_o$\"\n#@ step \"Ground the bottom wire. The $12\\,\\mathrm{A}$ pump is off (a gap).\"\n#@ step \"$2+4=6\\,\\Omega$ beside $3\\,\\Omega$: $2\\,\\Omega$; plus $6\\,\\Omega$: $8\\,\\Omega$. So $15\\,\\mathrm{A}$, and node 1 sits at $30\\,\\mathrm{V}$.\" show=n1,eR1,eV1\n#@ step \"$i_o'=\\dfrac{30}{3}=10\\,\\mathrm{A}$; divider on the right: $v_o'=30\\cdot\\tfrac46=20\\,\\mathrm{V}$.\" show=n2,eR2,eR3,eR4\n#@ view \"12 A alone\"\n#@ straight off\n#@ node s 24 \"$s$ = bottom: $24\\,\\mathrm{V}$\"\n#@ node z0 24 \"$s$ = bottom: $24\\,\\mathrm{V}$\"\n#@ node n1 12 \"node 1: $12\\,\\mathrm{V}$\"\n#@ node g 0 \"node 2: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"node 2: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"node 2: $0\\,\\mathrm{V}$\" ground\n#@ el W s z0 \"$120\\,\\mathrm{V}$ off: a wire\" col=0 i=\"$2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n1 \"$6\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=n1 id=eR1\n#@ el R n1 z0 \"$3\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=1 i=\"$4\\,\\mathrm{A}$\" to=n1 id=eR3\n#@ el R n1 g \"$2\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=2 i=\"$6\\,\\mathrm{A}$\" to=g id=eR2\n#@ el R g2 z0 \"$4\\,\\Omega$: falls $24\\,\\mathrm{V}$\" col=3 i=\"$6\\,\\mathrm{A}$\" to=g2 id=eR4 plus=g2 v=\"$v_o$\"\n#@ el I g3 z0 \"$12\\,\\mathrm{A}$\" col=4 i=\"$12\\,\\mathrm{A}$\" to=z0 id=eI1\n#@ step \"Ground node 2, the lowest: the pump drags $12\\,\\mathrm{A}$ out of it. The $120\\,\\mathrm{V}$ step flattens to a wire.\"\n#@ step \"From node 2: $4\\,\\Omega$ beside $2+(6\\parallel3)=4\\,\\Omega$, so $2\\,\\Omega$. Node 2 sits $24\\,\\mathrm{V}$ below the bottom wire: $v_o''=-24\\,\\mathrm{V}$.\" show=z0,eR4,eI1\n#@ step \"Node 1 sits halfway: $v_1''=-12\\,\\mathrm{V}$, so $i_o''=\\dfrac{-12}{3}=-4\\,\\mathrm{A}$ (it flows **up** the $3\\,\\Omega$).\" show=n1,eR1,eR2,eR3,eV1\n#@ view \"Both: add\"\n#@ straight off\n#@ node s 124 \"$s$: $124\\,\\mathrm{V}$\"\n#@ node n1 22 \"node 1: $22\\,\\mathrm{V}$\"\n#@ node z0 4 \"bottom: $4\\,\\mathrm{V}$\"\n#@ node g 0 \"node 2: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"node 2: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"node 2: $0\\,\\mathrm{V}$\" ground\n#@ el V s z0 \"$120\\,\\mathrm{V}$\" col=0 i=\"$17\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n1 \"$6\\,\\Omega$: falls $102\\,\\mathrm{V}$\" col=1 i=\"$17\\,\\mathrm{A}$\" to=n1 id=eR1\n#@ el R n1 z0 \"$3\\,\\Omega$: falls $18\\,\\mathrm{V}$\" col=2 i=\"$6\\,\\mathrm{A}$\" to=z0 id=eR3\n#@ el R g z0 \"$4\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=3 i=\"$1\\,\\mathrm{A}$\" to=g id=eR4 plus=g v=\"$v_o$\"\n#@ el I g2 z0 \"$12\\,\\mathrm{A}$\" col=4 i=\"$12\\,\\mathrm{A}$\" to=z0 id=eI1\n#@ el R n1 g3 \"$2\\,\\Omega$: falls $22\\,\\mathrm{V}$\" col=5 i=\"$11\\,\\mathrm{A}$\" to=g3 id=eR2\n#@ step \"Ground node 2 again. Add the voltages: $v_o=20-24=-4\\,\\mathrm{V}$, $i_o=10-4=6\\,\\mathrm{A}$.\" show=z0,n1,s\n#@ step \"Check: the $3\\,\\Omega$ falls $18\\,\\mathrm{V}$ ($6\\,\\mathrm{A}$) ✓. The $4\\,\\Omega$ absorbs $\\dfrac{4^2}{4}=4\\,\\mathrm{W}$, not $100+144$.\" show=eR1,eR2,eR3,eR4,eV1,eI1\n```",
+  "steps": [
+   {
+    "explanation": "$120\\,\\mathrm{V}$ alone (pump open).",
+    "latex": "i_s=\\frac{120}{6+(3\\parallel6)}=15\\,\\mathrm{A},\\quad v_1'=30,\\quad i_o'=10\\,\\mathrm{A},\\quad v_o'=20\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "$12\\,\\mathrm{A}$ alone (source shorted).",
+    "latex": "v_o''=-12\\,(4\\parallel4)=-24\\,\\mathrm{V},\\quad v_1''=-12,\\quad i_o''=-4\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Add.",
+    "latex": "v_o=20-24=-4\\,\\mathrm{V},\\qquad i_o=10-4=6\\,\\mathrm{A}"
+   }
+  ],
+  "answer": "$v_o=-4\\,\\mathrm{V}$, $i_o=6\\,\\mathrm{A}$.",
+  "citations": [
+   {
+    "chunk_id": "adf6bce7-40e2-4848-91a3-f833eb292c20",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "6a52c262-0d08-4820-97a0-383fea4dbd04",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "951a4b56-2d8b-4a91-9744-70ff33b4b9b5",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "worked_example",
+  "id": "ea824af5-3b47-5987-a162-fda3e85efc0f",
+  "title": "Dependent sources stay on (Lecture 5)",
+  "prompt": "Use superposition on the two independent sources to find $v_o$. The pump is $0.4v_\\Delta$ (A/V) and the rod is $2i_\\Delta$ (Ω).\n\n```schematic\nV1 0,3 -> 0,0 \"$10\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$5\\,\\Omega$\" i=\"$i_\\Delta$\"\nR2 3,3 -> 3,0 \"$20\\,\\Omega$\" v=\"$v_o$\"\nG1 6,3 -> 3,3 \"$0.4v_\\Delta$\"\nR3 6,3 -> 6,0 \"$10\\,\\Omega$\" v=\"$v_\\Delta$\"\nE1 6,0 -> 3,0 \"$2i_\\Delta$\"\nI1 9,0 -> 9,3 \"$5\\,\\mathrm{A}$\"\nwire 6,3 -> 9,3\nwire 6,0 -> 9,0\nwire 0,0 -> 3,0\nlabel 0,3 \"$s$\" above\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$d$\" above\nlabel 6,0 \"$c$\" below\nground 3,0\n#@ spoiler\n#@ view \"10 V alone\"\n#@ straight off\n#@ node s 10 \"$s$: $10\\,\\mathrm{V}$\"\n#@ node a 8 \"$a$: $8\\,\\mathrm{V}$\"\n#@ node d 0.8 \"$d$ = $c$: $0.8\\,\\mathrm{V}$\"\n#@ node c 0.8 \"$d$ = $c$: $0.8\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$10\\,\\mathrm{V}$\" col=0 i=\"$0.4\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$5\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=1 i=\"$0.4\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$20\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=1 i=\"$0.4\\,\\mathrm{A}$\" to=g2 id=eR2 plus=a v=\"$v_o$\"\n#@ el G d a \"$0.4v_\\Delta$: $0\\,\\mathrm{A}$\" col=2 id=eG1\n#@ el R d c \"$10\\,\\Omega$: no fall\" col=3 id=eR3 plus=d v=\"$v_\\Delta$\"\n#@ el E c g3 \"$2i_\\Delta$: $0.8\\,\\mathrm{V}$\" col=4 id=eE1\n#@ step \"Ground the bottom wire. The $5\\,\\mathrm{A}$ pump is off (a gap); both diamonds stay on.\"\n#@ step \"KCL at $d$: nothing comes in, so $0.4v_\\Delta'+\\dfrac{v_\\Delta'}{10}=0$: $v_\\Delta'=0$. The diamond pump is off **because its control is zero**.\" show=eG1,eR3\n#@ step \"The left side is a plain divider: $v_o'=10\\cdot\\tfrac{20}{25}=8\\,\\mathrm{V}$. ($i_\\Delta=0.4\\,\\mathrm{A}$, so the rod still lifts $c$ and $d$ to $0.8\\,\\mathrm{V}$.)\" show=a,c,d,eR1,eR2,eE1\n#@ view \"5 A alone\"\n#@ straight off\n#@ node a 22.4 \"$a$: $22.4\\,\\mathrm{V}$\"\n#@ node d 10 \"$d$: $10\\,\\mathrm{V}$\"\n#@ node s 6.4 \"$s$ = bottom: $6.4\\,\\mathrm{V}$\"\n#@ node z0 6.4 \"$s$ = bottom: $6.4\\,\\mathrm{V}$\"\n#@ node g 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ el R s a \"$5\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=0 i=\"$3.2\\,\\mathrm{A}$\" to=s id=eR1\n#@ el W s z0 \"$10\\,\\mathrm{V}$ off: a wire\" col=0 i=\"$3.2\\,\\mathrm{A}$\" to=z0 id=eV1\n#@ el R a z0 \"$20\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=1 i=\"$0.8\\,\\mathrm{A}$\" to=z0 id=eR2 plus=a v=\"$v_o$\"\n#@ el G d a \"$0.4v_\\Delta$: $4\\,\\mathrm{A}$\" col=2 i=\"$4\\,\\mathrm{A}$\" to=a id=eG1\n#@ el R d g \"$10\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=3 i=\"$1\\,\\mathrm{A}$\" to=g id=eR3 plus=d v=\"$v_\\Delta$\"\n#@ el I g2 d \"$5\\,\\mathrm{A}$\" col=4 i=\"$5\\,\\mathrm{A}$\" to=d id=eI1\n#@ el E g3 z0 \"$2i_\\Delta$: $-6.4\\,\\mathrm{V}$\" col=5 i=\"$4\\,\\mathrm{A}$\" to=g3 id=eE1\n#@ step \"Ground $c$, the lowest node; $v_o$ is $a$'s height minus the bottom wire's. The $10\\,\\mathrm{V}$ step flattens to a wire.\"\n#@ step \"KCL at $d$: $5=0.4v_\\Delta''+\\dfrac{v_\\Delta''}{10}$, so $v_\\Delta''=10\\,\\mathrm{V}$ and the diamond pushes $4\\,\\mathrm{A}$ into $a$.\" show=d,eG1,eR3,eI1\n#@ step \"$a$ sees $5\\parallel20=4\\,\\Omega$ down to the bottom wire: $v_o''=(4)(4)=16\\,\\mathrm{V}$.\" show=a,eR1,eR2,eV1,eE1\n#@ view \"Both: add\"\n#@ straight off\n#@ node a 29.6 \"$a$: $29.6\\,\\mathrm{V}$\"\n#@ node s 15.6 \"$s$: $15.6\\,\\mathrm{V}$\"\n#@ node d 10 \"$d$: $10\\,\\mathrm{V}$\"\n#@ node z0 5.6 \"bottom: $5.6\\,\\mathrm{V}$\"\n#@ node g 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$c$: $0\\,\\mathrm{V}$\" ground\n#@ el R s a \"$5\\,\\Omega$: falls $14\\,\\mathrm{V}$\" col=0 i=\"$2.8\\,\\mathrm{A}$\" to=s id=eR1\n#@ el V s z0 \"$10\\,\\mathrm{V}$\" col=0 i=\"$2.8\\,\\mathrm{A}$\" to=z0 id=eV1\n#@ el E g z0 \"$2i_\\Delta$: $-5.6\\,\\mathrm{V}$\" col=0 i=\"$4\\,\\mathrm{A}$\" to=g id=eE1\n#@ el R a z0 \"$20\\,\\Omega$: falls $24\\,\\mathrm{V}$\" col=1 i=\"$1.2\\,\\mathrm{A}$\" to=z0 id=eR2 plus=a v=\"$v_o$\"\n#@ el G d a \"$0.4v_\\Delta$: $4\\,\\mathrm{A}$\" col=2 i=\"$4\\,\\mathrm{A}$\" to=a id=eG1\n#@ el R d g2 \"$10\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=3 i=\"$1\\,\\mathrm{A}$\" to=g2 id=eR3 plus=d v=\"$v_\\Delta$\"\n#@ el I g3 d \"$5\\,\\mathrm{A}$\" col=4 i=\"$5\\,\\mathrm{A}$\" to=d id=eI1\n#@ step \"Ground $c$. Add: $v_o=8+16=24\\,\\mathrm{V}$: $a$ sits $24\\,\\mathrm{V}$ above the bottom wire ✓.\" show=a,s,z0\n```",
+  "steps": [
+   {
+    "explanation": "$10\\,\\mathrm{V}$ alone: KCL at $d$ forces $v_\\Delta'=0$; divider on the left.",
+    "latex": "v_o'=10\\cdot\\frac{20}{25}=8\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "$5\\,\\mathrm{A}$ alone: KCL at $d$, then $a$.",
+    "latex": "5=0.4v_\\Delta''+\\frac{v_\\Delta''}{10}\\Rightarrow v_\\Delta''=10,\\quad v_o''=4\\,(5\\parallel20)=16\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Add.",
+    "latex": "v_o=8+16=24\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v_o=24\\,\\mathrm{V}$",
+  "citations": [
+   {
+    "chunk_id": "adf6bce7-40e2-4848-91a3-f833eb292c20",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "6a52c262-0d08-4820-97a0-383fea4dbd04",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   },
+   {
+    "chunk_id": "951a4b56-2d8b-4a91-9744-70ff33b4b9b5",
+    "source_id": "c837b52a-1092-45f7-af24-90c90f4ef456",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "30820416-cccc-5d15-9326-a96cd8a2c331",
+  "title": "Try it 5 · Three sources (Textbook P4.94)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Use superposition to find $i_o$.\n\n```schematic\nI1 0,0 -> 0,4 \"$6\\,\\mathrm{A}$\"\nwire 0,4 -> 2,4\nR1 2,4 -> 2,0 \"$20\\,\\Omega$\"\nR2 2,4 -> 5,4 \"$1\\,\\Omega$\" i=\"$i_o$\"\nI2 5,4 -> 5,0 \"$10\\,\\mathrm{A}$\"\nwire 5,4 -> 11,4\nR3 7,4 -> 7,0 \"$60\\,\\Omega$\"\nR4 9,4 -> 9,2 \"$5\\,\\Omega$\"\nV1 9,2 -> 9,0 \"$75\\,\\mathrm{V}$\"\nR5 11,4 -> 11,0 \"$30\\,\\Omega$\"\nwire 0,0 -> 11,0\nlabel 2,4 \"$p$\" above\nlabel 5,4 \"$q$\" above\nlabel 9,2 \"$k$\" right\nground 0,0\n#@ spoiler\n#@ view \"6 A alone\"\n#@ straight off\n#@ node p 24 \"$p$: $24\\,\\mathrm{V}$\"\n#@ node q 19.2 \"$q$: $19.2\\,\\mathrm{V}$\"\n#@ node k 0 \"$k$ = bottom: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$k$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$k$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$k$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"$k$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g5 0 \"$k$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ el I g p \"$6\\,\\mathrm{A}$\" col=0 i=\"$6\\,\\mathrm{A}$\" to=p id=eI1\n#@ el R p g2 \"$20\\,\\Omega$: falls $24\\,\\mathrm{V}$\" col=1 i=\"$1.2\\,\\mathrm{A}$\" to=g2 id=eR1\n#@ el R p q \"$1\\,\\Omega$: falls $4.8\\,\\mathrm{V}$\" col=2 i=\"$4.8\\,\\mathrm{A}$\" to=q id=eR2\n#@ el R q g3 \"$60\\,\\Omega$: falls $19.2\\,\\mathrm{V}$\" col=3 i=\"$0.32\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ el R q k \"$5\\,\\Omega$: falls $19.2\\,\\mathrm{V}$\" col=4 i=\"$3.84\\,\\mathrm{A}$\" to=k id=eR4\n#@ el W k g4 \"$75\\,\\mathrm{V}$ off: a wire\" col=4 i=\"$3.84\\,\\mathrm{A}$\" to=g4 id=eV1\n#@ el R q g5 \"$30\\,\\Omega$: falls $19.2\\,\\mathrm{V}$\" col=5 i=\"$0.64\\,\\mathrm{A}$\" to=g5 id=eR5\n#@ step \"Ground the bottom wire. $10\\,\\mathrm{A}$ off (gap), $75\\,\\mathrm{V}$ → wire. Right side: $60\\parallel5\\parallel30=4\\,\\Omega$.\"\n#@ step \"Divider of currents: $20\\,\\Omega$ vs $1+4=5\\,\\Omega$. $i_o'=6\\cdot\\tfrac{20}{25}=4.8\\,\\mathrm{A}$.\" show=eR2,p,q,eR1,eR3,eR4,eR5,eV1\n#@ view \"10 A alone\"\n#@ straight off\n#@ node z0 33.6 \"bottom = $k$: $33.6\\,\\mathrm{V}$\"\n#@ node k 33.6 \"bottom = $k$: $33.6\\,\\mathrm{V}$\"\n#@ node p 1.6 \"$p$: $1.6\\,\\mathrm{V}$\"\n#@ node g 0 \"$q$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$q$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$q$: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"$q$: $0\\,\\mathrm{V}$\" ground\n#@ node g5 0 \"$q$: $0\\,\\mathrm{V}$\" ground\n#@ el R p z0 \"$20\\,\\Omega$: falls $32\\,\\mathrm{V}$\" col=0 i=\"$1.6\\,\\mathrm{A}$\" to=p id=eR1\n#@ el R p g \"$1\\,\\Omega$: falls $1.6\\,\\mathrm{V}$\" col=0 i=\"$1.6\\,\\mathrm{A}$\" to=g id=eR2\n#@ el I g2 z0 \"$10\\,\\mathrm{A}$\" col=1 i=\"$10\\,\\mathrm{A}$\" to=z0 id=eI2\n#@ el R g3 z0 \"$60\\,\\Omega$: falls $33.6\\,\\mathrm{V}$\" col=2 i=\"$0.56\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ el R g4 k \"$5\\,\\Omega$: falls $33.6\\,\\mathrm{V}$\" col=3 i=\"$6.72\\,\\mathrm{A}$\" to=g4 id=eR4\n#@ el W k z0 \"$75\\,\\mathrm{V}$ off: a wire\" col=3 i=\"$6.72\\,\\mathrm{A}$\" to=k id=eV1\n#@ el R g5 z0 \"$30\\,\\Omega$: falls $33.6\\,\\mathrm{V}$\" col=4 i=\"$1.12\\,\\mathrm{A}$\" to=g5 id=eR5\n#@ step \"Ground $q$, the lowest: the pump drags $10\\,\\mathrm{A}$ out of it. Its $10\\,\\mathrm{A}$ comes back via $4\\,\\Omega$ (right) or $1+20=21\\,\\Omega$ (left).\"\n#@ step \"Left share: $10\\cdot\\tfrac{4}{25}=1.6\\,\\mathrm{A}$, falling $p\\to q$ through the $1\\,\\Omega$: $i_o''=+1.6\\,\\mathrm{A}$.\" show=eR2,p,eR1,eR3,eR4,eR5,eV1\n#@ view \"75 V alone\"\n#@ straight off\n#@ node k 75 \"$k$: $75\\,\\mathrm{V}$\"\n#@ node q 50.4 \"$q$: $50.4\\,\\mathrm{V}$\"\n#@ node p 48 \"$p$: $48\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V k g \"$75\\,\\mathrm{V}$\" col=0 i=\"$4.92\\,\\mathrm{A}$\" to=k id=eV1\n#@ el R q k \"$5\\,\\Omega$: falls $24.6\\,\\mathrm{V}$\" col=1 i=\"$4.92\\,\\mathrm{A}$\" to=q id=eR4\n#@ el R p q \"$1\\,\\Omega$: falls $2.4\\,\\mathrm{V}$\" col=1 i=\"$2.4\\,\\mathrm{A}$\" to=p id=eR2\n#@ el R p g2 \"$20\\,\\Omega$: falls $48\\,\\mathrm{V}$\" col=1 i=\"$2.4\\,\\mathrm{A}$\" to=g2 id=eR1\n#@ el R q g3 \"$60\\,\\Omega$: falls $50.4\\,\\mathrm{V}$\" col=2 i=\"$0.84\\,\\mathrm{A}$\" to=g3 id=eR3\n#@ el R q g4 \"$30\\,\\Omega$: falls $50.4\\,\\mathrm{V}$\" col=3 i=\"$1.68\\,\\mathrm{A}$\" to=g4 id=eR5\n#@ step \"Ground the bottom wire; both pumps off. Node $q$: $\\dfrac{q-75}{5}+\\dfrac{q}{60}+\\dfrac{q}{30}+\\dfrac{q}{21}=0$, so $q=50.4\\,\\mathrm{V}$.\" show=q\n#@ step \"Current runs $q\\to p$ through $1+20\\,\\Omega$: $\\dfrac{50.4}{21}=2.4\\,\\mathrm{A}$, against $i_o$: $i_o'''=-2.4\\,\\mathrm{A}$.\" show=p,eR1,eR2,eR3,eR4,eR5\n#@ view \"All three: add\"\n#@ straight off\n#@ node k 75 \"$k$: $75\\,\\mathrm{V}$\"\n#@ node p 40 \"$p$: $40\\,\\mathrm{V}$\"\n#@ node q 36 \"$q$: $36\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g5 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g6 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V k g \"$75\\,\\mathrm{V}$\" col=0 i=\"$7.8\\,\\mathrm{A}$\" to=k id=eV1\n#@ el R q k \"$5\\,\\Omega$: falls $39\\,\\mathrm{V}$\" col=1 i=\"$7.8\\,\\mathrm{A}$\" to=q id=eR4\n#@ el R q g2 \"$30\\,\\Omega$: falls $36\\,\\mathrm{V}$\" col=1 i=\"$1.2\\,\\mathrm{A}$\" to=g2 id=eR5\n#@ el I g3 p \"$6\\,\\mathrm{A}$\" col=2 i=\"$6\\,\\mathrm{A}$\" to=p id=eI1\n#@ el R p q \"$1\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=3 i=\"$4\\,\\mathrm{A}$\" to=q id=eR2\n#@ el R q g4 \"$60\\,\\Omega$: falls $36\\,\\mathrm{V}$\" col=3 i=\"$0.6\\,\\mathrm{A}$\" to=g4 id=eR3\n#@ el R p g5 \"$20\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=4 i=\"$2\\,\\mathrm{A}$\" to=g5 id=eR1\n#@ el I q g6 \"$10\\,\\mathrm{A}$\" col=5 i=\"$10\\,\\mathrm{A}$\" to=g6 id=eI2\n#@ step \"Ground the bottom wire. Add: $i_o=4.8+1.6-2.4=4\\,\\mathrm{A}$. Check: $p=40$, $q=36\\,\\mathrm{V}$, the $1\\,\\Omega$ falls $4\\,\\mathrm{V}$ ✓.\" show=p,q,eR2\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "$6\\,\\mathrm{A}$ alone.",
+    "latex": "i_o'=6\\cdot\\frac{20}{20+(1+4)}=4.8\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "$10\\,\\mathrm{A}$ alone.",
+    "latex": "i_o''=10\\cdot\\frac{4}{4+21}=1.6\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "$75\\,\\mathrm{V}$ alone.",
+    "latex": "\\frac{v-75}{5}+\\frac{v}{60}+\\frac{v}{30}+\\frac{v}{21}=0\\Rightarrow v=50.4,\\;\\;i_o'''=-\\frac{50.4}{21}=-2.4\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Add.",
+    "latex": "i_o=4.8+1.6-2.4=4\\,\\mathrm{A}"
+   }
+  ],
+  "answer": "$i_o=4\\,\\mathrm{A}$ ($4.8$, $1.6$, $-2.4$).",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "08f8634b-5721-46a7-80a8-660010b60390"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "caa706ac-8b18-5e39-a863-440ae75d1b74",
+  "title": "Try it 6 · Adding one more source (Textbook P4.96)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Before the $5\\,\\mathrm{mA}$ source is attached between $a$ and $b$, $i_o=3.5\\,\\mathrm{mA}$. **(a)** Use superposition to find $i_o$ after it is attached. **(b)** Check with all three sources on.\n\n```schematic\nV1 0,3 -> 0,0 \"$8\\,\\mathrm{V}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$5\\,\\mathrm{k\\Omega}$\"\nR2 3,3 -> 6,3 \"$2\\,\\mathrm{k\\Omega}$\"\nR3 6,3 -> 6,0 \"$6\\,\\mathrm{k\\Omega}$\" i=\"$i_o$\"\nwire 6,3 -> 9,3\nI1 9,0 -> 9,3 \"$10\\,\\mathrm{mA}$\"\nwire 3,3 -> 3,5\nI2 6,5 -> 3,5 \"$5\\,\\mathrm{mA}$\"\nwire 6,5 -> 6,3\nwire 0,0 -> 9,0\nlabel 3,3 \"$a$\" below\nlabel 6,3 \"$b$\" below\nground 0,0\n#@ spoiler\n#@ view \"Before: 8 V and 10 mA\"\n#@ straight off\n#@ node b 21 \"$b$: $21\\,\\mathrm{V}$\"\n#@ node a 8 \"$a$: $8\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$8\\,\\mathrm{V}$\" col=0 i=\"$4.9\\,\\mathrm{mA}$\" to=g id=eV1\n#@ el R a g2 \"$5\\,\\mathrm{k\\Omega}$: falls $8\\,\\mathrm{V}$\" col=1 i=\"$1.6\\,\\mathrm{mA}$\" to=g2 id=eR1\n#@ el R a b \"$2\\,\\mathrm{k\\Omega}$: falls $13\\,\\mathrm{V}$\" col=2 i=\"$6.5\\,\\mathrm{mA}$\" to=a id=eR2\n#@ el R b g3 \"$6\\,\\mathrm{k\\Omega}$: falls $21\\,\\mathrm{V}$\" col=3 i=\"$3.5\\,\\mathrm{mA}$\" to=g3 id=eR3\n#@ el I g4 b \"$10\\,\\mathrm{mA}$\" col=4 i=\"$10\\,\\mathrm{mA}$\" to=b id=eI1\n#@ step \"Ground the bottom wire. The $8\\,\\mathrm{V}$ source fixes $a=8\\,\\mathrm{V}$.\"\n#@ step \"KCL at $b$: $\\dfrac{b-8}{2}+\\dfrac{b}{6}=10$, so $b=21\\,\\mathrm{V}$ and $i_o=\\dfrac{21}{6}=3.5\\,\\mathrm{mA}$ ✓ (given).\" show=b,eR2,eR3,eI1\n#@ view \"5 mA alone\"\n#@ straight off\n#@ node a 7.5 \"$a$ = bottom: $7.5\\,\\mathrm{V}$\"\n#@ node z0 7.5 \"$a$ = bottom: $7.5\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el I g a \"$5\\,\\mathrm{mA}$\" col=0 i=\"$5\\,\\mathrm{mA}$\" to=a id=eI2\n#@ el R a g2 \"$2\\,\\mathrm{k\\Omega}$: falls $7.5\\,\\mathrm{V}$\" col=1 i=\"$3.75\\,\\mathrm{mA}$\" to=g2 id=eR2\n#@ el W a z0 \"$8\\,\\mathrm{V}$ off: a wire\" col=1 i=\"$1.25\\,\\mathrm{mA}$\" to=z0 id=eV1\n#@ el R g3 z0 \"$6\\,\\mathrm{k\\Omega}$: falls $7.5\\,\\mathrm{V}$\" col=2 i=\"$1.25\\,\\mathrm{mA}$\" to=g3 id=eR3\n#@ step \"Ground $b$, the lowest: the new pump moves $5\\,\\mathrm{mA}$ from $b$ to $a$.\"\n#@ step \"From $b$ the pump sees $2\\parallel6=1.5\\,\\mathrm{k\\Omega}$: $b$ sits $7.5\\,\\mathrm{V}$ below the bottom wire, so $i_o''=-\\dfrac{7.5}{6}=-1.25\\,\\mathrm{mA}$.\" show=a,z0,eR2,eR3,eV1\n#@ note \"$8\\,\\mathrm{V}$ → wire, so the $5\\,\\mathrm{k\\Omega}$ has no fall (left out); $10\\,\\mathrm{mA}$ → gap.\"\n#@ view \"All three\"\n#@ straight off\n#@ node b 13.5 \"$b$: $13.5\\,\\mathrm{V}$\"\n#@ node a 8 \"$a$: $8\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$8\\,\\mathrm{V}$\" col=0 i=\"$6.15\\,\\mathrm{mA}$\" to=g id=eV1\n#@ el R a g2 \"$5\\,\\mathrm{k\\Omega}$: falls $8\\,\\mathrm{V}$\" col=1 i=\"$1.6\\,\\mathrm{mA}$\" to=g2 id=eR1\n#@ el R a b \"$2\\,\\mathrm{k\\Omega}$: falls $5.5\\,\\mathrm{V}$\" col=2 i=\"$2.75\\,\\mathrm{mA}$\" to=a id=eR2\n#@ el I b a \"$5\\,\\mathrm{mA}$\" col=3 i=\"$5\\,\\mathrm{mA}$\" to=a id=eI2\n#@ el R b g3 \"$6\\,\\mathrm{k\\Omega}$: falls $13.5\\,\\mathrm{V}$\" col=4 i=\"$2.25\\,\\mathrm{mA}$\" to=g3 id=eR3\n#@ el I g4 b \"$10\\,\\mathrm{mA}$\" col=5 i=\"$10\\,\\mathrm{mA}$\" to=b id=eI1\n#@ step \"Ground the bottom wire. Add: $i_o=3.5-1.25=2.25\\,\\mathrm{mA}$. Check: $b=13.5\\,\\mathrm{V}$, $\\dfrac{13.5}{6}=2.25\\,\\mathrm{mA}$ ✓. The new pump carries its current **down** from $b$ to $a$: it absorbs.\" show=b,eR3,eR2,eI2\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "The new source alone ($8\\,\\mathrm{V}$ shorted, $10\\,\\mathrm{mA}$ open).",
+    "latex": "i_o''=-5\\cdot\\frac{2}{2+6}=-1.25\\,\\mathrm{mA}"
+   },
+   {
+    "explanation": "Add to the old answer.",
+    "latex": "i_o=3.5-1.25=2.25\\,\\mathrm{mA}"
+   },
+   {
+    "explanation": "Check: KCL at $b$ with all three.",
+    "latex": "\\frac{v_b-8}{2}+\\frac{v_b}{6}+5=10\\;\\Rightarrow\\;v_b=13.5\\,\\mathrm{V},\\;\\;i_o=2.25\\,\\mathrm{mA}"
+   }
+  ],
+  "answer": "$i_o=2.25\\,\\mathrm{mA}$",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "08f8634b-5721-46a7-80a8-660010b60390"
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "a25302f2-9712-5cb8-90a5-15cec0e0dd39",
+  "level": 1,
+  "text": "Practice problems",
+  "citations": []
+ },
+ {
+  "type": "paragraph",
+  "id": "b193c3e8-7a00-5aee-b2d7-e2e5563555e7",
+  "text": "Exam-style, each mixing topics. Give each a real try before opening the solution, then check your picture against the height view.",
+  "citations": []
+ },
+ {
+  "type": "practice_problem",
+  "id": "6a787f53-1783-5ba5-90e0-3fc3789c1e3b",
+  "title": "Assessment AP 4.16 · Thévenin with a bypass",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "Find the Thévenin equivalent at $a$–$b$.\n\n```schematic\nV1 0,3 -> 0,0 \"$72\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$5\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$20\\,\\Omega$\"\nR3 3,3 -> 6,3 \"$8\\,\\Omega$\"\nwire 0,3 -> 0,6 -> 2,6\nR4 2,6 -> 5,6 \"$12\\,\\Omega$\"\nwire 5,6 -> 6,6 -> 6,3\nwire 6,3 -> 8,3\nwire 0,0 -> 8,0\nterminal 8,3 \"$a$\" right\nterminal 8,0 \"$b$\" right\nlabel 3,3 \"$v_1$\" below\nground 0,0\n#@ spoiler\n#@ view \"Open\"\n#@ straight off\n#@ node s 72 \"source top: $72\\,\\mathrm{V}$\"\n#@ node a 64.8 \"$a$: $64.8\\,\\mathrm{V}$\" terminal\n#@ node n 60 \"$v_1$: $60\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$72\\,\\mathrm{V}$\" col=0 i=\"$3\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s n \"$5\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=1 i=\"$2.4\\,\\mathrm{A}$\" to=n id=eR1\n#@ el R n g2 \"$20\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=1 i=\"$3\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R s a \"$12\\,\\Omega$: falls $7.2\\,\\mathrm{V}$\" col=2 i=\"$0.6\\,\\mathrm{A}$\" to=a id=eR4\n#@ el R n a \"$8\\,\\Omega$: falls $4.8\\,\\mathrm{V}$\" col=3 i=\"$0.6\\,\\mathrm{A}$\" to=n id=eR3\n#@ step \"Ground $b$. The source fixes its top at $72\\,\\mathrm{V}$.\"\n#@ step \"Two unknowns, $v_1$ and $a$. KCL: $\\dfrac{v_1-72}{5}+\\dfrac{v_1}{20}+\\dfrac{v_1-a}{8}=0$ and $\\dfrac{a-v_1}{8}+\\dfrac{a-72}{12}=0$. So $v_1=60$, $a=64.8\\,\\mathrm{V}=V_{\\mathrm{Th}}$.\" show=n,a\n#@ step \"$0.6\\,\\mathrm{A}$ comes down the $12\\,\\Omega$ bypass and falls on through the $8\\,\\Omega$ to $v_1$.\" show=eR1,eR2,eR3,eR4,eV1\n#@ view \"Sources off, push 1 A\"\n#@ straight off\n#@ node a 6 \"$a$: $6\\,\\mathrm{V}$\" terminal\n#@ node n 2 \"$v_1$: $2\\,\\mathrm{V}$\"\n#@ node s 0 \"source top = $b$: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"source top = $b$: $0\\,\\mathrm{V}$\" ground\n#@ el R s a \"$12\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=0 i=\"$0.5\\,\\mathrm{A}$\" to=s id=eR4\n#@ el W s g \"$72\\,\\mathrm{V}$ off: a wire\" col=0 i=\"$0.9\\,\\mathrm{A}$\" to=g id=eV1\n#@ el R n a \"$8\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=1 i=\"$0.5\\,\\mathrm{A}$\" to=n id=eR3\n#@ el R s n \"$5\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=2 i=\"$0.4\\,\\mathrm{A}$\" to=s id=eR1\n#@ el R n g2 \"$20\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=3 i=\"$0.1\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el I g3 a \"test $1\\,\\mathrm{A}$\" col=4 i=\"$1\\,\\mathrm{A}$\" to=a id=eIT\n#@ step \"Same ground; $72\\,\\mathrm{V}$ → wire. Push $1\\,\\mathrm{A}$ into $a$: $12\\,\\Omega$ straight down, or $8+(5\\parallel20)=12\\,\\Omega$. Half each.\" show=eR3,eR4,eR1,eR2,eV1\n#@ step \"$a=(0.5)(12)=6\\,\\mathrm{V}$: $R_{\\mathrm{Th}}=6\\,\\Omega$.\" show=a,n,eIT\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Sources off.",
+    "latex": "R_{\\mathrm{Th}}=12\\parallel\\big((5\\parallel20)+8\\big)=12\\parallel12=6\\,\\mathrm{\\Omega}"
+   },
+   {
+    "explanation": "Open: KCL at $v_1$ and $a$.",
+    "latex": "\\begin{aligned}\\tfrac{v_1-72}{5}+\\tfrac{v_1}{20}+\\tfrac{v_1-v_a}{8}&=0\\\\\\tfrac{v_a-v_1}{8}+\\tfrac{v_a-72}{12}&=0\\end{aligned}"
+   },
+   {
+    "explanation": "Solve.",
+    "latex": "v_1=60\\,\\mathrm{V},\\qquad V_{\\mathrm{Th}}=v_a=64.8\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$V_{\\mathrm{Th}}=64.8\\,\\mathrm{V}$, $R_{\\mathrm{Th}}=6\\,\\Omega$",
+  "citations": [
+   {
+    "chunk_id": "3cd5f2a4-e171-47b0-85b3-23c63b510b6b",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "921d548c-0d13-50b4-ab91-53229c1f167b",
+  "title": "Textbook P4.93 · A hidden balanced bridge",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "Use superposition to find $i_o$, the current in the $45\\,\\mathrm{V}$ source.\n\n```schematic\nV1 0,5 -> 0,2 \"$45\\,\\mathrm{V}$\" i_rev=\"$i_o$\"\nwire 0,5 -> 1,5\nR1 1,5 -> 4,5 \"$5\\,\\Omega$\"\nR2 4,5 -> 7,5 \"$10\\,\\Omega$\"\nwire 7,5 -> 8,5\nV2 8,5 -> 8,2 \"$10\\,\\mathrm{V}$\"\nR3 4,5 -> 4,2 \"$40\\,\\Omega$\"\nwire 0,2 -> 1,2\nR4 1,2 -> 4,2 \"$15\\,\\Omega$\"\nR5 4,2 -> 7,2 \"$30\\,\\Omega$\"\nwire 7,2 -> 8,2\nwire 0,2 -> 0,0 -> 3,0\nI1 5,0 -> 3,0 \"$8\\,\\mathrm{A}$\"\nwire 5,0 -> 8,0 -> 8,2\nlabel 1,5 \"$p$\" above\nlabel 4,5 \"$m$\" above\nlabel 7,5 \"$n$\" above\nlabel 4,2 \"$k$\" below\nlabel 8,2 \"$r$\" right\nground 0,0\n#@ spoiler\n#@ view \"45 V alone\"\n#@ straight off\n#@ node p 45 \"$p$: $45\\,\\mathrm{V}$\"\n#@ node m 39.37 \"$m$: $39.37\\,\\mathrm{V}$\"\n#@ node n 33.75 \"$n$ = $r$: $33.75\\,\\mathrm{V}$\"\n#@ node r 33.75 \"$n$ = $r$: $33.75\\,\\mathrm{V}$\"\n#@ node k 16.88 \"$k$: $16.88\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V p g \"$45\\,\\mathrm{V}$\" col=0 i=\"$1.125\\,\\mathrm{A}$\" to=p id=eV1\n#@ el R p m \"$5\\,\\Omega$: falls $5.63\\,\\mathrm{V}$\" col=1 i=\"$1.125\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m n \"$10\\,\\Omega$: falls $5.62\\,\\mathrm{V}$\" col=1 i=\"$0.5625\\,\\mathrm{A}$\" to=n id=eR2\n#@ el W n r \"$10\\,\\mathrm{V}$ off: a wire\" col=2 i=\"$0.5625\\,\\mathrm{A}$\" to=r id=eV2\n#@ el R k r \"$30\\,\\Omega$: falls $16.88\\,\\mathrm{V}$\" col=4 i=\"$0.5625\\,\\mathrm{A}$\" to=k id=eR5\n#@ el R g2 k \"$15\\,\\Omega$: falls $16.88\\,\\mathrm{V}$\" col=4 i=\"$1.125\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ el R m k \"$40\\,\\Omega$: falls $22.5\\,\\mathrm{V}$\" col=5 i=\"$0.5625\\,\\mathrm{A}$\" to=k id=eR3\n#@ step \"Ground the bottom-left wire. $10\\,\\mathrm{V}$ → wire, $8\\,\\mathrm{A}$ → gap.\"\n#@ step \"$10+30=40\\,\\Omega$ beside $40\\,\\Omega$: $20\\,\\Omega$; plus $5+15$: $40\\,\\Omega$. So $i_o'=\\dfrac{45}{40}=1.125\\,\\mathrm{A}$.\" show=m,n,r,k,eV1,eR1,eR2,eR3,eR4,eR5,eV2\n#@ view \"10 V alone\"\n#@ straight off\n#@ node n 10 \"$n$: $10\\,\\mathrm{V}$\"\n#@ node m 8.12 \"$m$: $8.12\\,\\mathrm{V}$\"\n#@ node p 7.5 \"$p$ = bottom: $7.5\\,\\mathrm{V}$\"\n#@ node z0 7.5 \"$p$ = bottom: $7.5\\,\\mathrm{V}$\"\n#@ node k 5.62 \"$k$: $5.62\\,\\mathrm{V}$\"\n#@ node g 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ el V n g \"$10\\,\\mathrm{V}$\" col=0 i=\"$0.1875\\,\\mathrm{A}$\" to=n id=eV2\n#@ el R m n \"$10\\,\\Omega$: falls $1.88\\,\\mathrm{V}$\" col=1 i=\"$0.1875\\,\\mathrm{A}$\" to=m id=eR2\n#@ el R p m \"$5\\,\\Omega$: falls $0.625\\,\\mathrm{V}$\" col=1 i=\"$0.125\\,\\mathrm{A}$\" to=p id=eR1\n#@ el W p z0 \"$45\\,\\mathrm{V}$ off: a wire\" col=2 i=\"$0.125\\,\\mathrm{A}$\" to=z0 id=eV1\n#@ el R z0 k \"$15\\,\\Omega$: falls $1.88\\,\\mathrm{V}$\" col=4 i=\"$0.125\\,\\mathrm{A}$\" to=k id=eR4\n#@ el R k g2 \"$30\\,\\Omega$: falls $5.62\\,\\mathrm{V}$\" col=4 i=\"$0.1875\\,\\mathrm{A}$\" to=g2 id=eR5\n#@ el R m k \"$40\\,\\Omega$: falls $2.5\\,\\mathrm{V}$\" col=5 i=\"$0.0625\\,\\mathrm{A}$\" to=k id=eR3\n#@ step \"Ground $r$, the lowest. $45\\,\\mathrm{V}$ → wire, $8\\,\\mathrm{A}$ → gap.\"\n#@ step \"The $10\\,\\mathrm{V}$ source sees $10+\\big(40\\parallel(5+15)\\big)+30=53.3\\,\\Omega$: $0.1875\\,\\mathrm{A}$. Its share through the $5\\,\\Omega$, $0.125\\,\\mathrm{A}$, flows **down** the shorted $45\\,\\mathrm{V}$ spot: $i_o''=-0.125\\,\\mathrm{A}$.\" show=m,k,p,eV2,eR1,eR2,eR3,eR4,eR5,eV1\n#@ view \"8 A alone\"\n#@ straight off\n#@ node p 90 \"$p$ = bottom: $90\\,\\mathrm{V}$\"\n#@ node z0 90 \"$p$ = bottom: $90\\,\\mathrm{V}$\"\n#@ node m 60 \"$m$ = $k$: $60\\,\\mathrm{V}$\"\n#@ node k 60 \"$m$ = $k$: $60\\,\\mathrm{V}$\"\n#@ node n 0 \"$n$ = $r$: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$n$ = $r$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$n$ = $r$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$n$ = $r$: $0\\,\\mathrm{V}$\" ground\n#@ el R p m \"$5\\,\\Omega$: falls $30\\,\\mathrm{V}$\" col=1 i=\"$6\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m n \"$10\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=1 i=\"$6\\,\\mathrm{A}$\" to=n id=eR2\n#@ el R z0 k \"$15\\,\\Omega$: falls $30\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=k id=eR4\n#@ el R k g \"$30\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=g id=eR5\n#@ el W p z0 \"$45\\,\\mathrm{V}$ off: a wire\" col=1 i=\"$6\\,\\mathrm{A}$\" to=p id=eV1\n#@ el R m k \"$40\\,\\Omega$: no fall\" col=1 id=eR3\n#@ el W n g2 \"$10\\,\\mathrm{V}$ off: a wire\" col=1 i=\"$6\\,\\mathrm{A}$\" to=g2 id=eV2\n#@ el I g3 z0 \"$8\\,\\mathrm{A}$\" col=3 i=\"$8\\,\\mathrm{A}$\" to=z0 id=eI1\n#@ step \"Ground $r$ (and $n$: the $10\\,\\mathrm{V}$ is now a wire). Both voltage sources flatten.\"\n#@ step \"Bridge check: $\\dfrac{10}{5}=\\dfrac{30}{15}$, so $m$ and $k$ sit at **one height**: the $40\\,\\Omega$ lies flat, no current.\" show=m,k,eR3\n#@ step \"The $8\\,\\mathrm{A}$ splits: $5+10=15\\,\\Omega$ vs $15+30=45\\,\\Omega$: $6\\,\\mathrm{A}$ and $2\\,\\mathrm{A}$. The $6\\,\\mathrm{A}$ comes up through the $45\\,\\mathrm{V}$ spot: $i_o'''=6\\,\\mathrm{A}$.\" show=p,eR1,eR2,eR4,eR5,eV1,eV2\n#@ view \"All three: add\"\n#@ straight off\n#@ node p 108.75 \"$p$: $108.75\\,\\mathrm{V}$\"\n#@ node m 73.75 \"$m$: $73.75\\,\\mathrm{V}$\"\n#@ node z0 63.75 \"bottom: $63.75\\,\\mathrm{V}$\"\n#@ node k 48.75 \"$k$: $48.75\\,\\mathrm{V}$\"\n#@ node n 10 \"$n$: $10\\,\\mathrm{V}$\"\n#@ node g 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ el V p z0 \"$45\\,\\mathrm{V}$\" col=0 i=\"$7\\,\\mathrm{A}$\" to=p id=eV1\n#@ el I g z0 \"$8\\,\\mathrm{A}$\" col=1 i=\"$8\\,\\mathrm{A}$\" to=z0 id=eI1\n#@ el R z0 k \"$15\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=k id=eR4\n#@ el R k g2 \"$30\\,\\Omega$: falls $48.75\\,\\mathrm{V}$\" col=2 i=\"$1.625\\,\\mathrm{A}$\" to=g2 id=eR5\n#@ el R m k \"$40\\,\\Omega$: falls $25\\,\\mathrm{V}$\" col=3 i=\"$0.625\\,\\mathrm{A}$\" to=k id=eR3\n#@ el R p m \"$5\\,\\Omega$: falls $35\\,\\mathrm{V}$\" col=4 i=\"$7\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m n \"$10\\,\\Omega$: falls $63.75\\,\\mathrm{V}$\" col=4 i=\"$6.375\\,\\mathrm{A}$\" to=n id=eR2\n#@ el V n g3 \"$10\\,\\mathrm{V}$\" col=4 i=\"$6.375\\,\\mathrm{A}$\" to=g3 id=eV2\n#@ step \"Ground $r$ again (the lowest). Add: $i_o=1.125-0.125+6=7\\,\\mathrm{A}$, climbing through the $45\\,\\mathrm{V}$ source.\" show=eV1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "$45\\,\\mathrm{V}$ alone.",
+    "latex": "i_o'=\\frac{45}{5+(40\\parallel40)+15}=1.125\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "$10\\,\\mathrm{V}$ alone.",
+    "latex": "i_{10}=\\frac{10}{53.33}=0.1875\\,\\mathrm{A},\\quad i_o''=-0.1875\\cdot\\frac{40}{60}=-0.125\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "$8\\,\\mathrm{A}$ alone: balanced bridge ($\\tfrac{10}{5}=\\tfrac{30}{15}$), no current in the $40\\,\\Omega$.",
+    "latex": "i_o'''=8\\cdot\\frac{45}{15+45}=6\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Add.",
+    "latex": "i_o=1.125-0.125+6=7\\,\\mathrm{A}"
+   }
+  ],
+  "answer": "$i_o=7\\,\\mathrm{A}$ ($1.125$, $-0.125$, $6$).",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "08f8634b-5721-46a7-80a8-660010b60390"
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "9a861d45-f815-508b-9bde-5a87532da98f",
+  "title": "Assessment AP 4.21 + P4.86 · Matched, and how efficient?",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "$R_o$ is set for maximum power; $v_\\phi$ is the voltage across the $4\\,\\Omega$ in series with the $20\\,\\mathrm{V}$ source. **(a)** Find $R_o$. **(b)** Find $p_{\\max}$. **(c)** (P4.86) What percentage of the power developed reaches $R_o$?\n\n```schematic\nV1 0,4 -> 0,0 \"$100\\,\\mathrm{V}$\"\nR1 0,4 -> 3,4 \"$4\\,\\Omega$\"\nR2 3,4 -> 6,4 \"$4\\,\\Omega$\"\nR3 3,4 -> 3,2 \"$4\\,\\Omega$\" v=\"$v_\\phi$\"\nV2 3,2 -> 3,0 \"$20\\,\\mathrm{V}$\"\nwire 0,4 -> 0,7\nE1 3,7 -> 0,7 \"$v_\\phi$\"\nR4 3,7 -> 6,7 \"$4\\,\\Omega$\"\nwire 6,7 -> 6,4\nwire 6,4 -> 8,4\nR5 8,4 -> 8,0 \"$R_o$\"\nwire 0,0 -> 8,0\nlabel 3,4 \"$c$\" above\nlabel 3,7 \"$t$\" above\nlabel 3,2 \"$d$\" right\nlabel 8,4 \"$a$\" above\nground 0,0\n#@ spoiler\n#@ view \"Open\"\n#@ straight off\n#@ node t 160 \"diamond +: $160\\,\\mathrm{V}$\"\n#@ node a 120 \"$a$: $120\\,\\mathrm{V}$\" terminal\n#@ node s 100 \"100 V top: $100\\,\\mathrm{V}$\"\n#@ node c 80 \"$c$: $80\\,\\mathrm{V}$\"\n#@ node d 20 \"20 V top: $20\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$100\\,\\mathrm{V}$\" col=0 i=\"$15\\,\\mathrm{A}$\" to=s id=eV1\n#@ el E t s \"$v_\\phi$: $60\\,\\mathrm{V}$\" col=0 i=\"$10\\,\\mathrm{A}$\" to=t id=eE1\n#@ el R s c \"$4\\,\\Omega$: falls $20\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{A}$\" to=c id=eR1\n#@ el R t a \"$4\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=2 i=\"$10\\,\\mathrm{A}$\" to=a id=eR4\n#@ el R c a \"$4\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=2 i=\"$10\\,\\mathrm{A}$\" to=c id=eR2\n#@ el R c d \"$4\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=3 i=\"$15\\,\\mathrm{A}$\" to=d id=eR3 plus=c v=\"$v_\\phi$\"\n#@ el V d g2 \"$20\\,\\mathrm{V}$\" col=3 i=\"$15\\,\\mathrm{A}$\" to=g2 id=eV2\n#@ step \"Ground $b$. The source fixes $100\\,\\mathrm{V}$; the rod $v_\\phi=c-20$ puts the diamond's top at $80+c$.\"\n#@ step \"Open: KCL at $a$ gives $a=40+c$; KCL at $c$ gives $c=80$. So $a=120\\,\\mathrm{V}=V_{\\mathrm{Th}}$.\" show=c,a,t\n#@ step \"Currents = fall ÷ R. The $20\\,\\mathrm{V}$ source carries $15\\,\\mathrm{A}$ **down**: it absorbs.\" show=eR1,eR2,eR3,eR4,eV1,eV2,eE1\n#@ view \"Short\"\n#@ straight off\n#@ node t 120 \"diamond +: $120\\,\\mathrm{V}$\"\n#@ node s 100 \"100 V top: $100\\,\\mathrm{V}$\"\n#@ node c 40 \"$c$: $40\\,\\mathrm{V}$\"\n#@ node d 20 \"20 V top: $20\\,\\mathrm{V}$\"\n#@ node a 0 \"$a$ = $b$: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$a$ = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$a$ = $b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$a$ = $b$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$100\\,\\mathrm{V}$\" col=0 i=\"$45\\,\\mathrm{A}$\" to=s id=eV1\n#@ el E t s \"$v_\\phi$: $20\\,\\mathrm{V}$\" col=0 i=\"$30\\,\\mathrm{A}$\" to=t id=eE1\n#@ el R s c \"$4\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=1 i=\"$15\\,\\mathrm{A}$\" to=c id=eR1\n#@ el R c a \"$4\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=2 i=\"$10\\,\\mathrm{A}$\" to=a id=eR2\n#@ el R c d \"$4\\,\\Omega$: falls $20\\,\\mathrm{V}$\" col=3 i=\"$5\\,\\mathrm{A}$\" to=d id=eR3 plus=c v=\"$v_\\phi$\"\n#@ el V d g2 \"$20\\,\\mathrm{V}$\" col=3 i=\"$5\\,\\mathrm{A}$\" to=g2 id=eV2\n#@ el R t a \"$4\\,\\Omega$: falls $120\\,\\mathrm{V}$\" col=4 i=\"$30\\,\\mathrm{A}$\" to=a id=eR4\n#@ el W a g3 \"short: no step\" col=4 i=\"$40\\,\\mathrm{A}$\" to=g3 id=eSC\n#@ step \"Same ground; $a$ pinned to $b$. KCL at $c$: $c=40\\,\\mathrm{V}$, so the diamond's top is $120\\,\\mathrm{V}$.\" show=c,t\n#@ step \"Into the short: $\\dfrac{120}{4}+\\dfrac{40}{4}=40\\,\\mathrm{A}=I_N$. So $R_{\\mathrm{Th}}=\\dfrac{120}{40}=3\\,\\Omega$.\" show=eR4,eR2,eSC,eR1,eR3,eV1,eV2,eE1\n#@ view \"Matched: 3 Ω\"\n#@ straight off\n#@ node t 140 \"diamond +: $140\\,\\mathrm{V}$\"\n#@ node s 100 \"100 V top: $100\\,\\mathrm{V}$\"\n#@ node a 60 \"$a$ = $c$: $60\\,\\mathrm{V}$\"\n#@ node c 60 \"$a$ = $c$: $60\\,\\mathrm{V}$\"\n#@ node d 20 \"20 V top: $20\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$100\\,\\mathrm{V}$\" col=0 i=\"$30\\,\\mathrm{A}$\" to=s id=eV1\n#@ el E t s \"$v_\\phi$: $40\\,\\mathrm{V}$\" col=0 i=\"$20\\,\\mathrm{A}$\" to=t id=eE1\n#@ el R s c \"$4\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=1 i=\"$10\\,\\mathrm{A}$\" to=c id=eR1\n#@ el R c d \"$4\\,\\Omega$: falls $40\\,\\mathrm{V}$\" col=1 i=\"$10\\,\\mathrm{A}$\" to=d id=eR3 plus=c v=\"$v_\\phi$\"\n#@ el V d g2 \"$20\\,\\mathrm{V}$\" col=1 i=\"$10\\,\\mathrm{A}$\" to=g2 id=eV2\n#@ el R c a \"$4\\,\\Omega$: no fall\" col=1 id=eR2\n#@ el R t a \"$4\\,\\Omega$: falls $80\\,\\mathrm{V}$\" col=2 i=\"$20\\,\\mathrm{A}$\" to=a id=eR4\n#@ el R a g3 \"$3\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=2 i=\"$20\\,\\mathrm{A}$\" to=g3 id=eR5\n#@ step \"Same ground. Matched: $a$ sits at half the open height, $60\\,\\mathrm{V}$. $p_{\\max}=\\dfrac{60^2}{3}=1200\\,\\mathrm{W}$.\" show=a,eR5\n#@ step \"Note $c$ is also $60\\,\\mathrm{V}$: the $4\\,\\Omega$ between $c$ and $a$ lies flat.\" show=c,t,eR2\n#@ step \"Climbs: the $100\\,\\mathrm{V}$ source lifts $30\\,\\mathrm{A}$ ($3000\\,\\mathrm{W}$), the diamond $20\\,\\mathrm{A}$ through $40\\,\\mathrm{V}$ ($800\\,\\mathrm{W}$). The $20\\,\\mathrm{V}$ source absorbs $200\\,\\mathrm{W}$. Load share: $\\dfrac{1200}{3800}=31.6\\%$.\" show=eR1,eR3,eR4,eV1,eV2,eE1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Open: $v_\\phi=v_c-20$, diamond top $=80+v_c$; KCL at $a$, then $c$.",
+    "latex": "v_a=40+v_c,\\qquad v_c=80\\;\\Rightarrow\\;V_{\\mathrm{Th}}=120\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Short: KCL at $c$.",
+    "latex": "v_c=40\\,\\mathrm{V},\\qquad I_N=\\frac{120}{4}+\\frac{40}{4}=40\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Match.",
+    "latex": "R_o=R_{\\mathrm{Th}}=\\frac{120}{40}=3\\,\\Omega,\\qquad p_{\\max}=\\frac{120^2}{4(3)}=1200\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "Back to the original with $R_o=3\\,\\Omega$.",
+    "latex": "\\eta=\\frac{1200}{100(30)+40(20)}=\\frac{1200}{3800}=31.6\\%"
+   }
+  ],
+  "answer": "**(a)** $3\\,\\Omega$ **(b)** $1200\\,\\mathrm{W}$ **(c)** $31.6\\%$",
+  "citations": [
+   {
+    "chunk_id": "b0235d23-0c76-4c5a-a836-0e357eaa83a0",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   },
+   {
+    "chunk_id": "5dd7f364-970c-4123-bcdc-27d3503702c9",
+    "source_id": "3b287f2d-b408-41eb-a523-b299688ff303",
+    "version": 1
+   },
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "214ce707-5384-4d62-a006-74f1460864bd"
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "756ea6c1-e275-5541-9f8c-32c8c5a5792a",
+  "level": 1,
+  "text": "Summary: Week 5 in one read",
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "53ad22a8-2838-5057-9235-a6e08ece543f",
+  "tone": "tip",
+  "text": "Same picture: **voltage is height**, and every circuit seen from $a$–$b$ is one step plus one slope.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "2b8bb8a5-24da-51d4-a68c-68dd853778b2",
+  "level": 2,
+  "text": "A · Dependent sources: use a test source",
+  "citations": []
+ },
+ {
+  "type": "list",
+  "id": "3d3966d9-47a4-5a7e-8413-9c58462bf123",
+  "items": [
+   "Independent sources off, dependent sources **on**. Push $1\\,\\mathrm{A}$ in: $a$'s height $=R_{\\mathrm{Th}}$.",
+   "No independent source → $V_{\\mathrm{Th}}=0$. $a$ rises when you pull current out → $R_{\\mathrm{Th}}<0$."
+  ],
+  "ordered": false,
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "492f4087-4e68-5359-ab1a-83b682e9e0d4",
+  "title": "A1 · A diamond lowers the climb",
+  "prompt": "Find $R_{\\mathrm{Th}}$ at $a$–$b$. The diamond draws $\\tfrac{v}{3}$ from $a$ to $b$.\n\n```schematic\nR1 0,3 -> 0,0 \"$6\\,\\Omega$\" v=\"$v$\"\nwire 0,3 -> 3,3\nG1 3,3 -> 3,0 \"$\\tfrac{v}{3}$\"\nwire 0,0 -> 3,0\nwire 3,3 -> 5,3\nwire 3,0 -> 5,0\nterminal 5,3 \"$a$\" right\nterminal 5,0 \"$b$\" right\nground 0,0\n#@ inline\n#@ view \"Push 1 A\"\n#@ straight off\n#@ node a 2 \"$a$: $2\\,\\mathrm{V}$\" terminal\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el I g a \"test $1\\,\\mathrm{A}$\" col=0 i=\"$1\\,\\mathrm{A}$\" to=a id=eIT\n#@ el R a g2 \"$6\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=1 i=\"$0.3333\\,\\mathrm{A}$\" to=g2 id=eR1 plus=a v=\"$v$\"\n#@ el G a g3 \"$\\tfrac{v}{3}$: $0.6667\\,\\mathrm{A}$\" col=2 i=\"$0.6667\\,\\mathrm{A}$\" to=g3 id=eG1\n#@ step \"Ground $b$, push $1\\,\\mathrm{A}$ in. KCL: $1=\\dfrac{a}{6}+\\dfrac{a}{3}=\\dfrac{a}{2}$, so $a=2\\,\\mathrm{V}$: $R_{\\mathrm{Th}}=2\\,\\Omega$, not $6$.\" show=a,eR1,eG1\n```",
+  "steps": [
+   {
+    "explanation": "Test current.",
+    "latex": "1=\\frac{v}{6}+\\frac{v}{3}\\;\\Rightarrow\\;v=2\\,\\mathrm{V},\\quad R_{\\mathrm{Th}}=2\\,\\Omega"
+   }
+  ],
+  "answer": "$R_{\\mathrm{Th}}=2\\,\\Omega$",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "db4845df-6f51-549a-b374-070143b8966c",
+  "level": 2,
+  "text": "B · Maximum power: half height",
+  "citations": []
+ },
+ {
+  "type": "list",
+  "id": "60630935-09ff-5673-b77d-3acc4c6f9f42",
+  "items": [
+   "Best load sits at $\\dfrac{V_{\\mathrm{Th}}}{2}$ ($R_L=R_{\\mathrm{Th}}$): $p_{\\max}=\\dfrac{V_{\\mathrm{Th}}^2}{4R_{\\mathrm{Th}}}$.",
+   "Two loads with the same power sit at mirror heights around $\\dfrac{V_{\\mathrm{Th}}}{2}$."
+  ],
+  "ordered": false,
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "9bf433f2-9770-5a0a-a659-ee67f2bdcfc6",
+  "title": "B1 · Matched vs not",
+  "prompt": "$V_{\\mathrm{Th}}=20\\,\\mathrm{V}$, $R_{\\mathrm{Th}}=5\\,\\Omega$. Compare $R_L=5$, $20$ and $1.25\\,\\Omega$.\n\n```schematic\nV1 0,3 -> 0,0 \"$V_{\\mathrm{Th}}=20\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$R_{\\mathrm{Th}}=5\\,\\Omega$\"\nwire 3,3 -> 5,3\nRL 5,3 -> 5,0 \"$R_L$\" flip\nwire 5,0 -> 0,0\nterminal 3,3 \"$a$\" above\nground 0,0\n#@ inline\n#@ view \"Load 5 Ω (matched)\"\n#@ straight off\n#@ node t 20 \"top: $20\\,\\mathrm{V}$\"\n#@ node a 10 \"$a$: $10\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V t g \"$V_{\\mathrm{Th}}$: $20\\,\\mathrm{V}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=t id=eV1\n#@ el R t a \"$5\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$5\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=g2 id=eRL\n#@ step \"Ground $b$. $a$ at half height, $10\\,\\mathrm{V}$; $2\\,\\mathrm{A}$; $p=20\\,\\mathrm{W}$ (the most).\" show=a,eRL\n#@ view \"Load 20 Ω\"\n#@ straight off\n#@ node t 20 \"top: $20\\,\\mathrm{V}$\"\n#@ node a 16 \"$a$: $16\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V t g \"$V_{\\mathrm{Th}}$: $20\\,\\mathrm{V}$\" col=0 i=\"$0.8\\,\\mathrm{A}$\" to=t id=eV1\n#@ el R t a \"$5\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=1 i=\"$0.8\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$20\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=1 i=\"$0.8\\,\\mathrm{A}$\" to=g2 id=eRL\n#@ note \"$a=16\\,\\mathrm{V}$, $0.8\\,\\mathrm{A}$: $12.8\\,\\mathrm{W}$.\"\n#@ view \"Load 1.25 Ω\"\n#@ straight off\n#@ node t 20 \"top: $20\\,\\mathrm{V}$\"\n#@ node a 4 \"$a$: $4\\,\\mathrm{V}$\"\n#@ node g 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$b$: $0\\,\\mathrm{V}$\" ground\n#@ el V t g \"$V_{\\mathrm{Th}}$: $20\\,\\mathrm{V}$\" col=0 i=\"$3.2\\,\\mathrm{A}$\" to=t id=eV1\n#@ el R t a \"$5\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=1 i=\"$3.2\\,\\mathrm{A}$\" to=a id=eR1\n#@ el R a g2 \"$1.25\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=1 i=\"$3.2\\,\\mathrm{A}$\" to=g2 id=eRL\n#@ note \"$a=4\\,\\mathrm{V}$, $3.2\\,\\mathrm{A}$: also $12.8\\,\\mathrm{W}$. $4$ and $16$ mirror around $10$.\"\n```",
+  "steps": [
+   {
+    "explanation": "Power at height $h$.",
+    "latex": "p=h\\cdot\\frac{20-h}{5}:\\quad h=10\\to20\\,\\mathrm{W},\\quad h=4\\text{ or }16\\to12.8\\,\\mathrm{W}"
+   }
+  ],
+  "answer": "Matched: $20\\,\\mathrm{W}$; the other two: $12.8\\,\\mathrm{W}$ each.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "3ee85037-a34c-5ff8-8e9d-c0691d3a30a2",
+  "level": 2,
+  "text": "C · Superposition: add heights, not powers",
+  "citations": []
+ },
+ {
+  "type": "list",
+  "id": "93fe4d05-84be-5856-8836-531b67c9577c",
+  "items": [
+   "One picture per independent source (others: V → wire, I → gap). Dependent sources stay on.",
+   "Add voltages and currents; compute power once, from the sums."
+  ],
+  "ordered": false,
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "15e9445b-6da4-548f-8009-65fc39d5d14f",
+  "title": "C1 · Two pictures, one sum",
+  "prompt": "Find the height of $m$ by superposition.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$4\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$4\\,\\Omega$\" flip\nwire 3,3 -> 6,3\nI1 6,0 -> 6,3 \"$2\\,\\mathrm{A}$\" flip\nwire 6,0 -> 0,0\nlabel 3,3 \"$m$\" above\nground 0,0\n#@ inline\n#@ view \"12 V alone\"\n#@ straight off\n#@ node t 12 \"source top: $12\\,\\mathrm{V}$\"\n#@ node m 6 \"$m$: $6\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V t g \"$12\\,\\mathrm{V}$\" col=0 i=\"$1.5\\,\\mathrm{A}$\" to=t id=eV1\n#@ el R t m \"$4\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=1 i=\"$1.5\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m g2 \"$4\\,\\Omega$: falls $6\\,\\mathrm{V}$\" col=1 i=\"$1.5\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ step \"Ground the bottom wire. Pump off: a divider, $m'=6\\,\\mathrm{V}$.\" show=m,eR1,eR2\n#@ view \"2 A alone\"\n#@ straight off\n#@ node m 4 \"$m$: $4\\,\\mathrm{V}$\"\n#@ node t 0 \"source top = ground: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"source top = ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"source top = ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"source top = ground: $0\\,\\mathrm{V}$\" ground\n#@ el W t g \"$12\\,\\mathrm{V}$ off: a wire\" col=0 i=\"$1\\,\\mathrm{A}$\" to=g id=eV1\n#@ el R t m \"$4\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=t id=eR1\n#@ el R m g2 \"$4\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=2 i=\"$1\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el I g3 m \"$2\\,\\mathrm{A}$\" col=3 i=\"$2\\,\\mathrm{A}$\" to=m id=eI1\n#@ step \"Same ground. $12\\,\\mathrm{V}$ → wire. $2\\,\\mathrm{A}$ into $4\\parallel4=2\\,\\Omega$: $m''=4\\,\\mathrm{V}$.\" show=m,eR1,eR2\n#@ view \"Both: add\"\n#@ straight off\n#@ node t 12 \"source top: $12\\,\\mathrm{V}$\"\n#@ node m 10 \"$m$: $10\\,\\mathrm{V}$\"\n#@ node g 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"ground: $0\\,\\mathrm{V}$\" ground\n#@ el V t g \"$12\\,\\mathrm{V}$\" col=0 i=\"$0.5\\,\\mathrm{A}$\" to=t id=eV1\n#@ el R t m \"$4\\,\\Omega$: falls $2\\,\\mathrm{V}$\" col=1 i=\"$0.5\\,\\mathrm{A}$\" to=m id=eR1\n#@ el R m g2 \"$4\\,\\Omega$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$2.5\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el I g3 m \"$2\\,\\mathrm{A}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=m id=eI1\n#@ step \"Same ground. $m=6+4=10\\,\\mathrm{V}$. Power in the lower $4\\,\\Omega$: $\\dfrac{10^2}{4}=25\\,\\mathrm{W}$, not $9+4$.\" show=m,eR1,eR2\n```",
+  "steps": [
+   {
+    "explanation": "Add the heights.",
+    "latex": "m=6+4=10\\,\\mathrm{V},\\qquad p_{4\\Omega}=\\frac{10^2}{4}=25\\,\\mathrm{W}\\neq9+4"
+   }
+  ],
+  "answer": "$m=10\\,\\mathrm{V}$",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "f59f71cf-13a8-5de8-9787-1b7b7d03683d",
+  "level": 2,
+  "text": "Which part do I need? (practice problem map)",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "0d055f9e-a86b-5be1-9757-5afd8e7c3837",
+  "columns": [
+   "Problem",
+   "Use",
+   "First move"
+  ],
+  "rows": [
+   [
+    "Try its 1–2 · AP 4.19, P4.80",
+    "A",
+    "Keep the diamond; push $1\\,\\mathrm{A}$ into $a$."
+   ],
+   [
+    "Try its 3–4 · P4.84, P4.88",
+    "B",
+    "Fixed load → series $R=0$. Fixed power → $h(V_{\\mathrm{Th}}-h)=pR_{\\mathrm{Th}}$."
+   ],
+   [
+    "Try its 5–6 · P4.94, P4.96",
+    "C",
+    "One picture per source; add."
+   ],
+   [
+    "AP 4.16 · Thévenin with a bypass",
+    "Week 4 + A",
+    "Two KCLs for $V_{\\mathrm{Th}}$; sources off for $R_{\\mathrm{Th}}$."
+   ],
+   [
+    "P4.93 · A hidden balanced bridge",
+    "C",
+    "In the $8\\,\\mathrm{A}$ picture, check the bridge ratio first."
+   ],
+   [
+    "AP 4.21 + P4.86 · Matched, how efficient?",
+    "A, B",
+    "$V_{\\mathrm{Th}}$ and $I_N$ (diamond on); match; back to the original for efficiency."
+   ]
+  ],
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "9351e47b-a5f7-5c74-bf17-8151e3a8a799",
+  "tone": "warning",
+  "text": "**Traps.** (1) Never turn off a dependent source. (2) Max power: half of $V_{\\mathrm{Th}}$, not half the supply; and only when the **load** is the knob. (3) Never add powers. (4) Same reference directions in every superposition picture. (5) Efficiency comes from the original circuit, not the equivalent.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "925dd31a-e0fc-506a-9d8c-71d3508716cf",
+  "level": 2,
+  "text": "Formula sheet",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "0d0e9604-c3c9-57f3-b4d8-19dbfe147fcf",
+  "columns": [
+   "Result",
+   "Formula",
+   "In heights"
+  ],
+  "rows": [
+   [
+    "Test source",
+    "$R_{\\mathrm{Th}}=\\dfrac{v_T}{i_T}$ (independent off)",
+    "$a$'s height per amp pushed in"
+   ],
+   [
+    "One shot",
+    "$v_T=V_{\\mathrm{Th}}+R_{\\mathrm{Th}}i_T$ (all on)",
+    "intercept and slope of the sag line"
+   ],
+   [
+    "Load power",
+    "$p_L=\\dfrac{V_{\\mathrm{Th}}^2R_L}{(R_{\\mathrm{Th}}+R_L)^2}=h\\dfrac{V_{\\mathrm{Th}}-h}{R_{\\mathrm{Th}}}$",
+    "height × current"
+   ],
+   [
+    "Maximum power",
+    "$R_L=R_{\\mathrm{Th}}$, $p_{\\max}=\\dfrac{V_{\\mathrm{Th}}^2}{4R_{\\mathrm{Th}}}$",
+    "load at $\\dfrac{V_{\\mathrm{Th}}}{2}$"
+   ],
+   [
+    "Superposition",
+    "$y=\\sum_k y_k$; $p\\neq\\sum p_k$",
+    "add height differences"
+   ]
+  ],
+  "citations": []
+ }
+]

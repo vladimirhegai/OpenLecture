@@ -9,6 +9,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import { createPortal } from "react-dom";
 
 /** Close on outside pointer-down or Escape. */
 export function useDismiss(open: boolean, onClose: () => void, ref: React.RefObject<HTMLElement | null>) {
@@ -92,7 +93,9 @@ export function Dialog({
       previous?.focus?.();
     };
   }, [onClose]);
-  return (
+  // Portaled to <body> so a dialog opened from inside a note (e.g. a height view in a solution's
+  // numbered steps) never inherits that list's counters, alignment or other styles.
+  return createPortal(
     <div className="scrim" onPointerDown={(event) => event.target === event.currentTarget && onClose()}>
       <div
         ref={ref}
@@ -111,7 +114,8 @@ export function Dialog({
         )}
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

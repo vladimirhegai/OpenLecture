@@ -1,0 +1,826 @@
+[
+ {
+  "type": "callout",
+  "id": "f76e1dd9-cf15-5f13-b6ee-eca1376b0328",
+  "tone": "info",
+  "text": "**Week 6 in one line:** two new parts that **remember**. A capacitor remembers its **voltage** (a height step), an inductor remembers its **current** (a flow). Topic 1: what they do at DC. Topic 2: what happens when a switch flips.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "ecc93ea1-4376-59c0-a9e2-23cd7b9fde77",
+  "level": 1,
+  "text": "The height method (read this first)",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "8e111641-4976-52fa-b8b9-78803b3a1a71",
+  "columns": [
+   "Part",
+   "In the height picture",
+   "Rule"
+  ],
+  "rows": [
+   [
+    "Ground",
+    "the floor, $0\\,\\mathrm{V}$",
+    "Pick one wire. The lowest one keeps the picture tidy."
+   ],
+   [
+    "Wire (node)",
+    "one flat level",
+    "Every point on a wire is at the same height. Its voltage **is** its height."
+   ],
+   [
+    "Battery (voltage source)",
+    "a fixed staircase",
+    "Its $+$ end is exactly $V$ higher than its $-$ end. Any current can flow."
+   ],
+   [
+    "Pump (current source)",
+    "a lift with a fixed flow",
+    "It forces its current. How far it lifts is whatever the circuit needs."
+   ],
+   [
+    "Resistor",
+    "a slide",
+    "Current slides **downhill**. Current $=\\dfrac{\\text{fall}}{R}$, fall $=$ current $\\times R$."
+   ],
+   [
+    "Diamond (dependent source)",
+    "a battery or pump whose size is set elsewhere",
+    "Find the thing it depends on first, then treat it like a normal source."
+   ]
+  ],
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "fe04c901-e261-59d7-9f4e-cb09107bd63b",
+  "tone": "tip",
+  "text": "**Two laws and one power rule.** At every wire: **current in = current out**. Around any loop: **total climbs = total falls** (you end at the height you started). Power = current $\\times$ height change: climbing **gives** energy (green ▲), falling **uses** it (orange ▼).",
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "7ff6f85f-2536-55d8-a8a4-724b9c78a935",
+  "tone": "info",
+  "text": "**The recipe (every example uses it).** ① Ground the lowest wire. ② Place the heights the batteries fix. ③ Give each unknown height a letter and write **in = out** there. ④ Solve. ⑤ Currents $=$ fall $\\div R$. ⑥ Power: climbs = falls.\n\n**New this week:** at DC a capacitor is a **gap** and an inductor is a **wire**. Right after a switch, a capacitor is a **battery** holding its old step and an inductor is a **pump** holding its old current.",
+  "citations": []
+ },
+ {
+  "type": "heading",
+  "id": "86157f84-2888-5e49-aafb-ef057270f5fa",
+  "level": 1,
+  "text": "Topic 1: Capacitors and inductors",
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "522d95a8-9216-5745-9878-e8a54e7ee6d1",
+  "tone": "tip",
+  "text": "**How it looks in heights.**\n\n- **Capacitor** $C$: a height step that can't jump. $i=C\\dfrac{dv}{dt}$. At DC nothing changes, so $i=0$: a **gap**. It still sits across its two heights and stores $w=\\tfrac12Cv^2$.\n- **Inductor** $L$: a flow that can't jump. $v=L\\dfrac{di}{dt}$. At DC nothing changes, so $v=0$: a **wire** (no step). It still carries its current and stores $w=\\tfrac12Li^2$.\n- **Combining:** $L$ adds like $R$ (series adds). $C$ adds like $\\tfrac1R$ (parallel adds, series uses reciprocals).",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "2200094b-1aab-5ba0-86ae-192bcd3db31a",
+  "columns": [
+   "",
+   "Capacitor",
+   "Inductor"
+  ],
+  "rows": [
+   [
+    "Law",
+    "$i=C\\,\\dfrac{dv}{dt}$",
+    "$v=L\\,\\dfrac{di}{dt}$"
+   ],
+   [
+    "Other way round",
+    "$v=\\dfrac1C\\displaystyle\\int i\\,dt+v(t_0)$",
+    "$i=\\dfrac1L\\displaystyle\\int v\\,dt+i(t_0)$"
+   ],
+   [
+    "Energy",
+    "$\\tfrac12Cv^2$",
+    "$\\tfrac12Li^2$"
+   ],
+   [
+    "At DC (settled)",
+    "gap: $i=0$",
+    "wire: $v=0$"
+   ],
+   [
+    "Can't jump",
+    "its voltage $v_C$",
+    "its current $i_L$"
+   ],
+   [
+    "Series",
+    "$\\dfrac1{C_{eq}}=\\sum\\dfrac1{C_k}$",
+    "$L_{eq}=\\sum L_k$"
+   ],
+   [
+    "Parallel",
+    "$C_{eq}=\\sum C_k$",
+    "$\\dfrac1{L_{eq}}=\\sum\\dfrac1{L_k}$"
+   ]
+  ],
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "e3c17516-80ad-5ddf-8a2f-478ddda27c2f",
+  "title": "Example 1 · Settled circuit: gap and wire",
+  "prompt": "The circuit has been on for a long time. Find $i_L$, $v_C$ and the energy in each part.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nL1 3,3 -> 6,3 \"$0.5\\,\\mathrm{H}$\" i=\"$i_L$\"\nR2 6,3 -> 6,0 \"$4\\,\\Omega$\"\nwire 6,3 -> 9,3\nC1 9,3 -> 9,0 \"$100\\,\\mu\\mathrm{F}$\" v=\"$v_C$\"\nwire 0,0 -> 9,0\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$b$\" above\nground 0,0\n#@ inline\n#@ view \"Settled (DC)\"\n#@ straight off\n#@ node s 12 \"source top: $12\\,\\mathrm{V}$\"\n#@ node a 8 \"$a$ = $b$: $8\\,\\mathrm{V}$\"\n#@ node b 8 \"$a$ = $b$: $8\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$12\\,\\mathrm{V}$\" col=0 i=\"$2\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s a \"$2\\,\\Omega$: falls $4\\,\\mathrm{V}$\" col=1 i=\"$2\\,\\mathrm{A}$\" to=a id=eR1\n#@ el L a b \"$L$ at DC: a wire\" col=1 i=\"$2\\,\\mathrm{A}$\" to=b id=eL1\n#@ el R b g2 \"$4\\,\\Omega$: falls $8\\,\\mathrm{V}$\" col=2 i=\"$2\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el C b g3 \"$C$ at DC: a gap, holds $8\\,\\mathrm{V}$\" col=3 id=eC1\n#@ step \"Ground the bottom. The battery lifts the top to $12\\,\\mathrm{V}$.\" show=s,eV1\n#@ step \"$L$ is a wire, so $a=b$. $C$ is a gap, so no current goes that way. One loop: $2+4=6\\,\\Omega$, $i=\\dfrac{12}{6}=2\\,\\mathrm{A}$.\" show=a,b,eR1,eL1,eR2\n#@ step \"$b$ sits $2\\times4=8\\,\\mathrm{V}$ up, so the capacitor holds $v_C=8\\,\\mathrm{V}$.\" show=eC1\n```",
+  "steps": [
+   {
+    "explanation": "DC: $L$ a wire, $C$ a gap.",
+    "latex": "i_L=\\frac{12}{2+4}=2\\,\\mathrm{A},\\qquad v_C=2\\cdot4=8\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Energy.",
+    "latex": "w_L=\\tfrac12(0.5)(2)^2=1\\,\\mathrm{J},\\qquad w_C=\\tfrac12(100\\times10^{-6})(8)^2=3.2\\,\\mathrm{mJ}"
+   }
+  ],
+  "answer": "$i_L=2\\,\\mathrm{A}$, $v_C=8\\,\\mathrm{V}$, $w_L=1\\,\\mathrm{J}$, $w_C=3.2\\,\\mathrm{mJ}$.",
+  "citations": []
+ },
+ {
+  "answer": "(a) $i$ peaks at $t = 0.2\\,\\mathrm{s}$ with $i_{\\max} = 2e^{-1} \\approx 0.736\\,\\mathrm{A}$, then decays toward zero.\n(b) $v = (1-5t)e^{-5t}\\,\\mathrm{V}$ for $t>0$, and $0$ for $t<0$.\n(c) No. $v$ is maximum ($1\\,\\mathrm{V}$) at $t=0^+$, while $i$ is maximum at $0.2\\,\\mathrm{s}$, where $v=0$. The voltage changes abruptly at $t=0$; the current does not.\n(d) $p = 10t(1-5t)e^{-10t}\\,\\mathrm{W}$ and $w = 5t^2e^{-10t}\\,\\mathrm{J}$, with $w_{\\max} \\approx 27.1\\,\\mathrm{mJ}$ at $0.2\\,\\mathrm{s}$. The inductor stores energy for $0<t<0.2\\,\\mathrm{s}$ and delivers it for $t>0.2\\,\\mathrm{s}$.",
+  "citations": [
+   {
+    "chunk_id": "b9eb9392-4c9f-44ae-9c38-c397980fbf6c",
+    "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+    "version": 1
+   },
+   {
+    "chunk_id": "85570977-bc70-4a77-81b7-0887b28f46a1",
+    "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+    "version": 1
+   }
+  ],
+  "id": "65e7e4f3-e959-5235-9d8e-060ef1c40f46",
+  "prompt": "The independent current source produces $i = 0$ for $t < 0$ and $i = 10te^{-5t}\\,\\mathrm{A}$ for $t \\ge 0$. The inductor is $100\\,\\mathrm{mH}$.\n\n```schematic\nI1 0,0 -> 0,3 \"$i(t)$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$100\\,\\mathrm{mH}$\" v=\"$v$\" i=\"$i$\"\nwire 3,0 -> 0,0\nground 0,0\n```\n\n1. Sketch $i(t)$ and find when it is maximum.\n2. Find $v(t)$ across the inductor.\n3. Are $v$ and $i$ maximum at the same time? Which one changes abruptly?\n4. Find $p(t)$ and $w(t)$, and state when the inductor stores or delivers energy.",
+  "steps": [
+   {
+    "explanation": "The current is zero at $t=0$, rises, then decays. Set its derivative to zero to find the peak.",
+    "latex": "\\frac{di}{dt} = 10e^{-5t}(1-5t) = 0 \\;\\Rightarrow\\; t = 0.2\\,\\mathrm{s},\\quad i_{\\max} = 2e^{-1} \\approx 0.736\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Apply $v = L\\,\\dfrac{di}{dt}$ with $L = 0.1\\,\\mathrm{H}$. For $t<0$ the current is constant at zero, so $v = 0$.",
+    "latex": "v = 0.1 \\cdot 10(1-5t)e^{-5t} = (1-5t)e^{-5t}\\,\\mathrm{V},\\quad t>0"
+   },
+   {
+    "explanation": "The voltage is largest at $t=0^+$ and crosses zero exactly when the current peaks, so the maxima do not coincide.",
+    "latex": "v(0^-) = 0,\\; v(0^+) = 1\\,\\mathrm{V};\\qquad v(0.2) = 0"
+   },
+   {
+    "explanation": "The current is continuous ($i(0)=0$), but the voltage jumps from $0$ to $1\\,\\mathrm{V}$ at $t=0$. That jump is allowed for an inductor.",
+    "latex": "i(0^-) = i(0^+) = 0"
+   },
+   {
+    "explanation": "Multiply $v$ and $i$ to get the power.",
+    "latex": "p = vi = 10t(1-5t)e^{-10t}\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "Find the stored energy from $\\tfrac12 Li^2$. Its maximum occurs where $i$ is maximum.",
+    "latex": "w = \\tfrac{1}{2}(0.1)(10te^{-5t})^2 = 5t^2e^{-10t}\\,\\mathrm{J},\\quad w(0.2) = 0.2e^{-2} \\approx 27.1\\,\\mathrm{mJ}"
+   },
+   {
+    "explanation": "The sign of $p$ follows the sign of $(1-5t)$, which tells us when energy flows in or out.",
+    "latex": "p>0 \\text{ for } 0<t<0.2\\,\\mathrm{s}\\;(\\text{storing}),\\qquad p<0 \\text{ for } t>0.2\\,\\mathrm{s}\\;(\\text{delivering})"
+   }
+  ],
+  "title": "Example 2 · $v=L\\,\\frac{di}{dt}$ on a real current (Lecture 6)",
+  "type": "worked_example"
+ },
+ {
+  "answer": "(a) $L_{eq}=8\\,\\mathrm{mH}$. (b) Assuming $i_S=\\sin t\\,\\mathrm{A}$, $v_S=8\\cos t\\,\\mathrm{mV}$ for $t\\ge0$, and $v_S=0$ for $t<0$. The slide prints $8\\cos t$ without voltage units.",
+  "citations": [
+   {
+    "chunk_id": "1d26e843-5f3d-4782-bba5-e015b0de73f4",
+    "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+    "version": 1
+   }
+  ],
+  "id": "e4dcfe26-60e2-59e0-a793-462b1f1470c5",
+  "prompt": "A current source drives three inductors in series. The slide gives $i_S=\\sin t$ for $t\\ge0$ and zero for $t<0$, without current units. Assume amperes and time in seconds for the numerical answer below.\n\n```schematic\nI1 0,0 -> 0,3 \"$i_S=\\sin t$\" v=\"$v_S$\" v_rev\nL1 0,3 -> 3,3 \"$1\\,\\mathrm{mH}$\"\nL2 3,3 -> 3,0 \"$3\\,\\mathrm{mH}$\"\nL3 3,0 -> 0,0 \"$4\\,\\mathrm{mH}$\"\nground 0,0\n```\n\n1. Find the equivalent inductance $L_{eq}$.\n2. Find the source voltage $v_S(t)$.",
+  "steps": [
+   {
+    "explanation": "The three inductors carry the same current, so they are in series and their inductances add.",
+    "latex": "L_{eq} = 1 + 3 + 4 = 8\\,\\mathrm{mH}"
+   },
+   {
+    "explanation": "The source current enters the $+$ terminal of the equivalent inductor, so $v_S = L_{eq}\\,\\dfrac{di_S}{dt}$.",
+    "latex": "v_S = (8\\times10^{-3})\\frac{d}{dt}(\\sin t) = 8\\cos t\\,\\mathrm{mV}"
+   },
+   {
+    "explanation": "Check: each inductor's share of the voltage is proportional to its inductance.",
+    "latex": "v_{L1} = \\cos t,\\; v_{L2} = 3\\cos t,\\; v_{L3} = 4\\cos t\\;(\\mathrm{mV}),\\quad \\text{sum} = 8\\cos t\\,\\mathrm{mV}"
+   }
+  ],
+  "title": "Example 3 · Series inductors add (Lecture 6)",
+  "type": "worked_example"
+ },
+ {
+  "answer": "(a) $L_{eq}=3\\,\\mathrm{mH}$ and $i_S(0)=8\\,\\mathrm{mA}$. (b) Assuming the source is in volts, $i_S(t)=3000\\sin t+0.008\\,\\mathrm{A}$. The slide prints $3\\sin t+8$ without current units; it cannot be accepted as an SI answer. The expression $(3\\sin t+8)\\,\\mathrm{mA}$ would require $v_S=9\\cos t\\,\\mu\\mathrm{V}$, a unit not given on the slide.",
+  "citations": [
+   {
+    "chunk_id": "696ac942-4233-49ff-b79d-530720fcf47d",
+    "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+    "version": 1
+   }
+  ],
+  "id": "e8d998b3-84d0-58c4-b319-83232bb2eb3c",
+  "prompt": "A source $v_S = 9\\cos t$ is connected across three parallel inductors with initial currents $i_{L1}(0) = i_{L2}(0) = 2\\,\\mathrm{mA}$ and $i_{L3}(0) = 4\\,\\mathrm{mA}$.\n\n```schematic\nV1 0,3 -> 0,0 \"$v_S=9\\cos t$\" i=\"$i_S$\" i_rev\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$12\\,\\mathrm{mH}$\" i=\"$i_{L1}$\"\nwire 3,3 -> 6,3\nL2 6,3 -> 6,0 \"$12\\,\\mathrm{mH}$\" i=\"$i_{L2}$\"\nwire 6,3 -> 9,3\nL3 9,3 -> 9,0 \"$6\\,\\mathrm{mH}$\" i=\"$i_{L3}$\"\nwire 9,0 -> 6,0 -> 3,0 -> 0,0\nground 0,0\n```\n\n1. Find $L_{eq}$ and its initial current $i_S(0)$.\n2. Find the source current $i_S(t)$. The slide omits the voltage units. For a numerical SI answer below, explicitly assume $v_S(t)=9\\cos t\\,\\mathrm{V}$ and $t$ in seconds; a different voltage unit changes the result.",
+  "steps": [
+   {
+    "explanation": "Add the reciprocals for parallel inductors.",
+    "latex": "\\frac{1}{L_{eq}} = \\frac{1}{12} + \\frac{1}{12} + \\frac{1}{6} = \\frac{4}{12} \\;\\Rightarrow\\; L_{eq} = 3\\,\\mathrm{mH}"
+   },
+   {
+    "explanation": "The equivalent's initial current is the sum of the branch initial currents (all in the same downward reference).",
+    "latex": "i_S(0) = 2 + 2 + 4 = 8\\,\\mathrm{mA}"
+   },
+   {
+    "explanation": "Use henries, volts and amperes under the stated voltage assumption.",
+    "latex": "i_S(t)=\\frac{1}{0.003}\\int_0^t9\\cos\\tau\\,d\\tau+0.008=3000\\sin t+0.008\\;\\mathrm{A}"
+   },
+   {
+    "explanation": "Check each downward branch current in amperes; their sum gives the source current.",
+    "latex": "i_{L1}=i_{L2}=750\\sin t+0.002,\\quad i_{L3}=1500\\sin t+0.004,\\quad i_S=3000\\sin t+0.008\\;\\mathrm{A}"
+   }
+  ],
+  "title": "Example 4 · Parallel inductors, with starting currents (Lecture 6)",
+  "type": "worked_example"
+ },
+ {
+  "answer": "(a) $C_{eq} = 0.5\\,\\mu\\mathrm{F}$.\n(b) $i_s = 3\\cos 2t\\,\\mu\\mathrm{A}$.\n(c) $v_{C1} = 10 + 1.5\\sin 2t\\,\\mathrm{V}$.",
+  "citations": [
+   {
+    "chunk_id": "f7c03ced-1869-4ef4-bf6e-cc63f36f9b26",
+    "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+    "version": 1
+   },
+   {
+    "chunk_id": "d837e91c-a13a-4b42-8259-967452247a2d",
+    "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+    "version": 1
+   }
+  ],
+  "id": "f6ecca0f-e2e9-59a1-8221-0357af742b67",
+  "prompt": "A source $v_s = 3\\sin 2t\\,\\mathrm{V}$ drives three series capacitors. The $1\\,\\mu\\mathrm{F}$ capacitor starts with $v_{C1}(0) = 10\\,\\mathrm{V}$.\n\n```schematic\nV1 0,3 -> 0,0 \"$v_s=3\\sin 2t$\" i=\"$i_s$\" i_rev\nC1 0,3 -> 3,3 \"$1\\,\\mu\\mathrm{F}$\" v=\"$v_{C1}$\"\nC2 3,3 -> 3,0 \"$2\\,\\mu\\mathrm{F}$\"\nC3 3,0 -> 0,0 \"$2\\,\\mu\\mathrm{F}$\"\nground 0,0\n```\n\n1. Find $C_{eq}$.\n2. Find $i_s(t)$.\n3. Find $v_{C1}(t)$.",
+  "steps": [
+   {
+    "explanation": "Series capacitors combine reciprocally.",
+    "latex": "\\frac{1}{C_{eq}} = \\frac{1}{1} + \\frac{1}{2} + \\frac{1}{2} = 2\\;\\mu\\mathrm{F}^{-1} \\;\\Rightarrow\\; C_{eq} = 0.5\\,\\mu\\mathrm{F}"
+   },
+   {
+    "explanation": "The source sees one equivalent capacitor, so $i_s = C_{eq}\\,\\dfrac{dv_s}{dt}$.",
+    "latex": "i_s = (0.5\\times10^{-6})(6\\cos 2t) = 3\\cos 2t\\,\\mu\\mathrm{A}"
+   },
+   {
+    "explanation": "The same current flows through $C_1$ into its $+$ terminal. Integrate it and add $C_1$'s own initial voltage.",
+    "latex": "v_{C1}(t) = \\frac{1}{1\\times10^{-6}}\\int_0^{t} 3\\times10^{-6}\\cos 2\\tau\\,d\\tau + 10 = 10 + 1.5\\sin 2t\\,\\mathrm{V}"
+   }
+  ],
+  "title": "Example 5 · Series capacitors (Lecture 6)",
+  "type": "worked_example"
+ },
+ {
+  "type": "practice_problem",
+  "id": "2966dccc-4c44-5a7e-b593-ff2e662fa406",
+  "title": "Try it 1 · A pump, a gap and a wire",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "The circuit has been on for a long time. Find $i_L$, $v_C$, $w_L$ and $w_C$.\n\n```schematic\nI1 0,0 -> 0,3 \"$5\\,\\mathrm{A}$\"\nwire 0,3 -> 6,3\nC1 2,3 -> 2,0 \"$10\\,\\mu\\mathrm{F}$\" v=\"$v_C$\"\nR1 4,3 -> 4,0 \"$4\\,\\Omega$\"\nL1 6,3 -> 9,3 \"$2\\,\\mathrm{mH}$\" i=\"$i_L$\"\nR2 9,3 -> 9,0 \"$6\\,\\Omega$\"\nwire 0,0 -> 9,0\nlabel 4,3 \"$a$\" above\nlabel 9,3 \"$b$\" above\nground 0,0\n#@ spoiler\n#@ view \"Settled (DC)\"\n#@ straight off\n#@ node a 12 \"$a$ = $b$: $12\\,\\mathrm{V}$\"\n#@ node b 12 \"$a$ = $b$: $12\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el I g a \"$5\\,\\mathrm{A}$\" col=0 i=\"$5\\,\\mathrm{A}$\" to=a id=eI1\n#@ el C a g2 \"$C$ at DC: a gap, holds $12\\,\\mathrm{V}$\" col=1 id=eC1\n#@ el R a g3 \"$4\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=2 i=\"$3\\,\\mathrm{A}$\" to=g3 id=eR1\n#@ el L a b \"$L$ at DC: a wire\" col=2 i=\"$2\\,\\mathrm{A}$\" to=b id=eL1\n#@ el R b g4 \"$6\\,\\Omega$: falls $12\\,\\mathrm{V}$\" col=3 i=\"$2\\,\\mathrm{A}$\" to=g4 id=eR2\n#@ step \"Ground the bottom. The pump lifts $5\\,\\mathrm{A}$ to the top wire.\" show=eI1\n#@ step \"$L$ is a wire, so $a=b$: the $4\\,\\Omega$ and $6\\,\\Omega$ hang side by side ($2.4\\,\\Omega$). Height $=5\\times2.4=12\\,\\mathrm{V}$.\" show=a,b,eR1,eL1,eR2\n#@ step \"Split: $\\dfrac{12}{4}=3\\,\\mathrm{A}$, $\\dfrac{12}{6}=2\\,\\mathrm{A}$ through the inductor. $C$ holds $12\\,\\mathrm{V}$.\" show=eC1\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "DC: $C$ a gap, $L$ a wire.",
+    "latex": "v=5\\,(4\\parallel6)=12\\,\\mathrm{V},\\qquad i_L=\\frac{12}{6}=2\\,\\mathrm{A},\\qquad v_C=12\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Energy.",
+    "latex": "w_L=\\tfrac12(2\\times10^{-3})(2)^2=4\\,\\mathrm{mJ},\\qquad w_C=\\tfrac12(10\\times10^{-6})(12)^2=0.72\\,\\mathrm{mJ}"
+   }
+  ],
+  "answer": "$i_L=2\\,\\mathrm{A}$, $v_C=12\\,\\mathrm{V}$, $w_L=4\\,\\mathrm{mJ}$, $w_C=0.72\\,\\mathrm{mJ}$.",
+  "citations": []
+ },
+ {
+  "answer": "(a) $v = 100\\sin 50{,}000t\\,\\mathrm{V}$.\n(b) $p = 150\\sin 100{,}000t\\,\\mathrm{W}$, with $p_{\\max} = 150\\,\\mathrm{W}$.\n(c) $w_{\\max} = 3\\,\\mathrm{mJ}$.",
+  "citations": [
+   {
+    "chunk_id": "8b5e57a6-5d93-4381-828b-0eb22f726505",
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1
+   }
+  ],
+  "difficulty": "introductory",
+  "id": "631d2617-58f7-5836-864b-e27d89da37b1",
+  "origin": "source",
+  "prompt": "Both the voltage and current in a $0.6\\,\\mu\\mathrm{F}$ capacitor are zero for $t < 0$ and $i = 3\\cos 50{,}000t\\,\\mathrm{A}$ for $t \\ge 0$. The passive sign convention is used.\n\n1. Find the capacitor voltage $v(t)$.\n2. Find the power $p(t)$ and its maximum value.\n3. Find the maximum energy stored.",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "The problem gives $v(0^-)=0$. With finite capacitor current, voltage is continuous, so $v(0^+)=0$. Integrate the current and include this given initial voltage; zero current alone would not imply an uncharged capacitor.",
+    "latex": "v(t)=v(0^+)+\\frac{1}{0.6\\times10^{-6}}\\int_0^{t} 3\\cos(5\\times10^{4}\\tau)\\,d\\tau = \\frac{3}{(0.6\\times10^{-6})(5\\times10^{4})}\\sin 50{,}000t"
+   },
+   {
+    "explanation": "Simplify the coefficient.",
+    "latex": "v(t) = 100\\sin 50{,}000t\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Multiply $v$ and $i$, and use $2\\sin\\theta\\cos\\theta = \\sin 2\\theta$.",
+    "latex": "p = (100\\sin\\theta)(3\\cos\\theta) = 150\\sin 100{,}000t\\,\\mathrm{W},\\quad p_{\\max} = 150\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "The energy is greatest when $|v|$ is greatest, i.e. at $100\\,\\mathrm{V}$.",
+    "latex": "w_{\\max} = \\tfrac12(0.6\\times10^{-6})(100)^2 = 3\\,\\mathrm{mJ}"
+   }
+  ],
+  "title": "Try it 2 · Capacitor voltage, power, energy (Textbook P6.15)",
+  "type": "practice_problem"
+ },
+ {
+  "answer": "(a) $v(0) = 28.8\\,\\mathrm{V}$.\n(b) $t = \\dfrac{\\ln 4}{900} \\approx 1.54\\,\\mathrm{ms}$.\n(c) $p = -76.8e^{-600t} + 384e^{-1500t} - 307.2e^{-2400t}\\,\\mathrm{W}$.\n(d) $p_{\\max} \\approx 32.7\\,\\mathrm{W}$ at $t \\approx 411\\,\\mu\\mathrm{s}$.\n(e) $w_{\\max} \\approx 28.6\\,\\mathrm{mJ}$ at $t \\approx 1.54\\,\\mathrm{ms}$.",
+  "citations": [
+   {
+    "chunk_id": "d505e76b-89f6-477e-a032-6c5bd17f4cdb",
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1
+   }
+  ],
+  "difficulty": "introductory",
+  "id": "aa297c66-8855-533b-b6e4-1bbe3667fe6c",
+  "origin": "source",
+  "prompt": "The current in a $4\\,\\mathrm{mH}$ inductor with zero initial current is $i = 8e^{-300t} - 8e^{-1200t}\\,\\mathrm{A}$ for $t \\ge 0$. The passive sign convention is used.\n\n1. Find the initial voltage across the inductor.\n2. At what time $t > 0$ is the voltage zero?\n3. Find the expression for the power $p(t)$.\n4. At what time is the power maximum, and what is that maximum?\n5. At what time is the stored energy maximum, and what is that maximum?",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Differentiate the current and multiply by $L = 0.004\\,\\mathrm{H}$.",
+    "latex": "v = 0.004\\left(-2400e^{-300t} + 9600e^{-1200t}\\right) = -9.6e^{-300t} + 38.4e^{-1200t}\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Evaluate at $t = 0$.",
+    "latex": "v(0) = -9.6 + 38.4 = 28.8\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "Set $v = 0$ and solve.",
+    "latex": "38.4e^{-1200t} = 9.6e^{-300t} \\Rightarrow e^{900t} = 4 \\Rightarrow t = \\frac{\\ln 4}{900} \\approx 1.540\\,\\mathrm{ms}"
+   },
+   {
+    "explanation": "Multiply $v$ and $i$ and collect the exponentials.",
+    "latex": "p = vi = -76.8e^{-600t} + 384e^{-1500t} - 307.2e^{-2400t}\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "Set $\\dfrac{dp}{dt} = 0$, divide by $46{,}080e^{-600t}$ and substitute $y = e^{-900t}$. Take the root that gives a positive maximum.",
+    "latex": "16y^2 - 12.5y + 1 = 0 \\Rightarrow y = \\frac{12.5 + \\sqrt{92.25}}{32} = 0.6908 \\Rightarrow t = \\frac{-\\ln y}{900} \\approx 411\\,\\mu\\mathrm{s}"
+   },
+   {
+    "explanation": "Evaluate $p$ at that instant.",
+    "latex": "p_{\\max} = p(411\\,\\mu\\mathrm{s}) \\approx 32.7\\,\\mathrm{W}"
+   },
+   {
+    "explanation": "The energy is maximum when $i$ is maximum, which is when $v = 0$, at $t \\approx 1.540\\,\\mathrm{ms}$.",
+    "latex": "i = 8\\left(e^{-0.4621} - e^{-1.8484}\\right) \\approx 3.780\\,\\mathrm{A},\\quad w_{\\max} = \\tfrac12(0.004)(3.780)^2 \\approx 28.6\\,\\mathrm{mJ}"
+   }
+  ],
+  "title": "Try it 3 · Inductor voltage, power, energy (Textbook P6.2)",
+  "type": "practice_problem"
+ },
+ {
+  "answer": "(a) $L_{eq} = 7.5\\,\\mathrm{H}$ and $i(t) = -12e^{-20t}\\,\\mathrm{A}$.\n(b) $i_1 = 13 - 9e^{-20t}\\,\\mathrm{A}$.\n(c) $i_2 = -13 - 3e^{-20t}\\,\\mathrm{A}$.\n(d) $540\\,\\mathrm{J}$.\n(e) $3920\\,\\mathrm{J}$.\n(f) $3380\\,\\mathrm{J}$.\n(g) $845 + 2535 = 3380\\,\\mathrm{J}$, which matches.",
+  "citations": [
+   {
+    "chunk_id": "cbd52a96-ed5d-435e-a2ac-4df11a27f646",
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1
+   },
+   {
+    "chunk_id": "9aa64c12-f6a1-4937-9173-dd56dadbbc91",
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1
+   }
+  ],
+  "difficulty": "intermediate",
+  "id": "2e99c227-c3eb-537c-aee0-c4eb21a3c91e",
+  "origin": "source",
+  "prompt": "The two parallel inductors are connected across the terminals of a black box when the switch opens at $t = 0$. For $t > 0$ the resulting voltage is $v = -1800e^{-20t}\\,\\mathrm{V}$. The initial currents are $i_1(0) = 4\\,\\mathrm{A}$ and $i_2(0) = -16\\,\\mathrm{A}$.\n\n```schematic\nL1 0,0 -> 0,3 \"$10\\,\\mathrm{H}$\" i=\"$i_1(t)$\"\nL2 3,0 -> 3,3 \"$30\\,\\mathrm{H}$\" i=\"$i_2(t)$\"\nwire 0,3 -> 3,3 -> 6,3 -> 9,3\nwire 0,0 -> 3,0 -> 6,0 -> 9,0\nS1 6,3 -> 6,0 \"$t=0$\" state=closed action=open\nX1 9,3 -> 9,0 \"Black box\" i=\"$i(t)$\" v=\"$v$\"\nground 0,0\n```\n\n1. Replace the inductors with one equivalent inductor and find $i(t)$.\n2. Find $i_1(t)$.\n3. Find $i_2(t)$.\n4. How much energy is delivered to the black box for $0 \\le t < \\infty$?\n5. How much energy was initially stored in the inductors?\n6. How much energy is trapped in the ideal inductors?\n7. Show that $i_1$ and $i_2$ agree with the answer to part 6.",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Combine the parallel inductors. Once the switch opens, all of the inductor current flows into the box, so $i(0^+) = i_1(0) + i_2(0)$.",
+    "latex": "L_{eq} = \\frac{10 \\cdot 30}{40} = 7.5\\,\\mathrm{H},\\qquad i(0^+) = 4 - 16 = -12\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "The upward inductor current enters the $-$ terminal of $v$, so the integral relation carries a minus sign.",
+    "latex": "i(t) = -\\frac{1}{7.5}\\int_0^{t} (-1800e^{-20\\tau})\\,d\\tau - 12 = 12(1 - e^{-20t}) - 12 = -12e^{-20t}\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Apply the same relation to each inductor with its own initial current.",
+    "latex": "i_1 = \\frac{1800}{10}\\cdot\\frac{1 - e^{-20t}}{20} + 4 = 13 - 9e^{-20t}\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Repeat for $i_2$.",
+    "latex": "i_2 = \\frac{1800}{30}\\cdot\\frac{1 - e^{-20t}}{20} - 16 = -13 - 3e^{-20t}\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Integrate the power delivered to the box; $i$ enters the box's $+$ terminal.",
+    "latex": "w_{box} = \\int_0^{\\infty} (-1800e^{-20t})(-12e^{-20t})\\,dt = \\frac{21{,}600}{40} = 540\\,\\mathrm{J}"
+   },
+   {
+    "explanation": "Find the initial stored energy from the initial currents.",
+    "latex": "w(0) = \\tfrac12(10)(4)^2 + \\tfrac12(30)(16)^2 = 80 + 3840 = 3920\\,\\mathrm{J}"
+   },
+   {
+    "explanation": "Whatever energy was not delivered to the box stays trapped in the loop formed by the two inductors.",
+    "latex": "w_{trapped} = 3920 - 540 = 3380\\,\\mathrm{J}"
+   },
+   {
+    "explanation": "Check with the final currents $i_1(\\infty) = 13\\,\\mathrm{A}$ and $i_2(\\infty) = -13\\,\\mathrm{A}$, which circulate around the inductor loop.",
+    "latex": "\\tfrac12(10)(13)^2 + \\tfrac12(30)(13)^2 = 845 + 2535 = 3380\\,\\mathrm{J}"
+   }
+  ],
+  "title": "Try it 4 · Parallel inductors and trapped energy (Textbook P6.25)",
+  "type": "practice_problem"
+ },
+ {
+  "type": "heading",
+  "id": "9ecaf20b-13a6-5413-a2dd-69f55999e010",
+  "level": 1,
+  "text": "Topic 2: Switching: three snapshots",
+  "citations": []
+ },
+ {
+  "type": "callout",
+  "id": "186741dd-99c6-5fd1-b5ec-84d38a3e85b1",
+  "tone": "tip",
+  "text": "**How it looks in heights.** Draw three height pictures, then connect them with one slide.\n\n- **$0^-$ (old circuit, settled):** $C$ a gap, $L$ a wire. Read off $v_C$ or $i_L$.\n- **$0^+$ (new circuit, one instant later):** $C$ is a **battery** holding that $v_C$; $L$ is a **pump** holding that $i_L$. Everything else can jump.\n- **$\\infty$ (new circuit, settled):** $C$ a gap, $L$ a wire again.\n- **The slide between them:** one time constant $\\tau=R_{\\mathrm{Th}}C$ or $\\tau=\\dfrac{L}{R_{\\mathrm{Th}}}$, with $R_{\\mathrm{Th}}$ = what $C$ or $L$ sees with the sources off. (Lecture slide 62 prints $\\tfrac RL$: a typo.)",
+  "citations": []
+ },
+ {
+  "type": "equation",
+  "id": "41aed5d0-16f2-561c-8ee9-69387944fab4",
+  "latex": "x(t)=x(\\infty)+\\big[x(0^+)-x(\\infty)\\big]\\,e^{-t/\\tau}",
+  "display": true,
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "71a96473-1975-5dc8-af41-3c81de1c0dcb",
+  "columns": [
+   "Time",
+   "$e^{-t/\\tau}$",
+   "How far it has gone"
+  ],
+  "rows": [
+   [
+    "$\\tau$",
+    "$0.368$",
+    "$63\\%$"
+   ],
+   [
+    "$2\\tau$",
+    "$0.135$",
+    "$86\\%$"
+   ],
+   [
+    "$3\\tau$",
+    "$0.050$",
+    "$95\\%$"
+   ],
+   [
+    "$5\\tau$",
+    "$0.007$",
+    "$99\\%$ (call it done)"
+   ]
+  ],
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "002c0903-8f40-5119-8f77-356ee754066d",
+  "title": "Example 6 · A capacitor charges",
+  "prompt": "The capacitor is empty and the switch closes at $t=0$. Find $v_C(t)$.\n\n```schematic\nV1 0,3 -> 0,0 \"$10\\,\\mathrm{V}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$2\\,\\mathrm{k\\Omega}$\"\nC1 6,3 -> 6,0 \"$1\\,\\mu\\mathrm{F}$\" v=\"$v_C$\"\nwire 6,0 -> 0,0\nlabel 6,3 \"$n$\" right\nground 0,0\n#@ inline\n#@ view \"0+\"\n#@ straight off\n#@ node s 10 \"source top = $p$: $10\\,\\mathrm{V}$\"\n#@ node p 10 \"source top = $p$: $10\\,\\mathrm{V}$\"\n#@ node n 0 \"$n$ = bottom: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$n$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$n$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$10\\,\\mathrm{V}$\" col=0 i=\"$5\\,\\mathrm{mA}$\" to=s id=eV1\n#@ el W s p \"switch closed\" col=0 i=\"$5\\,\\mathrm{mA}$\" to=p id=eS1\n#@ el R p n \"$2\\,\\mathrm{k\\Omega}$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$5\\,\\mathrm{mA}$\" to=n id=eR1\n#@ el C n g2 \"$C$ holds $0\\,\\mathrm{V}$\" col=2 i=\"$5\\,\\mathrm{mA}$\" to=g2 id=eC1\n#@ step \"Ground the bottom. Empty capacitor: a $0\\,\\mathrm{V}$ battery, so $n$ starts on the floor.\" show=n,eC1\n#@ step \"The whole $10\\,\\mathrm{V}$ falls across the $2\\,\\mathrm{k\\Omega}$: $i=5\\,\\mathrm{mA}$, the biggest it gets.\" show=s,p,eV1,eS1,eR1\n#@ view \"t = tau\"\n#@ straight off\n#@ node s 10 \"source top = $p$: $10\\,\\mathrm{V}$\"\n#@ node p 10 \"source top = $p$: $10\\,\\mathrm{V}$\"\n#@ node n 6.32 \"$n$: $6.32\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$10\\,\\mathrm{V}$\" col=0 i=\"$1.839\\,\\mathrm{mA}$\" to=s id=eV1\n#@ el W s p \"switch closed\" col=0 i=\"$1.839\\,\\mathrm{mA}$\" to=p id=eS1\n#@ el R p n \"$2\\,\\mathrm{k\\Omega}$: falls $3.68\\,\\mathrm{V}$\" col=1 i=\"$1.839\\,\\mathrm{mA}$\" to=n id=eR1\n#@ el C n g2 \"$C$ holds $6.32\\,\\mathrm{V}$\" col=2 i=\"$1.839\\,\\mathrm{mA}$\" to=g2 id=eC1\n#@ step \"Same ground. After one $\\tau=RC=2\\,\\mathrm{ms}$, $n$ has climbed $63\\%$ of the way: $6.32\\,\\mathrm{V}$. Less fall, less current.\" show=n,eC1,eR1\n#@ view \"Settled\"\n#@ straight off\n#@ node s 10 \"source top = $p$ = $n$: $10\\,\\mathrm{V}$\"\n#@ node p 10 \"source top = $p$ = $n$: $10\\,\\mathrm{V}$\"\n#@ node n 10 \"source top = $p$ = $n$: $10\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$10\\,\\mathrm{V}$\" col=0 id=eV1\n#@ el W s p \"switch closed\" col=0 id=eS1\n#@ el R p n \"$2\\,\\mathrm{k\\Omega}$: no fall\" col=1 id=eR1\n#@ step \"Same ground. $n$ reaches the top: no fall, no current. $v_C(\\infty)=10\\,\\mathrm{V}$.\" show=n,eR1\n#@ note \"Settled: the capacitor is a gap again (no current), so it is left out; it holds $10\\,\\mathrm{V}$.\"\n```",
+  "steps": [
+   {
+    "explanation": "Snapshots.",
+    "latex": "v_C(0^+)=0,\\qquad v_C(\\infty)=10\\,\\mathrm{V},\\qquad \\tau=RC=(2000)(10^{-6})=2\\,\\mathrm{ms}"
+   },
+   {
+    "explanation": "One slide between them.",
+    "latex": "v_C(t)=10+(0-10)e^{-500t}=10\\left(1-e^{-500t}\\right)\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v_C(t)=10\\left(1-e^{-500t}\\right)\\,\\mathrm{V}$, $\\tau=2\\,\\mathrm{ms}$.",
+  "citations": []
+ },
+ {
+  "type": "worked_example",
+  "id": "3163e56f-7979-5dc5-8ec1-6ccf7f18338a",
+  "title": "Example 7 · An inductor current reverses (Lecture 6)",
+  "prompt": "The switch has been in position $a$ for a long time and moves to position $b$ at $t = 0$. It is drawn here as two switches that operate together: $a$ opens and $b$ closes.\n\n```schematic\nV1 0,3 -> 0,0 \"$24\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\" v=\"$v_R$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nS2 9,3 -> 6,3 \"$t=0$\" state=closed action=open\nL1 6,3 -> 6,0 \"$200\\,\\mathrm{mH}$\" i=\"$i$\" v=\"$v$\"\nR2 9,3 -> 9,0 \"$10\\,\\Omega$\"\nwire 9,3 -> 12,3\nI1 12,3 -> 12,0 \"$8\\,\\mathrm{A}$\"\nwire 0,0 -> 6,0 -> 9,0 -> 12,0\nlabel 3,3 \"$b$\" above\nlabel 9,3 \"$a$\" above\nlabel 6,3 \"$x$\" above\nground 0,0\n#@ inline\n#@ view \"0+\"\n#@ straight off\n#@ node b 40 \"$b$ = $x$: $40\\,\\mathrm{V}$\"\n#@ node x 40 \"$b$ = $x$: $40\\,\\mathrm{V}$\"\n#@ node s 24 \"source top: $24\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$24\\,\\mathrm{V}$\" col=0 i=\"$8\\,\\mathrm{A}$\" to=g id=eV1\n#@ el R s b \"$2\\,\\Omega$: falls $16\\,\\mathrm{V}$\" col=1 i=\"$8\\,\\mathrm{A}$\" to=s id=eR1\n#@ el W b x \"switch closed\" col=1 i=\"$8\\,\\mathrm{A}$\" to=b id=eS1\n#@ el L x g2 \"$L$ holds $-8\\,\\mathrm{A}$\" col=2 i=\"$8\\,\\mathrm{A}$\" to=x id=eL1 plus=x v=\"$v$\"\n#@ step \"$0^-$: the inductor is a wire, so it shorts the $8\\,\\mathrm{A}$ pump. All $8\\,\\mathrm{A}$ goes **up** through it: $i(0^-)=-8\\,\\mathrm{A}$ (against the arrow).\"\n#@ step \"$0^+$: ground the bottom. The inductor is now a pump still pushing $8\\,\\mathrm{A}$ up.\" show=eL1\n#@ step \"Those $8\\,\\mathrm{A}$ must slide down the $2\\,\\Omega$ into the battery: $b$ sits $16\\,\\mathrm{V}$ **above** the $24\\,\\mathrm{V}$ top. $v(0^+)=40\\,\\mathrm{V}$.\" show=s,b,x,eR1,eS1,eV1\n#@ note \"Only the left loop matters now; the right part is cut off by switch $a$.\"\n#@ view \"t = tau\"\n#@ straight off\n#@ node s 24 \"source top: $24\\,\\mathrm{V}$\"\n#@ node b 14.72 \"$b$ = $x$: $14.72\\,\\mathrm{V}$\"\n#@ node x 14.72 \"$b$ = $x$: $14.72\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$24\\,\\mathrm{V}$\" col=0 i=\"$4.642\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s b \"$2\\,\\Omega$: falls $9.28\\,\\mathrm{V}$\" col=1 i=\"$4.642\\,\\mathrm{A}$\" to=b id=eR1\n#@ el W b x \"switch closed\" col=1 i=\"$4.642\\,\\mathrm{A}$\" to=x id=eS1\n#@ el L x g2 \"$L$ holds $4.64\\,\\mathrm{A}$\" col=2 i=\"$4.642\\,\\mathrm{A}$\" to=g2 id=eL1 plus=x v=\"$v$\"\n#@ step \"Same ground. After $\\tau=\\dfrac{L}{R}=\\dfrac{0.2}{2}=0.1\\,\\mathrm{s}$ the current has turned round: $12-20(0.368)=4.64\\,\\mathrm{A}$ down. $x$ is now below the top.\" show=x,eL1,eR1\n#@ view \"Settled\"\n#@ straight off\n#@ node s 24 \"source top: $24\\,\\mathrm{V}$\"\n#@ node x 0 \"$x$ = bottom: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$x$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$x$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$24\\,\\mathrm{V}$\" col=0 i=\"$12\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s x \"$2\\,\\Omega$: falls $24\\,\\mathrm{V}$\" col=1 i=\"$12\\,\\mathrm{A}$\" to=x id=eR1\n#@ el L x g2 \"$L$ at DC: a wire\" col=1 i=\"$12\\,\\mathrm{A}$\" to=g2 id=eL1 plus=x v=\"$v$\"\n#@ step \"Same ground. The inductor is a wire: $x$ on the floor, the $2\\,\\Omega$ falls all $24\\,\\mathrm{V}$: $i(\\infty)=12\\,\\mathrm{A}$, $v=0$.\" show=x,eR1,eL1\n```\n\n1. Find $i(t)$ for $t \\ge 0$.\n2. Find $v(0^+)$.\n3. Does the result make sense?\n4. At what time does $v$ fall to $24\\,\\mathrm{V}$?\n5. Sketch $i(t)$ and $v(t)$.",
+  "steps": [
+   {
+    "explanation": "$0^-$: the wire shorts the pump; the current is held.",
+    "latex": "i(0^+)=i(0^-)=-8\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "$\\infty$ and $\\tau$.",
+    "latex": "i(\\infty)=\\frac{24}{2}=12\\,\\mathrm{A},\\qquad \\tau=\\frac{0.2}{2}=0.1\\,\\mathrm{s}"
+   },
+   {
+    "explanation": "One slide.",
+    "latex": "i(t)=12+(-8-12)e^{-10t}=12-20e^{-10t}\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Voltage (matches the $0^+$ picture).",
+    "latex": "v=0.2\\,\\frac{di}{dt}=40e^{-10t}\\,\\mathrm{V},\\qquad v(0^+)=24-2(-8)=40\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "When is $v=24\\,\\mathrm{V}$?",
+    "latex": "40e^{-10t}=24\\;\\Rightarrow\\;t=\\frac{\\ln(5/3)}{10}\\approx51.1\\,\\mathrm{ms}"
+   }
+  ],
+  "answer": "(a) $i(t) = 12 - 20e^{-10t}\\,\\mathrm{A}$ for $t \\ge 0$.\n(b) $v(0^+) = 40\\,\\mathrm{V}$.\n(c) Yes. The inductor current is continuous at $-8\\,\\mathrm{A}$, and KVL gives $24 - 2(-8) = 40\\,\\mathrm{V}$.\n(d) $t = 0.1\\ln(\\dfrac{5}{3}) \\approx 51.1\\,\\mathrm{ms}$.\n(e) $i$ rises from $-8\\,\\mathrm{A}$ toward $12\\,\\mathrm{A}$, and $v = 40e^{-10t}\\,\\mathrm{V}$ decays from $40\\,\\mathrm{V}$ to $0$, both with $\\tau = 100\\,\\mathrm{ms}$.",
+  "citations": [
+   {
+    "chunk_id": "b1383d93-1d88-4899-87f4-846d20d81bcf",
+    "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "d9578413-e84f-5276-9acd-34e53bb393a8",
+  "title": "Try it 5 · An inductor lets go (Textbook P7.1)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "The switch has been closed for a long time and opens at $t = 0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$120\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$3\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$30\\,\\Omega$\"\nR3 3,3 -> 6,3 \"$6\\,\\Omega$\"\nS1 6,3 -> 9,3 \"$t=0$\" state=closed action=open\nL1 9,0 -> 9,3 \"$8\\,\\mathrm{mH}$\" i=\"$i$\"\nwire 9,3 -> 12,3\nR4 12,3 -> 12,0 \"$2\\,\\Omega$\"\nwire 0,0 -> 3,0 -> 9,0 -> 12,0\nlabel 3,3 \"$p$\" above\nlabel 9,3 \"$r$\" above\nground 0,0\n#@ spoiler\n#@ view \"0-\"\n#@ straight off\n#@ node s 120 \"source top: $120\\,\\mathrm{V}$\"\n#@ node p 75 \"$p$: $75\\,\\mathrm{V}$\"\n#@ node r 0 \"$r$ = bottom: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$r$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$r$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$r$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$120\\,\\mathrm{V}$\" col=0 i=\"$15\\,\\mathrm{A}$\" to=s id=eV1\n#@ el R s p \"$3\\,\\Omega$: falls $45\\,\\mathrm{V}$\" col=1 i=\"$15\\,\\mathrm{A}$\" to=p id=eR1\n#@ el R p g2 \"$30\\,\\Omega$: falls $75\\,\\mathrm{V}$\" col=2 i=\"$2.5\\,\\mathrm{A}$\" to=g2 id=eR2\n#@ el R p r \"$6\\,\\Omega$: falls $75\\,\\mathrm{V}$\" col=3 i=\"$12.5\\,\\mathrm{A}$\" to=r id=eR3\n#@ el L g3 r \"$L$ at DC: a wire\" col=3 i=\"$12.5\\,\\mathrm{A}$\" to=g3 id=eL1\n#@ step \"Ground the bottom. Switch closed and the inductor is a wire, so $r$ sits on the floor.\" show=r,eL1\n#@ step \"$30\\parallel6=5\\,\\Omega$; $\\dfrac{120}{3+5}=15\\,\\mathrm{A}$; $p=120-45=75\\,\\mathrm{V}$. The $6\\,\\Omega$ drops $\\dfrac{75}{6}=12.5\\,\\mathrm{A}$ down the inductor: $i(0^-)=-12.5\\,\\mathrm{A}$.\" show=p,eR1,eR2,eR3\n#@ note \"The $2\\,\\Omega$ sits across the inductor wire (no fall, no current), so it is left out of this tab.\"\n#@ view \"0+\"\n#@ straight off\n#@ node z0 25 \"bottom: $25\\,\\mathrm{V}$\"\n#@ node g 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ el L z0 g \"$L$ holds $-12.5\\,\\mathrm{A}$\" col=0 i=\"$12.5\\,\\mathrm{A}$\" to=z0 id=eL1\n#@ el R g2 z0 \"$2\\,\\Omega$: falls $25\\,\\mathrm{V}$\" col=1 i=\"$12.5\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ step \"Switch open: only the inductor and the $2\\,\\Omega$ are left. The inductor keeps pushing $12.5\\,\\mathrm{A}$ down through itself, so the same $12.5\\,\\mathrm{A}$ must flow round through the $2\\,\\Omega$.\"\n#@ step \"Ground the lowest wire, $r$. The $2\\,\\Omega$ falls $12.5\\times2=25\\,\\mathrm{V}$ from the bottom wire to $r$.\" show=z0,eR4,eL1\n#@ view \"t = tau\"\n#@ straight off\n#@ node z0 9.2 \"bottom: $9.2\\,\\mathrm{V}$\"\n#@ node g 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$r$: $0\\,\\mathrm{V}$\" ground\n#@ el L z0 g \"$L$ holds $4.6\\,\\mathrm{A}$\" col=0 i=\"$4.598\\,\\mathrm{A}$\" to=z0 id=eL1\n#@ el R g2 z0 \"$2\\,\\Omega$: falls $9.2\\,\\mathrm{V}$\" col=1 i=\"$4.598\\,\\mathrm{A}$\" to=g2 id=eR4\n#@ step \"Same ground. $\\tau=\\dfrac{8\\,\\mathrm{mH}}{2\\,\\Omega}=4\\,\\mathrm{ms}$: the current is down to $37\\%$, $4.6\\,\\mathrm{A}$.\" show=z0,eR4,eL1\n```\n\n1. Calculate the initial value of $i$.\n2. Calculate the initial energy stored in the inductor.\n3. What is the time constant for $t > 0$?\n4. Find $i(t)$ for $t \\ge 0$.\n5. What percentage of the initial energy has been dissipated in the $2\\,\\Omega$ resistor $5\\,\\mathrm{ms}$ after the switch opens?",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Before $t = 0$ the inductor is a short, which also shorts out the $2\\,\\Omega$ resistor. The source therefore sees $3\\,\\Omega$ in series with $30\\,\\Omega \\parallel 6\\,\\Omega$.",
+    "latex": "30 \\parallel 6 = 5\\,\\Omega,\\quad i_{src} = \\frac{120}{3 + 5} = 15\\,\\mathrm{A},\\quad v_{30} = 75\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "The $6\\,\\Omega$ branch carries $\\dfrac{75}{6} = 12.5\\,\\mathrm{A}$ down through the inductor. The reference $i$ points up, so $i$ is negative. A DC operating-point solve confirms the $12.5\\,\\mathrm{A}$.",
+    "latex": "i(0^-) = i(0^+) = -12.5\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "Compute the stored energy.",
+    "latex": "w(0) = \\tfrac12(8\\times10^{-3})(12.5)^2 = 0.625\\,\\mathrm{J}"
+   },
+   {
+    "explanation": "After the switch opens, the inductor sees only the $2\\,\\Omega$ resistor.",
+    "latex": "\\tau = \\frac{L}{R} = \\frac{8\\times10^{-3}}{2} = 4\\,\\mathrm{ms}"
+   },
+   {
+    "explanation": "This is a natural response, so it decays to zero.",
+    "latex": "i(t) = -12.5e^{-250t}\\,\\mathrm{A},\\quad t \\ge 0"
+   },
+   {
+    "explanation": "The energy remaining decays as $e^{-\\frac{2t}{\\tau}}$; the rest has been dissipated in the $2\\,\\Omega$ resistor.",
+    "latex": "\\frac{w_{diss}}{w(0)} = 1 - e^{-2(5)/4} = 1 - e^{-2.5} \\approx 0.918"
+   }
+  ],
+  "answer": "(a) $i(0) = -12.5\\,\\mathrm{A}$.\n(b) $w(0) = 0.625\\,\\mathrm{J}$.\n(c) $\\tau = 4\\,\\mathrm{ms}$.\n(d) $i(t) = -12.5e^{-250t}\\,\\mathrm{A}$ for $t \\ge 0$.\n(e) About $91.8\\%$.",
+  "citations": [
+   {
+    "chunk_id": "8db7ce91-5496-4635-bbda-7509ae034e64",
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "552c7b2f-c6a8-5e57-8679-2627555de513",
+  "title": "Try it 6 · A capacitor lets go (Textbook P7.22)",
+  "difficulty": "intermediate",
+  "origin": "source",
+  "prompt": "The switch has been closed for a long time and opens at $t = 0$.\n\n```schematic\nI1 0,0 -> 0,3 \"$7.5\\,\\mathrm{mA}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$80\\,\\mathrm{k\\Omega}$\"\nR2 3,3 -> 6,3 \"$20\\,\\mathrm{k\\Omega}$\"\nS1 6,3 -> 9,3 \"$t=0$\" state=closed action=open\nC1 9,3 -> 9,0 \"$0.4\\,\\mu\\mathrm{F}$\" v=\"$v(t)$\"\nwire 9,3 -> 12,3\nR3 12,3 -> 12,0 \"$50\\,\\mathrm{k\\Omega}$\"\nwire 0,0 -> 3,0 -> 9,0 -> 12,0\nlabel 3,3 \"$p$\" above\nlabel 9,3 \"$r$\" above\nground 0,0\n#@ spoiler\n#@ view \"0-\"\n#@ straight off\n#@ node p 280 \"$p$: $280\\,\\mathrm{V}$\"\n#@ node q 200 \"$q$ = $r$: $200\\,\\mathrm{V}$\"\n#@ node r 200 \"$q$ = $r$: $200\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g4 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el I g p \"$7.5\\,\\mathrm{mA}$\" col=0 i=\"$7.5\\,\\mathrm{mA}$\" to=p id=eI1\n#@ el R p g2 \"$80\\,\\mathrm{k\\Omega}$: falls $280\\,\\mathrm{V}$\" col=1 i=\"$3.5\\,\\mathrm{mA}$\" to=g2 id=eR1\n#@ el R p q \"$20\\,\\mathrm{k\\Omega}$: falls $80\\,\\mathrm{V}$\" col=2 i=\"$4\\,\\mathrm{mA}$\" to=q id=eR2\n#@ el W q r \"switch closed\" col=2 i=\"$4\\,\\mathrm{mA}$\" to=r id=eS1\n#@ el C r g3 \"$C$ at DC: a gap, holds $200\\,\\mathrm{V}$\" col=3 id=eC1\n#@ el R r g4 \"$50\\,\\mathrm{k\\Omega}$: falls $200\\,\\mathrm{V}$\" col=4 i=\"$4\\,\\mathrm{mA}$\" to=g4 id=eR3\n#@ step \"Ground the bottom. $C$ is a gap. The pump's $7.5\\,\\mathrm{mA}$ splits: $80\\,\\mathrm{k\\Omega}$ vs $20+50=70\\,\\mathrm{k\\Omega}$.\" show=eI1,eR1\n#@ step \"$4\\,\\mathrm{mA}$ goes right; the $50\\,\\mathrm{k\\Omega}$ falls $200\\,\\mathrm{V}$. $v(0^-)=200\\,\\mathrm{V}$.\" show=p,q,r,eR2,eS1,eR3,eC1\n#@ view \"0+\"\n#@ straight off\n#@ node r 200 \"$r$: $200\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el C r g \"$C$ holds $200\\,\\mathrm{V}$\" col=0 i=\"$4\\,\\mathrm{mA}$\" to=r id=eC1\n#@ el R r g2 \"$50\\,\\mathrm{k\\Omega}$: falls $200\\,\\mathrm{V}$\" col=1 i=\"$4\\,\\mathrm{mA}$\" to=g2 id=eR3\n#@ step \"Switch open: only $C$ and the $50\\,\\mathrm{k\\Omega}$. Ground the bottom. $C$ is a $200\\,\\mathrm{V}$ battery: $4\\,\\mathrm{mA}$ slides down.\" show=r,eC1,eR3\n#@ view \"t = tau\"\n#@ straight off\n#@ node r 73.58 \"$r$: $73.58\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el C r g \"$C$ holds $73.6\\,\\mathrm{V}$\" col=0 i=\"$1.472\\,\\mathrm{mA}$\" to=r id=eC1\n#@ el R r g2 \"$50\\,\\mathrm{k\\Omega}$: falls $73.58\\,\\mathrm{V}$\" col=1 i=\"$1.472\\,\\mathrm{mA}$\" to=g2 id=eR3\n#@ step \"Same ground. $\\tau=RC=50\\,\\mathrm{k}\\times0.4\\,\\mu=20\\,\\mathrm{ms}$: $200\\times0.368=73.6\\,\\mathrm{V}$ left.\" show=r,eC1,eR3\n```\n\n1. Find the initial value of $v(t)$.\n2. Find the time constant for $t > 0$.\n3. Find $v(t)$ after the switch opens.\n4. Find the initial energy stored in the capacitor.\n5. How long does it take to dissipate $75\\%$ of the initially stored energy?",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "Before $t = 0$ the capacitor is an open circuit. The $7.5\\,\\mathrm{mA}$ splits between $80\\,\\mathrm{k}\\Omega$ and the $20 + 50 = 70\\,\\mathrm{k}\\Omega$ path by current division. A DC operating-point solve gives the same $200\\,\\mathrm{V}$.",
+    "latex": "i_{70k} = 7.5\\cdot\\frac{80}{80 + 70} = 4\\,\\mathrm{mA},\\quad v(0) = (4\\,\\mathrm{mA})(50\\,\\mathrm{k}\\Omega) = 200\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "After the switch opens, the capacitor discharges through the $50\\,\\mathrm{k}\\Omega$ resistor alone.",
+    "latex": "\\tau = RC = (50\\times10^{3})(0.4\\times10^{-6}) = 20\\,\\mathrm{ms}"
+   },
+   {
+    "explanation": "This is a natural response.",
+    "latex": "v(t) = 200e^{-50t}\\,\\mathrm{V},\\quad t \\ge 0"
+   },
+   {
+    "explanation": "Compute the initial energy.",
+    "latex": "w(0) = \\tfrac12(0.4\\times10^{-6})(200)^2 = 8\\,\\mathrm{mJ}"
+   },
+   {
+    "explanation": "The remaining energy is $w(0)e^{-\\frac{2t}{\\tau}}$. Dissipating $75\\%$ leaves $25\\%$.",
+    "latex": "e^{-100t} = 0.25 \\Rightarrow t = \\frac{\\ln 4}{100} \\approx 13.86\\,\\mathrm{ms}"
+   }
+  ],
+  "answer": "(a) $v(0) = 200\\,\\mathrm{V}$.\n(b) $\\tau = 20\\,\\mathrm{ms}$.\n(c) $v(t) = 200e^{-50t}\\,\\mathrm{V}$ for $t \\ge 0$.\n(d) $w(0) = 8\\,\\mathrm{mJ}$.\n(e) $t \\approx 13.86\\,\\mathrm{ms}$.",
+  "citations": [
+   {
+    "chunk_id": "79f537ce-08cb-438f-9a55-b1fedebfad87",
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "63a580cc-b797-5fee-b9e3-9cc1d55488e8",
+  "title": "Try it 7 · Find the start, then let go (Textbook P7.23)",
+  "difficulty": "introductory",
+  "origin": "source",
+  "prompt": "The switch has been closed for a long time and opens at $t=0$. Find $v_o(t)$ for $t\\ge0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$60\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$75\\,\\mathrm{k\\Omega}$\"\nS1 3,3 -> 6,3 \"$t=0$\" state=closed action=open\nC1 6,3 -> 6,0 \"$5\\,\\mathrm{nF}$\" v=\"$v_o$\"\nwire 6,3 -> 9,3\nR2 9,3 -> 9,0 \"$25\\,\\mathrm{k\\Omega}$\"\nwire 0,0 -> 9,0\nlabel 6,3 \"$n$\" above\nground 0,0\n#@ spoiler\n#@ view \"0-\"\n#@ straight off\n#@ node s 60 \"source top: $60\\,\\mathrm{V}$\"\n#@ node p 15 \"$p$ = $n$: $15\\,\\mathrm{V}$\"\n#@ node n 15 \"$p$ = $n$: $15\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$60\\,\\mathrm{V}$\" col=0 i=\"$0.6\\,\\mathrm{mA}$\" to=s id=eV1\n#@ el R s p \"$75\\,\\mathrm{k\\Omega}$: falls $45\\,\\mathrm{V}$\" col=1 i=\"$0.6\\,\\mathrm{mA}$\" to=p id=eR1\n#@ el W p n \"switch closed\" col=1 i=\"$0.6\\,\\mathrm{mA}$\" to=n id=eS1\n#@ el C n g2 \"$C$ at DC: a gap, holds $15\\,\\mathrm{V}$\" col=2 id=eC1\n#@ el R n g3 \"$25\\,\\mathrm{k\\Omega}$: falls $15\\,\\mathrm{V}$\" col=3 i=\"$0.6\\,\\mathrm{mA}$\" to=g3 id=eR2\n#@ step \"Ground the bottom. $C$ is a gap: a divider, $60\\times\\dfrac{25}{100}=15\\,\\mathrm{V}$.\" show=s,p,n,eV1,eR1,eS1,eR2,eC1\n#@ view \"0+\"\n#@ straight off\n#@ node n 15 \"$n$: $15\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el C n g \"$C$ holds $15\\,\\mathrm{V}$\" col=0 i=\"$0.6\\,\\mathrm{mA}$\" to=n id=eC1\n#@ el R n g2 \"$25\\,\\mathrm{k\\Omega}$: falls $15\\,\\mathrm{V}$\" col=1 i=\"$0.6\\,\\mathrm{mA}$\" to=g2 id=eR2\n#@ step \"Switch open. $C$ holds $15\\,\\mathrm{V}$ and drains through $25\\,\\mathrm{k\\Omega}$: $0.6\\,\\mathrm{mA}$. $\\tau=25\\,\\mathrm{k}\\times5\\,\\mathrm{n}=125\\,\\mu\\mathrm{s}$.\" show=n,eC1,eR2\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "$0^-$: divider.",
+    "latex": "v_o(0^-)=60\\cdot\\frac{25}{75+25}=15\\,\\mathrm{V}"
+   },
+   {
+    "explanation": "After: only the $25\\,\\mathrm{k\\Omega}$.",
+    "latex": "\\tau=(25\\times10^{3})(5\\times10^{-9})=125\\,\\mu\\mathrm{s},\\quad \\frac1\\tau=8000\\,\\mathrm{s}^{-1}"
+   },
+   {
+    "explanation": "Let go (ends at 0).",
+    "latex": "v_o(t)=15e^{-8000t}\\,\\mathrm{V}"
+   }
+  ],
+  "answer": "$v_o(t)=15e^{-8000t}\\,\\mathrm{V}$ for $t\\ge0$.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "79f537ce-08cb-438f-9a55-b1fedebfad87"
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "e292ee27-6b0a-5efe-8607-d24d5a1097c5",
+  "level": 1,
+  "text": "Practice set",
+  "citations": []
+ },
+ {
+  "type": "paragraph",
+  "id": "e36117db-16a3-54fe-91c5-b5cb751ce8cd",
+  "text": "Full switching problems: three snapshots, then one slide. Try each before opening the pictures.",
+  "citations": []
+ },
+ {
+  "type": "practice_problem",
+  "id": "57ed767a-c3c5-5211-8f90-8480f9822680",
+  "title": "Lecture 6 · Two-position switch (RC)",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "The switch has been in position 1 for a long time and moves to position 2 at $t = 0$. It is drawn as two switches that operate together: 1 opens and 2 closes. The $75\\,\\mathrm{V}$ source has its $+$ terminal at the reference node.\n\n```schematic\nV1 0,3 -> 0,0 \"$40\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$20\\,\\mathrm{k\\Omega}$\"\nR2 3,3 -> 3,0 \"$60\\,\\mathrm{k\\Omega}$\"\nS1 3,3 -> 6,3 \"$1$\" state=closed action=open\nC1 6,3 -> 6,0 \"$0.25\\,\\mu\\mathrm{F}$\" v=\"$v_C$\"\nS2 9,3 -> 6,3 \"$2$\" action=close\nR3 12,3 -> 9,3 \"$8\\,\\mathrm{k\\Omega}$\" i=\"$i_o$\"\nR4 12,3 -> 12,0 \"$160\\,\\mathrm{k\\Omega}$\"\nR5 12,3 -> 15,3 \"$40\\,\\mathrm{k\\Omega}$\"\nV2 15,0 -> 15,3 \"$75\\,\\mathrm{V}$\"\nwire 0,0 -> 3,0 -> 6,0 -> 12,0 -> 15,0\nlabel 12,3 \"$c$\" above\nlabel 6,3 \"$x$\" above\nlabel 15,3 \"$d$\" right\nground 0,0\n#@ spoiler\n#@ view \"0-\"\n#@ straight off\n#@ node s 40 \"source top: $40\\,\\mathrm{V}$\"\n#@ node p 30 \"$p$ = $x$: $30\\,\\mathrm{V}$\"\n#@ node x 30 \"$p$ = $x$: $30\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V s g \"$40\\,\\mathrm{V}$\" col=0 i=\"$0.5\\,\\mathrm{mA}$\" to=s id=eV1\n#@ el R s p \"$20\\,\\mathrm{k\\Omega}$: falls $10\\,\\mathrm{V}$\" col=1 i=\"$0.5\\,\\mathrm{mA}$\" to=p id=eR1\n#@ el R p g2 \"$60\\,\\mathrm{k\\Omega}$: falls $30\\,\\mathrm{V}$\" col=2 i=\"$0.5\\,\\mathrm{mA}$\" to=g2 id=eR2\n#@ el W p x \"switch closed\" col=2 id=eS1\n#@ el C x g3 \"$C$ at DC: a gap, holds $30\\,\\mathrm{V}$\" col=3 id=eC1\n#@ step \"Ground the bottom. Position 1: $C$ a gap across the $60\\,\\mathrm{k\\Omega}$ of a divider: $40\\times\\dfrac{60}{80}=30\\,\\mathrm{V}$.\" show=s,p,x,eR1,eR2,eC1\n#@ view \"0+\"\n#@ straight off\n#@ node y 105 \"$y$ = $x$: $105\\,\\mathrm{V}$\"\n#@ node x 105 \"$y$ = $x$: $105\\,\\mathrm{V}$\"\n#@ node c 87 \"$c$: $87\\,\\mathrm{V}$\"\n#@ node z0 75 \"bottom: $75\\,\\mathrm{V}$\"\n#@ node g 0 \"$d$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$d$: $0\\,\\mathrm{V}$\" ground\n#@ el V z0 g \"$75\\,\\mathrm{V}$\" col=0 i=\"$2.175\\,\\mathrm{mA}$\" to=z0 id=eV2\n#@ el R c g2 \"$40\\,\\mathrm{k\\Omega}$: falls $87\\,\\mathrm{V}$\" col=1 i=\"$2.175\\,\\mathrm{mA}$\" to=g2 id=eR5\n#@ el R c z0 \"$160\\,\\mathrm{k\\Omega}$: falls $12\\,\\mathrm{V}$\" col=2 i=\"$0.075\\,\\mathrm{mA}$\" to=z0 id=eR4\n#@ el R c y \"$8\\,\\mathrm{k\\Omega}$: falls $18\\,\\mathrm{V}$\" col=3 i=\"$2.25\\,\\mathrm{mA}$\" to=c id=eR3\n#@ el W y x \"switch closed\" col=3 i=\"$2.25\\,\\mathrm{mA}$\" to=y id=eS2\n#@ el C x z0 \"$C$ holds $30\\,\\mathrm{V}$\" col=4 i=\"$2.25\\,\\mathrm{mA}$\" to=x id=eC1\n#@ step \"Position 2. Ground the lowest wire, $d$: the $75\\,\\mathrm{V}$ battery puts the bottom wire $75\\,\\mathrm{V}$ above it.\" show=z0,eV2\n#@ step \"$C$ is a $30\\,\\mathrm{V}$ battery: $x=75+30=105$. In = out at $c$ gives $c=87$ (i.e. $12\\,\\mathrm{V}$ above the bottom).\" show=x,y,c,eC1,eS2,eR5,eR4\n#@ step \"The $8\\,\\mathrm{k\\Omega}$ falls $105-87=18\\,\\mathrm{V}$ from $y$ to $c$: $2.25\\,\\mathrm{mA}$ against the $i_o$ arrow, so $i_o(0^+)=-2.25\\,\\mathrm{mA}$.\" show=eR3\n#@ view \"Settled\"\n#@ straight off\n#@ node z0 75 \"bottom: $75\\,\\mathrm{V}$\"\n#@ node c 15 \"$c$ = $y$ = $x$: $15\\,\\mathrm{V}$\"\n#@ node y 15 \"$c$ = $y$ = $x$: $15\\,\\mathrm{V}$\"\n#@ node x 15 \"$c$ = $y$ = $x$: $15\\,\\mathrm{V}$\"\n#@ node g 0 \"$d$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$d$: $0\\,\\mathrm{V}$\" ground\n#@ el V z0 g \"$75\\,\\mathrm{V}$\" col=0 i=\"$0.375\\,\\mathrm{mA}$\" to=z0 id=eV2\n#@ el R c g2 \"$40\\,\\mathrm{k\\Omega}$: falls $15\\,\\mathrm{V}$\" col=1 i=\"$0.375\\,\\mathrm{mA}$\" to=g2 id=eR5\n#@ el R c z0 \"$160\\,\\mathrm{k\\Omega}$: falls $60\\,\\mathrm{V}$\" col=2 i=\"$0.375\\,\\mathrm{mA}$\" to=c id=eR4\n#@ el R c y \"$8\\,\\mathrm{k\\Omega}$: no fall\" col=3 id=eR3\n#@ el W y x \"switch closed\" col=3 id=eS2\n#@ el C x z0 \"$C$ at DC: a gap, holds $-60\\,\\mathrm{V}$\" col=4 id=eC1\n#@ step \"Same ground. $C$ is a gap, the $8\\,\\mathrm{k\\Omega}$ carries nothing: $x=c$. Divider: $c$ sits $75\\times\\dfrac{40}{200}=15\\,\\mathrm{V}$ above $d$, i.e. $60\\,\\mathrm{V}$ **below** the bottom. $v_C(\\infty)=-60\\,\\mathrm{V}$.\" show=x,y,c,eR5,eR4,eR3\n#@ step \"Sources off, $C$ sees $8+(160\\parallel40)=40\\,\\mathrm{k\\Omega}$: $\\tau=40\\,\\mathrm{k}\\times0.25\\,\\mu=10\\,\\mathrm{ms}$.\"\n```\n\n1. Find $v_C(t)$ for $t \\ge 0$.\n2. Find $i_o(t)$ for $t \\ge 0^+$.",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "In position 1 the capacitor is an open circuit at DC and sits across the $60\\,\\mathrm{k}\\Omega$ resistor of a voltage divider (confirmed by a DC solve).",
+    "latex": "v_C(0^-) = 40\\cdot\\frac{60}{20 + 60} = 30\\,\\mathrm{V} = v_C(0^+)"
+   },
+   {
+    "explanation": "In position 2, find the Thévenin equivalent seen by the capacitor. Node $c$ is a divider of the $-75\\,\\mathrm{V}$ node through $40\\,\\mathrm{k}\\Omega$ and $160\\,\\mathrm{k}\\Omega$, and no current flows in the $8\\,\\mathrm{k}\\Omega$ at steady state.",
+    "latex": "V_{Th} = -75\\cdot\\frac{160}{40 + 160} = -60\\,\\mathrm{V} = v_C(\\infty)"
+   },
+   {
+    "explanation": "Zero the $75\\,\\mathrm{V}$ source (short it) to find the resistance seen by the capacitor.",
+    "latex": "R_{Th} = 8 + (160 \\parallel 40) = 8 + 32 = 40\\,\\mathrm{k}\\Omega"
+   },
+   {
+    "explanation": "Compute the time constant.",
+    "latex": "\\tau = R_{Th}C = (40\\times10^{3})(0.25\\times10^{-6}) = 10\\,\\mathrm{ms}"
+   },
+   {
+    "explanation": "Substitute into the general step-response form.",
+    "latex": "v_C(t) = -60 + [30 - (-60)]e^{-100t} = -60 + 90e^{-100t}\\,\\mathrm{V},\\quad t \\ge 0"
+   },
+   {
+    "explanation": "$i_o$ flows through the $8\\,\\mathrm{k}\\Omega$ toward the capacitor, so it enters the capacitor's $+$ terminal and $i_o = C\\,\\dfrac{dv_C}{dt}$.",
+    "latex": "i_o = (0.25\\times10^{-6})(-9000e^{-100t}) = -2.25e^{-100t}\\,\\mathrm{mA},\\quad t \\ge 0^+"
+   },
+   {
+    "explanation": "Check at $0^+$ with the Thévenin circuit.",
+    "latex": "i_o(0^+) = \\frac{V_{Th} - v_C(0^+)}{R_{Th}} = \\frac{-60 - 30}{40\\,\\mathrm{k}\\Omega} = -2.25\\,\\mathrm{mA}"
+   }
+  ],
+  "answer": "(a) $v_C(t) = -60 + 90e^{-100t}\\,\\mathrm{V}$ for $t \\ge 0$.\n(b) $i_o(t) = -2.25e^{-100t}\\,\\mathrm{mA}$ for $t \\ge 0^+$.",
+  "citations": [
+   {
+    "chunk_id": "5cfc214d-f195-4148-8e24-30bd6907e515",
+    "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+    "version": 1
+   }
+  ]
+ },
+ {
+  "type": "practice_problem",
+  "id": "a4188363-52ab-567c-b93d-1f565c613ab3",
+  "title": "Textbook P7.37 · Two-position switch (RL)",
+  "difficulty": "advanced",
+  "origin": "source",
+  "prompt": "The switch has been in position $a$ for a long time and moves to position $b$ at $t=0$. Find $i_o(t)$ and $v_o(t)$ for $t\\ge0$.\n\n```schematic\nI1 0,3 -> 0,0 \"$40\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$4\\,\\Omega$\"\nS1 3,3 -> 6,3 \"$a$\" state=closed action=open\nS2 8,3 -> 6,3 \"$b$\" action=close\nR2 8,3 -> 8,1.5 \"$60\\,\\Omega$\"\nV1 8,1.5 -> 8,0 \"$240\\,\\mathrm{V}$\"\nwire 6,3 -> 6,5 -> 11,5 -> 11,3\nR3 11,3 -> 11,0 \"$20\\,\\Omega$\" v=\"$v_o$\"\nR4 11,3 -> 14,3 \"$5\\,\\Omega$\" i=\"$i_o$\"\nL1 14,3 -> 14,0 \"$10\\,\\mathrm{mH}$\"\nwire 0,0 -> 14,0\nlabel 11,3 \"$x$\" above\nlabel 14,3 \"$y$\" right\nground 0,0\n#@ spoiler\n#@ view \"0-\"\n#@ straight off\n#@ node z0 80 \"bottom = $y$: $80\\,\\mathrm{V}$\"\n#@ node y 80 \"bottom = $y$: $80\\,\\mathrm{V}$\"\n#@ node x 0 \"$x$ = $a$: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$x$ = $a$: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$x$ = $a$: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$x$ = $a$: $0\\,\\mathrm{V}$\" ground\n#@ el I g z0 \"$40\\,\\mathrm{A}$\" col=0 i=\"$40\\,\\mathrm{A}$\" to=z0 id=eI1\n#@ el R g2 z0 \"$4\\,\\Omega$: falls $80\\,\\mathrm{V}$\" col=1 i=\"$20\\,\\mathrm{A}$\" to=g2 id=eR1\n#@ el W g3 x \"switch closed\" col=1 i=\"$20\\,\\mathrm{A}$\" to=g3 id=eS1\n#@ el R x z0 \"$20\\,\\Omega$: falls $80\\,\\mathrm{V}$\" col=2 i=\"$4\\,\\mathrm{A}$\" to=x id=eR3 plus=x v=\"$v_o$\"\n#@ el R x y \"$5\\,\\Omega$: falls $80\\,\\mathrm{V}$\" col=3 i=\"$16\\,\\mathrm{A}$\" to=x id=eR4\n#@ el L y z0 \"$L$ at DC: a wire\" col=3 i=\"$16\\,\\mathrm{A}$\" to=y id=eL1\n#@ step \"Position $a$, $L$ a wire. The $40\\,\\mathrm{A}$ pump pulls current **out** of $a$, so $a$ is the lowest wire: ground it.\" show=eI1\n#@ step \"$4\\parallel20\\parallel5=2\\,\\Omega$, so the bottom wire sits $40\\times2=80\\,\\mathrm{V}$ above $a$: $v_o(0^-)=-80\\,\\mathrm{V}$.\" show=z0,y,eR1,eR3,eS1\n#@ step \"The $5\\,\\Omega$ falls $80\\,\\mathrm{V}$ from $y$ to $x$: $16\\,\\mathrm{A}$ against the $i_o$ arrow. $i_o(0^-)=-16\\,\\mathrm{A}$.\" show=eR4,eL1\n#@ view \"0+\"\n#@ straight off\n#@ node y 380 \"$y$: $380\\,\\mathrm{V}$\"\n#@ node b 300 \"$b$ = $x$: $300\\,\\mathrm{V}$\"\n#@ node x 300 \"$b$ = $x$: $300\\,\\mathrm{V}$\"\n#@ node k 240 \"$k$: $240\\,\\mathrm{V}$\"\n#@ node g 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V k g \"$240\\,\\mathrm{V}$\" col=0 i=\"$1\\,\\mathrm{A}$\" to=g id=eV1\n#@ el R b k \"$60\\,\\Omega$: falls $60\\,\\mathrm{V}$\" col=1 i=\"$1\\,\\mathrm{A}$\" to=k id=eR2\n#@ el W b x \"switch closed\" col=1 i=\"$1\\,\\mathrm{A}$\" to=b id=eS2\n#@ el R x g2 \"$20\\,\\Omega$: falls $300\\,\\mathrm{V}$\" col=2 i=\"$15\\,\\mathrm{A}$\" to=g2 id=eR3 plus=x v=\"$v_o$\"\n#@ el R x y \"$5\\,\\Omega$: falls $80\\,\\mathrm{V}$\" col=3 i=\"$16\\,\\mathrm{A}$\" to=x id=eR4\n#@ el L y g3 \"$L$ holds $-16\\,\\mathrm{A}$\" col=4 i=\"$16\\,\\mathrm{A}$\" to=y id=eL1\n#@ step \"Position $b$. Ground the bottom. The battery lifts $k$ to $240\\,\\mathrm{V}$. $L$ is a pump still pushing $16\\,\\mathrm{A}$ up to $y$.\" show=k,eV1,eL1\n#@ step \"In = out at $x$: $16=\\dfrac{x}{20}+\\dfrac{x-240}{60}$, so $x=300\\,\\mathrm{V}$: $v_o(0^+)=300\\,\\mathrm{V}$ (a big jump).\" show=x,b,y,eR3,eR2,eS2,eR4\n#@ view \"Settled\"\n#@ straight off\n#@ node k 240 \"$k$: $240\\,\\mathrm{V}$\"\n#@ node b 15 \"$b$ = $x$: $15\\,\\mathrm{V}$\"\n#@ node x 15 \"$b$ = $x$: $15\\,\\mathrm{V}$\"\n#@ node y 0 \"$y$ = bottom: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$y$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g2 0 \"$y$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ node g3 0 \"$y$ = bottom: $0\\,\\mathrm{V}$\" ground\n#@ el V k g \"$240\\,\\mathrm{V}$\" col=0 i=\"$3.75\\,\\mathrm{A}$\" to=k id=eV1\n#@ el R b k \"$60\\,\\Omega$: falls $225\\,\\mathrm{V}$\" col=1 i=\"$3.75\\,\\mathrm{A}$\" to=b id=eR2\n#@ el W b x \"switch closed\" col=1 i=\"$3.75\\,\\mathrm{A}$\" to=x id=eS2\n#@ el R x g2 \"$20\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=2 i=\"$0.75\\,\\mathrm{A}$\" to=g2 id=eR3 plus=x v=\"$v_o$\"\n#@ el R x y \"$5\\,\\Omega$: falls $15\\,\\mathrm{V}$\" col=3 i=\"$3\\,\\mathrm{A}$\" to=y id=eR4\n#@ el L y g3 \"$L$ at DC: a wire\" col=4 i=\"$3\\,\\mathrm{A}$\" to=g3 id=eL1\n#@ step \"Same ground. $L$ a wire: $y$ on the floor. In = out at $x$: $\\dfrac{240-x}{60}=\\dfrac{x}{20}+\\dfrac{x}{5}$, so $x=15\\,\\mathrm{V}$: $i_o=3\\,\\mathrm{A}$, $v_o=15\\,\\mathrm{V}$.\" show=x,b,eR2,eR3,eR4,eL1\n#@ step \"Sources off, $L$ sees $5+(20\\parallel60)=20\\,\\Omega$: $\\tau=\\dfrac{10\\,\\mathrm{mH}}{20}=0.5\\,\\mathrm{ms}$.\"\n```",
+  "solution": "",
+  "steps": [
+   {
+    "explanation": "$0^-$: $L$ a wire, the pump into $4\\parallel20\\parallel5=2\\,\\Omega$.",
+    "latex": "v_o(0^-)=-40\\cdot2=-80\\,\\mathrm{V},\\qquad i_o(0^-)=\\frac{-80}{5}=-16\\,\\mathrm{A}=i_o(0^+)"
+   },
+   {
+    "explanation": "$\\infty$ and $\\tau$.",
+    "latex": "i_o(\\infty)=3\\,\\mathrm{A},\\qquad \\tau=\\frac{0.01}{5+20\\parallel60}=0.5\\,\\mathrm{ms}"
+   },
+   {
+    "explanation": "One slide.",
+    "latex": "i_o(t)=3+(-16-3)e^{-2000t}=3-19e^{-2000t}\\,\\mathrm{A}"
+   },
+   {
+    "explanation": "$v_o$ from in = out at $x$: $\\dfrac{v_o}{15}=4-i_o$.",
+    "latex": "v_o(t)=15+285e^{-2000t}\\,\\mathrm{V},\\quad t\\ge0^+"
+   }
+  ],
+  "answer": "$i_o(t)=3-19e^{-2000t}\\,\\mathrm{A}$ for $t\\ge0$; $v_o(t)=15+285e^{-2000t}\\,\\mathrm{V}$ for $t\\ge0^+$.",
+  "citations": [
+   {
+    "source_id": "36da61a3-f7f4-45f0-bf0d-37ed16959f48",
+    "version": 1,
+    "chunk_id": "d45543d1-3e17-4ec6-b921-c8dcfff1892c"
+   }
+  ]
+ },
+ {
+  "type": "heading",
+  "id": "5e16a3d8-0e18-56d1-b38f-d00ee04111ac",
+  "level": 1,
+  "text": "Cheat sheet",
+  "citations": []
+ },
+ {
+  "type": "table",
+  "id": "10bd37fa-acf8-5dd0-a67d-56e67ad6fe03",
+  "columns": [
+   "Idea",
+   "In heights",
+   "Write"
+  ],
+  "rows": [
+   [
+    "Capacitor",
+    "a height step that can't jump",
+    "$i=C\\,\\dfrac{dv}{dt}$, $w=\\tfrac12Cv^2$"
+   ],
+   [
+    "Inductor",
+    "a flow that can't jump",
+    "$v=L\\,\\dfrac{di}{dt}$, $w=\\tfrac12Li^2$"
+   ],
+   [
+    "Settled (DC)",
+    "$C$ a gap, $L$ a wire",
+    "$i_C=0$, $v_L=0$"
+   ],
+   [
+    "Just after a switch",
+    "$C$ a battery, $L$ a pump",
+    "$v_C(0^+)=v_C(0^-)$, $i_L(0^+)=i_L(0^-)$"
+   ],
+   [
+    "Combine",
+    "$L$ like $R$, $C$ like $\\tfrac1R$",
+    "$L_s=\\sum L$, $C_p=\\sum C$"
+   ],
+   [
+    "Time constant",
+    "what $C$ or $L$ sees, sources off",
+    "$\\tau=R_{\\mathrm{Th}}C$, $\\tau=\\dfrac{L}{R_{\\mathrm{Th}}}$"
+   ],
+   [
+    "The slide",
+    "start $\\to$ end, $63\\%$ per $\\tau$",
+    "$x(t)=x(\\infty)+[x(0^+)-x(\\infty)]e^{-t/\\tau}$"
+   ],
+   [
+    "Energy left",
+    "",
+    "$w(t)=w(0)\\,e^{-2t/\\tau}$"
+   ]
+  ],
+  "citations": []
+ }
+]

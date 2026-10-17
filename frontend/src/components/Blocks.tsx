@@ -64,12 +64,13 @@ function Answer({ text }: { text?: string }) {
   );
 }
 
-function Content({ block, courseId, onCite }: { block: Block; courseId: string; onCite: Handlers["onCite"] }) {
+function Content({ block, courseId, onCite, toggle }: { block: Block; courseId: string; onCite: Handlers["onCite"]; toggle?: React.ReactNode }) {
   switch (block.type) {
     case "heading": {
       const Tag = `h${Math.min(block.level + 1, 6)}` as "h2";
       return (
-        <Tag className={`heading-${Math.min(block.level, 4)}`}>
+        <Tag className={`heading-${Math.min(block.level, 4)} collapsible-heading`}>
+          {toggle}
           <Markdown text={block.text} inline />
         </Tag>
       );
@@ -279,8 +280,72 @@ function sectionSources(blocks: Block[]) {
   return lines;
 }
 
+const COLLAPSED_KEY = "ol-collapsed-headings";
+
+/** Heading block ids the reader has collapsed; ids are UUIDs, so one set serves every note. */
+function loadCollapsed(): Set<string> {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(COLLAPSED_KEY) ?? "[]"));
+  } catch {
+    return new Set();
+  }
+}
+
+function saveCollapsed(ids: Set<string>) {
+  try {
+    localStorage.setItem(COLLAPSED_KEY, JSON.stringify([...ids]));
+  } catch {
+    // Storage can be unavailable (private window); collapsing still works for this visit.
+  }
+}
+
+/** For each block, the headings it sits under: a heading owns blocks until the next heading of the same or a higher level. */
+function headingAncestors(blocks: Block[]) {
+  const ancestors = new Map<string, string[]>();
+  const open: { id: string; level: number }[] = [];
+  for (const block of blocks) {
+    if (block.type === "heading") {
+      while (open.length && open[open.length - 1].level >= block.level) open.pop();
+      ancestors.set(block.id, open.map((h) => h.id));
+      open.push({ id: block.id, level: block.level });
+    } else {
+      ancestors.set(block.id, open.map((h) => h.id));
+    }
+  }
+  return ancestors;
+}
+
 export function Blocks({ blocks, courseId, onCite, onAsk, flash }: Handlers & { blocks: Block[]; flash?: string | null }) {
   const sources = useMemo(() => sectionSources(blocks), [blocks]);
+  const ancestors = useMemo(() => headingAncestors(blocks), [blocks]);
+  const [collapsed, setCollapsed] = useState(loadCollapsed);
+  const isHidden = (id: string) => (ancestors.get(id) ?? []).some((h) => collapsed.has(h));
+
+  function toggle(id: string) {
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      saveCollapsed(next);
+      return next;
+    });
+  }
+
+  // A link to a block inside a collapsed section opens that section, then scrolls to the block.
+  useEffect(() => {
+    if (!flash) return;
+    const closed = (ancestors.get(flash) ?? []).filter((h) => collapsed.has(h));
+    if (!closed.length) return;
+    setCollapsed((prev) => {
+      const next = new Set(prev);
+      closed.forEach((h) => next.delete(h));
+      saveCollapsed(next);
+      return next;
+    });
+    requestAnimationFrame(() => document.getElementById(`b-${flash}`)?.scrollIntoView({ block: "center" }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [flash]);
+
   const sourceLine = (key: string) => {
     const list = sources.get(key);
     return list?.length ? (
@@ -292,17 +357,37 @@ export function Blocks({ blocks, courseId, onCite, onAsk, flash }: Handlers & { 
   return (
     <>
       {sourceLine("")}
-      {blocks.map((block) => (
-        <section key={block.id} id={`b-${block.id}`} className={`block block-${block.type} ${flash === block.id ? "flash" : ""}`}>
-          {onAsk && block.type !== "heading" && (
-            <button className="icon-btn block-ask" onClick={() => onAsk(block)} title="Ask about this" aria-label="Ask about this block">
-              <MessageSquarePlus size={15} />
+      {blocks.map((block) => {
+        const closed = block.type === "heading" && collapsed.has(block.id);
+        const toggleButton =
+          block.type === "heading" ? (
+            <button
+              className={`collapse-toggle ${closed ? "closed" : ""}`}
+              onClick={() => toggle(block.id)}
+              aria-expanded={!closed}
+              aria-label={closed ? "Expand section" : "Collapse section"}
+              title={closed ? "Expand section" : "Collapse section"}
+            >
+              <ChevronRight size={18} />
             </button>
-          )}
-          <Content block={block} courseId={courseId} onCite={onCite} />
-          {block.type === "heading" && block.level <= 2 && sourceLine(block.id)}
-        </section>
-      ))}
+          ) : undefined;
+        return (
+          <section
+            key={block.id}
+            id={`b-${block.id}`}
+            hidden={isHidden(block.id)}
+            className={`block block-${block.type} ${flash === block.id ? "flash" : ""} ${closed ? "collapsed" : ""}`}
+          >
+            {onAsk && block.type !== "heading" && (
+              <button className="icon-btn block-ask" onClick={() => onAsk(block)} title="Ask about this" aria-label="Ask about this block">
+                <MessageSquarePlus size={15} />
+              </button>
+            )}
+            <Content block={block} courseId={courseId} onCite={onCite} toggle={toggleButton} />
+            {block.type === "heading" && block.level <= 2 && !closed && sourceLine(block.id)}
+          </section>
+        );
+      })}
     </>
   );
 }

@@ -1,0 +1,611 @@
+# Week 4: Method Choice, Source Transformations and Thévenin–Norton Equivalents  (rev 10, 51 blocks)
+
+[0] <heading> 3e287e92 # Overview
+
+[1] <callout> 3287aa5a info
+Three shortcuts this week. **Pick the cheaper method** (node or mesh). **Swap sources** ($V$ + series $R$ ⇄ $I$ ∥ $R$). **Shrink a circuit to two numbers** a load can see: $V_{\mathrm{Th}}$ and $R_{\mathrm{Th}}$. In heights, every shortcut keeps the **terminal heights** and throws away the inside ones.
+
+[2] <heading> 7eb427e8 ## Topic map
+
+[3] <table> a095d659
+| # | Topic | Key result | In heights |
+| 1 | Node or mesh? | count the equations first | a voltage source fixes a height; a current source fixes a mesh |
+| 2 | Source transformations | $v_s=Ri_s$ | same terminal height for every load; inside heights change |
+| 3 | Thévenin and Norton | $V_{\mathrm{Th}}=v_{oc}$, $I_N=i_{sc}$, $R_{\mathrm{Th}}=\dfrac{V_{\mathrm{Th}}}{I_N}$ | terminal $a$ sags $R_{\mathrm{Th}}$ volts per amp drawn |
+
+[4] <callout> 86b4f45e tip
+**How to use this note.** Shaky on Week 3? Read **Start here**. Each topic: rules → example → **Try it** (answer on paper first). Every circuit has a **Height view** (Full loop) with **Walk me through it**. The **Summary** at the end is a one-read crash course.
+
+[5] <heading> aab2b594 # Start here: the only Week 3 you need
+
+[6] <table> f0eb32c6
+| # | Rule | Picture it as |
+| 1 | **Node voltage = height** above the node you ground. | one floor per node |
+| 2 | **Voltage source:** fixes a step. To ground, it fixes a height; between two unknown nodes, it is a rigid rod. | an escalator |
+| 3 | **Current source:** fixes a current, never a height. | a pump |
+| 4 | **Unknown height → KCL there:** what flows in = what flows out. Resistor current $=\dfrac{\text{fall}}{R}$, always downhill. | pipes and slides |
+| 5 | **Power** = current × height change. Climbing delivers, falling absorbs. | lifting vs dropping |
+
+[7] <worked_example> f50c58b5 TITLE: S · One unknown height
+PROMPT: Find the height of $x$ and the power of each source.
+
+```schematic
+V1 0,3 -> 0,0 "$12\,\mathrm{V}$"
+R1 0,3 -> 3,3 "$4\,\Omega$"
+R2 3,3 -> 3,0 "$4\,\Omega$" flip
+wire 3,3 -> 6,3
+I1 6,0 -> 6,3 "$1\,\mathrm{A}$" flip
+wire 6,0 -> 0,0
+label 3,3 "$x$" above
+ground 0,0
+#@ step "Ground the bottom wire. The source puts the top at $12\,\mathrm{V}$."
+#@ step "The pump pushes $1\,\mathrm{A}$ into $x$. KCL at $x$: $\dfrac{12-x}{4}+1=\dfrac{x}{4}$, so $x=8\,\mathrm{V}$." show=x
+#@ step "Currents = fall ÷ R: $1\,\mathrm{A}$ through the top $4\,\Omega$, $2\,\mathrm{A}$ down the other." show=eR1,eR2,eV1
+#@ step "Power: the source lifts $1\,\mathrm{A}$ by $12\,\mathrm{V}$ ($12\,\mathrm{W}$), the pump $1\,\mathrm{A}$ by $8\,\mathrm{V}$ ($8\,\mathrm{W}$). Falls: $4+16=20\,\mathrm{W}$."
+```
+  STEP: KCL at $x$.  $$\frac{12-x}{4}+1=\frac{x}{4}\;\Rightarrow\;x=8\,\mathrm{V}$$
+  STEP: Power: climbs = falls.  $$(12)(1)+(8)(1)=20\,\mathrm{W}=(4)(1)+(8)(2)$$
+  ANSWER: $x=8\,\mathrm{V}$; the source delivers $12\,\mathrm{W}$, the pump $8\,\mathrm{W}$.
+
+[8] <heading> 6e3835ab # Topic 1: Node or mesh?
+
+[9] <list> 841c78f0
+- **Node:** unknowns $=(n_e-1)$, minus every height a voltage source fixes. A supernode still saves one.
+- **Mesh:** unknowns $=(b_e-n_e+1)$, minus every mesh current a current source fixes. A supermesh saves one.
+- A dependent source adds no unknown once its control is written in your unknowns.
+- Tie-break: asked for a node voltage → node; asked for a branch current → mesh.
+
+[10] <equation> a060fd1b
+$$\begin{aligned}N_{\text{node}}&=(n_e-1)-(\text{fixed heights})\\N_{\text{mesh}}&=(b_e-n_e+1)-(\text{fixed meshes})\end{aligned}$$
+
+[11] <callout> 23142947 warning
+Count only **essential** nodes and branches. Elements in series are one essential branch.
+
+[12] <worked_example> 42e0cd2e TITLE: Which method? Power in the 300 Ω (Lecture 4)
+PROMPT: Decide which method needs fewer equations, then find the power in the $300\,\Omega$ resistor.
+
+```schematic
+V1 0,4 -> 0,0 "$256\,\mathrm{V}$"
+R1 0,4 -> 3,4 "$150\,\Omega$"
+R2 3,4 -> 3,0 "$200\,\Omega$"
+R3 3,4 -> 6,4 "$100\,\Omega$"
+E1 6,4 -> 6,0 "$50i_\Delta$"
+R4 6,4 -> 9,4 "$250\,\Omega$"
+R5 9,4 -> 9,0 "$400\,\Omega$"
+R6 9,4 -> 12,4 "$500\,\Omega$"
+V2 12,0 -> 12,4 "$128\,\mathrm{V}$"
+wire 3,4 -> 3,6
+wire 9,4 -> 9,6
+R7 9,6 -> 3,6 "$300\,\Omega$" i="$i_\Delta$"
+wire 0,0 -> 12,0
+label 3,4 "$a$" below
+label 6,4 "$b$" above
+label 9,4 "$c$" below
+label 12,4 "$d$" right
+ground 0,0
+#@ step "Ground node $d$, the lowest point: the $128\,\mathrm{V}$ source has its $+$ on the bottom wire, so $d$ hangs below it. The text's voltages are measured from the bottom wire; here every height is $128\,\mathrm{V}$ more."
+#@ step "Fixed heights: the bottom wire is one $128\,\mathrm{V}$ step above $d$; the $256\,\mathrm{V}$ source's top is $384\,\mathrm{V}$." show=z0,s
+#@ step "Unknowns: $a$ and $c$ ($b$ hangs from the bottom wire by the dependent step). KCL at both with $v_b=50i_\Delta=\dfrac{v_c-v_a}{6}$: $v_a=62.5$, $v_c=-8\,\mathrm{V}$ (heights $190.5$ and $120$)." show=a,c
+#@ step "Control: $i_\Delta=\dfrac{v_c-v_a}{300}=-0.235\,\mathrm{A}$, so the real current runs $a\to c$. The dependent step $50i_\Delta=-11.75\,\mathrm{V}$ puts $b$ **below** the bottom wire." show=b,eE1,eR7
+#@ step "Every other current = fall ÷ R." show=eR1,eR2,eR3,eR4,eR5,eR6,eV1,eV2
+#@ step "Answer: the $300\,\Omega$ falls $70.5\,\mathrm{V}$ carrying $0.235\,\mathrm{A}$: $p=16.57\,\mathrm{W}$."
+```
+  STEP: Mesh: $4$ essential nodes, $8$ essential branches, no current source.  $$N_{\text{mesh}}=8-4+1=5$$
+  STEP: Node: ground the bottom wire. Both sources fix heights ($256$, $-128$); $b$ is set by the dependent source. Only $a$ and $c$ are unknown.  $$N_{\text{node}}=2$$
+  STEP: KCL at $a$ and $c$ (×600 and ×6000), with $6v_b=v_c-v_a$.  $$\begin{aligned}16v_a-3v_c&=1024\\-16v_a+67v_c&=-1536\end{aligned}$$
+  STEP: Add, then back-substitute.  $$v_c=-8\,\mathrm{V},\qquad v_a=62.5\,\mathrm{V}$$
+  STEP: Control and power.  $$i_\Delta=\frac{-8-62.5}{300}=-0.235\,\mathrm{A},\qquad p=i_\Delta^2(300)=16.57\,\mathrm{W}$$
+  ANSWER: Node-voltage (2 equations vs 5). $p_{300\,\Omega}\approx16.57\,\mathrm{W}$.
+
+[13] <practice_problem> bf4f7c4e TITLE: Try it 1 · Node or mesh for a bridge? (Textbook P4.54)
+PROMPT: **(a)** Which method would you use to find the power in the $10\,\Omega$ resistor, and why? **(b)** Find that power. **(c)** Find the power delivered by the $4\,\mathrm{A}$ source.
+
+```schematic
+I1 0,0 -> 0,6 "$4\,\mathrm{A}$"
+wire 0,6 -> 9,6
+R1 3,6 -> 3,3 "$8\,\Omega$"
+R3 3,3 -> 3,0 "$1\,\Omega$"
+R2 9,6 -> 9,3 "$2\,\Omega$"
+R4 9,3 -> 9,0 "$4\,\Omega$"
+R5 3,3 -> 9,3 "$10\,\Omega$" i="$i_{10}$"
+wire 0,0 -> 9,0
+label 3,3 "$l$" left
+label 9,3 "$r$" right
+label 6,6 "$t$" above
+ground 0,0
+#@ step "Ground the bottom wire. The pump pushes $4\,\mathrm{A}$ up into the top node $t$."
+#@ step "Mesh walks (the pump fixes mesh 1 at $4\,\mathrm{A}$): $i_2=2.6$, $i_3=2\,\mathrm{A}$. Branch currents: $1.4\,\mathrm{A}$ down the $8\,\Omega$, $2.6$ down the $2\,\Omega$, $2$ down the $1\,\Omega$ and the $4\,\Omega$." show=eR1,eR2,eR3,eR4
+#@ step "Heights, walking up from ground: $l=(2)(1)=2$, $r=(2)(4)=8$, $t=8+(2.6)(2)=13.2\,\mathrm{V}$." show=l,r,t
+#@ step "The $10\,\Omega$ joins $r$ ($8$) and $l$ ($2$): it falls $6\,\mathrm{V}$, so $0.6\,\mathrm{A}$ flows $r\to l$, against $i_{10}$. $p=(6)(0.6)=3.6\,\mathrm{W}$." show=eR5
+#@ step "The pump lifts $4\,\mathrm{A}$ through $13.2\,\mathrm{V}$: it delivers $52.8\,\mathrm{W}$."
+```
+  STEP: Node: $3$ unknown heights. Mesh: $3$ meshes, but the pump fixes one.  $$N_{\text{node}}=3,\qquad N_{\text{mesh}}=2$$
+  STEP: Upper and lower triangles, clockwise.  $$\begin{aligned}20i_2-10i_3&=32\\-10i_2+15i_3&=4\end{aligned}\;\Rightarrow\;i_2=2.6\,\mathrm{A},\;i_3=2\,\mathrm{A}$$
+  STEP: The $10\,\Omega$ carries the difference.  $$i_{10}=i_3-i_2=-0.6\,\mathrm{A},\qquad p=(0.6)^2(10)=3.6\,\mathrm{W}$$
+  STEP: Pump voltage = falls down the left side.  $$v=8(1.4)+1(2)=13.2\,\mathrm{V},\qquad p=(4)(13.2)=52.8\,\mathrm{W}$$
+  ANSWER: **(a)** Mesh (2 equations vs 3). **(b)** $3.6\,\mathrm{W}$. **(c)** $52.8\,\mathrm{W}$ delivered.
+
+[14] <heading> 86d13a18 # Topic 2: Source transformations
+
+[15] <list> ecb6385f
+- A voltage source $v_s$ **in series** with $R$ ⇄ a current source $i_s=\dfrac{v_s}{R}$ **in parallel** with the same $R$. The arrow points to the $+$ end.
+- **Same terminal height for every load.** The inside is different: never take a source's power from the swapped circuit.
+- $R$ **across** an ideal voltage source: changes no other height (drop it; it still burns power). $R$ **in series** with an ideal current source: changes only the height between them (drop it).
+- Strategy: swap toward what you want; merge parallel current sources and series voltage sources; repeat; go back to the original for powers.
+
+[16] <equation> f6e46bff
+$$i_s=\frac{v_s}{R},\qquad v_s=R\,i_s$$
+
+[17] <schematic> 35522872 {"caption": "Voltage form (left) and current form (right): the same at $a$–$b$.", "citations": [{"chunk_id": "048807fa-dc38-41ac-92f6-8b9d8b5b44d5", "source_id": "67209eb7-82f0-48d1-9be4-753156a96440", "version": 1}], "id": "35522872-7509-4e92-8f0b-4d22b2837ae7", "source": "V1 0,3 -> 0,0 \"$v_s$\"\nR1 0,3 -> 3,3 \"$R$\"\nwire 0,0 -> 3,0\nterminal 3,3 \"$a$\" right\nterminal 3,0 \"$b$\" right\nI1 6,0 -> 6,3 \"$i_s=\\tfrac{v_s}{R}$\"\nwire 6,3 -> 8,3\nR2 8,3 -> 8,0 \"$R$\"\nwire 6,0 -> 8,0\nwire 8,3 -> 10,3\nwire 8,0 -> 10,0\nterminal 10,3 \"$a$\" right\nterminal 10,0 \"$b$\" right", "type": "schematic"}
+
+[18] <worked_example> 21013e9a TITLE: Same load, two forms
+PROMPT: Attach a $2\,\Omega$ load to $12\,\mathrm{V}$ + $4\,\Omega$, then to its swap, $3\,\mathrm{A}$ ∥ $4\,\Omega$. Compare the height of $a$ and the source powers.
+
+```schematic
+V1 0,3 -> 0,0 "$12\,\mathrm{V}$"
+R1 0,3 -> 3,3 "$4\,\Omega$"
+wire 3,3 -> 5,3
+R2 5,3 -> 5,0 "$2\,\Omega$" flip
+wire 5,0 -> 0,0
+terminal 3,3 "$a$" above
+ground 0,0
+#@ step "Ground $b$. The source steps up $12\,\mathrm{V}$."
+#@ step "One loop: $\dfrac{12}{4+2}=2\,\mathrm{A}$. The $4\,\Omega$ falls $8\,\mathrm{V}$, so $a$ sits at $4\,\mathrm{V}$." show=a,eR1,eR2,eV1
+#@ step "The source lifts $2\,\mathrm{A}$ by $12\,\mathrm{V}$: $24\,\mathrm{W}$."
+#@ step "Same ground. $i_s=\dfrac{12}{4}=3\,\mathrm{A}$ is pumped into $a$."
+#@ step "Two paths down, side by side: $4\parallel2=\tfrac43\,\Omega$. So $a=(3)(\tfrac43)=4\,\mathrm{V}$: **the same height**." show=a,eRp,eR2
+#@ step "But this pump lifts $3\,\mathrm{A}$ by $4\,\mathrm{V}$: only $12\,\mathrm{W}$. Inside powers differ."
+```
+  STEP: Voltage form.  $$i=\frac{12}{6}=2\,\mathrm{A},\quad v_a=(2)(2)=4\,\mathrm{V},\quad p_s=24\,\mathrm{W}$$
+  STEP: Current form.  $$v_a=3\,(4\parallel2)=4\,\mathrm{V},\quad p_s=(3)(4)=12\,\mathrm{W}$$
+  ANSWER: $a$ sits at $4\,\mathrm{V}$ in both; the sources deliver $24\,\mathrm{W}$ and $12\,\mathrm{W}$.
+
+[19] <worked_example> e2278dc6 TITLE: Swap, solve, go back (Lecture 4)
+PROMPT: Use source transformations to find $v_o$. Then find the power developed by the $250\,\mathrm{V}$ source and by the $8\,\mathrm{A}$ source.
+
+```schematic
+V1 0,4 -> 0,0 "$250\,\mathrm{V}$"
+R2 3,4 -> 3,0 "$125\,\Omega$"
+R1 3,4 -> 7,4 "$25\,\Omega$"
+R4 7,4 -> 7,0 "$100\,\Omega$" v="$v_o$"
+wire 0,4 -> 3,4
+wire 7,4 -> 10,4
+I1 10,4 -> 10,2 "$8\,\mathrm{A}$"
+R3 10,2 -> 10,0 "$10\,\Omega$"
+R5 10,4 -> 13,4 "$5\,\Omega$"
+R6 13,4 -> 13,0 "$15\,\Omega$"
+wire 0,0 -> 13,0
+label 7,4 "$b$" above
+label 10,2 "$d$" right
+label 13,4 "$e$" above
+ground 0,0
+#@ step "Ground the bottom wire. Drop the $125\,\Omega$ (across the $250\,\mathrm{V}$ source) and the $10\,\Omega$ (in series with the $8\,\mathrm{A}$ pump): neither moves $b$."
+#@ step "Swap $250\,\mathrm{V}$ + $25\,\Omega$ for a $10\,\mathrm{A}$ pump with $25\,\Omega$ beside it. Net into $b$: $10-8=2\,\mathrm{A}$." show=eIs,eI1
+#@ step "Three paths down from $b$: $25\parallel100\parallel20=10\,\Omega$. So $b=(2)(10)=20\,\mathrm{V}=v_o$." show=b,eR1,eR4,eR56
+#@ step "Same ground. Copy $b=20\,\mathrm{V}$ from tab 1; the source fixes the top at $250\,\mathrm{V}$."
+#@ step "Currents = fall ÷ R: $\dfrac{230}{25}=9.2\,\mathrm{A}$, $\dfrac{250}{125}=2\,\mathrm{A}$, $0.2\,\mathrm{A}$ down the $100\,\Omega$, $1\,\mathrm{A}$ through $5+15\,\Omega$." show=e,eR1,eR2,eR4,eR5,eR6
+#@ step "The pump's $8\,\mathrm{A}$ falls through the $10\,\Omega$, so $d=80\,\mathrm{V}$. The pump lifts $8\,\mathrm{A}$ from $20$ to $80\,\mathrm{V}$: it **delivers** $480\,\mathrm{W}$." show=d,eR3,eI1
+#@ step "The source lifts $9.2+2=11.2\,\mathrm{A}$ by $250\,\mathrm{V}$: $2800\,\mathrm{W}$. Check: the falls absorb $2116+500+4+5+15+640=3280\,\mathrm{W}$." show=eV1
+```
+  STEP: Drop the $125\,\Omega$ and the $10\,\Omega$; swap the $250\,\mathrm{V}$ + $25\,\Omega$.  $$i_s=\frac{250}{25}=10\,\mathrm{A}$$
+  STEP: One node: net $2\,\mathrm{A}$ into $25\parallel100\parallel20=10\,\Omega$.  $$v_o=(10-8)(10)=20\,\mathrm{V}$$
+  STEP: Back to the original for the $250\,\mathrm{V}$ source.  $$p=250\Big(\frac{250-20}{25}+\frac{250}{125}\Big)=250(11.2)=2800\,\mathrm{W}$$
+  STEP: The $8\,\mathrm{A}$ source: $d=(8)(10)=80\,\mathrm{V}$.  $$p=(80-20)(8)=480\,\mathrm{W}\text{ developed}$$
+  ANSWER: $v_o=20\,\mathrm{V}$; the $250\,\mathrm{V}$ source develops $2800\,\mathrm{W}$, the $8\,\mathrm{A}$ source $480\,\mathrm{W}$.
+
+[20] <practice_problem> a96be4ab TITLE: Try it 2 · Two pumps become one loop (Textbook P4.59)
+PROMPT: **(a)** Use source transformations to find $i_o$. **(b)** Check with the node-voltage method.
+
+```schematic
+I1 0,4 -> 0,0 "$6\,\mathrm{mA}$"
+wire 0,4 -> 3,4
+R1 3,4 -> 3,0 "$2.3\,\mathrm{k\Omega}$"
+R2 7,4 -> 3,4 "$2.7\,\mathrm{k\Omega}$" i="$i_o$"
+R3 7,4 -> 7,0 "$1\,\mathrm{k\Omega}$"
+wire 7,4 -> 10,4
+I2 10,0 -> 10,4 "$4.2\,\mathrm{mA}$"
+wire 0,0 -> 10,0
+label 3,4 "$a$" above
+label 7,4 "$b$" above
+ground 0,0
+#@ step "Ground node $a$, the lowest point: the $6\,\mathrm{mA}$ pump pulls current out of $a$ and drags it down. Moving ground changes no voltage difference."
+#@ step "Swap each pump with its parallel resistor: $(6)(2.3)=13.8\,\mathrm{V}$ and $(4.2)(1)=4.2\,\mathrm{V}$. One loop: $i_o=\dfrac{13.8+4.2}{2.3+2.7+1}=3\,\mathrm{mA}$." show=eR2
+#@ step "Place heights: the $2.7\,\mathrm{k\Omega}$ falls $(3)(2.7)=8.1\,\mathrm{V}$ from $b$ to $a$. The $2.3\,\mathrm{k\Omega}$ carries $6-3=3\,\mathrm{mA}$ from the bottom wire down to $a$: $6.9\,\mathrm{V}$." show=b,z0,eR1,eR3
+#@ step "In the drawing's voltages (bottom wire $=0$): $v_a=-6.9$, $v_b=1.2\,\mathrm{V}$. Both pumps climb: they deliver $41.4$ and $5.04\,\mathrm{mW}$."
+```
+  STEP: Swap both pumps (mA, kΩ, V).  $$6\times2.3=13.8\,\mathrm{V},\qquad 4.2\times1=4.2\,\mathrm{V}$$
+  STEP: One series loop.  $$i_o=\frac{13.8+4.2}{2.3+2.7+1}=3\,\mathrm{mA}$$
+  STEP: Node check (currents out).  $$\begin{aligned}\tfrac{v_a}{2.3}+\tfrac{v_a-v_b}{2.7}+6&=0\\\tfrac{v_b}{1}+\tfrac{v_b-v_a}{2.7}&=4.2\end{aligned}\;\Rightarrow\;v_a=-6.9,\;v_b=1.2$$
+  STEP: Same current.  $$i_o=\frac{1.2-(-6.9)}{2.7}=3\,\mathrm{mA}$$
+  ANSWER: $i_o=3\,\mathrm{mA}$ (both ways).
+
+[21] <practice_problem> 8892ea02 TITLE: Try it 3 · Is the 6 V source delivering? (Lecture 4)
+PROMPT: Find the power of the $6\,\mathrm{V}$ source. Is it absorbed or delivered?
+
+```schematic
+V1 0,4 -> 0,0 "$6\,\mathrm{V}$"
+R1 0,4 -> 4,4 "$4\,\Omega$"
+R2 4,4 -> 4,0 "$30\,\Omega$"
+R3 4,4 -> 8,4 "$6\,\Omega$"
+R4 8,4 -> 8,0 "$20\,\Omega$"
+R5 8,4 -> 12,4 "$5\,\Omega$"
+V2 12,4 -> 12,0 "$40\,\mathrm{V}$"
+wire 0,0 -> 4,0
+R6 4,0 -> 8,0 "$10\,\Omega$"
+wire 8,0 -> 12,0
+label 4,4 "$c$" above
+label 8,4 "$d$" above
+label 8,0 "$f$" below
+ground 0,0
+#@ step "Ground $f$, the lowest node (bottom-right wire). The text's voltages are measured from the bottom-left wire."
+#@ step "Swaps, right to left: $40\,\mathrm{V}$ + $5\,\Omega$ → $8\,\mathrm{A}$ ∥ $5\,\Omega$; with the $20\,\Omega$ → $8\,\mathrm{A}$ ∥ $4\,\Omega$ → $32\,\mathrm{V}$ + $4\,\Omega$; plus $6+10\,\Omega$ → $1.6\,\mathrm{A}$ ∥ $20\,\Omega$. Left: $6\,\mathrm{V}$ + $4\,\Omega$ → $1.5\,\mathrm{A}$ ∥ $4\,\Omega$."
+#@ step "Node $c$: $(1.5+1.6)(4\parallel20\parallel30)=9.3\,\mathrm{V}$ above the bottom-left wire, which is $3.3\,\mathrm{V}$ **above** the $6\,\mathrm{V}$ source's top." show=c
+#@ step "So current falls from $c$ **into** the source's $+$ end: $\dfrac{3.3}{4}=0.825\,\mathrm{A}$, then down through it. The source **absorbs** $(6)(0.825)=4.95\,\mathrm{W}$." show=eR1,eV1
+#@ step "The rest, in the original circuit: currents = fall ÷ R. Only the $40\,\mathrm{V}$ source climbs: it delivers $100.3\,\mathrm{W}$." show=d,eR2,eR3,eR4,eR5,eR6,eV2
+```
+  STEP: Right side: three swaps.  $$\tfrac{40}{5}=8\,\mathrm{A};\;\;5\parallel20=4\,\Omega;\;\;8\times4=32\,\mathrm{V};\;\;\tfrac{32}{6+4+10}=1.6\,\mathrm{A}$$
+  STEP: Left side.  $$\tfrac{6}{4}=1.5\,\mathrm{A}$$
+  STEP: One node: both pumps into $4\parallel20\parallel30=3\,\Omega$.  $$v_c=(1.5+1.6)(3)=9.3\,\mathrm{V}$$
+  STEP: Back to the original.  $$i=\frac{6-9.3}{4}=-0.825\,\mathrm{A}\;\Rightarrow\;p=(6)(0.825)=4.95\,\mathrm{W}\text{ absorbed}$$
+  ANSWER: The $6\,\mathrm{V}$ source **absorbs** $4.95\,\mathrm{W}$.
+
+[22] <heading> 7f026662 # Topic 3: Thévenin and Norton
+
+[23] <list> fb4f5815
+- Seen from $a$–$b$, any linear circuit is **one step $V_{\mathrm{Th}}$ and one slope $R_{\mathrm{Th}}$**.
+- $V_{\mathrm{Th}}$ = height of $a$ with nothing attached. $I_N$ = current through a wire from $a$ to $b$.
+- $R_{\mathrm{Th}}=\dfrac{V_{\mathrm{Th}}}{I_N}$. Or: sources off (voltage → wire, current → gap), push $1\,\mathrm{A}$ into $a$, read $a$'s height.
+- A load draws $i$, so $a$ **sags**: $v_{ab}=V_{\mathrm{Th}}-R_{\mathrm{Th}}i$. Norton = the source transformation: $I_N$ ∥ $R_{\mathrm{Th}}$.
+- Ground $b$, so $a$'s height is $v_{ab}$ (if a node dips below $b$, ground the lowest node and subtract).
+- Dependent sources inside? Keep them on. That is Week 5 Topic 1.
+
+[24] <equation> 19ef716c
+$$V_{\mathrm{Th}}=v_{oc},\qquad I_N=i_{sc},\qquad R_{\mathrm{Th}}=\frac{V_{\mathrm{Th}}}{I_N},\qquad v_{ab}=V_{\mathrm{Th}}-R_{\mathrm{Th}}\,i$$
+
+[25] <worked_example> 69cd6730 TITLE: The terminal sags
+PROMPT: A Thévenin source, $32\,\mathrm{V}$ behind $8\,\Omega$. Find $v_{ab}$ open, with a $24\,\Omega$ load, and the current with $a$ shorted to $b$.
+
+```schematic
+V1 0,3 -> 0,0 "$V_{\mathrm{Th}}=32\,\mathrm{V}$"
+R1 0,3 -> 3,3 "$R_{\mathrm{Th}}=8\,\Omega$"
+wire 3,3 -> 5,3
+RL 5,3 -> 5,0 "$R_L$" flip
+wire 5,0 -> 0,0
+terminal 3,3 "$a$" above
+terminal 3,0 "$b$" below
+ground 0,0
+#@ step "Ground $b$. The step lifts the top to $32\,\mathrm{V}$."
+#@ step "Nothing attached, no current, so $R_{\mathrm{Th}}$ has **no fall**: $a$ sits at $V_{\mathrm{Th}}=32\,\mathrm{V}$." show=a
+#@ step "Same ground. The load draws $\dfrac{32}{8+24}=1\,\mathrm{A}$." show=eRL,eV1
+#@ step "$R_{\mathrm{Th}}$ falls $(1)(8)=8\,\mathrm{V}$: $a$ **sags** to $32-8=24\,\mathrm{V}$." show=a,eR1
+#@ step "Same ground. A wire pins $a$ to $b$." show=a
+#@ step "$R_{\mathrm{Th}}$ now falls the whole $32\,\mathrm{V}$: $I_N=\dfrac{32}{8}=4\,\mathrm{A}$." show=eR1,eSC,eV1
+```
+  STEP: Open, loaded, shorted.  $$v_{oc}=32\,\mathrm{V},\qquad v_{ab}=32-8(1)=24\,\mathrm{V},\qquad i_{sc}=\frac{32}{8}=4\,\mathrm{A}$$
+  ANSWER: $32\,\mathrm{V}$ open, $24\,\mathrm{V}$ with the load, $I_N=4\,\mathrm{A}$.
+
+[26] <worked_example> 2a5b0fd5 TITLE: Open, short, sources off (Lecture 4)
+PROMPT: Find the Thévenin and Norton equivalents at $a$–$b$.
+
+```schematic
+V1 0,4 -> 0,0 "$25\,\mathrm{V}$"
+R1 0,4 -> 4,4 "$5\,\Omega$"
+R2 4,4 -> 4,0 "$20\,\Omega$"
+wire 4,4 -> 7,4
+I1 7,0 -> 7,4 "$3\,\mathrm{A}$"
+R3 7,4 -> 11,4 "$4\,\Omega$"
+terminal 11,4 "$a$" right
+terminal 11,0 "$b$" right
+gap 11,4 -> 11,0 v="$v_{ab}$"
+label 4,4 "$v_1$" above
+wire 0,0 -> 11,0
+ground 0,0
+#@ step "Ground $b$ (the bottom wire). The source fixes its top at $25\,\mathrm{V}$."
+#@ step "Open terminal: no current in the $4\,\Omega$, so it lies flat and $a=v_1$. KCL at $v_1$: $\dfrac{v_1-25}{5}+\dfrac{v_1}{20}=3$, so $v_1=32\,\mathrm{V}=V_{\mathrm{Th}}$." show=n,a
+#@ step "The pump lifted $v_1$ **above** the $25\,\mathrm{V}$ source, so $1.4\,\mathrm{A}$ falls back **into** the source." show=eR1,eR2,eV1
+#@ step "Same ground. A wire pins $a$ to $b$, so the $4\,\Omega$ is a new path down."
+#@ step "KCL at $v_1$: $\dfrac{v_1-25}{5}+\dfrac{v_1}{20}+\dfrac{v_1}{4}=3$, so $v_1=16\,\mathrm{V}$." show=n
+#@ step "The $4\,\Omega$ falls $16\,\mathrm{V}$: $I_N=4\,\mathrm{A}$. So $R_{\mathrm{Th}}=\dfrac{32}{4}=8\,\Omega$." show=eR3,eSC,eR1,eR2,eV1
+#@ step "Same ground. Sources off: the $25\,\mathrm{V}$ step flattens to a wire (its top comes down to $0$), the $3\,\mathrm{A}$ pump becomes a gap."
+#@ step "Push $1\,\mathrm{A}$ into $a$. It falls $4\,\mathrm{V}$ through the $4\,\Omega$, then $4\,\mathrm{V}$ through $5\parallel20=4\,\Omega$." show=n,eR3,eR1,eR2,eV1
+#@ step "$a$ climbed $8\,\mathrm{V}$ for $1\,\mathrm{A}$: $R_{\mathrm{Th}}=8\,\Omega$, the same as $\dfrac{32}{4}$." show=a,eIT
+```
+  STEP: Open: no current in the $4\,\Omega$; KCL at $v_1$.  $$\frac{v_1-25}{5}+\frac{v_1}{20}=3\;\Rightarrow\;V_{\mathrm{Th}}=v_1=32\,\mathrm{V}$$
+  STEP: Short: the $4\,\Omega$ joins $v_1$ to $b$.  $$\frac{v_1-25}{5}+\frac{v_1}{20}+\frac{v_1}{4}=3\;\Rightarrow\;v_1=16,\;\;I_N=\frac{16}{4}=4\,\mathrm{A}$$
+  STEP: Two ways to get the resistance.  $$R_{\mathrm{Th}}=\frac{32}{4}=8\,\Omega=(5\parallel20)+4$$
+  ANSWER: Thévenin: $32\,\mathrm{V}$ in series with $8\,\Omega$. Norton: $4\,\mathrm{A}$ (toward $a$) ∥ $8\,\Omega$.
+
+[27] <practice_problem> f735dc5e TITLE: Try it 4 · A loaded divider (Textbook P4.65)
+PROMPT: Find the Thévenin equivalent at $a$–$b$.
+
+```schematic
+V1 0,4 -> 0,0 "$80\,\mathrm{V}$"
+R1 0,4 -> 4,4 "$10\,\Omega$"
+R2 4,4 -> 4,0 "$30\,\Omega$"
+R3 4,4 -> 8,4 "$2.5\,\Omega$"
+terminal 8,4 "$a$" right
+terminal 8,0 "$b$" right
+label 4,4 "$m$" above
+wire 0,0 -> 8,0
+ground 0,0
+#@ step "Ground $b$. The source fixes its top at $80\,\mathrm{V}$."
+#@ step "Open: no current in the $2.5\,\Omega$ (flat), so $a=m$. A plain divider: $2\,\mathrm{A}$, the $10\,\Omega$ falls $20\,\mathrm{V}$, so $a=60\,\mathrm{V}=V_{\mathrm{Th}}$." show=m,a,eR1,eR2,eV1
+#@ step "Same ground. The $80\,\mathrm{V}$ step flattens to a wire."
+#@ step "Push $1\,\mathrm{A}$ into $a$: it falls $2.5\,\mathrm{V}$, then $7.5\,\mathrm{V}$ through $10\parallel30=7.5\,\Omega$." show=m,eR3,eR1,eR2,eV1
+#@ step "$a$ sits at $10\,\mathrm{V}$ per amp: $R_{\mathrm{Th}}=10\,\Omega$." show=a,eIT
+```
+  STEP: Open: divider.  $$V_{\mathrm{Th}}=80\cdot\frac{30}{10+30}=60\,\mathrm{V}$$
+  STEP: Sources off.  $$R_{\mathrm{Th}}=(10\parallel30)+2.5=10\,\Omega$$
+  STEP: Check with the short-circuit current.  $$i_{sc}=\frac{80}{10+(30\parallel2.5)}\cdot\frac{30}{32.5}=6\,\mathrm{A}=\frac{60}{10}$$
+  ANSWER: $V_{\mathrm{Th}}=60\,\mathrm{V}$, $R_{\mathrm{Th}}=10\,\Omega$.
+
+[28] <practice_problem> 4e736110 TITLE: Try it 5 · Norton by a short (Textbook P4.64)
+PROMPT: Find the Norton equivalent at $a$–$b$.
+
+```schematic
+I1 0,0 -> 0,4 "$15\,\mathrm{A}$"
+wire 0,4 -> 3,4
+R1 3,4 -> 3,0 "$8\,\Omega$"
+R2 3,4 -> 6,4 "$2\,\Omega$"
+R3 6,4 -> 6,0 "$12\,\Omega$"
+wire 6,4 -> 9,4
+terminal 9,4 "$a$" right
+wire 0,0 -> 3,0
+R4 3,0 -> 6,0 "$10\,\Omega$"
+wire 6,0 -> 9,0
+terminal 9,0 "$b$" right
+label 3,4 "$p$" above
+label 3,0 "$q$" below
+ground 6,0
+#@ step "Ground $q$, the lowest node: the pump pulls its $15\,\mathrm{A}$ out of $q$."
+#@ step "A wire across $a$–$b$ shorts the $12\,\Omega$ (no fall). The $15\,\mathrm{A}$ splits: $8\,\Omega$, or $2+10=12\,\Omega$. The $12\,\Omega$ path gets $\dfrac{8}{20}(15)=6\,\mathrm{A}$, through the short: $I_N=6\,\mathrm{A}$." show=eR2,eSC,eR4,eR1
+#@ step "Heights: $p=(9)(8)=72\,\mathrm{V}$; the $2\,\Omega$ falls $12\,\mathrm{V}$ to $a$, the $10\,\Omega$ falls $60\,\mathrm{V}$ to $q$." show=p,a,z0
+#@ step "Ground $b$ (nothing dips below it now). The pump becomes a gap."
+#@ step "Push $1\,\mathrm{A}$ into $a$. Two ways down: the $12\,\Omega$, or $2+8+10=20\,\Omega$. $12\parallel20=7.5\,\Omega$, so $a$ climbs $7.5\,\mathrm{V}$: $R_N=7.5\,\Omega$." show=a,p,q,eR1,eR2,eR3,eR4,eIT
+#@ step "Ground $q$ again (lowest)."
+#@ step "Open: $15\,\mathrm{A}$ splits $8$ vs $2+12+10=24\,\Omega$, so $3.75\,\mathrm{A}$ goes through the $12\,\Omega$: $v_{ab}=45\,\mathrm{V}=(6)(7.5)$ ✓." show=a,z0,p,eR1,eR2,eR3,eR4
+```
+  STEP: Short: current divider between $8\,\Omega$ and $2+10\,\Omega$.  $$I_N=15\cdot\frac{8}{8+12}=6\,\mathrm{A}$$
+  STEP: Pump off (a gap).  $$R_N=12\parallel(2+8+10)=7.5\,\Omega$$
+  STEP: Check.  $$v_{oc}=I_NR_N=45\,\mathrm{V}=(3.75)(12)$$
+  ANSWER: $I_N=6\,\mathrm{A}$ (toward $a$) ∥ $R_N=7.5\,\Omega$.
+
+[29] <practice_problem> 914acc88 TITLE: Try it 6 · Thévenin from two measurements (Textbook P4.69)
+PROMPT: A box holds an unknown linear circuit. A $15\,\mathrm{k\Omega}$ load on $a$–$b$ reads $v_{ab}=45\,\mathrm{V}$; a $5\,\mathrm{k\Omega}$ load reads $25\,\mathrm{V}$. Find the Thévenin equivalent.
+
+```schematic
+X1 0,3 -> 0,0 "network"
+wire 0,3 -> 3,3
+wire 0,0 -> 3,0
+RL 3,3 -> 3,0 "$R_L$" flip
+terminal 3,3 "$a$" above
+terminal 3,0 "$b$" below
+ground 0,0
+#@ step "Ground $b$. The box is drawn as its answer: one step and one slope."
+#@ step "The $15\,\mathrm{k\Omega}$ load sits at $45\,\mathrm{V}$, so it draws $\dfrac{45}{15}=3\,\mathrm{mA}$." show=eRL
+#@ step "Tab 2: the $5\,\mathrm{k\Omega}$ draws $\dfrac{25}{5}=5\,\mathrm{mA}$. $2\,\mathrm{mA}$ more made $a$ sag $20\,\mathrm{V}$: $R_{\mathrm{Th}}=10\,\mathrm{k\Omega}$." show=eRT
+#@ step "Open height: $45+(3)(10)=75\,\mathrm{V}=V_{\mathrm{Th}}$." show=t,eVT
+```
+  STEP: Load currents.  $$i_1=\frac{45}{15}=3\,\mathrm{mA},\qquad i_2=\frac{25}{5}=5\,\mathrm{mA}$$
+  STEP: Two points on $v=V_{\mathrm{Th}}-R_{\mathrm{Th}}i$ (kΩ, mA).  $$\begin{aligned}45&=V_{\mathrm{Th}}-3R_{\mathrm{Th}}\\25&=V_{\mathrm{Th}}-5R_{\mathrm{Th}}\end{aligned}$$
+  STEP: Subtract.  $$R_{\mathrm{Th}}=10\,\mathrm{k\Omega},\qquad V_{\mathrm{Th}}=75\,\mathrm{V}$$
+  ANSWER: $V_{\mathrm{Th}}=75\,\mathrm{V}$, $R_{\mathrm{Th}}=10\,\mathrm{k\Omega}$.
+
+[30] <heading> c1244874 # Practice problems
+
+[31] <paragraph> 6fd1a1e3
+Exam-style, each mixing topics. Give each a real try before opening the solution, then check your picture against the height view.
+
+[32] <practice_problem> ff5ea7d5 TITLE: Textbook P4.63 · Swaps, then every power
+PROMPT: **(a)** Use source transformations to find $v_o$. **(b)** Find the power developed by the $340\,\mathrm{V}$ source and **(c)** by the $5\,\mathrm{A}$ source. **(d)** Check the power balance.
+
+```schematic
+I1 0,0 -> 0,4 "$5\,\mathrm{A}$"
+R1 0,4 -> 3,4 "$8\,\Omega$"
+R2 3,4 -> 3,0 "$20\,\Omega$"
+wire 3,4 -> 3,7
+V1 3,7 -> 6,7 "$340\,\mathrm{V}$"
+wire 6,7 -> 6,4
+R3 3,4 -> 6,4 "$80\,\Omega$"
+R4 6,4 -> 9,4 "$5\,\Omega$"
+wire 9,4 -> 12,4
+R5 12,4 -> 12,0 "$45\,\Omega$"
+wire 0,0 -> 3,0
+R6 3,0 -> 9,0 "$10\,\Omega$"
+wire 9,0 -> 12,0
+gap 9,4 -> 9,0 v="$v_o$"
+label 3,4 "$q$" above
+label 6,4 "$r$" above
+label 9,0 "$m$" below
+ground 0,0
+#@ step "Ground $r$, the lowest node (the $340\,\mathrm{V}$ source's $-$ end). Moving ground changes no answer."
+#@ step "Drop the $8\,\Omega$ (series with the pump) and the $80\,\Omega$ (across the $340\,\mathrm{V}$). Swap $5\,\mathrm{A}$ ∥ $20\,\Omega$ for $100\,\mathrm{V}$ + $20\,\Omega$. One loop: $100-340=80i$, so $i=-3\,\mathrm{A}$: $3\,\mathrm{A}$ runs counter-clockwise." show=eR4,eR5,eR6
+#@ step "Climb from $r$ against that current: $5\,\Omega$ ($15\,\mathrm{V}$), $45\,\Omega$ ($135\,\mathrm{V}$) to $m=150$, $10\,\Omega$ ($30\,\mathrm{V}$) to the bottom-left wire at $180$. So $v_o=15-150=-135\,\mathrm{V}$." show=s,m,z0
+#@ step "Original circuit: the $20\,\Omega$ carries $5+3=8\,\mathrm{A}$, so $q=180+160=340$ ✓. The $8\,\Omega$ adds $40\,\mathrm{V}$: the pump lifts $5\,\mathrm{A}$ through $380-180=200\,\mathrm{V}$: $1000\,\mathrm{W}$." show=p,eR1,eR2,eI1
+#@ step "The $340\,\mathrm{V}$ source lifts $3+4.25=7.25\,\mathrm{A}$ (the loop plus the $80\,\Omega$'s current): $2465\,\mathrm{W}$. Total $3465\,\mathrm{W}$ = the six falls." show=eV1,eR3
+```
+  STEP: Drop the $8\,\Omega$ and $80\,\Omega$; swap the pump.  $$5\times20=100\,\mathrm{V}$$
+  STEP: One loop, clockwise.  $$\begin{aligned}100-340&=(20+5+45+10)\,i\;\Rightarrow\;i=-3\,\mathrm{A}\\v_o&=45i=-135\,\mathrm{V}\end{aligned}$$
+  STEP: $340\,\mathrm{V}$ source.  $$i=3+\tfrac{340}{80}=7.25\,\mathrm{A},\qquad p=2465\,\mathrm{W}$$
+  STEP: $5\,\mathrm{A}$ source.  $$v=20(8)+8(5)=200\,\mathrm{V},\qquad p=1000\,\mathrm{W}$$
+  STEP: Balance.  $$2465+1000=3465=200+1280+1445+45+405+90$$
+  ANSWER: **(a)** $v_o=-135\,\mathrm{V}$ **(b)** $2465\,\mathrm{W}$ **(c)** $1000\,\mathrm{W}$ **(d)** $3465\,\mathrm{W}$ both ways.
+
+[33] <practice_problem> 795109f6 TITLE: Textbook P4.60 · A pump across a resistor
+PROMPT: **(a)** Use source transformations to find $i_o$. **(b)** Check with the mesh-current method.
+
+```schematic
+I1 0,0 -> 0,4 "$4\,\mathrm{A}$"
+wire 0,4 -> 3,4
+R1 3,4 -> 3,0 "$5\,\Omega$"
+R2 3,4 -> 6,4 "$4\,\Omega$"
+R3 6,4 -> 9,4 "$1\,\Omega$"
+wire 6,4 -> 6,6
+I2 9,6 -> 6,6 "$10\,\mathrm{A}$"
+wire 9,6 -> 9,4
+R4 9,4 -> 9,2 "$40\,\Omega$"
+V1 9,2 -> 9,0 "$10\,\mathrm{V}$"
+wire 9,4 -> 12,4
+R5 12,4 -> 12,0 "$2\,\Omega$" i="$i_o$"
+wire 0,0 -> 12,0
+label 3,4 "$p$" above
+label 6,4 "$q$" below
+label 9,4 "$r$" below
+ground 0,0
+#@ step "Ground the bottom wire. The $10\,\mathrm{V}$ source fixes its top at $10\,\mathrm{V}$."
+#@ step "Swaps: $4\,\mathrm{A}$ ∥ $5\,\Omega$ → $20\,\mathrm{V}$ + $5\,\Omega$; $10\,\mathrm{A}$ ∥ $1\,\Omega$ → $10\,\mathrm{V}$ + $1\,\Omega$ ($+$ toward $q$). Seen from $r$, the left side is $20-10=10\,\mathrm{V}$ behind $5+4+1=10\,\Omega$."
+#@ step "Averaging at $r$: $\dfrac{10/10+10/40+0/2}{1/10+1/40+1/2}=2\,\mathrm{V}$. So $i_o=\dfrac{2}{2}=1\,\mathrm{A}$." show=r,eR5
+#@ step "Back in the original: $p=16$, $q=12.8\,\mathrm{V}$. The $10\,\mathrm{A}$ pump lifts current from $r$ up to $q$; $10.8\,\mathrm{A}$ falls back through the $1\,\Omega$." show=p,q,eR1,eR2,eR3,eR4,eI1,eI2,eV1
+```
+  STEP: Swap both pumps.  $$4\times5=20\,\mathrm{V},\qquad 10\times1=10\,\mathrm{V}$$
+  STEP: Node $r$ with three branches: $10\,\mathrm{V}$ behind $10\,\Omega$, $10\,\mathrm{V}$ behind $40\,\Omega$, $2\,\Omega$ to ground.  $$\frac{v_r-10}{10}+\frac{v_r-10}{40}+\frac{v_r}{2}=0\;\Rightarrow\;v_r=2\,\mathrm{V}$$
+  STEP: Answer.  $$i_o=\frac{2}{2}=1\,\mathrm{A}$$
+  ANSWER: $i_o=1\,\mathrm{A}$.
+
+[34] <practice_problem> e6a5d8a8 TITLE: Textbook P4.68 · A pump that feeds back
+PROMPT: Find the Thévenin equivalent at $a$–$b$.
+
+```schematic
+V1 0,3 -> 0,0 "$300\,\mathrm{V}$"
+R1 0,3 -> 4,3 "$40\,\Omega$"
+R2 4,3 -> 4,0 "$8\,\Omega$"
+R3 4,3 -> 8,3 "$10\,\Omega$"
+wire 0,3 -> 0,5
+R4 0,5 -> 8,5 "$150\,\Omega$"
+wire 8,5 -> 8,3
+wire 0,5 -> 0,7
+I1 8,7 -> 0,7 "$3\,\mathrm{A}$"
+wire 8,7 -> 8,5
+wire 8,3 -> 10,3
+terminal 10,3 "$a$" right
+terminal 10,0 "$b$" right
+wire 0,0 -> 10,0
+label 4,3 "$m$" above
+ground 0,0
+#@ step "Ground $b$. The source fixes its top at $300\,\mathrm{V}$."
+#@ step "Two unknown heights, $m$ and $a$. KCL: $\dfrac{m-300}{40}+\dfrac{m}{8}+\dfrac{m-a}{10}=0$ and $\dfrac{a-300}{150}+\dfrac{a-m}{10}+3=0$. So $m=42$, $a=30\,\mathrm{V}=V_{\mathrm{Th}}$." show=m,a
+#@ step "$1.2+1.8=3\,\mathrm{A}$ arrive at $a$, and the pump lifts all of it back to the top: $810\,\mathrm{W}$ delivered." show=eR1,eR2,eR3,eR4,eV1,eI1
+#@ step "Same ground. $300\,\mathrm{V}$ → a wire, $3\,\mathrm{A}$ → a gap."
+#@ step "Push $1\,\mathrm{A}$ into $a$. Two ways down: the $150\,\Omega$, or $10\,\Omega$ then $40\parallel8=6.67\,\Omega$. $150\parallel16.67=15\,\Omega$." show=m,eR1,eR2,eR3,eR4,eV1
+#@ step "$a$ sits at $15\,\mathrm{V}$: $R_{\mathrm{Th}}=15\,\Omega$." show=a,eIT
+```
+  STEP: Open: KCL at $m$ and $a$.  $$\begin{aligned}\tfrac{m-300}{40}+\tfrac{m}{8}+\tfrac{m-a}{10}&=0\\\tfrac{a-300}{150}+\tfrac{a-m}{10}+3&=0\end{aligned}\;\Rightarrow\;a=30\,\mathrm{V}$$
+  STEP: Sources off.  $$R_{\mathrm{Th}}=150\parallel\big(10+(40\parallel8)\big)=150\parallel16.67=15\,\Omega$$
+  ANSWER: $V_{\mathrm{Th}}=30\,\mathrm{V}$, $R_{\mathrm{Th}}=15\,\Omega$.
+
+[35] <practice_problem> cdceb6c1 TITLE: Textbook P4.73 · A voltmeter is a load
+PROMPT: A $100\,\mathrm{k\Omega}$ voltmeter measures $v_{ab}$. **(a)** What does it read? **(b)** What is the percentage error, $\dfrac{\text{measured}-\text{actual}}{\text{actual}}\times100$?
+
+```schematic
+R1 0,6 -> 0,3 "$10\,\mathrm{k\Omega}$"
+V1 0,3 -> 0,0 "$30\,\mathrm{V}$"
+wire 0,6 -> 3,6
+R2 3,6 -> 3,0 "$40\,\mathrm{k\Omega}$"
+R3 3,6 -> 6,6 "$4\,\mathrm{k\Omega}$"
+I1 6,0 -> 6,6 "$8\,\mathrm{mA}$"
+R4 6,6 -> 9,6 "$3\,\mathrm{k\Omega}$"
+R5 9,6 -> 9,0 "$10\,\mathrm{k\Omega}$"
+wire 9,6 -> 11,6
+terminal 11,6 "$a$" right
+terminal 11,0 "$b$" right
+wire 0,0 -> 11,0
+label 3,6 "$p$" above
+label 6,6 "$q$" above
+ground 0,0
+#@ step "Ground $b$. The source fixes its top at $30\,\mathrm{V}$."
+#@ step "Unknowns $p$ and $q$ ($a$ is a divider below $q$). KCL (mA, kΩ): $p=49.6$, $q=62.4\,\mathrm{V}$, so $a=\tfrac{10}{13}(62.4)=48\,\mathrm{V}=V_{\mathrm{Th}}$." show=p,q,a
+#@ step "The pump lifts $8\,\mathrm{mA}$ to $62.4\,\mathrm{V}$. $1.96\,\mathrm{mA}$ falls back **into** the $30\,\mathrm{V}$ source." show=eR1,eR2,eR3,eR4,eR5,eV1
+#@ step "Same ground. Sources off: $10\parallel40=8$, $+4=12$, $+3=15$, $\parallel10$: $R_{\mathrm{Th}}=6\,\mathrm{k\Omega}$."
+#@ step "The meter draws $\dfrac{48}{6+100}=0.453\,\mathrm{mA}$, so $a$ sags $(6)(0.453)=2.72\,\mathrm{V}$: it reads $45.28\,\mathrm{V}$." show=a,eRM
+#@ step "Error: $\dfrac{45.28-48}{48}=-5.66\%$." show=p,q,eR1,eR2,eR3,eR4,eR5,eV1
+```
+  STEP: Thévenin at $a$–$b$ (node equations, then sources off).  $$V_{\mathrm{Th}}=48\,\mathrm{V},\qquad R_{\mathrm{Th}}=\big((10\parallel40)+4+3\big)\parallel10=6\,\mathrm{k\Omega}$$
+  STEP: The meter is a load.  $$v_m=48\cdot\frac{100}{106}=45.28\,\mathrm{V}$$
+  STEP: Error.  $$\frac{45.28-48}{48}\times100=-5.66\%$$
+  ANSWER: **(a)** $45.28\,\mathrm{V}$ **(b)** $-5.66\%$
+
+[36] <heading> 6545a97f # Summary: Week 4 in one read
+
+[37] <callout> 5557c03a tip
+Same picture as before: **voltage is height**. All three shortcuts keep the heights at the terminals and redraw the inside.
+
+[38] <heading> aedc97ac ## A · Node or mesh?
+
+[39] <list> f53dd9e8
+- Count first: node $=(n_e-1)-$fixed heights; mesh $=(b_e-n_e+1)-$fixed meshes.
+- Voltage sources favour node; current sources favour mesh. Pick the smaller count.
+
+[40] <heading> b47353b4 ## B · Swap sources
+
+[41] <list> dbc6a377
+- $V$ + series $R$ ⇄ $\dfrac{V}{R}$ ∥ $R$. Arrow toward $+$.
+- Same $a$ for any load; different inside. Powers: go back to the original.
+
+[42] <worked_example> 7266b713 TITLE: B1 · Same terminal, two insides
+PROMPT: Find $a$ with a $6\,\Omega$ load, before and after the swap.
+
+```schematic
+V1 0,3 -> 0,0 "$9\,\mathrm{V}$"
+R1 0,3 -> 3,3 "$3\,\Omega$"
+wire 3,3 -> 5,3
+R2 5,3 -> 5,0 "$6\,\Omega$" flip
+wire 5,0 -> 0,0
+terminal 3,3 "$a$" above
+ground 0,0
+#@ step "Ground $b$. One loop: $\dfrac{9}{3+6}=1\,\mathrm{A}$; the $3\,\Omega$ falls $3\,\mathrm{V}$, so $a=6\,\mathrm{V}$." show=a,eR1,eR2
+#@ step "Same ground. $3\,\mathrm{A}$ into $3\parallel6=2\,\Omega$: $a=6\,\mathrm{V}$. Same height." show=a,eRp,eR2
+```
+  STEP: Both forms.  $$a=9\cdot\frac{6}{9}=6\,\mathrm{V}=3\,(3\parallel6)$$
+  ANSWER: $a=6\,\mathrm{V}$ both ways.
+
+[43] <heading> 52200d38 ## C · Thévenin = one step + one slope
+
+[44] <list> cd851b98
+- Open: $a$ sits at $V_{\mathrm{Th}}$. Short: $I_N$ flows. $R_{\mathrm{Th}}=\dfrac{V_{\mathrm{Th}}}{I_N}$ = sag per amp.
+- Sources off (wire / gap), push $1\,\mathrm{A}$ in: $a$'s height $=R_{\mathrm{Th}}$.
+
+[45] <worked_example> e94d55f5 TITLE: C1 · All three tabs
+PROMPT: Find $V_{\mathrm{Th}}$, $I_N$ and $R_{\mathrm{Th}}$ at $a$–$b$.
+
+```schematic
+V1 0,3 -> 0,0 "$18\,\mathrm{V}$"
+R1 0,3 -> 3,3 "$6\,\Omega$"
+R2 3,3 -> 3,0 "$3\,\Omega$"
+wire 3,3 -> 6,3
+wire 3,0 -> 6,0
+terminal 6,3 "$a$" right
+terminal 6,0 "$b$" right
+wire 0,0 -> 3,0
+ground 0,0
+#@ step "Ground $b$. Divider: $2\,\mathrm{A}$; the $6\,\Omega$ falls $12\,\mathrm{V}$, so $a=6\,\mathrm{V}=V_{\mathrm{Th}}$." show=a,eR1,eR2
+#@ step "Same ground. A wire pins $a$ to $b$: the $3\,\Omega$ has no fall; the $6\,\Omega$ falls $18\,\mathrm{V}$: $I_N=3\,\mathrm{A}$." show=a,eR1,eSC
+#@ step "Same ground. Flatten the $18\,\mathrm{V}$. $1\,\mathrm{A}$ into $6\parallel3=2\,\Omega$: $a=2\,\mathrm{V}$, so $R_{\mathrm{Th}}=2\,\Omega=\dfrac{6}{3}$." show=a,eR1,eR2,eIT
+```
+  STEP: Three numbers, one check.  $$V_{\mathrm{Th}}=6\,\mathrm{V},\quad I_N=3\,\mathrm{A},\quad R_{\mathrm{Th}}=6\parallel3=2\,\Omega=\frac{6}{3}$$
+  ANSWER: $V_{\mathrm{Th}}=6\,\mathrm{V}$, $I_N=3\,\mathrm{A}$, $R_{\mathrm{Th}}=2\,\Omega$.
+
+[46] <heading> 6f5119ea ## Which part do I need? (practice problem map)
+
+[47] <table> 7b8965a4
+| Problem | Use | First move |
+| Try it 1 · P4.54 | A | Pump fixes one mesh: 2 mesh equations. |
+| Try its 2–3 · P4.59, Lecture p.9 | B | Swap pumps ⇄ batteries until one loop or one node is left. |
+| Try its 4–6 · P4.65, P4.64, P4.69 | C | Open → $V_{\mathrm{Th}}$; short → $I_N$; sources off → $R_{\mathrm{Th}}$; two loads → two points on the sag line. |
+| P4.63 · Swaps, then every power | B | Drop the 8 Ω and 80 Ω; one loop; then back to the original. |
+| P4.60 · A pump across a resistor | B | Swap both pumps; averaging at $r$. |
+| P4.68 · A pump that feeds back | C | Two KCLs for $V_{\mathrm{Th}}$; sources off for $R_{\mathrm{Th}}$. |
+| P4.73 · A voltmeter is a load | C | Thévenin first; the meter sags the terminal. |
+
+[48] <callout> fa1f48b0 warning
+**Traps.** (1) Swapped circuit → terminal values only, never inside powers. (2) Arrow points to the $+$ end. (3) Sources off: voltage → wire, current → gap; dependent sources stay on. (4) $v_{ab}$ is $+$ at $a$; $i_{sc}$ flows $a\to b$ through the short. (5) A source with no series/parallel $R$ can't be swapped.
+
+[49] <heading> f6a54ee6 ## Formula sheet
+
+[50] <table> 7a54b8b5
+| Result | Formula | In heights |
+| Equation count | $N_{\text{node}}=(n_e-1)-$fixed; $N_{\text{mesh}}=(b_e-n_e+1)-$fixed | fixed heights / fixed meshes |
+| Source swap | $i_s=\dfrac{v_s}{R}$, $v_s=Ri_s$ | same terminal height |
+| Thévenin voltage | $V_{\mathrm{Th}}=v_{oc}$ | open height of $a$ |
+| Norton current | $I_N=i_{sc}=\dfrac{V_{\mathrm{Th}}}{R_{\mathrm{Th}}}$ | $a$ pulled down to $b$ |
+| Thévenin resistance | $R_{\mathrm{Th}}=\dfrac{v_{oc}}{i_{sc}}$, or sources off | sag per amp; height for a 1 A push |
+| Loaded terminal | $v_{ab}=V_{\mathrm{Th}}-R_{\mathrm{Th}}i=V_{\mathrm{Th}}\dfrac{R_L}{R_{\mathrm{Th}}+R_L}$ | the sag |
