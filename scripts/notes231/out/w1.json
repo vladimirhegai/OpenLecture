@@ -3,24 +3,10 @@
  "week": 1,
  "topic_keys": [
   "complex_numbers",
-  "complex_arithmetic",
+  "euler_identity",
   "rl_natural_response"
  ],
  "blocks": [
-  {
-   "type": "callout",
-   "tone": "info",
-   "text": "**Week 1 in one sentence:** complex numbers are points on a flat plane that you can write two ways ($a+jb$ or $c\\,e^{j\\theta}$), and a circuit with an inductor gives you your first differential equation, whose answer is a decaying exponential.\n\n**By the end you can:**\n\n- switch any complex number between rectangular form $a+jb$ and polar form $c\\,e^{j\\theta}$ (with the right angle in every quadrant);\n- add, subtract, multiply, divide, and take powers and roots of complex numbers;\n- use Euler's identity $e^{j\\theta}=\\cos\\theta+j\\sin\\theta$ (including to prove trig identities);\n- write the differential equation of an RL circuit after a switch opens, solve it, and use the time constant $\\tau=L/R$.",
-   "citations": [],
-   "id": "376384c6-a0f1-56fb-8b8d-466991deca67"
-  },
-  {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**Why complex numbers in a differential-equations course?** In Week 5 you will solve equations like $y''+2y'+5y=0$ by solving $s^2+2s+5=0$, and the roots are $s=-1\\pm j2$, complex numbers. Those roots turn into decaying oscillations (the ringing of an RLC circuit). Everything in Topics 1–2 is the toolkit for that.",
-   "citations": [],
-   "id": "46cb5750-559d-55e6-ada2-89c0869cc9f6"
-  },
   {
    "type": "heading",
    "level": 1,
@@ -30,36 +16,6 @@
      "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
      "version": 1,
      "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
-    }
-   ],
-   "id": "9773d4fe-ef37-5ce9-b8da-542d9fd33cc2"
-  },
-  {
-   "type": "paragraph",
-   "text": "Engineers write $j$ for $\\sqrt{-1}$ (so $j^2=-1$; $i$ is already taken by current). A complex number $z=a+jb$ is really just a **point on a plane**: go $a$ to the right along the horizontal *real axis* (Re) and $b$ up along the vertical *imaginary axis* (Im). $a=\\mathrm{Re}\\{z\\}$ is the *real part* and $b=\\mathrm{Im}\\{z\\}$ is the *imaginary part*; both are ordinary real numbers.\n\nYou can describe the same point a second way: **how far** it is from the origin ($c=|z|$, the *magnitude*, never negative) and **which direction** it points ($\\theta=\\angle z$, the *angle*, measured counter-clockwise from the positive real axis). That is *polar form*, written $z=c\\,e^{j\\theta}$ or, in angle notation, $z=c\\angle\\theta$. Rectangular form is best for adding; polar form is best for multiplying. Converting between them is the core skill of this week.",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
-    }
-   ],
-   "id": "c0d71f0d-3f8f-5ef7-8309-0c4cb191f7b4"
-  },
-  {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**The method: converting**\n\n**Rectangular → polar** ($a+jb\\;\\to\\;c\\angle\\theta$):\n\n1. **Sketch the point** $(a,b)$ so you know its quadrant.\n2. Magnitude: $c=\\sqrt{a^2+b^2}$.\n3. Reference angle: $\\theta_{\\text{ref}}=\\arctan\\left|\\dfrac{b}{a}\\right|$ (an angle between $0^\\circ$ and $90^\\circ$).\n4. Put it in the right quadrant with the table below.\n\n**Polar → rectangular** ($c\\angle\\theta\\;\\to\\;a+jb$): $a=c\\cos\\theta$, $b=c\\sin\\theta$. No quadrant thinking needed: the signs of $\\cos$ and $\\sin$ take care of it.\n\n**Casio 991 check:** `Pol(a, b)` returns $c$ and $\\theta$ (between $-180^\\circ$ and $180^\\circ$) with the quadrant already handled; `Rec(c, θ)` goes back. Make sure the calculator is in degree mode when you use degrees.",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e72d164a-abe6-4d61-9825-c850d1293a08"
     },
     {
      "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
@@ -67,18 +23,50 @@
      "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
     }
    ],
-   "id": "d9d520d0-9ffa-5a1a-ad7f-2c957921e666"
+   "id": "d453d89a-1d3d-5234-894f-9bd02c1e1f65"
+  },
+  {
+   "type": "paragraph",
+   "text": "$j=\\sqrt{-1}$, so $j^2=-1$. (Engineers write $j$ because $i$ means current.)\n\nA complex number $z$ is a **point on a plane**. You can describe that point two ways.\n\n**Rectangular form** $z=a+jb$: how far across, how far up.\n- $a=\\mathrm{Re}\\{z\\}$: the **real part** (across)\n- $b=\\mathrm{Im}\\{z\\}$: the **imaginary part** (up)\n\n**Polar form** $z=c\\angle\\theta$: how long, which direction.\n- $c=|z|$: the **magnitude** (length of the arrow, never negative)\n- $\\theta=\\angle z$: the **angle** (counter-clockwise from the positive real axis)",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
+    }
+   ],
+   "id": "d2f3a8b2-abd5-50d2-973c-6a909ffe749d"
   },
   {
    "type": "equation",
-   "latex": "\\begin{gathered}z=a+jb=c\\,e^{j\\theta}=c\\angle\\theta, \\\\ c=\\sqrt{a^2+b^2},\\quad \\tan\\theta=\\frac{b}{a}, \\\\ a=c\\cos\\theta,\\quad b=c\\sin\\theta\\end{gathered}",
+   "latex": "z=a+jb=c\\,e^{j\\theta}=c\\angle\\theta",
    "display": true,
    "citations": [
     {
      "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
      "version": 1,
      "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
-    },
+    }
+   ],
+   "id": "49e6600b-7117-5012-a52f-79547f2787ea"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Convert",
+    "How"
+   ],
+   "rows": [
+    [
+     "$a+jb\\ \\to\\ c\\angle\\theta$",
+     "$c=\\sqrt{a^2+b^2}$, $\\ \\theta=\\arctan\\dfrac{b}{a}$, **then add $180^\\circ$ if $a<0$**"
+    ],
+    [
+     "$c\\angle\\theta\\ \\to\\ a+jb$",
+     "$a=c\\cos\\theta$, $\\ b=c\\sin\\theta$"
+    ]
+   ],
+   "citations": [
     {
      "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
      "version": 1,
@@ -90,46 +78,214 @@
      "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
     }
    ],
-   "id": "9d8d169f-14a5-5ebd-bbce-d22aa9414d12"
+   "id": "db68b089-85b6-5126-8205-a7642232c3f2"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Drag $z$: both forms update\"\nx -5 5 label=\"Re\"\ny -4 4 label=\"Im\"\nequal\ndrag Z 3 4 label=\"$z$\" snap=0.5\narrow \"Z_x\" \"Z_y\" color=1\nsegment \"Z_x\" \"0\" \"Z_x\" \"Z_y\" dash color=0\nsegment \"0\" \"Z_y\" \"Z_x\" \"Z_y\" dash color=0\ncircle \"0\" \"0\" \"1\" dash color=0\nreadout \"$a=$\" \"Z_x\"\nreadout \"$b=$\" \"Z_y\"\nreadout \"$c=$\" \"hypot(Z_x,Z_y)\"\nreadout \"$\\theta=$\" \"deg(atan2(Z_y,Z_x))\" unit=\"°\"\nreadout \"$\\arctan(b/a)=$\" \"deg(atan(Z_y/Z_x))\" unit=\"°\"\ncaption \"Drag $z$ into the left half: $\\arctan(b/a)$ is now off by $180^\\circ$ from the true angle $\\theta$.\"\n```",
+   "citations": [],
+   "id": "f904ed21-92f1-55e5-896c-30f1064f66b8"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Euler's identity** connects the two forms:",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
+    },
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
+    }
+   ],
+   "id": "41b72618-3ca6-5aff-bec8-5b9816b2e4b6"
+  },
+  {
+   "type": "equation",
+   "latex": "e^{j\\theta}=\\cos\\theta+j\\sin\\theta\\quad\\Rightarrow\\quad c\\,e^{j\\theta}=\\underbrace{c\\cos\\theta}_{a}+j\\,\\underbrace{c\\sin\\theta}_{b}",
+   "display": true,
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
+    }
+   ],
+   "id": "6138d070-4e09-5d55-8dd7-f9334dc5a484"
+  },
+  {
+   "type": "paragraph",
+   "text": "- $e^{j\\theta}$ is the point at angle $\\theta$ on the **unit circle** (the dashed circle above): its length is $\\sqrt{\\cos^2\\theta+\\sin^2\\theta}=1$.\n- Multiplying by $c$ stretches it out to length $c$. That's where $a=c\\cos\\theta$ and $b=c\\sin\\theta$ come from.",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
+    }
+   ],
+   "id": "4f3bacee-b051-5366-854e-fd1208cbee20"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · Left half of the plane: the arctan trap",
+   "prompt": "Write $z=-3+j4$ in polar form.",
+   "steps": [
+    {
+     "explanation": "The length uses Pythagoras; signs don't matter.",
+     "latex": "c=\\sqrt{(-3)^2+4^2}=5"
+    },
+    {
+     "explanation": "The calculator gives $\\arctan\\frac{4}{-3}=-53.13^\\circ$, which points down-right. But $z$ is up-left ($a<0$).",
+     "latex": "\\arctan\\frac{4}{-3}=-53.13^\\circ\\quad\\text{(wrong side)}"
+    },
+    {
+     "explanation": "$a<0$, so add $180^\\circ$. (`Pol(-3,4)` on a Casio does this for you.)",
+     "latex": "\\theta=-53.13^\\circ+180^\\circ=126.87^\\circ"
+    }
+   ],
+   "answer": "$z=5\\angle126.87^\\circ=5e^{j126.87^\\circ}$",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
+    }
+   ],
+   "id": "c3c8864e-ee5d-593f-8e79-bb2965159b2d"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · Polar back to rectangular",
+   "prompt": "Write $z=10\\angle{-150^\\circ}$ as $a+jb$.",
+   "steps": [
+    {
+     "explanation": "No quadrant thinking needed: the signs of $\\cos$ and $\\sin$ handle it.",
+     "latex": "a=10\\cos(-150^\\circ)=-8.66"
+    },
+    {
+     "explanation": "Same for the imaginary part.",
+     "latex": "b=10\\sin(-150^\\circ)=-5"
+    }
+   ],
+   "answer": "$z=-8.66-j5$ (down-left, as $-150^\\circ$ says)",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "e72d164a-abe6-4d61-9825-c850d1293a08"
+    }
+   ],
+   "id": "6b0abeef-d9cf-53ea-bdb6-dadb2a7f17df"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · Trig identities for free (lecture)",
+   "prompt": "Use $e^{jA}e^{jB}=e^{j(A+B)}$ to get the formulas for $\\cos(A+B)$ and $\\sin(A+B)$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ e^{jA}\\,e^{jB}=e^{j(A+B)} $$\nExponents add when you multiply.\n$$ \\hl{(\\cos A+j\\sin A)(\\cos B+j\\sin B)}=\\hl{\\cos(A+B)+j\\sin(A+B)} $$\nWrite every exponential with Euler's identity.\n$$ \\cos A\\cos B+j\\cos A\\sin B+j\\sin A\\cos B+\\hl{j^2}\\sin A\\sin B $$\nExpand the left side like ordinary brackets.\n$$ \\hl{(\\cos A\\cos B-\\sin A\\sin B)}+j\\hl{(\\sin A\\cos B+\\cos A\\sin B)} $$\n$j^2=-1$; group the terms without $j$ and with $j$.\n$$ \\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B $$\nTwo complex numbers are equal only if their real parts match…\n$$ \\sin(A+B)=\\sin A\\cos B+\\cos A\\sin B $$\n…and their imaginary parts match.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$\\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B$, $\\ \\sin(A+B)=\\sin A\\cos B+\\cos A\\sin B$",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "e72d164a-abe6-4d61-9825-c850d1293a08"
+    }
+   ],
+   "id": "06fba718-b813-5037-aef2-92e09d62ec46"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · Euler on the axes",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Without a calculator, find $e^{j\\pi}$, $e^{j\\pi/2}$ and $e^{-j\\pi/2}$. (Angles in radians: $\\pi=180^\\circ$.)",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "$e^{j\\theta}$ is the point at angle $\\theta$ on the unit circle. $\\pi$ is $180^\\circ$: straight left.",
+     "latex": "e^{j\\pi}=\\cos\\pi+j\\sin\\pi=-1"
+    },
+    {
+     "explanation": "$\\pi/2$ is $90^\\circ$: straight up.",
+     "latex": "e^{j\\pi/2}=\\cos\\tfrac{\\pi}{2}+j\\sin\\tfrac{\\pi}{2}=j"
+    },
+    {
+     "explanation": "$-\\pi/2$ is $90^\\circ$ clockwise: straight down.",
+     "latex": "e^{-j\\pi/2}=-j"
+    }
+   ],
+   "answer": "$e^{j\\pi}=-1$, $\\ e^{j\\pi/2}=j$, $\\ e^{-j\\pi/2}=-j$",
+   "citations": [],
+   "id": "f4277906-0965-5bd5-b9cb-60a38299c773"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 2: Complex arithmetic",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
+    },
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
+    }
+   ],
+   "id": "486df456-3565-5e08-b70e-1895d5057319"
+  },
+  {
+   "type": "paragraph",
+   "text": "Each operation is easy in one form and messy in the other:",
+   "citations": [],
+   "id": "91e82435-c1c1-5543-9008-c4de191974b4"
   },
   {
    "type": "table",
    "columns": [
-    "Where the point is",
-    "Signs",
-    "Angle $\\theta$ (from the reference angle)",
-    "Example"
+    "Operation",
+    "Use",
+    "Rule"
    ],
    "rows": [
     [
-     "1st quadrant (up-right)",
-     "$a>0,\\ b>0$",
-     "$\\theta=\\theta_{\\text{ref}}$",
-     "$3+j4$: $53.13^\\circ$"
+     "Add, subtract",
+     "rectangular",
+     "add the real parts and the imaginary parts separately"
     ],
     [
-     "2nd quadrant (up-left)",
-     "$a<0,\\ b>0$",
-     "$\\theta=180^\\circ-\\theta_{\\text{ref}}$",
-     "$-3+j4$: $126.87^\\circ$"
+     "Multiply",
+     "polar",
+     "lengths multiply, angles add: $c_1e^{j\\theta_1}\\cdot c_2e^{j\\theta_2}=c_1c_2\\,e^{j(\\theta_1+\\theta_2)}$"
     ],
     [
-     "3rd quadrant (down-left)",
-     "$a<0,\\ b<0$",
-     "$\\theta=180^\\circ+\\theta_{\\text{ref}}$ (same as $-(180^\\circ-\\theta_{\\text{ref}})$)",
-     "$-3-j4$: $233.13^\\circ=-126.87^\\circ$"
+     "Divide",
+     "polar",
+     "lengths divide, angles subtract: $\\dfrac{c_1e^{j\\theta_1}}{c_2e^{j\\theta_2}}=\\dfrac{c_1}{c_2}e^{j(\\theta_1-\\theta_2)}$"
     ],
     [
-     "4th quadrant (down-right)",
-     "$a>0,\\ b<0$",
-     "$\\theta=-\\theta_{\\text{ref}}$ (same as $360^\\circ-\\theta_{\\text{ref}}$)",
-     "$3-j4$: $-53.13^\\circ$"
+     "Divide",
+     "rectangular",
+     "multiply top and bottom by the conjugate of the bottom"
     ],
     [
-     "On an axis",
-     "",
-     "$1=1\\angle0^\\circ$, $j=1\\angle90^\\circ$, $-1=1\\angle180^\\circ$, $-j=1\\angle-90^\\circ$",
-     ""
+     "Power $z^k$",
+     "polar",
+     "$c^k\\,e^{jk\\theta}$ (de Moivre's theorem)"
+    ],
+    [
+     "$k$-th roots",
+     "polar",
+     "$c^{1/k}\\,e^{j(\\theta+360^\\circ\\ell)/k}$ for $\\ell=0,1,\\dots,k-1$: $k$ answers"
     ]
    ],
    "citations": [
@@ -137,517 +293,41 @@
      "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
      "version": 1,
      "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
+    },
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
     }
    ],
-   "id": "375a8573-793e-5e01-8f02-8158f036a190"
+   "id": "6efb55c8-e776-5f03-934d-07c7c6864151"
   },
   {
    "type": "paragraph",
-   "text": "![Four points, four quadrants. Every arrow has length $c=5$; only the angle changes. The angle is always measured counter-clockwise from the positive real axis (orange arc for $-3+j4$).](/figures/elec231/w1_plane.svg)\n\n*Four points, four quadrants. Every arrow has length $c=5$; only the angle changes. The angle is always measured counter-clockwise from the positive real axis (orange arc for $-3+j4$).*",
-   "citations": [],
-   "id": "67094ef5-1242-5837-bc02-2f3608d7acee"
+   "text": "**Conjugate** $z^*$: flip the sign of the imaginary part.\n- $z^*=a-jb=c\\,e^{-j\\theta}$ (mirror image across the real axis)\n- $z\\,z^*=a^2+b^2=c^2$, always a **real** number. That is what makes rectangular division work.",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
+    }
+   ],
+   "id": "8fc22da4-1e39-55e3-aab2-775ec6e33f5c"
   },
   {
    "type": "paragraph",
-   "text": "**Euler's identity** is the bridge between the two forms. It says that $e^{j\\theta}$ is the point at angle $\\theta$ on the circle of radius 1:",
+   "text": "```graph\ntitle \"Multiplying: lengths multiply, angles add\"\nx -4 4 label=\"Re\"\ny -3 3 label=\"Im\"\nequal\ndrag Z 1.5 0.5 label=\"$z$\" color=1 snap=0.25\ndrag W 0.5 1.5 label=\"$w$\" color=3 snap=0.25\narrow \"Z_x\" \"Z_y\" color=1\narrow \"W_x\" \"W_y\" color=3\narrow \"Z_x*W_x-Z_y*W_y\" \"Z_x*W_y+Z_y*W_x\" color=2 label=\"$zw$\"\ncircle \"0\" \"0\" \"1\" dash color=0\nreadout \"$|z|\\,|w|=$\" \"hypot(Z_x,Z_y)*hypot(W_x,W_y)\"\nreadout \"$|zw|=$\" \"hypot(Z_x*W_x-Z_y*W_y,Z_x*W_y+Z_y*W_x)\"\nreadout \"$\\angle z+\\angle w=$\" \"deg(atan2(Z_y,Z_x))+deg(atan2(W_y,W_x))\" unit=\"°\"\nreadout \"$\\angle zw=$\" \"deg(atan2(Z_x*W_y+Z_y*W_x,Z_x*W_x-Z_y*W_y))\" unit=\"°\"\ncaption \"Put $w$ on the dashed unit circle: then $zw$ is just $z$ rotated.\"\n```",
    "citations": [],
-   "id": "ff955fa9-4c48-5b0f-b84c-487ab42ee7fa"
-  },
-  {
-   "type": "equation",
-   "latex": "\\begin{gathered}e^{j\\theta}=\\cos\\theta+j\\sin\\theta \\\\ \\Longrightarrow \\\\ c\\,e^{j\\theta}=c\\cos\\theta+j\\,c\\sin\\theta=a+jb\\end{gathered}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
-    }
-   ],
-   "id": "bec8d887-38db-5a47-9aa3-387b31dd9976"
-  },
-  {
-   "type": "paragraph",
-   "text": "Multiplying by $c$ just stretches that unit point out to distance $c$, which is why $a=c\\cos\\theta$ and $b=c\\sin\\theta$. Two consequences you will use a lot: $|e^{j\\theta}|=\\sqrt{\\cos^2\\theta+\\sin^2\\theta}=1$ (it always has length 1), and $e^{j\\theta}$ only moves *around* a circle, so it can never grow or shrink.",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
-    }
-   ],
-   "id": "2f5571dc-e887-5b60-84ee-60c0dd4bccbd"
+   "id": "89c772f9-26b5-51ed-9c5d-6a37ca80b86a"
   },
   {
    "type": "worked_example",
-   "title": "Example 1 · A first-quadrant point",
-   "prompt": "Write $z=3+j4$ in polar form.",
-   "steps": [
-    {
-     "explanation": "Sketch it: 3 to the right, 4 up. Both parts are positive, so the point is in the 1st quadrant.",
-     "latex": ""
-    },
-    {
-     "explanation": "The magnitude is the distance from the origin, by Pythagoras.",
-     "latex": "c=\\sqrt{3^2+4^2}=\\sqrt{25}=5"
-    },
-    {
-     "explanation": "In the 1st quadrant the angle is just the arctangent of (up ÷ right).",
-     "latex": "\\theta=\\arctan\\frac{4}{3}=53.13^\\circ"
-    },
-    {
-     "explanation": "Write the answer both ways.",
-     "latex": "z=5\\angle53.13^\\circ=5\\,e^{j53.13^\\circ}"
-    }
-   ],
-   "answer": "$z=5\\angle 53.13^\\circ$",
-   "citations": [],
-   "id": "c1be0c7f-0b95-5412-af90-a1d8af692ac7"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 2 · The quadrant trap",
-   "prompt": "Write $z=-3+j4$ in polar form.",
-   "steps": [
-    {
-     "explanation": "Sketch it: 3 to the **left**, 4 up. That is the 2nd quadrant.",
-     "latex": ""
-    },
-    {
-     "explanation": "The magnitude doesn't care about signs.",
-     "latex": "c=\\sqrt{(-3)^2+4^2}=5"
-    },
-    {
-     "explanation": "A calculator's $\\arctan(4/(-3))$ gives $-53.13^\\circ$, which points down-right: wrong quadrant! Instead take the reference angle (the angle to the nearest horizontal axis) using sizes only.",
-     "latex": "\\theta_{\\text{ref}}=\\arctan\\frac{4}{3}=53.13^\\circ"
-    },
-    {
-     "explanation": "In the 2nd quadrant the angle is measured from the positive real axis, so it is $180^\\circ$ minus the reference angle.",
-     "latex": "\\theta=180^\\circ-53.13^\\circ=126.87^\\circ"
-    },
-    {
-     "explanation": "Check with `Pol(-3, 4)` on the calculator: it gives $5$ and $126.87^\\circ$. ✓",
-     "latex": "z=5\\angle126.87^\\circ"
-    }
-   ],
-   "answer": "$z=5\\angle126.87^\\circ$ (not $-53.13^\\circ$)",
-   "citations": [],
-   "id": "64fc8a39-6441-5b6b-be04-5390ad919b2b"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 3 · Third quadrant",
-   "prompt": "Write $z=-1-j$ in polar form.",
-   "steps": [
-    {
-     "explanation": "Sketch: 1 left and 1 down, the 3rd quadrant.",
-     "latex": ""
-    },
-    {
-     "explanation": "The magnitude is the distance from the origin, by Pythagoras (the minus signs disappear when squared).",
-     "latex": "c=\\sqrt{(-1)^2+(-1)^2}=\\sqrt2\\approx1.414"
-    },
-    {
-     "explanation": "The reference angle uses the sizes only (ignore the signs): the angle between the arrow and the horizontal axis.",
-     "latex": "\\theta_{\\text{ref}}=\\arctan\\frac11=45^\\circ"
-    },
-    {
-     "explanation": "3rd quadrant: go past $180^\\circ$ by the reference angle. Going clockwise instead gives the equivalent negative angle; both are correct.",
-     "latex": "\\theta=180^\\circ+45^\\circ=225^\\circ\\quad(\\text{same as }-135^\\circ)"
-    }
-   ],
-   "answer": "$z=\\sqrt2\\angle225^\\circ=\\sqrt2\\angle-135^\\circ$",
-   "citations": [],
-   "id": "86aee7ac-7100-5198-bc09-895e659385ce"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 4 · Polar back to rectangular",
-   "prompt": "Write (a) $z=10\\,e^{j150^\\circ}$ and (b) $w=2\\,e^{-j\\pi/3}$ in rectangular form.",
-   "steps": [
-    {
-     "explanation": "Use $a=c\\cos\\theta$ and $b=c\\sin\\theta$. For (a), $c=10$ and $\\theta=150^\\circ$.",
-     "latex": "\\begin{gathered}a=10\\cos150^\\circ=10(-0.866)=-8.66, \\\\ b=10\\sin150^\\circ=10(0.5)=5\\end{gathered}"
-    },
-    {
-     "explanation": "So (a) is in the 2nd quadrant, as $150^\\circ$ should be.",
-     "latex": "z=-8.66+j5"
-    },
-    {
-     "explanation": "For (b) the angle is in **radians**: $\\pi/3=60^\\circ$, and the minus sign means clockwise. Set the calculator to radians, or convert to degrees first.",
-     "latex": "\\begin{gathered}a=2\\cos(-60^\\circ)=2(0.5)=1, \\\\ b=2\\sin(-60^\\circ)=2(-0.866)=-1.732\\end{gathered}"
-    },
-    {
-     "explanation": "So (b) is in the 4th quadrant.",
-     "latex": "w=1-j1.732"
-    }
-   ],
-   "answer": "(a) $-8.66+j5$  (b) $1-j1.732$",
-   "citations": [],
-   "id": "c822ae4c-f2b5-5c50-b9de-98a8d8a36519"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 5 · Trig identities for free from Euler (Lecture 1)",
-   "prompt": "Use $e^{jA}e^{jB}=e^{j(A+B)}$ to find formulas for $\\cos(A+B)$ and $\\sin(A+B)$.",
-   "steps": [
-    {
-     "explanation": "Exponents add when you multiply, so the left and right sides are equal. Write each exponential with Euler's identity.",
-     "latex": "(\\cos A+j\\sin A)(\\cos B+j\\sin B)=\\cos(A+B)+j\\sin(A+B)"
-    },
-    {
-     "explanation": "Multiply out the left side like ordinary brackets, remembering $j\\cdot j=j^2=-1$.",
-     "latex": "\\cos A\\cos B+j\\cos A\\sin B+j\\sin A\\cos B+j^2\\sin A\\sin B"
-    },
-    {
-     "explanation": "Group the real terms (no $j$) and the imaginary terms (with $j$).",
-     "latex": "=(\\cos A\\cos B-\\sin A\\sin B)+j(\\sin A\\cos B+\\cos A\\sin B)"
-    },
-    {
-     "explanation": "Two complex numbers are equal only if their real parts match **and** their imaginary parts match. Match them.",
-     "latex": "\\begin{gathered}\\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B, \\\\ \\sin(A+B)=\\sin A\\cos B+\\cos A\\sin B\\end{gathered}"
-    }
-   ],
-   "answer": "$\\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B$, $\\sin(A+B)=\\sin A\\cos B+\\cos A\\sin B$",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e72d164a-abe6-4d61-9825-c850d1293a08"
-    }
-   ],
-   "id": "ed123914-4175-5be9-9a07-af35a7b638d5"
-  },
-  {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Common mistakes**\n\n- Trusting $\\arctan(b/a)$ blindly. It only gives the right angle in the 1st and 4th quadrants. Always sketch the point first.\n- Calculator in the wrong mode: $\\cos(150)$ in radian mode is not $\\cos150^\\circ$.\n- A negative magnitude. $c$ is a distance, so it is always $\\ge0$; a minus sign belongs in the angle ($-5=5\\angle180^\\circ$).\n- Forgetting that $\\theta$ and $\\theta\\pm360^\\circ$ are the same direction ($225^\\circ=-135^\\circ$). Either is a correct answer.",
-   "citations": [],
-   "id": "75dc1720-3bfe-5a3f-9fa2-a1690dff2eda"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 1 · Quick conversion",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Write $z=1+j\\sqrt3$ in polar form.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "1 right and $\\sqrt3\\approx1.73$ up: 1st quadrant.",
-     "latex": ""
-    },
-    {
-     "explanation": "The magnitude is the distance from the origin, by Pythagoras.",
-     "latex": "c=\\sqrt{1^2+(\\sqrt3)^2}=\\sqrt{4}=2"
-    },
-    {
-     "explanation": "In the 1st quadrant the angle is just $\\arctan(\\text{up}\\div\\text{right})$; $\\arctan\\sqrt3=60^\\circ$ is a standard angle.",
-     "latex": "\\theta=\\arctan\\frac{\\sqrt3}{1}=60^\\circ"
-    }
-   ],
-   "answer": "$z=2\\angle60^\\circ=2e^{j\\pi/3}$",
-   "citations": [],
-   "id": "833e6b52-be84-52b2-abc1-c1af7753b9aa"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 2 · Down and to the left",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Write $z=-5-j12$ in polar form.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "5 left and 12 down: 3rd quadrant.",
-     "latex": ""
-    },
-    {
-     "explanation": "The magnitude, by Pythagoras (the signs disappear when squared).",
-     "latex": "c=\\sqrt{(-5)^2+(-12)^2}=\\sqrt{169}=13"
-    },
-    {
-     "explanation": "The reference angle uses the sizes only: up/down size 12, left/right size 5.",
-     "latex": "\\theta_{\\text{ref}}=\\arctan\\frac{12}{5}=67.38^\\circ"
-    },
-    {
-     "explanation": "In the 3rd quadrant go past $180^\\circ$ by the reference angle. Subtracting $360^\\circ$ gives the same direction measured clockwise.",
-     "latex": "\\theta=180^\\circ+67.38^\\circ=247.38^\\circ\\;(=-112.62^\\circ)"
-    }
-   ],
-   "answer": "$z=13\\angle247.38^\\circ=13\\angle-112.62^\\circ$",
-   "citations": [],
-   "id": "7a2ba0ec-e5d6-5849-ab75-d875f695d56a"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 3 · Fourth quadrant",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Write $z=4-j4$ in polar form.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "4 right and 4 down: 4th quadrant.",
-     "latex": ""
-    },
-    {
-     "explanation": "The magnitude, by Pythagoras.",
-     "latex": "c=\\sqrt{4^2+(-4)^2}=\\sqrt{32}=4\\sqrt2\\approx5.657"
-    },
-    {
-     "explanation": "Reference angle $45^\\circ$; in the 4th quadrant measure it clockwise.",
-     "latex": "\\theta=-45^\\circ"
-    }
-   ],
-   "answer": "$z=5.657\\angle-45^\\circ$",
-   "citations": [],
-   "id": "51fb35d4-4edd-5e7e-8c50-59ec61f64660"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 4 · Polar to rectangular",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Write $z=6\\,e^{j240^\\circ}$ in rectangular form.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Use $a=c\\cos\\theta$, $b=c\\sin\\theta$.",
-     "latex": "\\begin{gathered}a=6\\cos240^\\circ=6(-0.5)=-3, \\\\ b=6\\sin240^\\circ=6(-0.866)=-5.196\\end{gathered}"
-    },
-    {
-     "explanation": "$240^\\circ$ is in the 3rd quadrant, and both parts are negative. ✓",
-     "latex": "z=-3-j5.196"
-    }
-   ],
-   "answer": "$z=-3-j5.196$",
-   "citations": [],
-   "id": "2a0192c1-8fe8-5bc7-98fd-779cc71cccec"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 5 · Points on the axes",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Write in polar form: (a) $-7$ (b) $j2$ (c) $-j7$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) 7 to the left on the real axis: distance 7, pointing at $180^\\circ$.",
-     "latex": "-7=7\\angle180^\\circ"
-    },
-    {
-     "explanation": "(b) 2 straight up: $90^\\circ$.",
-     "latex": "j2=2\\angle90^\\circ"
-    },
-    {
-     "explanation": "(c) 7 straight down: $-90^\\circ$ (or $270^\\circ$).",
-     "latex": "-j7=7\\angle-90^\\circ"
-    }
-   ],
-   "answer": "(a) $7\\angle180^\\circ$ (b) $2\\angle90^\\circ$ (c) $7\\angle-90^\\circ$",
-   "citations": [],
-   "id": "1eb26d9c-9853-5cc2-afc5-15a9078ca081"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 6 · Another identity from Euler",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "Use $e^{jA}e^{-jB}=e^{j(A-B)}$ to find $\\cos(A-B)$ and $\\sin(A-B)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "$e^{-jB}=\\cos(-B)+j\\sin(-B)=\\cos B-j\\sin B$ (cosine is even, sine is odd).",
-     "latex": "(\\cos A+j\\sin A)(\\cos B-j\\sin B)=\\cos(A-B)+j\\sin(A-B)"
-    },
-    {
-     "explanation": "Multiply out, using $j\\cdot(-j)=-j^2=+1$.",
-     "latex": "=(\\cos A\\cos B+\\sin A\\sin B)+j(\\sin A\\cos B-\\cos A\\sin B)"
-    },
-    {
-     "explanation": "Match real and imaginary parts.",
-     "latex": "\\begin{gathered}\\cos(A-B)=\\cos A\\cos B+\\sin A\\sin B, \\\\ \\sin(A-B)=\\sin A\\cos B-\\cos A\\sin B\\end{gathered}"
-    }
-   ],
-   "answer": "$\\cos(A-B)=\\cos A\\cos B+\\sin A\\sin B$, $\\sin(A-B)=\\sin A\\cos B-\\cos A\\sin B$",
-   "citations": [],
-   "id": "fd536dd0-70b2-5464-b0ee-f7be9b09e35e"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Topic 2: Complex arithmetic: add, multiply, divide, powers and roots",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
-    }
-   ],
-   "id": "6e21f89a-e00e-5258-9fc5-abefde053283"
-  },
-  {
-   "type": "paragraph",
-   "text": "Each operation is easy in one form and messy in the other, so the whole trick is **pick the right form first**:\n\n- **Adding and subtracting** works like adding arrows tip-to-tail: add the real parts and add the imaginary parts. Use **rectangular** form.\n- **Multiplying** multiplies the lengths and **adds the angles** (it stretches and rotates). Dividing divides the lengths and subtracts the angles. Use **polar** form.\n- **Powers** repeat a multiplication: raise the length to the power and multiply the angle (*de Moivre's theorem*).\n- **Roots**: a $k$-th root has **$k$ different answers**, all the same length, spread evenly around a circle, $360^\\circ/k$ apart.\n\nThe **complex conjugate** $z^*$ flips the sign of the imaginary part (a mirror image across the real axis). Its superpower: $z\\,z^*=a^2+b^2$ is a plain real number, which is how you divide in rectangular form.",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
-    }
-   ],
-   "id": "ac6b35b9-d5d4-5023-9fdf-3406b9dd1278"
-  },
-  {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**The method: which form for which job**\n\n1. $+$ or $-$: rectangular. $(a_1+jb_1)\\pm(a_2+jb_2)=(a_1\\pm a_2)+j(b_1\\pm b_2)$.\n2. $\\times$ or $\\div$: polar (multiply/divide the lengths, add/subtract the angles). In rectangular form you can also multiply out the brackets with $j^2=-1$, and divide by multiplying top and bottom by the conjugate of the bottom.\n3. Power $z^k$: polar, $c^k\\angle k\\theta$.\n4. Roots $z^{1/k}$: polar. Length $c^{1/k}$; first angle $\\theta/k$; add $360^\\circ/k$ to get each of the other $k-1$ roots.",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
-    }
-   ],
-   "id": "c716db87-f3d6-53b9-a3e3-899c0fe75a0a"
-  },
-  {
-   "type": "equation",
-   "latex": "\\begin{gathered}z_1z_2=c_1c_2\\,e^{j(\\theta_1+\\theta_2)}, \\\\ \\frac{z_1}{z_2}=\\frac{c_1}{c_2}\\,e^{j(\\theta_1-\\theta_2)}, \\\\ z^k=c^k\\,e^{jk\\theta}\\end{gathered}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
-    }
-   ],
-   "id": "46ebcdf6-ada9-5761-8c50-3cdc07663498"
-  },
-  {
-   "type": "equation",
-   "latex": "\\begin{gathered}z^{1/k}=c^{1/k}\\,e^{j\\theta/k}\\,x_\\ell,\\quad x_\\ell=e^{j\\,360^\\circ\\ell/k}\\;(\\ell=0,1,\\dots,k-1), \\\\ (a+jb)^*=a-jb,\\quad z\\,z^*=a^2+b^2\\end{gathered}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
-    }
-   ],
-   "id": "38920b06-4932-54a2-a0fb-ce760cfc0dd6"
-  },
-  {
-   "type": "paragraph",
-   "text": "The $x_\\ell$ are the *$k$-th roots of 1*: the $k$ points on the unit circle that land on 1 when raised to the $k$-th power (for $k=4$: $1,\\ j,\\ -1,\\ -j$). Multiplying by them is what spaces the roots $360^\\circ/k$ apart. Also handy from the conjugate: $z+z^*=2\\,\\mathrm{Re}\\{z\\}$ and $z-z^*=j\\,2\\,\\mathrm{Im}\\{z\\}$.",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
-    }
-   ],
-   "id": "b3f4b99e-8a26-5382-bec4-6407bf2b316a"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 6 · Adding and subtracting",
-   "prompt": "$z_1=3+j4$, $z_2=1-j6$. Find $z_1+z_2$ and $z_1-z_2$.",
-   "steps": [
-    {
-     "explanation": "Add real parts with real parts and imaginary with imaginary.",
-     "latex": "z_1+z_2=(3+1)+j(4-6)=4-j2"
-    },
-    {
-     "explanation": "Subtracting: be careful to subtract **both** parts of $z_2$.",
-     "latex": "z_1-z_2=(3-1)+j(4-(-6))=2+j10"
-    }
-   ],
-   "answer": "$z_1+z_2=4-j2$, $z_1-z_2=2+j10$",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
-    }
-   ],
-   "id": "24de9155-574e-518d-91cf-b708f634d585"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 7 · Multiplying in rectangular form",
-   "prompt": "Find $(2+j3)(4-j)$.",
-   "steps": [
-    {
-     "explanation": "Expand the brackets term by term (FOIL), exactly like $(x+y)(u+v)$.",
-     "latex": "2\\cdot4+2(-j)+j3\\cdot4+j3(-j)=8-j2+j12-j^2\\,3"
-    },
-    {
-     "explanation": "Replace $j^2$ with $-1$, so $-j^2\\,3=+3$.",
-     "latex": "=8+3+j(12-2)"
-    },
-    {
-     "explanation": "Collect the real numbers ($8+3$) and the $j$ terms ($12-2$).",
-     "latex": "=11+j10"
-    }
-   ],
-   "answer": "$11+j10$",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
-    }
-   ],
-   "id": "e732e07a-969a-5be2-b4f9-e9e5493aa6cf"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 8 · Dividing in rectangular form (Lecture Example 1.1)",
+   "title": "Example 4 · Dividing in rectangular form (lecture Example 1.1)",
    "prompt": "Find $\\dfrac{80+j18}{8+j10}$.",
    "steps": [
     {
-     "explanation": "To get rid of $j$ in the bottom, multiply top and bottom by the conjugate of the bottom, $8-j10$. This doesn't change the value (it's multiplying by 1).",
-     "latex": "\\frac{80+j18}{8+j10}\\cdot\\frac{8-j10}{8-j10}"
-    },
-    {
-     "explanation": "The bottom becomes a real number: $z\\,z^*=a^2+b^2$.",
-     "latex": "(8+j10)(8-j10)=64+100=164"
-    },
-    {
-     "explanation": "Multiply out the top with $j^2=-1$.",
-     "latex": "(80+j18)(8-j10)=640-j800+j144-j^2\\,180=820-j656"
-    },
-    {
-     "explanation": "Divide each part by 164.",
-     "latex": "\\frac{820-j656}{164}=5-j4"
+     "explanation": "```steps\n$$ \\dfrac{80+j18}{8+j10} $$\nThe $j$ in the bottom is the problem.\n$$ \\dfrac{80+j18}{8+j10}\\cdot\\hl{\\dfrac{8-j10}{8-j10}} $$\nMultiply top and bottom by the conjugate of the bottom (that is multiplying by 1).\n$$ =\\dfrac{(80+j18)(8-j10)}{\\hl{64+100}} $$\nBottom: $zz^*=a^2+b^2$, a real number.\n$$ =\\dfrac{\\hl{640+180}+j(\\hl{144-800})}{164} $$\nTop: expand, with $j\\cdot j=-1$ turning $-j^2180$ into $+180$.\n$$ =\\dfrac{820-j656}{164}=\\hl{5-j4} $$\nDivide each part by 164.\n```",
+     "latex": ""
     }
    ],
    "answer": "$5-j4$",
@@ -658,39 +338,15 @@
      "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
     }
    ],
-   "id": "ee3e49cb-9725-59ed-8cc3-ec49287240e4"
+   "id": "d2dbb3cf-5291-554b-a518-af62db3878e8"
   },
   {
    "type": "worked_example",
-   "title": "Example 9 · Multiplying and dividing in polar form",
-   "prompt": "Find $(6\\angle40^\\circ)(2\\angle-70^\\circ)$ and $\\dfrac{6\\angle40^\\circ}{2\\angle-70^\\circ}$.",
-   "steps": [
-    {
-     "explanation": "Multiplying: multiply the lengths, **add** the angles.",
-     "latex": "(6)(2)\\angle(40^\\circ+(-70^\\circ))=12\\angle-30^\\circ"
-    },
-    {
-     "explanation": "Dividing: divide the lengths, **subtract** the angles (top minus bottom).",
-     "latex": "\\frac{6}{2}\\angle(40^\\circ-(-70^\\circ))=3\\angle110^\\circ"
-    }
-   ],
-   "answer": "$12\\angle-30^\\circ$ and $3\\angle110^\\circ$",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
-    }
-   ],
-   "id": "a3e867cb-0b48-546c-94d2-581bca1789bb"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 10 · A big power: de Moivre's theorem",
+   "title": "Example 5 · A big power: de Moivre",
    "prompt": "Find $(1+j)^8$.",
    "steps": [
     {
-     "explanation": "Multiplying $1+j$ by itself 8 times is painful. In polar form it's one step. First convert: 1 right, 1 up.",
+     "explanation": "Multiplying out 8 brackets is painful; in polar form it's one step. $1+j$ is 1 right and 1 up.",
      "latex": "1+j=\\sqrt2\\angle45^\\circ"
     },
     {
@@ -698,7 +354,7 @@
      "latex": "(\\sqrt2)^8\\angle(8\\times45^\\circ)=16\\angle360^\\circ"
     },
     {
-     "explanation": "$360^\\circ$ is a full turn, the same direction as $0^\\circ$: pointing along the positive real axis.",
+     "explanation": "$360^\\circ$ is a full turn: pointing along the positive real axis.",
      "latex": "16\\angle360^\\circ=16"
     }
    ],
@@ -710,27 +366,27 @@
      "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
     }
    ],
-   "id": "43625835-f6bc-586b-bafc-56d5d00967e3"
+   "id": "a5825788-05d0-58cd-98b6-4216003df9ee"
   },
   {
    "type": "worked_example",
-   "title": "Example 11 · All four fourth roots (Lecture Example 1.2)",
-   "prompt": "Find all fourth roots of $z=81\\,e^{j60^\\circ}$.",
+   "title": "Example 6 · All four fourth roots (lecture Example 1.2)",
+   "prompt": "Find all fourth roots of $z=81e^{j60^\\circ}$.",
    "steps": [
     {
-     "explanation": "Here $c=81$, $\\theta=60^\\circ$ and $k=4$. The length of every root is the 4th root of 81.",
+     "explanation": "Every root has length $81^{1/4}$.",
      "latex": "81^{1/4}=3"
     },
     {
-     "explanation": "The first root's angle is the angle divided by 4.",
-     "latex": "\\frac{60^\\circ}{4}=15^\\circ\\quad\\Rightarrow\\quad 3\\,e^{j15^\\circ}"
+     "explanation": "The first root has a quarter of the angle.",
+     "latex": "\\tfrac{60^\\circ}{4}=15^\\circ\\ \\Rightarrow\\ 3e^{j15^\\circ}"
     },
     {
-     "explanation": "The other three are spaced $360^\\circ/4=90^\\circ$ apart (that's multiplying by the fourth roots of 1: $1, j, -1, -j$).",
-     "latex": "3e^{j15^\\circ},\\quad 3e^{j105^\\circ},\\quad 3e^{j195^\\circ},\\quad 3e^{j285^\\circ}"
+     "explanation": "The other three are spaced $\\tfrac{360^\\circ}{4}=90^\\circ$ apart round the same circle.",
+     "latex": "3e^{j15^\\circ},\\ 3e^{j105^\\circ},\\ 3e^{j195^\\circ},\\ 3e^{j285^\\circ}"
     },
     {
-     "explanation": "Check one: $(3e^{j105^\\circ})^4=81\\,e^{j420^\\circ}=81\\,e^{j60^\\circ}$ because $420^\\circ-360^\\circ=60^\\circ$. ✓",
+     "explanation": "Check one: $(3e^{j105^\\circ})^4=81e^{j420^\\circ}$, and $420^\\circ-360^\\circ=60^\\circ$ ✓",
      "latex": ""
     }
    ],
@@ -747,220 +403,77 @@
      "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
     }
    ],
-   "id": "f5ec4e1b-ecfe-59a4-aa93-970227f68e45"
+   "id": "3d52a4dd-0f62-56b4-a499-bcd197bb3f19"
   },
   {
    "type": "paragraph",
-   "text": "![The four fourth roots of $81e^{j60^\\circ}$ sit on a circle of radius 3, starting at $15^\\circ$ and spaced $90^\\circ$ apart. Every $k$-th root problem looks like this: $k$ equally spaced points on one circle.](/figures/elec231/w1_roots.svg)\n\n*The four fourth roots of $81e^{j60^\\circ}$ sit on a circle of radius 3, starting at $15^\\circ$ and spaced $90^\\circ$ apart. Every $k$-th root problem looks like this: $k$ equally spaced points on one circle.*",
+   "text": "```graph\ntitle \"The $k$ roots of $z=c\\angle\\theta$ sit evenly on one circle\"\nx -4.6 4.6 label=\"Re\"\ny -4.6 4.6 label=\"Im\"\nequal\nslider k 3 6 4 step=1 label=\"$k$\"\nslider c 1 81 81 step=1 label=\"$c$\"\nslider th 0 360 60 step=5 label=\"$\\theta$ (°)\"\npoint \"if(k>0,c^(1/k)*cos(rad((th+360*0)/k)),sqrt(-1))\" \"if(k>0,c^(1/k)*sin(rad((th+360*0)/k)),sqrt(-1))\" color=2\npoint \"if(k>1,c^(1/k)*cos(rad((th+360*1)/k)),sqrt(-1))\" \"if(k>1,c^(1/k)*sin(rad((th+360*1)/k)),sqrt(-1))\" color=1\npoint \"if(k>2,c^(1/k)*cos(rad((th+360*2)/k)),sqrt(-1))\" \"if(k>2,c^(1/k)*sin(rad((th+360*2)/k)),sqrt(-1))\" color=1\npoint \"if(k>3,c^(1/k)*cos(rad((th+360*3)/k)),sqrt(-1))\" \"if(k>3,c^(1/k)*sin(rad((th+360*3)/k)),sqrt(-1))\" color=1\npoint \"if(k>4,c^(1/k)*cos(rad((th+360*4)/k)),sqrt(-1))\" \"if(k>4,c^(1/k)*sin(rad((th+360*4)/k)),sqrt(-1))\" color=1\npoint \"if(k>5,c^(1/k)*cos(rad((th+360*5)/k)),sqrt(-1))\" \"if(k>5,c^(1/k)*sin(rad((th+360*5)/k)),sqrt(-1))\" color=1\ncircle \"0\" \"0\" \"c^(1/k)\" dash color=0\nreadout \"radius $c^{1/k}=$\" \"c^(1/k)\"\nreadout \"first angle $\\theta/k=$\" \"th/k\" unit=\"°\"\nreadout \"spacing $360^\\circ/k=$\" \"360/k\" unit=\"°\"\ncaption \"Orange is the first root ($\\ell=0$). Set $k=4$, $c=81$, $\\theta=60^\\circ$ for the lecture example.\"\n```",
    "citations": [],
-   "id": "e6ae56b9-55ad-5f23-9ccb-f59e09bda839"
-  },
-  {
-   "type": "callout",
-   "tone": "info",
-   "text": "**Algebra reminder: the quadratic formula** $as^2+bs+c=0\\;\\Rightarrow\\;s=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}$. When $b^2-4ac$ is negative, take the square root of the positive number and attach a $j$: $\\sqrt{-16}=\\sqrt{16}\\,\\sqrt{-1}=j4$.",
-   "citations": [],
-   "id": "264a2b1b-6c18-501f-8abc-31a10ca6e1a4"
+   "id": "7a8f0e3a-a17b-5650-8b89-879a4c90a148"
   },
   {
    "type": "worked_example",
-   "title": "Example 12 · Why we need all this: complex roots of a quadratic",
-   "prompt": "Solve $s^2+2s+5=0$. (In Week 5 this equation comes from the ODE $y''+2y'+5y=0$.)",
+   "title": "Example 7 · Square root of a negative: complex roots of a quadratic",
+   "prompt": "Solve $s^2+2s+5=0$.",
    "steps": [
     {
-     "explanation": "Use the quadratic formula with $a=1$, $b=2$, $c=5$.",
+     "explanation": "Quadratic formula with $a=1$, $b=2$, $c=5$.",
      "latex": "s=\\frac{-2\\pm\\sqrt{4-20}}{2}=\\frac{-2\\pm\\sqrt{-16}}{2}"
     },
     {
-     "explanation": "The number under the root is negative, so the roots are complex: $\\sqrt{-16}=\\sqrt{16}\\,\\sqrt{-1}=j4$.",
+     "explanation": "$\\sqrt{-16}=\\sqrt{16}\\,\\sqrt{-1}=j4$.",
      "latex": "s=\\frac{-2\\pm j4}{2}=-1\\pm j2"
-    },
-    {
-     "explanation": "The roots always come as a **conjugate pair** ($-1+j2$ and $-1-j2$) when the equation has real coefficients.",
-     "latex": ""
     }
    ],
-   "answer": "$s=-1\\pm j2$",
+   "answer": "$s=-1\\pm j2$ (a conjugate pair)",
    "citations": [],
-   "id": "408e3a16-0f1d-50ad-b197-5f0ae5cd52d5"
-  },
-  {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Common mistakes**\n\n- Adding in polar form: $5\\angle0^\\circ+5\\angle90^\\circ$ is **not** $10\\angle90^\\circ$. Convert to rectangular first ($5+j5$).\n- Forgetting $j^2=-1$ when expanding brackets (a sign error on the real part).\n- Roots: giving only one answer. A $k$-th root has $k$ answers, $360^\\circ/k$ apart, and the first angle is $\\theta/k$ (divide the angle too!).\n- The conjugate in polar form flips the **angle**: $(c\\,e^{j\\theta})^*=c\\,e^{-j\\theta}$.",
-   "citations": [],
-   "id": "cb2d46d2-5138-5896-a676-118bc89b7dda"
+   "id": "c711ad3a-9ed5-52b5-997b-7a601b5e965d"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 7 · Subtract and multiply",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "$z_1=5-j2$, $z_2=-3+j7$. Find $z_1-z_2$ and $z_1z_2$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Subtract real from real and imaginary from imaginary; subtracting $-3$ adds 3, and subtracting $j7$ takes 7 off the imaginary part.",
-     "latex": "z_1-z_2=(5+3)+j(-2-7)=8-j9"
-    },
-    {
-     "explanation": "Expand the brackets term by term: $5(-3)$, $5(j7)$, $(-j2)(-3)$ and $(-j2)(j7)$.",
-     "latex": "(5-j2)(-3+j7)=-15+j35+j6-j^2\\,14"
-    },
-    {
-     "explanation": "Replace $j^2$ by $-1$, so $-j^2\\,14=+14$, then collect real and imaginary parts.",
-     "latex": "=-15+14+j41=-1+j41"
-    }
-   ],
-   "answer": "$z_1-z_2=8-j9$, $z_1z_2=-1+j41$",
-   "citations": [],
-   "id": "ce90a3de-49bb-5278-ac06-01edd9fb3024"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 8 · Divide with the conjugate",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Find $\\dfrac{10+j5}{3-j4}$ in rectangular form.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Multiply top and bottom by $3+j4$, the conjugate of the bottom.",
-     "latex": "\\frac{(10+j5)(3+j4)}{(3-j4)(3+j4)}"
-    },
-    {
-     "explanation": "Bottom: $3^2+4^2=25$. Top: expand with $j^2=-1$.",
-     "latex": "(10+j5)(3+j4)=30+j40+j15+j^2\\,20=10+j55"
-    },
-    {
-     "explanation": "Divide both the real and the imaginary part by 25.",
-     "latex": "\\frac{10+j55}{25}=0.4+j2.2"
-    }
-   ],
-   "answer": "$0.4+j2.2$",
-   "citations": [],
-   "id": "1b58ca1a-09d3-5164-9928-a738f243b873"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 9 · Powers of j",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Simplify (a) $\\dfrac1j$ (b) $j^3$ (c) $j^{10}$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) Multiply top and bottom by $-j$: the bottom becomes $j(-j)=-j^2=1$.",
-     "latex": "\\frac1j=\\frac{-j}{1}=-j"
-    },
-    {
-     "explanation": "(b) $j^3=j^2\\cdot j$.",
-     "latex": "j^3=(-1)j=-j"
-    },
-    {
-     "explanation": "(c) The powers of $j$ repeat every 4 ($j, -1, -j, 1$). $10=8+2$, so $j^{10}=j^2$.",
-     "latex": "j^{10}=(j^4)^2j^2=1\\cdot(-1)=-1"
-    }
-   ],
-   "answer": "(a) $-j$ (b) $-j$ (c) $-1$",
-   "citations": [],
-   "id": "58ec2454-78c3-5f53-aa14-2891a318e7d2"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 10 · A sixth power",
+   "title": "Try it 2 · Cube roots of a negative number",
    "difficulty": "intermediate",
    "origin": "original",
-   "prompt": "Find $(1-j\\sqrt3)^6$.",
+   "prompt": "Find all three cube roots of $-8$. Give each in polar and rectangular form.",
    "solution": "",
    "steps": [
     {
-     "explanation": "Convert: 1 right, $\\sqrt3$ down (4th quadrant).",
-     "latex": "1-j\\sqrt3=2\\angle-60^\\circ"
+     "explanation": "$-8$ points straight left: length 8, angle $180^\\circ$.",
+     "latex": "-8=8\\angle180^\\circ"
     },
     {
-     "explanation": "de Moivre: length to the 6th, angle times 6.",
-     "latex": "2^6\\angle(6\\times-60^\\circ)=64\\angle-360^\\circ"
+     "explanation": "Root length $8^{1/3}=2$; first angle $\\tfrac{180^\\circ}{3}=60^\\circ$; spacing $\\tfrac{360^\\circ}{3}=120^\\circ$.",
+     "latex": "2\\angle60^\\circ,\\quad 2\\angle180^\\circ,\\quad 2\\angle300^\\circ"
     },
     {
-     "explanation": "$-360^\\circ$ is a full turn, pointing along the positive real axis.",
-     "latex": "=64"
+     "explanation": "Convert with $a=c\\cos\\theta$, $b=c\\sin\\theta$.",
+     "latex": "1+j1.732,\\quad -2,\\quad 1-j1.732"
     }
    ],
-   "answer": "$64$",
+   "answer": "$2\\angle60^\\circ=1+j\\sqrt3$, $\\ 2\\angle180^\\circ=-2$, $\\ 2\\angle300^\\circ=1-j\\sqrt3$",
    "citations": [],
-   "id": "387ae061-bc93-51c7-9d01-0b31c4872737"
+   "id": "472c2a26-04cb-5650-be80-85267fadd468"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 11 · Cube roots",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "Find all three cube roots of $j8$, in polar and rectangular form.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Write $j8$ in polar form: 8 straight up.",
-     "latex": "j8=8\\angle90^\\circ"
-    },
-    {
-     "explanation": "Length $8^{1/3}=2$; first angle $90^\\circ/3=30^\\circ$; spacing $360^\\circ/3=120^\\circ$.",
-     "latex": "2\\angle30^\\circ,\\quad 2\\angle150^\\circ,\\quad 2\\angle270^\\circ"
-    },
-    {
-     "explanation": "Convert each with $a=c\\cos\\theta$, $b=c\\sin\\theta$.",
-     "latex": "\\sqrt3+j,\\quad -\\sqrt3+j,\\quad -j2"
-    }
-   ],
-   "answer": "$2\\angle30^\\circ=\\sqrt3+j$, $2\\angle150^\\circ=-\\sqrt3+j$, $2\\angle270^\\circ=-j2$",
-   "citations": [],
-   "id": "0e692744-a073-52e5-9d4e-b30889d09f44"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 12 · Conjugate facts",
+   "title": "Try it 3 · A high power of j",
    "difficulty": "introductory",
    "origin": "original",
-   "prompt": "For $z=3-j4$ find $z^*$, $zz^*$, $z+z^*$ and $z-z^*$.",
+   "prompt": "Simplify $j^{27}$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "The conjugate flips the sign of the imaginary part (mirror image across the real axis).",
-     "latex": "z^*=3+j4"
+     "explanation": "$j$ is length 1 at $90^\\circ$, so $j^{27}$ is length 1 at $27\\times90^\\circ$.",
+     "latex": "j^{27}=1\\angle2430^\\circ"
     },
     {
-     "explanation": "A number times its conjugate is $a^2+b^2$ (the $j$ terms cancel), with $a=3$, $b=-4$.",
-     "latex": "zz^*=3^2+(-4)^2=25"
-    },
-    {
-     "explanation": "$z+z^*=2\\,\\mathrm{Re}\\{z\\}$ and $z-z^*=j\\,2\\,\\mathrm{Im}\\{z\\}$ with $\\mathrm{Im}\\{z\\}=-4$.",
-     "latex": "z+z^*=6,\\qquad z-z^*=-j8"
+     "explanation": "Remove whole turns: $2430^\\circ-6\\times360^\\circ=270^\\circ$, which points straight down.",
+     "latex": "1\\angle270^\\circ=-j"
     }
    ],
-   "answer": "$z^*=3+j4$, $zz^*=25$, $z+z^*=6$, $z-z^*=-j8$",
+   "answer": "$j^{27}=-j$",
    "citations": [],
-   "id": "f28aa2f6-c98b-5bad-aeb0-21c80c9c2d49"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 13 · Complex roots of a quadratic",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Solve $s^2+4s+13=0$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Quadratic formula with $a=1$, $b=4$, $c=13$.",
-     "latex": "s=\\frac{-4\\pm\\sqrt{16-52}}{2}=\\frac{-4\\pm\\sqrt{-36}}{2}"
-    },
-    {
-     "explanation": "The number under the root is negative: $\\sqrt{-36}=\\sqrt{36}\\,\\sqrt{-1}=j6$. Then divide both parts by 2.",
-     "latex": "s=\\frac{-4\\pm j6}{2}=-2\\pm j3"
-    }
-   ],
-   "answer": "$s=-2\\pm j3$",
-   "citations": [],
-   "id": "e92132a3-7d45-5bfd-bc66-d28eb6c1ef8b"
+   "id": "64562897-5e86-5a8e-a4ce-dc9ee1d52850"
   },
   {
    "type": "heading",
@@ -978,29 +491,12 @@
      "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
     }
    ],
-   "id": "fb113d97-6f48-553b-9c63-5ac6e4827c2c"
-  },
-  {
-   "type": "paragraph",
-   "text": "A **differential equation** is an equation that involves an unknown *function* and its *derivatives*. Solving it means finding the whole function, e.g. the current $i(t)$ at every time $t$.\n\nInductors create them because an inductor's voltage depends on how fast its current changes: $v_L=L\\dfrac{di}{dt}$ ($L$ is the *inductance* in henries). Two facts from the lecture that you will use all term:\n\n- **An inductor's current cannot jump:** $i(0^-)=i(0^+)$ (just before and just after a switch moves).\n- **In DC steady state an inductor acts like a short circuit** (a plain wire): nothing changes, so $\\dfrac{di}{dt}=0$ and $v_L=0$.\n\nIn the circuit below the switch has been closed for a long time, so the inductor is a short and carries all of $I_s$. At $t=0$ the switch opens. The inductor's current can't stop instantly, so it keeps flowing round the loop through $R$, and $R$ slowly burns the energy off. Kirchhoff's voltage law (KVL) around that loop says the voltages add to zero:",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
-    }
-   ],
-   "id": "5c7b0ef2-c3e3-5660-9121-7a6b90fea05a"
+   "id": "dcf010c7-f2ec-57f3-aa59-a698c918d0a9"
   },
   {
    "type": "schematic",
-   "source": "I1 0,3 -> 0,0 \"$I_s$\"\nwire 0,3 -> 3,3\nR0 3,3 -> 3,0 \"$R_0$\"\nS1 3,3 -> 6,3 \"$t=0$\" state=closed action=open\nL1 6,0 -> 6,3 \"$L$\" i=\"$i$\"\nwire 6,3 -> 9,3\nR1 9,3 -> 9,0 \"$R$\" v=\"$v$\"\nwire 0,0 -> 9,0\nground 0,0",
-   "caption": "Lecture 1, Fig. 1: the switch has been closed for a long time and opens at $t=0$. Afterwards only the loop $L$–$R$ is left, with $i(0)=I_s$.",
+   "source": "I1 0,3 -> 0,0 \"$I_s$\"\nwire 0,3 -> 3,3\nR0 3,3 -> 3,0 \"$R_0$\"\nS1 3,3 -> 6,3 \"$t=0$\" state=closed action=open\nL1 6,0 -> 6,3 \"$L$\" i=\"$i$\"\nwire 6,3 -> 9,3\nR1 9,3 -> 9,0 \"$R$\" v=\"$v$\"\nwire 0,0 -> 9,0\nground 0,0\n#~ flow\n#~ value I1 4\n#~ value R0 10\n#~ value L1 8m\n#~ value R1 4\n#~ slow 1000\n#~ probe L1 \"inductor $L$:\"\n#~ probe R1 \"resistor $R$:\"\n#~ probe R0 \"resistor $R_0$:\"\n#~ note \"Dots show the current: faster dots, more current. Values: $I_s=4$ A, $R_0=10\\,\\Omega$, $L=8$ mH, $R=4\\,\\Omega$.\"",
+   "caption": "Lecture Fig. 1. **Click the switch** (or the button) to open it, and watch where the current goes.",
    "citations": [
     {
      "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
@@ -1008,232 +504,63 @@
      "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
     }
    ],
-   "id": "962baf25-dcf6-5ba3-9265-e20b8970784e"
+   "id": "538ad68a-1c48-57a1-ba7a-4058cb85a97c"
   },
   {
-   "type": "equation",
-   "latex": "L\\frac{di}{dt}+Ri=0\\quad\\Longleftrightarrow\\quad \\frac{di}{dt}=-\\frac{R}{L}\\,i",
-   "display": true,
+   "type": "paragraph",
+   "text": "- **Before $t=0$:** the inductor has been in DC a long time, so it acts like a wire and carries all of $I_s$.\n- **At $t=0$:** the switch opens. An inductor's current **can't jump**, so $i(0)=I_s$.\n- **After:** only the $L$–$R$ loop is left. KVL around it gives the equation below.\n\nThat equation is a **differential equation**: the unknown is a *function* $i(t)$, and the equation involves its rate of change $\\frac{di}{dt}$.",
    "citations": [
     {
      "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
      "version": 1,
      "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
-    }
-   ],
-   "id": "4a528552-bad3-5b89-83b1-70a58caa392b"
-  },
-  {
-   "type": "paragraph",
-   "text": "Read it in words: *the current shrinks at a rate proportional to how big it is.* Big current → fast drop; small current → slow drop. The only function that behaves like that is a **decaying exponential**:",
-   "citations": [
+    },
     {
      "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
      "version": 1,
      "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
     }
    ],
-   "id": "e66bbbe8-b3a0-5447-a260-a19172dbbe33"
-  },
-  {
-   "type": "equation",
-   "latex": "\\begin{gathered}i(t)=i(0)\\,e^{-t/\\tau}, \\\\ \\tau=\\frac{L}{R}\\quad(\\text{the time constant, in seconds})\\end{gathered}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
-    }
-   ],
-   "id": "a7dbf449-dadc-55bd-9402-3584bb473a91"
+   "id": "3c315ee7-4c6b-50e4-80d9-d862f1ae57d5"
   },
   {
    "type": "paragraph",
-   "text": "$\\tau$ (tau) is the *time constant*. After one $\\tau$ the current is $e^{-1}\\approx0.37$ of its start (it has lost 63%); after $5\\tau$ it is under 1%, which engineers call \"done\". A bigger $L$ (more stored energy) or a smaller $R$ (less resistance to burn it) makes $\\tau$ longer.",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
-    }
-   ],
-   "id": "ad4a9991-2f44-562e-b4fb-11f2aef069a4"
-  },
-  {
-   "type": "paragraph",
-   "text": "![Every RL (and RC) natural response has this one shape. Measure time in time constants: after $1\\tau$ 37% is left, after $5\\tau$ less than 1%.](/figures/elec231/w1_tau.svg)\n\n*Every RL (and RC) natural response has this one shape. Measure time in time constants: after $1\\tau$ 37% is left, after $5\\tau$ less than 1%.*",
+   "text": "```steps\ntitle \"Solving the RL loop (lecture)\"\n$$ L\\dfrac{di}{dt}+Ri=0 $$\nKVL around the loop: the inductor voltage is $L\\frac{di}{dt}$, the resistor voltage $Ri$.\n$$ \\dfrac{di}{\\hl{i}}=\\hl{-\\dfrac{R}{L}\\,dt} $$\nDivide by $L$ and by $i$, multiply by $dt$: all $i$ on the left, all $t$ on the right.\n$$ \\hl{\\int_{i(0)}^{i(t)}}\\dfrac{dx}{x}=-\\dfrac{R}{L}\\hl{\\int_0^t}ds $$\nIntegrate from the start ($0$, $i(0)$) to any time $t$. $x$ and $s$ are placeholder names.\n$$ \\hl{\\ln i(t)-\\ln i(0)}=-\\dfrac{R}{L}\\,t $$\n$\\int\\frac{dx}{x}=\\ln x$, and $\\int ds=s$.\n$$ \\hl{\\ln\\dfrac{i(t)}{i(0)}}=-\\dfrac{R}{L}\\,t $$\n$\\ln A-\\ln B=\\ln\\frac{A}{B}$.\n$$ \\dfrac{i(t)}{i(0)}=\\hl{e^{-(R/L)t}} $$\nUndo $\\ln$ by raising $e$ to both sides.\n$$ i(t)=\\hl{I_s}\\,e^{-t/\\tau},\\qquad \\hl{\\tau=\\dfrac{L}{R}} $$\nMultiply by $i(0)=I_s$. $\\tau$ (tau) is the **time constant**, in seconds.\n```",
    "citations": [],
-   "id": "d63b55e0-a336-5948-8d28-a61cb7739cc9"
+   "id": "7513f772-ea65-51a1-a783-1a0589de0e6b"
   },
   {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**The method: RL natural response**\n\n1. **Before the switch** ($t<0$, settled): replace $L$ by a wire and find the inductor current $i(0^-)$.\n2. **The jump rule:** $i(0^+)=i(0^-)$. Call it $I_0$.\n3. **After the switch:** find the resistance $R$ the inductor sees (only what is still connected to it).\n4. Write KVL: $L\\dfrac{di}{dt}+Ri=0$. The solution is $i(t)=I_0e^{-t/\\tau}$ with $\\tau=L/R$.\n5. Get anything else from $i$: e.g. the resistor voltage $v=Ri$ (sign from the drawn $+/-$ and current arrow).",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
-    }
-   ],
-   "id": "12b07f1c-7417-5180-b139-571cc52cf497"
-  },
-  {
-   "type": "callout",
-   "tone": "info",
-   "text": "**Calculus reminder** (you need these four facts to solve the equation yourself):\n\n- $\\dfrac{d}{dt}e^{at}=a\\,e^{at}$: the derivative of an exponential is the same exponential times the number in front of $t$.\n- $\\displaystyle\\int\\frac{dx}{x}=\\ln|x|+C$.\n- $\\ln A-\\ln B=\\ln\\dfrac AB$.\n- $\\ln A=B$ means $A=e^B$ (take $e$ to the power of both sides).",
+   "type": "paragraph",
+   "text": "```graph\ntitle \"$i(t)=I_se^{-t/\\tau}$: change $\\tau$ and $I_s$\"\nx 0 6 label=\"$t$ (s)\"\ny 0 5 label=\"$i$ (A)\"\nslider tau 0.2 3 1 step=0.05 label=\"$\\tau$\" animate\nslider I 0.5 4.5 4 step=0.1 label=\"$I_s$\"\ncurve \"I*exp(-t/tau)\" label=\"$I_se^{-t/\\tau}$\"\nvline \"tau\" label=\"$t=\\tau$\"\npoint \"tau\" \"I*exp(-1)\" color=2\nvline \"5*tau\" color=0\nreadout \"$i(\\tau)=$\" \"I*exp(-1)\"\nreadout \"$i(\\tau)/I_s=$\" \"exp(-1)\"\ncaption \"After one $\\tau$, $37\\%$ is left; after $5\\tau$ (grey line), under $1\\%$.\"\n```",
    "citations": [],
-   "id": "0ebe06ec-4bc4-5aab-b884-ec5d732ddd28"
+   "id": "f7365d83-1e23-51ff-b808-e1a3bd9b8cb4"
+  },
+  {
+   "type": "paragraph",
+   "text": "```steps\ntitle \"Where the $e$ comes from (lecture's outline)\"\n$$ \\dfrac{dy}{dt}+y=0,\\qquad y(0)=y_0 $$\nThe simplest version of the RL equation.\n$$ \\hl{\\dfrac{y(t)-y(t-\\Delta)}{\\Delta}}+y(t)\\approx0 $$\nReplace the derivative by a slope over a tiny time step $\\Delta$.\n$$ y(t)\\,\\hl{(1+\\Delta)}=y(t-\\Delta) $$\nMultiply by $\\Delta$ and rearrange: every step divides $y$ by $(1+\\Delta)$.\n$$ y(t)=y(0)\\,(1+\\Delta)^{\\hl{-t/\\Delta}} $$\nGoing from $0$ to $t$ takes $t/\\Delta$ steps.\n$$ y(t)=y(0)\\,\\Big[\\hl{(1+\\Delta)^{1/\\Delta}}\\Big]^{-t} $$\nRegroup the exponent.\n$$ y(t)=y(0)\\,\\hl{e}^{-t} $$\nAs $\\Delta\\to0$, $(1+\\Delta)^{1/\\Delta}\\to e\\approx2.718$. That is one definition of $e$.\n```",
+   "citations": [],
+   "id": "ee550a1e-0eaa-5369-839e-d9706d6b9d62"
   },
   {
    "type": "worked_example",
-   "title": "Example 13 · Solve the simplest ODE: dy/dt + y = 0",
-   "prompt": "Solve $\\dfrac{dy}{dt}+y=0$ with $y(0)=y_0$, then check the answer.",
+   "title": "Example 8 · Pre-tutorial 1: numbers in the RL loop",
+   "prompt": "In the circuit above, $L=8\\,\\mathrm{mH}$, $R=4\\,\\Omega$ and $I_s=4\\,\\mathrm{A}$. Find $i(t)$ and $v(t)$ for $t\\ge0$, and sketch $i(t)$.",
    "steps": [
     {
-     "explanation": "Move $y$ to the other side so the derivative is alone.",
-     "latex": "\\frac{dy}{dt}=-y"
+     "explanation": "The current can't jump, so it starts at $I_s$.",
+     "latex": "i(0)=4\\,\\mathrm{A}"
     },
     {
-     "explanation": "**Separate the variables**: get everything with $y$ on the left and everything with $t$ on the right (divide by $y$, multiply by $dt$).",
-     "latex": "\\frac{dy}{y}=-dt"
+     "explanation": "Time constant (convert mH to H).",
+     "latex": "\\tau=\\frac{L}{R}=\\frac{8\\times10^{-3}}{4}=2\\,\\mathrm{ms},\\quad \\frac1\\tau=500\\,\\mathrm{s^{-1}}"
     },
     {
-     "explanation": "Integrate both sides. On the left use $\\int dx/x=\\ln|x|$; only one $+C$ is needed.",
-     "latex": "\\ln|y|=-t+C"
+     "explanation": "Put both into $i(t)=I_se^{-t/\\tau}$.",
+     "latex": "i(t)=4e^{-500t}\\,\\mathrm{A}"
     },
     {
-     "explanation": "Undo the logarithm by raising $e$ to both sides: $|y|=e^{-t+C}=e^C e^{-t}$. Dropping the absolute value allows either sign, so $y=\\pm e^{C}e^{-t}$; call the constant $A=\\pm e^{C}$ (it can be positive or negative).",
-     "latex": "y=A\\,e^{-t}"
-    },
-    {
-     "explanation": "Use the initial condition: at $t=0$, $e^0=1$, so $A=y_0$.",
-     "latex": "y(t)=y_0\\,e^{-t}"
-    },
-    {
-     "explanation": "**Check** by putting it back into the equation: $\\dfrac{dy}{dt}=-y_0e^{-t}$, and adding $y=y_0e^{-t}$ gives 0. ✓",
-     "latex": "\\frac{dy}{dt}+y=-y_0e^{-t}+y_0e^{-t}=0"
-    }
-   ],
-   "answer": "$y(t)=y_0\\,e^{-t}$",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e72d164a-abe6-4d61-9825-c850d1293a08"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "8a090bfe-9167-4a6f-bd9e-015ef6367d48"
-    }
-   ],
-   "id": "fe6d1ffe-c3a4-5bc9-a1b1-051f9c2f266d"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 14 · Where the e comes from (lecture outline)",
-   "prompt": "Without calculus: why does $\\dfrac{dy}{dt}+y=0$ give $y=y_0e^{-t}$? Use a tiny time step $\\Delta$.",
-   "steps": [
-    {
-     "explanation": "Replace the derivative by a slope over a tiny step $\\Delta$: (value now − value a moment ago) ÷ $\\Delta$.",
-     "latex": "\\frac{y(t)-y(t-\\Delta)}{\\Delta}+y(t)\\approx0"
-    },
-    {
-     "explanation": "Multiply by $\\Delta$ and rearrange. Each step the value gets divided by $(1+\\Delta)$.",
-     "latex": "y(t)\\,(1+\\Delta)=y(t-\\Delta)"
-    },
-    {
-     "explanation": "Repeat from $t=0$: after $k=t/\\Delta$ steps you have divided by $(1+\\Delta)$ $k$ times.",
-     "latex": "y(t)=y(0)\\,(1+\\Delta)^{-t/\\Delta}"
-    },
-    {
-     "explanation": "As the steps get tiny, $(1+\\Delta)^{1/\\Delta}$ approaches the number $e\\approx2.718$ (that is one definition of $e$).",
-     "latex": "y(t)=y(0)\\Big[(1+\\Delta)^{1/\\Delta}\\Big]^{-t}\\;\\to\\;y(0)\\,e^{-t}"
-    }
-   ],
-   "answer": "Shrinking by the same small fraction every instant is exactly what $e^{-t}$ does.",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "e72d164a-abe6-4d61-9825-c850d1293a08"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "8a090bfe-9167-4a6f-bd9e-015ef6367d48"
-    }
-   ],
-   "id": "40a946cb-3fbb-5e02-97b7-a38863d891c0"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 15 · The general RL loop (Lecture 1)",
-   "prompt": "Solve $L\\dfrac{di}{dt}+Ri=0$ with $i(0)=I_s$.",
-   "steps": [
-    {
-     "explanation": "Divide by $L$ and separate: currents on the left, time on the right.",
-     "latex": "\\frac{di}{i}=-\\frac{R}{L}\\,dt"
-    },
-    {
-     "explanation": "Integrate from the start (time $0$, current $i(0)$) to a general time $t$ (current $i(t)$). Definite integrals mean no $+C$. ($x$ and $s$ are just placeholder names for current and time inside the integrals, so they don't clash with the limits.)",
-     "latex": "\\int_{i(0)}^{i(t)}\\frac{dx}{x}=-\\frac{R}{L}\\int_0^t ds"
-    },
-    {
-     "explanation": "Evaluate both sides and combine the logs.",
-     "latex": "\\ln i(t)-\\ln i(0)=\\ln\\frac{i(t)}{i(0)}=-\\frac{R}{L}\\,t"
-    },
-    {
-     "explanation": "Exponentiate both sides and multiply by $i(0)=I_s$.",
-     "latex": "\\begin{gathered}i(t)=I_s\\,e^{-(R/L)t}=I_s\\,e^{-t/\\tau}, \\\\ \\tau=\\frac{L}{R}\\end{gathered}"
-    }
-   ],
-   "answer": "$i(t)=I_s\\,e^{-t/\\tau}$ with $\\tau=L/R$",
-   "citations": [
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
-    },
-    {
-     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
-     "version": 1,
-     "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
-    }
-   ],
-   "id": "fb14b4f6-b491-5c69-a938-43a5e86f78aa"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 16 · Pre-tutorial 1: numbers in the RL loop",
-   "prompt": "In the circuit above, $L=8\\,\\mathrm{mH}$, $R=4\\,\\Omega$ and $I_s=4\\,\\mathrm{A}$. Find $i(t)$ for $t\\ge0$, sketch it, and find $v(t)$.",
-   "steps": [
-    {
-     "explanation": "Before the switch opens, the inductor is a short, so it carries the whole source current. The current can't jump.",
-     "latex": "i(0^+)=i(0^-)=I_s=4\\,\\mathrm{A}"
-    },
-    {
-     "explanation": "After the switch opens, the inductor only sees $R=4\\,\\Omega$ ($R_0$ and the source are cut off). Convert mH to H.",
-     "latex": "\\tau=\\frac{L}{R}=\\frac{8\\times10^{-3}}{4}=2\\times10^{-3}\\,\\mathrm{s}=2\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "$1/\\tau=500\\,\\mathrm{s^{-1}}$, so $e^{-t/\\tau}=e^{-500t}$.",
-     "latex": "i(t)=4\\,e^{-500t}\\,\\mathrm{A},\\quad t\\ge0"
-    },
-    {
-     "explanation": "The current goes up through $L$ and comes down through $R$ from $+$ to $-$, so $v=Ri$.",
-     "latex": "v(t)=4\\cdot4e^{-500t}=16\\,e^{-500t}\\,\\mathrm{V}"
-    },
-    {
-     "explanation": "Sketch points: starts at 4 A, is $4(0.37)=1.47\\,\\mathrm{A}$ at $t=2\\,\\mathrm{ms}$, and is essentially 0 after $5\\tau=10\\,\\mathrm{ms}$ (see the plot).",
-     "latex": ""
+     "explanation": "The current comes down through $R$ from $+$ to $-$, so $v=Ri$.",
+     "latex": "v(t)=4\\cdot4e^{-500t}=16e^{-500t}\\,\\mathrm{V}"
     }
    ],
    "answer": "$\\tau=2\\,\\mathrm{ms}$, $i(t)=4e^{-500t}\\,\\mathrm{A}$, $v(t)=16e^{-500t}\\,\\mathrm{V}$",
@@ -1249,512 +576,81 @@
      "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
     }
    ],
-   "id": "9cb1f886-1efd-56f9-81a7-33586f7cb2b6"
-  },
-  {
-   "type": "artifact_reference",
-   "artifact_id": "19a7f911-cf96-45df-9303-d5c84f22b382",
-   "caption": "Pre-tutorial 1: $i(t)=4e^{-500t}$ A for 10 ms. Notice the value $1.47$ A at $t=\\tau=2$ ms (37% of the start) and that by $5\\tau=10$ ms the current is gone. Time is in seconds.",
-   "citations": [],
-   "id": "e7f0ac17-c0ba-5c62-a408-cc80bde758ef"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 17 · How long until it is small?",
-   "prompt": "An RL loop has $L=0.5\\,\\mathrm{H}$, $R=100\\,\\Omega$ and $i(0)=10\\,\\mathrm{A}$. When is $i=1\\,\\mathrm{A}$?",
-   "steps": [
-    {
-     "explanation": "Compute $\\tau=L/R$, then write the natural response $i=i(0)e^{-t/\\tau}$; note $1/\\tau=1/0.005=200\\,\\mathrm{s^{-1}}$.",
-     "latex": "\\begin{gathered}\\tau=\\frac{0.5}{100}=0.005\\,\\mathrm{s}=5\\,\\mathrm{ms}, \\\\ i(t)=10e^{-t/0.005}=10e^{-200t}\\,\\mathrm{A}\\end{gathered}"
-    },
-    {
-     "explanation": "Set $i=1$ and isolate the exponential.",
-     "latex": "10e^{-200t}=1\\;\\Rightarrow\\;e^{-200t}=0.1"
-    },
-    {
-     "explanation": "Take $\\ln$ of both sides ($\\ln e^{x}=x$).",
-     "latex": "-200t=\\ln0.1=-2.303"
-    },
-    {
-     "explanation": "Solve. A neat shortcut: the time to fall to a fraction $f$ is $\\tau\\ln(1/f)$.",
-     "latex": "t=\\frac{2.303}{200}=11.5\\,\\mathrm{ms}=\\tau\\ln10"
-    }
-   ],
-   "answer": "$t=\\tau\\ln10\\approx11.5\\,\\mathrm{ms}$",
-   "citations": [],
-   "id": "e70ea878-6c89-570d-b358-a7643291b699"
-  },
-  {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Common mistakes**\n\n- $\\tau=L/R$, not $R/L$. Check units: henries ÷ ohms = seconds.\n- Using a resistor that is no longer connected after the switch moves (here $R_0$). $R$ is what the inductor sees **after** switching.\n- Mixing ms and s: convert $L$ in mH to H first, then $\\tau$ comes out in seconds.\n- Forgetting to check the answer: put $i(t)$ back into $L\\,di/dt+Ri$ and you must get 0, and $i(0)$ must match.",
-   "citations": [],
-   "id": "a4b1da2f-410c-5e6a-addb-dc3a2126c773"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 14 · Solve and check",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Solve $\\dfrac{dy}{dt}=-3y$ with $y(0)=5$, and check your answer.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Separate the variables: divide both sides by $y$ and multiply by $dt$, so $y$ is on the left and $t$ on the right.",
-     "latex": "\\frac{dy}{y}=-3\\,dt"
-    },
-    {
-     "explanation": "Integrate both sides ($\\int dy/y=\\ln|y|$, $\\int -3\\,dt=-3t$), add one constant, then raise $e$ to both sides; the constant $A=\\pm e^{C}$ can have either sign.",
-     "latex": "\\ln|y|=-3t+C\\;\\Rightarrow\\;|y|=e^{C}e^{-3t}\\;\\Rightarrow\\;y=Ae^{-3t}"
-    },
-    {
-     "explanation": "Use the initial condition: at $t=0$, $e^0=1$, so $y(0)=A=5$.",
-     "latex": "y(t)=5e^{-3t}"
-    },
-    {
-     "explanation": "Check: $\\dfrac{dy}{dt}=-15e^{-3t}=-3(5e^{-3t})=-3y$ ✓ and $y(0)=5$ ✓.",
-     "latex": ""
-    }
-   ],
-   "answer": "$y(t)=5e^{-3t}$",
-   "citations": [],
-   "id": "7961ac36-07fb-5cb4-b427-c141e524492f"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 15 · An RL loop with numbers",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "An RL loop has $L=2\\,\\mathrm{H}$, $R=10\\,\\Omega$ and $i(0)=3\\,\\mathrm{A}$. Find $\\tau$, $i(t)$ and $i(0.2\\,\\mathrm{s})$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "The time constant of an RL loop is $\\tau=L/R$.",
-     "latex": "\\tau=\\frac{2}{10}=0.2\\,\\mathrm{s}"
-    },
-    {
-     "explanation": "The natural response starts at $i(0)=3\\,\\mathrm{A}$ and decays with that $\\tau$; $1/0.2=5$.",
-     "latex": "i(t)=3e^{-t/0.2}=3e^{-5t}\\,\\mathrm{A}"
-    },
-    {
-     "explanation": "At $t=0.2\\,\\mathrm{s}=\\tau$: 37% of the start.",
-     "latex": "i(0.2)=3e^{-1}=1.10\\,\\mathrm{A}"
-    }
-   ],
-   "answer": "$\\tau=0.2\\,\\mathrm{s}$, $i(t)=3e^{-5t}\\,\\mathrm{A}$, $i(0.2)=1.10\\,\\mathrm{A}$",
-   "citations": [],
-   "id": "84e73bbe-e029-5563-9034-c7166b5029fa"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 16 · Work backwards",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "A measured inductor current is $i(t)=6e^{-250t}\\,\\mathrm{A}$ and the resistor is $R=50\\,\\Omega$. Find $i(0)$, $\\tau$ and $L$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "At $t=0$ the exponential is 1.",
-     "latex": "i(0)=6\\,\\mathrm{A}"
-    },
-    {
-     "explanation": "The exponent is $-t/\\tau$, so $1/\\tau=250$.",
-     "latex": "\\tau=\\frac{1}{250}=4\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "Rearrange $\\tau=L/R$ to get $L=\\tau R$ (time in seconds: $4\\,\\mathrm{ms}=0.004\\,\\mathrm{s}$).",
-     "latex": "L=(0.004)(50)=0.2\\,\\mathrm{H}"
-    }
-   ],
-   "answer": "$i(0)=6\\,\\mathrm{A}$, $\\tau=4\\,\\mathrm{ms}$, $L=0.2\\,\\mathrm{H}$",
-   "citations": [],
-   "id": "15b55733-a3c2-5833-a00c-a877bc6281b6"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 17 · How many time constants?",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "How many time constants does it take an RL current to fall to 1% of its starting value?",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "1% of the start means the factor $e^{-t/\\tau}$ has dropped to $0.01$ (the starting value cancels).",
-     "latex": "I_0e^{-t/\\tau}=0.01\\,I_0\\;\\Rightarrow\\;e^{-t/\\tau}=0.01"
-    },
-    {
-     "explanation": "Take $\\ln$ of both sides; $\\ln(e^x)=x$ brings the exponent down.",
-     "latex": "-\\frac{t}{\\tau}=\\ln0.01=-4.605"
-    },
-    {
-     "explanation": "So about $4.6\\tau$, which is why \"$5\\tau$\" is used as the rule of thumb for \"finished\".",
-     "latex": "t=4.6\\,\\tau"
-    }
-   ],
-   "answer": "$t=\\tau\\ln100\\approx4.6\\,\\tau$",
-   "citations": [],
-   "id": "f8d3ff1d-46e3-5f16-9d83-cd895a52b6c4"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 18 · The full switching problem",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "In the lecture circuit (switch closed for a long time, opens at $t=0$): $I_s=2\\,\\mathrm{A}$, $R_0=10\\,\\Omega$, $L=40\\,\\mathrm{mH}$, $R=20\\,\\Omega$. Find $i(t)$ and $v(t)$ for $t\\ge0$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Before: the inductor is a short, which also shorts out $R_0$ and $R$, so it carries all of $I_s$.",
-     "latex": "i(0^-)=2\\,\\mathrm{A}=i(0^+)"
-    },
-    {
-     "explanation": "After: only $R=20\\,\\Omega$ is connected to $L$; $R_0$ plays no part.",
-     "latex": "\\tau=\\frac{0.04}{20}=2\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "The natural response starts at $2\\,\\mathrm{A}$; $1/\\tau=1/0.002=500\\,\\mathrm{s^{-1}}$.",
-     "latex": "i(t)=2e^{-500t}\\,\\mathrm{A}"
-    },
-    {
-     "explanation": "The current flows down through $R$ from $+$ to $-$, so Ohm's law gives $v=Ri$.",
-     "latex": "v(t)=20\\,i=40e^{-500t}\\,\\mathrm{V}"
-    }
-   ],
-   "answer": "$i(t)=2e^{-500t}\\,\\mathrm{A}$, $v(t)=40e^{-500t}\\,\\mathrm{V}$",
-   "citations": [],
-   "id": "6721ede9-da20-5e31-adbc-036a36e8b8e5"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 19 · Write the ODE yourself",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "A $0.1\\,\\mathrm{H}$ inductor carrying $2\\,\\mathrm{A}$ is suddenly connected across a $5\\,\\Omega$ resistor at $t=0$. Write the differential equation for $i(t)$ and solve it by separating variables.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "KVL around the loop: the inductor voltage $L\\,di/dt$ plus the resistor voltage $Ri$ add to zero. Divide by $0.1$.",
-     "latex": "0.1\\frac{di}{dt}+5i=0\\;\\Rightarrow\\;\\frac{di}{dt}=-50i"
-    },
-    {
-     "explanation": "Separate ($i$ left, $t$ right), integrate both sides, and raise $e$ to both sides; $A=\\pm e^{C}$ is a constant of either sign.",
-     "latex": "\\frac{di}{i}=-50\\,dt\\;\\Rightarrow\\;\\ln|i|=-50t+C\\;\\Rightarrow\\;i=Ae^{-50t}"
-    },
-    {
-     "explanation": "Initial condition $i(0)=2$ gives $A=2$. (Check: $\\tau=L/R=0.02\\,\\mathrm{s}=1/50$ ✓)",
-     "latex": "i(t)=2e^{-50t}\\,\\mathrm{A}"
-    }
-   ],
-   "answer": "$0.1\\,\\dfrac{di}{dt}+5i=0$, $i(t)=2e^{-50t}\\,\\mathrm{A}$",
-   "citations": [],
-   "id": "45dc8d21-7ba4-5c6b-b1e2-817436817c9c"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Mixed practice (exam style)",
-   "citations": [],
-   "id": "362a5eae-4111-5429-bec4-4ba622ad6b61"
+   "id": "f1cb8e6a-5338-565a-a2ab-c25ba1f118ae"
   },
   {
    "type": "paragraph",
-   "text": "Mixed topics, like the midterm. Try each one before opening the solution.",
+   "text": "```graph\ntitle \"Sketch: $i(t)=4e^{-500t}$ A\"\nx 0 10 label=\"$t$ (ms)\"\ny 0 4.5 label=\"$i$ (A)\"\ncurve \"4*exp(-t/2)\" label=\"$i(t)$\"\nvline \"2\" label=\"$t=\\tau=2$ ms\"\npoint \"2\" \"4*exp(-1)\" color=2\ntext \"2.3\" \"1.95\" \"$1.47$ A\"\ncaption \"Starts at 4 A, is at $37\\%$ (1.47 A) after one $\\tau$, gone by $5\\tau=10$ ms.\"\n```",
    "citations": [],
-   "id": "8c5c6df2-8315-57a6-9709-6b9e129b29d4"
+   "id": "62ce81b6-0cdc-5b78-8a46-b1d3d17d4187"
   },
   {
-   "type": "practice_problem",
-   "title": "Practice 1 · Multiply and divide two ways",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "$z_1=2+j2$ and $z_2=1-j\\sqrt3$.\n\n1. Write both in polar form.\n2. Find $z_1z_2$ and $z_1/z_2$ in polar and rectangular form.",
-   "solution": "",
+   "type": "worked_example",
+   "title": "Example 9 · How long until it is small?",
+   "prompt": "An RL loop has $L=0.5\\,\\mathrm{H}$, $R=100\\,\\Omega$ and $i(0)=10\\,\\mathrm{A}$. When is $i=1\\,\\mathrm{A}$?",
    "steps": [
     {
-     "explanation": "Convert. $z_1$: 1st quadrant. $z_2$: 1 right, $\\sqrt3$ down, 4th quadrant.",
-     "latex": "z_1=2\\sqrt2\\angle45^\\circ,\\qquad z_2=2\\angle-60^\\circ"
+     "explanation": "Time constant and response.",
+     "latex": "\\begin{gathered}\\tau=\\frac{0.5}{100}=5\\,\\mathrm{ms}, \\\\ i(t)=10e^{-t/\\tau}\\end{gathered}"
     },
     {
-     "explanation": "Product: multiply lengths, add angles.",
-     "latex": "z_1z_2=4\\sqrt2\\angle-15^\\circ=5.657(\\cos15^\\circ-j\\sin15^\\circ)=5.464-j1.464"
+     "explanation": "Set $i=1$ and isolate the exponential.",
+     "latex": "e^{-t/\\tau}=0.1"
     },
     {
-     "explanation": "Quotient: divide lengths, subtract angles.",
-     "latex": "\\frac{z_1}{z_2}=\\sqrt2\\angle105^\\circ=1.414(\\cos105^\\circ+j\\sin105^\\circ)=-0.366+j1.366"
+     "explanation": "Take $\\ln$ of both sides ($\\ln e^x=x$).",
+     "latex": "-\\frac{t}{\\tau}=\\ln0.1=-2.303"
+    },
+    {
+     "explanation": "Multiply by $-\\tau$.",
+     "latex": "t=2.303\\,\\tau=11.5\\,\\mathrm{ms}"
     }
    ],
-   "answer": "$z_1z_2=5.657\\angle-15^\\circ=5.464-j1.464$; $z_1/z_2=1.414\\angle105^\\circ=-0.366+j1.366$",
+   "answer": "$t=\\tau\\ln10=11.5\\,\\mathrm{ms}$",
    "citations": [],
-   "id": "c78b447d-2504-53ed-b032-a95c3ec6d4fc"
+   "id": "fc65ef35-33f0-5255-851d-81ce6e2a5ff7"
   },
   {
    "type": "practice_problem",
-   "title": "Practice 2 · Solve a cubic",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "Find all solutions of $z^3=-27$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Write $-27$ in polar form: 27 to the left.",
-     "latex": "-27=27\\angle180^\\circ"
-    },
-    {
-     "explanation": "Length $27^{1/3}=3$; first angle $180^\\circ/3=60^\\circ$; spacing $120^\\circ$.",
-     "latex": "3\\angle60^\\circ,\\quad3\\angle180^\\circ,\\quad3\\angle300^\\circ"
-    },
-    {
-     "explanation": "Convert each with $a=3\\cos\\theta$, $b=3\\sin\\theta$ ($\\cos60^\\circ=0.5$, $\\sin60^\\circ=0.866$).",
-     "latex": "1.5+j2.598,\\qquad -3,\\qquad 1.5-j2.598"
-    }
-   ],
-   "answer": "$z=3\\angle60^\\circ,\\ 3\\angle180^\\circ=-3,\\ 3\\angle300^\\circ$, i.e. $1.5\\pm j2.598$ and $-3$",
-   "citations": [],
-   "id": "6ebe2b6b-0dbd-561a-8a15-9ce6760189e9"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 3 · Double-angle formulas",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "Use $e^{j2\\theta}=(e^{j\\theta})^2$ to show $\\cos2\\theta=\\cos^2\\theta-\\sin^2\\theta$ and $\\sin2\\theta=2\\sin\\theta\\cos\\theta$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Write both sides with Euler.",
-     "latex": "\\cos2\\theta+j\\sin2\\theta=(\\cos\\theta+j\\sin\\theta)^2"
-    },
-    {
-     "explanation": "Square the right side with $j^2=-1$.",
-     "latex": "=\\cos^2\\theta+j2\\sin\\theta\\cos\\theta-\\sin^2\\theta"
-    },
-    {
-     "explanation": "Match real and imaginary parts.",
-     "latex": "\\begin{gathered}\\cos2\\theta=\\cos^2\\theta-\\sin^2\\theta, \\\\ \\sin2\\theta=2\\sin\\theta\\cos\\theta\\end{gathered}"
-    }
-   ],
-   "answer": "Shown by matching real and imaginary parts.",
-   "citations": [],
-   "id": "77cbd79e-b92d-5ead-a61c-d3bdace22a41"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 4 · RL with every question asked",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "In the lecture RL circuit, $I_s=5\\,\\mathrm{A}$, $L=20\\,\\mathrm{mH}$ and $R=8\\,\\Omega$ (the switch opens at $t=0$).\n\n1. Find $\\tau$, $i(t)$ and $v(t)=Ri$.\n2. Find $i$ at $t=5\\,\\mathrm{ms}$.\n3. When is $i=1\\,\\mathrm{A}$?",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "$i(0^+)=i(0^-)=I_s=5\\,\\mathrm{A}$ (inductor was a short).",
-     "latex": "\\tau=\\frac{0.02}{8}=2.5\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "Write the natural response with $1/\\tau=1/0.0025=400\\,\\mathrm{s^{-1}}$; the resistor voltage is $v=Ri$.",
-     "latex": "\\begin{gathered}i(t)=5e^{-400t}\\,\\mathrm{A}, \\\\ v(t)=8i=40e^{-400t}\\,\\mathrm{V}\\end{gathered}"
-    },
-    {
-     "explanation": "Put $t=0.005\\,\\mathrm{s}$ in (that is $2\\tau$, so the exponent is $-2$).",
-     "latex": "i(0.005)=5e^{-400(0.005)}=5e^{-2}=0.677\\,\\mathrm{A}"
-    },
-    {
-     "explanation": "Set $5e^{-400t}=1$: divide by 5 to isolate the exponential, take $\\ln$ of both sides ($\\ln\\tfrac15=-\\ln5$), then divide by $-400$.",
-     "latex": "e^{-400t}=\\tfrac15\\;\\Rightarrow\\;-400t=-\\ln5\\;\\Rightarrow\\;t=\\frac{\\ln5}{400}=4.02\\,\\mathrm{ms}"
-    }
-   ],
-   "answer": "$\\tau=2.5\\,\\mathrm{ms}$, $i=5e^{-400t}\\,\\mathrm{A}$, $v=40e^{-400t}\\,\\mathrm{V}$; $i(5\\,\\mathrm{ms})=0.677\\,\\mathrm{A}$; $t=4.02\\,\\mathrm{ms}$",
-   "citations": [],
-   "id": "4b5bca5a-6864-591e-b984-a166aca47334"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 5 · Euler warm-up",
+   "title": "Try it 4 · Check a solution by substituting it",
    "difficulty": "introductory",
    "origin": "original",
-   "prompt": "Evaluate (a) $e^{j\\pi}+1$ (b) $|e^{j3}|$ (c) $\\mathrm{Re}\\{4e^{j\\pi/6}\\}$.",
+   "prompt": "Show that $i(t)=I_se^{-t/\\tau}$ with $\\tau=\\dfrac{L}{R}$ really satisfies $L\\dfrac{di}{dt}+Ri=0$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) $e^{j\\pi}=\\cos\\pi+j\\sin\\pi=-1$.",
-     "latex": "e^{j\\pi}+1=0"
+     "explanation": "Differentiate: $\\frac{d}{dt}e^{-t/\\tau}=-\\frac1\\tau e^{-t/\\tau}$ (chain rule).",
+     "latex": "\\frac{di}{dt}=-\\frac{I_s}{\\tau}e^{-t/\\tau}=-\\frac{R}{L}I_se^{-t/\\tau}"
     },
     {
-     "explanation": "(b) Every $e^{j\\theta}$ has length 1, whatever $\\theta$ is.",
-     "latex": "|e^{j3}|=1"
-    },
-    {
-     "explanation": "(c) The real part is $c\\cos\\theta$ with $\\theta=\\pi/6=30^\\circ$.",
-     "latex": "4\\cos30^\\circ=3.464"
+     "explanation": "Substitute both pieces into the left side.",
+     "latex": "L\\Big(-\\frac{R}{L}I_se^{-t/\\tau}\\Big)+R\\,I_se^{-t/\\tau}=-RI_se^{-t/\\tau}+RI_se^{-t/\\tau}=0\\ \\checkmark"
     }
    ],
-   "answer": "(a) $0$ (b) $1$ (c) $3.464$",
+   "answer": "It gives $0$ for every $t$, so it is a solution.",
    "citations": [],
-   "id": "ff47368b-f157-582e-aaf7-903dbc3da0f8"
+   "id": "2f97d124-5e35-5d96-8e8e-c80fb0b9d14b"
   },
   {
    "type": "practice_problem",
-   "title": "Practice 6 · A messy expression",
+   "title": "Try it 5 · Work backwards from a measurement",
    "difficulty": "intermediate",
    "origin": "original",
-   "prompt": "Find $\\dfrac{(3+j4)^2}{1-j}$ in rectangular form.",
+   "prompt": "In an RL loop with $R=20\\,\\Omega$, the current halves every $3\\,\\mathrm{ms}$. Find $L$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "Square the top first.",
-     "latex": "(3+j4)^2=9+j24+j^2\\,16=-7+j24"
+     "explanation": "Halving in $3\\,\\mathrm{ms}$ means $e^{-0.003/\\tau}=\\tfrac12$.",
+     "latex": "\\frac{0.003}{\\tau}=\\ln2\\ \\Rightarrow\\ \\tau=\\frac{0.003}{0.693}=4.33\\,\\mathrm{ms}"
     },
     {
-     "explanation": "Divide by $1-j$: multiply top and bottom by $1+j$; the bottom becomes $1+1=2$.",
-     "latex": "\\frac{(-7+j24)(1+j)}{2}=\\frac{-7-j7+j24+j^2\\,24}{2}"
-    },
-    {
-     "explanation": "Simplify with $j^2=-1$.",
-     "latex": "=\\frac{-31+j17}{2}=-15.5+j8.5"
+     "explanation": "$\\tau=L/R$, so $L=R\\tau$.",
+     "latex": "L=20\\times0.00433=0.0866\\,\\mathrm{H}"
     }
    ],
-   "answer": "$-15.5+j8.5$",
+   "answer": "$L\\approx86.6\\,\\mathrm{mH}$",
    "citations": [],
-   "id": "da0fb8bf-6bb6-5fda-b46a-2a73b457e7de"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 7 · Roots in polar form",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Solve $s^2+6s+25=0$ and write both roots in polar form.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Quadratic formula with $a=1$, $b=6$, $c=25$; the number under the root is negative.",
-     "latex": "s=\\frac{-6\\pm\\sqrt{36-100}}{2}=\\frac{-6\\pm\\sqrt{-64}}{2}"
-    },
-    {
-     "explanation": "$\\sqrt{-64}=\\sqrt{64}\\,\\sqrt{-1}=j8$; divide both parts by 2.",
-     "latex": "s=\\frac{-6\\pm j8}{2}=-3\\pm j4"
-    },
-    {
-     "explanation": "$-3+j4$ is in the 2nd quadrant: length 5, reference angle $53.13^\\circ$.",
-     "latex": "-3+j4=5\\angle126.87^\\circ"
-    },
-    {
-     "explanation": "The other root is the conjugate: same length, angle with the opposite sign (mirror image across the real axis).",
-     "latex": "-3-j4=5\\angle-126.87^\\circ"
-    }
-   ],
-   "answer": "$s=-3\\pm j4=5\\angle\\pm126.87^\\circ$",
-   "citations": [],
-   "id": "f8db6c93-d64b-51bc-826e-effdf31f3277"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 8 · Read the time constant from data",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "In an RL loop with $R=10\\,\\Omega$, the current is $2\\,\\mathrm{A}$ at $t=0$ and $0.736\\,\\mathrm{A}$ at $t=1\\,\\mathrm{ms}$. Find $\\tau$ and $L$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "$0.736/2=0.368=e^{-1}$, so 1 ms is exactly one time constant.",
-     "latex": "e^{-0.001/\\tau}=0.368\\;\\Rightarrow\\;\\tau=1\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "Rearrange $\\tau=L/R$ to $L=\\tau R$.",
-     "latex": "L=(0.001)(10)=10\\,\\mathrm{H}\\times10^{-3}=10\\,\\mathrm{mH}"
-    }
-   ],
-   "answer": "$\\tau=1\\,\\mathrm{ms}$, $L=10\\,\\mathrm{mH}$",
-   "citations": [],
-   "id": "39e5b9c9-8e0b-57aa-aa7b-3c9949254f34"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Summary",
-   "citations": [],
-   "id": "fb315d15-4870-57d9-9a6d-01354f7d0c69"
-  },
-  {
-   "type": "table",
-   "columns": [
-    "Problem type",
-    "How to recognise it",
-    "What to do"
-   ],
-   "rows": [
-    [
-     "Rectangular → polar",
-     "given $a+jb$, asked for $c\\angle\\theta$ or $ce^{j\\theta}$",
-     "sketch; $c=\\sqrt{a^2+b^2}$; reference angle; fix the quadrant"
-    ],
-    [
-     "Polar → rectangular",
-     "given $c\\angle\\theta$ or $ce^{j\\theta}$",
-     "$a=c\\cos\\theta$, $b=c\\sin\\theta$"
-    ],
-    [
-     "Add / subtract",
-     "$z_1\\pm z_2$",
-     "rectangular: add the parts"
-    ],
-    [
-     "Multiply / divide",
-     "$z_1z_2$, $z_1/z_2$",
-     "polar: multiply/divide lengths, add/subtract angles (or expand with $j^2=-1$; divide using the conjugate)"
-    ],
-    [
-     "Power",
-     "$z^k$",
-     "polar: $c^k\\angle k\\theta$"
-    ],
-    [
-     "Roots",
-     "$z^{1/k}$ or \"solve $z^k=w$\"",
-     "$k$ answers: length $c^{1/k}$, angles $\\theta/k+360^\\circ\\ell/k$"
-    ],
-    [
-     "Trig identity",
-     "\"use Euler to show…\"",
-     "write both sides with $e^{j\\theta}=\\cos\\theta+j\\sin\\theta$, expand, match real and imaginary parts"
-    ],
-    [
-     "RL natural response",
-     "switch disconnects the source; an inductor is left with a resistor",
-     "$i(0^+)=i(0^-)$ (L = short before); $\\tau=L/R$; $i=I_0e^{-t/\\tau}$"
-    ]
-   ],
-   "citations": [],
-   "id": "29af251f-8e31-59a8-8a67-ea4ef2914ff6"
-  },
-  {
-   "type": "table",
-   "columns": [
-    "Formula",
-    "Meaning"
-   ],
-   "rows": [
-    [
-     "$e^{j\\theta}=\\cos\\theta+j\\sin\\theta$",
-     "Euler's identity: the unit-circle point at angle $\\theta$"
-    ],
-    [
-     "$z\\,z^*=a^2+b^2=c^2$",
-     "a number times its conjugate is real"
-    ],
-    [
-     "$L\\dfrac{di}{dt}+Ri=0$",
-     "KVL for the source-free RL loop"
-    ],
-    [
-     "$i(t)=I_0e^{-t/\\tau},\\ \\tau=L/R$",
-     "37% left after $\\tau$, under 1% after $5\\tau$"
-    ],
-    [
-     "time to fall to fraction $f$",
-     "$t=\\tau\\ln(1/f)$"
-    ]
-   ],
-   "citations": [],
-   "id": "70895d2b-9181-593c-8ea7-7eb8ec61e48d"
+   "id": "b95f5b92-146d-5c06-b637-014953ea6ca0"
   }
  ]
 }

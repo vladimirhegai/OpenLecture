@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { schematicImage, schematicSeen } from "../api";
+import { CurrentFlow } from "./flow/CurrentFlow";
+import { parseFlow } from "./flow/circuit";
 import { drawingOnly, ElevationButton, ElevationDialog, ElevationInline, parseElevation } from "./Elevation";
 import { Markdown } from "./Markdown";
 
@@ -10,6 +12,7 @@ export function Schematic({ source, caption }: { source: string; caption?: strin
   // `#@` comment lines carry an optional height view; the server only needs the drawing.
   const drawing = useMemo(() => drawingOnly(source), [source]);
   const elevation = useMemo(() => parseElevation(source), [source]);
+  const flow = useMemo(() => parseFlow(source), [source]);
   useEffect(() => {
     let live = true;
     const load = () =>
@@ -38,7 +41,14 @@ export function Schematic({ source, caption }: { source: string; caption?: strin
   return (
     <figure className={`schematic ${elevation ? "has-elevation" : ""}`}>
       {elevation && state.url && <ElevationButton onClick={() => setHeightView(true)} />}
-      {state.url ? <img src={state.url} alt={caption || "Circuit diagram"} /> : <div className="schematic-wait" />}
+      {state.url && flow && typeof flow === "object" ? (
+        <CurrentFlow url={state.url} spec={flow} alt={caption || "Circuit diagram"} />
+      ) : state.url ? (
+        <img src={state.url} alt={caption || "Circuit diagram"} />
+      ) : (
+        <div className="schematic-wait" />
+      )}
+      {typeof flow === "string" && <figcaption className="flow-error">Current flow: {flow}</figcaption>}
       {elevation?.inline && state.url && <ElevationInline spec={elevation} />}
       {caption && (
         <figcaption>

@@ -20,7 +20,7 @@ Every block has a UUID `id`, a discriminated `type`, and optional `citations`. U
 | `solution` | `title`, `text`, `collapsed` |
 | `artifact_reference` | immutable `artifact_id`, `caption` |
 
-Markdown text in any block may embed ` ```schematic ` fences; documents reject drawings that do not parse or that touch the middle of an element. Solutions are marked collapsible for a future renderer. Artifacts currently include circuit definitions, simulation results, probability/ODE math cards, and logic tables/maps. Card definitions include validated parameter schemas and chart data. Recompute explorations through non-persisting endpoints; save only when requested.
+Markdown text in any block may embed ` ```schematic ` fences; documents reject drawings that do not parse or that touch the middle of an element. It may also embed the interactive math fences ` ```steps `, ` ```graph ` and ` ```graph3d ` (grammar in `skills/math-tools.md`); they are stored as plain text and rendered by the frontend with a safe expression evaluator. Solutions are marked collapsible for a future renderer. Artifacts currently include circuit definitions, simulation results, probability/ODE math cards, and logic tables/maps. Card definitions include validated parameter schemas and chart data. Recompute explorations through non-persisting endpoints; save only when requested.
 
 ## Citations
 

@@ -101,7 +101,7 @@ const MODE_KEY = "ol-elevation-mode";
 export function drawingOnly(source: string) {
   return source
     .split("\n")
-    .filter((line) => !PREFIX.test(line))
+    .filter((line) => !PREFIX.test(line) && !/^\s*#~/.test(line)) // #~ lines are the current-flow spec (flow/circuit.ts)
     .join("\n")
     .trim();
 }

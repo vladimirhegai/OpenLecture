@@ -15,6 +15,7 @@ Write one complete, consistently structured study note per course week, built fo
    - A transcription is not proof of correctness. Check units and source polarities against the original image. If a source omits units or contains an apparent error, distinguish the literal source result from the physically consistent result and state any assumption explicitly.
    - State which element and reference direction every current belongs to. For switched circuits, check initial/final values and substitute the response into the circuit's differential equation.
 6. Draw every circuit you use in the `schematic` language and check each drawing with `schematic_check`. Give every circuit with known potentials a **height view** (`#@` lines; see "Height views" in the `schematic` skill), written from your verified solution. Then open each one in the app and check it in both Straight line and Full loop modes.
+7. For math that moves (derivations, parameter changes, initial conditions, surfaces), use the interactive fences in the `math-tools` skill: ` ```steps ` equation steppers, ` ```graph ` plots with sliders and draggable points, ` ```graph3d ` surfaces. Use a tool only where interacting teaches something a static equation can't.
 
 ## Document
 

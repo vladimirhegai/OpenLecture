@@ -1,0 +1,1600 @@
+{
+ "title": "Calculus Refresher",
+ "week": 0,
+ "topic_keys": [
+  "calculus_refresher",
+  "week_0",
+  "initial_value_problems",
+  "first_order_odes",
+  "exact_odes",
+  "homogeneous_second_order"
+ ],
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Week 0 · ELEC 231 · preparation for weeks 1–5**\n\nRead in order: each example uses only rules already introduced. Try the short questions before opening their solutions; use **Next** to follow the equation changes.",
+   "citations": [],
+   "id": "962fc047-cefa-5ed1-85d8-69635d825563"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Algebra and notation",
+   "citations": [],
+   "id": "89609eca-9628-5721-af6e-0169d4eec925"
+  },
+  {
+   "type": "paragraph",
+   "text": "$t$ is time, usually in seconds. $y(t)$ means “the value of $y$ at time $t$”; it does **not** mean $y$ multiplied by $t$.",
+   "citations": [],
+   "id": "8513fdca-e4df-566b-a16f-6bd7cc9887db"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Symbol",
+    "Meaning here"
+   ],
+   "rows": [
+    [
+     "$y(t)$",
+     "A general unknown function."
+    ],
+    [
+     "$i(t)$, $v(t)$",
+     "Current in amperes (A), voltage in volts (V)."
+    ],
+    [
+     "$R$, $L$, $C$",
+     "Resistance, inductance, capacitance: fixed component values."
+    ],
+    [
+     "$K$, $K_1$, $K_2$",
+     "Unknown constants to determine; we use K so it is not confused with capacitance C."
+    ],
+    [
+     "$y(0)=3$",
+     "The function starts at 3 when t = 0."
+    ],
+    [
+     "$y(t)\\to 3$ as $t\\to\\infty$",
+     "As time grows, y approaches 3."
+    ]
+   ],
+   "citations": [],
+   "id": "3da40f85-39ea-5d18-be35-d89021428391"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Exponentials and logarithms",
+   "citations": [],
+   "id": "6bbe7f62-cf2a-54dd-ba5f-541efabca521"
+  },
+  {
+   "type": "paragraph",
+   "text": "An **exponential** has the variable in its exponent: $e^t$, where $e\\approx2.718$. For $a>0$, $e^{-at}$ starts at 1 and approaches 0; a larger $a$ makes it fall faster.",
+   "citations": [],
+   "id": "76e821a7-92a4-599b-8fd8-7b0e5eb759cf"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Rule",
+    "Example"
+   ],
+   "rows": [
+    [
+     "$t^{-n}=\\dfrac{1}{t^n}$; $t^{1/2}=\\sqrt t$",
+     "$t^{-2}=\\dfrac1{t^2}$"
+    ],
+    [
+     "$e^0=1$; $e^{A+B}=e^Ae^B$",
+     "$e^{2-2t}=e^2e^{-2t}$"
+    ],
+    [
+     "$\\ln(e^A)=A$; $e^{\\ln A}=A$ for $A>0$",
+     "$e^{-2t}=\\dfrac12\\ \\Rightarrow\\ -2t=-\\ln2$"
+    ],
+    [
+     "$\\ln(AB)=\\ln A+\\ln B$ for $A,B>0$",
+     "$\\ln(4e^{-2t})=\\ln4-2t$"
+    ]
+   ],
+   "citations": [],
+   "id": "5082c9e3-15f6-5b3e-8991-c352baf41825"
+  },
+  {
+   "type": "paragraph",
+   "text": "$\\ln$ is the **natural logarithm**: it undoes an exponential with base $e$. It lets you bring an exponent down so you can solve for time.",
+   "citations": [],
+   "id": "08d7a131-5084-5a17-b855-7be1cefa0339"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · When has a current halved?",
+   "prompt": "A current is $i(t)=4e^{-2t}\\,\\mathrm A$. Find when it reaches $2\\,\\mathrm A$. No calculus yet.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ 2=4e^{-2t} $$\nPut the requested current into the formula.\n$$ \\hl{\\dfrac12}=e^{-2t} $$\nDivide both sides by 4.\n$$ \\hl{\\ln(1/2)}=\\hl{-2t} $$\nTake ln of both sides; ln undoes the exponential.\n$$ t=\\hl{\\dfrac{\\ln2}{2}}\\approx0.347\\,\\mathrm s $$\nSince ln(1/2) = −ln 2, dividing by −2 gives a positive time.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$t=\\dfrac{\\ln2}{2}\\approx0.347\\,\\mathrm s$.",
+   "citations": [],
+   "id": "8a73484d-f0b5-5718-826b-19acaff97bcc"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · Solve for time",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "A voltage is $v(t)=12(1-e^{-3t})\\,\\mathrm V$. When does it reach $9\\,\\mathrm V$?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ 9=12(1-e^{-3t}) $$\nSubstitute the requested voltage.\n$$ e^{-3t}=\\hl{\\dfrac14} $$\nDivide by 12, then isolate the exponential.\n$$ -3t=\\hl{\\ln(1/4)=-\\ln4} $$\nTake ln of both sides.\n$$ t=\\hl{\\dfrac{\\ln4}{3}}\\approx0.462\\,\\mathrm s $$\nDivide by −3.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$t=\\dfrac{\\ln4}{3}\\approx0.462\\,\\mathrm s$.",
+   "citations": [],
+   "id": "f02666f9-287a-5945-9a11-9cbd68809097"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Derivatives",
+   "citations": [],
+   "id": "14f4fa77-67e2-5214-a86b-e3cd7f2d0a6d"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Basic derivative rules",
+   "citations": [],
+   "id": "3b07192c-1812-5783-a004-b5b8104d6dff"
+  },
+  {
+   "type": "paragraph",
+   "text": "A **derivative** is the slope of a function at one instant. A rising curve has a positive derivative; a falling curve has a negative one.",
+   "citations": [],
+   "id": "4bc05016-8a31-50ab-a223-a6b82e74bcd8"
+  },
+  {
+   "type": "equation",
+   "latex": "y^{\\prime}(t)=\\dfrac{dy}{dt}",
+   "display": true,
+   "citations": [],
+   "id": "989a425d-1a72-5439-88ea-fe015e0ac9b6"
+  },
+  {
+   "type": "paragraph",
+   "text": "These are two names for the same derivative. If $i$ is in amperes and $t$ in seconds, $\\dfrac{di}{dt}$ is in A/s; it tells you how fast the current changes.",
+   "citations": [],
+   "id": "f367201a-ae01-58f1-93b2-240ba9790f7f"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Function",
+    "Derivative with respect to t"
+   ],
+   "rows": [
+    [
+     "$k$ (constant)",
+     "$0$"
+    ],
+    [
+     "$t^n$",
+     "$nt^{n-1}$"
+    ],
+    [
+     "$e^t$",
+     "$e^t$"
+    ],
+    [
+     "$\\ln|t|$ ($t\\ne0$)",
+     "$\\dfrac1t$"
+    ],
+    [
+     "$\\sin t$",
+     "$\\cos t$"
+    ],
+    [
+     "$\\cos t$",
+     "$-\\sin t$"
+    ]
+   ],
+   "citations": [],
+   "id": "feccbbae-449e-56b3-8d2d-7edfc3ef73f3"
+  },
+  {
+   "type": "paragraph",
+   "text": "Differentiate sums term by term; keep constant multipliers. For trig derivatives, angles must be in **radians** ($\\pi$ radians $=180^\\circ$).",
+   "citations": [],
+   "id": "e3d19e59-7c73-563a-b3b3-faa9bcd89084"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · Differentiate term by term",
+   "prompt": "Find the derivative of $y(t)=3t^2-4t+2$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ y=3t^2-4t+2 $$\nStart with the function.\n$$ y^{\\prime}=3\\hl{(2t)}-4\\hl{(1)}+\\hl{0} $$\nUse the power rule; the derivative of a constant is zero.\n$$ y^{\\prime}=\\hl{6t-4} $$\nCollect the terms.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y^{\\prime}=6t-4$.",
+   "citations": [],
+   "id": "3aa6521c-bc1c-5807-8969-ab47c6950ded"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · A slope at a particular time",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $y(t)=t^3-2t$, find $\\dfrac{dy}{dt}$ and its value at $t=1$. Is the curve rising or falling there?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ y^{\\prime}=\\hl{3t^2-2} $$\nUse the power rule on each term.\n$$ y^{\\prime}(1)=3(1)^2-2=\\hl{1} $$\nDifferentiate first, then put in t = 1.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y^{\\prime}=3t^2-2$; $y^{\\prime}(1)=1>0$, so it is rising there.",
+   "citations": [],
+   "id": "563b712f-4eec-5496-a36f-2dff7790165a"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Chain rule",
+   "citations": [],
+   "id": "86727d62-2ce0-5098-b2af-027900bbd889"
+  },
+  {
+   "type": "paragraph",
+   "text": "In $e^{-2t}$, the outside function is the exponential and the inside is $-2t$. Differentiate the outside, keep the inside, then **multiply by the derivative of the inside**.",
+   "citations": [],
+   "id": "64073693-e68b-5c7f-b015-a595630c824a"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{d}{dt}f(g(t))=f^{\\prime}(g(t))g^{\\prime}(t)",
+   "display": true,
+   "citations": [],
+   "id": "16bfd041-29f3-5ede-b8c2-0c44f8073e57"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · The rate of an exponential decay",
+   "prompt": "Find $\\dfrac{di}{dt}$ for $i(t)=4e^{-2t}\\,\\mathrm A$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ i=4e^{-2t} $$\nThe 4 stays as a constant multiplier.\n$$ \\dfrac{di}{dt}=4e^{-2t}\\hl{(-2)} $$\nThe exponential stays; multiply by the derivative of −2t.\n$$ \\dfrac{di}{dt}=\\hl{-8e^{-2t}} $$\nThe negative sign means the current is decreasing.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$\\dfrac{di}{dt}=-8e^{-2t}\\,\\mathrm{A/s}$.",
+   "citations": [],
+   "id": "f2d64f7f-1ec0-597b-9dec-41116c711f0a"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Slide the time: current and its slope\"\nx 0 3 label=\"$t$ (s)\"\ny -1 4.5 label=\"$i$ (A)\"\nslider T 0 2.5 0.5 step=0.05 label=\"time $T$ (s)\"\ncurve \"4*exp(-2*t)\" label=\"$i(t)=4e^{-2t}$\"\ncurve \"4*exp(-2*T)-8*exp(-2*T)*(t-T)\" from=\"max(0,T-0.3)\" to=\"T+0.3\" color=2 label=\"tangent: slope at $T$\"\npoint \"T\" \"4*exp(-2*T)\" color=2\nreadout \"$i(T)=$\" \"4*exp(-2*T)\" unit=\" A\"\nreadout \"$i'(T)=$\" \"-8*exp(-2*T)\" unit=\" A/s\"\ncaption \"Move T forward: the current still decreases, but the tangent becomes less steep.\"\n```",
+   "citations": [],
+   "id": "b2aad64e-3670-50af-89a8-668eea5be66e"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Pattern",
+    "Derivative"
+   ],
+   "rows": [
+    [
+     "$e^{at}$",
+     "$ae^{at}$"
+    ],
+    [
+     "$\\sin(\\omega t)$",
+     "$\\omega\\cos(\\omega t)$"
+    ],
+    [
+     "$\\cos(\\omega t)$",
+     "$-\\omega\\sin(\\omega t)$"
+    ],
+    [
+     "$\\ln|g(t)|$",
+     "$\\dfrac{g^{\\prime}(t)}{g(t)}$ where $g(t)\\ne0$"
+    ]
+   ],
+   "citations": [],
+   "id": "90c6467f-9438-5ad4-b00f-2e3d2a4dd420"
+  },
+  {
+   "type": "paragraph",
+   "text": "$a$ and $\\omega$ (omega) are constants. For example, $\\dfrac{d}{dt}\\cos(2t)=-2\\sin(2t)$: the extra 2 comes from the inside.",
+   "citations": [],
+   "id": "eb6b3ea2-1815-55b2-bcb0-846f790d223e"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 3 · A voltage building up",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "For $v(t)=12-10e^{-5t}\\,\\mathrm V$, find $\\dfrac{dv}{dt}$ and the initial rate $v^{\\prime}(0)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ v^{\\prime}=0-10e^{-5t}\\hl{(-5)} $$\nDifferentiate the constant and use the chain rule.\n$$ v^{\\prime}=\\hl{50e^{-5t}} $$\nThe two negative signs cancel.\n$$ v^{\\prime}(0)=50e^0=\\hl{50} $$\nAt t = 0, the exponential is 1.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$v^{\\prime}(t)=50e^{-5t}\\,\\mathrm{V/s}$; $v^{\\prime}(0)=50\\,\\mathrm{V/s}$.",
+   "citations": [],
+   "id": "e2fc5b83-f85b-5f49-87c4-0843b1ad3ebc"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 4 · A changing logarithm",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Differentiate $y(t)=\\ln(1+t^2)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ y=\\ln(1+t^2) $$\nThe outside is ln; the inside is 1 + t².\n$$ y^{\\prime}=\\dfrac{1}{1+t^2}\\hl{(2t)} $$\nMultiply the outside derivative by the inside derivative.\n$$ y^{\\prime}=\\hl{\\dfrac{2t}{1+t^2}} $$\nCombine the factors.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y^{\\prime}=\\dfrac{2t}{1+t^2}$.",
+   "citations": [],
+   "id": "342ae569-58e6-5009-b176-985856fa7843"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Product rule and second derivatives",
+   "citations": [],
+   "id": "efd7b742-cb41-5e4e-acdf-e37943fe3fd9"
+  },
+  {
+   "type": "paragraph",
+   "text": "For a product of two changing functions, both contribute to the derivative. You do **not** multiply their derivatives together.",
+   "citations": [],
+   "id": "24c71469-249b-562e-94ee-247c24919b66"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{d}{dt}(uv)=u^{\\prime}v+uv^{\\prime}",
+   "display": true,
+   "citations": [],
+   "id": "2e883731-1987-5d4f-9f9f-995e12f35a6d"
+  },
+  {
+   "type": "paragraph",
+   "text": "$u$ and $v$ here are any two functions of $t$. A **second derivative**, $y^{\\prime\\prime}=\\dfrac{d^2y}{dt^2}$, means differentiate the result again; it is not $(y^{\\prime})^2$.",
+   "citations": [],
+   "id": "04c8a610-6aab-5ab3-80b7-06183adaa208"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · A product you will see with repeated roots",
+   "prompt": "Find $y^{\\prime}$ and $y^{\\prime\\prime}$ for $y=te^{-2t}$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ y=te^{-2t} $$\nThere are two changing factors.\n$$ y^{\\prime}=\\hl{1}e^{-2t}+t\\hl{(-2e^{-2t})} $$\nDifferentiate each factor in turn, using the product rule.\n$$ y^{\\prime}=\\hl{(1-2t)e^{-2t}} $$\nFactor out the common exponential.\n$$ y^{\\prime\\prime}=\\hl{-2}e^{-2t}+(1-2t)\\hl{(-2e^{-2t})} $$\nDifferentiate again with the product rule.\n$$ y^{\\prime\\prime}=\\hl{(4t-4)e^{-2t}} $$\nCollect the factors multiplying the exponential.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y^{\\prime}=(1-2t)e^{-2t}$; $y^{\\prime\\prime}=(4t-4)e^{-2t}$.",
+   "citations": [],
+   "id": "0895cfc1-c077-54bd-95ff-f522ef568c0d"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 5 · Differentiate twice",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Find $y^{\\prime}$ and $y^{\\prime\\prime}$ for $y=(2+t)e^{-t}$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ y^{\\prime}=e^{-t}-(2+t)e^{-t}=\\hl{-(1+t)e^{-t}} $$\nApply the product rule and combine.\n$$ y^{\\prime\\prime}=-e^{-t}+(1+t)e^{-t} $$\nApply the product rule again, keeping the initial minus sign.\n$$ y^{\\prime\\prime}=\\hl{te^{-t}} $$\nCombine the terms.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y^{\\prime}=-(1+t)e^{-t}$; $y^{\\prime\\prime}=te^{-t}$.",
+   "citations": [],
+   "id": "8cdff99f-6575-5199-9ff8-a0d431ddae77"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Quotient rule",
+   "citations": [],
+   "id": "2016126f-d384-5eeb-b28a-0663d616b913"
+  },
+  {
+   "type": "paragraph",
+   "text": "For a fraction, use the **quotient rule**: bottom × derivative of top, minus top × derivative of bottom, all over bottom squared.",
+   "citations": [],
+   "id": "d58e9323-a3b9-534a-bf7d-473f3180c537"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{d}{dt}\\left(\\dfrac uv\\right)=\\dfrac{vu^{\\prime}-uv^{\\prime}}{v^2}",
+   "display": true,
+   "citations": [],
+   "id": "bd1d498c-e871-5fc5-8107-5523f6536575"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · A quotient",
+   "prompt": "Differentiate $y=\\dfrac{t}{1+t}$, for $t\\ne-1$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ y^{\\prime}=\\dfrac{(1+t)\\hl{(1)}-t\\hl{(1)}}{(1+t)^2} $$\nHere the derivatives of both the top and bottom are 1.\n$$ y^{\\prime}=\\hl{\\dfrac{1}{(1+t)^2}} $$\nThe t terms cancel in the numerator.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y^{\\prime}=\\dfrac1{(1+t)^2}$.",
+   "citations": [],
+   "id": "9f24a125-5329-522a-8bf2-e13c967e21f5"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 6 · Keep the quotient-rule signs",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Differentiate $y=\\dfrac{1+t}{1-t}$, for $t\\ne1$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ y^{\\prime}=\\dfrac{(1-t)(1)-(1+t)\\hl{(-1)}}{(1-t)^2} $$\nThe derivative of the bottom is −1.\n$$ y^{\\prime}=\\dfrac{1-t+1+t}{(1-t)^2}=\\hl{\\dfrac2{(1-t)^2}} $$\nSubtracting a negative gives a plus.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y^{\\prime}=\\dfrac2{(1-t)^2}$.",
+   "citations": [],
+   "id": "05078e6c-910d-5186-8449-209657eadd17"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Partial derivatives",
+   "citations": [],
+   "id": "46b2a3fe-64b9-5e51-a282-2222c1b703ad"
+  },
+  {
+   "type": "paragraph",
+   "text": "For a function $U(t,y)$ with two inputs, a **partial derivative** changes one input while holding the other fixed. The curly $\\partial$ marks this difference.",
+   "citations": [],
+   "id": "caf0afd4-f956-56cd-a7e7-a9541c809333"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 6 · Partial and mixed derivatives",
+   "prompt": "For $U(t,y)=t^2y+3y^2$, find $U_t=\\dfrac{\\partial U}{\\partial t}$ and $U_y=\\dfrac{\\partial U}{\\partial y}$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ U=t^2y+3y^2 $$\nStart with two independent inputs.\n$$ U_t=\\hl{2ty} $$\nHold y fixed: 3y² is constant with respect to t.\n$$ U_y=\\hl{t^2+6y} $$\nHold t fixed: the derivative of t²y with respect to y is t².\n$$ U_{ty}=\\hl{2t}=U_{yt} $$\nDifferentiate each result in the other variable; these mixed partials agree.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$U_t=2ty$; $U_y=t^2+6y$; both mixed partial derivatives are $2t$.",
+   "citations": [],
+   "id": "0f820d2a-03b4-5c4f-8a49-4eac1e036d5f"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 7 · A partial derivative with trig",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $U(t,y)=t^2\\sin y+y^3$, find $U_t$ and $U_y$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ U_t=\\hl{2t\\sin y} $$\nHold y fixed, so sin y is a constant multiplier.\n$$ U_y=\\hl{t^2\\cos y+3y^2} $$\nHold t fixed and differentiate the y terms.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$U_t=2t\\sin y$; $U_y=t^2\\cos y+3y^2$.",
+   "citations": [],
+   "id": "7560b04c-e672-59d9-b9b9-2798cde1d26c"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Implicit differentiation",
+   "citations": [],
+   "id": "d4f3931a-fb98-5a6c-a6f0-acf87c50dcac"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Implicit differentiation** is different: now $y=y(t)$ changes along a curve. When differentiating $y^2$ with respect to $t$, the chain rule gives $2yy^{\\prime}$.",
+   "citations": [],
+   "id": "36020590-b5d4-582e-beee-46134110e1e6"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 7 · Implicit derivative of a circle",
+   "prompt": "Find $y^{\\prime}$ from $t^2+y^2=5$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ t^2+y^2=5 $$\nThe equation describes a curve; y depends on t along it.\n$$ 2t+\\hl{2yy^{\\prime}}=0 $$\nDifferentiate in t; y² needs the chain rule.\n$$ y^{\\prime}=\\hl{-\\dfrac ty} $$\nSolve for the derivative where y is nonzero.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y^{\\prime}=-\\dfrac ty$ where $y\\ne0$. In contrast, $\\partial(y^2)/\\partial t=0$ when y is held fixed.",
+   "citations": [],
+   "id": "bb17f6d7-edc7-52ab-8b6e-b6d78fd23da4"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Integrals",
+   "citations": [],
+   "id": "99c0a49d-1fb6-5d0f-9e39-5da320bea057"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Indefinite integrals",
+   "citations": [],
+   "id": "75d5e351-0172-5de9-a282-3e5810f49a79"
+  },
+  {
+   "type": "paragraph",
+   "text": "An **antiderivative** of $f(t)$ is a function whose derivative is $f(t)$. An **indefinite integral** asks for all of those functions, so include an arbitrary constant $K$.",
+   "citations": [],
+   "id": "6f92d674-9237-557e-8763-f07df69d874f"
+  },
+  {
+   "type": "equation",
+   "latex": "\\int f(t)\\,dt=F(t)+K\\quad\\text{if }F^{\\prime}(t)=f(t)",
+   "display": true,
+   "citations": [],
+   "id": "8b58d764-d14a-5c4f-b25b-1f1ebf706451"
+  },
+  {
+   "type": "paragraph",
+   "text": "The $dt$ tells you the integration variable. The constant is necessary because $F$, $F+3$ and $F-8$ all have the same derivative.",
+   "citations": [],
+   "id": "c69ab220-9537-5640-9878-1180a1d45878"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Integrand",
+    "Indefinite integral"
+   ],
+   "rows": [
+    [
+     "$t^n$, $n\\ne-1$",
+     "$\\dfrac{t^{n+1}}{n+1}+K$"
+    ],
+    [
+     "$\\dfrac1t$, $t\\ne0$",
+     "$\\ln|t|+K$"
+    ],
+    [
+     "$e^{at}$, constant $a\\ne0$",
+     "$\\dfrac1a e^{at}+K$"
+    ],
+    [
+     "$\\sin(\\omega t)$, $\\omega\\ne0$",
+     "$-\\dfrac1\\omega\\cos(\\omega t)+K$"
+    ],
+    [
+     "$\\cos(\\omega t)$, $\\omega\\ne0$",
+     "$\\dfrac1\\omega\\sin(\\omega t)+K$"
+    ]
+   ],
+   "citations": [],
+   "id": "bc10878b-d398-5b53-bc3b-e7e22efae58a"
+  },
+  {
+   "type": "paragraph",
+   "text": "Integrate sums term by term and keep constant multipliers. For example, $\\int(6t-2)\\,dt=3t^2-2t+K$; check it by differentiating.",
+   "citations": [],
+   "id": "cb98d7da-5aa9-5ec9-add4-4aa108aa79b6"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 8 · Undo an exponential derivative",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Find $\\int e^{-3t}\\,dt$, then differentiate your answer to check it.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ \\int e^{-3t}\\,dt=\\hl{-\\dfrac13e^{-3t}+K} $$\nDivide by the exponent coefficient −3.\n$$ \\dfrac{d}{dt}\\left(-\\dfrac13e^{-3t}+K\\right)=\\hl{e^{-3t}} $$\nThe chain-rule factor −3 cancels −1/3.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$-\\dfrac13e^{-3t}+K$.",
+   "citations": [],
+   "id": "59e7a9b7-b316-5ffb-a1b5-5c900410b084"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Definite integrals",
+   "citations": [],
+   "id": "0e620cc3-d493-526b-a65a-292480040097"
+  },
+  {
+   "type": "paragraph",
+   "text": "A **definite integral** has a start and an end. It gives net accumulation (signed area), rather than a family of functions.",
+   "citations": [],
+   "id": "c5d4f8fe-c2d6-5a16-bcdc-19ca8fbc2f1d"
+  },
+  {
+   "type": "equation",
+   "latex": "\\int_a^b f(t)\\,dt=F(b)-F(a)",
+   "display": true,
+   "citations": [],
+   "id": "5b2a5b7e-16e5-5ecd-85ee-c9624cda42d9"
+  },
+  {
+   "type": "paragraph",
+   "text": "$a$ and $b$ are the integration limits. For example, $\\int_0^2 6t\\,dt=[3t^2]_0^2=12$; the notation $[F]_a^b$ means $F(b)-F(a)$, and the constant cancels.",
+   "citations": [],
+   "id": "3ab3bcba-dc11-55ab-847d-868976dac49b"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Integration and initial conditions",
+   "citations": [],
+   "id": "18263eaf-21c4-568c-851f-e11944fea5f2"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 8 · Recover a voltage from its rate",
+   "prompt": "A voltage changes at $\\dfrac{dv}{dt}=2+2t$ V/s and starts at $v(0)=1\\,\\mathrm V$. Find $v(t)$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ v(t)=\\hl{\\int(2+2t)\\,dt} $$\nUndo the derivative by integrating.\n$$ v(t)=\\hl{2t+t^2+K} $$\nUse the power rule; keep the constant.\n$$ v(0)=0+0+K=1\\ \\Rightarrow\\ \\hl{K=1} $$\nUse the starting value to determine the constant.\n$$ v(t)=\\hl{1+2t+t^2} $$\nPut the constant back into the function.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$v(t)=1+2t+t^2\\,\\mathrm V$. Equivalently, $v(t)-v(0)=\\int_0^t(2+2s)\\,ds$; $s$ is just a placeholder variable.",
+   "citations": [],
+   "id": "149d7dbd-6b98-5b09-9904-98f4718e6072"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Substitution",
+   "citations": [],
+   "id": "5befddfe-741a-5d0f-b238-c76c5462a4a5"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Substitution** reverses the chain rule. Replace a complicated inside expression by $u$, and replace its derivative times $dt$ by $du$.",
+   "citations": [],
+   "id": "be926d74-6a8f-514a-8ff0-9cf0a080f6ca"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 9 · A fraction that becomes a logarithm",
+   "prompt": "Find $\\int\\dfrac{2t}{1+t^2}\\,dt$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ \\int\\dfrac{2t}{1+t^2}\\,dt $$\nThe numerator is the derivative of the denominator.\n$$ u=\\hl{1+t^2},\\qquad du=\\hl{2t\\,dt} $$\nChoose the denominator as the new variable.\n$$ \\int\\dfrac{\\hl{du}}{\\hl{u}}=\\ln|u|+K $$\nReplace both the denominator and the differential.\n$$ \\hl{\\ln(1+t^2)+K} $$\nSubstitute back; 1 + t² is positive, so absolute-value bars are unnecessary.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$\\ln(1+t^2)+K$.",
+   "citations": [],
+   "id": "be0017bd-4212-5d64-aa06-69e78faaa02d"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 9 · The numerator is almost the derivative",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Find $\\int\\dfrac{t}{t^2+4}\\,dt$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ u=t^2+4,\\qquad du=2t\\,dt $$\nChoose the denominator as u.\n$$ \\int\\dfrac{t}{t^2+4}\\,dt=\\hl{\\dfrac12}\\int\\dfrac{du}{u} $$\nOnly t dt is present, so use du/2.\n$$ \\hl{\\dfrac12\\ln(t^2+4)+K} $$\nIntegrate and substitute back.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$\\dfrac12\\ln(t^2+4)+K$.",
+   "citations": [],
+   "id": "d7550a74-a8e4-5767-a012-da3e9551d0b9"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Integration by parts",
+   "citations": [],
+   "id": "b5997899-a075-5907-8cfc-9232d5bf886c"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Integration by parts** reverses the product rule. Use it for products such as $te^{2t}$, where differentiating the polynomial makes the remaining integral easier.",
+   "citations": [],
+   "id": "a2330df3-50db-50ba-8fe4-d858ebcb2123"
+  },
+  {
+   "type": "equation",
+   "latex": "\\int u\\,dv=uv-\\int v\\,du",
+   "display": true,
+   "citations": [],
+   "id": "3fab9a44-d0d0-569c-80e9-38ba06268cdc"
+  },
+  {
+   "type": "paragraph",
+   "text": "Choose $u$ to differentiate and $dv$ to integrate. Here $u$ and $v$ are temporary names, unrelated to a circuit voltage.",
+   "citations": [],
+   "id": "3c9a5510-da99-5aef-bdd2-4c4ecdfa1632"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 10 · A polynomial times an exponential",
+   "prompt": "Find $\\int te^{2t}\\,dt$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ u=t,\\quad du=dt $$\nDifferentiate the polynomial.\n$$ dv=e^{2t}dt,\\quad v=\\hl{\\dfrac12e^{2t}} $$\nIntegrate the exponential.\n$$ \\int te^{2t}dt=\\hl{\\dfrac t2e^{2t}-\\dfrac12\\int e^{2t}dt} $$\nPut the choices into the integration-by-parts formula.\n$$ \\hl{\\dfrac t2e^{2t}-\\dfrac14e^{2t}+K} $$\nIntegrate the remaining exponential.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$\\dfrac t2e^{2t}-\\dfrac14e^{2t}+K$.",
+   "citations": [],
+   "id": "6eec5761-9229-50ed-b109-b7a48d8509cb"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 10 · By parts with a negative exponent",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Find $\\int te^{-t}\\,dt$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ u=t,\\quad dv=e^{-t}dt,\\quad v=\\hl{-e^{-t}} $$\nChoose the polynomial to differentiate.\n$$ \\int te^{-t}dt=\\hl{-te^{-t}+\\int e^{-t}dt} $$\nThe minus in the formula cancels the minus in v.\n$$ \\hl{-(t+1)e^{-t}+K} $$\nIntegrate once more and factor.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$-(t+1)e^{-t}+K$.",
+   "citations": [],
+   "id": "f3d171b1-823c-5ca7-928e-a48cefe6a7ad"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "First-order differential equations",
+   "citations": [],
+   "id": "fa686545-2f67-5918-b41c-73432abf8c0b"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Classification and initial conditions",
+   "citations": [],
+   "id": "2b2484d0-cd46-581a-a3cc-aa8b5e966ff1"
+  },
+  {
+   "type": "paragraph",
+   "text": "A **differential equation** gives a relationship between a function and its derivatives. Solving it means finding the function, such as $i(t)$, rather than finding one number.",
+   "citations": [],
+   "id": "d977f2c0-7b38-5a04-a5ee-9324cf4bea7d"
+  },
+  {
+   "type": "paragraph",
+   "text": "For an inductor, $v_L=L\\dfrac{di}{dt}$: its voltage is proportional to how fast its current changes. A resistor has $v_R=Ri$; when their voltages add to zero, $L\\dfrac{di}{dt}+Ri=0$.",
+   "citations": [],
+   "id": "3177e770-56d1-5b58-bfa9-68cbe59451be"
+  },
+  {
+   "type": "paragraph",
+   "text": "Dividing by $L$ gives $\\dfrac{di}{dt}=-\\dfrac RL i$. With $R,L>0$, positive current has a negative slope: it decays, and the slope becomes gentler as the current falls.",
+   "citations": [],
+   "id": "51460bc5-8b85-5e6c-890e-fc5cd8409e3b"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Label",
+    "How to recognize it"
+   ],
+   "rows": [
+    [
+     "Ordinary (ODE)",
+     "Derivatives with respect to one independent variable, here t."
+    ],
+    [
+     "First / second order",
+     "Highest derivative is $y^{\\prime}$ / $y^{\\prime\\prime}$; powers do not set the order."
+    ],
+    [
+     "Linear",
+     "$y$, $y^{\\prime}$, etc. appear to the first power, not multiplied together; coefficients may depend on $t$."
+    ],
+    [
+     "Homogeneous (linear ODE)",
+     "After moving all y terms left, the right side is zero."
+    ],
+    [
+     "Constant coefficients",
+     "The coefficients multiplying y and its derivatives are constants."
+    ],
+    [
+     "Autonomous",
+     "The equation has no explicit t outside the unknown function and its derivatives."
+    ]
+   ],
+   "citations": [],
+   "id": "103b92f4-3d67-55fc-bbcf-28201fd7581e"
+  },
+  {
+   "type": "paragraph",
+   "text": "A **general solution** contains free constants. An **initial value problem** (IVP) adds a starting value, such as $i(0)=4$, to select a particular solution.",
+   "citations": [],
+   "id": "c7ccc680-7fa0-5efa-a2de-b2e0a19ff670"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 11 · Check a proposed solution",
+   "prompt": "Does $i(t)=4e^{-2t}$ satisfy $i^{\\prime}+2i=0$ and $i(0)=4$?",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ i^{\\prime}=\\hl{-8e^{-2t}} $$\nDifferentiate the proposed current.\n$$ i^{\\prime}+2i=-8e^{-2t}+8e^{-2t}=\\hl{0} $$\nSubstitute; it must work for every t, not just t = 0.\n$$ i(0)=4e^0=\\hl{4} $$\nCheck the initial condition separately.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "Yes. The ODE is first-order, linear, homogeneous, constant-coefficient and autonomous.",
+   "citations": [],
+   "id": "2ba51c9b-8537-5475-9278-28823d412937"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Separation of variables",
+   "citations": [],
+   "id": "ca4f4383-b89a-52db-8e1e-fb98d0f5675e"
+  },
+  {
+   "type": "paragraph",
+   "text": "To **solve** a separable equation, gather the $y$ terms with $dy$ and the $t$ terms with $dt$, then integrate each side. This is the separation-of-variables rule; use one integration constant after combining the two sides.",
+   "citations": [],
+   "id": "5cbc90d7-4dc0-5cd8-b661-64f9eaa304b9"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 12 · Derive the Week 1 decay",
+   "prompt": "Solve $\\dfrac{di}{dt}=-2i$ with $i(0)=4$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ \\dfrac{di}{dt}=-2i $$\nStart with the rate equation.\n$$ \\hl{\\dfrac1i\\,di}=\\hl{-2\\,dt} $$\nSeparate on an interval where i is nonzero.\n$$ \\hl{\\int\\dfrac1i\\,di}=\\hl{\\int-2\\,dt} $$\nIntegrate both sides.\n$$ \\hl{\\ln|i|=-2t+K} $$\nUse the logarithm integral.\n$$ i=\\hl{Ae^{-2t}} $$\nExponentiate; A absorbs e to the constant and the sign.\n$$ i(0)=A=4\\ \\Rightarrow\\ i=\\hl{4e^{-2t}} $$\nUse the initial condition.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$i(t)=4e^{-2t}$. The general family $Ae^{-2t}$ also includes $i=0$ by allowing $A=0$; division by $i$ temporarily excluded it.",
+   "citations": [],
+   "id": "bcdcd5f7-3767-5289-8017-a4e5610ce5ea"
+  },
+  {
+   "type": "paragraph",
+   "text": "In the RL model, $2$ is replaced by $R/L=1/\\tau$. Thus $i(t)=I_0e^{-t/\\tau}$ with $\\tau=L/R$; $I_0=i(0)$ and $\\tau$ (tau) is the time constant.",
+   "citations": [],
+   "id": "e80d77f0-aa28-5bbc-97a8-a48f33ec4d07"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 11 · Solve a decay and keep every solution",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime}=-3y$ with $y(0)=6$. Also state the general solution and identify the solution excluded when dividing by $y$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ \\dfrac{dy}{y}=-3\\,dt $$\nSeparate for y nonzero.\n$$ \\ln|y|=\\hl{-3t+K} $$\nIntegrate both sides.\n$$ y=\\hl{Ae^{-3t}} $$\nAbsorb the sign and exponential constant into A.\n$$ y(0)=A=6\\ \\Rightarrow\\ y=\\hl{6e^{-3t}} $$\nUse the initial condition.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "IVP: $y=6e^{-3t}$. General solution: $y=Ae^{-3t}$, including the temporarily excluded solution $y=0$ when $A=0$.",
+   "citations": [],
+   "id": "c996c6bb-62b9-557d-a126-6a11a160b75b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 12 · Separate when the final value is nonzero",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime}=6-2y$ with $y(0)=1$. Hint: $6-2y=-2(y-3)$, and $y=3$ is a constant solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ \\dfrac{dy}{y-3}=\\hl{-2\\,dt} $$\nSeparate for y different from 3.\n$$ \\ln|y-3|=\\hl{-2t+K} $$\nIntegrate using the logarithm rule.\n$$ y-3=\\hl{Ae^{-2t}} $$\nExponentiate and absorb the sign into A.\n$$ 1-3=A\\ \\Rightarrow\\ y=\\hl{3-2e^{-2t}} $$\nThe initial condition gives A = −2.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=3-2e^{-2t}$. It starts at 1 and approaches 3; the general family also includes $y=3$ when $A=0$.",
+   "citations": [],
+   "id": "601471e7-f758-5cd5-b43e-fc7ca2a0e4c4"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "RC and RL responses",
+   "citations": [],
+   "id": "7ff76eca-523b-5f79-a80c-4b9461d7819c"
+  },
+  {
+   "type": "paragraph",
+   "text": "This is the Week 2 pattern: $x(t)=x_f+(x_0-x_f)e^{-t/\\tau}$ for a stable first-order circuit with a constant source. The gap from the final value shrinks exponentially.",
+   "citations": [],
+   "id": "0f7e344b-43a5-5ae4-b164-bae249fea39f"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Quantity x",
+    "Starts continuously at the switch",
+    "Time constant"
+   ],
+   "rows": [
+    [
+     "Inductor current",
+     "$i_L(0^+)=i_L(0^-)$",
+     "$\\tau=L/R$"
+    ],
+    [
+     "Capacitor voltage",
+     "$v_C(0^+)=v_C(0^-)$",
+     "$\\tau=RC$"
+    ]
+   ],
+   "citations": [],
+   "id": "46f8370e-6b6a-56c8-8498-8714ab17cc8e"
+  },
+  {
+   "type": "paragraph",
+   "text": "$0^-$ and $0^+$ mean just before and just after switching; these continuity rules assume ordinary switching without impulses. Use the resistance seen by the component after switching; at DC steady state a capacitor acts open and an inductor acts like a wire.",
+   "citations": [],
+   "id": "416f2827-bf3c-54a8-b47d-0570bcf89b44"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Linear ODEs and integrating factors",
+   "citations": [],
+   "id": "b6066c22-e30b-5222-b0e3-6ac73f896e1f"
+  },
+  {
+   "type": "paragraph",
+   "text": "Separation does not always work. A first-order **linear** equation has the form below, with $a(t)$ and $f(t)$ known functions.",
+   "citations": [],
+   "id": "e018ed85-06e3-5f43-9ae5-03380e12784c"
+  },
+  {
+   "type": "equation",
+   "latex": "y^{\\prime}+a(t)y=f(t)",
+   "display": true,
+   "citations": [],
+   "id": "effd5126-d615-5382-b627-605df4f68ec8"
+  },
+  {
+   "type": "paragraph",
+   "text": "The **integrating factor** $\\mu(t)$ (mu) is chosen so multiplying the equation makes the left side one product derivative. This uses the product rule you already know.",
+   "citations": [],
+   "id": "919cb7b0-023b-56ef-9a16-319b50edf732"
+  },
+  {
+   "type": "equation",
+   "latex": "\\mu(t)=e^{\\int a(t)\\,dt}",
+   "display": true,
+   "citations": [],
+   "id": "4f7cbe7f-eda5-5457-b49d-233102c9db38"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{d}{dt}[\\mu(t)y(t)]=\\mu(t)f(t)",
+   "display": true,
+   "citations": [],
+   "id": "c3034974-0ba0-5ec9-a27f-5977781ff748"
+  },
+  {
+   "type": "paragraph",
+   "text": "Then integrate both sides, divide by $\\mu$, and use the initial condition. Choose any convenient antiderivative in $\\mu$; its extra constant multiplier is unnecessary.",
+   "citations": [],
+   "id": "c887410f-3cd7-5977-83a0-3facc0ea93d8"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 13 · A changing input: combine the earlier rules",
+   "prompt": "Solve $y^{\\prime}+2y=4t$, $y(0)=1$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ \\mu=e^{\\int2\\,dt}=\\hl{e^{2t}} $$\nThe coefficient of y is 2.\n$$ e^{2t}y^{\\prime}+2e^{2t}y=4te^{2t} $$\nMultiply the entire equation by the integrating factor.\n$$ \\hl{\\dfrac{d}{dt}(e^{2t}y)}=4te^{2t} $$\nThe left side is the product rule in reverse.\n$$ e^{2t}y=\\hl{2te^{2t}-e^{2t}+K} $$\nIntegrate; the right side uses the by-parts example multiplied by 4.\n$$ y=\\hl{2t-1+Ke^{-2t}} $$\nDivide every term by e to the 2t.\n$$ 1=-1+K\\ \\Rightarrow\\ \\hl{K=2} $$\nUse y(0) = 1.\n$$ y=\\hl{2t-1+2e^{-2t}} $$\nSubstitute the constant.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=2t-1+2e^{-2t}$.",
+   "citations": [],
+   "id": "49be053c-ac0f-5834-8e93-3ff78e0b36f3"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 13 · A constant input builds up",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime}+2y=8$, $y(0)=0$, using an integrating factor.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ \\mu=e^{2t} $$\nIntegrate the coefficient of y, then exponentiate.\n$$ \\dfrac{d}{dt}(e^{2t}y)=\\hl{8e^{2t}} $$\nMultiply and recognize the product derivative.\n$$ e^{2t}y=\\hl{4e^{2t}+K} $$\nIntegrate both sides.\n$$ y=4+Ke^{-2t},\\quad 0=4+K $$\nDivide, then apply the starting value.\n$$ y=\\hl{4(1-e^{-2t})} $$\nK = −4; the response approaches 4.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=4(1-e^{-2t})$.",
+   "citations": [],
+   "id": "b3af152f-749f-5a6d-b5cd-8c686f3d7697"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 14 · A coefficient that depends on time",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "For $t>0$, solve $ty^{\\prime}+2y=4t^2$, $y(1)=2$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ y^{\\prime}+\\hl{\\dfrac2t}y=4t $$\nDivide by t so the coefficient of the derivative is 1.\n$$ \\mu=e^{\\int(2/t)dt}=e^{2\\ln t}=\\hl{t^2} $$\nOn t > 0, ln t is defined and exponentiation simplifies.\n$$ \\dfrac{d}{dt}(t^2y)=\\hl{4t^3} $$\nMultiply through and use the product rule in reverse.\n$$ t^2y=\\hl{t^4+K} $$\nIntegrate.\n$$ y=t^2+\\dfrac K{t^2},\\quad 2=1+K $$\nDivide by t² and apply the condition at t = 1.\n$$ y=\\hl{t^2+\\dfrac1{t^2}} $$\nThe initial condition gives K = 1.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=t^2+t^{-2}$ for $t>0$.",
+   "citations": [],
+   "id": "93450905-0596-570f-8b17-22d40d856bc7"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Existence and uniqueness",
+   "citations": [],
+   "id": "90f4ade5-8de1-543d-9cf3-d915abc046f9"
+  },
+  {
+   "type": "paragraph",
+   "text": "For existence and uniqueness, **continuous** means the function has no break at the point in question. Start with domain checks: denominators cannot be zero, and real logarithms need positive arguments.",
+   "citations": [],
+   "id": "c3024cca-d68d-5623-9fa1-942ebbaaa287"
+  },
+  {
+   "type": "paragraph",
+   "text": "For $y^{\\prime}=F(t,y)$, if $F$ and $\\partial F/\\partial y$ are continuous in a region around the starting point, there is exactly one solution locally. If this test fails, it makes no promise; failure does not itself prove there are several solutions.",
+   "citations": [],
+   "id": "62f3b752-b326-5617-8787-d20445837c43"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 15 · Where is the uniqueness test safe?",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $y^{\\prime}=\\dfrac{y}{t-2}$, find $\\partial F/\\partial y$. Does the test apply at $(t,y)=(0,1)$? At $(2,1)$?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ F(t,y)=\\dfrac{y}{t-2} $$\nTreat t as fixed when taking the y partial derivative.\n$$ \\dfrac{\\partial F}{\\partial y}=\\hl{\\dfrac1{t-2}} $$\nThe derivative of y is 1.\n$$ \\hl{t\\ne2} $$\nBoth functions are continuous away from t = 2.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "At $(0,1)$: yes, a unique local solution is guaranteed. At $(2,1)$: the ODE itself is undefined, so this is not a valid starting point.",
+   "citations": [],
+   "id": "153bed8f-4347-55f9-8766-6ce338f6d207"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Exact differential equations",
+   "citations": [],
+   "id": "e4ba8286-25c8-59bf-b32f-f54fb763eb76"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Exactness test and solutions",
+   "citations": [],
+   "id": "7e92f7d4-bec8-5600-a576-f6ba4bdfd6ee"
+  },
+  {
+   "type": "paragraph",
+   "text": "Week 4 writes some equations as $M(t,y)\\,dt+N(t,y)\\,dy=0$. The goal is to find a function $U$ with $U_t=M$ and $U_y=N$.",
+   "citations": [],
+   "id": "78087b15-faf3-54f5-979b-7008d891f209"
+  },
+  {
+   "type": "paragraph",
+   "text": "Along a solution curve, the chain rule says $\\dfrac{dU}{dt}=U_t+U_y y^{\\prime}=0$, so $U$ stays constant. That gives the implicit answer $U(t,y)=K$.",
+   "citations": [],
+   "id": "029ff4ee-8da8-5a50-9f43-c70362b335a6"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{\\partial M}{\\partial y}=\\dfrac{\\partial N}{\\partial t}",
+   "display": true,
+   "citations": [],
+   "id": "fbc0459c-0c6b-52a4-81ac-b7509056f34c"
+  },
+  {
+   "type": "paragraph",
+   "text": "This is the **exactness test**: on a small region where the first partial derivatives are continuous, matching these mixed slopes lets us rebuild $U$. The examples here use such regions.",
+   "citations": [],
+   "id": "ffcbf1cc-7fdf-5dd8-afc4-742b4be3d169"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 14 · The integration constant becomes a function",
+   "prompt": "Solve $2ty\\,dt+(t^2+6y)\\,dy=0$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ M=2ty,\\quad N=t^2+6y $$\nRead off the coefficients of dt and dy.\n$$ M_y=\\hl{2t}=N_t $$\nThe exactness test passes.\n$$ U=\\int2ty\\,dt=\\hl{t^2y+g(y)} $$\nIntegrate in t, holding y fixed; any function of y vanishes under a t partial derivative.\n$$ U_y=t^2+g^{\\prime}(y)=\\hl{t^2+6y} $$\nDifferentiate in y and match the given N.\n$$ g^{\\prime}(y)=6y\\ \\Rightarrow\\ g(y)=\\hl{3y^2} $$\nIntegrate the missing y part; its constant is absorbed into K.\n$$ \\hl{t^2y+3y^2=K} $$\nThe reconstructed function stays constant along solutions.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$t^2y+3y^2=K$.",
+   "citations": [],
+   "id": "0706e9fe-9641-5b49-be62-051a55d537e9"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 16 · Rebuild U, then use a starting point",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $(ty^2+3t^2)\\,dt+t^2y\\,dy=0$ with $y(1)=2$. You may leave the answer implicit.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ M_y=\\hl{2ty}=N_t $$\nCheck exactness first.\n$$ U=\\hl{\\dfrac12t^2y^2+t^3+g(y)} $$\nIntegrate M with respect to t, holding y fixed.\n$$ U_y=t^2y+g^{\\prime}(y)=t^2y $$\nMatch the result to N.\n$$ g^{\\prime}(y)=\\hl{0} $$\nThe missing function is constant, absorbed into K.\n$$ K=\\dfrac12(1)^2(2)^2+1^3=\\hl{3} $$\nUse the initial point.\n$$ \\hl{\\dfrac12t^2y^2+t^3=3} $$\nLeave the answer as a relation between t and y.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$\\dfrac12t^2y^2+t^3=3$.",
+   "citations": [],
+   "id": "feaa095c-b40d-5bfa-bc40-e725602e3fdd"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Integrating factors",
+   "citations": [],
+   "id": "d78ad51b-3ac3-5c61-b436-3ea6619fb192"
+  },
+  {
+   "type": "paragraph",
+   "text": "If the test fails, an integrating factor sometimes repairs it. For an equation in differential form, these are two useful tests; each must reduce to a function of only the indicated variable.",
+   "citations": [],
+   "id": "7bcfa6b8-7fe3-5dde-8fcc-bbe4ba3a934f"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "If the ratio depends only on…",
+    "Use this integrating factor"
+   ],
+   "rows": [
+    [
+     "$t$: $\\dfrac{M_y-N_t}{N}=h(t)$",
+     "$\\mu(t)=e^{\\int h(t)\\,dt}$"
+    ],
+    [
+     "$y$: $\\dfrac{N_t-M_y}{M}=h(y)$",
+     "$\\mu(y)=e^{\\int h(y)\\,dy}$"
+    ]
+   ],
+   "citations": [],
+   "id": "7afcd216-fa57-521e-af46-06d32829b4ea"
+  },
+  {
+   "type": "paragraph",
+   "text": "These ratios require their denominators to be nonzero on the region used. Multiply **both** $M$ and $N$ by $\\mu$, then repeat the exact-equation method.",
+   "citations": [],
+   "id": "8ba8a188-f118-5a7d-ada3-dac782afec50"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 15 · Repair an equation using a t factor",
+   "prompt": "For $t>0$, solve $y\\,dt+3t\\,dy=0$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ M_y=1,\\quad N_t=3 $$\nThe equation is not exact yet.\n$$ \\dfrac{M_y-N_t}{N}=\\hl{-\\dfrac2{3t}} $$\nThe ratio depends only on t.\n$$ \\mu=e^{\\int-2/(3t)\\,dt}=\\hl{t^{-2/3}} $$\nUse the logarithm integral; t is positive.\n$$ t^{-2/3}y\\,dt+3t^{1/3}\\,dy=0 $$\nMultiply the entire equation by mu.\n$$ U=\\hl{3t^{1/3}y+g(y)} $$\nIntegrate the new M in t using the power rule.\n$$ U_y=3t^{1/3}+g^{\\prime}(y)=3t^{1/3} $$\nMatch the new N; g is constant.\n$$ \\hl{t^{1/3}y=K} $$\nSet U constant and absorb the factor of 3 into K.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$t^{1/3}y=K$, or $y=Kt^{-1/3}$, for $t>0$.",
+   "citations": [],
+   "id": "af8846f2-d3ff-5ccd-85f1-a7c11384fef1"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 17 · Repair with a y factor",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "On a region where $y>0$, solve $y\\,dt-t\\,dy=0$ using the y-only test above.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ M=y,\\quad N=-t,\\quad M_y=1,\\quad N_t=-1 $$\nRead the coefficients and differentiate.\n$$ \\dfrac{N_t-M_y}{M}=\\hl{-\\dfrac2y} $$\nThe ratio depends only on y.\n$$ \\mu=e^{\\int-2/y\\,dy}=\\hl{y^{-2}} $$\nIntegrate and exponentiate on y > 0.\n$$ \\dfrac1y\\,dt-\\dfrac t{y^2}\\,dy=0 $$\nMultiply the original equation by mu.\n$$ U=\\hl{\\dfrac ty}+g(y) $$\nIntegrate the new M in t.\n$$ U_y=-\\dfrac t{y^2}+g^{\\prime}(y)=-\\dfrac t{y^2} $$\nMatch N, so g is constant.\n$$ \\hl{\\dfrac ty=K} $$\nSet the reconstructed function constant.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$t/y=K$ on the chosen region; a graph $y(t)$ there must have $K\\ne0$.",
+   "citations": [],
+   "id": "50efd8d6-a9e0-5817-8497-9f92434b9c79"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Second-order differential equations",
+   "citations": [],
+   "id": "162a69a7-d5f6-5011-831b-00faa4fab74a"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Characteristic equation",
+   "citations": [],
+   "id": "f0f1c2fd-90ef-5724-8c78-1a1b72a34d17"
+  },
+  {
+   "type": "paragraph",
+   "text": "For $ay^{\\prime\\prime}+by^{\\prime}+cy=0$, $a,b,c$ are constants and $a\\ne0$. Trying $y=e^{st}$ works because differentiating just multiplies by $s$.",
+   "citations": [],
+   "id": "9d7db4c1-ce2b-5191-aaec-ce18155e5b95"
+  },
+  {
+   "type": "paragraph",
+   "text": "```steps\ntitle \"Replace the derivatives by a quadratic\"\n$$ y=e^{st} $$\nTry an exponential with an unknown constant s.\n$$ y^{\\prime}=\\hl{se^{st}},\\quad y^{\\prime\\prime}=\\hl{s^2e^{st}} $$\nDifferentiate once and twice using the chain rule.\n$$ \\hl{(as^2+bs+c)}e^{st}=0 $$\nSubstitute into the differential equation.\n$$ \\hl{as^2+bs+c=0} $$\nThe exponential is never zero, so its multiplier must be zero.\n```",
+   "citations": [],
+   "id": "94960eff-0ee3-53c3-8267-3b5975a5c9fb"
+  },
+  {
+   "type": "paragraph",
+   "text": "This is the **characteristic equation**. Find its roots by factoring or using $s=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}$.",
+   "citations": [],
+   "id": "87f22498-3a14-57fd-adc8-ed62596b75e7"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Real roots",
+   "citations": [],
+   "id": "ff8b5396-d82c-5724-91cb-16e5b7426cd3"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Roots",
+    "General solution"
+   ],
+   "rows": [
+    [
+     "Two different real roots $s_1,s_2$",
+     "$y=K_1e^{s_1t}+K_2e^{s_2t}$"
+    ],
+    [
+     "One repeated real root $s$",
+     "$y=(K_1+K_2t)e^{st}$"
+    ]
+   ],
+   "citations": [],
+   "id": "1dc60870-d0d2-539c-96c0-4bd76c1b83bd"
+  },
+  {
+   "type": "paragraph",
+   "text": "A second-order IVP gives both $y(0)$ and $y^{\\prime}(0)$. Put them into the solution and its derivative to find the two constants.",
+   "citations": [],
+   "id": "5c8d8f7f-5601-5f4f-92a4-93b7ab486fa7"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 16 · Two different real roots",
+   "prompt": "Solve $y^{\\prime\\prime}+3y^{\\prime}+2y=0$, $y(0)=1$, $y^{\\prime}(0)=0$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ s^2+3s+2=(s+1)(s+2)=0 $$\nFactor the characteristic equation.\n$$ s=\\hl{-1,-2} $$\nEach factor gives one root.\n$$ y=\\hl{K_1e^{-t}+K_2e^{-2t}} $$\nUse one exponential for each distinct root.\n$$ y(0)=\\hl{K_1+K_2=1} $$\nAt zero both exponentials equal 1.\n$$ y^{\\prime}(0)=\\hl{-K_1-2K_2=0} $$\nDifferentiate, then apply the starting slope.\n$$ K_2=\\hl{-1},\\quad K_1=\\hl{2} $$\nSolve the two simultaneous equations.\n$$ y=\\hl{2e^{-t}-e^{-2t}} $$\nSubstitute the constants.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=2e^{-t}-e^{-2t}$.",
+   "citations": [],
+   "id": "88309552-ff82-5318-b384-2039d58d72e7"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 17 · A repeated root needs the extra t",
+   "prompt": "Solve $y^{\\prime\\prime}+4y^{\\prime}+4y=0$, $y(0)=1$, $y^{\\prime}(0)=0$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ s^2+4s+4=\\hl{(s+2)^2}=0 $$\nThere is one root −2, repeated twice.\n$$ y=\\hl{(K_1+K_2t)e^{-2t}} $$\nTwo copies of the same exponential would combine into only one constant.\n$$ y(0)=K_1=\\hl{1} $$\nUse the starting value.\n$$ y^{\\prime}=\\hl{[K_2-2(K_1+K_2t)]e^{-2t}} $$\nUse the product rule.\n$$ y^{\\prime}(0)=K_2-2K_1=0\\ \\Rightarrow\\ \\hl{K_2=2} $$\nUse the starting slope.\n$$ y=\\hl{(1+2t)e^{-2t}} $$\nSubstitute the constants.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=(1+2t)e^{-2t}$.",
+   "citations": [],
+   "id": "2d6bb6fa-2aa1-5840-b36b-ce02e209d7a5"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 18 · Fit the two constants",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime\\prime}+4y^{\\prime}+3y=0$, $y(0)=0$, $y^{\\prime}(0)=2$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ s^2+4s+3=\\hl{(s+1)(s+3)}=0 $$\nThe roots are −1 and −3.\n$$ y=K_1e^{-t}+K_2e^{-3t} $$\nWrite the two-exponential solution.\n$$ K_1+K_2=0,\\quad -K_1-3K_2=2 $$\nUse the starting value and derivative.\n$$ K_1=\\hl{1},\\quad K_2=\\hl{-1} $$\nSolve the two equations.\n$$ y=\\hl{e^{-t}-e^{-3t}} $$\nSubstitute the constants.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=e^{-t}-e^{-3t}$.",
+   "citations": [],
+   "id": "ed4b9d6a-3582-521f-95d0-d5bc30895ce5"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 19 · A repeated root with a starting slope",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime\\prime}+2y^{\\prime}+y=0$, $y(0)=0$, $y^{\\prime}(0)=3$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ (s+1)^2=0\\ \\Rightarrow\\ y=(K_1+K_2t)e^{-t} $$\nThe root −1 is repeated.\n$$ y(0)=K_1=\\hl{0} $$\nThe initial value removes the constant term in the bracket.\n$$ y^{\\prime}(0)=K_2-K_1=3\\ \\Rightarrow\\ \\hl{K_2=3} $$\nDifferentiate by the product rule and set t = 0.\n$$ y=\\hl{3te^{-t}} $$\nSubstitute both constants.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=3te^{-t}$.",
+   "citations": [],
+   "id": "fa3a6761-67c6-5677-b133-afca08279830"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Wronskian",
+   "citations": [],
+   "id": "e80bb2df-e650-5194-a081-c9cefd2009cf"
+  },
+  {
+   "type": "paragraph",
+   "text": "The **Wronskian** checks whether two proposed solutions provide independent choices. For $y_1,y_2$, compute $W=y_1y_2^{\\prime}-y_1^{\\prime}y_2$; a nonzero value at the initial time lets you fit any starting value and slope.",
+   "citations": [],
+   "id": "500ff08f-927e-5f52-883d-dd96196b2fcb"
+  },
+  {
+   "type": "paragraph",
+   "text": "For $e^{-2t}$ and $te^{-2t}$, $W=e^{-4t}\\ne0$. Two multiples such as $e^{-2t}$ and $3e^{-2t}$ give $W=0$: they provide the same shape.",
+   "citations": [],
+   "id": "316bdf9f-7c7f-5f6c-ae57-744d5e84ea84"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Existence and uniqueness",
+   "citations": [],
+   "id": "c1b54a84-16ae-5b0e-89ec-ea6a3d705311"
+  },
+  {
+   "type": "paragraph",
+   "text": "For $y^{\\prime\\prime}+p(t)y^{\\prime}+q(t)y=g(t)$, continuity of $p,q,g$ on an interval containing the starting time guarantees one solution on that interval for any starting value and slope. Divide by the original leading coefficient before checking continuity.",
+   "citations": [],
+   "id": "4d296c6c-906a-53b6-8c57-15890970e7e5"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Complex roots",
+   "citations": [],
+   "id": "aeed204d-a8e3-511b-a130-b68f435826f1"
+  },
+  {
+   "type": "paragraph",
+   "text": "The remaining case is a negative discriminant. Use $j^2=-1$, so $\\sqrt{-16}=4j$ and, for example, $s^2+2s+5=0$ gives $s=-1\\pm2j$.",
+   "citations": [],
+   "id": "6d0ba228-bd8d-52df-8f34-841109935528"
+  },
+  {
+   "type": "paragraph",
+   "text": "These are **complex conjugates**: the same real part, with opposite imaginary parts. Euler’s formula connects complex exponentials to real oscillations; $\\theta$ is an angle in radians.",
+   "citations": [],
+   "id": "b500b914-298d-5d5d-8582-6f818b6c74fa"
+  },
+  {
+   "type": "equation",
+   "latex": "e^{j\\theta}=\\cos\\theta+j\\sin\\theta",
+   "display": true,
+   "citations": [],
+   "id": "e1e718f2-8b6a-53b9-8113-6e0aa4e3acde"
+  },
+  {
+   "type": "paragraph",
+   "text": "```steps\ntitle \"Turn a complex exponential into real oscillations\"\n$$ e^{(-1+2j)t} $$\nStart with one of the characteristic roots.\n$$ \\hl{e^{-t}e^{j2t}} $$\nSplit the exponential using the exponent sum rule.\n$$ e^{-t}\\hl{(\\cos2t+j\\sin2t)} $$\nUse Euler’s formula.\n$$ \\hl{e^{-t}\\cos2t},\\quad\\hl{e^{-t}\\sin2t} $$\nWith real coefficients, the real and imaginary parts each solve the ODE.\n```",
+   "citations": [],
+   "id": "9f171ac4-c216-5a6e-aeb7-ce1946e6e728"
+  },
+  {
+   "type": "paragraph",
+   "text": "For roots $s=\\sigma\\pm j\\omega$, with $\\omega>0$, the real general solution is:",
+   "citations": [],
+   "id": "981143ca-5ea6-5bcc-96df-404917730ca5"
+  },
+  {
+   "type": "equation",
+   "latex": "y=e^{\\sigma t}(K_1\\cos\\omega t+K_2\\sin\\omega t)",
+   "display": true,
+   "citations": [],
+   "id": "5f6d6456-d589-5eb2-bbd7-4060eed2f984"
+  },
+  {
+   "type": "paragraph",
+   "text": "$\\sigma$ (sigma) sets decay or growth; $\\omega$ sets the oscillation rate in rad/s. Negative $\\sigma$ gives decaying oscillations; zero $\\sigma$ gives oscillations with a constant amplitude.",
+   "citations": [],
+   "id": "8557d27a-d556-5fe6-9cca-2533b99ed59e"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 18 · Complex roots and two initial conditions",
+   "prompt": "Solve $y^{\\prime\\prime}+2y^{\\prime}+5y=0$, $y(0)=1$, $y^{\\prime}(0)=1$.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ s=\\dfrac{-2\\pm\\sqrt{4-20}}2=\\hl{-1\\pm2j} $$\nApply the quadratic formula.\n$$ y=\\hl{e^{-t}(K_1\\cos2t+K_2\\sin2t)} $$\nUse sigma = −1 and omega = 2.\n$$ y(0)=K_1=\\hl{1} $$\nAt zero, cosine is 1 and sine is 0.\n$$ B(t)=K_1\\cos2t+K_2\\sin2t $$\nCall the trig bracket B to keep the product rule readable.\n$$ y^{\\prime}=\\hl{e^{-t}(B^{\\prime}-B)} $$\nUse the product rule on y = e to the −t times B.\n$$ B^{\\prime}=\\hl{-2K_1\\sin2t+2K_2\\cos2t} $$\nDifferentiate the bracket using the chain rule.\n$$ y^{\\prime}(0)=\\hl{-K_1+2K_2}=1 $$\nAt zero, combine both contributions to the derivative.\n$$ K_2=1\\ \\Rightarrow\\ y=\\hl{e^{-t}(\\cos2t+\\sin2t)} $$\nWith K₁ = 1, the slope condition gives K₂ = 1.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=e^{-t}(\\cos2t+\\sin2t)$.",
+   "citations": [],
+   "id": "f468b321-6ca5-5bb6-a52f-1ac79d740446"
+  },
+  {
+   "type": "paragraph",
+   "text": "In general, evaluating that product derivative at zero gives $y^{\\prime}(0)=\\sigma K_1+\\omega K_2$. It is a shortcut from the product and chain rules, not a separate rule to memorize.",
+   "citations": [],
+   "id": "d871a805-b0d2-5e25-bd66-18141b12bbed"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 20 · A decaying oscillation",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime\\prime}+4y^{\\prime}+13y=0$, $y(0)=0$, $y^{\\prime}(0)=3$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ s=\\dfrac{-4\\pm\\sqrt{16-52}}2=\\hl{-2\\pm3j} $$\nFind the characteristic roots.\n$$ y=e^{-2t}(K_1\\cos3t+K_2\\sin3t) $$\nWrite the real solution.\n$$ K_1=\\hl{0} $$\nUse y(0) = 0.\n$$ y^{\\prime}(0)=-2K_1+3K_2=3\\ \\Rightarrow\\ \\hl{K_2=1} $$\nApply the derivative at zero.\n$$ y=\\hl{e^{-2t}\\sin3t} $$\nSubstitute the constants.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=e^{-2t}\\sin3t$.",
+   "citations": [],
+   "id": "8e0a0677-4f4e-5b8a-b8c3-167f8dc79e83"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 21 · Oscillation without decay",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime\\prime}+4y=0$, $y(0)=1$, $y^{\\prime}(0)=0$. What changes when the real part of the roots is zero?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ s^2+4=0\\ \\Rightarrow\\ s=\\hl{\\pm2j} $$\nThe roots have sigma = 0.\n$$ y=\\hl{K_1\\cos2t+K_2\\sin2t} $$\nThe exponential factor is e⁰ = 1.\n$$ K_1=1,\\quad 2K_2=0 $$\nUse the initial value and initial slope.\n$$ y=\\hl{\\cos2t} $$\nThere is no shrinking exponential envelope.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=\\cos2t$; its amplitude stays constant.",
+   "citations": [],
+   "id": "b1a54973-6de6-572c-be22-1719453e8eda"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Circuit applications",
+   "citations": [],
+   "id": "cc4dff08-706a-5fa4-9688-6451c4d38a4d"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Capacitors and inductors",
+   "citations": [],
+   "id": "954f867b-1af3-53a6-9ce0-010117c2645c"
+  },
+  {
+   "type": "paragraph",
+   "text": "A capacitor obeys $i_C=C\\dfrac{dv_C}{dt}$; an inductor obeys $v_L=L\\dfrac{di_L}{dt}$. Once a voltage or current function is known, these laws just ask for a derivative.",
+   "citations": [],
+   "id": "8f4da9b2-7531-5d68-bbea-0fad9d17b772"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 19 · Read a response and find the capacitor current",
+   "prompt": "A capacitor has $C=0.2\\,\\mathrm F$ and $v_C(t)=12-10e^{-5t}\\,\\mathrm V$. The current enters its positive-voltage terminal. Find the starting voltage, final voltage, time constant and current.",
+   "steps": [
+    {
+     "explanation": "```steps\n$$ v_C(0)=12-10=\\hl{2\\,\\mathrm V} $$\nSet t = 0 to read the starting value.\n$$ v_C(t)\\to\\hl{12\\,\\mathrm V} $$\nThe exponential approaches zero as time grows.\n$$ \\dfrac1\\tau=5\\ \\Rightarrow\\ \\tau=\\hl{0.2\\,\\mathrm s} $$\nMatch the exponent to −t/τ.\n$$ \\dfrac{dv_C}{dt}=\\hl{50e^{-5t}} $$\nUse the chain rule.\n$$ i_C=C\\dfrac{dv_C}{dt}=0.2(50e^{-5t})=\\hl{10e^{-5t}\\,\\mathrm A} $$\nMultiply by the capacitance, using the stated current direction.\n```",
+     "latex": ""
+    }
+   ],
+   "answer": "$V_0=2\\,\\mathrm V$, $V_f=12\\,\\mathrm V$, $\\tau=0.2\\,\\mathrm s$, $i_C=10e^{-5t}\\,\\mathrm A$.",
+   "citations": [],
+   "id": "97f25ea5-1d67-55ef-a763-78ef702e0067"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "RLC circuits",
+   "citations": [],
+   "id": "3a4fe192-83f3-5085-95b0-478b05e9dd18"
+  },
+  {
+   "type": "paragraph",
+   "text": "In a **series RLC circuit**, a resistor, inductor and capacitor give a second-order equation. With a constant applied voltage $V$, its capacitor voltage satisfies the model below; the course derives it from the circuit laws.",
+   "citations": [],
+   "id": "dbcac3e5-c24a-5655-b4e2-0d84f427b9ff"
+  },
+  {
+   "type": "equation",
+   "latex": "LCv_C^{\\prime\\prime}+RCv_C^{\\prime}+v_C=V",
+   "display": true,
+   "citations": [],
+   "id": "39a12298-aeb6-5498-b8a4-bd9766430368"
+  },
+  {
+   "type": "paragraph",
+   "text": "The final constant solution is $v_C=V$. Put $y=v_C-V$ to describe the remaining deviation; its derivatives are the same as those of $v_C$, so $y$ satisfies a homogeneous equation.",
+   "citations": [],
+   "id": "a2bf72f4-27b5-59de-b6da-ace17862ba5a"
+  },
+  {
+   "type": "equation",
+   "latex": "y^{\\prime\\prime}+\\dfrac RL y^{\\prime}+\\dfrac1{LC}y=0",
+   "display": true,
+   "citations": [],
+   "id": "f056cb55-2557-5a7c-bdab-4e0bf45c5cfa"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Characteristic roots",
+    "Circuit response"
+   ],
+   "rows": [
+    [
+     "Two different negative real roots",
+     "Overdamped: two decaying exponential terms."
+    ],
+    [
+     "One repeated negative real root",
+     "Critically damped: an exponential times a linear expression in t."
+    ],
+    [
+     "A conjugate pair with negative real part",
+     "Underdamped: decaying sine/cosine oscillations."
+    ]
+   ],
+   "citations": [],
+   "id": "34de0e29-0de7-5a85-ae39-96bbc863bb8e"
+  },
+  {
+   "type": "paragraph",
+   "text": "For example, $L=0.5\\,\\mathrm H$, $R=2\\,\\Omega$, $C=0.25\\,\\mathrm F$ give $y^{\\prime\\prime}+4y^{\\prime}+8y=0$. Its roots are $-2\\pm2j$, so $v_C=V+e^{-2t}(K_1\\cos2t+K_2\\sin2t)$.",
+   "citations": [],
+   "id": "d54a5fb5-d084-5be3-93a9-cf4c1cdcedd5"
+  },
+  {
+   "type": "paragraph",
+   "text": "The two starting facts are $v_C(0)=V_0$ and $v_C^{\\prime}(0)=I_0/C$, where $I_0$ is the series current entering the capacitor’s positive terminal. They determine $K_1,K_2$ using the same two-condition method above.",
+   "citations": [],
+   "id": "bfae1f52-d9e5-5b86-981b-8b51d674e8bc"
+  }
+ ]
+}

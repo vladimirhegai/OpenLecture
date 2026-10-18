@@ -79,6 +79,32 @@ ground 0,0
 
 `schematic_check` reports for this drawing that `V1` runs from `n1` to `0`, `R1` from `n1` to `a`, and `R2` and `G1` from `a` to `0`.
 
+## Current flow (`#~` lines)
+
+`#~` comment lines turn a drawing into a live circuit. Dots stream along every wire and element: faster dots mean more current, and the dots fade as a current dies. The reader can flip each switch, either with a button or by clicking the switch in the drawing (the app redraws it open or closed), and the transient plays in slow motion with live readouts and a plot. The app simulates the circuit itself in `frontend/src/components/flow/`: modified nodal analysis, with inductors and capacitors stepped by backward Euler. It supports R, L, C, V, I, S, AM (a wire) and VM (open) elements.
+
+**Plug-in use: add the single line `#~ flow` to any drawing** (in the 231 builders: `flow(src)` from `lib231`, or `sch(src)` in build_w2v2.py, which does it for you). Everything else is automatic:
+
+- **Values** are read from the labels: `"$4\,\mathrm{k\Omega}$"`, `"$2\,\mu\mathrm{F}$"`, `"$0.3\,\mathrm{H}$"`, `"$12\,\mathrm{V}$"`, `"$2\,\mathrm{A}$"`. A symbolic label (`$R$`, `$V_s$`) gets a stand-in (R 1 kΩ, C 1 µF, L 1 H, V 10 V, I 10 mA, so every RC/RL pair has τ = 1 ms), listed in the note under the plot.
+- **Switches** start in the position before $t=0$: `action=open` means closed before, `action=close` means open before (`state=` overrides). Switches with the same label (two `"$t=0$"` switches drawn for one SPDT move) flip together with one button. A `"$t=0$"` label shows $t<0$, then $t=0$, then $t>0$.
+- **Slow motion** is picked so the slowest time constant plays over about 2 s.
+- **Readouts:** up to three currents (L, then C, then R) plus each capacitor's voltage (named by its `v=` label). Units and decimals are fixed from a preview run so the boxes never change width.
+- Opening a switch that leaves an inductor carrying current with no path shows a "spark" warning (the simulation lets the current fall to 0).
+
+Optional `#~` lines, only when the defaults are not what you want:
+
+```
+#~ value R1 4                force a value (SI with prefix: 8m, 10u, 2.5k); overrides the label
+#~ init C1 2                 start a capacitor at 2 V (or an inductor at 2 A) instead of DC steady state
+#~ slow 1000                 force the slow-motion factor
+#~ probe L1 "inductor $L$:"  choose readouts yourself (current; first ones are plotted)
+#~ probe C1 v "$v$:"         a voltage readout
+#~ gang S1 S2                make switches flip together (otherwise: same label)
+#~ note "…"                  replace the automatic note
+```
+
+The circuit starts in DC steady state for the starting switch positions (plus any `init`). Probe readouts and the plot show magnitudes; the dots show direction. Check every flow circuit with `node scripts/notes231/flowshots.cjs <docId> <outDir>`, which prints the readouts before and after each switch flip: compare them with the hand solution.
+
 ## Height views (voltage as height)
 
 Every circuit in a study note should also carry a **height view**. The reader opens it with the "Height view" button on the drawing. It redraws the solved circuit with every node at its potential: ground (0 V) is the reference and the vertical axis is volts. Series elements stack in one column. Current arrows are orange when the current runs downhill (the element absorbs) and green when it runs uphill (the element delivers). The dialog's default **Full loop** mode draws every source, and so does the in-page `#@ inline` picture. The optional **Straight line** mode leaves out the grounded source that feeds the highest level and shows it as a labelled supply rail (a "9 V" bar at the top, one line falling through the loads). **Keep ground at the bottom of the picture:** if a circuit's nodes sit below the drawing's ground, measure heights from the lowest node instead, and say so in the first step (moving ground changes no answer).

@@ -2124,6 +2124,319 @@ ground 0,0
 
 </details>
 
+## Video Set
+
+Circuit credited to the Question Solutions YouTube channel, as identified in your supplied image. The worked solution below uses the height method.
+
+**Example: Video 1 · Two pumps and two unknown heights**
+
+Find $V_1=V_a$. **Follow the flow, then walk down the slides.** Keep the original ground at 0 V and put negative heights below it. The height view combines the two right-hand parallel 2 kΩ resistors into one 1 kΩ slide; its other tab shows every original branch. Let $i$ be the current from $b$ to $a$ through the linking 2 kΩ.
+
+```schematic
+wire 0,3 -> 3,3
+R1 0,3 -> 0,0 "$3\,\mathrm{k\Omega}$" v="$V_1$"
+I1 3,3 -> 3,0 "$6\,\mathrm{mA}$"
+R2 3,3 -> 6,3 "$2\,\mathrm{k\Omega}$" i_rev="$i$"
+I2 6,3 -> 6,0 "$4\,\mathrm{mA}$"
+wire 6,3 -> 12,3
+R3 9,3 -> 9,0 "$2\,\mathrm{k\Omega}$"
+R4 12,3 -> 12,0 "$2\,\mathrm{k\Omega}$"
+wire 0,0 -> 12,0
+label 3,3 "$a$ (1)" above
+label 6,3 "$b$ (2)" above
+ground 6,0
+#@ view "Two height walks (parallel pair combined)"
+#@ straight off
+#@ node n2 -6.333333 "$b$: $-\frac{19}{3}\,\mathrm{V}$"
+#@ node n1 -11 "$a$: $-11\,\mathrm{V}$"
+#@ node g 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g2 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g3 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g4 0 "ground: $0\,\mathrm{V}$" ground
+#@ el I n1 g "$6\,\mathrm{mA}$" col=0 i="$6\,\mathrm{mA}$" to=g id=eI1
+#@ el R n1 g2 "$3\,\mathrm{k\Omega}$: falls $11\,\mathrm{V}$" col=1 i="$3.667\,\mathrm{mA}$" to=n1 id=eR1 plus=n1 v="$V_1$"
+#@ el R n2 g3 "$1\,\mathrm{k\Omega}$: falls $\frac{19}{3}\,\mathrm{V}$" col=2 i="$6.333\,\mathrm{mA}$" to=n2 id=eR34
+#@ el R n1 n2 "$2\,\mathrm{k\Omega}$: falls $\frac{14}{3}\,\mathrm{V}$" col=2 i="$2.333\,\mathrm{mA}$" to=n1 id=eR2
+#@ el I n2 g4 "$4\,\mathrm{mA}$" col=3 i="$4\,\mathrm{mA}$" to=g4 id=eI2
+#@ step "Keep the original bottom wire as ground, 0 V. Both pumps return current to it; the resistors let that current fall back down to $b$ and $a$. Keep the negative levels below ground."
+#@ step "The two right-hand 2 kOhm slides share exactly the same start and finish: ground and $b$. Together they are one 1 kOhm slide. The 4 mA pump still branches off at $b$."
+#@ step "Choose $i$ mA from $b$ down to $a$ through the linking 2 kOhm. The 3 kOhm brings $6-i$ mA into $a$, because its pump takes 6. The 1 kOhm brings $4+i$ mA into $b$, because 4 goes into its pump and $i$ continues to $a$."
+#@ step "First walk, ground straight to $a$: fall $3(6-i)$ V through the 3 kOhm. Second walk, ground to $b$ to $a$: fall $1(4+i)$ V, then another $2i$ V. Both walks must land at the SAME $a$."
+#@ step "Equal total falls: $3(6-i)=1(4+i)+2i$. Thus $18-3i=4+3i$, so $i=7/3$ mA. This positive answer confirms the linking current runs from $b$ to $a$." show=eR2
+#@ step "Place $b$ by walking down from ground: the 1 kOhm carries $4+7/3=19/3$ mA, so it falls $19/3$ V. Therefore $V_b=0-19/3=-6.33$ V." show=n2,eR34
+#@ step "Continue down to $a$: the linking 2 kOhm falls $2(7/3)=14/3$ V more. So $V_a=-19/3-14/3=-11$ V. Both levels are below the original ground." show=n1
+#@ step "Check the direct walk: the 3 kOhm carries $6-7/3=11/3$ mA and falls $3(11/3)=11$ V. Again $V_a=0-11=-11$ V. Read the marked voltage: $V_1=V_a-0=-11$ V." show=eR1
+#@ step "In the original pair, the $19/3$ mA divides equally: each 2 kOhm carries $19/6$ mA. At $a$, $11/3+7/3=6$; at $b$, $19/6+19/6=4+7/3$. The pumps return 10 mA to ground and the resistor paths carry 10 mA back down." show=eI1,eI2
+#@ step "Energy check: the pumps climb and give $6(11)+4(19/3)=274/3$ mW. The slides use $(11/3)(11)+(19/3)(19/3)+(7/3)(14/3)=274/3$ mW. Heights, currents and power all agree."
+#@ note "Two walks, one destination: ground to $a$ directly, or ground to $b$ to $a$. The total fall must match. The 1 kOhm slide represents the two parallel 2 kOhm resistors."
+#@ view "All original branches"
+#@ straight off
+#@ node n2 -6.333333 "$b$: $-\frac{19}{3}\,\mathrm{V}$"
+#@ node n1 -11 "$a$: $-11\,\mathrm{V}$"
+#@ node g 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g2 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g3 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g4 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g5 0 "ground: $0\,\mathrm{V}$" ground
+#@ el I n1 g "$6\,\mathrm{mA}$" col=0 i="$6\,\mathrm{mA}$" to=g id=eI1
+#@ el R n1 g2 "$3\,\mathrm{k\Omega}$: falls $11\,\mathrm{V}$" col=1 i="$3.667\,\mathrm{mA}$" to=n1 id=eR1 plus=n1 v="$V_1$"
+#@ el R n2 g3 "$2\,\mathrm{k\Omega}$: falls $\frac{19}{3}\,\mathrm{V}$" col=2 i="$3.167\,\mathrm{mA}$" to=n2 id=eR3
+#@ el R n1 n2 "$2\,\mathrm{k\Omega}$: falls $\frac{14}{3}\,\mathrm{V}$" col=2 i="$2.333\,\mathrm{mA}$" to=n1 id=eR2
+#@ el R n2 g4 "$2\,\mathrm{k\Omega}$: falls $\frac{19}{3}\,\mathrm{V}$" col=3 i="$3.167\,\mathrm{mA}$" to=n2 id=eR4
+#@ el I n2 g5 "$4\,\mathrm{mA}$" col=4 i="$4\,\mathrm{mA}$" to=g5 id=eI2
+#@ step "Keep the original bottom wire as ground, 0 V. Both pumps return current to it; the resistors let that current fall back down to $b$ and $a$. Keep the negative levels below ground."
+#@ step "The two right-hand 2 kOhm slides share exactly the same start and finish: ground and $b$. Together they are one 1 kOhm slide. The 4 mA pump still branches off at $b$."
+#@ step "Choose $i$ mA from $b$ down to $a$ through the linking 2 kOhm. The 3 kOhm brings $6-i$ mA into $a$, because its pump takes 6. The 1 kOhm brings $4+i$ mA into $b$, because 4 goes into its pump and $i$ continues to $a$."
+#@ step "First walk, ground straight to $a$: fall $3(6-i)$ V through the 3 kOhm. Second walk, ground to $b$ to $a$: fall $1(4+i)$ V, then another $2i$ V. Both walks must land at the SAME $a$."
+#@ step "Equal total falls: $3(6-i)=1(4+i)+2i$. Thus $18-3i=4+3i$, so $i=7/3$ mA. This positive answer confirms the linking current runs from $b$ to $a$." show=eR2
+#@ step "Place $b$ by walking down from ground: the 1 kOhm carries $4+7/3=19/3$ mA, so it falls $19/3$ V. Therefore $V_b=0-19/3=-6.33$ V." show=n2,eR3,eR4
+#@ step "Continue down to $a$: the linking 2 kOhm falls $2(7/3)=14/3$ V more. So $V_a=-19/3-14/3=-11$ V. Both levels are below the original ground." show=n1
+#@ step "Check the direct walk: the 3 kOhm carries $6-7/3=11/3$ mA and falls $3(11/3)=11$ V. Again $V_a=0-11=-11$ V. Read the marked voltage: $V_1=V_a-0=-11$ V." show=eR1
+#@ step "In the original pair, the $19/3$ mA divides equally: each 2 kOhm carries $19/6$ mA. At $a$, $11/3+7/3=6$; at $b$, $19/6+19/6=4+7/3$. The pumps return 10 mA to ground and the resistor paths carry 10 mA back down." show=eI1,eI2
+#@ step "Energy check: the pumps climb and give $6(11)+4(19/3)=274/3$ mW. The slides use $(11/3)(11)+(19/3)(19/3)+(7/3)(14/3)=274/3$ mW. Heights, currents and power all agree."
+#@ note "Both original 2 kOhm slides remain between ground and $b$. Each carries half the combined flow; both have the same fall."
+```
+
+1. **Keep ground at 0 V.** The two pumps return 6 mA and 4 mA to this wire. That current must come back down through the resistors. Keep the negative node levels below ground; the pumps still point toward the original ground.
+2. **Two side-by-side slides become one.** The two right-hand 2 kΩ resistors both start at ground and finish at $b$. They span exactly the same fall. Combine them into a 1 kΩ slide from ground to $b$. The 4 mA pump remains connected at $b$.
+
+   $$2\,\mathrm{k\Omega}\parallel2\,\mathrm{k\Omega}=1\,\mathrm{k\Omega}$$
+3. **Name just one flow.** Put $i$ mA down the linking 2 kΩ slide, from $b$ to $a$. At $a$, this $i$ joins the current arriving through 3 kΩ, and the pump takes away 6 mA. So the 3 kΩ carries $6-i$. At $b$, the arriving current splits: 4 mA into its pump and $i$ onward to $a$. So the 1 kΩ carries $4+i$. We choose this direction for $i$; a positive answer confirms it.
+
+   $$\underbrace{(6-i)+i=6}_{\text{meet at }a},\qquad\underbrace{4+i}_{\text{arrives at }b}=\underbrace{4}_{\text{pump}}+\underbrace{i}_{\text{continues to }a}$$
+4. **Walk straight from ground to $a$.** Start at 0 V and fall through the 3 kΩ slide carrying $6-i$ mA. The fall is current × resistance. With mA × kΩ, the result is volts.
+
+   $$\text{Direct fall to }a=3(6-i)\ \mathrm{V}$$
+5. **Walk to the SAME $a$ through $b$.** First fall through the 1 kΩ carrying $4+i$ mA. Then fall through the linking 2 kΩ carrying $i$ mA. Add the two falls. The current changes at $b$ because 4 mA branches off into the pump.
+
+   $$\text{Fall via }b=1(4+i)+2i\ \mathrm{V}$$
+6. **Both walks must land at the same height.** They start at the same 0 V wire and finish at the same node $a$, so their total falls are equal. This is the height picture doing the solving.
+
+   $$\begin{aligned}3(6-i)&=1(4+i)+2i\\18-3i&=4+3i\\14&=6i\quad\Rightarrow\quad i=\frac73\,\mathrm{mA}\end{aligned}$$
+7. **Now place the heights by walking downhill.** Ground → $b$: the 1 kΩ carries $4+7/3=19/3$ mA, so fall $19/3$ V below 0. Then $b$ → $a$: the linking 2 kΩ falls another $2(7/3)=14/3$ V. You land at −11 V.
+
+   $$\begin{aligned}V_b&=0-1\left(4+\frac73\right)=-\frac{19}{3}\,\mathrm{V}\approx-6.33\,\mathrm{V}\\V_a&=V_b-2\left(\frac73\right)=-\frac{19}{3}-\frac{14}{3}=-11\,\mathrm{V}\end{aligned}$$
+8. **Take the direct walk as a check.** The 3 kΩ carries $6-7/3=11/3$ mA. Its fall is $3(11/3)=11$ V, so it lands at the very same −11 V. The marked $V_1$ is the height at $a$ minus ground.
+
+   $$V_a=0-3\left(6-\frac73\right)=-11\,\mathrm{V},\qquad\boxed{V_1=V_a=-11\,\mathrm{V}}$$
+9. **Unpack the parallel pair.** The 1 kΩ equivalent carried $19/3$ mA. The two equal original 2 kΩ slides span the same fall, so each carries half: $19/6$ mA. At $a$: $11/3+7/3=6$ mA. At $b$: $19/6+19/6=4+7/3$ mA. The two pumps return $6+4=10$ mA to ground; the resistor paths carry $11/3+19/3=10$ mA back down.
+10. **Energy check, after the heights are found.** Both pumps lift current from a negative level back to 0 V and deliver energy. The three slides in the simplified picture absorb the same total; the 1 kΩ slide accounts for both original right-hand resistors.
+
+   $$\begin{aligned}P_{\mathrm{give}}&=6(11)+4\left(\frac{19}{3}\right)=\frac{274}{3}\,\mathrm{mW}\\P_{\mathrm{use}}&=\frac{11}{3}(11)+\frac{19}{3}\left(\frac{19}{3}\right)+\frac73\left(\frac{14}{3}\right)=\frac{274}{3}\,\mathrm{mW}\end{aligned}$$
+
+**Answer:** $i=7/3\,\mathrm{mA}$ from $b$ to $a$; $V_1=V_a=-11\,\mathrm{V}$ and $V_b=-19/3\,\mathrm{V}\approx-6.33\,\mathrm{V}$. Both height walks land at $a=-11\,\mathrm{V}$.
+
+> **Tip:** **The height-method move:** follow the known pump flows → express each slide’s current using one unknown $i$ → turn each current into a fall $iR$ → reach the same node by two paths. Here the direct fall $3(6-i)$ must equal the two-step fall $(4+i)+2i$. Then start at ground and walk down to read the negative voltages.
+
+**Example: Video 2 · Find the flow with two height walks**
+
+Find $I_0$ downward through the 12 kΩ resistor. Use the same flow-first height method: trace the common ground wire, combine parallel slides, follow the pumps, and make two downhill walks finish at the same ground. The central crossing is interpreted as a connection at node 2 ($b$), marked with a dot in the redraw.
+
+```schematic
+wire 0,6 -> 6,6
+R1 0,6 -> 0,0 "$2\,\mathrm{k\Omega}$"
+I1 3,0 -> 3,3 "$6\,\mathrm{mA}$"
+I2 3,3 -> 3,6 "$4\,\mathrm{mA}$"
+wire 3,3 -> 6,3
+R2 6,6 -> 6,3 "$4\,\mathrm{k\Omega}$" i_rev="$i$"
+R3 6,3 -> 6,0 "$12\,\mathrm{k\Omega}$" i="$I_0$"
+R4 6,3 -> 9,3 "$4\,\mathrm{k\Omega}$"
+I3 6,6 -> 9,6 "$2\,\mathrm{mA}$"
+wire 9,6 -> 9,0
+wire 0,0 -> 9,0
+dot 6,3
+label 3,6 "$a$ (1)" above
+label 3,3 "$b$ (2)" left
+ground 4.5,0
+#@ view "Two walks (4 and 12 kOhm combined)"
+#@ straight off
+#@ node b 5.333333 "$b$ (2): $\frac{16}{3}\,\mathrm{V}$"
+#@ node a 4.444444 "$a$ (1): $\frac{40}{9}\,\mathrm{V}$"
+#@ node g 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g2 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g3 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g4 0 "ground: $0\,\mathrm{V}$" ground
+#@ el I g b "$6\,\mathrm{mA}$" col=0 i="$6\,\mathrm{mA}$" to=b id=eI1
+#@ el R b g2 "$3\,\mathrm{k\Omega}$: falls $\frac{16}{3}\,\mathrm{V}$" col=1 i="$1.778\,\mathrm{mA}$" to=g2 id=eR34
+#@ el I b a "$4\,\mathrm{mA}$" col=2 i="$4\,\mathrm{mA}$" to=a id=eI2
+#@ el R a b "$4\,\mathrm{k\Omega}$: falls $\frac89\,\mathrm{V}$" col=3 i="$0.2222\,\mathrm{mA}$" to=a id=eR2
+#@ el R a g3 "$2\,\mathrm{k\Omega}$: falls $\frac{40}{9}\,\mathrm{V}$" col=3 i="$2.222\,\mathrm{mA}$" to=g3 id=eR1
+#@ el I a g4 "$2\,\mathrm{mA}$" col=4 i="$2\,\mathrm{mA}$" to=g4 id=eI3
+#@ step "Keep the original bottom and right-hand wire as ground, 0 V. The central crossing is read as connected to $b$. The horizontal 4 kOhm and 12 kOhm both connect $b$ to this same ground."
+#@ step "Two slides, same start and finish: $4\parallel12=3$ kOhm between $b$ and ground. The upper 4 kOhm remains between $b$ and $a$."
+#@ step "Follow the pumps: at $a$, $4-2=2$ mA remains for the resistors. At $b$, $6-4=2$ mA remains for its resistors. The source currents give these two balances directly."
+#@ step "Choose $i$ mA from $b$ down to $a$ through the upper 4 kOhm. Then the 2 kOhm carries $2+i$ mA to ground, and the 3 kOhm equivalent carries $2-i$ mA to ground."
+#@ step "Walk 1: $b$ straight to ground falls $3(2-i)$ V. Walk 2: $b$ to $a$ to ground falls $4i$ V, then $2(2+i)$ V. Same start, same finish: the total falls must agree."
+#@ step "$3(2-i)=4i+2(2+i)$ gives $6-3i=4+6i$, hence $i=2/9$ mA. The positive result confirms the flow from $b$ to $a$." show=eR2
+#@ step "The direct 3 kOhm slide falls $3(2-2/9)=16/3$ V to reach 0. Therefore $b$ is at $16/3$ V. The 2 kOhm falls $2(2+2/9)=40/9$ V to reach 0, so $a$ is at $40/9$ V. The link falls the difference, $8/9$ V." show=b,a,eR34,eR1
+#@ step "Return to the original pair: the 12 kOhm spans the same $16/3$ V fall. Thus $I_0=(16/3)/12=4/9$ mA downward. The horizontal 4 kOhm carries $4/3$ mA; together they carry $16/9$ mA."
+#@ step "Check the flows: at $a$, $4+2/9=2+20/9$ mA; at $b$, $6=4+2/9+4/3+4/9$ mA. The 6 mA source supplies 32 mW, while both other sources and the resistors absorb a total of 32 mW."
+#@ note "Two walks from $b$ to ground: directly through $4\parallel12=3$ kOhm, or through the linking 4 kOhm and the 2 kOhm. Equal total falls determine the one unknown current."
+#@ view "All original branches"
+#@ straight off
+#@ node b 5.333333 "$b$ (2): $\frac{16}{3}\,\mathrm{V}$"
+#@ node a 4.444444 "$a$ (1): $\frac{40}{9}\,\mathrm{V}$"
+#@ node g 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g2 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g3 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g4 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g5 0 "ground: $0\,\mathrm{V}$" ground
+#@ el I g b "$6\,\mathrm{mA}$" col=0 i="$6\,\mathrm{mA}$" to=b id=eI1
+#@ el R b g2 "$12\,\mathrm{k\Omega}$: falls $\frac{16}{3}\,\mathrm{V}$" col=1 i="$0.4444\,\mathrm{mA}$" to=g2 id=eR3
+#@ el R b g3 "$4\,\mathrm{k\Omega}$: falls $\frac{16}{3}\,\mathrm{V}$" col=2 i="$1.333\,\mathrm{mA}$" to=g3 id=eR4
+#@ el I b a "$4\,\mathrm{mA}$" col=3 i="$4\,\mathrm{mA}$" to=a id=eI2
+#@ el R a b "$4\,\mathrm{k\Omega}$: falls $\frac89\,\mathrm{V}$" col=4 i="$0.2222\,\mathrm{mA}$" to=a id=eR2
+#@ el R a g4 "$2\,\mathrm{k\Omega}$: falls $\frac{40}{9}\,\mathrm{V}$" col=4 i="$2.222\,\mathrm{mA}$" to=g4 id=eR1
+#@ el I a g5 "$2\,\mathrm{mA}$" col=5 i="$2\,\mathrm{mA}$" to=g5 id=eI3
+#@ step "Keep the original bottom and right-hand wire as ground, 0 V. The central crossing is read as connected to $b$. The horizontal 4 kOhm and 12 kOhm both connect $b$ to this same ground."
+#@ step "Two slides, same start and finish: $4\parallel12=3$ kOhm between $b$ and ground. The upper 4 kOhm remains between $b$ and $a$."
+#@ step "Follow the pumps: at $a$, $4-2=2$ mA remains for the resistors. At $b$, $6-4=2$ mA remains for its resistors. The source currents give these two balances directly."
+#@ step "Choose $i$ mA from $b$ down to $a$ through the upper 4 kOhm. Then the 2 kOhm carries $2+i$ mA to ground, and the 3 kOhm equivalent carries $2-i$ mA to ground."
+#@ step "Walk 1: $b$ straight to ground falls $3(2-i)$ V. Walk 2: $b$ to $a$ to ground falls $4i$ V, then $2(2+i)$ V. Same start, same finish: the total falls must agree."
+#@ step "$3(2-i)=4i+2(2+i)$ gives $6-3i=4+6i$, hence $i=2/9$ mA. The positive result confirms the flow from $b$ to $a$." show=eR2
+#@ step "The direct 3 kOhm slide falls $3(2-2/9)=16/3$ V to reach 0. Therefore $b$ is at $16/3$ V. The 2 kOhm falls $2(2+2/9)=40/9$ V to reach 0, so $a$ is at $40/9$ V. The link falls the difference, $8/9$ V." show=b,a,eR1
+#@ step "Return to the original pair: the 12 kOhm spans the same $16/3$ V fall. Thus $I_0=(16/3)/12=4/9$ mA downward. The horizontal 4 kOhm carries $4/3$ mA; together they carry $16/9$ mA." show=eR3,eR4
+#@ step "Check the flows: at $a$, $4+2/9=2+20/9$ mA; at $b$, $6=4+2/9+4/3+4/9$ mA. The 6 mA source supplies 32 mW, while both other sources and the resistors absorb a total of 32 mW."
+#@ note "Two walks from $b$ to ground: directly through $4\parallel12=3$ kOhm, or through the linking 4 kOhm and the 2 kOhm. Equal total falls determine the one unknown current."
+```
+
+1. **Keep the original ground. Trace the wires first.** The entire bottom wire and right-hand wire are one 0 V node. Call node 1 $a$ and node 2 $b$. Read the central crossing as a junction at $b$ (shown with a dot in the redraw). Thus the horizontal 4 kΩ and the 12 kΩ both run from $b$ to ground.
+2. **Combine the two slides that span the same height.** The horizontal 4 kΩ and the 12 kΩ share their start and finish, so replace that pair by one 3 kΩ slide. Keep the upper, vertical 4 kΩ between $b$ and $a$ separate.
+
+   $$4\,\mathrm{k\Omega}\parallel12\,\mathrm{k\Omega}=\frac{4(12)}{4+12}=3\,\mathrm{k\Omega}$$
+3. **Follow the fixed flows.** At $a$, the 4 mA source brings current in and the 2 mA source takes current to ground: 2 mA is left for its resistors. At $b$, 6 mA arrives and 4 mA leaves through the source toward $a$: again 2 mA is left for its resistors. These differences tell us the branch flows before finding any height.
+
+   $$\text{At }a:\ 4-2=2\,\mathrm{mA},\qquad\text{at }b:\ 6-4=2\,\mathrm{mA}$$
+4. **Name one extra downhill flow.** Choose $i$ mA from $b$ to $a$ through the upper 4 kΩ resistor. It adds to the 2 mA available at $a$, so the 2 kΩ carries $2+i$ mA down to ground. It takes away from the 2 mA available at $b$, so the 3 kΩ carries $2-i$ mA down to ground. A positive result will confirm the chosen direction.
+
+   $$I_{2\mathrm{k\Omega}}=2+i,\qquad I_{3\mathrm{k\Omega\ equivalent}}=2-i\qquad(\mathrm{mA})$$
+5. **Walk from $b$ straight down to ground.** The 3 kΩ carries $2-i$ mA, so this route falls $3(2-i)$ V.
+
+   $$\text{Direct fall}=3(2-i)\ \mathrm{V}$$
+6. **Walk from the SAME $b$ to the SAME ground through $a$.** First fall $4i$ V through the upper 4 kΩ. Then fall $2(2+i)$ V through the 2 kΩ. The current changes at $a$ because its two sources add a net 2 mA there.
+
+   $$\text{Fall via }a=4i+2(2+i)\ \mathrm{V}$$
+7. **The two routes must finish at the same height.** Their total falls match. This gives one equation for one current.
+
+   $$\begin{aligned}3(2-i)&=4i+2(2+i)\\6-3i&=4+6i\\i&=\frac29\,\mathrm{mA}\end{aligned}$$
+8. **Place the levels using the falls.** The 3 kΩ route falls $3(2-2/9)=16/3$ V from $b$ to ground, so $b$ is that far above 0 V. The 2 kΩ falls $2(2+2/9)=40/9$ V from $a$ to ground. Their separation is $16/3-40/9=8/9$ V, exactly the $4i$ fall in the linking slide.
+
+   $$V_b=\frac{16}{3}\,\mathrm{V},\qquad V_a=\frac{40}{9}\,\mathrm{V},\qquad V_b-V_a=4\left(\frac29\right)=\frac89\,\mathrm{V}$$
+9. **Read $I_0$ from the original 12 kΩ slide.** It spans the same $16/3$ V fall from $b$ to ground. Current = fall ÷ resistance. Since $b$ is above ground, the current is downward, matching the given arrow.
+
+   $$\boxed{I_0=\frac{16/3}{12}=\frac49\,\mathrm{mA}\approx0.444\,\mathrm{mA}\ \text{downward}}$$
+10. **Check the split.** The combined 3 kΩ carried $2-i=16/9$ mA. The 4 kΩ is three times easier to flow through than the 12 kΩ, so it takes three times the current. The 12 kΩ gets one quarter of the total. At $b$, the four departing flows add back up to the arriving 6 mA.
+
+   $$I_0=\frac14\left(\frac{16}{9}\right)=\frac49\,\mathrm{mA},\qquad 4+\frac29+\frac43+\frac49=6\,\mathrm{mA}$$
+11. **Power check after solving.** The 6 mA source climbs from ground to $b$ and supplies 32 mW. The 4 mA source goes from $b$ down to $a$, so it absorbs; the 2 mA source also falls from $a$ to ground and absorbs. The resistors absorb the rest. A source arrow can carry current either uphill or downhill.
+
+   $$\underbrace{32}_{\text{6 mA supplies}}=\underbrace{\frac{32}{9}}_{\text{4 mA absorbs}}+\underbrace{\frac{80}{9}}_{\text{2 mA absorbs}}+\underbrace{\frac{176}{9}}_{\text{resistors absorb}}\quad\mathrm{mW}$$
+
+**Answer:** $I_0=4/9\,\mathrm{mA}\approx0.444\,\mathrm{mA}$ downward. The heights are $V_1=40/9\,\mathrm{V}$ and $V_2=16/3\,\mathrm{V}$, with the original ground retained.
+
+> **Tip:** **Spot the shortcut before writing equations.** The right-hand wire brings ground up to both the 2 mA source and the horizontal 4 kΩ. That puts the horizontal 4 kΩ in parallel with the 12 kΩ. After combining them, one unknown linking flow $i$ is enough: the two downhill walks from $b$ to ground must satisfy $3(2-i)=4i+2(2+i)$.
+
+**Example: Video 3 · A fixed staircase and a trial height sketch**
+
+Find $V_0$, with + at the right node and − at the original ground. Keep the source polarities and all given reference arrows. Start with the trial tab: only the 12 V separation is known. Follow the ground flow and match two walks to $V_0$; use a negative current to correct the initial height sketch. The solved tab shows the finished picture.
+
+```schematic
+wire 0,3 -> 0,5 -> 2,5
+V1 5,5 -> 2,5 "$12\,\mathrm{V}$" flip
+wire 5,5 -> 6,5 -> 6,3
+R1 0,3 -> 0,0 "$2\,\mathrm{k\Omega}$" i="$I_1$"
+R2 0,3 -> 3,3 "$1\,\mathrm{k\Omega}$" i="$I_2$"
+R3 3,3 -> 6,3 "$2\,\mathrm{k\Omega}$" i="$I_3$"
+R4 6,3 -> 6,0 "$1\,\mathrm{k\Omega}$" i="$I_5$" v="$V_0$"
+I1 3,0 -> 3,3 "$4\,\mathrm{mA}$"
+wire 0,0 -> 6,0
+label 0,3 "$V_1$ (1)" left
+label 3,3 "$V_2$" above
+label 6,3 "$V_0$ (3)" right
+ground 3,0
+#@ view "1. Trial sketch (unknown heights)"
+#@ straight off
+#@ scale illustrative
+#@ node r 15 "$V_0$: $V_1+12$" unknown
+#@ node m 8 "$V_2$: unknown" unknown
+#@ node l 3 "$V_1$: unknown" unknown
+#@ node g 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g2 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g3 0 "ground: $0\,\mathrm{V}$" ground
+#@ el I g m "$4\,\mathrm{mA}$" col=0 i="$4\,\mathrm{mA}$" to=m id=tI
+#@ el R m r "$2\,\mathrm{k\Omega}$" col=1 id=tR3
+#@ el R l m "$1\,\mathrm{k\Omega}$" col=1 id=tR2
+#@ el R r g2 "$1\,\mathrm{k\Omega}$" col=2 i="$I_5=4-I_1$" to=g2 id=tR4 plus=r v="$V_0$"
+#@ el R l g3 "$2\,\mathrm{k\Omega}$" col=3 i="$I_1$" to=g3 id=tR1
+#@ el V r l "$12\,\mathrm{V}$" col=4 id=tV
+#@ step "Keep the original bottom wire as ground, 0 V. This is a TRIAL sketch: the dashed node levels have no solved heights."
+#@ step "The source fixes one separation immediately: $V_0=V_1+12$ V. Put $V_0$ above $V_1$. Neither is yet fixed relative to ground. The middle level is also unknown."
+#@ step "Use the given downward references $I_1$ and $I_5$. At ground, 4 mA leaves through the pump, so the signed return currents obey $I_1+I_5=4$ mA. Hence $I_5=4-I_1$."
+#@ step "Walk from ground to $V_0$ by the left: rise $2I_1$ through the left resistor, then rise 12 V through the source. Walk by the right: rise $1(4-I_1)$ through the right resistor."
+#@ step "Same start and same finish: $2I_1+12=4-I_1$. Thus $I_1=-8/3$ mA. The negative result reverses the assumed left current and tells us $V_1$ lies below ground."
+#@ step "Correct the sketch: from ground, fall $16/3$ V to $V_1$, then climb 12 V to $V_0=20/3$ V. Open the solved-view tab for the corrected levels. Finding $V_2$ is optional after answering $V_0$."
+#@ note "The trial positions are illustrative. Only the 12 V separation is fixed. A negative current is the instruction to reverse the guessed flow and redraw the affected level. Dashed level guides do not connect branches."
+#@ view "2. Solved (original ground)"
+#@ straight off
+#@ node r 6.666667 "$V_0$: $\frac{20}{3}\,\mathrm{V}$"
+#@ node m 1.333333 "$V_2$: $\frac43\,\mathrm{V}$"
+#@ node l -5.333333 "$V_1$: $-\frac{16}{3}\,\mathrm{V}$"
+#@ node g 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g2 0 "ground: $0\,\mathrm{V}$" ground
+#@ node g3 0 "ground: $0\,\mathrm{V}$" ground
+#@ el I g m "$4\,\mathrm{mA}$" col=0 i="$4\,\mathrm{mA}$" to=m id=eI1
+#@ el R m r "$2\,\mathrm{k\Omega}$: falls $\frac{16}{3}\,\mathrm{V}$" col=1 i="$2.667\,\mathrm{mA}$" to=m id=eR3
+#@ el R l m "$1\,\mathrm{k\Omega}$: falls $\frac{20}{3}\,\mathrm{V}$" col=1 i="$6.667\,\mathrm{mA}$" to=l id=eR2
+#@ el R r g2 "$1\,\mathrm{k\Omega}$: falls $\frac{20}{3}\,\mathrm{V}$" col=2 i="$6.667\,\mathrm{mA}$" to=g2 id=eR4 plus=r v="$V_0$"
+#@ el R l g3 "$2\,\mathrm{k\Omega}$: falls $\frac{16}{3}\,\mathrm{V}$" col=3 i="$2.667\,\mathrm{mA}$" to=l id=eR1
+#@ el V r l "$12\,\mathrm{V}$" col=4 i="$9.333\,\mathrm{mA}$" to=r id=eV1
+#@ step "Keep the original ground at 0 V. The source fixes $V_0=V_1+12$ V. Start from a trial sketch; do not assume the other heights in advance."
+#@ step "Use the given downward outer-current references. At ground, the pump takes out 4 mA, so $I_1+I_5=4$ mA and $I_5=4-I_1$. The middle height is not needed for this balance."
+#@ step "Two walks to $V_0$: from ground via the left resistor and source gives $2I_1+12$ V; via the right resistor gives $1(4-I_1)$ V. Equal endpoint: $2I_1+12=4-I_1$."
+#@ step "$I_1=-8/3$ mA. The actual current goes from ground down to $V_1$, so $V_1=0-2(8/3)=-16/3$ V. Correct the trial picture by putting $V_1$ below ground." show=l,eR1
+#@ step "Take the fixed staircase from $V_1$ up 12 V: $V_0=-16/3+12=20/3$ V. Check the other walk: $I_5=20/3$ mA and the right 1 kOhm falls $20/3$ V to ground." show=r,eR4
+#@ step "Optional middle-level calculation: choose $j$ from $V_0$ to $V_2$. The 4 mA pump joins it, so $j+4$ continues toward $V_1$. Their total fall is the fixed 12 V: $2j+(j+4)=12$, giving $j=8/3$ mA." show=eR3,eR2
+#@ step "Walk down: $V_2=20/3-2(8/3)=4/3$ V. Continue down $1(20/3)$ V to $V_1=-16/3$ V. Solved order: $V_0>V_2>0>V_1$. The pump ends at $V_2$, not $V_0$." show=m
+#@ step "At $V_1$, $20/3+8/3=28/3$ mA enters the voltage source and climbs to $V_0$. Source power 112 mW plus pump power $16/3$ mW equals resistor power $352/3$ mW." show=eV1
+#@ note "Ground remains 0 V. $V_1$ is below it; the source raises $V_1$ by 12 V to reach $V_0$. The 4 mA pump connects ground to $V_2$ only. Dashed height guides are not circuit wires."
+```
+
+1. **Start with what is fixed; keep the original ground.** The bottom wire is 0 V. The 12 V source has − at $V_1$ and + at $V_0$, so the right node must be 12 V higher than the left. This gives their separation, not either height above ground. The middle node is still unknown.
+
+   $$V_0=V_1+12\,\mathrm{V}$$
+2. **Make a trial height sketch.** Draw $V_0$ 12 V above $V_1$. You may provisionally put both above ground. Mark $V_2$ unknown; its position is not needed to find $V_0$. Keep the given outer-current arrows downward: $I_1$ through the left 2 kΩ and $I_5$ through the right 1 kΩ. A negative result will tell us to reverse an assumed flow and correct the sketch.
+3. **Follow the flow at ground.** The pump takes 4 mA out of ground and sends it into $V_2$. The only other connections to ground are the two outer resistors. With both reference arrows toward ground, their signed currents must add to 4 mA. Everything between the three upper nodes only redistributes that current internally.
+
+   $$I_1+I_5=4\qquad\Longrightarrow\qquad I_5=4-I_1\quad(\mathrm{mA})$$
+4. **Walk to $V_0$ by the left side.** Start at ground. Walk upward through the left 2 kΩ, against the assumed downward $I_1$: the signed climb is $2I_1$ V. Then cross the source from − to + and climb another 12 V. You arrive at $V_0$. Use mA × kΩ = V.
+
+   $$V_0=2I_1+12$$
+5. **Walk to the SAME $V_0$ by the right side.** Start at the same ground and walk upward through the right 1 kΩ, against $I_5$. Its signed climb is $1I_5=1(4-I_1)$ V. Both walks must land at the same height.
+
+   $$\underbrace{2I_1+12}_{\text{left resistor, then source}}=\underbrace{1(4-I_1)}_{\text{right resistor}}$$
+6. **Solve, then correct the trial sketch.** The negative $I_1$ means the left resistor actually carries $8/3$ mA from ground down to $V_1$. That makes $V_1$ negative. The current sign tells us how to fix the drawing; we did not need the correct order in advance.
+
+   $$\begin{aligned}2I_1+12&=4-I_1\\3I_1&=-8\\I_1&=-\frac83\,\mathrm{mA}\end{aligned}$$
+7. **Place the left level, then take the fixed staircase.** Follow the actual current from ground down the left 2 kΩ: fall $2(8/3)=16/3$ V, putting $V_1$ below 0. From there the source lifts you exactly 12 V to $V_0$.
+
+   $$V_1=0-2\left(\frac83\right)=-\frac{16}{3}\,\mathrm{V},\qquad\boxed{V_0=-\frac{16}{3}+12=\frac{20}{3}\,\mathrm{V}\approx6.67\,\mathrm{V}}$$
+8. **Check the right-hand walk.** The right resistor carries $I_5=4-(-8/3)=20/3$ mA downward. Its fall to ground is $1(20/3)=20/3$ V, so it agrees with the same $V_0$. The ground balance is signed: $-8/3+20/3=4$ mA.
+
+   $$V_0=1\left(\frac{20}{3}\right)=\frac{20}{3}\,\mathrm{V}$$
+9. **Optional: finish placing $V_2$ for the complete height view.** The output is already found. To place the middle node, choose $j$ mA from $V_0$ down to $V_2$ through the upper 2 kΩ. The pump adds 4 mA there, so $j+4$ continues through 1 kΩ toward $V_1$. The two resistor falls together span the source’s fixed 12 V. Their currents differ because the pump joins at the middle.
+
+   $$2j+1(j+4)=12\quad\Rightarrow\quad j=\frac83\,\mathrm{mA}$$
+10. **Walk down to the middle level.** Start at $V_0=20/3$ V and fall $2(8/3)=16/3$ V to reach $V_2=4/3$ V. Then fall another $1(8/3+4)=20/3$ V to reach $V_1=-16/3$ V. The solved order is $V_0>V_2>0>V_1$. Both original horizontal resistor reference arrows therefore point opposite their actual currents.
+
+   $$V_2=\frac{20}{3}-2\left(\frac83\right)=\frac43\,\mathrm{V}$$
+11. **Power check.** At the left node, $20/3$ mA from the middle joins $8/3$ mA from ground, so $28/3$ mA crosses the source toward $V_0$. The source supplies 112 mW; the pump supplies $16/3$ mW. The resistor falls absorb the same total.
+
+   $$112+\frac{16}{3}=\frac{128}{9}+\frac{400}{9}+\frac{128}{9}+\frac{400}{9}=\frac{352}{3}\,\mathrm{mW}$$
+
+**Answer:** $V_0=20/3\,\mathrm{V}\approx6.67\,\mathrm{V}$. The trial yields $I_1=-8/3\,\mathrm{mA}$, putting $V_1=-16/3\,\mathrm{V}$ below the original ground. Completing the middle level gives $V_2=4/3\,\mathrm{V}$.
+
+> **Tip:** **You do not need the final height order to start.** The voltage source fixes $V_0$ exactly 12 V above $V_1$. Everything else starts as a trial. Keep the reference arrows, write signed climbs and falls, and let a negative current correct the sketch. Here $V_2$ can stay unknown until after $V_0$ is found.
+
 ## Cheat sheet
 
 | Idea | In heights | Write |

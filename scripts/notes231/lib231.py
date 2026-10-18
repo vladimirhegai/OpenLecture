@@ -47,6 +47,23 @@ def S(explanation, latex=''):
     return {"explanation": explanation, "latex": latex}
 
 
+def flow(src, *lines):
+    """Make a schematic live (animated current, clickable switches): appends `#~ flow` plus any extra `#~` lines,
+    e.g. flow(src, 'init C1 2'). Values come from the labels; see skills/schematic.md "Current flow"."""
+    return src.rstrip('\n') + '\n#~ flow' + ''.join('\n#~ ' + line for line in lines)
+
+
+def steps_fence(title, steps):
+    """A ```steps fence as text, for D.STEPS or for a solution / step explanation: steps = [(latex, note), ...]."""
+    out = ['```steps', f'title "{title}"'] if title else ['```steps']
+    for latex, note in steps:
+        assert '$$' not in latex and '\n' not in note, 'stepper latex/note: no $$ or newlines'
+        out.append(f'$$ {latex} $$')
+        if note:
+            out.append(note)
+    return '\n'.join(out + ['```'])
+
+
 class Doc:
     def __init__(self, week, title, topic_keys):
         self.week, self.title, self.topic_keys = week, title, topic_keys
@@ -118,6 +135,20 @@ class Doc:
         self._add({"type": "paragraph", "text": f'![{caption}]({url})\n\n*{caption}*', "citations": list(cites)},
                   'f' + url)
 
+    def STEPS(self, title, steps, intro=''):
+        """An equation stepper (```steps fence): steps = [(latex, note), ...]. Use \\hl{...} on what changed."""
+        self._add({"type": "paragraph", "text": (intro + '\n\n' if intro else '') + steps_fence(title, steps),
+                   "citations": []}, 'st' + title)
+
+    def GRAPH(self, source, intro='', kind='graph'):
+        """An interactive plot (```graph or ```graph3d fence); grammar in src/open_lecture/skills/math-tools.md."""
+        body = '\n'.join(l.strip() for l in source.strip().splitlines())
+        self._add({"type": "paragraph", "text": (intro + '\n\n' if intro else '') + f'```{kind}\n{body}\n```',
+                   "citations": []}, 'g' + body[:60])
+
+    def GRAPH3D(self, source, intro=''):
+        self.GRAPH(source, intro, kind='graph3d')
+
     def CHART(self, caption, order=1, a=0.0, b=0.0, forcing=0.0, y0=0.0, dy0=0.0, duration=1.0, samples=201):
         """A computed plot of y(t). order 1: y' = a*y + forcing. order 2: y'' = a*y' + b*y + forcing."""
         params = {"order": order, "a": a, "forcing": forcing, "y0": y0, "duration": duration, "samples": samples}
@@ -139,6 +170,9 @@ class Doc:
                 b['latex'] = _wrap(b['latex'])
             for st in b.get('steps', []):
                 st['latex'] = _wrap(st.get('latex', ''))
+        for b in self.B:
+            for st in b.get('steps', []):
+                assert st['explanation'].strip(), f"empty step explanation in {b.get('title')} (the server rejects it)"
         ids = [b['id'] for b in self.B]
         assert len(ids) == len(set(ids)), 'duplicate block ids'
         for b in self.B:

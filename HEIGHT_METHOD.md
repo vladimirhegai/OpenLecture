@@ -40,12 +40,14 @@ KVL and KCL become things you can see:
 
 ## 3. The recipe (every walkthrough uses this order)
 
-1. **Pick ground.** Usually that is the − end of the main source, or the lowest node. **Ground the lowest node so the picture never hangs below ground.** The first step of every walkthrough names ground.
+1. **Keep the given ground.** The first step of every walkthrough names ground. Preserve the original circuit's 0 V reference and draw negative voltages below it; the owner explicitly prefers this to shifting ground to the lowest node.
 2. **Place the fixed heights.** Step across each voltage source from a known height.
 3. **Find currents.** A current source fixes its current, never its step. A resistor carries fall ÷ R, downhill. Use KCL where branches meet.
 4. **Place the rest.** Walk down each resistor by iR in the current's direction.
-5. **If heights depend on each other** (two or more unknown nodes), name them, write in = out (KCL) at each, and solve. The picture sets up and checks the algebra; it does not replace it.
+5. **Use the picture to simplify the unknowns.** Follow fixed source currents, combine parallel slides, and express branch flows with one unknown current when possible. Turn the flows into falls with iR, then walk two paths to the same node and equate their total falls. This is the preferred Week 1–2 teaching style. If that does not simplify a coupled circuit, name the unknown heights and write in = out at each.
 6. **Answer and check.** Each node must have one height (KVL), the currents must balance at every node (KCL), and the climbs must equal the falls (power).
+
+**Starting the drawing:** distinguish a trial sketch from the solved height view. Place voltage-source separations first; leave other heights unknown. Choose provisional resistor-current arrows and use signed iR steps. A negative current reverses the guessed flow and corrects the level order. When teaching how to draw the view, show an explicitly illustrative trial tab before the solved tab rather than requiring the final order in advance.
 
 ### Worked example
 
@@ -90,11 +92,11 @@ Height views are `#@` comment lines at the end of a ```` ```schematic ```` block
 ## 6. House rules (owner's preferences)
 
 - **Full loop** view is the default, and the owner prefers it ("full circle loop, not line"). Weeks 4–5 use `#@ straight off` on every view. Straight line (river/rail) is optional.
-- **Ground at the bottom.** Never draw nodes below ground. Ground the lowest node and say so in step 1.
+- **Keep the original ground.** Draw negative levels below 0 V. Do not shift the reference merely to make all heights positive.
 - **Every circuit gets a height view**, and every problem or example with a circuit gets a step walkthrough in the recipe order. The first step names ground ("Ground the bottom wire." / "Same ground (…)." on later tabs).
 - **Words:** a resistor **falls** ("falls 8 V", "no fall"). A source **steps**. An open switch **takes all of** the step. A wire or ammeter has **no step**. Current **climbs** (delivers) or **falls** (absorbs). Don't say "drop".
 - **Tabs for cases:** before/after, switch positions, loads. For Thévenin use Open / Short / "Sources off, push 1 A". For superposition use "X alone" + "add". Keep node names the same across tabs.
-- The owner is a visual, example-driven learner. Weave heights into each topic rather than making a separate "height workout" topic. Prefer many circuits, examples and practice over prose. See the memory notes on study-note style.
+- The owner is a visual, example-driven learner. Use the height picture to find the solution: known flows → branch splits → iR falls → matching endpoints → read the heights. Follow the worked examples in Weeks 1–2. Weave heights into each topic rather than making a separate "height workout" topic. Prefer many circuits, examples and practice over prose. See the memory notes on study-note style.
 
 ## 7. Pipeline
 

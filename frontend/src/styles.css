@@ -40,6 +40,14 @@
   --sidebar: 256px;
   --chat: 392px;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  /* Plot series colors for the math tools (```graph / ```graph3d), distinct in both themes. */
+  --plot-1: #2f62c9;
+  --plot-2: #d9480f;
+  --plot-3: #2b8a3e;
+  --plot-4: #9c36b5;
+  --plot-5: #0c8599;
+  --plot-6: #c2255c;
+  --hl: rgb(255 179 71 / 0.38);
 }
 
 :root[data-theme="dark"] {
@@ -70,6 +78,13 @@
   --heading-4: #e3b866;
   --shadow-pop: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px rgb(0 0 0 / 0.4);
   --focus: 0 0 0 2px var(--paper), 0 0 0 4px rgb(157 180 240 / 0.6);
+  --plot-1: #7ea6ff;
+  --plot-2: #ff9a5c;
+  --plot-3: #69db7c;
+  --plot-4: #da77f2;
+  --plot-5: #3bc9db;
+  --plot-6: #f783ac;
+  --hl: rgb(255 179 71 / 0.28);
 }
 
 *,
@@ -818,6 +833,17 @@ kbd {
   margin-top: 0.3em;
 }
 
+/* A paragraph after a list starts a new idea: give it the same gap as between paragraphs. */
+.sheet ul + p,
+.sheet ol + p {
+  margin-top: 0.8em;
+}
+
+.sheet p + ul,
+.sheet p + ol {
+  margin-top: 0.25em;
+}
+
 .sheet li::marker {
   color: var(--ink-3);
 }
@@ -938,17 +964,17 @@ kbd {
   counter-reset: step;
 }
 
-.steps li {
+.steps > li {
   position: relative;
   padding-left: 2.2em;
   counter-increment: step;
 }
 
-.steps li + li {
+.steps > li + li {
   margin-top: 0.8em !important;
 }
 
-.steps li::before {
+.steps > li::before {
   content: counter(step);
   position: absolute;
   top: 0.15em;
@@ -2944,4 +2970,592 @@ kbd {
   .palette-input input {
     font-size: 16px;
   }
+}
+
+/* ---------- Math tools: ```steps, ```graph, ```graph3d fences ---------- */
+
+.mt-card {
+  margin: 4px 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--raised);
+  padding: 10px 14px 12px;
+}
+
+.mt-card:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+.mt-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 26px;
+  margin-bottom: 4px;
+}
+
+.mt-title {
+  flex: 1;
+  font: 600 13.5px/1.35 var(--sans);
+  color: var(--ink);
+}
+
+.mt-muted {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.mt-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.mt-icon:hover {
+  background: var(--hover);
+}
+
+.mt-icon.active {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  border-color: transparent;
+}
+
+.mt-eq {
+  overflow-x: auto;
+  overflow-y: hidden;
+  text-align: center;
+}
+
+.mt-eq .katex-display {
+  margin: 0.35em 0;
+}
+
+.mt-stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto;
+  min-width: 0;
+}
+
+.mt-step {
+  display: contents;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.mt-step.mt-active {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.mt-stage > .mt-step > .mt-prev {
+  grid-area: 1 / 1;
+  align-self: center;
+}
+
+.mt-stage > .mt-step > .mt-arrow {
+  grid-area: 2 / 1;
+}
+
+.mt-stage > .mt-step > .mt-current {
+  grid-area: 3 / 1;
+  align-self: center;
+}
+
+.mt-stage > .mt-step > .mt-note {
+  grid-area: 4 / 1;
+  align-self: start;
+  min-width: 0;
+}
+
+.mt-prev {
+  opacity: 0.45;
+  font-size: 0.9em;
+}
+
+.mt-arrow {
+  text-align: center;
+  color: var(--ink-3);
+  line-height: 1;
+  font-size: 15px;
+}
+
+.mt-current {
+  font-size: 1.08em;
+}
+
+.mt-note {
+  min-height: 1.5em;
+  margin: 2px 2px 8px;
+  padding-left: 10px;
+  border-left: 3px solid var(--accent-soft);
+  color: var(--ink-2);
+  font-size: 14.5px;
+}
+
+.mt-note p {
+  margin: 0;
+}
+
+.mt-hl {
+  background: var(--hl);
+  border-radius: 4px;
+  padding: 1px 2px;
+  margin: -1px -2px;
+}
+
+.mt-fade {
+  animation: mt-fade 0.28s var(--ease);
+}
+
+@keyframes mt-fade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+.mt-nav {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr) 84px;
+  align-items: center;
+  gap: 10px;
+}
+
+.mt-nav > .mt-btn {
+  width: 100%;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.mt-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 13.5px var(--sans);
+  cursor: pointer;
+}
+
+.mt-btn:hover:not(:disabled) {
+  background: var(--hover);
+}
+
+.mt-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.mt-btn.mt-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.mt-btn.mt-primary:hover {
+  filter: brightness(1.08);
+  background: var(--accent);
+}
+
+.mt-dots {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mt-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--line-strong);
+  cursor: pointer;
+}
+
+.mt-dot.done {
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1.5px var(--accent);
+}
+
+.mt-dot.on {
+  background: var(--accent);
+  transform: scale(1.25);
+}
+
+.mt-all {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.mt-all li + li {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+
+.mt-all .mt-note {
+  margin-bottom: 2px;
+}
+
+.mt-plot {
+  position: relative;
+  user-select: none;
+}
+
+.mt-plot svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+}
+
+.mt-grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.mt-axis {
+  stroke: var(--ink-3);
+  stroke-width: 1.3;
+}
+
+.mt-tick {
+  fill: var(--ink-3);
+  font: 11px var(--sans);
+}
+
+.mt-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.mt-label {
+  position: absolute;
+  transform: translate(0, -100%);
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-shadow: 0 0 3px var(--raised), 0 0 3px var(--raised);
+}
+
+.mt-axis-name {
+  transform: translate(-50%, -50%);
+  font-weight: 500;
+}
+
+.mt-axis-label {
+  position: absolute;
+  font-size: 13px;
+  color: var(--ink-2);
+  transform: translateY(-100%);
+}
+
+.mt-axis-label.mt-xl {
+  right: 18px;
+}
+
+.mt-axis-label.mt-yl {
+  transform: none;
+}
+
+.mt-cursor {
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  padding: 1px 6px;
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  color: var(--ink-3);
+  font: 11px var(--mono);
+  pointer-events: none;
+}
+
+.mt-drag {
+  cursor: grab;
+}
+
+.dragging .mt-drag {
+  cursor: grabbing;
+}
+
+.mt-drag-hit {
+  fill: transparent;
+}
+
+.mt-drag-dot {
+  stroke: var(--paper);
+  stroke-width: 2;
+}
+
+.mt-legend,
+.mt-readouts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 6px;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.mt-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mt-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 0;
+  border-top: 2.5px solid currentColor;
+}
+
+.mt-swatch.dash {
+  border-top-style: dashed;
+}
+
+.mt-swatch.fill {
+  height: 10px;
+  border: none;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.4;
+}
+
+.mt-swatch-surface {
+  background: linear-gradient(90deg, hsl(225 62% 50%), hsl(127 62% 50%), hsl(30 62% 55%));
+  opacity: 1;
+}
+
+.mt-readout {
+  padding: 2px 8px;
+  border-radius: var(--r-sm);
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.mt-readout b {
+  font: 600 13px var(--mono);
+}
+
+.mt-sliders {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.mt-slider {
+  display: grid;
+  grid-template-columns: minmax(48px, auto) 1fr 52px 26px;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.mt-slider input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+.mt-slider-value {
+  font: 12.5px var(--mono);
+  color: var(--ink-2);
+  text-align: right;
+}
+
+.mt-hint {
+  margin-top: 4px;
+  color: var(--ink-3);
+  font-size: 12px;
+}
+
+.mt-card figcaption {
+  margin-top: 6px;
+  color: var(--ink-3);
+  font: 13px/1.4 var(--sans);
+}
+
+.mt3-svg {
+  cursor: grab;
+}
+
+.mt3-svg:active {
+  cursor: grabbing;
+}
+
+.mt3-floor {
+  fill: var(--hover);
+  stroke: var(--line-strong);
+}
+
+.mt3-plane {
+  fill: var(--plot-2);
+  fill-opacity: 0.13;
+  stroke: var(--plot-2);
+  stroke-opacity: 0.12;
+}
+
+.mt-error figcaption {
+  color: var(--danger);
+  margin: 0 0 6px;
+}
+
+.mt-error pre {
+  margin: 0;
+  font-size: 12px;
+  overflow-x: auto;
+}
+
+.mt-prev .mt-hl {
+  background: none;
+}
+
+.mt-swatch.dot {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Bullets inside a solution step are ordinary bullets, not extra numbered steps. */
+.steps li ul,
+.steps li ol {
+  list-style: disc;
+  padding-left: 1.3em !important;
+  margin: 0.3em 0 0;
+}
+
+/* ---------- Current flow over a schematic (#~ lines) ---------- */
+
+.flow-stage {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.flow-stage img {
+  display: block;
+}
+
+.flow-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.flow-dots {
+  stroke: var(--plot-2);
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+.flow-switch {
+  cursor: pointer;
+}
+
+.flow-switch line {
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+.flow-switch circle {
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}
+
+.flow-switch .flow-hit {
+  fill: transparent;
+}
+
+.flow-switch:hover line {
+  stroke: var(--accent);
+  stroke-width: 2.2;
+}
+
+.flow-panel {
+  margin: 8px auto 0;
+  max-width: 560px;
+  text-align: left;
+}
+
+.flow-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.flow-time {
+  color: var(--ink-3);
+  font: 12.5px var(--mono);
+}
+
+.flow-scope {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--raised);
+}
+
+.flow-event {
+  stroke: var(--ink-3);
+  stroke-dasharray: 4 4;
+}
+
+.flow-error {
+  color: var(--danger) !important;
+}
+
+.flow-warn {
+  border-left: 3px solid var(--danger);
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+}
+
+.flow-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.flow-labels > span {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 17px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* Running numbers: fixed width, right-aligned, equal-width digits, so nothing around them moves. */
+.flow-num {
+  display: inline-block;
+  min-width: 8.5ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }

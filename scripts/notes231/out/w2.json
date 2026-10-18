@@ -1,5 +1,5 @@
 {
- "title": "Week 2: Classifying ODEs, Initial Value Problems and First-Order RC/RL Circuits",
+ "title": "Week 2: Classifying ODEs, Initial Value Problems and RC/RL Circuits",
  "week": 2,
  "topic_keys": [
   "ode_classification",
@@ -8,42 +8,26 @@
  ],
  "blocks": [
   {
-   "type": "callout",
-   "tone": "info",
-   "text": "**Week 2 in one sentence:** a differential equation is an equation for an unknown *function*; we learn to name its type, to check a proposed solution, to pin down one solution with an initial condition, and to write and solve the first-order equations that RC and RL circuits produce.\n\n**By the end you can:**\n- classify an ODE: order, linear or nonlinear, homogeneous, constant-coefficient, autonomous;\n- check whether a function solves an ODE by substituting it back, and solve an initial value problem for the constant;\n- use $i=C\\dfrac{dv}{dt}$ and $v=L\\dfrac{di}{dt}$, and find $v_C$ and $i_L$ just before and just after a switch moves;\n- write the ODE of an RC or RL circuit and solve it: natural response $x_0e^{-t/\\tau}$ and step response $x_f+(x_0-x_f)e^{-t/\\tau}$.",
-   "citations": [],
-   "id": "4fd14bbd-7ddd-5edb-9bd3-43c409a79948"
-  },
-  {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**What you need from earlier weeks**\n\n- Week 1 RL natural response: an inductor current that starts at $I_s$ and flows through a resistor decays as $i(t)=I_s e^{-t/\\tau}$ with $\\tau=L/R$. This week the capacitor does the same thing with $\\tau=RC$.\n- The number $e\\approx 2.718$ and the exponential $e^{x}$: $e^{0}=1$, $e^{-1}\\approx 0.37$, and $e^{-x}\\to 0$ as $x\\to\\infty$.\n- Kirchhoff’s laws: KVL (the voltages around any closed loop add to zero) and KCL (the currents leaving any node add to zero).",
-   "citations": [],
-   "id": "d8ff798f-20fd-5462-ba14-5a8073de09a2"
-  },
-  {
    "type": "heading",
    "level": 1,
-   "text": "Topic 1: What a differential equation is",
-   "citations": [],
-   "id": "d8f4538a-6e9a-547b-8a26-416f20cc7591"
+   "text": "Topic 1: Classifying a differential equation",
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
+    }
+   ],
+   "id": "631bdd16-256b-5bcf-a776-e9639f3e2b21"
   },
   {
    "type": "paragraph",
-   "text": "A **differential equation** is an equation whose unknown is a *function*, say $y(t)$, and which involves its derivatives $\\dfrac{dy}{dt}$, $\\dfrac{d^2y}{dt^2}$, and so on. It does not ask \"which number?\" but \"which curve?\". Circuits give us these equations because capacitors and inductors relate a voltage to the *rate of change* of a current (or the reverse). Before solving anything we **classify** the equation, the same way you would look at an algebra equation and say \"this one is quadratic\": the type tells you which method works. Shorthand used in quick drills: $y'$ means $\\dfrac{dy}{dt}$ and $y''$ means $\\dfrac{d^2y}{dt^2}$; $y^{(n)}$ means the $n$-th derivative.",
-   "citations": [],
-   "id": "71adba79-420d-5233-a34e-35f5aff4e511"
-  },
-  {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**The method: classifying an ODE**\n\n1. Name the **dependent variable** (the unknown function, e.g. $y$, $i$, $v$) and the **independent variable** (here always time $t$). Only one independent variable means it is an *ordinary* differential equation (ODE).\n2. **Order** = the highest derivative of the unknown that appears.\n3. **Linear?** Go term by term: the unknown and its derivatives may only appear on their own, to the first power, multiplied by a number or a function of $t$. Any $y^2$, $y\\,\\dfrac{dy}{dt}$, $\\sin y$, $e^{y}$, $\\dfrac1y$ makes it **nonlinear**.\n4. If linear, move every term with the unknown to the left; whatever is left on the right is $f(t)$. **Homogeneous** means $f(t)=0$. **Constant-coefficient** means every number multiplying the unknown or a derivative is a constant.\n5. **Autonomous?** Cover up every $y(t)$ and its derivatives: if no $t$ is left anywhere, the equation is autonomous.",
-   "citations": [],
-   "id": "953f153b-c4c0-5328-8faf-abc37f953fe8"
-  },
-  {
-   "type": "paragraph",
-   "text": "The lecture’s definition of a **linear** ODE of order $n$ is any equation that can be written in the form below. The $a_k(t)$ are the **coefficients** (they may depend on $t$ but never on $y$), and $f(t)$ is the **forcing** (the input, such as a source; it depends on $t$ only).",
+   "text": "A **differential equation** is an equation for an unknown *function* that involves its derivatives.\n\nIt is **ordinary** (an ODE) when the derivatives are taken with respect to one variable only.\n- $t$: the **independent variable** (here, time)\n- $i(t)$: the **dependent variable** (the unknown, such as a current)\n\nWeek 1's $\\dfrac{di}{dt}+\\dfrac{R}{L}i=0$ is an ODE.\n\nAn ODE is **linear** if it can be written as",
    "citations": [
     {
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
@@ -51,11 +35,11 @@
      "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
     }
    ],
-   "id": "91e2f525-77ac-5021-8403-3a2c8d2cdffb"
+   "id": "a92e9d47-87b3-5792-8698-fab1a319113e"
   },
   {
    "type": "equation",
-   "latex": "\\begin{aligned}&a_n(t)\\dfrac{d^ny}{dt^n}+\\dots+a_1(t)\\dfrac{dy}{dt}\\\\&\\qquad+a_0(t)\\,y=f(t)\\end{aligned}",
+   "latex": "a_n(t)\\dfrac{d^ny}{dt^n}+\\dots+a_1(t)\\dfrac{dy}{dt}+a_0(t)\\,y=f(t)",
    "display": true,
    "citations": [
     {
@@ -64,19 +48,48 @@
      "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
     }
    ],
-   "id": "601bfa8c-9f12-5fec-9c1c-b8ff9e6bc130"
+   "id": "7443ce9d-ebba-51a2-9243-c7f3e0079983"
   },
   {
-   "type": "list",
-   "items": [
-    "**Ordinary:** derivatives are taken with respect to only one independent variable (time $t$). (An equation with $\\partial u/\\partial t$ and $\\partial u/\\partial x$ would be a *partial* differential equation, not in this course.)",
-    "**Order:** the highest derivative of the dependent variable. $\\dfrac{di}{dt}+\\dfrac{R}{L}i=0$ is first order; the series RLC equation $\\dfrac{d^2i}{dt^2}+\\dfrac{R}{L}\\dfrac{di}{dt}+\\dfrac{i}{LC}=0$ is second order.",
-    "**Linear:** fits the form above. Useful consequence (from the lecture): if $y(t)$ solves it with input $f(t)$, then $A\\,y(t)$ solves it with input $A\\,f(t)$. Double the source, double the response.",
-    "**Homogeneous** (linear equations only): $f(t)\\equiv 0$, where $\\equiv$ means \"equal to zero for every $t$\". In a circuit this is the *natural response*: no source is driving it.",
-    "**Constant-coefficient** (linear equations only): $a_0,a_1,\\dots,a_n$ are all constants, like $R$, $L$, $C$.",
-    "**Autonomous:** the equation does not depend on $t$ except through $y(t)$; the rule does not change with time."
+   "type": "paragraph",
+   "text": "In this form:\n- $a_k(t)$: the **coefficients** (may depend on $t$, never on $y$)\n- $f(t)$: the **forcing** (the input, a source)\n\nLinear means scaling works: if $y$ solves it with forcing $f$, then $A\\,y$ solves it with forcing $A\\,f$. Double the source, double the response.",
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
+    }
    ],
-   "ordered": false,
+   "id": "1898c1e7-36b8-5007-b231-173fc3091b4c"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Label",
+    "Test"
+   ],
+   "rows": [
+    [
+     "**Order**",
+     "The highest derivative of the unknown. $\\dfrac{di}{dt}+\\dfrac{R}{L}i=0$ is 1st order; the RLC equation $\\dfrac{d^2i}{dt^2}+\\dfrac{R}{L}\\dfrac{di}{dt}+\\dfrac{i}{LC}=0$ is 2nd order."
+    ],
+    [
+     "**Linear**",
+     "Fits the form above: $y$ and its derivatives appear alone, to the first power. Any $y^2$, $y\\dfrac{dy}{dt}$, $\\sin y$, $e^{y}$, $\\dfrac1y$ makes it **nonlinear**."
+    ],
+    [
+     "**Homogeneous**",
+     "Linear, and $f(t)\\equiv0$ (\"zero for every $t$\") once every $y$-term is on the left."
+    ],
+    [
+     "**Constant-coefficient**",
+     "Linear, and every $a_k$ is a constant (like $R$, $L$, $C$)."
+    ],
+    [
+     "**Autonomous**",
+     "No $t$ anywhere except inside $y(t)$: the equation does not change with time."
+    ]
+   ],
    "citations": [
     {
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
@@ -89,109 +102,31 @@
      "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
     }
    ],
-   "id": "e183eefd-3407-5587-9c95-f398f1f90817"
-  },
-  {
-   "type": "table",
-   "columns": [
-    "Term in the equation",
-    "Linear?",
-    "Why"
-   ],
-   "rows": [
-    [
-     "$5y$, $\\;3\\dfrac{dy}{dt}$",
-     "Yes",
-     "the unknown to the first power times a constant"
-    ],
-    [
-     "$t^2\\dfrac{d^2y}{dt^2}$, $\\;e^{t}y$, $\\;(\\sin t)\\,y$",
-     "Yes",
-     "the coefficient may be any function of $t$"
-    ],
-    [
-     "$\\sin t$, $\\;e^{-t}$, $\\;10$ (alone)",
-     "Yes",
-     "no $y$ at all: this is forcing $f(t)$, it only makes the equation nonhomogeneous"
-    ],
-    [
-     "$y^2$, $\\;y^3$, $\\;\\sqrt{y}$, $\\;\\dfrac{1}{y}$",
-     "No",
-     "the unknown is raised to a power other than 1"
-    ],
-    [
-     "$y\\dfrac{dy}{dt}$, $\\;\\left(\\dfrac{dy}{dt}\\right)^2$",
-     "No",
-     "the unknown (or its derivative) is multiplied by itself"
-    ],
-    [
-     "$\\sin y$, $\\;e^{y}$, $\\;\\ln y$",
-     "No",
-     "the unknown sits inside a function"
-    ]
-   ],
-   "citations": [],
-   "id": "a1cbe199-179b-5485-b6e7-802fbb3e8951"
+   "id": "171f0386-14ad-5d2b-928d-283e025838ea"
   },
   {
    "type": "worked_example",
-   "title": "Example 1 · Classify the RL natural-response equation",
-   "prompt": "Classify $\\dfrac{di}{dt}+\\dfrac{R}{L}\\,i=0$, the Week 1 equation for the current $i(t)$ in an inductor $L$ discharging through a resistor $R$.",
+   "title": "Example 1 · Functions of t are allowed (lecture Example 2.1)",
+   "prompt": "Is $t^3\\dfrac{d^2y}{dt^2}+e^{t}\\dfrac{dy}{dt}+y=0$ linear? Classify it fully.",
    "steps": [
     {
-     "explanation": "Name the variables: the unknown function is the current $i(t)$, the dependent variable, and it depends only on time $t$, the independent variable. One independent variable, so this is an ODE.",
-     "latex": "i=i(t)"
-    },
-    {
-     "explanation": "Find the order: the highest derivative of $i$ that appears is the first derivative, so the equation is first order.",
-     "latex": "\\text{highest derivative: } \\dfrac{di}{dt}\\;\\Rightarrow\\;\\text{order }1"
-    },
-    {
-     "explanation": "Test linearity term by term: $\\dfrac{di}{dt}$ appears alone and $i$ appears to the first power times the constant $R/L$, so it matches the linear form with $a_1=1$, $a_0=R/L$.",
-     "latex": "1\\cdot\\dfrac{di}{dt}+\\dfrac{R}{L}\\,i=0"
-    },
-    {
-     "explanation": "Look at the right side: $f(t)=0$, so the equation is homogeneous (no source drives the circuit).",
-     "latex": "f(t)=0"
-    },
-    {
-     "explanation": "The coefficients $1$ and $R/L$ are fixed component values, so it has constant coefficients; and no $t$ appears outside $i(t)$, so it is autonomous.",
-     "latex": "a_1=1,\\quad a_0=\\dfrac{R}{L}\\ \\text{(constants)}"
-    }
-   ],
-   "answer": "First-order, linear, homogeneous, constant-coefficient, autonomous ODE.",
-   "citations": [
-    {
-     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
-     "version": 1,
-     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
-    }
-   ],
-   "id": "1a1cc941-ba79-5e43-8e5a-a80f22ae9d44"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 2 · Is it linear? (lecture Example 2.1)",
-   "prompt": "Is $t^3\\dfrac{d^2y}{dt^2}+e^{t}\\dfrac{dy}{dt}+y=0$ a linear ODE? Give its full classification.",
-   "steps": [
-    {
-     "explanation": "Find the order: the highest derivative of $y$ is the second derivative.",
+     "explanation": "The highest derivative is $\\dfrac{d^2y}{dt^2}$.",
      "latex": "\\text{order }2"
     },
     {
-     "explanation": "Test each term for linearity: $\\dfrac{d^2y}{dt^2}$, $\\dfrac{dy}{dt}$ and $y$ each appear on their own, to the first power. The multipliers $t^3$ and $e^{t}$ depend on $t$ only, which the linear form allows.",
+     "explanation": "$y$ and its derivatives each appear alone, to the first power. $t^3$ and $e^{t}$ are functions of $t$ only: the linear form allows that.",
      "latex": "a_2(t)=t^3,\\quad a_1(t)=e^{t},\\quad a_0=1"
     },
     {
-     "explanation": "Read off the right side: $f(t)=0$, so the equation is homogeneous.",
-     "latex": "f(t)=0"
+     "explanation": "Nothing is left on the right.",
+     "latex": "f(t)=0\\ \\Rightarrow\\ \\text{homogeneous}"
     },
     {
-     "explanation": "Check the coefficients: $t^3$ and $e^{t}$ change with time, so this is **not** constant-coefficient; for the same reason $t$ appears outside $y$, so it is **not** autonomous.",
-     "latex": ""
+     "explanation": "But $t^3$ and $e^{t}$ change with time, so it is neither constant-coefficient nor autonomous.",
+     "latex": "\\text{variable coefficients, not autonomous}"
     }
    ],
-   "answer": "Yes, it is linear: second-order, linear, homogeneous, with variable (non-constant) coefficients, not autonomous. Linearity only cares how $y$ appears, not how $t$ appears.",
+   "answer": "Yes, linear: second-order, linear, homogeneous, variable-coefficient, not autonomous.\n\nLinearity only cares how $y$ appears, not how $t$ appears.",
    "citations": [
     {
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
@@ -199,454 +134,247 @@
      "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
     }
    ],
-   "id": "3e7416b0-9e0f-593d-a5bd-04a7cea75486"
+   "id": "f2620c71-ddca-5d3c-a5c1-83f4368412aa"
   },
   {
    "type": "worked_example",
-   "title": "Example 3 · Classify six equations",
-   "prompt": "Classify each ODE (order; linear or nonlinear; if linear, homogeneous or not and constant-coefficient or not; autonomous or not).\n\n1. $\\dfrac{dy}{dt}=3y+2$\n2. $\\dfrac{d^2y}{dt^2}+t\\,y=0$\n3. $\\dfrac{dy}{dt}=y^2$\n4. $\\dfrac{d^2y}{dt^2}+y\\dfrac{dy}{dt}=\\sin t$\n5. $t\\dfrac{dy}{dt}+y=t^2$\n6. $\\dfrac{d^3y}{dt^3}+4\\dfrac{dy}{dt}=0$",
+   "title": "Example 2 · Move the y-terms left before judging",
+   "prompt": "Classify $\\dfrac{dy}{dt}=3y$ and $\\dfrac{dy}{dt}=3y+2$.",
    "steps": [
     {
-     "explanation": "Equation 1: first derivative only, so first order. Rewrite it with the unknown on the left: $\\dfrac{dy}{dt}-3y=2$. Linear, $f(t)=2\\neq 0$ so nonhomogeneous, constant coefficients $1$ and $-3$, and no $t$ anywhere so autonomous.",
-     "latex": "\\dfrac{dy}{dt}-3y=2"
+     "explanation": "Put every $y$-term on the left. The first has nothing left over on the right.",
+     "latex": "\\dfrac{dy}{dt}-3y=0\\ \\Rightarrow\\ \\text{homogeneous}"
     },
     {
-     "explanation": "Equation 2: second order. The term $t\\,y$ is $y$ to the first power times a function of $t$, so it is linear and homogeneous; but the coefficient $t$ varies, so it is not constant-coefficient and not autonomous.",
-     "latex": "a_0(t)=t"
+     "explanation": "The second keeps a $2$: that is forcing, so it is not homogeneous.",
+     "latex": "\\dfrac{dy}{dt}-3y=2\\ \\Rightarrow\\ f(t)=2"
     },
     {
-     "explanation": "Equation 3: first order. The term $y^2$ is the unknown squared, so the equation is **nonlinear** (homogeneous and constant-coefficient only apply to linear equations). No $t$ appears, so it is autonomous.",
-     "latex": "y^2\\ \\text{is nonlinear}"
-    },
-    {
-     "explanation": "Equation 4: second order. The product $y\\dfrac{dy}{dt}$ multiplies the unknown by its own derivative, so it is nonlinear. The $\\sin t$ shows $t$ explicitly, so it is not autonomous.",
-     "latex": "y\\dfrac{dy}{dt}\\ \\text{is nonlinear}"
-    },
-    {
-     "explanation": "Equation 5: first order. Both $t\\dfrac{dy}{dt}$ and $y$ are linear terms; $f(t)=t^2\\neq 0$, so nonhomogeneous; the coefficient $t$ varies, so not constant-coefficient and not autonomous.",
-     "latex": "a_1(t)=t,\\ a_0=1,\\ f(t)=t^2"
-    },
-    {
-     "explanation": "Equation 6: the highest derivative is the third, so third order. Every term is linear with constant coefficients and $f=0$, so it is homogeneous and autonomous. (Notice the $y$ term itself is missing; that is allowed, $a_0=0$.)",
-     "latex": "a_3=1,\\ a_2=0,\\ a_1=4,\\ a_0=0"
+     "explanation": "A constant forcing does not change with time, so the second one is still autonomous. Both are first-order, linear, constant-coefficient.",
+     "latex": "\\text{no }t\\text{ anywhere}\\ \\Rightarrow\\ \\text{autonomous}"
     }
    ],
-   "answer": "1. first order, linear, nonhomogeneous, constant-coefficient, autonomous.\n2. second order, linear, homogeneous, variable-coefficient, not autonomous.\n3. first order, nonlinear, autonomous.\n4. second order, nonlinear, not autonomous.\n5. first order, linear, nonhomogeneous, variable-coefficient, not autonomous.\n6. third order, linear, homogeneous, constant-coefficient, autonomous.",
+   "answer": "Both: first-order, linear, constant-coefficient, autonomous.\n- $\\dfrac{dy}{dt}=3y$: homogeneous\n- $\\dfrac{dy}{dt}=3y+2$: not homogeneous",
    "citations": [],
-   "id": "0f1cc0d8-5d0f-5759-91e2-67130c10094c"
+   "id": "ee8a6812-cd61-532f-b1b3-a0c51b8cb1b4"
   },
   {
-   "type": "table",
-   "columns": [
-    "Equation",
-    "Order",
-    "Linear?",
-    "Homogeneous?",
-    "Constant coeff.?",
-    "Autonomous?"
+   "type": "worked_example",
+   "title": "Example 3 · A power is not an order",
+   "prompt": "Classify $\\left(\\dfrac{dy}{dt}\\right)^3+\\sin y=0$.",
+   "steps": [
+    {
+     "explanation": "The cube is a power, not a derivative: the highest derivative is still the first.",
+     "latex": "\\text{order }1"
+    },
+    {
+     "explanation": "$\\left(\\frac{dy}{dt}\\right)^3$ (a derivative cubed) and $\\sin y$ (the unknown inside a function) are both nonlinear.",
+     "latex": "\\text{nonlinear}"
+    },
+    {
+     "explanation": "\"Homogeneous\" and \"constant-coefficient\" only apply to linear equations. No $t$ appears, so it is autonomous.",
+     "latex": "\\text{autonomous}"
+    }
    ],
-   "rows": [
-    [
-     "$\\dfrac{dy}{dt}=3y+2$",
-     "1",
-     "yes",
-     "no",
-     "yes",
-     "yes"
-    ],
-    [
-     "$\\dfrac{d^2y}{dt^2}+t\\,y=0$",
-     "2",
-     "yes",
-     "yes",
-     "no",
-     "no"
-    ],
-    [
-     "$\\dfrac{dy}{dt}=y^2$",
-     "1",
-     "no",
-     "—",
-     "—",
-     "yes"
-    ],
-    [
-     "$\\dfrac{d^2y}{dt^2}+y\\dfrac{dy}{dt}=\\sin t$",
-     "2",
-     "no",
-     "—",
-     "—",
-     "no"
-    ],
-    [
-     "$t\\dfrac{dy}{dt}+y=t^2$",
-     "1",
-     "yes",
-     "no",
-     "no",
-     "no"
-    ],
-    [
-     "$\\dfrac{d^3y}{dt^3}+4\\dfrac{dy}{dt}=0$",
-     "3",
-     "yes",
-     "yes",
-     "yes",
-     "yes"
-    ]
-   ],
+   "answer": "First-order, nonlinear, autonomous.",
    "citations": [],
-   "id": "81116999-9766-5afc-8f74-1704c8e9b0fd"
-  },
-  {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Common mistakes**\n\n- Calling $e^{t}\\dfrac{dy}{dt}+y=0$ nonlinear because of $e^{t}$. Functions of $t$ are allowed; only functions of $y$ ($e^{y}$, $y^2$, $\\sin y$) make it nonlinear.\n- Deciding \"homogeneous\" before moving all $y$-terms to the left. $\\dfrac{dy}{dt}=3y$ is homogeneous ($\\dfrac{dy}{dt}-3y=0$); $\\dfrac{dy}{dt}=3y+2$ is not.\n- Reading the order from the power instead of the derivative: $\\left(\\dfrac{dy}{dt}\\right)^3$ is still first order (it makes the equation nonlinear).",
-   "citations": [],
-   "id": "2a7020fe-1252-566e-ba5c-d3afff091745"
+   "id": "740b58ff-9e38-5185-ac3a-89a6ca6f5acd"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 1 · Order and type",
+   "title": "Try it 1 · Scaling a solution",
    "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Classify $\\dfrac{d^2y}{dt^2}+3\\dfrac{dy}{dt}+2y=e^{-t}$.",
+   "origin": "source",
+   "prompt": "1. $y=t$ solves $\\dfrac{dy}{dt}+y=1+t$. Without solving, find a solution of $\\dfrac{dy}{dt}+y=5+5t$.\n\n2. $y=\\dfrac{1}{1-t}$ solves $\\dfrac{dy}{dt}=y^2$. Is $2y=\\dfrac{2}{1-t}$ also a solution?",
    "solution": "",
    "steps": [
     {
-     "explanation": "The highest derivative is the second, so it is second order.",
-     "latex": "\\text{order }2"
+     "explanation": "The new forcing is $5\\times$ the old one, and the equation is linear, so $5\\times$ the old solution works.",
+     "latex": "y=5t"
     },
     {
-     "explanation": "Each of $\\dfrac{d^2y}{dt^2}$, $\\dfrac{dy}{dt}$, $y$ appears alone to the first power, times the constants 1, 3, 2, so it is linear with constant coefficients.",
-     "latex": "a_2=1,\\ a_1=3,\\ a_0=2"
+     "explanation": "Check: $\\dfrac{d}{dt}(5t)=5$.",
+     "latex": "5+5t=5+5t\\ \\checkmark"
     },
     {
-     "explanation": "The right side $e^{-t}$ has no $y$ in it, so it is the forcing $f(t)$; since it is not zero the equation is nonhomogeneous.",
-     "latex": "f(t)=e^{-t}\\neq 0"
-    },
-    {
-     "explanation": "The forcing contains $t$ explicitly, so the equation is not autonomous.",
-     "latex": ""
+     "explanation": "Part 2: $\\dfrac{d}{dt}(1-t)^{-1}=(1-t)^{-2}$ (chain rule), so doubling $y$ doubles the left side but quadruples $y^2$.",
+     "latex": "\\dfrac{2}{(1-t)^2}\\neq\\dfrac{4}{(1-t)^2}"
     }
    ],
-   "answer": "Second-order, linear, nonhomogeneous, constant-coefficient, not autonomous.",
-   "citations": [],
-   "id": "b4a87b85-5063-57eb-8ef2-d1e0967155f7"
+   "answer": "1. $y=5t$.\n2. No: scaling only works for linear equations, and $y^2$ makes this one nonlinear.",
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
+    }
+   ],
+   "id": "03d599d6-efdd-5f9e-89e9-3b9abca8f314"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 2 · Linear or nonlinear?",
+   "title": "Try it 2 · Circuit equations",
    "difficulty": "introductory",
    "origin": "original",
-   "prompt": "Which of these ODEs are linear? Give the reason for each.\n\n1. $\\dfrac{dy}{dt}+y^3=0$\n2. $\\dfrac{dy}{dt}+t^3y=0$\n3. $y\\dfrac{dy}{dt}=1$\n4. $\\dfrac{d^2y}{dt^2}+\\sin y=0$\n5. $\\dfrac{d^2y}{dt^2}+(\\sin t)\\,y=0$\n6. $\\dfrac{dy}{dt}=e^{y}$",
+   "prompt": "Classify each ($C$, $R$, $I_0$, $\\omega$, $V_T$ are constants):\n\n1. $C\\dfrac{dv}{dt}+\\dfrac{v}{R}=I_0\\cos(\\omega t)$ (an RC circuit driven by an AC source)\n\n2. $C\\dfrac{dv}{dt}+I_0\\big(e^{v/V_T}-1\\big)=0$ (a capacitor discharging through a diode)",
    "solution": "",
    "steps": [
     {
-     "explanation": "Equation 1: **nonlinear**, because $y^3$ is a power of the unknown.",
-     "latex": "\\dfrac{dy}{dt}+y^3=0"
+     "explanation": "1: $v$ and $\\dfrac{dv}{dt}$ appear linearly, times the constants $C$ and $\\dfrac1R$. The forcing $I_0\\cos(\\omega t)$ is not zero and depends on $t$.",
+     "latex": "\\text{constant coefficients, but }t\\text{ in the forcing}"
     },
     {
-     "explanation": "Equation 2: **linear**, because $t^3$ is a coefficient that depends on $t$ only.",
-     "latex": "\\dfrac{dy}{dt}+t^3y=0"
-    },
-    {
-     "explanation": "Equation 3: **nonlinear**, because the unknown multiplies its own derivative.",
-     "latex": "y\\dfrac{dy}{dt}=1"
-    },
-    {
-     "explanation": "Equation 4: **nonlinear**, because the unknown sits inside $\\sin$.",
-     "latex": "\\dfrac{d^2y}{dt^2}+\\sin y=0"
-    },
-    {
-     "explanation": "Equation 5: **linear**, because $\\sin t$ is a coefficient depending on $t$.",
-     "latex": "\\dfrac{d^2y}{dt^2}+(\\sin t)\\,y=0"
-    },
-    {
-     "explanation": "Equation 6: **nonlinear**, because the unknown sits inside the exponential.",
-     "latex": "\\dfrac{dy}{dt}=e^{y}"
+     "explanation": "2: the unknown $v$ sits inside an exponential, so it is nonlinear. No $t$ appears.",
+     "latex": "e^{v/V_T}\\ \\Rightarrow\\ \\text{nonlinear}"
     }
    ],
-   "answer": "Linear: 2 and 5. Nonlinear: 1, 3, 4, 6.",
+   "answer": "1. First-order, linear, nonhomogeneous, constant-coefficient, not autonomous.\n2. First-order, nonlinear, autonomous.",
    "citations": [],
-   "id": "f9d39f06-4c37-5390-8bc2-b2dfef9792d5"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 3 · Autonomous or not?",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Which of these ODEs are autonomous? ($L$ and $R$ are constants.)\n\n1. $\\dfrac{dy}{dt}=y(1-y)$\n2. $\\dfrac{dy}{dt}=t-y$\n3. $L\\dfrac{di}{dt}+Ri=10$\n4. $L\\dfrac{di}{dt}+Ri=10\\cos(100t)$\n5. $\\dfrac{d^2y}{dt^2}+2\\dfrac{dy}{dt}+5y=0$",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Equation 1: cover up $y$; nothing with $t$ is left, so it is autonomous (even though it is nonlinear: autonomy does not care about linearity).",
-     "latex": "y(1-y)"
-    },
-    {
-     "explanation": "Equation 2: a bare $t$ remains on the right, so it is not autonomous.",
-     "latex": "t-y"
-    },
-    {
-     "explanation": "Equation 3: the source is the constant 10, so the rule never changes with time: autonomous.",
-     "latex": "f=10\\ \\text{(constant)}"
-    },
-    {
-     "explanation": "Equation 4: the source $10\\cos(100t)$ changes with time, so it is not autonomous.",
-     "latex": "f(t)=10\\cos(100t)"
-    },
-    {
-     "explanation": "Equation 5: only constants multiply $y$ and its derivatives, and no forcing: autonomous.",
-     "latex": ""
-    }
-   ],
-   "answer": "Autonomous: 1, 3 and 5. Not autonomous: 2 and 4.",
-   "citations": [],
-   "id": "55d19d11-d1a8-55e1-a35f-c953f7f6fc1d"
+   "id": "40f4857b-bf14-5f03-9ec1-f854533aa92a"
   },
   {
    "type": "heading",
    "level": 1,
    "text": "Topic 2: Solutions and initial value problems",
-   "citations": [],
-   "id": "1b04743f-db41-5252-9e8d-e5c6f2e86265"
-  },
-  {
-   "type": "paragraph",
-   "text": "A **solution** of an ODE is a function that makes the equation true for *every* $t$ in an interval when you substitute it in. To **check** a proposed solution you never need to solve anything: differentiate it, substitute into the left and right sides, and simplify until both sides are visibly the same. A first-order ODE usually has a whole **family** of solutions with one free constant $K$ (the *general solution*). An **initial value problem (IVP)** is the ODE plus one **initial condition** $y(t_0)=y_0$ (the value at a starting time $t_0$, usually $0$); the condition picks out the one curve of the family that passes through that starting point. A second-order equation needs two conditions, $y(t_0)$ and $\\dfrac{dy}{dt}(t_0)$.",
-   "citations": [],
-   "id": "9e1ec6b2-ddf9-5302-abd0-2eabea6bd1b3"
-  },
-  {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**The method: checking a solution and solving an IVP**\n\n1. Differentiate the proposed $y(t)$ as many times as the order of the equation.\n2. Substitute $y$ and its derivatives into the left side and simplify; do the same for the right side.\n3. If the two sides agree for every $t$, it is a solution. If a leftover term remains (like $3\\sin t$), it is not.\n4. For an IVP: set $t=t_0$ in the general solution, set it equal to $y_0$, and solve for the constant $K$.\n5. Write the final answer with the number in place of $K$ and check $y(t_0)=y_0$ once more.",
-   "citations": [],
-   "id": "c90dba8f-3b02-5017-a1a7-af6e342a3cb6"
-  },
-  {
-   "type": "paragraph",
-   "text": "The key formula is the IVP itself: an ODE plus the value at the starting time. For example, the family $y=3+Ke^{-2t}$ below solves $\\dfrac{dy}{dt}=-2y+6$ for every $K$, and $y(0)=1$ picks $K=-2$.",
-   "citations": [],
-   "id": "b0ddc733-903a-5e14-9302-02728b8b2b0b"
-  },
-  {
-   "type": "equation",
-   "latex": "\\begin{gathered}\\text{ODE: }\\dfrac{dy}{dt}=F(t,y) \\\\ \\text{initial condition: }y(t_0)=y_0\\end{gathered}",
-   "display": true,
-   "citations": [],
-   "id": "604cec45-61e5-524d-80b7-af8b86be39db"
-  },
-  {
-   "type": "callout",
-   "tone": "info",
-   "text": "**Calculus reminder: the derivatives you need this week.** To check a solution you differentiate it, so keep these at hand ($a$, $k$ are constants):\n\n- **Constant rule:** $\\dfrac{d}{dt}k=0$. **Constant multiple:** $\\dfrac{d}{dt}\\big(k\\,g(t)\\big)=k\\,\\dfrac{dg}{dt}$. **Sums:** differentiate term by term.\n- **Power rule:** $\\dfrac{d}{dt}t^n=n\\,t^{n-1}$ (so $\\dfrac{d}{dt}t^2=2t$, $\\dfrac{d}{dt}t=1$).\n- **Exponential, by the chain rule:** $\\dfrac{d}{dt}e^{at}=a\\,e^{at}$. The chain rule says: differentiate the outside function (here $e^{u}\\to e^{u}$), then multiply by the derivative of the inside ($u=at\\to a$). Example: $\\dfrac{d}{dt}e^{-2t}=-2e^{-2t}$.\n- **Sine and cosine, by the chain rule:** $\\dfrac{d}{dt}\\sin(at)=a\\cos(at)$, $\\;\\dfrac{d}{dt}\\cos(at)=-a\\sin(at)$.\n- **Product rule:** $\\dfrac{d}{dt}\\big(g\\,h\\big)=\\dfrac{dg}{dt}\\,h+g\\,\\dfrac{dh}{dt}$ (used for things like $t\\,e^{-t}$).",
-   "citations": [],
-   "id": "b63904c4-8cb7-52e7-a818-afbaf9917f67"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 4 · Checking solutions by substitution",
-   "prompt": "1. Show that $y=5e^{-2t}$ solves $\\dfrac{dy}{dt}+2y=0$.\n2. Which of $y=\\cos 2t$, $\\;y=\\sin t$, $\\;y=3\\sin 2t$ solve $\\dfrac{d^2y}{dt^2}+4y=0$?",
-   "steps": [
+   "citations": [
     {
-     "explanation": "Part 1: differentiate with the chain rule, $\\dfrac{d}{dt}e^{-2t}=-2e^{-2t}$, keeping the constant 5 in front.",
-     "latex": "\\dfrac{dy}{dt}=5\\cdot(-2)e^{-2t}=-10e^{-2t}"
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "a1b278af-8c29-4cde-9921-b62abc1cea16"
     },
     {
-     "explanation": "Substitute $y$ and $\\dfrac{dy}{dt}$ into the left side; the two terms cancel, matching the right side $0$ for every $t$.",
-     "latex": "-10e^{-2t}+2\\cdot 5e^{-2t}=0\\ \\checkmark"
-    },
-    {
-     "explanation": "Part 2, $y=\\cos 2t$: differentiate twice with the chain rule (each time a factor 2 comes out).",
-     "latex": "\\begin{gathered}\\dfrac{dy}{dt}=-2\\sin 2t \\\\ \\dfrac{d^2y}{dt^2}=-4\\cos 2t\\end{gathered}"
-    },
-    {
-     "explanation": "Substitute: the left side becomes zero, so $\\cos 2t$ is a solution.",
-     "latex": "-4\\cos 2t+4\\cos 2t=0\\ \\checkmark"
-    },
-    {
-     "explanation": "$y=\\sin t$: the second derivative is $-\\sin t$. Substituting leaves $3\\sin t$, which is not zero for every $t$, so this is **not** a solution.",
-     "latex": "-\\sin t+4\\sin t=3\\sin t\\neq 0"
-    },
-    {
-     "explanation": "$y=3\\sin 2t$: the second derivative is $3\\cdot(-4)\\sin 2t=-12\\sin 2t$; substituting gives zero, so it is a solution.",
-     "latex": "-12\\sin 2t+4\\cdot 3\\sin 2t=0\\ \\checkmark"
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "3454942c-9543-465e-8e68-77a3da871efa"
     }
    ],
-   "answer": "1. Yes, $y=5e^{-2t}$ is a solution (and so is $Ke^{-2t}$ for any constant $K$). 2. $\\cos 2t$ and $3\\sin 2t$ are solutions; $\\sin t$ is not.",
+   "id": "358f3222-086e-5404-9a31-01cf5d296f1f"
+  },
+  {
+   "type": "paragraph",
+   "text": "A **solution** is a function that makes the equation true for **every** $t$.\n\nTo check one:\n1. differentiate it\n2. substitute into the equation\n3. simplify both sides\n\nTwo more terms:\n- **General solution**: the whole **family** of solutions of a first-order ODE, with one free constant $K$.\n- **Initial value problem** (IVP): the ODE plus an **initial condition** $y(t_0)=y_0$ (the value at a starting time). That picks out one curve of the family.\n\nA second-order ODE needs two conditions: $y(t_0)$ and $\\dfrac{dy}{dt}(t_0)$.",
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "3454942c-9543-465e-8e68-77a3da871efa"
+    }
+   ],
+   "id": "f34a0d86-7753-539b-b7ca-6fff433cd010"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"$\\dfrac{dy}{dt}=-2y+6$: drag the initial point\"\nx 0 3 label=\"$t$\"\ny -1 7 label=\"$y$\"\nfield \"-2*y+6\"\nfamily K -4 4 1 \"3+K*exp(-2*t)\" color=0\nhline \"3\" label=\"$y=3$\"\ndrag P 0 1 label=\"$(t_0,y_0)$\" snap=0.25\nsolution \"-2*y+6\" x0=\"P_x\" y0=\"P_y\" label=\"the IVP solution\"\nreadout \"$K=(y_0-3)e^{2t_0}=$\" \"(P_y-3)*exp(2*P_x)\"\ncaption \"Faint curves: the family $y=3+Ke^{-2t}$. Each starting point picks one. Slide the point along its own curve: $K$ stays the same.\"\n```",
    "citations": [],
-   "id": "d9952456-4a11-5404-b5e0-b3c55caf4bc1"
+   "id": "676c6b85-11fe-5cd2-a6f6-f8135c38b6b2"
   },
   {
    "type": "worked_example",
-   "title": "Example 5 · An initial value problem picks one curve",
-   "prompt": "1. Show that $y=3+Ke^{-2t}$ solves $\\dfrac{dy}{dt}=-2y+6$ for **every** constant $K$.\n2. Solve the IVP with $y(0)=1$.\n3. Solve it again with $y(0)=5$ and describe both curves.",
+   "title": "Example 4 · True for every t, not just one",
+   "prompt": "Which of $y=\\cos 2t$ and $y=\\sin t$ solve $\\dfrac{d^2y}{dt^2}+4y=0$?",
    "steps": [
     {
-     "explanation": "Differentiate the proposed solution: the constant 3 has derivative 0 and the chain rule gives $\\dfrac{d}{dt}e^{-2t}=-2e^{-2t}$.",
+     "explanation": "```steps\n$$ y=\\cos 2t $$\nThe candidate.\n$$ \\dfrac{dy}{dt}=\\hl{-2\\sin 2t} $$\nChain rule: $\\frac{d}{dt}\\cos(at)=-a\\sin(at)$.\n$$ \\dfrac{d^2y}{dt^2}=\\hl{-4\\cos 2t} $$\nAgain: $\\frac{d}{dt}\\sin(at)=a\\cos(at)$.\n$$ \\dfrac{d^2y}{dt^2}+4y=\\hl{-4\\cos 2t+4\\cos 2t} $$\nSubstitute into the left side.\n$$ \\dfrac{d^2y}{dt^2}+4y=\\hl{0}\\ \\checkmark $$\nZero for every $t$: a solution.\n```",
+     "latex": ""
+    },
+    {
+     "explanation": "For $y=\\sin t$: $\\dfrac{d^2y}{dt^2}=-\\sin t$. Substituting leaves $3\\sin t$.",
+     "latex": "-\\sin t+4\\sin t=3\\sin t"
+    },
+    {
+     "explanation": "That is $0$ at $t=0$, but not at $t=\\frac{\\pi}{2}$, so it is **not** a solution.",
+     "latex": "3\\sin t\\neq0"
+    }
+   ],
+   "answer": "$\\cos 2t$ is a solution; $\\sin t$ is not.",
+   "citations": [],
+   "id": "bd1fd981-b469-5501-a957-88f6b3170922"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · One family, one condition",
+   "prompt": "Show that $y=3+Ke^{-2t}$ solves $\\dfrac{dy}{dt}=-2y+6$ for every constant $K$. Then solve the IVP with $y(0)=1$.",
+   "steps": [
+    {
+     "explanation": "Left side: the $3$ gives $0$, and $\\frac{d}{dt}e^{-2t}=-2e^{-2t}$ (chain rule).",
      "latex": "\\dfrac{dy}{dt}=-2Ke^{-2t}"
     },
     {
-     "explanation": "Compute the right side with the same $y$: expand $-2(3+Ke^{-2t})$ and add 6; the 6s cancel.",
-     "latex": "-2(3+Ke^{-2t})+6=-2Ke^{-2t}"
+     "explanation": "Right side with the same $y$: the $6$s cancel. Both sides match for any $K$.",
+     "latex": "-2(3+Ke^{-2t})+6=-2Ke^{-2t}\\ \\checkmark"
     },
     {
-     "explanation": "Both sides equal $-2Ke^{-2t}$ no matter what $K$ is, so the whole family is a family of solutions.",
-     "latex": "\\text{left}=\\text{right}\\ \\checkmark"
-    },
-    {
-     "explanation": "Part 2: set $t=0$ in the general solution (using $e^{0}=1$) and make it equal the initial value 1; solve for $K$.",
-     "latex": "y(0)=3+K=1\\;\\Rightarrow\\;K=-2"
-    },
-    {
-     "explanation": "Put $K=-2$ back in: this curve starts at 1 and rises toward 3.",
-     "latex": "y(t)=3-2e^{-2t}"
-    },
-    {
-     "explanation": "Part 3: the same step with $y(0)=5$ gives $K=2$, a curve that starts at 5 and falls toward 3. As $t\\to\\infty$, $e^{-2t}\\to 0$, so every member of the family settles at $y=3$; the initial condition only decides where it starts.",
-     "latex": "\\begin{gathered}3+K=5\\;\\Rightarrow\\;K=2 \\\\ y(t)=3+2e^{-2t}\\end{gathered}"
+     "explanation": "Now put in the condition: at $t=0$, $e^{0}=1$.",
+     "latex": "y(0)=3+K=1\\ \\Rightarrow\\ K=-2"
     }
    ],
-   "answer": "1. Shown above. 2. $y=3-2e^{-2t}$. 3. $y=3+2e^{-2t}$. Both settle at 3; one rises from 1, the other falls from 5.",
+   "answer": "$y(t)=3-2e^{-2t}$.\n\nIn the graph above, put the point at $(0,1)$: the readout shows $K=-2$.",
    "citations": [],
-   "id": "2b1512e9-a34b-5e64-a8d3-6ffc91244864"
-  },
-  {
-   "type": "paragraph",
-   "text": "![Example 5 in one picture. The grey dashed curves are other members of the family $y=3+Ke^{-2t}$; the initial condition picks one: $y(0)=1$ gives the blue curve, $y(0)=5$ the orange one. Every curve settles at $y=3$.](/figures/elec231/w2_family.svg)\n\n*Example 5 in one picture. The grey dashed curves are other members of the family $y=3+Ke^{-2t}$; the initial condition picks one: $y(0)=1$ gives the blue curve, $y(0)=5$ the orange one. Every curve settles at $y=3$.*",
-   "citations": [],
-   "id": "3f08877c-9757-5500-ac75-7197d21b5099"
-  },
-  {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Common mistakes**\n\n- Checking at one time only. A solution must make both sides agree for **every** $t$; $y=\\sin t$ in Example 4 leaves $3\\sin t$, which is zero at $t=0$ but not in general, so it is not a solution.\n- Using $y(0)$ before writing the constant $K$: you need the whole family first, then the initial condition chooses $K$.\n- Giving a second-order IVP only one condition. It needs two, $y(t_0)$ and $\\dfrac{dy}{dt}(t_0)$, because there are two constants to find.",
-   "citations": [],
-   "id": "8d4f2acb-55b9-53cf-8f18-41faa9eef0eb"
+   "id": "9697c51f-adfe-589e-8e7a-dc63a5617308"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 4 · Check a solution with the product rule",
-   "difficulty": "intermediate",
+   "title": "Try it 3 · Starting the clock later",
+   "difficulty": "introductory",
    "origin": "original",
-   "prompt": "Show that $y=t\\,e^{-t}$ solves $\\dfrac{d^2y}{dt^2}+2\\dfrac{dy}{dt}+y=0$.",
+   "prompt": "Same family $y=3+Ke^{-2t}$. Solve the IVP with $y(1)=5$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "Differentiate with the product rule, taking $g=t$ (so $\\dfrac{dg}{dt}=1$) and $h=e^{-t}$ (so $\\dfrac{dh}{dt}=-e^{-t}$ by the chain rule).",
-     "latex": "\\dfrac{dy}{dt}=1\\cdot e^{-t}+t\\cdot(-e^{-t})=e^{-t}-te^{-t}"
+     "explanation": "Put $t=1$, not $t=0$: now $e^{-2}$ does not become $1$.",
+     "latex": "3+Ke^{-2}=5\\ \\Rightarrow\\ K=2e^{2}\\approx14.78"
     },
     {
-     "explanation": "Differentiate again: $e^{-t}$ gives $-e^{-t}$, and $-te^{-t}$ gives (product rule again) $-e^{-t}+te^{-t}$.",
-     "latex": "\\dfrac{d^2y}{dt^2}=-e^{-t}-e^{-t}+te^{-t}=-2e^{-t}+te^{-t}"
-    },
-    {
-     "explanation": "Substitute all three into the left side and collect the $e^{-t}$ terms and the $te^{-t}$ terms separately.",
-     "latex": "\\begin{aligned}&(-2e^{-t}+te^{-t})+2(e^{-t}-te^{-t})\\\\&\\quad+te^{-t}=0\\end{aligned}"
-    },
-    {
-     "explanation": "The $e^{-t}$ terms give $-2+2=0$ and the $te^{-t}$ terms give $1-2+1=0$, so the left side is zero for every $t$.",
-     "latex": "0=0\\ \\checkmark"
+     "explanation": "Substitute and combine the exponentials ($e^{2}e^{-2t}=e^{-2(t-1)}$).",
+     "latex": "y(t)=3+2e^{-2(t-1)}"
     }
    ],
-   "answer": "Yes: substituting gives $0$ for every $t$, so $y=te^{-t}$ is a solution.",
+   "answer": "$y(t)=3+2e^{-2(t-1)}$ ($K=2e^2\\approx14.78$; drag the point to $(1,5)$ to see it).",
    "citations": [],
-   "id": "8728e247-8f35-55e7-903a-dd097079ef6a"
+   "id": "0e9c7125-467f-5b13-9ed4-55a14dfecf1c"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 5 · Solve a first-order IVP",
-   "difficulty": "intermediate",
+   "title": "Try it 4 · The solution that never moves",
+   "difficulty": "introductory",
    "origin": "original",
-   "prompt": "1. Show that $y=2+Ke^{-3t}$ solves $\\dfrac{dy}{dt}+3y=6$ for every constant $K$.\n2. Find the solution with $y(0)=-1$.\n3. What value does it approach as $t\\to\\infty$?",
+   "prompt": "For $\\dfrac{dy}{dt}+ay=b$ with constants $a>0$ and $b$:\n1. Which constant function $y=c$ is a solution?\n2. Use the family $y=\\dfrac{b}{a}+Ke^{-at}$ to show every solution ends up there.",
    "solution": "",
    "steps": [
     {
-     "explanation": "Differentiate: the constant 2 gives 0 and the chain rule gives $\\dfrac{d}{dt}e^{-3t}=-3e^{-3t}$.",
-     "latex": "\\dfrac{dy}{dt}=-3Ke^{-3t}"
+     "explanation": "A constant has derivative $0$.",
+     "latex": "0+ac=b\\ \\Rightarrow\\ c=\\dfrac{b}{a}"
     },
     {
-     "explanation": "Substitute into the left side; the $K$ terms cancel and 6 is left, which is the right side.",
-     "latex": "-3Ke^{-3t}+3(2+Ke^{-3t})=6\\ \\checkmark"
-    },
-    {
-     "explanation": "Use the initial condition: at $t=0$, $e^{0}=1$, so $y(0)=2+K$. Set it equal to $-1$ and solve.",
-     "latex": "2+K=-1\\;\\Rightarrow\\;K=-3"
-    },
-    {
-     "explanation": "Write the solution and let $t\\to\\infty$: $e^{-3t}\\to 0$, so $y\\to 2$.",
-     "latex": "y(t)=2-3e^{-3t}\\;\\to\\;2"
+     "explanation": "It is the $K=0$ member of the family. For the others, $e^{-at}\\to0$ as $t\\to\\infty$.",
+     "latex": "y(t)=\\dfrac{b}{a}+Ke^{-at}\\ \\to\\ \\dfrac{b}{a}"
     }
    ],
-   "answer": "1. Shown. 2. $y(t)=2-3e^{-3t}$. 3. It approaches 2.",
+   "answer": "$y=\\dfrac{b}{a}$. Every solution approaches it (in the graph: $y=3$).\n\nTopic 3 finds a circuit's final value this way, by setting the derivative to $0$.",
    "citations": [],
-   "id": "ca143388-273e-5ee4-97e0-e7eb3dbc1f58"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 6 · Exponential guesses and a second-order IVP",
-   "difficulty": "advanced",
-   "origin": "original",
-   "prompt": "1. For which numbers $r$ does $y=e^{rt}$ solve $\\dfrac{d^2y}{dt^2}-\\dfrac{dy}{dt}-6y=0$?\n2. Check that $y=c_1e^{3t}+c_2e^{-2t}$ solves it for any constants $c_1,c_2$.\n3. Find $c_1,c_2$ so that $y(0)=0$ and $\\dfrac{dy}{dt}(0)=5$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Differentiate $e^{rt}$ with the chain rule: each derivative brings out a factor $r$.",
-     "latex": "\\begin{gathered}\\dfrac{dy}{dt}=re^{rt} \\\\ \\dfrac{d^2y}{dt^2}=r^2e^{rt}\\end{gathered}"
-    },
-    {
-     "explanation": "Substitute and factor out $e^{rt}$. Since $e^{rt}$ is never zero, the bracket must be zero.",
-     "latex": "(r^2-r-6)\\,e^{rt}=0\\;\\Rightarrow\\;r^2-r-6=0"
-    },
-    {
-     "explanation": "Factor the quadratic: two numbers that multiply to $-6$ and add to $-1$ are $-3$ and $2$.",
-     "latex": "(r-3)(r+2)=0\\;\\Rightarrow\\;r=3\\ \\text{or}\\ r=-2"
-    },
-    {
-     "explanation": "Part 2: the equation is linear and homogeneous, so a sum of solutions is a solution. Directly: each piece makes its own bracket zero, so the sum gives $0+0$.",
-     "latex": "c_1(9-3-6)e^{3t}+c_2(4+2-6)e^{-2t}=0"
-    },
-    {
-     "explanation": "Part 3: a second-order IVP needs two conditions. Use $y(0)=0$ with $e^0=1$.",
-     "latex": "c_1+c_2=0"
-    },
-    {
-     "explanation": "Differentiate $y$ and use $\\dfrac{dy}{dt}(0)=5$.",
-     "latex": "\\dfrac{dy}{dt}=3c_1e^{3t}-2c_2e^{-2t}\\;\\Rightarrow\\;3c_1-2c_2=5"
-    },
-    {
-     "explanation": "Solve the pair: from the first equation $c_2=-c_1$; substitute into the second to get $5c_1=5$.",
-     "latex": "c_1=1,\\quad c_2=-1"
-    }
-   ],
-   "answer": "1. $r=3$ or $r=-2$. 2. Shown. 3. $y=e^{3t}-e^{-2t}$.",
-   "citations": [],
-   "id": "c0a453ba-a7d6-5f4c-a705-e58fd10344a2"
+   "id": "1ef4769a-8eaf-565f-9dec-866f3c06a59f"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 3: First-order circuits make first-order ODEs",
-   "citations": [],
-   "id": "d7a88709-f728-5510-8640-da118324f361"
+   "text": "Topic 3: First-order RC and RL circuits",
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "a1b278af-8c29-4cde-9921-b62abc1cea16"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "724f3da6-c2ee-4cf9-8fe6-49e948e11540"
+    }
+   ],
+   "id": "6e44a73e-70bb-5865-b578-34b60dae1742"
   },
   {
    "type": "paragraph",
-   "text": "A circuit with resistors and **one** capacitor (an RC circuit) or **one** inductor (an RL circuit) always gives a first-order, linear, constant-coefficient ODE, because the capacitor and inductor laws contain one derivative. When a switch moves at $t=0$, the capacitor voltage $v_C$ (or inductor current $i_L$) slides exponentially from where it was (its **initial value**) to where the new circuit wants it (its **final value**). How fast is set by the **time constant** $\\tau$ (tau): the time to cover about 63% of the remaining change. Think of filling a bucket through a narrow pipe: fast at first, slower as it nears the top. You use this whenever a problem says \"the switch has been in position a for a long time and moves at $t=0$\".",
-   "citations": [],
-   "id": "19b4d522-9446-5bef-af94-448fc07601f1"
-  },
-  {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**The method: any RC or RL circuit after a switch**\n\n1. **Before** ($t<0$, \"a long time\"): the circuit is in DC steady state, so a capacitor is an open circuit and an inductor is a short. Find $v_C(0^-)$ or $i_L(0^-)$.\n2. **Carry over:** $v_C$ and $i_L$ cannot jump, so $v_C(0^+)=v_C(0^-)$ and $i_L(0^+)=i_L(0^-)$. Write $x$ for whichever of $v_C$, $i_L$ the circuit has; this carried-over value is the initial value $x_0$.\n3. **After** ($t\\ge 0$): write KCL or KVL using $i=C\\dfrac{dv}{dt}$ or $v=L\\dfrac{di}{dt}$, and divide so the derivative stands alone: $\\dfrac{dx}{dt}+\\dfrac{x}{\\tau}=\\dfrac{x_f}{\\tau}$.\n4. Read off $\\tau$ ($RC$ for a capacitor, $L/R$ for an inductor, with $R$ the resistance the element sees after the switch moves) and the final value $x_f$ (DC steady state again, or set $\\dfrac{dx}{dt}=0$). With no source left, $x_f=0$: the natural response $x_0e^{-t/\\tau}$.\n5. Write $x(t)=x_f+(x_0-x_f)e^{-t/\\tau}$ and check $x(0)=x_0$ and $x(\\infty)=x_f$.",
-   "citations": [],
-   "id": "c577e003-b424-586b-928a-fea43e9a485b"
-  },
-  {
-   "type": "paragraph",
-   "text": "Both laws use the **passive sign convention**: the reference current arrow enters the $+$ terminal of the element’s voltage. $L$ is the **inductance** in henries (H) and $C$ the **capacitance** in farads (F). In **DC steady state** nothing changes, so every derivative is zero: the inductor has $v=0$ (a **short**, a plain wire) and the capacitor has $i=0$ (an **open circuit**, a break). The same laws explain why $v_C$ and $i_L$ **cannot jump**: a sudden jump in $v_C$ would make $\\dfrac{dv}{dt}$ infinite and need an infinite current, and a jump in $i_L$ would need an infinite voltage. Other quantities (the capacitor *current*, the inductor *voltage*, resistor voltages) can and often do jump. We write $0^-$ for \"just before the switch\" and $0^+$ for \"just after\".",
+   "text": "A circuit with one capacitor or one inductor gives a first-order linear ODE, because each element's law has one derivative.\n\nBoth laws use the **passive sign convention** (the current arrow enters the $+$ end).\n\nTwo moments matter at a switch:\n- $0^-$: just before the switch moves\n- $0^+$: just after",
    "citations": [
     {
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
@@ -659,12 +387,37 @@
      "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
     }
    ],
-   "id": "6cfcaa58-a9ea-5925-bc67-20e7f1af6633"
+   "id": "d0250f75-d4cd-5bb4-9a47-682a0ee38b57"
   },
   {
-   "type": "equation",
-   "latex": "\\begin{gathered}v=L\\dfrac{di}{dt} \\\\ i=C\\dfrac{dv}{dt}\\end{gathered}",
-   "display": true,
+   "type": "table",
+   "columns": [
+    "",
+    "Capacitor $C$ (farads)",
+    "Inductor $L$ (henries)"
+   ],
+   "rows": [
+    [
+     "Law",
+     "$i=C\\dfrac{dv}{dt}$",
+     "$v=L\\dfrac{di}{dt}$"
+    ],
+    [
+     "DC steady state (nothing changes)",
+     "open circuit: $i=0$",
+     "short: $v=0$"
+    ],
+    [
+     "Can't jump at a switch",
+     "its voltage $v_C$",
+     "its current $i_L$"
+    ],
+    [
+     "Time constant",
+     "$\\tau=RC$",
+     "$\\tau=L/R$"
+    ]
+   ],
    "citations": [
     {
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
@@ -675,104 +428,42 @@
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
      "version": 1,
      "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
-    }
-   ],
-   "id": "df55f03a-5e67-52cf-a873-eb8e32cb969d"
-  },
-  {
-   "type": "schematic",
-   "source": "L1 0,3 -> 0,0 \"$L$\" i=\"$i$\" v=\"$v$\"\nterminal 0,3 \"\" left\nterminal 0,0 \"\" left\nC1 4,3 -> 4,0 \"$C$\" i=\"$i$\" v=\"$v$\"\nterminal 4,3 \"\" left\nterminal 4,0 \"\" left",
-   "caption": "The inductor and the capacitor with the passive sign convention: the current $i$ enters the $+$ end of $v$ (lecture Figures 2.1 and 2.2).",
-   "citations": [
-    {
-     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
-     "version": 1,
-     "chunk_id": "a1b278af-8c29-4cde-9921-b62abc1cea16"
     },
     {
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
      "version": 1,
-     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
+     "chunk_id": "3454942c-9543-465e-8e68-77a3da871efa"
     }
    ],
-   "id": "4067bf7e-52b2-5772-a3b6-bb0b40968b45"
+   "id": "5267129c-ab79-5c28-b1a7-8b4cf79e3fe3"
   },
   {
    "type": "worked_example",
-   "title": "Example 6 · Current from voltage and voltage from current",
-   "prompt": "1. The voltage across a $2\\,\\mu\\mathrm{F}$ capacitor is $v(t)=10e^{-50t}\\,\\mathrm{V}$. Find its current $i(t)$ (passive sign convention).\n2. The current in a $0.2\\,\\mathrm{H}$ inductor is $i(t)=3e^{-100t}\\,\\mathrm{A}$. Find its voltage $v(t)$.\n3. What is the capacitor current if its voltage is held at a constant $5\\,\\mathrm{V}$?",
+   "title": "Example 6 · RC natural response (lecture Figures 2.3–2.4)",
+   "prompt": "The switch has been at $a$ for a long time and moves to $b$ at $t=0$ (drawn as two switches acting together).\n\nFind $v(t)$ for $t\\ge0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$V_s$\"\nR1 0,3 -> 3,3 \"$R_1$\"\nS1 3,3 -> 5,3 \"$t=0$\" action=open\nC1 5,3 -> 5,0 \"$C$\" v=\"$v$\"\nS2 5,3 -> 8,3 \"$t=0$\" action=close\nR2 8,3 -> 8,0 \"$R$\" i=\"$i$\"\nwire 8,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 8,3 \"$b$\" above\nground 0,0\n#~ flow\n```",
    "steps": [
     {
-     "explanation": "Part 1: differentiate the voltage with the chain rule, $\\dfrac{d}{dt}e^{-50t}=-50e^{-50t}$.",
-     "latex": "\\dfrac{dv}{dt}=10\\cdot(-50)e^{-50t}=-500e^{-50t}\\ \\mathrm{V/s}"
-    },
-    {
-     "explanation": "Multiply by $C=2\\,\\mu\\mathrm{F}=2\\times10^{-6}\\,\\mathrm{F}$.",
-     "latex": "i=C\\dfrac{dv}{dt}=2\\times10^{-6}(-500)e^{-50t}=-10^{-3}e^{-50t}\\ \\mathrm{A}"
-    },
-    {
-     "explanation": "The minus sign means the current actually flows out of the $+$ terminal: the capacitor is discharging, giving energy back to the circuit.",
-     "latex": "i(t)=-e^{-50t}\\ \\mathrm{mA}"
-    },
-    {
-     "explanation": "Part 2: differentiate the current with the chain rule and multiply by $L=0.2\\,\\mathrm{H}$.",
-     "latex": "v=L\\dfrac{di}{dt}=0.2\\cdot 3\\cdot(-100)e^{-100t}=-60e^{-100t}\\ \\mathrm{V}"
-    },
-    {
-     "explanation": "Part 3: a constant has zero derivative, so the capacitor current is zero: in DC it acts as an open circuit.",
-     "latex": "i=C\\cdot\\dfrac{d}{dt}(5)=0"
-    }
-   ],
-   "answer": "1. $i(t)=-e^{-50t}\\,\\mathrm{mA}$. 2. $v(t)=-60e^{-100t}\\,\\mathrm{V}$. 3. $i=0$ (open circuit in DC).",
-   "citations": [],
-   "id": "28313471-4719-5262-a7b3-d0b21c938a44"
-  },
-  {
-   "type": "callout",
-   "tone": "info",
-   "text": "**Calculus reminder: integrals, logs and exponentials for the next example.**\n\n- An **antiderivative** undoes a derivative: $\\displaystyle\\int k\\,dt=kt+K$ and $\\displaystyle\\int\\dfrac{1}{x}\\,dx=\\ln|x|+K$ ($K$ is the constant of integration; add it once).\n- **Separation of variables:** put everything with $v$ on one side (with $dv$) and everything with $t$ on the other (with $dt$), then integrate both sides.\n- **ln and exp undo each other:** $e^{\\ln A}=A$ and $\\ln(e^{x})=x$. Also $e^{a+b}=e^{a}e^{b}$ and $\\ln\\dfrac{a}{b}=\\ln a-\\ln b$, $\\ln\\dfrac1a=-\\ln a$.\n- **Solving for time:** $e^{-t/\\tau}=p$ gives $-t/\\tau=\\ln p$, so $t=\\tau\\ln\\dfrac{1}{p}$.",
-   "citations": [],
-   "id": "875dea59-5826-527e-b007-789fe5a9e008"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 7 · RC natural response (lecture Figures 2.3 and 2.4)",
-   "prompt": "The switch has connected the capacitor to the source side (position a: $V_s$ through $R_1$) for a long time. At $t=0$ it moves to position b, so the capacitor is disconnected from the source and connected across $R$ alone. (The drawing shows the single a-to-b switch as two switches that act together at $t=0$.) Find $v(t)$ for $t\\ge 0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$V_s$\"\nR1 0,3 -> 3,3 \"$R_1$\"\nS1 3,3 -> 5,3 \"$t=0$\" action=open\nC1 5,3 -> 5,0 \"$C$\" v=\"$v$\"\nS2 5,3 -> 8,3 \"$t=0$\" action=close\nR2 8,3 -> 8,0 \"$R$\" i=\"$i$\"\nwire 8,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 8,3 \"$b$\" above\nground 0,0\n```",
-   "steps": [
-    {
-     "explanation": "Before $t=0$ the circuit is in DC steady state, so the capacitor is an open circuit: no current flows through $R_1$, so $R_1$ has no voltage across it and the capacitor sees the full source voltage.",
+     "explanation": "Before $t=0$ the capacitor is open (DC), so no current flows in $R_1$, $R_1$ has no voltage, and $C$ sees all of $V_s$.",
      "latex": "v(0^-)=V_s"
     },
     {
-     "explanation": "The capacitor voltage cannot jump, so the initial value for $t\\ge0$ is the same.",
-     "latex": "v(0)=v(0^+)=V_s"
+     "explanation": "$v_C$ can't jump.",
+     "latex": "v(0^+)=V_s"
     },
     {
-     "explanation": "For $t\\ge 0$ only the loop $C$–$R$ is left. Apply KCL at the top node: the capacitor current $C\\dfrac{dv}{dt}$ (downward, passive convention) plus the resistor current $\\dfrac{v}{R}$ (downward) must add to zero.",
+     "explanation": "For $t\\ge0$ only $C$ and $R$ are left. KCL at the top node (current down $C$ + current down $R$ = 0), with $v(0)=V_s$, is an IVP.",
      "latex": "C\\dfrac{dv}{dt}+\\dfrac{v}{R}=0"
     },
     {
-     "explanation": "Divide by $C$ so the derivative stands alone; this is a first-order, linear, homogeneous ODE, the same shape as the Week 1 RL equation.",
-     "latex": "\\dfrac{dv}{dt}+\\dfrac{v}{RC}=0"
+     "explanation": "Divide by $C$. Same shape as Week 1's $\\frac{di}{dt}+\\frac{R}{L}i=0$, so the same solution, with $\\tau=RC$.",
+     "latex": "\\dfrac{dv}{dt}+\\dfrac{v}{RC}=0\\ \\Rightarrow\\ v=V_se^{-t/\\tau}"
     },
     {
-     "explanation": "Separate the variables: move $\\dfrac{v}{RC}$ to the right, divide by $v$ and multiply by $dt$.",
-     "latex": "\\dfrac{dv}{v}=-\\dfrac{1}{RC}\\,dt"
-    },
-    {
-     "explanation": "Integrate both sides, using $\\int\\dfrac{dv}{v}=\\ln|v|$ on the left and $\\int k\\,dt=kt$ on the right, with one constant $K$.",
-     "latex": "\\ln|v|=-\\dfrac{t}{RC}+K"
-    },
-    {
-     "explanation": "Exponentiate both sides ($e^{\\ln|v|}=|v|$) and split $e^{-t/RC+K}=e^{K}e^{-t/RC}$; call the constant $A=\\pm e^{K}$.",
-     "latex": "v(t)=A\\,e^{-t/RC}"
-    },
-    {
-     "explanation": "Use the initial condition: at $t=0$, $e^0=1$, so $A=v(0)=V_s$. Define the time constant $\\tau=RC$.",
-     "latex": "v(t)=V_s\\,e^{-t/\\tau},\\quad \\tau=RC,\\ t\\ge 0"
+     "explanation": "After one time constant, $e^{-1}\\approx0.37$ is left.",
+     "latex": "v(\\tau)\\approx0.37\\,V_s"
     }
    ],
-   "answer": "$v(t)=V_s\\,e^{-t/RC}$ for $t\\ge 0$: the capacitor discharges exponentially through $R$ with time constant $\\tau=RC$.",
+   "answer": "$v(t)=V_se^{-t/\\tau}$, $\\tau=RC$, $t\\ge0$.\n\n$R_1$ does not appear: after the switch it is cut off.",
    "citations": [
     {
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
@@ -785,49 +476,12 @@
      "chunk_id": "3454942c-9543-465e-8e68-77a3da871efa"
     }
    ],
-   "id": "4ac57aae-e9ee-5918-b6c8-27ea85424602"
+   "id": "30cde128-3c63-54e9-8d82-939ed870c63a"
   },
   {
-   "type": "artifact_reference",
-   "artifact_id": "388159f8-40c6-43fd-bfb7-eadbb0ffdc7b",
-   "caption": "Natural response with sample values $V_s=10\\,\\mathrm{V}$, $\\tau=RC=1\\,\\mathrm{ms}$: the voltage starts at 10 V, is down to $10e^{-1}\\approx 3.7\\,\\mathrm{V}$ at $t=\\tau=1\\,\\mathrm{ms}$, and is practically zero by $5\\tau=5\\,\\mathrm{ms}$. The slope at the start is steepest.",
-   "citations": [],
-   "id": "c714dd9a-fd76-5db2-875b-e764dd15bb69"
-  },
-  {
-   "type": "table",
-   "columns": [
-    "Time since the switch",
-    "Fraction of the change still left: $e^{-t/\\tau}$",
-    "Fraction done: $1-e^{-t/\\tau}$"
-   ],
-   "rows": [
-    [
-     "$t=\\tau$",
-     "36.8% (about 37%)",
-     "63.2% (about 63%)"
-    ],
-    [
-     "$t=2\\tau$",
-     "13.5%",
-     "86.5%"
-    ],
-    [
-     "$t=3\\tau$",
-     "5.0%",
-     "95.0%"
-    ],
-    [
-     "$t=4\\tau$",
-     "1.8%",
-     "98.2%"
-    ],
-    [
-     "$t=5\\tau$",
-     "0.7%",
-     "99.3%: treat as \"settled\""
-    ]
-   ],
+   "type": "schematic",
+   "source": "I1 0,0 -> 0,3 \"$I_s$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$R$\" i=\"$v/R$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nC1 6,3 -> 6,0 \"$C$\" v=\"$v$\" i=\"$i$\"\nwire 6,0 -> 0,0\nground 0,0\n#~ flow\n#~ init C1 4",
+   "caption": "Lecture Fig. 2.6: the step response. The switch closes at $t=0$; $C$ starts at $v(0)=V_0$. **Click the switch** and watch $v$ go from $V_0$ to $V_f$.",
    "citations": [
     {
      "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
@@ -835,680 +489,187 @@
      "chunk_id": "3454942c-9543-465e-8e68-77a3da871efa"
     }
    ],
-   "id": "9a677d43-5a3c-5d90-85d8-3d7d88c49080"
+   "id": "ef1104dd-88c9-5281-a7b8-7299107decaf"
   },
   {
-   "type": "worked_example",
-   "title": "Example 8 · RC step response (lecture Figure 2.6)",
-   "prompt": "A DC current source $I_s$ and a resistor $R$ are connected in parallel. At $t=0$ the switch closes and connects the capacitor $C$, whose initial voltage is $V_0$, in parallel with them. Find $v(t)$ for $t\\ge 0$.\n\n```schematic\nI1 0,0 -> 0,3 \"$I_s$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$R$\" i=\"$v/R$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nC1 6,3 -> 6,0 \"$C$\" v=\"$v$\" i=\"$i$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
-   "steps": [
-    {
-     "explanation": "For $t\\ge0$ all three elements share the top node. KCL: the source current $I_s$ entering the node equals the resistor current $\\dfrac{v}{R}$ plus the capacitor current $C\\dfrac{dv}{dt}$ leaving it.",
-     "latex": "C\\dfrac{dv}{dt}+\\dfrac{v}{R}=I_s"
-    },
-    {
-     "explanation": "Divide by $C$: the left side has the same shape as the natural response, so the time constant is again $\\tau=RC$; the right side is a constant forcing, so the equation is nonhomogeneous.",
-     "latex": "\\dfrac{dv}{dt}+\\dfrac{v}{RC}=\\dfrac{I_s}{C}"
-    },
-    {
-     "explanation": "Find the final value: as $t\\to\\infty$ the circuit reaches DC steady state, $\\dfrac{dv}{dt}\\to0$ (capacitor open), and all of $I_s$ goes through $R$.",
-     "latex": "0+\\dfrac{V_f}{RC}=\\dfrac{I_s}{C}\\;\\Rightarrow\\;V_f=RI_s"
-    },
-    {
-     "explanation": "Substitution: let $u=v-V_f$, the distance still to go. Since $V_f$ is a constant, $\\dfrac{du}{dt}=\\dfrac{dv}{dt}$, and $v=u+V_f$. Substituting, the $I_s/C$ terms cancel.",
-     "latex": "\\dfrac{du}{dt}+\\dfrac{u+RI_s}{RC}=\\dfrac{I_s}{C}\\;\\Rightarrow\\;\\dfrac{du}{dt}+\\dfrac{u}{RC}=0"
-    },
-    {
-     "explanation": "This is exactly the natural-response equation of Example 7, so its solution is $u(0)\\,e^{-t/RC}$, with $u(0)=V_0-V_f$.",
-     "latex": "u(t)=(V_0-V_f)\\,e^{-t/\\tau}"
-    },
-    {
-     "explanation": "Undo the substitution, $v=V_f+u$, and check the ends: at $t=0$ we get $V_0$; as $t\\to\\infty$ we get $V_f$.",
-     "latex": "v(t)=RI_s+(V_0-RI_s)\\,e^{-t/RC}"
-    }
-   ],
-   "answer": "$v(t)=V_f+(V_0-V_f)e^{-t/\\tau}$ with $V_f=RI_s$ and $\\tau=RC$, i.e. $v(t)=RI_s+(V_0-RI_s)e^{-t/RC}$, $t\\ge 0$.",
-   "citations": [
-    {
-     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
-     "version": 1,
-     "chunk_id": "3454942c-9543-465e-8e68-77a3da871efa"
-    },
-    {
-     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
-     "version": 1,
-     "chunk_id": "724f3da6-c2ee-4cf9-8fe6-49e948e11540"
-    }
-   ],
-   "id": "207c6b9e-9759-5f75-84f6-dbbb65631121"
-  },
-  {
-   "type": "equation",
-   "latex": "\\begin{gathered}\\text{natural: } x(t)=x_0\\,e^{-t/\\tau} \\\\ \\text{step: } x(t)=x_f+(x_0-x_f)\\,e^{-t/\\tau}\\end{gathered}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
-     "version": 1,
-     "chunk_id": "724f3da6-c2ee-4cf9-8fe6-49e948e11540"
-    }
-   ],
-   "id": "4e99062d-0fc4-5b97-8602-8d2772b84742"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 9 · Charging a capacitor from a voltage source",
-   "prompt": "The $50\\,\\mu\\mathrm{F}$ capacitor holds $2\\,\\mathrm{V}$ (left from earlier) while the switch is open. At $t=0$ the switch closes, connecting the $12\\,\\mathrm{V}$ source through $4\\,\\mathrm{k\\Omega}$.\n1. Write the ODE for $v(t)$, $t\\ge 0$.\n2. Find $\\tau$ and $v(t)$.\n3. Find the current $i(t)$.\n4. When does $v$ reach $10\\,\\mathrm{V}$?\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$4\\,\\mathrm{k\\Omega}$\"\nC1 6,3 -> 6,0 \"$50\\,\\mu\\mathrm{F}$\" v=\"$v$\" i=\"$i$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
-   "steps": [
-    {
-     "explanation": "KVL around the loop for $t\\ge0$: the source voltage equals the resistor voltage $Ri$ plus the capacitor voltage $v$, and the series current is the capacitor current $i=C\\dfrac{dv}{dt}$.",
-     "latex": "\\begin{gathered}12=4000\\,i+v \\\\ i=50\\times10^{-6}\\dfrac{dv}{dt}\\end{gathered}"
-    },
-    {
-     "explanation": "Substitute the capacitor law; $4000\\times 50\\times10^{-6}=0.2$. Divide by $0.2$ so the derivative stands alone.",
-     "latex": "0.2\\dfrac{dv}{dt}+v=12\\;\\Rightarrow\\;\\dfrac{dv}{dt}+5v=60"
-    },
-    {
-     "explanation": "Read off the pieces: $\\tau=RC=0.2\\,\\mathrm{s}$; the final value (capacitor open, no current, no voltage across $R$) is the full source; the initial value is the stored 2 V.",
-     "latex": "\\tau=0.2\\,\\mathrm{s},\\quad V_f=12\\,\\mathrm{V},\\quad V_0=2\\,\\mathrm{V}"
-    },
-    {
-     "explanation": "Plug into the step-response formula; $1/\\tau=5\\ \\mathrm{s^{-1}}$.",
-     "latex": "v(t)=12+(2-12)e^{-5t}=12-10e^{-5t}\\ \\mathrm{V}"
-    },
-    {
-     "explanation": "Current from the capacitor law, differentiating with the chain rule. Check: at $t=0^+$ the resistor sees $12-2=10\\,\\mathrm{V}$, and $10/4000=2.5\\,\\mathrm{mA}$, which matches.",
-     "latex": "i=C\\dfrac{dv}{dt}=50\\times10^{-6}\\cdot 50e^{-5t}=2.5e^{-5t}\\ \\mathrm{mA}"
-    },
-    {
-     "explanation": "Part 4: set $v=10$, isolate the exponential, then take $\\ln$ of both sides (ln undoes exp).",
-     "latex": "12-10e^{-5t}=10\\;\\Rightarrow\\;e^{-5t}=0.2\\;\\Rightarrow\\;-5t=\\ln 0.2"
-    },
-    {
-     "explanation": "Solve for $t$, using $\\ln 0.2=-\\ln 5$.",
-     "latex": "t=\\dfrac{\\ln 5}{5}\\approx 0.322\\ \\mathrm{s}"
-    }
-   ],
-   "answer": "1. $\\dfrac{dv}{dt}+5v=60$. 2. $\\tau=0.2\\,\\mathrm{s}$, $v(t)=12-10e^{-5t}\\,\\mathrm{V}$. 3. $i(t)=2.5e^{-5t}\\,\\mathrm{mA}$. 4. $t=\\tfrac{\\ln 5}{5}\\approx 0.322\\,\\mathrm{s}$.",
+   "type": "paragraph",
+   "text": "```steps\ntitle \"Solving the step response (lecture)\"\n$$ C\\dfrac{dv}{dt}+\\dfrac{v}{R}=I_s $$\nKCL at the top node for $t\\ge0$: $I_s$ in = current down $C$ + current down $R$.\n$$ \\dfrac{dv}{dt}+\\dfrac{v}{\\hl{RC}}=\\hl{\\dfrac{I_s}{C}} $$\nDivide by $C$. Same left side as the natural response, so $\\tau=RC$.\n$$ 0+\\dfrac{V_f}{RC}=\\dfrac{I_s}{C}\\ \\Rightarrow\\ \\hl{V_f=RI_s} $$\nFinal value $V_f$: in the end nothing changes, so $\\frac{dv}{dt}=0$.\n$$ \\dfrac{du}{dt}+\\dfrac{u+\\hl{RI_s}}{RC}=\\dfrac{I_s}{C} $$\nLet $u=v-V_f$, the distance still to go. $V_f$ is constant, so $\\frac{du}{dt}=\\frac{dv}{dt}$.\n$$ \\dfrac{du}{dt}+\\dfrac{u}{RC}=\\hl{0} $$\n$\\frac{RI_s}{RC}=\\frac{I_s}{C}$ cancels the right side.\n$$ u(t)=\\hl{(V_0-V_f)}\\,e^{-t/\\tau} $$\nThe natural response again, starting from $u(0)=V_0-V_f$.\n$$ v(t)=\\hl{V_f+}(V_0-V_f)\\,e^{-t/\\tau} $$\nAdd $V_f$ back: $v=u+V_f$.\n$$ v(t)=\\hl{RI_s}+(V_0-\\hl{RI_s})\\,e^{-t/RC} $$\nFor this circuit (lecture Eq. 2.5).\n```",
    "citations": [],
-   "id": "7fe3e927-32e8-5c07-8aec-6134e01ef079"
-  },
-  {
-   "type": "artifact_reference",
-   "artifact_id": "bb6a9d24-fcfc-42f4-8efb-dadb83d8f5cf",
-   "caption": "Example 9: $v(t)=12-10e^{-5t}$. It starts at the stored 2 V (no jump), rises fastest at first, reaches about $2+0.63\\cdot10\\approx 8.3\\,\\mathrm{V}$ at $t=\\tau=0.2\\,\\mathrm{s}$, and is essentially at 12 V by $5\\tau=1\\,\\mathrm{s}$.",
-   "citations": [],
-   "id": "37e43556-55a3-5e46-b0d0-b79206d1079c"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 10 · Two resistors: which R goes in the time constant?",
-   "prompt": "The capacitor is uncharged ($v(0^-)=0$) and the switch closes at $t=0$. Find the ODE, $\\tau$, $v(t)$ and the capacitor current at $t=0^+$.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nS1 0,3 -> 2,3 \"$t=0$\" action=close\nR1 2,3 -> 5,3 \"$6\\,\\mathrm{k\\Omega}$\"\nR2 5,3 -> 5,0 \"$3\\,\\mathrm{k\\Omega}$\"\nwire 5,3 -> 8,3\nC1 8,3 -> 8,0 \"$5\\,\\mu\\mathrm{F}$\" v=\"$v$\" i=\"$i$\"\nwire 8,0 -> 0,0\nlabel 5,3 \"$a$\" above\nground 0,0\n```",
-   "steps": [
-    {
-     "explanation": "Initial value: the capacitor was uncharged and its voltage cannot jump.",
-     "latex": "v(0^+)=v(0^-)=0"
-    },
-    {
-     "explanation": "For $t\\ge0$ write KCL at node $a$ (the node voltage is $v$, measured from ground): current leaving through $R_1$ back toward the source, plus through $R_2$, plus into $C$, adds to zero.",
-     "latex": "\\dfrac{v-12}{6000}+\\dfrac{v}{3000}+5\\times10^{-6}\\dfrac{dv}{dt}=0"
-    },
-    {
-     "explanation": "Multiply every term by 6000 to clear fractions ($6000\\times5\\times10^{-6}=0.03$), collect $v$ terms, then divide by 0.03.",
-     "latex": "0.03\\dfrac{dv}{dt}+3v=12\\;\\Rightarrow\\;\\dfrac{dv}{dt}+100v=400"
-    },
-    {
-     "explanation": "Read off $\\tau=1/100\\,\\mathrm{s}=10\\,\\mathrm{ms}$. Notice this equals $(R_1\\parallel R_2)\\,C$: the capacitor sees $6\\,\\mathrm{k\\Omega}$ and $3\\,\\mathrm{k\\Omega}$ in parallel, $\\dfrac{6\\cdot3}{6+3}=2\\,\\mathrm{k\\Omega}$, and $2000\\times5\\times10^{-6}=0.01$.",
-     "latex": "\\tau=(R_1\\parallel R_2)\\,C=10\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "Final value: set $\\dfrac{dv}{dt}=0$, or use the capacitor-open voltage divider $12\\cdot\\dfrac{3}{6+3}$.",
-     "latex": "V_f=\\dfrac{400}{100}=4\\,\\mathrm{V}"
-    },
-    {
-     "explanation": "Step-response formula with $V_0=0$, $V_f=4$, $1/\\tau=100$.",
-     "latex": "v(t)=4-4e^{-100t}\\ \\mathrm{V}"
-    },
-    {
-     "explanation": "Capacitor current: $i=C\\dfrac{dv}{dt}=5\\times10^{-6}\\cdot400e^{-100t}$; at $t=0^+$ it is 2 mA. Check: with $v=0$, $R_2$ carries nothing and all of $12/6000=2\\,\\mathrm{mA}$ flows into the capacitor.",
-     "latex": "i(0^+)=2\\,\\mathrm{mA}"
-    }
-   ],
-   "answer": "$\\dfrac{dv}{dt}+100v=400$; $\\tau=10\\,\\mathrm{ms}$; $v(t)=4-4e^{-100t}\\,\\mathrm{V}$; $i(0^+)=2\\,\\mathrm{mA}$ (it was 0 before the switch closed).",
-   "citations": [],
-   "id": "32e7ff8e-7631-5a32-a86c-7e3531f3c52a"
+   "id": "5e572667-74f8-58c9-9559-612e042cd406"
   },
   {
    "type": "callout",
-   "tone": "warning",
-   "text": "**Common mistakes**\n\n- Assuming the capacitor *current* (or inductor *voltage*) is continuous. Only $v_C$ and $i_L$ carry over from $0^-$ to $0^+$; in Example 10 the capacitor current jumps from 0 to 2 mA.\n- Using the wrong resistance in $\\tau$. Use the resistance seen by $C$ or $L$ after the switch moves, with sources switched off (Example 10: $R_1\\parallel R_2$, not $R_1$).\n- Mixing up $\\tau=RC$ (capacitor) and $\\tau=L/R$ (inductor). A bigger $R$ makes an RC circuit slower but an RL circuit faster.\n- Writing $e^{-t\\tau}$ instead of $e^{-t/\\tau}$, or forgetting unit prefixes: $\\mu\\mathrm{F}=10^{-6}\\,\\mathrm{F}$, $\\mathrm{k\\Omega}=10^{3}\\,\\Omega$, $\\mathrm{mH}=10^{-3}\\,\\mathrm{H}$.",
-   "citations": [],
-   "id": "41bf617b-864b-5761-8223-1ea36f4fbe0d"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 7 · Time constant in numbers",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "The capacitor starts at $v(0)=9\\,\\mathrm{V}$ and discharges through the resistor. Find $\\tau$, $v(t)$, the voltage after one time constant, and roughly how long until it is fully discharged.\n\n```schematic\nC1 0,3 -> 0,0 \"$47\\,\\mu\\mathrm{F}$\" v=\"$v$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$10\\,\\mathrm{k\\Omega}$\"\nwire 3,0 -> 0,0\nground 0,0\n```",
-   "solution": "",
-   "steps": [
+   "tone": "tip",
+   "text": "**Any RC or RL circuit after a switch:** $x(t)=x_f+(x_0-x_f)\\,e^{-t/\\tau}$, where $x$ is $v_C$ or $i_L$.\n\n- $x_0$: its value just before the switch (it can't jump).\n- $x_f$: its value long after (DC: $C$ open, $L$ short). No source left means $x_f=0$: the natural response.\n- $\\tau=RC$ or $L/R$, with $R$ the resistance the element sees after the switch.",
+   "citations": [
     {
-     "explanation": "Compute the time constant, converting units: $10\\,\\mathrm{k\\Omega}=10^4\\,\\Omega$ and $47\\,\\mu\\mathrm{F}=47\\times10^{-6}\\,\\mathrm{F}$.",
-     "latex": "\\tau=RC=10^4\\cdot47\\times10^{-6}=0.47\\,\\mathrm{s}"
-    },
-    {
-     "explanation": "There is no source, so this is a natural response: initial value times the decaying exponential.",
-     "latex": "v(t)=9e^{-t/0.47}\\ \\mathrm{V}"
-    },
-    {
-     "explanation": "After one time constant the exponent is $-1$, and $e^{-1}\\approx0.368$.",
-     "latex": "v(\\tau)=9e^{-1}\\approx 3.31\\,\\mathrm{V}"
-    },
-    {
-     "explanation": "After $5\\tau$ less than 1% remains, which we treat as fully discharged.",
-     "latex": "5\\tau=2.35\\,\\mathrm{s},\\quad v(5\\tau)=9e^{-5}\\approx 0.06\\,\\mathrm{V}"
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "724f3da6-c2ee-4cf9-8fe6-49e948e11540"
     }
    ],
-   "answer": "$\\tau=0.47\\,\\mathrm{s}$; $v(t)=9e^{-t/0.47}\\,\\mathrm{V}$; $v(\\tau)\\approx3.31\\,\\mathrm{V}$; about $5\\tau\\approx2.35\\,\\mathrm{s}$ to discharge.",
-   "citations": [],
-   "id": "bc43e020-49e9-5430-b981-ed1bfc4edc11"
+   "id": "e95c17c2-aea3-52ff-93c0-bcd5b6de1681"
   },
   {
-   "type": "practice_problem",
-   "title": "Try it 8 · Capacitor current at 0⁻ and 0⁺ (Pre-tutorial 2)",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "In the step-response circuit below, $V_0=v(0^-)=0$, $I_s=2\\,\\mathrm{A}$ and $R=1\\,\\mathrm{k\\Omega}$; the switch closes at $t=0$. What is the capacitor current $i$ at $t=0^-$ (switch open) and at $t=0^+$ (switch closed)? Is the capacitor current discontinuous at $t=0$, unlike the capacitor voltage?\n\n```schematic\nI1 0,0 -> 0,3 \"$2\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$1\\,\\mathrm{k\\Omega}$\" i=\"$v/R$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nC1 6,3 -> 6,0 \"$C$\" v=\"$v$\" i=\"$i$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
-   "solution": "",
+   "type": "paragraph",
+   "text": "```graph\ntitle \"$v(t)=V_f+(V_0-V_f)e^{-t/RC}$\"\nx 0 60 label=\"$t$ (ms)\"\ny -1 14 label=\"$v$ (V)\"\nslider V0 0 12 2 step=0.5 label=\"$V_0$ (V)\"\nslider Vf 0 12 12 step=0.5 label=\"$V_f$ (V)\"\nslider R 0.5 5 4 step=0.1 label=\"$R$ (k$\\Omega$)\"\nslider C 0.2 4 2 step=0.1 label=\"$C$ ($\\mu$F)\"\ncurve \"Vf+(V0-Vf)*exp(-t/(R*C))\" label=\"$v(t)$\"\nhline \"Vf\" color=0 label=\"$V_f$\"\nvline \"R*C\" color=2 label=\"$t=\\tau$\"\npoint \"R*C\" \"Vf+(V0-Vf)*exp(-1)\" color=2\nvline \"5*R*C\" color=0 label=\"$t=5\\tau$\"\nreadout \"$\\tau=RC=$\" \"R*C\" unit=\" ms\"\nreadout \"$v(\\tau)=$\" \"Vf+(V0-Vf)*exp(-1)\" unit=\" V\"\ncaption \"By $t=\\tau$ it has covered $63\\%$ of the way from $V_0$ to $V_f$; by $5\\tau$, over $99\\%$. Set $V_f=0$ for the natural response. Defaults: Example 8.\"\n```",
+   "citations": [],
+   "id": "4c340b20-0e45-50df-ac25-92a7003d20ea"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 7 · What can jump? (Pre-tutorial 2)",
+   "prompt": "In Fig. 2.6, $V_0=0$, $I_s=2\\,\\mathrm{A}$ and $R=1\\,\\mathrm{k\\Omega}$.\n\nFind the capacitor current $i$:\n- at $t=0^-$ (switch open)\n- at $t=0^+$ (switch closed)\n\nIs it discontinuous at $t=0$, unlike $v$?\n\n```schematic\nI1 0,0 -> 0,3 \"$2\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$1\\,\\mathrm{k\\Omega}$\" i=\"$v/R$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nC1 6,3 -> 6,0 \"$C$\" v=\"$v$\" i=\"$i$\"\nwire 6,0 -> 0,0\nground 0,0\n#~ flow\n```",
    "steps": [
     {
-     "explanation": "At $t=0^-$ the switch is open, so the capacitor branch is broken: no current can flow in it.",
+     "explanation": "At $0^-$ the switch is open: the capacitor branch is broken.",
      "latex": "i(0^-)=0"
     },
     {
-     "explanation": "The capacitor voltage cannot jump, so just after closing it is still zero.",
-     "latex": "v(0^+)=v(0^-)=V_0=0"
+     "explanation": "$v_C$ can't jump, and it started at $V_0=0$.",
+     "latex": "v(0^+)=v(0^-)=0"
     },
     {
-     "explanation": "With $v=0$ the resistor current $v/R$ is zero. KCL at the top node then sends the entire source current into the capacitor.",
-     "latex": "i(0^+)=I_s-\\dfrac{v(0^+)}{R}=2-0=2\\,\\mathrm{A}"
+     "explanation": "So $R$ carries $\\frac{v}{R}=0$, and KCL sends all of $I_s$ into the capacitor.",
+     "latex": "i(0^+)=I_s-\\dfrac{v(0^+)}{R}=2\\,\\mathrm{A}"
     },
     {
-     "explanation": "Cross-check with the formula: $v=RI_s(1-e^{-t/RC})$, so $i=C\\dfrac{dv}{dt}=C\\cdot RI_s\\cdot\\dfrac{1}{RC}e^{-t/RC}=I_se^{-t/RC}$, which is $2\\,\\mathrm{A}$ at $t=0^+$ for any $C$.",
-     "latex": "i(t)=I_s\\,e^{-t/RC}\\;\\Rightarrow\\;i(0^+)=2\\,\\mathrm{A}"
-    },
-    {
-     "explanation": "So the current jumps from 0 to 2 A while the voltage stays at 0: the capacitor current is discontinuous, the capacitor voltage is not.",
-     "latex": "\\begin{gathered}i:\\ 0\\to 2\\,\\mathrm{A} \\\\ v:\\ 0\\to 0\\end{gathered}"
+     "explanation": "Check with the formula $v=RI_s\\big(1-e^{-t/RC}\\big)$: then $i=C\\frac{dv}{dt}=I_se^{-t/RC}$, which is $2\\,\\mathrm{A}$ at $0^+$ whatever $C$ is.",
+     "latex": "i(t)=2e^{-t/RC}\\,\\mathrm{A}"
     }
    ],
-   "answer": "$i(0^-)=0$, $i(0^+)=2\\,\\mathrm{A}$. Yes, the capacitor current is discontinuous at $t=0$ (it jumps by 2 A), while $v$ stays continuous at 0.",
+   "answer": "$i(0^-)=0$, $i(0^+)=2\\,\\mathrm{A}$: yes, the capacitor current jumps, while $v$ stays at $0$.\n\nOnly $v_C$ and $i_L$ must be continuous.",
    "citations": [
     {
      "source_id": "b0208f55-a2d4-44c4-b05c-36d9cf00fa52",
      "version": 1,
      "chunk_id": "fa6e0545-adbd-4b78-a96a-a91ef31b58f7"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "724f3da6-c2ee-4cf9-8fe6-49e948e11540"
     }
    ],
-   "id": "1beb3eb0-e303-5f74-b109-8edc533b8e2d"
+   "id": "b7dfe93e-cf3f-504e-b2bf-4c48b275e5db"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 8 · Charging from a voltage source",
+   "prompt": "The $2\\,\\mu\\mathrm{F}$ capacitor holds $2\\,\\mathrm{V}$ when the switch closes at $t=0$. Find $v(t)$ and the time when $v=10\\,\\mathrm{V}$.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$4\\,\\mathrm{k\\Omega}$\" i=\"$i$\"\nC1 6,3 -> 6,0 \"$2\\,\\mu\\mathrm{F}$\" v=\"$v$\"\nwire 6,0 -> 0,0\nground 0,0\n#~ flow\n#~ init C1 2\n```",
+   "steps": [
+    {
+     "explanation": "The stored voltage carries over: it starts at $2\\,\\mathrm{V}$, not $0$.",
+     "latex": "v(0^+)=2\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "KVL round the loop for $t\\ge0$. In series one current flows, and it is the capacitor current.",
+     "latex": "12=4000\\,i+v,\\qquad i=2\\times10^{-6}\\dfrac{dv}{dt}"
+    },
+    {
+     "explanation": "Substitute ($4000\\times2\\times10^{-6}=0.008$), then divide by $0.008$.",
+     "latex": "\\dfrac{dv}{dt}+125v=1500"
+    },
+    {
+     "explanation": "$\\tau=RC=8\\,\\mathrm{ms}$ ($\\frac1\\tau=125$). Long after, $C$ is open, $R$ carries nothing, so $v_f=12\\,\\mathrm{V}$.",
+     "latex": "v(t)=12+(2-12)e^{-125t}=12-10e^{-125t}"
+    },
+    {
+     "explanation": "Set $v=10$, isolate the exponential, take $\\ln$ ($\\ln e^{x}=x$, $\\ln0.2=-\\ln5$).",
+     "latex": "e^{-125t}=0.2\\ \\Rightarrow\\ t=\\dfrac{\\ln5}{125}=12.9\\,\\mathrm{ms}"
+    }
+   ],
+   "answer": "$v(t)=12-10e^{-125t}\\,\\mathrm{V}$; $v=10\\,\\mathrm{V}$ at $t\\approx12.9\\,\\mathrm{ms}$ (about $1.6\\tau$).",
+   "citations": [],
+   "id": "e7a9a43d-0c3f-5891-bc1a-b5d913933ba4"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 9 · The inductor version: RL step response",
+   "prompt": "The inductor has no current before the switch closes at $t=0$. Find $i(t)$ and the inductor voltage $v_L(t)$.\n\n```schematic\nV1 0,3 -> 0,0 \"$24\\,\\mathrm{V}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$6\\,\\Omega$\"\nL1 6,3 -> 6,0 \"$0.3\\,\\mathrm{H}$\" i=\"$i$\" v=\"$v_L$\"\nwire 6,0 -> 0,0\nground 0,0\n#~ flow\n```",
+   "steps": [
+    {
+     "explanation": "$i_L$ can't jump.",
+     "latex": "i(0^+)=0"
+    },
+    {
+     "explanation": "KVL for $t\\ge0$: source = resistor + inductor. Divide by $0.3$.",
+     "latex": "24=6i+0.3\\dfrac{di}{dt}\\ \\Rightarrow\\ \\dfrac{di}{dt}+20i=80"
+    },
+    {
+     "explanation": "$\\tau=\\frac{L}{R}$: here a bigger $R$ makes it faster (for RC, slower). Long after, $L$ is a short.",
+     "latex": "\\begin{gathered}\\tau=\\dfrac{0.3}{6}=50\\,\\mathrm{ms}, \\\\ i_f=\\dfrac{24}{6}=4\\,\\mathrm{A}\\end{gathered}"
+    },
+    {
+     "explanation": "The step-response formula.",
+     "latex": "i(t)=4+(0-4)e^{-20t}=4-4e^{-20t}"
+    },
+    {
+     "explanation": "$v_L=L\\frac{di}{dt}$ (chain rule). It jumps from $0$ to $24\\,\\mathrm{V}$ at $0^+$: an inductor's voltage may jump, its current may not.",
+     "latex": "v_L=0.3\\cdot80e^{-20t}=24e^{-20t}"
+    }
+   ],
+   "answer": "$i(t)=4-4e^{-20t}\\,\\mathrm{A}$, $v_L(t)=24e^{-20t}\\,\\mathrm{V}$, $\\tau=50\\,\\mathrm{ms}$.",
+   "citations": [],
+   "id": "6d2736c5-a177-5483-aed7-d46920842ba3"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 9 · RL step response",
+   "title": "Try it 5 · Two resistors: which R is in τ?",
    "difficulty": "intermediate",
    "origin": "original",
-   "prompt": "The inductor carries no current before the switch closes at $t=0$. Find the ODE for $i(t)$, the time constant, $i(t)$ and the inductor voltage $v_L(t)$.\n\n```schematic\nV1 0,3 -> 0,0 \"$24\\,\\mathrm{V}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$6\\,\\Omega$\"\nL1 6,3 -> 6,0 \"$0.3\\,\\mathrm{H}$\" i=\"$i$\" v=\"$v_L$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "prompt": "The capacitor is uncharged and the switch closes at $t=0$. Find $\\tau$, $v(t)$ and $i(0^+)$.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nS1 0,3 -> 2,3 \"$t=0$\" action=close\nR1 2,3 -> 5,3 \"$6\\,\\mathrm{k\\Omega}$\"\nR2 5,3 -> 5,0 \"$3\\,\\mathrm{k\\Omega}$\"\nwire 5,3 -> 8,3\nC1 8,3 -> 8,0 \"$5\\,\\mu\\mathrm{F}$\" v=\"$v$\" i=\"$i$\"\nwire 8,0 -> 0,0\nlabel 5,3 \"$a$\" above\nground 0,0\n#~ flow\n```",
    "solution": "",
    "steps": [
     {
-     "explanation": "Initial value: the inductor current cannot jump, so it starts at zero.",
-     "latex": "i(0^+)=i(0^-)=0"
+     "explanation": "KCL at node $a$ (voltage $v$): current out through $6\\,\\mathrm{k\\Omega}$, through $3\\,\\mathrm{k\\Omega}$, and into $C$ adds to $0$.",
+     "latex": "\\dfrac{v-12}{6000}+\\dfrac{v}{3000}+5\\times10^{-6}\\dfrac{dv}{dt}=0"
     },
     {
-     "explanation": "KVL around the loop for $t\\ge0$: the source equals the resistor voltage plus the inductor voltage $L\\dfrac{di}{dt}$.",
-     "latex": "24=6i+0.3\\dfrac{di}{dt}"
+     "explanation": "Multiply by $6000$, then divide by $0.03$.",
+     "latex": "\\dfrac{dv}{dt}+100v=400"
     },
     {
-     "explanation": "Divide by $0.3$ so the derivative stands alone.",
-     "latex": "\\dfrac{di}{dt}+20i=80"
+     "explanation": "So $\\tau=10\\,\\mathrm{ms}$. That is $(6\\,\\mathrm{k}\\parallel3\\,\\mathrm{k})\\,C=2\\,\\mathrm{k\\Omega}\\times5\\,\\mu\\mathrm{F}$: with the source off, $C$ sees both resistors in parallel.",
+     "latex": "\\tau=(R_1\\parallel R_2)\\,C=10\\,\\mathrm{ms}"
     },
     {
-     "explanation": "Time constant $\\tau=L/R$; final value from DC steady state (inductor is a short, so $i=24/6$).",
-     "latex": "\\begin{gathered}\\tau=\\dfrac{0.3}{6}=0.05\\,\\mathrm{s} \\\\ I_f=4\\,\\mathrm{A}\\end{gathered}"
+     "explanation": "Final value: $C$ open, so a voltage divider; $V_0=0$.",
+     "latex": "v_f=12\\cdot\\tfrac{3}{9}=4\\ \\Rightarrow\\ v(t)=4-4e^{-100t}"
     },
     {
-     "explanation": "Step-response formula with $I_0=0$, $I_f=4$, $1/\\tau=20$.",
-     "latex": "i(t)=4-4e^{-20t}\\ \\mathrm{A}"
-    },
-    {
-     "explanation": "Inductor voltage from $v=L\\dfrac{di}{dt}$ (chain rule). It jumps to the full 24 V at $0^+$ and decays to 0, consistent with the inductor becoming a short.",
-     "latex": "v_L=0.3\\cdot80e^{-20t}=24e^{-20t}\\ \\mathrm{V}"
+     "explanation": "At $0^+$, $v=0$, so $3\\,\\mathrm{k\\Omega}$ carries nothing and all of $\\frac{12}{6000}$ goes into $C$.",
+     "latex": "i(0^+)=2\\,\\mathrm{mA}"
     }
    ],
-   "answer": "$\\dfrac{di}{dt}+20i=80$; $\\tau=0.05\\,\\mathrm{s}$; $i(t)=4-4e^{-20t}\\,\\mathrm{A}$; $v_L(t)=24e^{-20t}\\,\\mathrm{V}$.",
+   "answer": "- $\\tau=10\\,\\mathrm{ms}$ (not $6\\,\\mathrm{k\\Omega}\\times C$)\n- $v(t)=4-4e^{-100t}\\,\\mathrm{V}$\n- $i(0^+)=2\\,\\mathrm{mA}$",
    "citations": [],
-   "id": "62cde8af-1bb9-592b-bb6e-2b1e0048c84f"
+   "id": "f9d9f1df-04a4-5094-bdd3-037af5386ef5"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 10 · Write the ODE and classify it",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "For the series RC circuit below (switch closes at $t=0$), write the ODE for the capacitor voltage $v(t)$, classify it, and state its final value.\n\n```schematic\nV1 0,3 -> 0,0 \"$V_s$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$R$\"\nC1 6,3 -> 6,0 \"$C$\" v=\"$v$\" i=\"$i$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "KVL around the loop for $t\\ge0$: source voltage equals resistor voltage plus capacitor voltage.",
-     "latex": "V_s=Ri+v"
-    },
-    {
-     "explanation": "The same current flows through the capacitor, so substitute $i=C\\dfrac{dv}{dt}$.",
-     "latex": "RC\\dfrac{dv}{dt}+v=V_s"
-    },
-    {
-     "explanation": "Divide by $RC$ to get standard form; $\\tau=RC$.",
-     "latex": "\\dfrac{dv}{dt}+\\dfrac{v}{RC}=\\dfrac{V_s}{RC}"
-    },
-    {
-     "explanation": "Classify: first derivative only (first order); $v$ and $\\dfrac{dv}{dt}$ appear linearly; constant forcing $V_s/RC\\neq0$ (nonhomogeneous); $R$, $C$ constant (constant-coefficient); no explicit $t$ (autonomous).",
-     "latex": ""
-    },
-    {
-     "explanation": "Final value: set $\\dfrac{dv}{dt}=0$ (capacitor open, no current, no voltage across $R$).",
-     "latex": "V_f=V_s"
-    }
-   ],
-   "answer": "$\\dfrac{dv}{dt}+\\dfrac{v}{RC}=\\dfrac{V_s}{RC}$: first-order, linear, nonhomogeneous, constant-coefficient, autonomous. Final value $V_s$.",
-   "citations": [],
-   "id": "eb81a855-830a-5ed4-be6b-5cdc42d27005"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 11 · How long does it take?",
+   "title": "Try it 6 · Read a response backwards",
    "difficulty": "intermediate",
    "origin": "original",
-   "prompt": "A capacitor voltage follows the natural response $v(t)=10e^{-t/\\tau}\\,\\mathrm{V}$ with $\\tau=2\\,\\mathrm{ms}$.\n1. When does it reach $1\\,\\mathrm{V}$?\n2. When does it reach half its starting value?",
+   "prompt": "A capacitor voltage is $v(t)=8-6e^{-250t}\\,\\mathrm{V}$ for $t\\ge0$. Find:\n- $V_0$, $V_f$ and $\\tau$\n- the ODE it satisfies\n- the current if $C=4\\,\\mu\\mathrm{F}$",
    "solution": "",
    "steps": [
     {
-     "explanation": "Set $v=1$ and divide by 10 to isolate the exponential.",
-     "latex": "e^{-t/\\tau}=0.1"
+     "explanation": "Match with $V_f+(V_0-V_f)e^{-t/\\tau}$: the constant is $V_f$, $t=0$ gives $V_0$, the exponent gives $\\frac1\\tau$.",
+     "latex": "V_f=8,\\quad V_0=8-6=2,\\quad \\tau=\\tfrac{1}{250}\\,\\mathrm{s}=4\\,\\mathrm{ms}"
     },
     {
-     "explanation": "Take $\\ln$ of both sides ($\\ln e^{x}=x$), then use $\\ln0.1=-\\ln10$.",
-     "latex": "-\\dfrac{t}{\\tau}=\\ln 0.1=-\\ln 10"
-    },
-    {
-     "explanation": "Multiply by $-\\tau$.",
-     "latex": "t=\\tau\\ln10=2\\,\\mathrm{ms}\\times2.303\\approx4.61\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "Part 2: the same steps with the fraction $0.5$; $\\ln 2\\approx0.693$. This \"half-life\" is about $0.69\\tau$ for any first-order circuit.",
-     "latex": "e^{-t/\\tau}=0.5\\;\\Rightarrow\\;t=\\tau\\ln2\\approx1.39\\,\\mathrm{ms}"
-    }
-   ],
-   "answer": "1. $t=\\tau\\ln10\\approx4.61\\,\\mathrm{ms}$. 2. $t=\\tau\\ln2\\approx1.39\\,\\mathrm{ms}$.",
-   "citations": [],
-   "id": "10ca54bc-10e3-534b-b9cf-859ade181587"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 12 · Switch opens on an inductor",
-   "difficulty": "advanced",
-   "origin": "original",
-   "prompt": "The switch has been closed for a long time and opens at $t=0$. Find $i_L(0^-)$, $i_L(t)$ for $t\\ge0$, and the voltage $v_a(t)$ across the $6\\,\\Omega$ resistor. Does $v_a$ jump?\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nS1 3,3 -> 5,3 \"$t=0$\" action=open\nL1 5,3 -> 5,0 \"$0.4\\,\\mathrm{H}$\" i=\"$i_L$\"\nwire 5,3 -> 8,3\nR2 8,3 -> 8,0 \"$6\\,\\Omega$\" v=\"$v_a$\"\nwire 8,0 -> 0,0\nlabel 5,3 \"$a$\" above\nground 0,0\n```",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Before $t=0$ (DC steady state) the inductor is a short from $a$ to ground. That short also sits across the $6\\,\\Omega$ resistor, so $v_a=0$ and the $6\\,\\Omega$ carries nothing; all the current goes through $2\\,\\Omega$ and the inductor.",
-     "latex": "\\begin{gathered}i_L(0^-)=\\dfrac{12}{2}=6\\,\\mathrm{A} \\\\ v_a(0^-)=0\\end{gathered}"
-    },
-    {
-     "explanation": "The inductor current cannot jump.",
-     "latex": "i_L(0^+)=6\\,\\mathrm{A}"
-    },
-    {
-     "explanation": "For $t\\ge0$ the source branch is cut off; only the loop inductor–$6\\,\\Omega$ remains. The inductor current flows down through $L$ and back up through $R_2$, so the downward current in $R_2$ is $-i_L$ and $v_a=-6\\,i_L$. The inductor voltage is the same $v_a$.",
-     "latex": "v_a=L\\dfrac{di_L}{dt}=-6\\,i_L"
-    },
-    {
-     "explanation": "Rearrange into standard form; $\\tau=L/R=0.4/6=1/15\\,\\mathrm{s}$.",
-     "latex": "\\dfrac{di_L}{dt}+15\\,i_L=0"
-    },
-    {
-     "explanation": "Natural response from 6 A.",
-     "latex": "i_L(t)=6e^{-15t}\\ \\mathrm{A}"
-    },
-    {
-     "explanation": "Then $v_a=-6i_L$. It jumps from 0 at $0^-$ to $-36\\,\\mathrm{V}$ at $0^+$; that is allowed, because only $i_L$ has to be continuous.",
-     "latex": "v_a(t)=-36e^{-15t}\\ \\mathrm{V}"
-    }
-   ],
-   "answer": "$i_L(0^-)=6\\,\\mathrm{A}$; $i_L(t)=6e^{-15t}\\,\\mathrm{A}$; $v_a(t)=-36e^{-15t}\\,\\mathrm{V}$. Yes, $v_a$ jumps from $0$ to $-36\\,\\mathrm{V}$.",
-   "citations": [],
-   "id": "061f7cdd-a01b-544a-8290-7cda17f7b5cb"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Mixed practice (exam style)",
-   "citations": [],
-   "id": "77f844a2-785b-5428-9473-4b71855aa93b"
-  },
-  {
-   "type": "paragraph",
-   "text": "Mixed topics, like the midterm. Try each one before opening the solution.",
-   "citations": [],
-   "id": "8ee40441-4649-5edf-9c2a-187575679cda"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 1 · Classify, check, solve",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Consider $\\dfrac{dy}{dt}+4y=8$.\n1. Classify it.\n2. Show that $y=2+Ke^{-4t}$ is a solution for every constant $K$.\n3. Solve the IVP with $y(0)=0$.\n4. What does $y$ approach as $t\\to\\infty$?",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Classify: first order; linear ($y$ and $\\dfrac{dy}{dt}$ to the first power); forcing $8\\neq0$ so nonhomogeneous; coefficients $1$, $4$ constant; no explicit $t$, so autonomous.",
-     "latex": ""
-    },
-    {
-     "explanation": "Differentiate the proposed solution (constant rule and chain rule) and substitute; the $K$ terms cancel.",
-     "latex": "-4Ke^{-4t}+4(2+Ke^{-4t})=8\\ \\checkmark"
-    },
-    {
-     "explanation": "Initial condition: at $t=0$, $2+K=0$.",
-     "latex": "K=-2\\;\\Rightarrow\\;y(t)=2-2e^{-4t}"
-    },
-    {
-     "explanation": "As $t\\to\\infty$, $e^{-4t}\\to0$.",
-     "latex": "y\\to 2"
-    }
-   ],
-   "answer": "1. First-order, linear, nonhomogeneous, constant-coefficient, autonomous. 2. Shown. 3. $y=2-2e^{-4t}$. 4. $2$.",
-   "citations": [],
-   "id": "57b87836-dc95-553d-956f-a49a74ff0634"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 2 · Switch opens on a charged capacitor",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "The switch has been closed for a long time and opens at $t=0$.\n1. Find $v(0^-)$.\n2. Write the ODE for $v(t)$, $t\\ge0$, and find $\\tau$.\n3. Find $v(t)$.\n4. Find the capacitor current $i$ at $t=0^-$ and $t=0^+$.\n\n```schematic\nV1 0,3 -> 0,0 \"$10\\,\\mathrm{V}$\"\nS1 0,3 -> 2,3 \"$t=0$\" action=open\nR1 2,3 -> 5,3 \"$2\\,\\mathrm{k\\Omega}$\"\nR2 5,3 -> 5,0 \"$3\\,\\mathrm{k\\Omega}$\"\nwire 5,3 -> 8,3\nC1 8,3 -> 8,0 \"$10\\,\\mu\\mathrm{F}$\" v=\"$v$\" i=\"$i$\"\nwire 8,0 -> 0,0\nground 0,0\n```",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Before $t=0$, DC steady state: the capacitor is open, so the source, $2\\,\\mathrm{k\\Omega}$ and $3\\,\\mathrm{k\\Omega}$ form a voltage divider, and $v$ is the voltage across $3\\,\\mathrm{k\\Omega}$.",
-     "latex": "v(0^-)=10\\cdot\\dfrac{3}{2+3}=6\\,\\mathrm{V}"
-    },
-    {
-     "explanation": "After the switch opens, $2\\,\\mathrm{k\\Omega}$ hangs from an open end and carries nothing; the capacitor discharges through $3\\,\\mathrm{k\\Omega}$ only. KCL at the top node:",
-     "latex": "10^{-5}\\dfrac{dv}{dt}+\\dfrac{v}{3000}=0\\;\\Rightarrow\\;\\dfrac{dv}{dt}+\\dfrac{v}{0.03}=0"
-    },
-    {
-     "explanation": "So $\\tau=R_2C=3000\\times10^{-5}=0.03\\,\\mathrm{s}=30\\,\\mathrm{ms}$, and the voltage starts at 6 V (no jump).",
-     "latex": "v(t)=6e^{-t/0.03}\\ \\mathrm{V}"
-    },
-    {
-     "explanation": "At $0^-$ the capacitor is in DC steady state: $i(0^-)=0$. At $0^+$, $i=C\\dfrac{dv}{dt}=-\\dfrac{v}{R_2}$ from the KCL equation.",
-     "latex": "i(0^+)=-\\dfrac{6}{3000}=-2\\,\\mathrm{mA}"
-    },
-    {
-     "explanation": "The minus sign means current flows up out of the $+$ terminal: the capacitor is discharging into $3\\,\\mathrm{k\\Omega}$.",
-     "latex": ""
-    }
-   ],
-   "answer": "1. $6\\,\\mathrm{V}$. 2. $\\dfrac{dv}{dt}+\\dfrac{v}{0.03}=0$, $\\tau=30\\,\\mathrm{ms}$. 3. $v(t)=6e^{-t/0.03}\\,\\mathrm{V}$. 4. $i(0^-)=0$, $i(0^+)=-2\\,\\mathrm{mA}$.",
-   "citations": [],
-   "id": "10d93fcf-4ddb-5e1c-9eb0-5368a1530012"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 3 · Read a response backwards",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "The capacitor voltage in a first-order circuit is $v(t)=8-6e^{-250t}\\,\\mathrm{V}$ for $t\\ge0$.\n1. Find the initial value $V_0$, the final value $V_f$ and the time constant $\\tau$.\n2. Which ODE does $v$ satisfy?\n3. If $C=4\\,\\mu\\mathrm{F}$, find the capacitor current $i(t)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Match with $V_f+(V_0-V_f)e^{-t/\\tau}$: the constant is $V_f$, setting $t=0$ gives $V_0$, and the exponent gives $1/\\tau=250$.",
-     "latex": "V_f=8\\,\\mathrm{V},\\quad V_0=8-6=2\\,\\mathrm{V},\\quad \\tau=4\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "The standard form is $\\dfrac{dv}{dt}+\\dfrac{v}{\\tau}=\\dfrac{V_f}{\\tau}$; with $1/\\tau=250$ the right side is $250\\cdot8=2000$.",
+     "explanation": "Every such response solves $\\frac{dv}{dt}+\\frac{v}{\\tau}=\\frac{V_f}{\\tau}$ (its constant solution is $V_f$, as in Try it 4). Here $\\frac1\\tau=250$.",
      "latex": "\\dfrac{dv}{dt}+250v=2000"
     },
     {
-     "explanation": "Check by substitution: $\\dfrac{dv}{dt}=1500e^{-250t}$ (chain rule) and $250v=2000-1500e^{-250t}$; they add to 2000.",
-     "latex": "1500e^{-250t}+2000-1500e^{-250t}=2000\\ \\checkmark"
-    },
-    {
-     "explanation": "Current from $i=C\\dfrac{dv}{dt}$ with $C=4\\times10^{-6}$.",
-     "latex": "i=4\\times10^{-6}\\cdot1500e^{-250t}=6e^{-250t}\\ \\mathrm{mA}"
+     "explanation": "$\\frac{d}{dt}e^{-250t}=-250e^{-250t}$ (chain rule), so $\\frac{dv}{dt}=(-6)(-250)e^{-250t}=1500e^{-250t}$. Multiply by $C$.",
+     "latex": "i=4\\times10^{-6}\\cdot1500e^{-250t}=6e^{-250t}\\,\\mathrm{mA}"
     }
    ],
-   "answer": "1. $V_0=2\\,\\mathrm{V}$, $V_f=8\\,\\mathrm{V}$, $\\tau=4\\,\\mathrm{ms}$. 2. $\\dfrac{dv}{dt}+250v=2000$. 3. $i(t)=6e^{-250t}\\,\\mathrm{mA}$.",
+   "answer": "- $V_0=2\\,\\mathrm{V}$, $V_f=8\\,\\mathrm{V}$, $\\tau=4\\,\\mathrm{ms}$\n- ODE: $\\dfrac{dv}{dt}+250v=2000$\n- $i(t)=6e^{-250t}\\,\\mathrm{mA}$",
    "citations": [],
-   "id": "0d7d96a9-ad59-532c-b6c4-f35fe48da086"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 4 · Scaling fails for a nonlinear equation",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "1. Show that $y=\\dfrac{1}{1-t}$ solves the IVP $\\dfrac{dy}{dt}=y^2$, $y(0)=1$ (for $t<1$).\n2. Is $y=\\dfrac{2}{1-t}$ also a solution of $\\dfrac{dy}{dt}=y^2$? What does this say about the equation?",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Write $y=(1-t)^{-1}$ and differentiate with the chain rule: outside power rule gives $-(1-t)^{-2}$, inside $\\dfrac{d}{dt}(1-t)=-1$.",
-     "latex": "\\dfrac{dy}{dt}=-(1-t)^{-2}\\cdot(-1)=\\dfrac{1}{(1-t)^2}"
-    },
-    {
-     "explanation": "The right side is $y^2=\\dfrac{1}{(1-t)^2}$, the same; and $y(0)=\\dfrac{1}{1}=1$.",
-     "latex": "\\dfrac{dy}{dt}=y^2\\ \\checkmark,\\quad y(0)=1\\ \\checkmark"
-    },
-    {
-     "explanation": "For $y=\\dfrac{2}{1-t}$ the derivative doubles but $y^2$ quadruples, so the two sides differ.",
-     "latex": "\\dfrac{dy}{dt}=\\dfrac{2}{(1-t)^2}\\neq\\dfrac{4}{(1-t)^2}=y^2"
-    },
-    {
-     "explanation": "For a linear homogeneous equation, $2\\times$(a solution) is always a solution. Here it is not, which confirms that $\\dfrac{dy}{dt}=y^2$ is nonlinear (the $y^2$ term).",
-     "latex": ""
-    }
-   ],
-   "answer": "1. Yes. 2. No: $\\dfrac{dy}{dt}=\\dfrac{2}{(1-t)^2}$ but $y^2=\\dfrac{4}{(1-t)^2}$. Multiplying a solution by a constant does not give a solution, because the equation is nonlinear.",
-   "citations": [],
-   "id": "1ebc9e79-96cc-5523-8cae-487d1dfc66c5"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 5 · Find the capacitance from a measurement",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "A charged capacitor discharges through $1\\,\\mathrm{k\\Omega}$ (below). An oscilloscope shows $v$ falling from $20\\,\\mathrm{V}$ at $t=0$ to $5\\,\\mathrm{V}$ at $t=3\\,\\mathrm{ms}$.\n1. Find $\\tau$ and $C$.\n2. Predict $v$ at $t=6\\,\\mathrm{ms}$.\n\n```schematic\nC1 0,3 -> 0,0 \"$C$\" v=\"$v$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$1\\,\\mathrm{k\\Omega}$\"\nwire 3,0 -> 0,0\nground 0,0\n```",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Natural response: $v=20e^{-t/\\tau}$. Put in the measurement and divide by 20.",
-     "latex": "20e^{-0.003/\\tau}=5\\;\\Rightarrow\\;e^{-0.003/\\tau}=\\tfrac14"
-    },
-    {
-     "explanation": "Take $\\ln$ of both sides, using $\\ln\\tfrac14=-\\ln4$.",
-     "latex": "-\\dfrac{0.003}{\\tau}=-\\ln4\\;\\Rightarrow\\;\\tau=\\dfrac{0.003}{\\ln4}\\approx2.16\\,\\mathrm{ms}"
-    },
-    {
-     "explanation": "Since $\\tau=RC$, divide by $R=1000\\,\\Omega$.",
-     "latex": "C=\\dfrac{\\tau}{R}\\approx2.16\\,\\mu\\mathrm{F}"
-    },
-    {
-     "explanation": "Part 2: $6\\,\\mathrm{ms}$ is twice $3\\,\\mathrm{ms}$, so the factor $\\tfrac14$ applies twice: $e^{-0.006/\\tau}=\\left(e^{-0.003/\\tau}\\right)^2$.",
-     "latex": "v(6\\,\\mathrm{ms})=20\\cdot\\left(\\tfrac14\\right)^2=1.25\\,\\mathrm{V}"
-    }
-   ],
-   "answer": "1. $\\tau=\\dfrac{3\\,\\mathrm{ms}}{\\ln4}\\approx2.16\\,\\mathrm{ms}$, $C\\approx2.16\\,\\mu\\mathrm{F}$. 2. $1.25\\,\\mathrm{V}$.",
-   "citations": [],
-   "id": "5c098e6e-ba9d-5e9d-a826-93ca34b0de4a"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 6 · Classify circuit equations",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Classify each circuit equation (order; linear or not; homogeneous; constant-coefficient; autonomous).\n\n1. $\\dfrac{d^2i}{dt^2}+\\dfrac{R}{L}\\dfrac{di}{dt}+\\dfrac{i}{LC}=0$ (series RLC, natural response)\n2. $C\\dfrac{dv}{dt}+I_0\\big(e^{v/V_T}-1\\big)=0$ (a capacitor discharging through a diode; $I_0$, $V_T$ constants)\n3. $C\\dfrac{dv}{dt}+\\dfrac{v}{R}=I_0\\cos(\\omega t)$ (parallel RC driven by an AC current source; $\\omega$ is a constant)\n4. $L\\dfrac{di}{dt}+R_0(1+t)\\,i=0$ (an inductor discharging into a resistor that heats up, $R=R_0(1+t)$)",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Equation 1: second order; $i$, $\\dfrac{di}{dt}$, $\\dfrac{d^2i}{dt^2}$ appear linearly with constant coefficients; right side 0; no explicit $t$.",
-     "latex": "\\dfrac{d^2i}{dt^2}+\\dfrac{R}{L}\\dfrac{di}{dt}+\\dfrac{i}{LC}=0"
-    },
-    {
-     "explanation": "Equation 2: first order; the unknown $v$ sits inside an exponential, $e^{v/V_T}$, so it is nonlinear; no explicit $t$, so autonomous.",
-     "latex": "C\\dfrac{dv}{dt}+I_0\\big(e^{v/V_T}-1\\big)=0"
-    },
-    {
-     "explanation": "Equation 3: first order, linear, constant coefficients $C$ and $1/R$; the source $I_0\\cos(\\omega t)$ is nonzero forcing that depends on $t$.",
-     "latex": "C\\dfrac{dv}{dt}+\\dfrac{v}{R}=I_0\\cos(\\omega t)"
-    },
-    {
-     "explanation": "Equation 4: first order, linear (the coefficient $R_0(1+t)$ depends on $t$ only), homogeneous; that coefficient changes with time, so not constant-coefficient and not autonomous.",
-     "latex": "L\\dfrac{di}{dt}+R_0(1+t)\\,i=0"
-    }
-   ],
-   "answer": "1. Second-order, linear, homogeneous, constant-coefficient, autonomous.\n2. First-order, nonlinear, autonomous.\n3. First-order, linear, nonhomogeneous, constant-coefficient, not autonomous.\n4. First-order, linear, homogeneous, variable-coefficient, not autonomous.",
-   "citations": [],
-   "id": "bf940838-e9f3-5235-a940-d40a4c96fff8"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Practice 7 · RL circuit with a current source (multi-part)",
-   "difficulty": "advanced",
-   "origin": "original",
-   "prompt": "The switch has been open for a long time and closes at $t=0$.\n1. Find $i(0^+)$ and $v(0^+)$.\n2. Write the ODE for the inductor current $i(t)$ and find $\\tau$.\n3. Find $i(t)$ and the inductor voltage $v_L(t)$.\n4. Find $v(t)$ and check it at $t=0^+$ and $t\\to\\infty$.\n\n```schematic\nI1 0,0 -> 0,3 \"$3\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$10\\,\\Omega$\" v=\"$v$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nR2 6,3 -> 9,3 \"$5\\,\\Omega$\"\nL1 9,3 -> 9,0 \"$0.25\\,\\mathrm{H}$\" i=\"$i$\"\nwire 9,0 -> 0,0\nground 0,0\n```",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Before the switch closes the inductor branch is cut off, so $i(0^-)=0$; the inductor current cannot jump. At $0^+$ all 3 A therefore still goes through $10\\,\\Omega$.",
-     "latex": "\\begin{gathered}i(0^+)=0 \\\\ v(0^+)=10\\cdot3=30\\,\\mathrm{V}\\end{gathered}"
-    },
-    {
-     "explanation": "For $t\\ge0$, KCL at the top node: the source current splits between $10\\,\\Omega$ and the $5\\,\\Omega$–inductor branch. The node voltage $v$ is also the voltage across that branch, $5i+0.25\\dfrac{di}{dt}$ (KVL).",
-     "latex": "\\begin{gathered}3=\\dfrac{v}{10}+i \\\\ v=5i+0.25\\dfrac{di}{dt}\\end{gathered}"
-    },
-    {
-     "explanation": "Substitute $v$ into the KCL equation and multiply by 10.",
-     "latex": "30=5i+0.25\\dfrac{di}{dt}+10i\\;\\Rightarrow\\;0.25\\dfrac{di}{dt}+15i=30"
-    },
-    {
-     "explanation": "Divide by 0.25. The time constant is $L/R$ with $R=10+5=15\\,\\Omega$ (the resistance the inductor sees with the current source switched off, i.e. opened).",
-     "latex": "\\begin{gathered}\\dfrac{di}{dt}+60i=120 \\\\ \\tau=\\dfrac{0.25}{15}=\\dfrac{1}{60}\\,\\mathrm{s}\\end{gathered}"
-    },
-    {
-     "explanation": "Final value: set $\\dfrac{di}{dt}=0$ (inductor short). Current divider check: $3\\cdot\\dfrac{10}{10+5}=2\\,\\mathrm{A}$.",
-     "latex": "I_f=\\dfrac{120}{60}=2\\,\\mathrm{A}"
-    },
-    {
-     "explanation": "Step-response formula with $I_0=0$, then $v_L=L\\dfrac{di}{dt}$ by the chain rule.",
-     "latex": "\\begin{gathered}i(t)=2-2e^{-60t}\\ \\mathrm{A} \\\\ v_L=0.25\\cdot120e^{-60t}=30e^{-60t}\\ \\mathrm{V}\\end{gathered}"
-    },
-    {
-     "explanation": "Then $v=10(3-i)$ from KCL. Check: $v(0^+)=30\\,\\mathrm{V}$ as in part 1, and $v(\\infty)=10\\,\\mathrm{V}$ (1 A through $10\\,\\Omega$).",
-     "latex": "v(t)=10+20e^{-60t}\\ \\mathrm{V}"
-    }
-   ],
-   "answer": "1. $i(0^+)=0$, $v(0^+)=30\\,\\mathrm{V}$. 2. $\\dfrac{di}{dt}+60i=120$, $\\tau=\\tfrac{1}{60}\\,\\mathrm{s}\\approx16.7\\,\\mathrm{ms}$. 3. $i(t)=2-2e^{-60t}\\,\\mathrm{A}$, $v_L(t)=30e^{-60t}\\,\\mathrm{V}$. 4. $v(t)=10+20e^{-60t}\\,\\mathrm{V}$.",
-   "citations": [],
-   "id": "487463e5-f139-5f49-8f97-56d490a93f32"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Summary",
-   "citations": [],
-   "id": "95c7fe0e-f7c1-5891-8029-7cb56e459b8d"
-  },
-  {
-   "type": "table",
-   "columns": [
-    "Problem type",
-    "How to recognise it",
-    "What to do"
-   ],
-   "rows": [
-    [
-     "Classify an ODE",
-     "\"Find the order / is it linear, homogeneous, autonomous?\"",
-     "Order = highest derivative. Linear: the unknown and its derivatives only to the first power, never multiplied together or inside $\\sin$, $e^{(\\cdot)}$. Move unknown terms left: $f=0$ means homogeneous. Constant multipliers: constant-coefficient. No bare $t$: autonomous."
-    ],
-    [
-     "Check a solution",
-     "\"Show that $y=\\dots$ solves \\dots\"",
-     "Differentiate, substitute into both sides, simplify; both sides must agree for every $t$."
-    ],
-    [
-     "Initial value problem",
-     "A family with a constant $K$ plus $y(t_0)=y_0$",
-     "Set $t=t_0$, solve for $K$, write the single solution."
-    ],
-    [
-     "Element law",
-     "Given $v(t)$ of a capacitor or $i(t)$ of an inductor",
-     "$i=C\\dfrac{dv}{dt}$, $v=L\\dfrac{di}{dt}$ (passive sign convention; a minus sign means the actual direction is reversed)."
-    ],
-    [
-     "Initial values at a switch",
-     "\"The switch has been in position a for a long time\"",
-     "DC steady state before: $C$ open, $L$ short. Carry over only $v_C$ and $i_L$ to $0^+$; then use KCL/KVL for anything else at $0^+$."
-    ],
-    [
-     "First-order response",
-     "One $C$ or one $L$ plus resistors and DC sources, after a switch",
-     "Find $x_0$, $x_f$, $\\tau$ ($RC$ or $L/R$ with the resistance the element sees); $x(t)=x_f+(x_0-x_f)e^{-t/\\tau}$."
-    ],
-    [
-     "Timing question",
-     "\"When does $v$ reach \\dots?\" or \"find $\\tau$ from a measurement\"",
-     "Isolate $e^{-t/\\tau}$, take $\\ln$: $t=\\tau\\ln\\dfrac{1}{p}$ where $p$ is the fraction of the change still left."
-    ]
-   ],
-   "citations": [],
-   "id": "fd633d97-9d1e-5915-9b6d-67cacf54bf41"
-  },
-  {
-   "type": "table",
-   "columns": [
-    "Formula",
-    "Meaning"
-   ],
-   "rows": [
-    [
-     "$a_n(t)y^{(n)}+\\dots+a_0(t)y=f(t)$",
-     "linear ODE of order $n$; homogeneous if $f\\equiv0$"
-    ],
-    [
-     "$v=L\\dfrac{di}{dt}$, $\\;i=C\\dfrac{dv}{dt}$",
-     "inductor and capacitor laws (passive sign convention)"
-    ],
-    [
-     "$\\tau=RC$, $\\;\\tau=L/R$",
-     "time constant of an RC / RL circuit"
-    ],
-    [
-     "$x(t)=x_0e^{-t/\\tau}$",
-     "natural response (no source after the switch)"
-    ],
-    [
-     "$x(t)=x_f+(x_0-x_f)e^{-t/\\tau}$",
-     "step response (DC source after the switch)"
-    ],
-    [
-     "$e^{-1}\\approx0.37$, $\\;e^{-5}\\approx0.007$",
-     "after $\\tau$: 63% of the change done; after $5\\tau$: settled"
-    ]
-   ],
-   "citations": [],
-   "id": "0beada7a-579a-5fdf-a9e7-824bd9516c6f"
+   "id": "3dd9476c-9feb-5422-8877-20281ed058cf"
   }
  ]
 }
