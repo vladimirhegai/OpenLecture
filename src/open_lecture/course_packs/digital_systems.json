@@ -1,16 +1,17 @@
 {
-  "id": "digital_systems", "version": 1, "title": "Digital systems",
+  "id": "digital_systems", "version": 2, "title": "Digital systems",
   "description": "Boolean algebra, combinational logic, sequential circuits, and hardware descriptions.",
   "guidance": [
     "State bit width, signedness, encoding, active-low conventions, and Boolean operator notation explicitly.",
     "Use logic_truth_table to enumerate every input and verify combinational expressions before presenting a simplified form.",
     "Show equivalent algebraic, truth-table, and schematic representations when they improve understanding.",
+    "Read the digital-figures study skill and validate digital JSON fences with digital_check for gates, Karnaugh groups, CMOS, timing, state diagrams, and Venn regions; authored diagrams do not count as simulations.",
     "Use Gray-code ordering for Karnaugh maps. Explain adjacency, wraparound, and don't-care assumptions before grouping.",
     "Distinguish combinational outputs from stored state and latches from edge-triggered flip-flops.",
     "For finite-state machines define states, inputs, outputs, reset behavior, transition conditions, and Moore versus Mealy semantics.",
     "Present timing assumptions explicitly, including clock edge, setup/hold time, propagation delay, and hazards where relevant.",
     "Keep HDL as inert code blocks unless a real simulator is available; never claim synthesis or simulation succeeded without running it."
   ],
-  "tools_available": ["logic_truth_table", "math_evaluate"],
-  "tools_planned": ["state-machine simulator", "timing diagram renderer", "HDL simulation and synthesis"]
+  "tools_available": ["logic_truth_table", "math_evaluate", "digital_check"],
+  "tools_planned": ["state-machine simulator", "HDL simulation and synthesis"]
 }

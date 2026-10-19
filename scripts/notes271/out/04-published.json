@@ -1,0 +1,665 @@
+{
+  "academic_week": null,
+  "blocks": [
+    {
+      "citations": [
+        {
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25",
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1
+        }
+      ],
+      "id": "55f77b27-2242-493d-a387-89e339a3ec0f",
+      "text": "**Later study \u2014 outside this midterm study set.** Keep this material for subsequent assessments; prioritize notes 01\u201303 now.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "f869cb46-131d-4bf6-b27b-e1944ecf241b",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "b1138b61-062f-4390-b0f6-ca70268c4f00",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "f4e3486d-0c5e-4631-b7c6-7223c71d4528",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "edf666c8-5d1b-4012-952b-e75b22021479",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "d8da3de5-acf0-474c-b6b4-e4c50c36228a",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "75c76389-30f2-428e-aa8d-360f4f206134",
+      "level": 1,
+      "text": "VHDL and digital design flow",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "b1138b61-062f-4390-b0f6-ca70268c4f00",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "f4e3486d-0c5e-4631-b7c6-7223c71d4528",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "d8da3de5-acf0-474c-b6b4-e4c50c36228a",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "2c19c41f-edec-4870-b26f-9d4c7cdafd4e",
+      "text": "An **entity** declares the interface; an **architecture** describes the hardware implementing it. Concurrent assignments describe connections that exist together, rather than a list of software operations executed once from top to bottom.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "b1138b61-062f-4390-b0f6-ca70268c4f00",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "f4e3486d-0c5e-4631-b7c6-7223c71d4528",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "a7c19937-ebb3-4ad7-872c-0036128118f9",
+      "language": "vhdl",
+      "text": "library ieee;\nuse ieee.std_logic_1164.all;\n\nentity logic_example is\n  port (a, b, c : in std_logic;\n        f       : out std_logic);\nend entity;\n\narchitecture rtl of logic_example is\nbegin\n  f <= b or (a and not c);\nend architecture;",
+      "type": "code"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "b1138b61-062f-4390-b0f6-ca70268c4f00",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "72f16c83-e8b7-4ee3-a373-e978dabc5ba5",
+      "text": "`std_logic` includes 0 and 1 plus simulation states such as `U` (uninitialized), `X` (unknown), and `Z` (high impedance). A Boolean truth-table proof checks the binary cases; it does not establish behavior for every simulation state.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "f869cb46-131d-4bf6-b27b-e1944ecf241b",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "a82ff7d3-4992-456d-b76f-84bd09613ac4",
+      "text": "The design flow is specification \u2192 schematic/HDL \u2192 synthesis and functional verification \u2192 physical implementation and timing verification. A correct truth table does not guarantee that a physical implementation meets timing.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "No. Both connections exist concurrently. Ordering inside a process is a separate question.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "3f0f4bcf-2101-487b-ba3e-281c27112de1",
+      "origin": "original",
+      "prompt": "Does exchanging the order of `f <= a and b;` and `g <= not a;` change these two outputs?",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Each concurrent assignment defines its own logic; neither reads the other output.",
+          "latex": ""
+        }
+      ],
+      "title": "Try it: two outputs are concurrent",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [],
+      "id": "02a6467c-7d06-4dec-b29f-7b9dcc9a4b27",
+      "text": "The HDL examples in these notes are teaching descriptions. Their binary behavior is checked with the corresponding equations; no HDL simulator or synthesis run is claimed.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [],
+      "id": "efa4ce27-c641-47d6-825f-71c1c08454be",
+      "level": 1,
+      "text": "XOR and parity extensions",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "f5ea6bd9-aabb-43f8-8beb-b58fe0506334",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "7add4c2d-6f05-4170-b6b2-c200bdceb776",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "A",
+        "B",
+        "AB",
+        "A+B",
+        "$\\overline{AB}$",
+        "$\\overline{A+B}$",
+        "$A\\oplus B$"
+      ],
+      "id": "f970a3fa-7355-4fe1-8c39-94eb930e19c3",
+      "rows": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0",
+          "1",
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "1",
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1",
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7add4c2d-6f05-4170-b6b2-c200bdceb776",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "7d7e4cad-581b-4557-8c0a-4b4868d5177f",
+      "text": "**NAND** is an AND followed by NOT; **NOR** is an OR followed by NOT. The small output bubble means inversion.\n\n**XOR**, $A\\oplus B$, is 1 when the inputs differ. XNOR is 1 when they match. XOR is not ordinary OR: $1\\oplus1=0$.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "Only A=B=1.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "5bb38c1c-23d2-40bb-b5a9-7ca5442294d3",
+      "origin": "original",
+      "prompt": "For $F=A+B$ and $G=A\\oplus B$, find every input row where $F\\ne G$.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Both give 0 at 00 and 1 at 01 and 10.",
+          "latex": ""
+        },
+        {
+          "explanation": "At 11, OR remains 1 while XOR is 0.",
+          "latex": ""
+        }
+      ],
+      "title": "Try it: distinguish OR from XOR",
+      "type": "practice_problem"
+    },
+    {
+      "answer": "`f <= a xor b xor c;` implements the binary truth table.",
+      "citations": [
+        {
+          "chunk_id": "6b13c3b7-1d50-40c1-a173-5bfa85d67c00",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "3fbf82dd-904f-40b2-8eb8-c585bdb6c07b",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "a459700b-fc36-4285-bdfb-c37f488b2184",
+      "prompt": "The light is on when an odd number of three switches is closed. Derive a compact expression.",
+      "steps": [
+        {
+          "explanation": "The 1 rows are 001,010,100,111.",
+          "latex": "F=\\sum m(1,2,4,7)"
+        },
+        {
+          "explanation": "XOR tracks odd parity.",
+          "latex": "F=A\\oplus B\\oplus C"
+        }
+      ],
+      "title": "Three-way light control",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "0539dbc9-0b25-4403-a972-2964ab29b70f",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        },
+        {
+          "chunk_id": "5e41de12-4bd1-4a73-bc38-3516d2e6c775",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "id": "ee88611e-3767-4d36-bd87-a825605d5129",
+      "level": 1,
+      "text": "Voltage thresholds and noise margin",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "0539dbc9-0b25-4403-a972-2964ab29b70f",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "id": "07950187-2d59-4339-b3a9-8098dc78fac0",
+      "text": "In **positive logic**, low voltage represents 0 and high voltage represents 1. A range between the valid low and high input levels is undefined; it is not a third valid binary value.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "5e41de12-4bd1-4a73-bc38-3516d2e6c775",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "Quantity",
+        "Meaning"
+      ],
+      "id": "98c83b07-c0c1-49ef-863b-889405c4ed04",
+      "rows": [
+        [
+          "$V_{OL(\\max)}$",
+          "Largest guaranteed low output voltage"
+        ],
+        [
+          "$V_{OH(\\min)}$",
+          "Smallest guaranteed high output voltage"
+        ],
+        [
+          "$V_{IL(\\max)}$",
+          "Largest voltage guaranteed to be accepted as a low input"
+        ],
+        [
+          "$V_{IH(\\min)}$",
+          "Smallest voltage guaranteed to be accepted as a high input"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "5e41de12-4bd1-4a73-bc38-3516d2e6c775",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "display": true,
+      "id": "848bf7ef-df80-4797-8270-a1de5d53f716",
+      "latex": "NM_L=V_{IL(\\max)}-V_{OL(\\max)}",
+      "type": "equation"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "5e41de12-4bd1-4a73-bc38-3516d2e6c775",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "display": true,
+      "id": "bc1b5355-73cc-492f-9593-5735a59581d0",
+      "latex": "NM_H=V_{OH(\\min)}-V_{IH(\\min)}",
+      "type": "equation"
+    },
+    {
+      "answer": "Both margins are 0.4 V. A voltage in the undefined input band has no guaranteed binary interpretation.",
+      "citations": [],
+      "id": "9d3de24b-9e72-4397-b4c7-3dde06718638",
+      "prompt": "A driver guarantees $V_{OL}\\le0.4$ V and $V_{OH}\\ge2.4$ V. The receiver accepts low through 0.8 V and high from 2.0 V. Find both margins.",
+      "steps": [
+        {
+          "explanation": "Low-level noise may raise the low output toward the receiver threshold.",
+          "latex": "NM_L=0.8-0.4=0.4\\ \\mathrm V"
+        },
+        {
+          "explanation": "High-level noise may lower the high output toward its threshold.",
+          "latex": "NM_H=2.4-2.0=0.4\\ \\mathrm V"
+        }
+      ],
+      "title": "Noise margin",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "b1fe982d-865e-4d16-8117-3aef88f19ee0",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "id": "30d4e499-204a-4523-82b3-3ad443bb0a8a",
+      "level": 1,
+      "text": "Programmable logic, LUTs, and physical limits",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "b1fe982d-865e-4d16-8117-3aef88f19ee0",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "id": "79afd91d-0bf5-422e-93a5-cbf0433f264f",
+      "text": "The supplied implementation lecture develops transistor networks; its outline also names the chip families and delay topics below. PS2 supplies the PLA/LUT design tasks. The following descriptions connect those topics, without assuming an additional supplied lecture.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "fde81aec-d00f-40af-865b-c1c269b8dd01",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "Implementation",
+        "How the function is chosen"
+      ],
+      "id": "e095cff7-d389-408c-ae5d-e9eb7276df5a",
+      "rows": [
+        [
+          "Standard fixed-function IC",
+          "Select an existing function and connect chips"
+        ],
+        [
+          "PLA",
+          "Program product terms in an AND plane and select them in an OR plane"
+        ],
+        [
+          "PAL / CPLD",
+          "PAL: programmable AND terms with a fixed OR structure; CPLD: interconnected programmable blocks"
+        ],
+        [
+          "FPGA",
+          "Configure logic blocks (often LUTs), routing, and storage"
+        ],
+        [
+          "ASIC / standard cells / gate array",
+          "Implement a custom circuit with the chosen fabrication/design approach"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "answer": "Store 0,1,1,0 in address order. A k-input LUT needs $2^k$ truth-table entries.",
+      "citations": [
+        {
+          "chunk_id": "02c18827-395e-43f0-b70a-009d0b7ce324",
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1
+        }
+      ],
+      "id": "7f0c306e-a68b-4d30-8361-b35c2e4cddab",
+      "prompt": "What four stored bits implement XOR in a 2-input LUT addressed by AB=00,01,10,11?",
+      "steps": [
+        {
+          "explanation": "Evaluate XOR at each address.",
+          "latex": "0,1,1,0"
+        }
+      ],
+      "title": "A LUT stores a truth table",
+      "type": "worked_example"
+    },
+    {
+      "answer": "The AB term is generated once and used twice. This illustrates the programmable AND\u2013OR structure.",
+      "citations": [
+        {
+          "chunk_id": "02c18827-395e-43f0-b70a-009d0b7ce324",
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1
+        }
+      ],
+      "id": "92dad091-f47e-4343-b1d0-2e6bd992f825",
+      "prompt": "For $F=AB+C$ and $G=AB+D$, give the product terms and output connections.",
+      "steps": [
+        {
+          "explanation": "Create product lines P1=AB, P2=C, P3=D.",
+          "latex": ""
+        },
+        {
+          "explanation": "Select product lines for each OR output.",
+          "latex": "F=P_1+P_2,\\quad G=P_1+P_3"
+        }
+      ],
+      "title": "PLA product terms can be shared",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "b1fe982d-865e-4d16-8117-3aef88f19ee0",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "id": "79a1ea54-06ad-4ca1-bbb1-f9ae3b326783",
+      "text": "**Propagation delay** is the time between an input transition and the resulting output transition. **Fan-in** counts a gate\u2019s inputs; **fan-out** describes the load it drives. More loading can increase delay, so fewer gates need not mean the fastest circuit.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "b1fe982d-865e-4d16-8117-3aef88f19ee0",
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1
+        }
+      ],
+      "id": "12f048e1-41cc-4847-9a8a-3e072419b489",
+      "text": "A buffer reproduces its input and can provide drive. A **tri-state buffer** drives 0 or 1 when enabled and disconnects its output when disabled; that disconnected state is **Z**, not logic 0. A shared bus needs controls that prevent conflicting drivers.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "No; the bus has contention. With both drivers disabled, the bus is undriven unless another circuit establishes its level.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "57a2e798-bc2b-4a95-940b-e6b3d1f5379b",
+      "origin": "original",
+      "prompt": "Driver A drives 1 and driver B drives 0 onto the same bus. Is the bus value an OR of their outputs?",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Both outputs actively try to impose different voltages. Boolean OR does not model this connection.",
+          "latex": ""
+        },
+        {
+          "explanation": "Disable one driver to Z before allowing the other to drive.",
+          "latex": ""
+        }
+      ],
+      "title": "Try it: tri-state bus control",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7e4c9ea0-9451-4ac0-8b7e-6f03ba35783a",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "7e86764a-353e-4b9a-9c2b-0aeaeabedf63",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "306c2d70-d7a0-4134-bb40-4d841072b4a5",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "80343c17-3cf0-431e-8b47-7910224ec811",
+      "level": 1,
+      "text": "Other number bases: octal and base 4",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7e86764a-353e-4b9a-9c2b-0aeaeabedf63",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "306c2d70-d7a0-4134-bb40-4d841072b4a5",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "0c48cb28-5057-4b1b-a121-8d6560abcc79",
+      "text": "Group bits because these bases are powers of two.\n\n- Base 4: 2 bits per digit.\n- Base 8: 3 bits per digit.\n- Base 16: 4 bits per digit; A\u2013F mean decimal 10\u201315.\n\nStart each grouping at the radix point and work outward. Pad the far left of an integer or far right of a fraction with zeroes.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$(\\mathrm{B6})_{16}=(266)_8=182$. Slide 43 prints 226 in its octal result; the grouping gives 266.",
+      "citations": [
+        {
+          "chunk_id": "306c2d70-d7a0-4134-bb40-4d841072b4a5",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "b5c23703-a945-419a-9277-97a59ab95df2",
+      "prompt": "Convert $(10110110)_2$ to hex and octal.",
+      "steps": [
+        {
+          "explanation": "Group by four for hex.",
+          "latex": "1011\\;0110\\Rightarrow(\\mathrm{B6})_{16}"
+        },
+        {
+          "explanation": "Group by three for octal, padding only at the far left.",
+          "latex": "010\\;110\\;110\\Rightarrow(266)_8"
+        },
+        {
+          "explanation": "Check the value independently.",
+          "latex": "2(8^2)+6(8)+6=182"
+        }
+      ],
+      "title": "One pattern, two compact forms",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$(157)_{16}$; both forms equal 343.",
+      "citations": [
+        {
+          "chunk_id": "306c2d70-d7a0-4134-bb40-4d841072b4a5",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "e551eac0-e59b-42ac-aaf1-9d4a28a1c575",
+      "prompt": "Convert $(527)_8$ to hexadecimal.",
+      "steps": [
+        {
+          "explanation": "Replace every octal digit with exactly three bits.",
+          "latex": "(527)_8=(101\\;010\\;111)_2"
+        },
+        {
+          "explanation": "Regroup from the right in fours.",
+          "latex": "0001\\;0101\\;0111\\Rightarrow(157)_{16}"
+        }
+      ],
+      "title": "Octal to hex through binary",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$(1\\mathrm{A.A})_{16}=(32.5)_8=26.625$.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "e545dd10-6895-4c42-b8aa-f66bc89bad40",
+      "origin": "original",
+      "prompt": "Convert $(11010.101)_2$ to hexadecimal and octal.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Use groups of four on each side of the radix point.",
+          "latex": "0001\\;1010.1010\\Rightarrow(1\\mathrm{A.A})_{16}"
+        },
+        {
+          "explanation": "Use groups of three on each side.",
+          "latex": "011\\;010.101\\Rightarrow(32.5)_8"
+        }
+      ],
+      "title": "Try it: group a fraction",
+      "type": "practice_problem"
+    }
+  ],
+  "course_id": "d0b18428-9c03-4bbf-87af-7a1169d667ab",
+  "created_at": "2026-10-19T02:47:52.578085+00:00",
+  "deleted": false,
+  "document_id": "eb495e0b-1700-4b5f-8c8c-0bc5ed5654f2",
+  "document_type": "study_notes",
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "revision": 4,
+  "schema_version": 1,
+  "title": "04 \u00b7 Later \u00b7 VHDL, Voltage Levels, and Implementation Extras",
+  "topic_keys": [
+    "canonical_forms",
+    "logic_synthesis",
+    "nand_nor",
+    "vhdl"
+  ],
+  "updated_at": "2026-10-19T03:03:02.446141+00:00",
+  "reference": {
+    "document_id": "eb495e0b-1700-4b5f-8c8c-0bc5ed5654f2",
+    "course_id": "d0b18428-9c03-4bbf-87af-7a1169d667ab",
+    "revision": 4,
+    "title": "04 \u00b7 Later \u00b7 VHDL, Voltage Levels, and Implementation Extras",
+    "route": "/courses/d0b18428-9c03-4bbf-87af-7a1169d667ab/docs/eb495e0b-1700-4b5f-8c8c-0bc5ed5654f2"
+  },
+  "potentially_outdated": false,
+  "outdated_source_ids": []
+}

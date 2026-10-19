@@ -1,0 +1,644 @@
+{
+  "academic_week": null,
+  "blocks": [
+    {
+      "citations": [
+        {
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25",
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1
+        }
+      ],
+      "id": "296d167f-c785-42b7-8b7a-73c19d941d9d",
+      "text": "**Midterm: Weeks 1\u20135.** This is one of the three main study sections for the 40-minute October 29 midterm.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7aeba6d6-26bb-46de-a908-a730d2d2b619",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "19639fbc-b928-40c9-90f8-84fe43e5f788",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "80af8d17-712a-4141-bd67-73f2e43bbc96",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "56973a6d-338a-4796-989a-7287e490d6c6",
+      "level": 1,
+      "text": "1. Place value and unsigned binary",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "16b5beda-31b0-4447-a1ab-9ceeb8237f7d",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "80af8d17-712a-4141-bd67-73f2e43bbc96",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "042f18f4-fc9e-4f17-a0d8-f468946ed3b7",
+      "text": "A **bit** is one binary digit: 0 or 1. A bit pattern gets its numerical meaning from its base, bit width, and encoding.\n\n- **MSB:** the leftmost, highest-weight bit.\n- **LSB:** the rightmost, lowest-weight bit.\n- **Nibble:** 4 bits. **Byte:** 8 bits. These first examples are unsigned.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7aeba6d6-26bb-46de-a908-a730d2d2b619",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "19639fbc-b928-40c9-90f8-84fe43e5f788",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "912bbdff-05e7-4f95-ba91-fd18de50dba5",
+      "text": "In base $k$, every digit is between $0$ and $k-1$. Moving one position left multiplies its weight by $k$; moving right across the radix point divides by $k$.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "19639fbc-b928-40c9-90f8-84fe43e5f788",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "display": true,
+      "id": "e4b8e21e-9825-44cd-8172-0868d5046f26",
+      "latex": "V=\\sum_{i=-m}^{n-1}b_i k^i",
+      "type": "equation"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "19639fbc-b928-40c9-90f8-84fe43e5f788",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "3f080c3b-0089-4e2b-9158-bc7a5a2da3a6",
+      "text": "$b_i$ is the digit at position $i$; $n$ digits lie before the radix point and $m$ after it. The units digit has index 0.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "19639fbc-b928-40c9-90f8-84fe43e5f788",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "Position",
+        "3",
+        "2",
+        "1",
+        "0",
+        "-1",
+        "-2",
+        "-3"
+      ],
+      "id": "8c6e1447-2c9f-4848-ae36-47775be2e57e",
+      "rows": [
+        [
+          "Binary weight",
+          "8",
+          "4",
+          "2",
+          "1",
+          "1/2",
+          "1/4",
+          "1/8"
+        ],
+        [
+          "Example digit",
+          "1",
+          "0",
+          "1",
+          "0",
+          "0",
+          "1",
+          "0"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "answer": "$(1010.01)_2=(10.25)_{10}$.",
+      "citations": [
+        {
+          "chunk_id": "19639fbc-b928-40c9-90f8-84fe43e5f788",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "62257eba-ae8e-437f-869d-8d53184bdef0",
+      "prompt": "Convert $(1010.01)_2$ to decimal.",
+      "steps": [
+        {
+          "explanation": "Only the 1 bits contribute.",
+          "latex": "V=2^3+2^1+2^{-2}"
+        },
+        {
+          "explanation": "Evaluate the weights.",
+          "latex": "V=8+2+\\tfrac14=10.25"
+        }
+      ],
+      "title": "Lecture example: a binary fraction",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "2d159f2e-c624-4c0d-932f-c8b210505bb7",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "df62543a-fee1-4f51-883d-77d7811aed33",
+      "text": "An unsigned $n$-bit integer has $2^n$ distinct patterns, representing $0$ through $2^n-1$. Leading zeroes preserve the value but may specify the required width.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "11 bits. Count the full range, including zero.",
+      "citations": [
+        {
+          "chunk_id": "1ab95c1e-c943-4b45-bed8-846c282f9eb8",
+          "source_id": "93f0739f-31e6-41f1-8f6f-b09623073bb0",
+          "version": 1
+        }
+      ],
+      "id": "3506150a-244b-4472-87f1-837805ad1c8a",
+      "prompt": "How many bits are needed to represent decimal 1029 as an unsigned integer?",
+      "steps": [
+        {
+          "explanation": "Ten bits represent only 0 through 1023.",
+          "latex": "2^{10}-1=1023<1029"
+        },
+        {
+          "explanation": "Eleven bits include the required value.",
+          "latex": "1029<2^{11}=2048"
+        }
+      ],
+      "title": "Tutorial 2: choosing a width",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$6.625$.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "928a06a0-1fda-4be7-a4aa-81e7caf70572",
+      "origin": "original",
+      "prompt": "Find the decimal value of $(110.101)_2$.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Use negative exponents to the right of the point.",
+          "latex": "4+2+\\tfrac12+\\tfrac18=6.625"
+        }
+      ],
+      "title": "Try it: decode the radix point",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "e4d5eedc-42c7-4b4c-9b69-bce4fa238622",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "1b708a29-a4a4-469f-abf1-9f7fe47e89bb",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "ace0f79d-46e1-4d42-b131-c8cab27b4d20",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "687c3afe-9856-467e-a6f2-19b7daa12bab",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "281ac313-67f9-483c-80d2-1f928fdd7d82",
+      "level": 1,
+      "text": "2. Decimal \u2194 binary, including fractions",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "e4d5eedc-42c7-4b4c-9b69-bce4fa238622",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "1b708a29-a4a4-469f-abf1-9f7fe47e89bb",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "ace0f79d-46e1-4d42-b131-c8cab27b4d20",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "fa4e9057-0f83-4b57-822e-23583c875a47",
+      "text": "Convert the two sides of the radix point separately.\n\n- **Integer:** repeatedly divide by the target base; read the remainders from bottom to top.\n- **Fraction:** repeatedly multiply by the target base; take each integer part in top-to-bottom order and continue with the remaining fraction.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$(23.375)_{10}=(10111.011)_2$.",
+      "citations": [
+        {
+          "chunk_id": "1b708a29-a4a4-469f-abf1-9f7fe47e89bb",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "ace0f79d-46e1-4d42-b131-c8cab27b4d20",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "c6608496-ded7-4e72-874a-73589e833fd4",
+      "prompt": "Convert $(23.375)_{10}$ to binary.",
+      "steps": [
+        {
+          "explanation": "Divide the integer part by 2. The remainder is the next bit from the right.",
+          "latex": "23=2(11)+1,\\quad11=2(5)+1"
+        },
+        {
+          "explanation": "Continue until the quotient is zero.",
+          "latex": "5=2(2)+1,\\quad2=2(1)+0,\\quad1=2(0)+1"
+        },
+        {
+          "explanation": "Read the remainders upward.",
+          "latex": "23=(10111)_2"
+        },
+        {
+          "explanation": "Multiply the fraction by 2; save each integer part.",
+          "latex": "0.375(2)=0.75,\\quad0.75(2)=1.5"
+        },
+        {
+          "explanation": "Continue using only the remaining fractional part.",
+          "latex": "0.5(2)=1.0\\quad\\Rightarrow\\quad0.375=(.011)_2"
+        }
+      ],
+      "title": "Lecture example: $23.375$ to binary",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "e4d5eedc-42c7-4b4c-9b69-bce4fa238622",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "ace0f79d-46e1-4d42-b131-c8cab27b4d20",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "33655c73-5aa0-4d91-8d22-0a4022d0e23a",
+      "text": "The integer remainders arrive LSB first because each division removes the lowest-weight digit. Fractional multiplication reveals the highest-weight fractional digit first.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "687c3afe-9856-467e-a6f2-19b7daa12bab",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "Fraction remaining",
+        "Multiply by 2",
+        "Next bit"
+      ],
+      "id": "327ee1b5-fc58-42ef-bd78-4ee3a2bdcd8e",
+      "rows": [
+        [
+          "0.2",
+          "0.4",
+          "0"
+        ],
+        [
+          "0.4",
+          "0.8",
+          "0"
+        ],
+        [
+          "0.8",
+          "1.6",
+          "1"
+        ],
+        [
+          "0.6",
+          "1.2",
+          "1"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "687c3afe-9856-467e-a6f2-19b7daa12bab",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "0c861aa2-bed8-4bcb-8a4d-1c9f4c9f8895",
+      "text": "For $0.2$, the remaining fraction returns to $0.2$, so the bits repeat: $(0.2)_{10}=(.\\overline{0011})_2$. A reduced fraction terminates in binary only when its denominator is a power of two.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$0.625$, which is below $2/3$ by $1/24$. Truncation and rounding are different instructions.",
+      "citations": [
+        {
+          "chunk_id": "5ce2c8c3-a343-493d-834e-53c179d1c15c",
+          "source_id": "bf2ca805-96f9-49d4-87da-ba6471d6a531",
+          "version": 1
+        }
+      ],
+      "id": "31a9a53a-127e-454a-b051-a5a9de4a2ea3",
+      "prompt": "Approximate $2/3$ with four binary fractional bits, truncating after the fourth bit. Find the absolute error.",
+      "steps": [
+        {
+          "explanation": "Repeated doubling gives the repeating pattern 10.",
+          "latex": "\\tfrac23=(.101010\\ldots)_2"
+        },
+        {
+          "explanation": "Keep four fractional bits.",
+          "latex": "(.1010)_2=\\tfrac12+\\tfrac18=\\tfrac58"
+        },
+        {
+          "explanation": "Subtract the approximation from the exact value.",
+          "latex": "\\tfrac23-\\tfrac58=\\tfrac1{24}\\approx0.0416667"
+        }
+      ],
+      "title": "Past midterm: limited precision",
+      "type": "worked_example"
+    },
+    {
+      "citations": [],
+      "id": "2b60a992-63c3-46fa-b8f3-20a3023605dc",
+      "text": "With $m$ binary fractional bits, the spacing is $2^{-m}$. For a nonnegative value, truncation has error less than $2^{-m}$; rounding to nearest has error at most $2^{-(m+1)}$, assuming the rounded value fits.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "No; four-bit truncation is $.0010_2=0.125$, error $0.025$.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "3615c490-8168-4702-b50d-739382e96055",
+      "origin": "original",
+      "prompt": "Does $3/20$ terminate in binary? Find its first four fractional bits and the truncation error.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "The reduced denominator 20 contains a factor of 5, so the binary expansion repeats.",
+          "latex": ""
+        },
+        {
+          "explanation": "Doubling gives integer parts 0, 0, 1, 0.",
+          "latex": "(.0010)_2=\\tfrac18"
+        },
+        {
+          "explanation": "Compare exact fractions.",
+          "latex": "\\tfrac3{20}-\\tfrac18=\\tfrac1{40}=0.025"
+        }
+      ],
+      "title": "Try it: detect a repeating expansion",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7e4c9ea0-9451-4ac0-8b7e-6f03ba35783a",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "7e86764a-353e-4b9a-9c2b-0aeaeabedf63",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "306c2d70-d7a0-4134-bb40-4d841072b4a5",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "0a6e078f-73f7-42a6-9272-c6254f4222e1",
+      "level": 1,
+      "text": "3. Hexadecimal, including fractions",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7e4c9ea0-9451-4ac0-8b7e-6f03ba35783a",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "7e86764a-353e-4b9a-9c2b-0aeaeabedf63",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "306c2d70-d7a0-4134-bb40-4d841072b4a5",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "84281fb0-4a2b-4d65-be19-19540b040304",
+      "text": "Each hexadecimal digit corresponds to exactly four bits because $16=2^4$. A\u2013F represent decimal 10\u201315.\n\nStart at the radix point and group outward. Add leading zeroes on the integer side or trailing zeroes on the fraction side; never insert padding next to the radix point.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7e4c9ea0-9451-4ac0-8b7e-6f03ba35783a",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "Hex",
+        "Binary",
+        "Hex",
+        "Binary"
+      ],
+      "id": "645d309f-0b6c-43f1-83ff-e24508deb889",
+      "rows": [
+        [
+          "0",
+          "0000",
+          "8",
+          "1000"
+        ],
+        [
+          "1",
+          "0001",
+          "9",
+          "1001"
+        ],
+        [
+          "2",
+          "0010",
+          "A",
+          "1010"
+        ],
+        [
+          "3",
+          "0011",
+          "B",
+          "1011"
+        ],
+        [
+          "4",
+          "0100",
+          "C",
+          "1100"
+        ],
+        [
+          "5",
+          "0101",
+          "D",
+          "1101"
+        ],
+        [
+          "6",
+          "0110",
+          "E",
+          "1110"
+        ],
+        [
+          "7",
+          "0111",
+          "F",
+          "1111"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "answer": "$(\\mathrm{B6.A})_{16}$. Padding .101 to .1010 preserves the fraction; .0101 would change it.",
+      "citations": [
+        {
+          "chunk_id": "7e86764a-353e-4b9a-9c2b-0aeaeabedf63",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        },
+        {
+          "chunk_id": "306c2d70-d7a0-4134-bb40-4d841072b4a5",
+          "source_id": "ff6535b5-436e-42d5-8e1e-da0e01122696",
+          "version": 1
+        }
+      ],
+      "id": "e7235c6c-2437-4324-ab87-74d464aea7bf",
+      "prompt": "Convert $(10110110.101)_2$ to hexadecimal.",
+      "steps": [
+        {
+          "explanation": "Group each side in fours.",
+          "latex": "1011\\;0110.1010"
+        },
+        {
+          "explanation": "Translate each group independently.",
+          "latex": "(10110110.101)_2=(\\mathrm{B6.A})_{16}"
+        }
+      ],
+      "title": "Binary to hex: pad from the radix point",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$(\\mathrm{D.A})_{16}$. Read fractional hex digits in the order generated.",
+      "citations": [],
+      "id": "7368b4d9-a6a3-4227-9ea2-9c264471fbee",
+      "prompt": "Convert $(13.625)_{10}$ to hexadecimal, then check it in decimal.",
+      "steps": [
+        {
+          "explanation": "The integer 13 is the hex digit D.",
+          "latex": ""
+        },
+        {
+          "explanation": "Multiply the fractional part by 16 and keep its integer part.",
+          "latex": "0.625(16)=10.0\\quad\\Rightarrow\\quad.\\mathrm A"
+        },
+        {
+          "explanation": "Check the positional weights.",
+          "latex": "(\\mathrm{D.A})_{16}=13+10(16^{-1})=13.625"
+        }
+      ],
+      "title": "Decimal fraction directly to hex",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$47.25$ and $(101111.01)_2$.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "59752da2-bf34-4629-93f0-741fa8f2db83",
+      "origin": "original",
+      "prompt": "Convert $(2\\mathrm{F}.4)_{16}$ to decimal and binary.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Weight the integer and fractional digits.",
+          "latex": "2(16)+15+4/16=47.25"
+        },
+        {
+          "explanation": "Replace each hex digit with four bits.",
+          "latex": "0010\\;1111.0100"
+        }
+      ],
+      "title": "Try it: reverse a fractional hex value",
+      "type": "practice_problem"
+    }
+  ],
+  "course_id": "d0b18428-9c03-4bbf-87af-7a1169d667ab",
+  "created_at": "2026-10-19T02:47:52.493179+00:00",
+  "deleted": false,
+  "document_id": "a20960cb-7622-43c0-8daf-c706abd4b2e5",
+  "document_type": "study_notes",
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "revision": 4,
+  "schema_version": 1,
+  "title": "01 \u00b7 Binary Numbers \u2014 Midterm",
+  "topic_keys": [
+    "base_conversion",
+    "binary_numbers",
+    "number_systems"
+  ],
+  "updated_at": "2026-10-19T03:03:02.266532+00:00",
+  "reference": {
+    "document_id": "a20960cb-7622-43c0-8daf-c706abd4b2e5",
+    "course_id": "d0b18428-9c03-4bbf-87af-7a1169d667ab",
+    "revision": 4,
+    "title": "01 \u00b7 Binary Numbers \u2014 Midterm",
+    "route": "/courses/d0b18428-9c03-4bbf-87af-7a1169d667ab/docs/a20960cb-7622-43c0-8daf-c706abd4b2e5"
+  },
+  "potentially_outdated": false,
+  "outdated_source_ids": []
+}

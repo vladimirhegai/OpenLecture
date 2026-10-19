@@ -25,6 +25,11 @@ The syllabi establish course scope; they are not lecture notes or tutorial probl
 | Circuits | Resistive DC, voltage/current sources, nodal result, power balance | ngspice, dependent sources, RC/RL/RLC topology simulation, AC |
 | Probability | Binomial, normal, Poisson, exponential, uniform, gamma; PMF/PDF/CDF charts | Joint distributions, process simulation, broader symbolic integration |
 | Mathematical methods | Bounded symbolic arithmetic/differentiation/polynomial roots; constant-forcing first/second-order ODE curves | General ODEs, Laplace/convolution, phase planes, numerical-method comparisons |
-| Digital systems | Up to six-variable truth tables, equivalent minimal SOP, 2-4-variable Gray-code Karnaugh maps | Don't-cares, sequential simulation, HDL tooling and timing diagrams |
+| Digital systems | Up to six-variable truth tables, equivalent minimal SOP, 2-4-variable Gray-code Karnaugh maps; digital figure rendering and validation | Don't-care minimization in the computation tool, sequential simulation, HDL tooling |
+
+The `digital-figures` study skill and `digital_check` MCP tool support gate/block networks, grouped K-maps
+(including don't-care cells), complementary CMOS networks, timing waveforms, FSM diagrams, and Venn regions.
+Use `digital` JSON fences in notes and chat, or `POST /api/v1/digital/check` and `/api/v1/digital/render`.
+Waveforms and transitions are authored diagrams, not computed simulation results.
 
 Symbolic instructions and scaffolding do not count as verified computations. The standard note recipe asks for definitions, assumptions, reasoning, citations, meaningful diagrams, worked examples, original practice, and common mistakes. Actual educational quality still depends on the connected agent and the provided course materials.

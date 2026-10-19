@@ -1,0 +1,524 @@
+{
+  "academic_week": null,
+  "blocks": [
+    {
+      "citations": [
+        {
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25",
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1
+        }
+      ],
+      "id": "f51e8d7a-bec1-4ef3-a44d-317317450cf1",
+      "text": "**Later study \u2014 outside this midterm study set.** Keep this material for subsequent assessments; prioritize notes 01\u201303 now.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "69a2c8c6-01f8-4464-b417-8992b40a41a0",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        },
+        {
+          "chunk_id": "450bedfa-f805-4d6f-a2fb-c16a52ce2e17",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "9eb4475e-4b3d-4447-91d2-dc1a4fa58e32",
+      "text": "This note follows the design tasks in Problem Set 5 and the lecture\u2019s 2-to-1 multiplexer example.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "0ad29336-4241-42bc-b485-04ba4fd7021e",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "4fd30133-f913-4fb5-a3ff-277d4f64ae00",
+      "level": 1,
+      "text": "Topic 1: Multiplexers and Shannon expansion",
+      "type": "heading"
+    },
+    {
+      "citations": [],
+      "id": "ba99ca18-8e15-46e9-9190-16b552661a2b",
+      "text": "A **multiplexer (MUX)** selects one data input. For a 2-to-1 mux, select $S=0$ chooses $D_0$; $S=1$ chooses $D_1$. The select bit is a control input, not a third data choice.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "0ad29336-4241-42bc-b485-04ba4fd7021e",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "display": true,
+      "id": "1d0ed646-5e15-45f8-86ac-a46cef743f6f",
+      "latex": "Y=\\overline S D_0+SD_1",
+      "type": "equation"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "0ad29336-4241-42bc-b485-04ba4fd7021e",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "4e102964-f53d-4a93-a1a4-bcb87566e89c",
+      "text": "```digital\n{\"kind\":\"circuit\",\"title\":\"Two-to-one multiplexer\",\"nodes\":[{\"id\":\"D0\",\"gate\":\"INPUT\",\"x\":70,\"y\":90},{\"id\":\"D1\",\"gate\":\"INPUT\",\"x\":70,\"y\":160},{\"id\":\"SEL\",\"gate\":\"INPUT\",\"x\":70,\"y\":230,\"label\":\"S\"},{\"id\":\"M\",\"gate\":\"MUX\",\"x\":285,\"y\":160},{\"id\":\"Y\",\"gate\":\"OUTPUT\",\"x\":485,\"y\":160}],\"wires\":[{\"start\":\"D0.out\",\"end\":\"M.0\"},{\"start\":\"D1.out\",\"end\":\"M.1\"},{\"start\":\"SEL.out\",\"end\":\"M.2\"},{\"start\":\"M.out\",\"end\":\"Y.0\"}]}\n```\n\n*MUX ports are labeled 0, 1 and S; the output equals the selected data input.*",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "69a2c8c6-01f8-4464-b417-8992b40a41a0",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "a270d022-931d-4569-bfe1-ea677c413967",
+      "text": "A **cofactor** fixes one input: $F_0=F|_{A=0}$ and $F_1=F|_{A=1}$. Shannon expansion says $F=\\overline A F_0+AF_1$. A mux therefore implements any function if its data inputs implement the two cofactors.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "The mux chooses F0 for A=0 and F1 for A=1. Share NOT C between the two cofactor circuits.",
+      "citations": [
+        {
+          "chunk_id": "69a2c8c6-01f8-4464-b417-8992b40a41a0",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "1a5746d0-fdf9-4c69-ac0a-2e852a7183f4",
+      "prompt": "Implement $F(A,B,C)=\\sum m(0,4,6,7)$ with one 2-to-1 mux and other necessary gates. Select on A.",
+      "steps": [
+        {
+          "explanation": "When A=0, only BC=00 gives 1.",
+          "latex": "F_0=\\overline B\\overline C"
+        },
+        {
+          "explanation": "When A=1, BC=00,10,11 give 1.",
+          "latex": "F_1=B+\\overline C"
+        },
+        {
+          "explanation": "Connect the cofactors to the corresponding mux data pins.",
+          "latex": "S=A,\\quad D_0=\\overline B\\overline C,\\quad D_1=B+\\overline C"
+        }
+      ],
+      "title": "PS5 Q3: design a mux from cofactors",
+      "type": "worked_example"
+    },
+    {
+      "answer": "One 4-to-1 mux and an inverter; address order must match AB=00,01,10,11.",
+      "citations": [],
+      "id": "f186c324-d229-4b84-bd2c-ab3781c8f615",
+      "prompt": "Implement the same function with a 4-to-1 mux, selecting by AB.",
+      "steps": [
+        {
+          "explanation": "For AB=00, F follows NOT C; for 01, F is always 0.",
+          "latex": ""
+        },
+        {
+          "explanation": "For AB=10, F follows NOT C; for 11, F is always 1.",
+          "latex": "D_0=\\overline C,\\ D_1=0,\\ D_2=\\overline C,\\ D_3=1"
+        }
+      ],
+      "title": "Use two select inputs instead",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "69a2c8c6-01f8-4464-b417-8992b40a41a0",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "73d0a988-f43c-4b3b-bb21-737104dc7523",
+      "text": "Applying Shannon expansion repeatedly eventually fixes every input. The result is the canonical sum of minterms. Stopping earlier gives a useful mux tree instead.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "Five LUTs suffice. These are truth-table contents, not FPGA configuration-file bit ordering.",
+      "citations": [
+        {
+          "chunk_id": "02c18827-395e-43f0-b70a-009d0b7ce324",
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1
+        }
+      ],
+      "id": "093151a0-5b9f-4670-b21b-a6af770cb054",
+      "prompt": "Implement $F=AB+AC+BC$ using five 2-input LUTs.",
+      "steps": [
+        {
+          "explanation": "Three LUTs generate P=AB, Q=AC, R=BC. Each stores 0001 in address order 00,01,10,11.",
+          "latex": ""
+        },
+        {
+          "explanation": "A fourth LUT generates U=P OR Q; the fifth generates F=U OR R. Each OR LUT stores 0111.",
+          "latex": ""
+        }
+      ],
+      "title": "Build a function from two-input LUTs",
+      "type": "worked_example"
+    },
+    {
+      "answer": "Connect D0=1 and D1=0.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "5571b041-528e-4db6-a1d7-3af33c45d815",
+      "origin": "original",
+      "prompt": "Implement NOT A using one 2-to-1 mux with select A and constant data inputs.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "At A=0 the output must be 1; at A=1 it must be 0.",
+          "latex": "D_0=1,\\quad D_1=0"
+        }
+      ],
+      "title": "Try it: a mux as an inverter",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "69a2c8c6-01f8-4464-b417-8992b40a41a0",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        },
+        {
+          "chunk_id": "450bedfa-f805-4d6f-a2fb-c16a52ce2e17",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "b53ce953-cb89-42e8-badb-715910463d7d",
+      "level": 1,
+      "text": "Topic 2: Decoders and encoders",
+      "type": "heading"
+    },
+    {
+      "citations": [],
+      "id": "1fee1342-c5f5-4b15-8603-947d53070923",
+      "text": "An active-high **n-to-$2^n$ decoder** activates exactly the output whose index equals the binary input. Its outputs are the input minterms. With an enable E, all outputs are inactive when E=0.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [],
+      "columns": [
+        "AB",
+        "Y0",
+        "Y1",
+        "Y2",
+        "Y3"
+      ],
+      "id": "014350f1-5a62-4fc9-a0f2-b8fea3bceea6",
+      "rows": [
+        [
+          "00",
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "01",
+          "0",
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "10",
+          "0",
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "11",
+          "0",
+          "0",
+          "0",
+          "1"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [],
+      "display": true,
+      "id": "da270c72-3e00-4a4e-afa1-07ddacd78d1c",
+      "latex": "Y_0=E\\overline A\\overline B,\\quad Y_1=E\\overline A B",
+      "type": "equation"
+    },
+    {
+      "citations": [],
+      "display": true,
+      "id": "597f623a-6468-43ca-a0ba-ad430abe0d8d",
+      "latex": "Y_2=EA\\overline B,\\quad Y_3=EAB",
+      "type": "equation"
+    },
+    {
+      "answer": "A 3-to-8 decoder plus the OR of those six outputs. Active-low decoder outputs require a different combining gate.",
+      "citations": [
+        {
+          "chunk_id": "69a2c8c6-01f8-4464-b417-8992b40a41a0",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "ea0080f0-6a7f-402a-acfd-76ca17cde908",
+      "prompt": "$F(A,B,C)=\\sum m(0,2,3,4,5,7)$. Use a 3-to-8 active-high decoder.",
+      "steps": [
+        {
+          "explanation": "Connect A,B,C to the decoder in that bit order.",
+          "latex": ""
+        },
+        {
+          "explanation": "OR the outputs corresponding to the required minterms.",
+          "latex": "F=Y_0+Y_2+Y_3+Y_4+Y_5+Y_7"
+        }
+      ],
+      "title": "PS5 Q1: implement a function with a decoder",
+      "type": "worked_example"
+    },
+    {
+      "answer": "Exactly one bank can be enabled for a binary A. This requires the sub-decoders to have enable inputs.",
+      "citations": [
+        {
+          "chunk_id": "450bedfa-f805-4d6f-a2fb-c16a52ce2e17",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "8b661bdd-84e0-41e6-8c0a-e5a7e88cdc93",
+      "prompt": "Construct an enabled 3-to-8 decoder from two enabled 2-to-4 decoders.",
+      "steps": [
+        {
+          "explanation": "Feed the low two input bits B,C into both decoders.",
+          "latex": ""
+        },
+        {
+          "explanation": "Enable the lower-output bank with E AND NOT A, and the upper bank with E AND A.",
+          "latex": ""
+        },
+        {
+          "explanation": "The lower bank drives Y0\u2013Y3; the upper drives Y4\u2013Y7.",
+          "latex": ""
+        }
+      ],
+      "title": "PS5 Q9: build a decoder hierarchically",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "69a2c8c6-01f8-4464-b417-8992b40a41a0",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "fb9e72f1-3d71-421d-9a84-bebf13346ad8",
+      "text": "An **encoder** does the reverse when exactly one input is active: it outputs that input\u2019s binary index. A **priority encoder** defines which active input wins when several are 1. A separate valid flag distinguishes \u201cinput 0 active\u201d from \u201cnothing active.\u201d",
+      "type": "paragraph"
+    },
+    {
+      "citations": [],
+      "columns": [
+        "D3 D2 D1 D0",
+        "Valid",
+        "Index (D3 highest priority)"
+      ],
+      "id": "ee92572d-f623-4e4a-94b2-e9165d6c615c",
+      "rows": [
+        [
+          "1---",
+          "1",
+          "11"
+        ],
+        [
+          "01--",
+          "1",
+          "10"
+        ],
+        [
+          "001-",
+          "1",
+          "01"
+        ],
+        [
+          "0001",
+          "1",
+          "00"
+        ],
+        [
+          "0000",
+          "0",
+          "00 (chosen default)"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [],
+      "id": "90a1d1d2-7101-420f-aa29-8550f1a58e0e",
+      "language": "vhdl",
+      "text": "library ieee;\nuse ieee.std_logic_1164.all;\n\nentity priority4 is\n  port (d : in std_logic_vector(3 downto 0);\n        code : out std_logic_vector(1 downto 0);\n        valid : out std_logic);\nend entity;\narchitecture rtl of priority4 is\nbegin\n  code <= \"11\" when d(3)='1' else\n          \"10\" when d(2)='1' else\n          \"01\" when d(1)='1' else \"00\";\n  valid <= d(3) or d(2) or d(1) or d(0);\nend architecture;",
+      "type": "code"
+    },
+    {
+      "answer": "Use a NAND of N1,N3,N6; an OR would give the wrong function.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "a1bbfac2-02ef-4aca-87a2-e6b00d40bd8d",
+      "origin": "original",
+      "prompt": "A decoder produces active-low outputs N0\u2013N7. How do you combine N1,N3,N6 to implement a function that is 1 at minterms 1,3,6?",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Each Ni is the complement of the corresponding minterm.",
+          "latex": "F=\\overline{N_1N_3N_6}"
+        }
+      ],
+      "title": "Try it: active-low outputs",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "450bedfa-f805-4d6f-a2fb-c16a52ce2e17",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "a292307f-f190-4fe9-8e4d-e79d2fd787b5",
+      "level": 1,
+      "text": "Topic 3: Shifters and equality",
+      "type": "heading"
+    },
+    {
+      "citations": [],
+      "id": "c860aea4-37d9-4e1b-8281-3e1299a43905",
+      "text": "A **logical shifter** routes bit positions and fills vacated positions with zeroes. Let $W=w_3w_2w_1w_0$ and $Y=y_3y_2y_1y_0$, with $w_3$ the MSB.\n\n- Hold: $Y=W$.\n- Shift left: $Y=w_2w_1w_0 0$.\n- Shift right: $Y=0w_3w_2w_1$.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "Four routing muxes. The equations rely on the specified exclusion of R=L=1.",
+      "citations": [
+        {
+          "chunk_id": "450bedfa-f805-4d6f-a2fb-c16a52ce2e17",
+          "source_id": "577e4539-8aec-49cb-af27-39083a60860f",
+          "version": 1
+        }
+      ],
+      "id": "c053fcff-342b-403e-9518-d0aa13bc0313",
+      "prompt": "Design hold/left/right selection when Right and Left are never both 1.",
+      "steps": [
+        {
+          "explanation": "Use the same two controls for one mux per output bit. Let H mean neither shift is requested.",
+          "latex": "H=\\overline R\\overline L"
+        },
+        {
+          "explanation": "MSB chooses hold w3, left w2, or right zero.",
+          "latex": "y_3=Hw_3+Lw_2"
+        },
+        {
+          "explanation": "Interior bits choose their corresponding neighbors.",
+          "latex": "y_2=Hw_2+Lw_1+Rw_3"
+        },
+        {
+          "explanation": "Finish the low two positions.",
+          "latex": "y_1=Hw_1+Lw_0+Rw_2,\\quad y_0=Hw_0+Rw_1"
+        }
+      ],
+      "title": "PS5 Q10: four-bit bidirectional shifter",
+      "type": "worked_example"
+    },
+    {
+      "answer": "Hold 1011; left 0110; right 0101. Arithmetic right shift is different for a negative signed value.",
+      "citations": [],
+      "id": "70c712a1-a580-41c3-bc88-be36985b876a",
+      "prompt": "For W=1011, give hold, one logical left shift, and one logical right shift.",
+      "steps": [
+        {
+          "explanation": "Keep four output positions and discard bits shifted out.",
+          "latex": ""
+        },
+        {
+          "explanation": "Fill the new position with zero.",
+          "latex": ""
+        }
+      ],
+      "title": "Follow the bit order",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839",
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1
+        }
+      ],
+      "id": "e4d609e9-14bb-4946-9a4b-13dd0138efba",
+      "text": "A four-bit equality detector compares corresponding bits using XNOR, then ANDs the four equality results. It checks bit-pattern equality regardless of whether those patterns are interpreted as signed or unsigned.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [],
+      "display": true,
+      "id": "e8d2c0d7-07cb-4835-aa4f-22b1cd5c202e",
+      "latex": "Equal=\\prod_{i=0}^{3}\\overline{A_i\\oplus B_i}",
+      "type": "equation"
+    },
+    {
+      "answer": "0111. For rotate left, y0 receives w3 instead of 0; the other left-shift connections are unchanged.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "b2f8dbd9-776f-4518-87ca-08539bd70fa4",
+      "origin": "original",
+      "prompt": "What is the one-bit rotate-left result for W=1011? How must the shifter\u2019s MSB/LSB routing change?",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "A rotation returns the bit shifted out to the other end.",
+          "latex": "Y=w_2w_1w_0w_3"
+        }
+      ],
+      "title": "Try it: replace zero-fill with rotation",
+      "type": "practice_problem"
+    }
+  ],
+  "course_id": "d0b18428-9c03-4bbf-87af-7a1169d667ab",
+  "created_at": "2026-10-19T02:47:53.231397+00:00",
+  "deleted": false,
+  "document_id": "d89deb82-07b2-4f37-8601-a1ef1dca50e3",
+  "document_type": "study_notes",
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "revision": 4,
+  "schema_version": 1,
+  "title": "07 \u00b7 Later \u00b7 Multiplexers, Decoders, and Combinational Building Blocks",
+  "topic_keys": [
+    "decoders",
+    "encoders",
+    "multiplexers",
+    "shifters"
+  ],
+  "updated_at": "2026-10-19T03:03:02.624429+00:00",
+  "reference": {
+    "document_id": "d89deb82-07b2-4f37-8601-a1ef1dca50e3",
+    "course_id": "d0b18428-9c03-4bbf-87af-7a1169d667ab",
+    "revision": 4,
+    "title": "07 \u00b7 Later \u00b7 Multiplexers, Decoders, and Combinational Building Blocks",
+    "route": "/courses/d0b18428-9c03-4bbf-87af-7a1169d667ab/docs/d89deb82-07b2-4f37-8601-a1ef1dca50e3"
+  },
+  "potentially_outdated": false,
+  "outdated_source_ids": []
+}

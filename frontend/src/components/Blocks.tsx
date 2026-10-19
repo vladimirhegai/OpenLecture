@@ -4,6 +4,7 @@ import { resolveCitation, type Block, type Citation, type Step } from "../api";
 import { ArtifactCard } from "./ArtifactCard";
 import { Markdown, Tex } from "./Markdown";
 import { Schematic } from "./Schematic";
+import { DigitalFigure } from "./DigitalFigure";
 
 type Handlers = {
   courseId: string;
@@ -131,6 +132,7 @@ function Content({ block, courseId, onCite, toggle }: { block: Block; courseId: 
       );
     case "code":
       if (block.language === "schematic") return <Schematic source={block.text} />;
+      if (block.language === "digital") return <DigitalFigure source={block.text} />;
       return (
         <pre>
           <code>{block.text}</code>

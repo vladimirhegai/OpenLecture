@@ -7,7 +7,7 @@ from mcp.server.fastmcp import FastMCP
 from mcp.types import ImageContent, TextContent, ToolAnnotations
 from pydantic import Field
 
-from . import circuits, schematic
+from . import circuits, digital, schematic
 from .api import simulate_artifact
 from .config import Settings
 from .math_engine import binomial, calculate
@@ -377,6 +377,13 @@ def create_server(workspace: Workspace):
         note. Returns the nodes and the element connections the drawing implies, so you can confirm it matches
         the intended circuit, plus warnings such as unconnected terminals. Invalid drawings raise with a line."""
         return schematic.topology(source)
+
+    @server.tool(annotations=READ)
+    def digital_check(source: str) -> dict[str, Any]:
+        """Validate a digital figure before embedding a ```digital JSON fence in notes or chat.
+        Read study_skill_read('digital-figures') for gates, K-maps, CMOS, timing, and FSM diagrams.
+        Checks drawing structure and map group validity; does not simulate a circuit."""
+        return digital.check(source)
 
     @server.tool(annotations=READ)
     def circuit_validate(data: CircuitRequest) -> dict[str, Any]:

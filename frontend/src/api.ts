@@ -193,6 +193,24 @@ export async function pageImage(courseId: string, sourceId: string, page: number
 
 const schematicCache = new Map<string, Promise<string>>();
 
+const digitalCache = new Map<string, Promise<string>>();
+export function digitalImage(source: string) {
+  if (!digitalCache.has(source)) {
+    const load = (async () => {
+      const response = await fetch("/api/v1/digital/render", {
+        method: "POST",
+        headers: headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify({ source }),
+      });
+      if (!response.ok) throw await failure(response);
+      return URL.createObjectURL(await response.blob());
+    })();
+    load.catch(() => digitalCache.delete(source));
+    digitalCache.set(source, load);
+  }
+  return digitalCache.get(source)!;
+}
+
 export const schematicSeen = (source: string) => schematicCache.has(source);
 
 /** Render a schematic-language drawing to an SVG object URL; identical drawings render once. */

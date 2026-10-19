@@ -1,0 +1,449 @@
+{
+  "title": "05 · Later · Karnaugh Maps and Logic Optimization",
+  "document_type": "study_notes",
+  "topic_keys": [
+    "karnaugh_maps",
+    "dont_cares",
+    "logic_optimization"
+  ],
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "id": "e88dd903-b951-541e-b56e-86621ce04d27",
+      "citations": [
+        {
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1,
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25"
+        }
+      ],
+      "text": "**Later study — outside this midterm study set.** Keep this material for subsequent assessments; prioritize notes 01–03 now."
+    },
+    {
+      "type": "paragraph",
+      "id": "baf56573-278d-5cb6-9b59-44a22fff3e1d",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        },
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "0a6ea6ec-c395-452b-ab9e-b31167d3a78e"
+        }
+      ],
+      "text": "This note develops the optimization methods requested in Problem Set 3. No separate Section 4 lecture was supplied."
+    },
+    {
+      "type": "heading",
+      "id": "ddb89f92-7b9f-5f05-ac78-7e4af0c2705d",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 1: A map makes adjacent minterms visible"
+    },
+    {
+      "type": "paragraph",
+      "id": "9e2acc9c-bca7-5c84-bf72-853c1271f493",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "text": "A **Karnaugh map** rearranges a truth table so adjacent cells differ in exactly one input bit. The axes use **Gray order**: 00, 01, 11, 10. The last position is adjacent to the first."
+    },
+    {
+      "type": "paragraph",
+      "id": "5c25c6a4-6600-55a4-9a10-b32889b657f5",
+      "citations": [],
+      "text": "For SOP, group 1 cells into rectangles containing 1, 2, 4, 8, … cells.\n\n- Use horizontal/vertical neighbors, including wraparound; diagonal neighbors do not count.\n- A group may overlap another group.\n- Cover every required 1 without including any required 0.\n- A variable that changes inside a group disappears from its product term."
+    },
+    {
+      "type": "paragraph",
+      "id": "ca735489-1994-5e91-b931-9e7f7bf5669b",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"kmap\",\"title\":\"Three-input SOP grouping\",\"variables\":[\"A\",\"B\",\"C\"],\"ones\":[1,2,3,5],\"groups\":[{\"cells\":[2,3],\"label\":\"A=0, B=1 -> NOT A B\"},{\"cells\":[1,5],\"label\":\"B=0, C=1 -> NOT B C\"}]}\n```\n\n*Columns are BC=00,01,11,10. The two groups cover all four required 1s.*"
+    },
+    {
+      "type": "worked_example",
+      "id": "21120c6c-6efc-5306-94b0-df653a6a6ab5",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "title": "PS3 Q1: minimum SOP",
+      "prompt": "Find a minimum SOP for $F(A,B,C)=\\sum m(1,2,3,5)$.",
+      "steps": [
+        {
+          "explanation": "Cells 2=010 and 3=011 differ only in C.",
+          "latex": "m_2+m_3=\\overline A B"
+        },
+        {
+          "explanation": "Cells 1=001 and 5=101 differ only in A.",
+          "latex": "m_1+m_5=\\overline B C"
+        },
+        {
+          "explanation": "OR the two implicants.",
+          "latex": "F=\\overline A B+\\overline B C"
+        }
+      ],
+      "answer": "Two products with four literals. Cell 2 forces the first pair and cell 5 forces the second; one product cannot cover all four 1s."
+    },
+    {
+      "type": "paragraph",
+      "id": "2636090b-65c3-5205-96b4-2c6770810415",
+      "citations": [],
+      "text": "An **implicant** covers only 1s and allowed Xs. A **prime implicant** cannot expand to a larger allowed group. It is **essential** if it uniquely covers a required 1. Choose essentials first, then cover any remaining 1s at the lowest allowed cost."
+    },
+    {
+      "type": "worked_example",
+      "id": "e11c8ebd-c4ba-588c-85f6-3b79802178be",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "title": "The same map gives POS",
+      "prompt": "Find the POS for $F=\\sum m(1,2,3,5)$.",
+      "steps": [
+        {
+          "explanation": "The required zero rows are 0,4,6,7.",
+          "latex": ""
+        },
+        {
+          "explanation": "Rows 0 and 4 keep B=C=0: the factor B+C is zero there.",
+          "latex": ""
+        },
+        {
+          "explanation": "Rows 6 and 7 keep A=B=1: use NOT A + NOT B.",
+          "latex": "F=(B+C)(\\overline A+\\overline B)"
+        }
+      ],
+      "answer": "$(B+C)(\\overline A+\\overline B)$. For a zero group, a constant 0 gives an uncomplemented literal; a constant 1 gives a complemented literal."
+    },
+    {
+      "type": "paragraph",
+      "id": "da4b21d0-554d-5a78-af9c-23fa50cbb2ff",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"kmap\",\"title\":\"Group zeros for POS\",\"variables\":[\"A\",\"B\",\"C\"],\"ones\":[1,2,3,5],\"target\":0,\"groups\":[{\"cells\":[0,4],\"label\":\"B=0, C=0 -> (B+C)\"},{\"cells\":[6,7],\"label\":\"A=1, B=1 -> (NOT A+NOT B)\"}]}\n```\n\n*The POS factors identify where F must become zero.*"
+    },
+    {
+      "type": "practice_problem",
+      "id": "30441a36-9ab8-5483-8326-61c6e251e10a",
+      "citations": [],
+      "title": "Try it: four corners",
+      "prompt": "A four-variable map has 1s only at 0,2,8,10. Give one product term covering all four.",
+      "steps": [
+        {
+          "explanation": "The corners are adjacent through both map boundaries.",
+          "latex": ""
+        },
+        {
+          "explanation": "A and C change; B and D stay at zero.",
+          "latex": "F=\\overline B\\,\\overline D"
+        }
+      ],
+      "answer": "$\\overline B\\,\\overline D$.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    },
+    {
+      "type": "heading",
+      "id": "56382d38-390f-5efb-8fcf-345a9be22e38",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 2: Don’t-care conditions"
+    },
+    {
+      "type": "paragraph",
+      "id": "b6b8537a-a35a-5732-89c5-de293dab5149",
+      "citations": [],
+      "text": "A **don’t-care** X is an input combination for which the specification allows either output. Use it as 0 or 1 when that helps simplify the circuit; it does not have to be covered.\n\nAn X is permission from the specification, not a missing answer you may choose arbitrarily."
+    },
+    {
+      "type": "paragraph",
+      "id": "ef32bb4a-645e-5054-bbe5-4c2f6c9daad3",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"kmap\",\"title\":\"Use X cells to enlarge groups\",\"variables\":[\"A\",\"B\",\"C\",\"D\"],\"ones\":[0,2,8,9,10,15],\"dont_cares\":[1,3,6,7],\"groups\":[{\"cells\":[0,1,8,9],\"label\":\"NOT B NOT C\"},{\"cells\":[0,2,8,10],\"label\":\"NOT B NOT D (wraparound)\"},{\"cells\":[7,15],\"label\":\"BCD\"}]}\n```\n\n*PS3 Q2: use X at 1 and 7; X at 3 and 6 need not be included.*"
+    },
+    {
+      "type": "worked_example",
+      "id": "d9eef925-5544-5efb-a2fa-3fb1de07954f",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "title": "PS3 Q2: use Xs without changing required rows",
+      "prompt": "$F=\\sum m(0,2,8,9,10,15)+D(1,3,6,7)$. Find a minimum SOP.",
+      "steps": [
+        {
+          "explanation": "Group 0,1,8,9; B and C are zero.",
+          "latex": "P_1=\\overline B\\overline C"
+        },
+        {
+          "explanation": "Group 0,2,8,10 across the edge.",
+          "latex": "P_2=\\overline B\\overline D"
+        },
+        {
+          "explanation": "Pair required cell 15 with X cell 7.",
+          "latex": "P_3=BCD"
+        }
+      ],
+      "answer": "$F=\\overline B\\overline C+\\overline B\\overline D+BCD$. The chosen values on X rows are allowed to differ from another valid realization."
+    },
+    {
+      "type": "worked_example",
+      "id": "3164bd4b-631d-5305-90cd-c308f009503d",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "title": "A different legal choice: minimum POS",
+      "prompt": "Find a POS for that same incompletely specified function.",
+      "steps": [
+        {
+          "explanation": "Group zero cells 4,5,12,13.",
+          "latex": "C+\\overline B"
+        },
+        {
+          "explanation": "Use X=6 with zero cells 4,12,14.",
+          "latex": "D+\\overline B"
+        },
+        {
+          "explanation": "Use X=3 with zero cell 11.",
+          "latex": "B+\\overline C+\\overline D"
+        }
+      ],
+      "answer": "$F=(C+\\overline B)(D+\\overline B)(B+\\overline C+\\overline D)$. Check equality only on required rows."
+    },
+    {
+      "type": "paragraph",
+      "id": "8e5a25c0-3240-571a-9573-270ccd969be7",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "text": "For five variables, use two four-variable maps, one for each value of the fifth variable. Corresponding cells in the two maps are adjacent. A group repeated in both maps can eliminate the fifth variable."
+    },
+    {
+      "type": "practice_problem",
+      "id": "28dd8bcb-afb5-5ad4-ac41-66284336e0e2",
+      "citations": [],
+      "title": "Try it: when an X assumption breaks",
+      "prompt": "A controller treats binary input 111 as unreachable and uses it as X. Later, 111 becomes a valid command whose output must be 0. Can the old simplified circuit be accepted unchanged?",
+      "steps": [
+        {
+          "explanation": "The old circuit was not constrained at 111.",
+          "latex": ""
+        },
+        {
+          "explanation": "Evaluate that row under the new requirement and redesign if it produces 1.",
+          "latex": ""
+        }
+      ],
+      "answer": "Only if it already produces 0 at 111; the earlier proof did not establish that.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    },
+    {
+      "type": "heading",
+      "id": "65621d94-bbe8-58db-8113-0367c79a442e",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        },
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "0a6ea6ec-c395-452b-ab9e-b31167d3a78e"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 3: Minimum expression versus circuit cost"
+    },
+    {
+      "type": "paragraph",
+      "id": "d281a120-160e-5487-af5d-31949e67a276",
+      "citations": [
+        {
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1,
+          "chunk_id": "92bf430d-14b3-4e6c-a54e-75891d2e4e1b"
+        },
+        {
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1,
+          "chunk_id": "544030b4-44a6-4f08-ab18-57233d05d3d8"
+        }
+      ],
+      "text": "The lecture’s cost convention is **number of gates + total gate inputs**. Count inverters unless complemented inputs are supplied. Check fan-in limits and shared terms before declaring a circuit cheapest."
+    },
+    {
+      "type": "worked_example",
+      "id": "7916402e-157b-5e4a-b29e-4bef1e11d255",
+      "citations": [],
+      "title": "Factoring changes cost",
+      "prompt": "Compare $F=AB+AC$ with $F=A(B+C)$ using two-input AND/OR gates. Inputs are uncomplemented.",
+      "steps": [
+        {
+          "explanation": "Direct SOP: two ANDs and one OR.",
+          "latex": "C_{\\mathrm{SOP}}=3+(2+2+2)=9"
+        },
+        {
+          "explanation": "Factored circuit: one OR and one AND.",
+          "latex": "C_{\\mathrm{factored}}=2+(2+2)=6"
+        }
+      ],
+      "answer": "The factored implementation has cost 6 rather than 9. A minimum SOP is not automatically a minimum-cost multilevel circuit."
+    },
+    {
+      "type": "worked_example",
+      "id": "04854885-a8ab-5b0a-b13d-24814aa24075",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "title": "Share a product across outputs",
+      "prompt": "Compare separate and shared implementations of $F=AB+C$ and $G=AB+D$.",
+      "steps": [
+        {
+          "explanation": "Separately, each output needs one AND and one OR: four gates, eight inputs.",
+          "latex": "C_{\\mathrm{separate}}=4+8=12"
+        },
+        {
+          "explanation": "Share the AND AB, then keep the two output OR gates.",
+          "latex": "C_{\\mathrm{shared}}=3+6=9"
+        }
+      ],
+      "answer": "Sharing saves one AND gate and its two inputs. PS3 Q5 asks for this type of joint optimization."
+    },
+    {
+      "type": "paragraph",
+      "id": "1cb2da4e-f31b-5305-9683-d3da70ea160d",
+      "citations": [
+        {
+          "source_id": "7809e3f7-be45-46e2-8aaa-dacf35d89f62",
+          "version": 1,
+          "chunk_id": "1793238f-0459-4781-a0cd-c4e9444beec3"
+        }
+      ],
+      "text": "**Functional decomposition** expresses a function using smaller intermediate functions. Shannon decomposition on input A uses cofactors $F_0=F|_{A=0}$ and $F_1=F|_{A=1}$:"
+    },
+    {
+      "type": "equation",
+      "id": "e643eb97-0a2b-5f9b-adad-a4045e6e5b78",
+      "citations": [],
+      "latex": "F=\\overline A F_0+AF_1"
+    },
+    {
+      "type": "paragraph",
+      "id": "9f829186-ec47-5fc0-a3bd-9ffbfe730298",
+      "citations": [],
+      "text": "A two-input gate limit can make a wide SOP expensive. For example, a 4-input AND needs three 2-input ANDs; a balanced tree has two levels rather than the three levels of a serial chain. The next note on building blocks uses Shannon decomposition to construct multiplexers."
+    },
+    {
+      "type": "worked_example",
+      "id": "d7f21f13-3a2b-59cb-9645-e46c4f2a7abe",
+      "citations": [
+        {
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1,
+          "chunk_id": "a4d26baf-4305-4c75-b4c0-80076843efe1"
+        },
+        {
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1,
+          "chunk_id": "92bf430d-14b3-4e6c-a54e-75891d2e4e1b"
+        }
+      ],
+      "title": "Consensus and a static-1 hazard",
+      "prompt": "For $F=AB+\\overline A C$, hold $B=C=1$ while A changes from 0 to 1. What should happen logically, and what could happen physically?",
+      "steps": [
+        {
+          "explanation": "Before the change, NOT A C is 1; afterward, AB is 1. The ideal output remains 1.",
+          "latex": ""
+        },
+        {
+          "explanation": "Unequal path delays can briefly make both products zero.",
+          "latex": ""
+        },
+        {
+          "explanation": "Add the consensus product BC, which stays high throughout.",
+          "latex": "F_{\\mathrm{covered}}=AB+\\overline A C+BC"
+        }
+      ],
+      "answer": "BC preserves the truth table and covers the transition between the two terms. This addresses the single-input static-1 hazard, not every possible dynamic or multiple-input glitch."
+    },
+    {
+      "type": "practice_problem",
+      "id": "1b9ed2c7-9643-5d31-b370-8ea833720fca",
+      "citations": [],
+      "title": "Try it: count with complemented inputs supplied",
+      "prompt": "Count the gates-plus-inputs cost of $F=\\overline A B+C\\overline D$ as a direct AND–OR network when both polarities of every input are supplied.",
+      "steps": [
+        {
+          "explanation": "Use two two-input ANDs and one two-input OR; no input inverters are needed.",
+          "latex": "C=3+6=9"
+        }
+      ],
+      "answer": "Cost 9. If complements had to be generated, the two inverters would add 2 gates + 2 inputs, giving 13.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    }
+  ],
+  "actor": "agent",
+  "idempotency_key": "elec271-05-v1"
+}

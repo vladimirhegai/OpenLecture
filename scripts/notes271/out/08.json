@@ -1,0 +1,486 @@
+{
+  "title": "08 · Later · Latches, Flip-Flops, Registers, Counters, and Timing",
+  "document_type": "study_notes",
+  "topic_keys": [
+    "flip_flops",
+    "registers",
+    "counters",
+    "timing"
+  ],
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "id": "9bbb2005-dfa0-56c9-b3f0-3e3adacd41ea",
+      "citations": [
+        {
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1,
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25"
+        }
+      ],
+      "text": "**Later study — outside this midterm study set.** Keep this material for subsequent assessments; prioritize notes 01–03 now."
+    },
+    {
+      "type": "paragraph",
+      "id": "f9313ae0-4cf7-5fc5-b7c3-5e51429f57e3",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        },
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "207b97cf-3ee4-48ff-93f3-ca25aea19bca"
+        }
+      ],
+      "text": "This note develops the storage and timing tasks in Problem Set 6. The referenced textbook figure distinguishes a latch and two edge-triggered flip-flops; the supplied figure pages are available beside these notes."
+    },
+    {
+      "type": "heading",
+      "id": "f2a665f3-bc17-5160-a134-8b2ba724df8b",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 1: Store a bit at a level or an edge"
+    },
+    {
+      "type": "paragraph",
+      "id": "ebbfb4eb-22f7-530a-aac2-f7e3c54fc74a",
+      "citations": [],
+      "text": "A combinational output depends on current inputs. A **sequential** circuit also depends on stored state. Write $Q$ for the present stored bit and $Q^+$ for its next value.\n\n- **D latch:** transparent while enable is active; it holds its last value while enable is inactive.\n- **D flip-flop:** samples D only at its active clock edge; it holds between edges.\n- A clock triangle means edge triggering. A bubble at a control input indicates active-low polarity."
+    },
+    {
+      "type": "paragraph",
+      "id": "e288edd6-750c-5ef1-9c4a-0338eca22279",
+      "citations": [],
+      "text": "A NOR-based **SR latch** holds for S=R=0, sets for S=1,R=0, and resets for S=0,R=1. S=R=1 is forbidden for normal use: both outputs become 0, and release may not establish a predictable state. A NAND SR latch uses active-low controls and different input cases."
+    },
+    {
+      "type": "paragraph",
+      "id": "fec8ca06-1502-59cc-8ccf-495373d31b2b",
+      "citations": [],
+      "text": "```digital\n{\"kind\":\"timing\",\"title\":\"D latch versus rising-edge DFF\",\"unit\":\"equal intervals; ideal propagation\",\"signals\":[{\"name\":\"CLK / EN\",\"wave\":\"00110011\"},{\"name\":\"D\",\"wave\":\"00010110\"},{\"name\":\"Latch Q\",\"wave\":\"00011110\"},{\"name\":\"DFF Q\",\"wave\":\"00000011\"}],\"edges\":[2,6]}\n```\n\n*Both Q values start at 0. D is stable around each rising edge. The latch follows changes during high intervals; the DFF does not.*"
+    },
+    {
+      "type": "worked_example",
+      "id": "2401fda9-20d7-59b2-81f5-355368b59f37",
+      "citations": [],
+      "title": "Read the waveform without guessing",
+      "prompt": "Why does the latch change in interval 3 while the DFF waits until interval 6?",
+      "steps": [
+        {
+          "explanation": "CLK is already high in interval 3, so the latch remains transparent.",
+          "latex": ""
+        },
+        {
+          "explanation": "The DFF sampled D=0 at the rising boundary 2 and retains that stored bit.",
+          "latex": ""
+        },
+        {
+          "explanation": "At rising boundary 6, D=1, so the DFF stores 1.",
+          "latex": ""
+        }
+      ],
+      "answer": "A level-sensitive latch can change several times during one enable window; an edge-triggered DFF updates only at its sampling edge."
+    },
+    {
+      "type": "table",
+      "id": "e764bcb9-2770-55b8-94f8-47e53a830842",
+      "citations": [],
+      "columns": [
+        "Storage element",
+        "Characteristic equation",
+        "Input behavior"
+      ],
+      "rows": [
+        [
+          "D flip-flop",
+          "$Q^+=D$",
+          "Copy D at the edge"
+        ],
+        [
+          "T flip-flop",
+          "$Q^+=Q\\oplus T$",
+          "T=0 hold; T=1 toggle"
+        ],
+        [
+          "JK flip-flop",
+          "$Q^+=J\\overline Q+\\overline KQ$",
+          "00 hold; 01 reset; 10 set; 11 toggle"
+        ]
+      ]
+    },
+    {
+      "type": "table",
+      "id": "49b9337a-ae21-5ce8-9242-30d62e14e3fc",
+      "citations": [],
+      "columns": [
+        "Q → Q+",
+        "D required",
+        "T required",
+        "J required",
+        "K required"
+      ],
+      "rows": [
+        [
+          "0 → 0",
+          "0",
+          "0",
+          "0",
+          "X"
+        ],
+        [
+          "0 → 1",
+          "1",
+          "1",
+          "1",
+          "X"
+        ],
+        [
+          "1 → 0",
+          "0",
+          "1",
+          "X",
+          "1"
+        ],
+        [
+          "1 → 1",
+          "1",
+          "0",
+          "X",
+          "0"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "id": "82ae7bb7-8add-5191-af2d-22f9423930be",
+      "citations": [],
+      "text": "The **excitation table** works backward from a desired state transition to the required flip-flop inputs. X means either binary choice works for that transition; it does not mean a physical unknown should be driven into the pin."
+    },
+    {
+      "type": "worked_example",
+      "id": "2bcbabd3-9a47-519a-b299-986b1dad41de",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        }
+      ],
+      "title": "PS6 Q2: make a JK flip-flop using a T flip-flop",
+      "prompt": "Find T as a function of J,K,Q.",
+      "steps": [
+        {
+          "explanation": "A T flip-flop toggles exactly when the desired next state differs from Q.",
+          "latex": "T=Q\\oplus Q^+"
+        },
+        {
+          "explanation": "When Q=0, the desired next state is J, so T=J. When Q=1, the desired next state is NOT K, so T=K.",
+          "latex": "T=J\\overline Q+KQ"
+        }
+      ],
+      "answer": "$T=J\\overline Q+KQ$."
+    },
+    {
+      "type": "worked_example",
+      "id": "995fcbef-5684-5741-8b4f-b96693d409d0",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        }
+      ],
+      "title": "PS6 Q3: asynchronous reset in VHDL",
+      "prompt": "Describe a T flip-flop whose active-high reset forces Q=0 immediately.",
+      "steps": [
+        {
+          "explanation": "Include reset in the sensitivity list and test it before the clock edge.",
+          "latex": ""
+        },
+        {
+          "explanation": "Only the non-reset branch requires a rising clock edge.",
+          "latex": ""
+        }
+      ],
+      "answer": "Reset does not wait for the clock. Deassertion still has physical recovery/removal constraints."
+    },
+    {
+      "type": "code",
+      "id": "706075cb-eeac-5aaf-9a9f-ced54474034b",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        }
+      ],
+      "language": "vhdl",
+      "text": "library ieee;\nuse ieee.std_logic_1164.all;\nentity t_ff is\n  port (clk, reset, t : in std_logic; q : out std_logic);\nend entity;\narchitecture rtl of t_ff is\n  signal state : std_logic;\nbegin\n  process(clk, reset)\n  begin\n    if reset='1' then state <= '0';\n    elsif rising_edge(clk) then state <= state xor t;\n    end if;\n  end process;\n  q <= state;\nend architecture;"
+    },
+    {
+      "type": "practice_problem",
+      "id": "c639fe97-18ce-52c6-84e2-2537dd444c34",
+      "citations": [],
+      "title": "Try it: synchronous clear",
+      "prompt": "How would the code change if reset must clear the T flip-flop only on a rising edge?",
+      "steps": [
+        {
+          "explanation": "Use a process sensitive to clk. Test rising_edge(clk) first; inside that branch, test reset before toggling.",
+          "latex": ""
+        }
+      ],
+      "answer": "Make reset a synchronous decision inside the rising-edge branch. Merely removing reset from the sensitivity list does not change asynchronous-reset logic correctly.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    },
+    {
+      "type": "heading",
+      "id": "e6381e67-42c6-56e8-acb5-59f5a2e99d6a",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        },
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "207b97cf-3ee4-48ff-93f3-ca25aea19bca"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 2: Registers and counters"
+    },
+    {
+      "type": "paragraph",
+      "id": "7f40820f-7cb5-56bf-8953-921b1b58e884",
+      "citations": [],
+      "text": "A **register** stores a vector of bits with a shared clock. A parallel load stores all input bits on one edge. A shift register moves stored bits to neighboring positions at each enabled edge; all flip-flops sample their old inputs together."
+    },
+    {
+      "type": "worked_example",
+      "id": "48a03277-a76a-58be-9c06-05499c085a0e",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        }
+      ],
+      "title": "PS6 Q4: universal four-bit shift register",
+      "prompt": "Let Q3Q2Q1Q0 be the stored word. Define mode 00=hold, 01=shift right, 10=shift left, 11=parallel load P3P2P1P0. Fill shifts with 0.",
+      "steps": [
+        {
+          "explanation": "Each D input is selected by the same mode bits.",
+          "latex": ""
+        },
+        {
+          "explanation": "For D3, the four choices are Q3, 0, Q2, P3.",
+          "latex": ""
+        },
+        {
+          "explanation": "For D2, the choices are Q2, Q3, Q1, P2.",
+          "latex": ""
+        },
+        {
+          "explanation": "For D1, the choices are Q1, Q2, Q0, P1; for D0: Q0, Q1, 0, P0.",
+          "latex": ""
+        }
+      ],
+      "answer": "Use one 4-to-1 mux before each DFF. Bit 3 is leftmost/MSB here, so “right” means movement toward bit 0."
+    },
+    {
+      "type": "paragraph",
+      "id": "26c7817b-df08-5157-8488-2081b59b342c",
+      "citations": [],
+      "text": "For mode bits $M_1M_0$, define selectors $h=\\overline M_1\\overline M_0$, $r=\\overline M_1M_0$, $l=M_1\\overline M_0$, and $p=M_1M_0$. For example:"
+    },
+    {
+      "type": "equation",
+      "id": "e0ba98e4-20a2-5ed2-852b-3a04e853c996",
+      "citations": [],
+      "latex": "D_2=hQ_2+rQ_3+lQ_1+pP_2"
+    },
+    {
+      "type": "worked_example",
+      "id": "7c5b25d6-5f3b-52bc-a73f-3df75830fd4f",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        }
+      ],
+      "title": "PS6 Q7–8: synchronous up/down counter",
+      "prompt": "Design a three-bit counter. Direction d=0 counts up; d=1 counts down. All flip-flops share one clock.",
+      "steps": [
+        {
+          "explanation": "The LSB toggles on every count.",
+          "latex": "T_0=1"
+        },
+        {
+          "explanation": "Bit 1 toggles when Q0=1 going up, or Q0=0 going down.",
+          "latex": "T_1=Q_0\\oplus d"
+        },
+        {
+          "explanation": "Bit 2 toggles when both lower bits are 1 going up, or both are 0 going down.",
+          "latex": "T_2=(Q_1\\oplus d)(Q_0\\oplus d)"
+        },
+        {
+          "explanation": "Convert to D inputs by XORing the present bit with its toggle command.",
+          "latex": "D_i=Q_i\\oplus T_i"
+        }
+      ],
+      "answer": "T equations implement PS6 Q7; the D equations implement Q8. The direction input must satisfy timing at the sampling edge."
+    },
+    {
+      "type": "worked_example",
+      "id": "3abdc95f-a2d7-5fd4-acfe-13f55a9071d9",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        }
+      ],
+      "title": "PS6 Q6: divide a clock",
+      "prompt": "How can T flip-flops generate 50 MHz and 25 MHz from a 100 MHz clock?",
+      "steps": [
+        {
+          "explanation": "A TFF with T=1 toggles on every active edge. Its output needs two input periods to complete one period.",
+          "latex": ""
+        },
+        {
+          "explanation": "Use that 50-MHz output to clock another toggling stage to obtain 25 MHz.",
+          "latex": ""
+        }
+      ],
+      "answer": "Each stage divides frequency by two. This ripple arrangement has cumulative clock-to-Q delays; a synchronous counter is another design with a different timing structure."
+    },
+    {
+      "type": "paragraph",
+      "id": "5c0e5dbb-756f-551b-b428-c65b7c04f294",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "6c602abd-3f2b-445a-a84b-7149826be8dc"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"timing\",\"title\":\"Ripple frequency division\",\"unit\":\"1 ns per interval; 1 ns delay per FF\",\"signals\":[{\"name\":\"100 MHz\",\"wave\":\"0000011111000001111100000111110000011111\"},{\"name\":\"50 MHz\",\"wave\":\"0000001111111111000000000011111111110000\"},{\"name\":\"25 MHz\",\"wave\":\"0000000111111111111111111110000000000000\"}]}\n```\n\n*Positive-edge TFFs, initially zero. Q1 rises 1 ns after the input edge; Q2 rises another 1 ns later. Illustrative delays, not measured device values.*"
+    },
+    {
+      "type": "practice_problem",
+      "id": "9befd426-148e-5660-a36e-5785070321c1",
+      "citations": [],
+      "title": "Try it: trace one edge",
+      "prompt": "A right-shifting four-bit register stores 1011 and uses zero fill. What are its values after the next two active edges?",
+      "steps": [
+        {
+          "explanation": "Every flip-flop reads the old neighboring bit at the edge.",
+          "latex": "1011\\to0101\\to0010"
+        }
+      ],
+      "answer": "0101, then 0010. Do not repeatedly overwrite bits within a single clock edge.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    },
+    {
+      "type": "heading",
+      "id": "b3aa8f03-6855-56db-990d-7455846989d0",
+      "citations": [
+        {
+          "source_id": "763d8649-d384-4cbd-9050-08262d66c5e9",
+          "version": 1,
+          "chunk_id": "207b97cf-3ee4-48ff-93f3-ca25aea19bca"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 3: Setup, hold, and maximum clock frequency"
+    },
+    {
+      "type": "paragraph",
+      "id": "b3cebf7c-cace-56e2-be40-ffe009e806b6",
+      "citations": [],
+      "text": "A flip-flop needs input D stable during a small interval around its active clock edge.\n\n- **Setup time** $t_{setup}$: stable before the edge.\n- **Hold time** $t_{hold}$: stable after the edge.\n- **Clock-to-Q** $t_{cq}$: delay from the edge until its output changes.\n\nViolations can lead to an incorrect capture or metastability; the exact resolved output is not determined by an ideal timing diagram."
+    },
+    {
+      "type": "paragraph",
+      "id": "3e940bdd-f8e8-5b2d-9f1a-b7e01d592603",
+      "citations": [],
+      "text": "For a register → combinational logic → register path with the same clock, zero clock skew, and no added timing uncertainty:"
+    },
+    {
+      "type": "equation",
+      "id": "9c880b94-e357-5093-8b58-113587c5f9ed",
+      "citations": [],
+      "latex": "T_{clk}\\ge t_{cq,\\max}+t_{comb,\\max}+t_{setup}"
+    },
+    {
+      "type": "equation",
+      "id": "6e80741c-1103-5af6-a272-68de3851b60a",
+      "citations": [],
+      "latex": "t_{cq,\\min}+t_{comb,\\min}\\ge t_{hold}"
+    },
+    {
+      "type": "paragraph",
+      "id": "3453fc20-3884-5ac5-b19d-f084c3ccd753",
+      "citations": [],
+      "text": "Use the **longest** data path for setup and the **shortest** for hold. Clock skew and uncertainty alter these bounds; the equations above explicitly omit them."
+    },
+    {
+      "type": "worked_example",
+      "id": "4fe260a3-0e6b-523a-815d-8f353c14d2cf",
+      "citations": [],
+      "title": "Find the clock limit and check hold",
+      "prompt": "Let $t_{cq,max}=2$ ns, $t_{comb,max}=7.5$ ns, $t_{setup}=1$ ns. The corresponding minimum delays are 0.6 ns and 0.4 ns; hold is 0.8 ns. Assume zero skew.",
+      "steps": [
+        {
+          "explanation": "Add the maximum delays and setup time.",
+          "latex": "T_{min}=2+7.5+1=10.5\\ \\mathrm{ns}"
+        },
+        {
+          "explanation": "Invert the minimum period.",
+          "latex": "f_{max}=\\tfrac1{10.5\\ \\mathrm{ns}}\\approx95.24\\ \\mathrm{MHz}"
+        },
+        {
+          "explanation": "Check the minimum path separately.",
+          "latex": "0.6+0.4=1.0\\ \\mathrm{ns}\\ge0.8\\ \\mathrm{ns}"
+        }
+      ],
+      "answer": "Setup limits the clock to about 95.24 MHz; hold passes with 0.2 ns slack. These illustrative values are not a solution to PS6 Q11’s unsupplied textbook timing data."
+    },
+    {
+      "type": "practice_problem",
+      "id": "ab5794d6-2abf-5ef4-b42f-d4c9a322565f",
+      "citations": [],
+      "title": "Try it: does slowing the clock fix hold?",
+      "prompt": "A path has tcq,min=0.2 ns, tcomb,min=0.1 ns, and thold=0.5 ns. Can increasing the clock period fix the violation under the same zero-skew assumptions?",
+      "steps": [
+        {
+          "explanation": "The earliest new data arrives in 0.3 ns, which is 0.2 ns too early.",
+          "latex": ""
+        },
+        {
+          "explanation": "The same-edge hold inequality contains no clock-period term.",
+          "latex": ""
+        }
+      ],
+      "answer": "No. The minimum path or clock timing must change; a slower clock alone does not repair this hold violation.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    }
+  ],
+  "actor": "agent",
+  "idempotency_key": "elec271-08-v1"
+}

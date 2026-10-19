@@ -22,6 +22,13 @@ Every block has a UUID `id`, a discriminated `type`, and optional `citations`. U
 
 Markdown text in any block may embed ` ```schematic ` fences; documents reject drawings that do not parse or that touch the middle of an element. It may also embed the interactive math fences ` ```steps `, ` ```graph ` and ` ```graph3d ` (grammar in `skills/math-tools.md`); they are stored as plain text and rendered by the frontend with a safe expression evaluator. Solutions are marked collapsible for a future renderer. Artifacts currently include circuit definitions, simulation results, probability/ODE math cards, and logic tables/maps. Card definitions include validated parameter schemas and chart data. Recompute explorations through non-persisting endpoints; save only when requested.
 
+Digital-system figures use ` ```digital ` JSON fences, or a `code` block with `language: "digital"`.
+The server validates these figures before saving notes and renders them as SVG in notes and chat.
+Supported kinds are gate/block networks, Gray-code Karnaugh maps with groups and don't-cares,
+CMOS series/parallel networks, sampled timing diagrams, state diagrams, and Venn regions.
+See [Digital figures](src/open_lecture/skills/digital-figures.md) for the grammar and bounds.
+The renderer checks drawing structure; it does not simulate gates, flip-flops, HDL, or analog transistors.
+
 ## Citations
 
 ```json

@@ -1,0 +1,47 @@
+{
+  "notes": 9,
+  "midterm_notes": 3,
+  "later_notes": 6,
+  "blocks": 299,
+  "worked_examples": 68,
+  "practice_problems": 30,
+  "figures": 22,
+  "documents": [
+    {
+      "id": "a20960cb-7622-43c0-8daf-c706abd4b2e5",
+      "title": "01 \u00b7 Binary Numbers \u2014 Midterm"
+    },
+    {
+      "id": "120cfcb1-7126-46ec-9e94-3780eabbd8cd",
+      "title": "02 \u00b7 Introduction to Logic Circuits \u2014 Midterm"
+    },
+    {
+      "id": "22833a28-26bd-49d0-abf5-658b3a0fe16b",
+      "title": "03 \u00b7 Implementation Technology \u2014 Midterm (Week 5)"
+    },
+    {
+      "id": "eb495e0b-1700-4b5f-8c8c-0bc5ed5654f2",
+      "title": "04 \u00b7 Later \u00b7 VHDL, Voltage Levels, and Implementation Extras"
+    },
+    {
+      "id": "94194019-710f-4708-a832-334dfe2a94ce",
+      "title": "05 \u00b7 Later \u00b7 Karnaugh Maps and Logic Optimization"
+    },
+    {
+      "id": "24cd951d-3484-4122-931d-a6e1bf806334",
+      "title": "06 \u00b7 Later \u00b7 Signed Numbers and Arithmetic Circuits"
+    },
+    {
+      "id": "d89deb82-07b2-4f37-8601-a1ef1dca50e3",
+      "title": "07 \u00b7 Later \u00b7 Multiplexers, Decoders, and Combinational Building Blocks"
+    },
+    {
+      "id": "11731286-840b-48ab-aec2-532865e6dcc1",
+      "title": "08 \u00b7 Later \u00b7 Latches, Flip-Flops, Registers, Counters, and Timing"
+    },
+    {
+      "id": "a693d4b9-a30c-4e29-b5e1-ee1f0ec71380",
+      "title": "09 \u00b7 Later \u00b7 Finite-State Machines and Sequential Design"
+    }
+  ]
+}

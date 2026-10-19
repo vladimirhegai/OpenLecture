@@ -1,0 +1,508 @@
+{
+  "title": "09 · Later · Finite-State Machines and Sequential Design",
+  "document_type": "study_notes",
+  "topic_keys": [
+    "finite_state_machines",
+    "state_minimization",
+    "state_encoding"
+  ],
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "id": "9f0ada8c-c227-574d-872a-8d849743f2b8",
+      "citations": [
+        {
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1,
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25"
+        }
+      ],
+      "text": "**Later study — outside this midterm study set.** Keep this material for subsequent assessments; prioritize notes 01–03 now."
+    },
+    {
+      "type": "paragraph",
+      "id": "4eac1abe-5539-542f-b58c-2b859bb5c654",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        },
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "2959516e-7679-49b0-846e-8333ff696786"
+        }
+      ],
+      "text": "This note follows Problem Set 7. State-table equations and the sequence detector below are checked exhaustively; the supplied material does not include a separate Section 8 lecture."
+    },
+    {
+      "type": "heading",
+      "id": "6b23945b-601f-56ce-843a-f755cff99c2d",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 1: From a state table to flip-flop inputs"
+    },
+    {
+      "type": "paragraph",
+      "id": "ef156227-6767-5366-9d55-90374ca6fff8",
+      "citations": [],
+      "text": "A **finite-state machine (FSM)** combines a state register with next-state and output logic.\n\n- **Present state** Q: what the register stores now.\n- **Next state** $Q^+$: what it will store on the next active edge.\n- **Moore output:** a function of present state.\n- **Mealy output:** a function of present state and current input.\n\nSpecify reset state and clock edge before tracing a machine."
+    },
+    {
+      "type": "paragraph",
+      "id": "11d2fcb7-1219-5806-8049-cc3e23734c69",
+      "citations": [],
+      "text": "For D flip-flops, each D input equals the corresponding next-state bit. Write a truth table whose inputs are all present-state bits plus external inputs; simplify each next-state bit as a separate Boolean output."
+    },
+    {
+      "type": "table",
+      "id": "45c6b319-b9f1-5f0e-8e8d-417511f62c54",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        }
+      ],
+      "columns": [
+        "Present Q1Q0",
+        "Next if w=0",
+        "Next if w=1",
+        "z"
+      ],
+      "rows": [
+        [
+          "00",
+          "10",
+          "11",
+          "0"
+        ],
+        [
+          "01",
+          "01",
+          "00",
+          "0"
+        ],
+        [
+          "10",
+          "11",
+          "00",
+          "0"
+        ],
+        [
+          "11",
+          "10",
+          "01",
+          "1"
+        ]
+      ]
+    },
+    {
+      "type": "worked_example",
+      "id": "b531f6ff-499e-53e0-b418-46a5750981a6",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        }
+      ],
+      "title": "PS7 Q1: derive the D inputs",
+      "prompt": "Use the state table above. The source calls its bits y2,y1; here Q1 is the MSB and Q0 the LSB. Choose reset 00 for this implementation.",
+      "steps": [
+        {
+          "explanation": "D1 is 1 at Q1Q0w=000,001,100,110.",
+          "latex": "D_1=\\overline Q_1\\overline Q_0+Q_1\\overline w"
+        },
+        {
+          "explanation": "D0 is 1 at 001,010,100,111: exactly the odd-parity rows.",
+          "latex": "D_0=Q_1\\oplus Q_0\\oplus w"
+        },
+        {
+          "explanation": "The Moore output is 1 only in present state 11.",
+          "latex": "z=Q_1Q_0"
+        }
+      ],
+      "answer": "Connect these two equations to DFFs sharing one rising-edge clock. Reset 00 is an explicit design choice; it is not given by the supplied state table."
+    },
+    {
+      "type": "worked_example",
+      "id": "c33a00f2-bb2e-58a5-a368-cc09fb897461",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        }
+      ],
+      "title": "Trace the source machine",
+      "prompt": "Starting in 00, sample inputs 1,0,1. Give the states and the Moore output after each edge.",
+      "steps": [
+        {
+          "explanation": "At 00 with w=1, go to 11; z becomes 1 after the state update.",
+          "latex": ""
+        },
+        {
+          "explanation": "At 11 with w=0, go to 10; z becomes 0.",
+          "latex": ""
+        },
+        {
+          "explanation": "At 10 with w=1, go to 00; z stays 0.",
+          "latex": ""
+        }
+      ],
+      "answer": "States 00 → 11 → 10 → 00. Outputs after the edges: 1,0,0."
+    },
+    {
+      "type": "paragraph",
+      "id": "fe11bd33-3544-574e-9c0f-2afb378e3a9f",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        }
+      ],
+      "text": "With T flip-flops, use $T_i=Q_i\\oplus Q_i^+$. With JK flip-flops, fill the excitation table: 0→1 requires J=1; 1→0 requires K=1. The other input is irrelevant in each case and can be used as a don’t-care during minimization."
+    },
+    {
+      "type": "worked_example",
+      "id": "9b45fb68-d0fa-55e0-b07b-8bcf5d5418a3",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        }
+      ],
+      "title": "A direct JK implementation",
+      "prompt": "If a next-state bit is $F_i(Q,w)$, give one correct JK realization without minimizing excitation don’t-cares.",
+      "steps": [
+        {
+          "explanation": "Set J to the desired next-state bit and K to its complement.",
+          "latex": "J_i=F_i,\\quad K_i=\\overline F_i"
+        },
+        {
+          "explanation": "Substitute into the JK characteristic equation.",
+          "latex": "Q_i^+=F_i\\overline Q_i+F_iQ_i=F_i"
+        }
+      ],
+      "answer": "This always reproduces the desired binary next-state function. Minimizing J and K separately can reduce the hardware."
+    },
+    {
+      "type": "practice_problem",
+      "id": "e7894e98-82a8-5d18-a7de-ace63965e568",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "2959516e-7679-49b0-846e-8333ff696786"
+        }
+      ],
+      "title": "Try it: an unusual counting order",
+      "prompt": "Design D equations for the sequence 0,2,1,3,0 using Q1 as the MSB. Assume reset 00 and count on every rising edge.",
+      "steps": [
+        {
+          "explanation": "Write the bit sequence: 00→10→01→11→00.",
+          "latex": ""
+        },
+        {
+          "explanation": "The MSB toggles every time; the LSB toggles when the old MSB is 1.",
+          "latex": "D_1=\\overline Q_1,\\quad D_0=Q_0\\oplus Q_1"
+        }
+      ],
+      "answer": "$D_1=\\overline Q_1$, $D_0=Q_0\\oplus Q_1$.",
+      "difficulty": "intermediate",
+      "origin": "source"
+    },
+    {
+      "type": "heading",
+      "id": "d0eba069-fc9b-5542-8e31-0affbefc4b59",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 2: Sequence detection and overlapping matches"
+    },
+    {
+      "type": "paragraph",
+      "id": "b2ba64b0-0d50-56d1-98e3-60c68dee6dcc",
+      "citations": [],
+      "text": "A sequence detector remembers enough of the input history to recognize the target pattern. A useful state meaning is “the longest suffix already seen that is also a prefix of the target.” This prevents losing a possible overlap."
+    },
+    {
+      "type": "table",
+      "id": "458c5178-8a4d-50e9-83fb-5df4dba26d9c",
+      "citations": [],
+      "columns": [
+        "State",
+        "Remembered suffix",
+        "w=0 → next/z",
+        "w=1 → next/z"
+      ],
+      "rows": [
+        [
+          "A",
+          "none",
+          "A / 0",
+          "B / 0"
+        ],
+        [
+          "B",
+          "1",
+          "C / 0",
+          "B / 0"
+        ],
+        [
+          "C",
+          "10",
+          "A / 0",
+          "B / 1"
+        ]
+      ]
+    },
+    {
+      "type": "paragraph",
+      "id": "2e37acdb-4bd6-5826-9359-ccf499b68f4f",
+      "citations": [],
+      "text": "```digital\n{\"kind\":\"fsm\",\"title\":\"Overlapping Mealy detector for 101\",\"initial\":\"A\",\"states\":[{\"id\":\"A\",\"x\":110,\"y\":150},{\"id\":\"B\",\"x\":350,\"y\":150},{\"id\":\"C\",\"x\":590,\"y\":150}],\"transitions\":[{\"start\":\"A\",\"end\":\"A\",\"label\":\"0 / 0\"},{\"start\":\"A\",\"end\":\"B\",\"label\":\"1 / 0\"},{\"start\":\"B\",\"end\":\"B\",\"label\":\"1 / 0\"},{\"start\":\"B\",\"end\":\"C\",\"label\":\"0 / 0\",\"bend\":-65},{\"start\":\"C\",\"end\":\"B\",\"label\":\"1 / 1\",\"bend\":-65},{\"start\":\"C\",\"end\":\"A\",\"label\":\"0 / 0\",\"bend\":-150}]}\n```\n\n*Labels are input/output. Reset to A. Interpret the transition and its output using the input stable before the next rising edge.*"
+    },
+    {
+      "type": "worked_example",
+      "id": "8acf229c-9b37-526a-9bbc-82e56667216d",
+      "citations": [],
+      "title": "Why detection returns to B",
+      "prompt": "When state C has remembered 10 and the next input is 1, why go to B instead of A?",
+      "steps": [
+        {
+          "explanation": "The new input completes 101, so output 1.",
+          "latex": ""
+        },
+        {
+          "explanation": "That last 1 is also the first bit of another possible 101.",
+          "latex": ""
+        },
+        {
+          "explanation": "State B preserves that suffix so 10101 produces two matches.",
+          "latex": ""
+        }
+      ],
+      "answer": "For input 10101, the Mealy outputs for the sampled transitions are 00101. A reset to A after each match would miss the overlap."
+    },
+    {
+      "type": "worked_example",
+      "id": "9591db02-b81a-5b73-a00f-79db81f55559",
+      "citations": [],
+      "title": "Turn the same detector into a Moore machine",
+      "prompt": "Where must the output go if z may depend only on state?",
+      "steps": [
+        {
+          "explanation": "Add a detected state D with z=1. States A,B,C keep z=0.",
+          "latex": ""
+        },
+        {
+          "explanation": "Use C --1→ D. From D, input 0 leaves suffix 10, so go to C; input 1 leaves suffix 1, so go to B.",
+          "latex": ""
+        },
+        {
+          "explanation": "The other transitions are A: 0→A,1→B; B: 0→C,1→B; C: 0→A.",
+          "latex": ""
+        }
+      ],
+      "answer": "Moore uses four states here. Its detection output becomes high after the edge that enters D; compare timing conventions explicitly when matching a sample waveform."
+    },
+    {
+      "type": "paragraph",
+      "id": "9db2d143-52a1-54fe-a8fb-7107801f8803",
+      "citations": [],
+      "text": "A Mealy output may react when an input changes between clock edges; a Moore output changes with state, apart from propagation effects. If the output is registered, state clearly which edge captures it. “Mealy is one cycle earlier” is not a complete timing specification by itself."
+    },
+    {
+      "type": "code",
+      "id": "938bbba4-2290-5851-be71-449f3287aebe",
+      "citations": [],
+      "language": "vhdl",
+      "text": "library ieee;\nuse ieee.std_logic_1164.all;\nentity detect101 is\n  port (clk, reset, w : in std_logic; z : out std_logic);\nend entity;\narchitecture rtl of detect101 is\n  type state_t is (a, b, c);\n  signal present, next_state : state_t;\nbegin\n  process(present, w)\n  begin\n    next_state <= present;\n    z <= '0';\n    case present is\n      when a =>\n        if w='1' then next_state <= b; end if;\n      when b =>\n        if w='0' then next_state <= c; end if;\n      when c =>\n        if w='1' then next_state <= b; z <= '1';\n        else next_state <= a;\n        end if;\n    end case;\n  end process;\n  process(clk, reset)\n  begin\n    if reset='1' then present <= a;\n    elsif rising_edge(clk) then present <= next_state;\n    end if;\n  end process;\nend architecture;"
+    },
+    {
+      "type": "paragraph",
+      "id": "2dd0ad58-2c48-5a93-8cea-efbdb6e0ce49",
+      "citations": [],
+      "text": "The combinational process gives defaults before the case branches so every output is assigned on every binary path. The clocked process stores the state. This teaching example’s state transitions are checked in Python; VHDL compilation and synthesis have not been run."
+    },
+    {
+      "type": "practice_problem",
+      "id": "d43f5080-1e4a-5257-ad19-4bb49cf294fc",
+      "citations": [],
+      "title": "Try it: repeated 1s",
+      "prompt": "A detector must recognize 111 with overlaps. After seeing the third 1, what history should be retained?",
+      "steps": [
+        {
+          "explanation": "The suffix 11 is already the first two bits of another 111.",
+          "latex": ""
+        }
+      ],
+      "answer": "Retain “11,” so each subsequent 1 produces another detection. Clearing all history would miss overlaps.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    },
+    {
+      "type": "heading",
+      "id": "f021b6e4-266e-5124-8f7b-d379260015e7",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        },
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "2959516e-7679-49b0-846e-8333ff696786"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 3: Encoding and state minimization"
+    },
+    {
+      "type": "paragraph",
+      "id": "8e91bf93-7164-56a2-835f-b0faffebe11e",
+      "citations": [],
+      "text": "**Binary encoding** uses at least $\\lceil\\log_2N\\rceil$ flip-flops for N states. **One-hot encoding** uses one flip-flop per state, with exactly one asserted. More storage can simplify next-state decoding; neither encoding is universally smaller or faster."
+    },
+    {
+      "type": "worked_example",
+      "id": "1940261f-83cd-588a-ba46-62fb47e47a9e",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "28d48344-9bf1-4962-843b-e4a611e350b9"
+        }
+      ],
+      "title": "PS7 Q3: one-hot equations for the source table",
+      "prompt": "Rename binary states 00,01,10,11 as A,B,C,D. Give one-hot next-state equations, where A,B,C,D now denote individual state bits.",
+      "steps": [
+        {
+          "explanation": "An incoming transition from B or C on w=1 reaches A.",
+          "latex": "A^+=w(B+C)"
+        },
+        {
+          "explanation": "B is reached from B on 0 or D on 1.",
+          "latex": "B^+=\\overline wB+wD"
+        },
+        {
+          "explanation": "C is reached from A or D on 0.",
+          "latex": "C^+=\\overline w(A+D)"
+        },
+        {
+          "explanation": "D is reached from A on 1 or C on 0.",
+          "latex": "D^+=wA+\\overline wC"
+        }
+      ],
+      "answer": "Use four DFFs, z=D, and reset to A=1 with the other bits 0. These equations are derived only for valid one-hot states."
+    },
+    {
+      "type": "paragraph",
+      "id": "c8761145-4ce7-57a3-8eef-e307e284940a",
+      "citations": [],
+      "text": "Unused encodings require a deliberate policy. They can be don’t-cares only under a justified reachability assumption. If recovery is required, define the transition from invalid states rather than assuming the circuit will recover."
+    },
+    {
+      "type": "paragraph",
+      "id": "5a60c689-c7ac-538f-8a9c-a12014978731",
+      "citations": [
+        {
+          "source_id": "08007d53-641e-47b6-875d-55ed044786fb",
+          "version": 1,
+          "chunk_id": "2959516e-7679-49b0-846e-8333ff696786"
+        }
+      ],
+      "text": "For a fully specified **Moore** FSM, minimize states by repeated partition refinement.\n\n1. Remove states unreachable from reset.\n2. Partition the remaining states by output value.\n3. Split a partition when its states transition into different partitions for some input.\n4. Repeat until stable; merge states left in the same partition.\n\nFor Mealy machines, compare each input’s output as well as the destination partition."
+    },
+    {
+      "type": "table",
+      "id": "e6046650-b806-540b-99c9-298f83f1a958",
+      "citations": [],
+      "columns": [
+        "State / output",
+        "w=0",
+        "w=1"
+      ],
+      "rows": [
+        [
+          "A / 0",
+          "A",
+          "B"
+        ],
+        [
+          "B / 0",
+          "C",
+          "D"
+        ],
+        [
+          "C / 0",
+          "C",
+          "D"
+        ],
+        [
+          "D / 1",
+          "A",
+          "D"
+        ]
+      ]
+    },
+    {
+      "type": "worked_example",
+      "id": "2d6d07de-1c09-565f-91bb-d1510b8d23e2",
+      "citations": [],
+      "title": "Minimize by future behavior",
+      "prompt": "Minimize the original Moore machine in the table immediately above, with reset A.",
+      "steps": [
+        {
+          "explanation": "Start with output partitions {A,B,C} and {D}.",
+          "latex": ""
+        },
+        {
+          "explanation": "A goes to the 0-output partition on both inputs. B and C go to {D} on input 1, so A must split from them.",
+          "latex": ""
+        },
+        {
+          "explanation": "B and C have matching transitions into the final partitions: {B,C} on 0 and {D} on 1.",
+          "latex": ""
+        }
+      ],
+      "answer": "Merge B and C. The minimized machine has three states: A, BC, D. Equal present outputs alone would not justify merging A with them."
+    },
+    {
+      "type": "practice_problem",
+      "id": "ecae6143-b333-546d-9d33-04c119903eca",
+      "citations": [],
+      "title": "Try it: output equality is insufficient",
+      "prompt": "Two states both output z=0. On input 1, one goes to a state with z=1 and the other stays in a state with z=0. Can they be equivalent Moore states?",
+      "steps": [
+        {
+          "explanation": "Apply input 1 and compare the resulting output. A future input distinguishes their behaviors.",
+          "latex": ""
+        }
+      ],
+      "answer": "No. Equivalent states must produce the same future output behavior for every input sequence.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    }
+  ],
+  "actor": "agent",
+  "idempotency_key": "elec271-09-v1"
+}

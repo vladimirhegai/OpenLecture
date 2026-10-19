@@ -3,7 +3,7 @@ from uuid import UUID, uuid4
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from . import schematic
+from . import digital, schematic
 from .errors import DomainError
 
 
@@ -43,6 +43,10 @@ class BaseBlock(Model):
             for text in strings(self):
                 if "```schematic" in text:
                     schematic.check_fences(text)
+                if "```digital" in text:
+                    digital.check_fences(text)
+            if getattr(self, "language", None) == "digital":
+                digital.check(self.text)
         except DomainError as error:
             raise ValueError(error.message) from None
         return self
@@ -341,6 +345,10 @@ class BinomialRequest(Model):
 
 class CircuitRequest(Model):
     definition: str = Field(min_length=1, max_length=20000)
+
+
+class DigitalRequest(Model):
+    source: str = Field(min_length=1, max_length=30000)
 
 
 class SchematicRequest(Model):

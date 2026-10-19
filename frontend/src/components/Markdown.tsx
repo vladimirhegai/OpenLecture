@@ -8,6 +8,7 @@ import { Graph } from "./mathtools/Graph";
 import { Graph3D } from "./mathtools/Graph3D";
 import { Stepper } from "./mathtools/Stepper";
 import { Schematic } from "./Schematic";
+import { DigitalFigure } from "./DigitalFigure";
 
 /** Agents often write \( \) and \[ \]; remark-math expects dollar delimiters. */
 export function normalizeMath(text: string) {
@@ -26,6 +27,7 @@ const inlineComponents: Components = { p: ({ children }) => <>{children}</>, a: 
 /** Fenced tools: ```schematic circuits, ```steps equation steppers, ```graph and ```graph3d interactive plots
  * (grammar in skills/math-tools.md). Other code blocks stay code. */
 const TOOLS: Record<string, (source: string) => React.ReactNode> = {
+  "language-digital": (source) => <DigitalFigure source={source} />,
   "language-schematic": (source) => <Schematic source={source} />,
   "language-steps": (source) => <Stepper source={source} />,
   "language-graph": (source) => <Graph source={source} />,

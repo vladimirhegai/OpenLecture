@@ -12,7 +12,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import __version__, agents, circuits, schematic
+from . import __version__, agents, circuits, digital, schematic
 from .config import Settings
 from .errors import DomainError
 from .math_engine import binomial, calculate
@@ -28,6 +28,7 @@ from .schemas import (
     ContextRequest,
     CourseCreate,
     CourseProfileUpdate,
+    DigitalRequest,
     DistributionRequest,
     DocumentCreate,
     DocumentEdit,
@@ -308,6 +309,15 @@ def create_app(settings: Settings | None = None):
     @app.post("/api/v1/schematics/check")
     def check_schematic(data: SchematicRequest):
         return schematic.topology(data.source)
+
+    @app.post("/api/v1/digital/render")
+    def render_digital(data: DigitalRequest):
+        svg = digital.render_svg(data.source)
+        return Response(svg, media_type="image/svg+xml", headers={"Cache-Control": "private, max-age=86400"})
+
+    @app.post("/api/v1/digital/check")
+    def check_digital(data: DigitalRequest):
+        return digital.check(data.source)
 
     @app.post("/api/v1/math/evaluate")
     def math_evaluate(data: MathRequest):

@@ -1,0 +1,796 @@
+{
+  "title": "03 · Implementation Technology — Midterm (Week 5)",
+  "document_type": "study_notes",
+  "topic_keys": [
+    "implementation_technology",
+    "cmos",
+    "transistor_switches"
+  ],
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "id": "2fb1f3b4-0936-5020-b226-0495c2f058fb",
+      "citations": [
+        {
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1,
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25"
+        }
+      ],
+      "text": "**Midterm: Weeks 1–5.** This is one of the three main study sections for the 40-minute October 29 midterm."
+    },
+    {
+      "type": "paragraph",
+      "id": "c4c86a67-e5c2-5a80-8259-2ccb55a13c96",
+      "citations": [
+        {
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1,
+          "chunk_id": "6319a5dc-f30e-4cf4-91be-7de230601df2"
+        }
+      ],
+      "text": "**PS2 preparation:** Q1 and Q3–Q5 are in this study set. **Skip Q2 and Q6–Q8 for this midterm.**"
+    },
+    {
+      "type": "heading",
+      "id": "9c7a8c0f-cad3-547a-a3b5-544396f2d8a7",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "08d55f81-d112-403c-9c5f-d8f7889cfefe"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "c90b3072-0988-447a-9a59-4a1594ce6bcf"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "2eeb880a-ca49-4dc7-98ac-592d8fca4a4a"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "60f8f460-ffbb-49f0-a097-d6d14ff41cbf"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "421b1e9d-1ad9-4758-8b36-ed2694093f22"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "cb427e83-28d6-41ef-bca8-ab5e13da98f0"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "f0b8c49a-5c3d-4d8d-ad29-919263777e74"
+        }
+      ],
+      "level": 1,
+      "text": "1. Transistor switches and resistor-load NMOS gates"
+    },
+    {
+      "type": "paragraph",
+      "id": "bc4691e9-60ff-5ad2-ba1c-d4893d9bbd2e",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "0539dbc9-0b25-4403-a972-2964ab29b70f"
+        }
+      ],
+      "text": "In **positive logic**, low voltage represents 0 and high voltage represents 1. A range between the valid low and high input levels is undefined; it is not a third valid binary value."
+    },
+    {
+      "type": "paragraph",
+      "id": "15ece076-af10-5138-afbf-9951390a0072",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "08d55f81-d112-403c-9c5f-d8f7889cfefe"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "c90b3072-0988-447a-9a59-4a1594ce6bcf"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "2eeb880a-ca49-4dc7-98ac-592d8fca4a4a"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "60f8f460-ffbb-49f0-a097-d6d14ff41cbf"
+        }
+      ],
+      "text": "Use the ideal switch model for the course transistor networks.\n\n- **NMOS:** conducts when its gate input is high; typically used to pull the output down to ground.\n- **PMOS:** conducts when its gate input is low; typically used to pull the output up to $V_{DD}$.\n\nThese rules describe the rail-driven logic switches here; they are not a general analog MOSFET model."
+    },
+    {
+      "type": "paragraph",
+      "id": "8c058be1-231b-5f9c-bda2-523bd2f4425f",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "421b1e9d-1ad9-4758-8b36-ed2694093f22"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "cb427e83-28d6-41ef-bca8-ab5e13da98f0"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "00389044-9407-4c39-918e-a6613c1fef76"
+        }
+      ],
+      "text": "In resistor-load NMOS logic, an open pull-down network lets the resistor pull the output high. When the NMOS network conducts, the output goes low and the resistor can carry steady current."
+    },
+    {
+      "type": "table",
+      "id": "1cc1837c-cca0-5ca2-822c-27c5d45c68dc",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "421b1e9d-1ad9-4758-8b36-ed2694093f22"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "cb427e83-28d6-41ef-bca8-ab5e13da98f0"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "f0b8c49a-5c3d-4d8d-ad29-919263777e74"
+        }
+      ],
+      "columns": [
+        "NMOS pull-down arrangement",
+        "Conducts when",
+        "Output with a pull-up"
+      ],
+      "rows": [
+        [
+          "One switch A",
+          "A=1",
+          "$F=\\overline A$ (NOT)"
+        ],
+        [
+          "A and B in series",
+          "A=B=1",
+          "$F=\\overline{AB}$ (NAND)"
+        ],
+        [
+          "A and B in parallel",
+          "Either input is 1",
+          "$F=\\overline{A+B}$ (NOR)"
+        ]
+      ]
+    },
+    {
+      "type": "schematic",
+      "id": "8b832c15-79eb-5f89-ac49-48f652d2f315",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "cb427e83-28d6-41ef-bca8-ab5e13da98f0"
+        }
+      ],
+      "source": "terminal 0,6 \"VDD\" above\nR1 0,6 -> 0,4 \"pull-up\"\nS1 0,4 -> 0,2 \"A\"\nS2 0,2 -> 0,0 \"B\"\nwire 0,4 -> 2,4\nterminal 2,4 \"F\" right\nground 0,0",
+      "caption": "NMOS NAND in the ideal-switch model: A/B close for input 1. Only A=B=1 completes the ground path."
+    },
+    {
+      "type": "practice_problem",
+      "id": "8b17a0c2-9c9d-50a9-8787-334fa528e004",
+      "citations": [],
+      "title": "Try it: identify a pull-down function",
+      "prompt": "Two NMOS switches controlled by A and B are in parallel below a resistor pull-up. Is the output AND, OR, NAND, or NOR?",
+      "steps": [
+        {
+          "explanation": "Either high input completes a path to ground.",
+          "latex": "\\text{PDN conducts}=A+B"
+        },
+        {
+          "explanation": "The output is low when that path conducts.",
+          "latex": "F=\\overline{A+B}"
+        }
+      ],
+      "answer": "NOR.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    },
+    {
+      "type": "heading",
+      "id": "e1663798-0744-54d3-b74c-6bbd901ef7dc",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "9d44fdc2-8bdb-48fd-94d1-419844fdccd1"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "a6bfc777-d638-48bb-b149-ce6a364b6bf3"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "d94655e2-35e3-417c-ba15-38f4b63a714b"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "160a1b46-e3c6-46a1-a6a8-6ba60b570e4b"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "0f75d82b-a650-4aff-bb6b-dd14d7037e3c"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "c53c734d-3033-471b-b981-76f16b7be86c"
+        }
+      ],
+      "level": 1,
+      "text": "2. Complementary CMOS: NOT, NAND, NOR, AND, OR"
+    },
+    {
+      "type": "paragraph",
+      "id": "1ef63328-43b1-5733-98c5-8500af2af708",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "9d44fdc2-8bdb-48fd-94d1-419844fdccd1"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "a6bfc777-d638-48bb-b149-ce6a364b6bf3"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "027213d4-9e60-40bb-a615-71c09655e9d1"
+        }
+      ],
+      "text": "Static complementary CMOS replaces the resistor with a **PMOS pull-up network (PUN)**. It pairs that with an **NMOS pull-down network (PDN)**.\n\n- Derive when the output must be 0: that is the PDN conduction condition $\\overline F$.\n- AND in a conduction condition means switches in series. OR means parallel branches.\n- Build the PUN by swapping series and parallel and replacing NMOS with PMOS, keeping the same gate signals."
+    },
+    {
+      "type": "paragraph",
+      "id": "ec205633-10c4-5c66-848e-cd1d4d7d630b",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "d94655e2-35e3-417c-ba15-38f4b63a714b"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"cmos\",\"title\":\"CMOS inverter\",\"pdn\":{\"gate\":\"A\"}}\n```\n\n*A=0 turns the PMOS on and NMOS off; A=1 does the reverse.*"
+    },
+    {
+      "type": "paragraph",
+      "id": "03157ae5-0a3d-5fb7-b839-bb7eaadd6b6e",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "d94655e2-35e3-417c-ba15-38f4b63a714b"
+        }
+      ],
+      "text": "For a valid steady binary input, the ideal complementary network provides one path to a supply rail while the other network is off. Real CMOS still has leakage and dissipates energy during switching; “zero static power” is an ideal approximation."
+    },
+    {
+      "type": "worked_example",
+      "id": "cb4cfc12-3baa-53a3-9fa1-73c4a9052f09",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "160a1b46-e3c6-46a1-a6a8-6ba60b570e4b"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "c37515d6-cadc-4ae7-a461-099b75195611"
+        }
+      ],
+      "title": "NAND: trace both networks",
+      "prompt": "Design static CMOS for $F=\\overline{AB}$.",
+      "steps": [
+        {
+          "explanation": "The PDN must conduct only when both inputs are high.",
+          "latex": "\\overline F=AB"
+        },
+        {
+          "explanation": "Put NMOS A and B in series. The dual PUN has PMOS A and B in parallel.",
+          "latex": ""
+        },
+        {
+          "explanation": "At A=B=1 the PDN is on. Otherwise at least one PMOS provides a pull-up path.",
+          "latex": ""
+        }
+      ],
+      "answer": "Two NMOS + two PMOS = four transistors."
+    },
+    {
+      "type": "paragraph",
+      "id": "6e61ba79-3c4c-5608-ac67-6a8115e452a5",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "160a1b46-e3c6-46a1-a6a8-6ba60b570e4b"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"cmos\",\"title\":\"CMOS NAND\",\"pdn\":{\"series\":[{\"gate\":\"A\"},{\"gate\":\"B\"}]}}\n```\n\n*PMOS gate bubbles indicate conduction for a low gate input.*"
+    },
+    {
+      "type": "worked_example",
+      "id": "61ced703-cb6f-5aa6-baf4-9d023c2aecbf",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "0f75d82b-a650-4aff-bb6b-dd14d7037e3c"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "ee06f3fd-67e5-440c-8f7f-bdf2a78ab43d"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "c53c734d-3033-471b-b981-76f16b7be86c"
+        }
+      ],
+      "title": "NOR and transistor counting",
+      "prompt": "How does a 2-input NOR differ from a 2-input NAND? How many transistors implement a 2-input AND in basic static CMOS?",
+      "steps": [
+        {
+          "explanation": "NOR needs parallel NMOS and series PMOS.",
+          "latex": "F=\\overline{A+B}"
+        },
+        {
+          "explanation": "AND is a NAND followed by an inverter.",
+          "latex": "N_{\\mathrm{AND}}=4+2=6"
+        }
+      ],
+      "answer": "NOR uses four transistors with the opposite series/parallel arrangement. Basic AND uses six."
+    },
+    {
+      "type": "paragraph",
+      "id": "e96ecee5-087a-50f7-ad92-f207dbdf33c7",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "0f75d82b-a650-4aff-bb6b-dd14d7037e3c"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"cmos\",\"title\":\"CMOS NOR\",\"pdn\":{\"parallel\":[{\"gate\":\"A\"},{\"gate\":\"B\"}]}}\n```\n\n*Parallel NMOS pull down when either input is 1. Series PMOS pull up only for A=B=0.*"
+    },
+    {
+      "type": "paragraph",
+      "id": "dbafd6da-eeeb-5433-a92a-6e01a73bcd34",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "c53c734d-3033-471b-b981-76f16b7be86c"
+        }
+      ],
+      "text": "For basic complementary static CMOS, an n-input NAND/NOR uses n NMOS + n PMOS. An AND/OR adds a two-transistor inverter after the corresponding NAND/NOR. Count the gates actually drawn before considering a cheaper equivalent implementation."
+    },
+    {
+      "type": "worked_example",
+      "id": "d5b8a2e2-1ca0-542a-b590-9ef0d6ee062a",
+      "citations": [
+        {
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1,
+          "chunk_id": "3f47b2f5-ed20-41e4-bfef-75ecc81968ac"
+        }
+      ],
+      "title": "PS2 Q1: count the circuit that was given",
+      "prompt": "The supplied gate drawing has three NOTs, four 3-input ANDs, and one 4-input OR. How many transistors implement those gates in basic static CMOS?",
+      "steps": [
+        {
+          "explanation": "The NOTs each use 2 transistors.",
+          "latex": "3(2)=6"
+        },
+        {
+          "explanation": "Each 3-input AND is a 3-input NAND followed by an inverter.",
+          "latex": "4(2\\cdot3+2)=32"
+        },
+        {
+          "explanation": "The 4-input OR is a 4-input NOR followed by an inverter.",
+          "latex": "2\\cdot4+2=10"
+        },
+        {
+          "explanation": "Add the counts for this drawn realization.",
+          "latex": "N=6+32+10=48"
+        }
+      ],
+      "answer": "48 transistors. Replacing the drawing with a different equivalent circuit answers a different question."
+    },
+    {
+      "type": "heading",
+      "id": "4b1b8192-c677-592c-9e3d-859d406f95a7",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "027213d4-9e60-40bb-a615-71c09655e9d1"
+        },
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "1c4f629e-ec1e-4877-8402-15b84224a2ce"
+        }
+      ],
+      "level": 1,
+      "text": "3. Function → pull-down → dual pull-up"
+    },
+    {
+      "type": "worked_example",
+      "id": "d6f121aa-558a-567e-804c-1ee2afc34831",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "027213d4-9e60-40bb-a615-71c09655e9d1"
+        }
+      ],
+      "title": "Lecture complex gate: derive the conducting paths",
+      "prompt": "Implement $F=\\overline A+\\overline B\\,\\overline C$.",
+      "steps": [
+        {
+          "explanation": "Complement the function to obtain the PDN condition.",
+          "latex": "\\overline F=A(B+C)"
+        },
+        {
+          "explanation": "Use NMOS A in series with parallel NMOS B and C.",
+          "latex": ""
+        },
+        {
+          "explanation": "The dual PUN is PMOS A in parallel with series PMOS B and C.",
+          "latex": ""
+        }
+      ],
+      "answer": "Three NMOS + three PMOS = six transistors. The output is high when A=0, or when B=C=0."
+    },
+    {
+      "type": "paragraph",
+      "id": "fa7991f3-f5bb-582b-a3e2-1295039487ed",
+      "citations": [
+        {
+          "source_id": "43433cc2-ac9b-4f48-9f8f-e352ed8b54e2",
+          "version": 1,
+          "chunk_id": "027213d4-9e60-40bb-a615-71c09655e9d1"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"cmos\",\"title\":\"Complex complementary CMOS gate\",\"pdn\":{\"series\":[{\"gate\":\"A\"},{\"parallel\":[{\"gate\":\"B\"},{\"gate\":\"C\"}]}]}}\n```\n\n*Always distinguish the function at f from the condition that makes the PDN conduct.*"
+    },
+    {
+      "type": "practice_problem",
+      "id": "67eed5ff-c825-5e88-8a25-22d5b1f189d9",
+      "citations": [],
+      "title": "Try it: preserve the outer inversion",
+      "prompt": "Build the PDN and count transistors for $F=\\overline{AB+C}$.",
+      "steps": [
+        {
+          "explanation": "The PDN condition is AB+C: a series A–B branch in parallel with C.",
+          "latex": ""
+        },
+        {
+          "explanation": "The PUN is parallel PMOS A/B in series with PMOS C. Each network has three transistors.",
+          "latex": ""
+        }
+      ],
+      "answer": "Six transistors total. This one complex gate gives the inverted function; an extra inverter would produce AB+C.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    },
+    {
+      "type": "worked_example",
+      "id": "f02c95b6-36ec-5aef-a32e-75c1bc62f879",
+      "citations": [
+        {
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1,
+          "chunk_id": "3f47b2f5-ed20-41e4-bfef-75ecc81968ac"
+        }
+      ],
+      "title": "PS2 Q3: complete the missing PMOS half",
+      "prompt": "The given PDN has NMOS B in parallel with the series path A–C, where A=x1, B=x2, C=x3. Derive the PUN and F.",
+      "steps": [
+        {
+          "explanation": "Write the condition for a complete ground path.",
+          "latex": "G=B+AC"
+        },
+        {
+          "explanation": "The output is the complement of the ground-path condition.",
+          "latex": "F=\\overline{B+AC}"
+        },
+        {
+          "explanation": "Dualize: PMOS B is in series with parallel PMOS A and C.",
+          "latex": "F=\\overline B(\\overline A+\\overline C)"
+        }
+      ],
+      "answer": "Three NMOS and three PMOS. The dual network keeps the same gate labels; PMOS already conducts on 0."
+    },
+    {
+      "type": "paragraph",
+      "id": "e479f102-3dfa-5da0-b8cc-bcdc3773b46d",
+      "citations": [
+        {
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1,
+          "chunk_id": "3f47b2f5-ed20-41e4-bfef-75ecc81968ac"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"cmos\",\"title\":\"PS2 Q3: complete complementary gate\",\"pdn\":{\"parallel\":[{\"gate\":\"B\"},{\"series\":[{\"gate\":\"A\"},{\"gate\":\"C\"}]}]}}\n```\n\n*A=x1, B=x2, C=x3. Compare the dual PMOS network with the supplied partial drawing.*"
+    },
+    {
+      "type": "practice_problem",
+      "id": "a954518e-8733-5320-b948-da38148c8857",
+      "citations": [
+        {
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1,
+          "chunk_id": "02c18827-395e-43f0-b70a-009d0b7ce324"
+        }
+      ],
+      "title": "PS2 Q5: simplify first, then draw CMOS",
+      "prompt": "$F(A,B,C,D)=\\sum m(0,1,2,4,6,8,10,12,14)$. Find the minimum SOP and the corresponding static CMOS network.",
+      "steps": [
+        {
+          "explanation": "All eight even rows have D=0 and contribute NOT D.",
+          "latex": ""
+        },
+        {
+          "explanation": "The only remaining 1 is row 1; combine it with row 0 by Boolean algebra.",
+          "latex": "F=\\overline D+\\overline A\\overline B\\overline C"
+        },
+        {
+          "explanation": "Complement before drawing the PDN.",
+          "latex": "\\overline F=D(A+B+C)"
+        },
+        {
+          "explanation": "Use NMOS D in series with parallel A,B,C; dualize for the PUN.",
+          "latex": ""
+        }
+      ],
+      "answer": "Four NMOS and four PMOS. PUN: PMOS D in parallel with series PMOS A,B,C. The eight-transistor complex gate directly implements F.",
+      "difficulty": "intermediate",
+      "origin": "source"
+    },
+    {
+      "type": "heading",
+      "id": "5558d709-cb8c-588c-a3be-e902e2e8fb01",
+      "citations": [
+        {
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1,
+          "chunk_id": "02c18827-395e-43f0-b70a-009d0b7ce324"
+        }
+      ],
+      "level": 1,
+      "text": "4. CMOS drawing → function → truth table"
+    },
+    {
+      "type": "paragraph",
+      "id": "dbdca863-623c-5ce6-944b-3889ee7cc6a9",
+      "citations": [],
+      "text": "Read the **NMOS half** first: start at F and find every complete path to ground. Multiply gate conditions along a series path and OR parallel paths, then complement once to obtain F.\n\nCheck with the PMOS half: a pull-up path must exist exactly when F=1. A complemented gate label is a signal name, not an instruction to complement the final output twice."
+    },
+    {
+      "type": "paragraph",
+      "id": "6e5455ee-03b2-5075-92bb-df5e4d36b51c",
+      "citations": [
+        {
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1,
+          "chunk_id": "02c18827-395e-43f0-b70a-009d0b7ce324"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"cmos\",\"title\":\"PS2 Q4: interpret this CMOS circuit\",\"pdn\":{\"series\":[{\"gate\":\"A\"},{\"parallel\":[{\"gate\":\"D\"},{\"series\":[{\"gate\":\"B\"},{\"gate\":\"C\"}]}]}]}}\n```\n\n*Redrawn from PS2 Q4: A=x1, B=x2, C=x3, D=x4.*"
+    },
+    {
+      "type": "worked_example",
+      "id": "fd392aa1-f855-5a2c-aaa8-7009d6842a89",
+      "citations": [
+        {
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1,
+          "chunk_id": "02c18827-395e-43f0-b70a-009d0b7ce324"
+        }
+      ],
+      "title": "PS2 Q4: derive the output and canonical SOP",
+      "prompt": "Read the four-input CMOS circuit above. Give its output function, truth table, and canonical 1-row indices.",
+      "steps": [
+        {
+          "explanation": "A is in series with the parallel choice D or BC.",
+          "latex": "G=A(D+BC)"
+        },
+        {
+          "explanation": "A conducting PDN makes the output zero.",
+          "latex": "F=\\overline{A(D+BC)}"
+        },
+        {
+          "explanation": "Complement using De Morgan to check the PUN.",
+          "latex": "F=\\overline A+\\overline D(\\overline B+\\overline C)"
+        },
+        {
+          "explanation": "All A=0 rows are 1; for A=1, only BCD=000,010,100 remain high.",
+          "latex": "F=\\sum m(0,1,2,3,4,5,6,7,8,10,12)"
+        }
+      ],
+      "answer": "The table below gives every row. Expand the listed minterms if a full canonical SOP is requested; each minterm must include A,B,C,D."
+    },
+    {
+      "type": "table",
+      "id": "3791bd89-3c83-5607-9d83-015d04f0db56",
+      "citations": [
+        {
+          "source_id": "8f4eb7d8-fdc9-4966-827e-880bca61bef1",
+          "version": 1,
+          "chunk_id": "02c18827-395e-43f0-b70a-009d0b7ce324"
+        }
+      ],
+      "columns": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ],
+      "rows": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "0",
+          "1",
+          "0",
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        [
+          "0",
+          "1",
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "1",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "0",
+          "1",
+          "1",
+          "0"
+        ],
+        [
+          "1",
+          "1",
+          "0",
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "1",
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1",
+          "0"
+        ]
+      ]
+    },
+    {
+      "type": "equation",
+      "id": "747dcc35-07b2-57db-bd35-4718b34d5bd7",
+      "citations": [],
+      "latex": "m_{10}=A\\overline B C\\overline D"
+    },
+    {
+      "type": "paragraph",
+      "id": "53309911-1c0c-5eef-9a20-4c3583231b6e",
+      "citations": [],
+      "text": "For example, row 10 is 1010, so its full minterm is the expression above. For the whole function, OR the minterms at all eleven listed 1 rows."
+    }
+  ],
+  "actor": "agent",
+  "idempotency_key": "elec271-03-v1"
+}

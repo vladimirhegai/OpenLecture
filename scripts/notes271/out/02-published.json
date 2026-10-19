@@ -1,0 +1,1258 @@
+{
+  "academic_week": null,
+  "blocks": [
+    {
+      "citations": [
+        {
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25",
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1
+        }
+      ],
+      "id": "f1da2ddd-286d-4202-b5ec-80cc2f87039c",
+      "text": "**Midterm: Weeks 1\u20135.** This is one of the three main study sections for the 40-minute October 29 midterm.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "2d78014a-3ad6-43ef-ac52-97a627192feb",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "f5ea6bd9-aabb-43f8-8beb-b58fe0506334",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "732d9ed2-86bb-4948-8efd-04c042f6d681",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "6b13c3b7-1d50-40c1-a173-5bfa85d67c00",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "2ee01bcb-a45d-45c6-9b62-8e663a4ecfc8",
+      "level": 1,
+      "text": "1. Descriptions, truth tables, and gate drawings",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "2d78014a-3ad6-43ef-ac52-97a627192feb",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "b438ae61-f805-44cb-b4c7-9fefb272f844",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "fadad472-7c4c-4742-8eab-ac123520f6c2",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "3a414d63-07a7-4242-9f6f-490db9b7dd88",
+      "text": "A logic variable takes values 0 and 1. Here $+$ means OR, adjacency or $\\cdot$ means AND, and a bar means NOT.\n\n- $AB=1$ only if both inputs are 1.\n- $A+B=1$ if either or both inputs are 1.\n- $\\overline A$ reverses a single bit.\n\nNOT is evaluated first, then AND, then OR; parentheses override that order.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "f5ea6bd9-aabb-43f8-8beb-b58fe0506334",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "7add4c2d-6f05-4170-b6b2-c200bdceb776",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "A",
+        "B",
+        "AB",
+        "A+B",
+        "$\\overline{AB}$",
+        "$\\overline{A+B}$"
+      ],
+      "id": "21192c51-2105-4a76-9e8c-5421b10416f0",
+      "rows": [
+        [
+          "0",
+          "0",
+          "0",
+          "0",
+          "1",
+          "1"
+        ],
+        [
+          "0",
+          "1",
+          "0",
+          "1",
+          "1",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "1",
+          "1",
+          "0"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1",
+          "0",
+          "0"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7add4c2d-6f05-4170-b6b2-c200bdceb776",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "7829a21e-9fbe-4e34-b6e3-d3ff74ad8e45",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "a02d7a39-a712-459d-b7b9-159d99d34343",
+      "text": "**NAND** complements an AND; **NOR** complements an OR. A small bubble at a gate output means inversion.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "f5ea6bd9-aabb-43f8-8beb-b58fe0506334",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "c020b537-1c01-4eaa-964d-793b53247444",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "1abc0643-b88a-486a-83c3-b3cd91feee85",
+      "text": "A truth table lists all $2^n$ assignments of $n$ independent inputs. Keep the leftmost input as the MSB and list rows in binary order so no assignment is missed.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$F=AB+AC+BC$; the table below checks every input row.",
+      "citations": [],
+      "id": "14c0c519-7962-487a-a885-7c7a00cb7bcc",
+      "prompt": "An indicator turns on when at least two of three inputs A,B,C are 1. Derive its truth table and an SOP.",
+      "steps": [
+        {
+          "explanation": "Enumerate all eight input assignments in binary order.",
+          "latex": ""
+        },
+        {
+          "explanation": "The qualifying rows are 011,101,110,111.",
+          "latex": "F=\\sum m(3,5,6,7)"
+        },
+        {
+          "explanation": "Each pair of high inputs guarantees the condition.",
+          "latex": "F=AB+AC+BC"
+        }
+      ],
+      "title": "A description becomes a truth table",
+      "type": "worked_example"
+    },
+    {
+      "citations": [],
+      "columns": [
+        "A",
+        "B",
+        "C",
+        "F"
+      ],
+      "id": "01b8ee99-401c-4743-9b71-5f9543d11828",
+      "rows": [
+        [
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "1",
+          "1"
+        ],
+        [
+          "1",
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "0",
+          "1",
+          "1"
+        ],
+        [
+          "1",
+          "1",
+          "0",
+          "1"
+        ],
+        [
+          "1",
+          "1",
+          "1",
+          "1"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "732d9ed2-86bb-4948-8efd-04c042f6d681",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "8b7ac497-4906-4100-bb20-3a77c24c3082",
+      "text": "```digital\n{\"kind\":\"circuit\",\"title\":\"A simple gate network\",\"nodes\":[{\"id\":\"A\",\"gate\":\"INPUT\",\"x\":70,\"y\":90},{\"id\":\"B\",\"gate\":\"INPUT\",\"x\":70,\"y\":170},{\"id\":\"C\",\"gate\":\"INPUT\",\"x\":250,\"y\":250},{\"id\":\"G\",\"gate\":\"OR\",\"x\":250,\"y\":130},{\"id\":\"H\",\"gate\":\"AND\",\"x\":440,\"y\":190},{\"id\":\"F\",\"gate\":\"OUTPUT\",\"x\":620,\"y\":190}],\"wires\":[{\"start\":\"A.out\",\"end\":\"G.0\"},{\"start\":\"B.out\",\"end\":\"G.1\"},{\"start\":\"G.out\",\"end\":\"H.0\"},{\"start\":\"C.out\",\"end\":\"H.1\"},{\"start\":\"H.out\",\"end\":\"F.0\"}]}\n```\n\n*An OR output feeds an AND: F=(A+B)C.*",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$F=0$.",
+      "citations": [
+        {
+          "chunk_id": "732d9ed2-86bb-4948-8efd-04c042f6d681",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "21a8385b-6f63-4606-98d1-505e4ca08bf2",
+      "prompt": "For the diagram above, find $F$ and evaluate it at $A=0,B=1,C=0$.",
+      "steps": [
+        {
+          "explanation": "Name the output of the OR gate.",
+          "latex": "G=A+B"
+        },
+        {
+          "explanation": "The AND requires both G and C.",
+          "latex": "F=(A+B)C"
+        },
+        {
+          "explanation": "Substitute the input values.",
+          "latex": "F=(0+1)0=0"
+        }
+      ],
+      "title": "Read a circuit from left to right",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$F=\\overline A+AB=\\overline A+B$. Different gate networks can have the same truth table.",
+      "citations": [
+        {
+          "chunk_id": "c8db3925-b5e5-40f5-a820-d04e459e82bd",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "e83a939b-320d-4fd5-8758-e96577cd44cd",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "5801b192-87de-461d-ab53-e8c655878a0b",
+      "prompt": "Let $P=\\overline A$, $Q=AB$, and $F=P+Q$. Find the complete output column.",
+      "steps": [
+        {
+          "explanation": "For AB=00,01,10,11, the inverter output is 1,1,0,0.",
+          "latex": ""
+        },
+        {
+          "explanation": "For those same rows, AB is 0,0,0,1.",
+          "latex": ""
+        },
+        {
+          "explanation": "OR the corresponding internal values.",
+          "latex": "F=1,1,0,1"
+        }
+      ],
+      "title": "Lecture network: track internal signals",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$F=\\sum m(1,2,4,7)$. This is the lecture\u2019s three-switch light-controller specification.",
+      "citations": [
+        {
+          "chunk_id": "6b13c3b7-1d50-40c1-a173-5bfa85d67c00",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "3fbf82dd-904f-40b2-8eb8-c585bdb6c07b",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "74c27226-6887-4596-af5d-11f6fe9f1231",
+      "prompt": "The light is on when an odd number of three switches is closed. Derive a compact expression.",
+      "steps": [
+        {
+          "explanation": "The 1 rows are 001,010,100,111.",
+          "latex": "F=\\sum m(1,2,4,7)"
+        },
+        {
+          "explanation": "Every 1 row becomes one minterm.",
+          "latex": "F=\\overline A\\overline B C+\\overline A B\\overline C+A\\overline B\\overline C+ABC"
+        }
+      ],
+      "title": "Three-way light control",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7a80bf73-05d8-4b16-8f3c-6cd964452126",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "ecc98f90-bb03-42b3-88ce-77ab56188d51",
+      "level": 1,
+      "text": "2. Timing diagrams: evaluate and reconstruct a function",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7a80bf73-05d8-4b16-8f3c-6cd964452126",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "cc6fc39f-7946-42ea-b397-4613081ae1e7",
+      "text": "```digital\n{\"kind\":\"timing\",\"title\":\"Ideal network waveforms\",\"unit\":\"one row per interval; zero delay\",\"signals\":[{\"name\":\"A\",\"wave\":\"0011\"},{\"name\":\"B\",\"wave\":\"0101\"},{\"name\":\"P = NOT A\",\"wave\":\"1100\"},{\"name\":\"Q = A AND B\",\"wave\":\"0001\"},{\"name\":\"F = P OR Q\",\"wave\":\"1101\"}]}\n```\n\n*Read vertically to evaluate one instant; read horizontally to follow a signal.*",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7a80bf73-05d8-4b16-8f3c-6cd964452126",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "92bf430d-14b3-4e6c-a54e-75891d2e4e1b",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "c427f156-20ee-4a55-a31d-841f4daafbf7",
+      "text": "These are **ideal** waveforms: outputs change immediately. A physical gate has propagation delay, so a truth table alone does not describe glitches during a transition.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [],
+      "id": "bc775194-d116-423b-9849-f6c7ea88d970",
+      "text": "Treat each interval between input transitions as a truth-table row: read **all** inputs and F vertically at the same instant.\n\nFor an ideal combinational function, a repeated input combination must give the same output. A waveform that never visits an input combination does not determine that row.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$F=\\overline A+B$. The reconstructed function matches the gate network.",
+      "citations": [
+        {
+          "chunk_id": "7a80bf73-05d8-4b16-8f3c-6cd964452126",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "e83a939b-320d-4fd5-8758-e96577cd44cd",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "bd605c7d-4bfe-4986-9a62-a8bda129289d",
+      "prompt": "For the A,B,F waveforms immediately above, recover a Boolean expression for F.",
+      "steps": [
+        {
+          "explanation": "Read the intervals left to right: AB=00,01,10,11 and F=1,1,0,1.",
+          "latex": ""
+        },
+        {
+          "explanation": "Write minterms for the 1 rows.",
+          "latex": "F=\\overline A\\overline B+\\overline A B+AB"
+        },
+        {
+          "explanation": "Combine the first two terms, then absorb the redundant literal.",
+          "latex": "F=\\overline A+AB=\\overline A+B"
+        }
+      ],
+      "title": "Work backward from the timing diagram",
+      "type": "worked_example"
+    },
+    {
+      "answer": "No. F=B is one consistent possibility, but the waveform does not uniquely determine F at AB=10.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "4c97bcde-da4b-4fbf-9623-5afb2f112989",
+      "origin": "original",
+      "prompt": "A waveform visits AB=00,01,11 with outputs 0,1,1. Can you claim F=B for every input?",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "F=B matches the three observed rows.",
+          "latex": ""
+        },
+        {
+          "explanation": "AB=10 was not observed. Its output could be 0 or 1 without contradicting the waveform.",
+          "latex": ""
+        }
+      ],
+      "title": "Try it: a waveform leaves a row unseen",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "8845a103-931a-42fc-bbff-5fe05e1c0666",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "a4d26baf-4305-4c75-b4c0-80076843efe1",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "7aef0633-d817-4c62-b68a-936607b9b306",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "e7af9217-241c-4872-b01e-e7aaaf870d58",
+      "level": 1,
+      "text": "3. Boolean algebra and complementing a function",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "5fdf1322-77eb-4c7f-b7e4-16ade8df39f1",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "92bf430d-14b3-4e6c-a54e-75891d2e4e1b",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "1fb0c994-0331-4544-a3c4-4fae8ada26ee",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "983b5914-65cb-4141-9f46-f2cc00672dad",
+      "text": "A **literal** is a variable or its complement. Simplification preserves every truth-table row while reducing the hardware needed to implement the expression.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "8845a103-931a-42fc-bbff-5fe05e1c0666",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "a4d26baf-4305-4c75-b4c0-80076843efe1",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "Rule",
+        "OR form",
+        "AND form"
+      ],
+      "id": "db33aaba-b5c1-4d61-8efe-48f8c6fcf79c",
+      "rows": [
+        [
+          "Identity",
+          "$A+0=A$",
+          "$A\\cdot1=A$"
+        ],
+        [
+          "Domination",
+          "$A+1=1$",
+          "$A\\cdot0=0$"
+        ],
+        [
+          "Idempotence",
+          "$A+A=A$",
+          "$AA=A$"
+        ],
+        [
+          "Complement",
+          "$A+\\overline A=1$",
+          "$A\\overline A=0$"
+        ],
+        [
+          "Absorption",
+          "$A+AB=A$",
+          "$A(A+B)=A$"
+        ],
+        [
+          "Distributive",
+          "$A+BC=(A+B)(A+C)$",
+          "$A(B+C)=AB+AC$"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "a4d26baf-4305-4c75-b4c0-80076843efe1",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "b5a28f28-409c-4136-8f65-38ddf6b6f40f",
+      "text": "AND and OR are also commutative and associative: you may reorder inputs and regroup repeated instances of the same operation. Boolean $A+A=A$, so ordinary arithmetic cancellation is not valid.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "e83a939b-320d-4fd5-8758-e96577cd44cd",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "a4d26baf-4305-4c75-b4c0-80076843efe1",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "d6885f2c-d4a7-436f-a093-b2fee8e9f008",
+      "text": "```steps\ntitle \"Absorb a redundant literal\"\n$$ \\overline A+AB $$\nStart with the lecture network.\n$$ (\\overline A+A)(\\overline A+B) $$\nDistribute OR over AND.\n$$ 1(\\overline A+B) $$\nA variable OR its complement is 1.\n$$ \\overline A+B $$\nRemove the identity factor.\n```",
+      "type": "paragraph"
+    },
+    {
+      "answer": "The expressions are equal for every x,y,z.",
+      "citations": [
+        {
+          "chunk_id": "91ddaff2-7ccf-48d8-ba4f-29d9824f9b24",
+          "source_id": "f7872831-25dd-4c13-a366-72a0b139326b",
+          "version": 1
+        }
+      ],
+      "id": "5c633bc9-3e24-4430-aa6d-824961ecac8c",
+      "prompt": "Prove $x+yz=(x+y)(x+z)$.",
+      "steps": [
+        {
+          "explanation": "Expand the right-hand side.",
+          "latex": "(x+y)(x+z)=xx+xz+xy+yz"
+        },
+        {
+          "explanation": "Use xx=x, then absorption twice.",
+          "latex": "x+xz+xy+yz=x+yz"
+        }
+      ],
+      "title": "Problem 1b: prove the second distributive law",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$F=AB+\\overline A C$. The product BC adds no new 1 rows.",
+      "citations": [
+        {
+          "chunk_id": "a4d26baf-4305-4c75-b4c0-80076843efe1",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "e5e01e07-f7a0-4a28-ba36-cd07320f23bd",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "ed5c0dda-78a6-4e02-90a3-11cfb779508d",
+      "prompt": "Simplify $F=AB+\\overline A C+BC$.",
+      "steps": [
+        {
+          "explanation": "Split the last term using A + NOT A = 1.",
+          "latex": "BC=ABC+\\overline A BC"
+        },
+        {
+          "explanation": "AB absorbs ABC; NOT A C absorbs NOT A BC.",
+          "latex": "F=AB+\\overline A C"
+        }
+      ],
+      "title": "Consensus: a term can already be covered",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$A$.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "1d2d614a-b0dc-47bc-b1d8-8e2b995d3019",
+      "origin": "original",
+      "prompt": "Simplify $(A+B)(A+\\overline B)$.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Apply the OR-over-AND distributive law backward.",
+          "latex": "(A+B)(A+\\overline B)=A+B\\overline B"
+        },
+        {
+          "explanation": "A variable AND its complement is zero.",
+          "latex": "A+0=A"
+        }
+      ],
+      "title": "Try it: factor before expanding",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7aef0633-d817-4c62-b68a-936607b9b306",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "display": true,
+      "id": "ec43c258-f406-4769-8854-8c1610ea20a2",
+      "latex": "\\overline{AB}=\\overline A+\\overline B",
+      "type": "equation"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "a4d26baf-4305-4c75-b4c0-80076843efe1",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "display": true,
+      "id": "9fe1145b-9cfa-4da2-bdb8-8560d27ca074",
+      "latex": "\\overline{A+B}=\\overline A\\,\\overline B",
+      "type": "equation"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "a4d26baf-4305-4c75-b4c0-80076843efe1",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "b3408c0e-fb15-4af3-9d78-f063451e5f56",
+      "text": "**De Morgan:** when a complement crosses a group, swap AND with OR and complement every member. The bar applies to its entire group.\n\n**Duality:** swap AND with OR and 0 with 1, leaving each literal unchanged. A dual is not generally the complement.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$\\overline A B+\\overline C$.",
+      "citations": [],
+      "id": "d5c822c4-89bb-4422-94f6-d94dac088a6a",
+      "prompt": "Find $\\overline F$ for $F=(A+\\overline B)C$.",
+      "steps": [
+        {
+          "explanation": "Complement the outer AND first.",
+          "latex": "\\overline F=\\overline{A+\\overline B}+\\overline C"
+        },
+        {
+          "explanation": "Complement the inner OR, removing the double complement.",
+          "latex": "\\overline F=\\overline A B+\\overline C"
+        }
+      ],
+      "title": "Complement a nested expression",
+      "type": "worked_example"
+    },
+    {
+      "answer": "Dual $A(B+C)$; complement $\\overline A(\\overline B+\\overline C)$.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "14835223-6155-4d97-9816-b31d2a750937",
+      "origin": "original",
+      "prompt": "Find both the dual and the complement of $F=A+BC$.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "For the dual, swap the operations but keep the literals.",
+          "latex": "F^{d}=A(B+C)"
+        },
+        {
+          "explanation": "For the complement, also complement the literals.",
+          "latex": "\\overline F=\\overline A(\\overline B+\\overline C)"
+        }
+      ],
+      "title": "Try it: dual or complement?",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "9776889c-e5fd-4752-9964-b0e11b4dbcfa",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "b765e119-7a4d-46e7-9fd3-084d876793c4",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "e5e01e07-f7a0-4a28-ba36-cd07320f23bd",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "e9de4742-c50c-4783-a614-0d80696a15ff",
+      "level": 1,
+      "text": "4. Venn diagrams",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "9776889c-e5fd-4752-9964-b0e11b4dbcfa",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "b765e119-7a4d-46e7-9fd3-084d876793c4",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "07d29ca9-346e-4882-a3bc-d75e15080428",
+      "text": "In a **Venn diagram**, a circle marks the input assignments where that variable is 1.\n\n- AND shades the intersection.\n- OR shades the union.\n- NOT shades the part of the surrounding universe outside the set.\n\nTo prove equality visually, shade both expressions in identical universes and compare the resulting regions.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "Both expressions shade everything except the overlap.",
+      "citations": [
+        {
+          "chunk_id": "ecf8f333-e635-4552-b802-03fe7df1f23f",
+          "source_id": "1e8e6169-3816-4eda-a3c9-7e9a4c638fb7",
+          "version": 1
+        },
+        {
+          "chunk_id": "ba4708cd-b10a-4bc3-8bec-5303375fe5d3",
+          "source_id": "1e8e6169-3816-4eda-a3c9-7e9a4c638fb7",
+          "version": 1
+        }
+      ],
+      "id": "d9fe5144-a1e4-4d14-98f3-91ee4bcbaa6d",
+      "prompt": "Explain why $\\overline{AB}=\\overline A+\\overline B$ using Venn regions.",
+      "steps": [
+        {
+          "explanation": "AB is the overlap of circles A and B.",
+          "latex": ""
+        },
+        {
+          "explanation": "Outside that overlap, a point lies outside A, outside B, or both.",
+          "latex": ""
+        },
+        {
+          "explanation": "Those are exactly the regions selected by NOT A OR NOT B.",
+          "latex": ""
+        }
+      ],
+      "title": "De Morgan through regions",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7aef0633-d817-4c62-b68a-936607b9b306",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "9776889c-e5fd-4752-9964-b0e11b4dbcfa",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "6cc96cb8-a87e-40d8-9a12-fbdd1ae281a5",
+      "text": "```digital\n{\"kind\":\"venn\",\"title\":\"Everything except the intersection\",\"variables\":[\"A\",\"B\"],\"shaded\":[0,1,2]}\n```\n\n*The shaded regions are AB=00,01,10: NOT(AB), equivalently NOT A OR NOT B.*",
+      "type": "paragraph"
+    },
+    {
+      "citations": [],
+      "id": "93339190-0fc3-4758-96b3-5e85c109f042",
+      "text": "```digital\n{\"kind\":\"venn\",\"title\":\"Union restricted to outside C\",\"variables\":[\"A\",\"B\",\"C\"],\"shaded\":[2,4,6]}\n```\n\n*The shaded area lies inside A or B, while remaining outside C.*",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$(A+B)\\overline C=A\\overline C+B\\overline C$. The regions are ABC=010,100,110.",
+      "citations": [],
+      "id": "3074346b-2086-4413-855c-5ea34660a227",
+      "prompt": "In the three-circle diagram above, the shaded regions are inside A or B and outside C. Write the function.",
+      "steps": [
+        {
+          "explanation": "Inside either A or B gives the union A+B.",
+          "latex": ""
+        },
+        {
+          "explanation": "Outside C contributes NOT C, joined by AND.",
+          "latex": "F=(A+B)\\overline C"
+        }
+      ],
+      "title": "Read the expression from shaded regions",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "4f12ad60-e386-4e15-bc6a-5433893e685d",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "1fb0c994-0331-4544-a3c4-4fae8ada26ee",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "85755f6a-dc7b-4e17-9150-d0cca18791c7",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "5d0b67df-4fb5-41f6-9ad0-a7d8648b8dca",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "6be74a93-e81a-4fc9-87a7-d28abba79fb1",
+      "level": 1,
+      "text": "5. Canonical SOP/POS and AND\u2013OR/OR\u2013AND drawings",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "1fb0c994-0331-4544-a3c4-4fae8ada26ee",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "a410a58a-c070-4701-8502-bd99653f437d",
+      "text": "Fix the variable order before numbering rows. For $A,B,C$, the index is $4A+2B+C$.\n\n- A **minterm** $m_i$ is 1 at row $i$ and 0 everywhere else. AND all variables, complementing those whose row bit is 0.\n- A **maxterm** $M_i$ is 0 at row $i$ and 1 everywhere else. OR all variables, complementing those whose row bit is 1.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "1fb0c994-0331-4544-a3c4-4fae8ada26ee",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "columns": [
+        "Row ABC",
+        "Index",
+        "Minterm",
+        "Maxterm"
+      ],
+      "id": "abd27d41-3206-4198-aec4-899c6a5be167",
+      "rows": [
+        [
+          "000",
+          "0",
+          "$\\overline A\\overline B\\overline C$",
+          "$A+B+C$"
+        ],
+        [
+          "101",
+          "5",
+          "$A\\overline B C$",
+          "$\\overline A+B+\\overline C$"
+        ],
+        [
+          "111",
+          "7",
+          "$ABC$",
+          "$\\overline A+\\overline B+\\overline C$"
+        ]
+      ],
+      "type": "table"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "85755f6a-dc7b-4e17-9150-d0cca18791c7",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "5d0b67df-4fb5-41f6-9ad0-a7d8648b8dca",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "00805fc9-c685-4775-b39a-feb66843e922",
+      "text": "**SOP** ORs product terms; canonical SOP uses the minterms of every 1 row. **POS** ANDs sum terms; canonical POS uses the maxterms of every 0 row. A simplified SOP/POS need not contain every variable in every term.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "544030b4-44a6-4f08-ab18-57233d05d3d8",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "016942d0-ee6b-4355-92c1-7b00392a85ab",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "display": true,
+      "id": "f1c59916-4d23-45fe-9c0f-9712b4c2ae11",
+      "latex": "F=\\sum m(1,4,5,6)=\\prod M(0,2,3,7)",
+      "type": "equation"
+    },
+    {
+      "answer": "$F=\\overline B C+A\\overline C$.",
+      "citations": [
+        {
+          "chunk_id": "544030b4-44a6-4f08-ab18-57233d05d3d8",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "df253a49-cca2-45c8-a02e-fc6f4767f966",
+      "prompt": "Derive an SOP for $F(A,B,C)=\\sum m(1,4,5,6)$.",
+      "steps": [
+        {
+          "explanation": "Write one product for each 1 row.",
+          "latex": "F=\\overline A\\overline B C+A\\overline B\\overline C+A\\overline B C+AB\\overline C"
+        },
+        {
+          "explanation": "Use m5 with m1, and m4 with m6. A term may be reused.",
+          "latex": "F=\\overline B C(\\overline A+A)+A\\overline C(\\overline B+B)"
+        },
+        {
+          "explanation": "Each parenthesis is 1.",
+          "latex": "F=\\overline B C+A\\overline C"
+        }
+      ],
+      "title": "Lecture example: canonical to simplified SOP",
+      "type": "worked_example"
+    },
+    {
+      "answer": "$(A+C)(\\overline B+\\overline C)$. A maxterm must evaluate to zero on its selected rows.",
+      "citations": [
+        {
+          "chunk_id": "016942d0-ee6b-4355-92c1-7b00392a85ab",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "32cdfd6b-808e-4c70-9410-f1d5c897c2a2",
+      "prompt": "Write a simplified POS for the same function.",
+      "steps": [
+        {
+          "explanation": "The zero rows are 0,2,3,7.",
+          "latex": "F=M_0M_2M_3M_7"
+        },
+        {
+          "explanation": "Group rows 0 and 2: A=0,C=0, so the sum term is A+C.",
+          "latex": ""
+        },
+        {
+          "explanation": "Group rows 3 and 7: B=1,C=1, so the sum term is NOT B + NOT C.",
+          "latex": "F=(A+C)(\\overline B+\\overline C)"
+        }
+      ],
+      "title": "Read the zero rows for POS",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "c8db3925-b5e5-40f5-a820-d04e459e82bd",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "6b13c3b7-1d50-40c1-a173-5bfa85d67c00",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "ea124082-65bc-4641-924a-8ddcfb216946",
+      "text": "Analysis starts with a circuit and finds its function. Synthesis starts with the required behavior and chooses a circuit. Verify a synthesized circuit by comparing all input rows with the specification.",
+      "type": "paragraph"
+    },
+    {
+      "answer": "$\\sum m(2,3,4,6,7)$; $m_6=AB\\overline C$.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "7e11113e-c1bc-449e-b034-7f7b7ff482dc",
+      "origin": "original",
+      "prompt": "For three inputs, $F=\\prod M(0,1,5)$. Write the 1-row indices and the minterm $m_6$.",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "All rows except 0,1,5 are 1.",
+          "latex": "F=\\sum m(2,3,4,6,7)"
+        },
+        {
+          "explanation": "Index 6 is binary 110.",
+          "latex": "m_6=AB\\overline C"
+        }
+      ],
+      "title": "Try it: read the other canonical form",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [],
+      "id": "85057949-056b-46ed-af66-f7c058663030",
+      "text": "To draw an **SOP**, generate any complemented literals, place one AND gate per product, then OR their outputs.\n\nTo draw a **POS**, place one OR gate per sum, then AND their outputs. A literal used alone may connect directly; a complement bar must still be implemented.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "544030b4-44a6-4f08-ab18-57233d05d3d8",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "5b094aee-5528-4854-9e08-77436b696464",
+      "text": "```digital\n{\"kind\":\"circuit\",\"title\":\"SOP: NOT B C + A NOT C\",\"nodes\":[{\"id\":\"B\",\"gate\":\"INPUT\",\"x\":70,\"y\":85},{\"id\":\"C\",\"gate\":\"INPUT\",\"x\":70,\"y\":245},{\"id\":\"A\",\"gate\":\"INPUT\",\"x\":260,\"y\":325},{\"id\":\"NB\",\"gate\":\"NOT\",\"x\":260,\"y\":85},{\"id\":\"NC\",\"gate\":\"NOT\",\"x\":260,\"y\":245},{\"id\":\"P\",\"gate\":\"AND\",\"x\":455,\"y\":135},{\"id\":\"Q\",\"gate\":\"AND\",\"x\":455,\"y\":285},{\"id\":\"G\",\"gate\":\"OR\",\"x\":650,\"y\":210},{\"id\":\"F\",\"gate\":\"OUTPUT\",\"x\":835,\"y\":210}],\"wires\":[{\"start\":\"B.out\",\"end\":\"NB.0\"},{\"start\":\"C.out\",\"end\":\"NC.0\"},{\"start\":\"NB.out\",\"end\":\"P.0\"},{\"start\":\"C.out\",\"end\":\"P.1\",\"via\":[[180,245],[180,145]]},{\"start\":\"A.out\",\"end\":\"Q.0\",\"via\":[[365,325],[365,275]]},{\"start\":\"NC.out\",\"end\":\"Q.1\"},{\"start\":\"P.out\",\"end\":\"G.0\"},{\"start\":\"Q.out\",\"end\":\"G.1\"},{\"start\":\"G.out\",\"end\":\"F.0\"}]}\n```\n\n*F = NOT B C + A NOT C: two AND products feeding an OR.*",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7add4c2d-6f05-4170-b6b2-c200bdceb776",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "7829a21e-9fbe-4e34-b6e3-d3ff74ad8e45",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "1a239bf8-400f-4368-99ca-152c848814da",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "2cc89eb3-4f4b-4825-bf96-604e980414be",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "9f2c4074-b82f-4015-83fc-a908c44306d3",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "5c45c5d4-469c-4245-a1f4-f0d79c7697f2",
+      "level": 1,
+      "text": "6. SOP \u2192 NAND\u2013NAND; POS \u2192 NOR\u2013NOR",
+      "type": "heading"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "7829a21e-9fbe-4e34-b6e3-d3ff74ad8e45",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "1a239bf8-400f-4368-99ca-152c848814da",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        },
+        {
+          "chunk_id": "2cc89eb3-4f4b-4825-bf96-604e980414be",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "12245db9-3183-4477-8854-50282039af1a",
+      "text": "A tied-input NAND or NOR acts as an inverter.\n\n- SOP becomes **NAND\u2013NAND**: complement each product, then NAND those results.\n- POS becomes **NOR\u2013NOR**: complement each sum, then NOR those results.\n\nThe two inversions cancel by De Morgan. Required complemented literals still need to be generated.",
+      "type": "paragraph"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "1a239bf8-400f-4368-99ca-152c848814da",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "45940e6d-bf6d-4e1a-ab3d-8ab0fe855f60",
+      "text": "```steps\ntitle \"Convert an SOP into NANDs\"\n$$ F=P+Q $$\nStart with two product terms.\n$$ F=\\overline{\\overline{P+Q}} $$\nInsert a double complement.\n$$ F=\\overline{\\overline P\\;\\overline Q} $$\nThe outer operation is a NAND.\n```",
+      "type": "paragraph"
+    },
+    {
+      "answer": "Four two-input NAND gates when complemented inputs are not supplied.",
+      "citations": [
+        {
+          "chunk_id": "f372e613-a826-40bf-92c2-dd5f11ecbfd1",
+          "source_id": "bf2ca805-96f9-49d4-87da-ba6471d6a531",
+          "version": 1
+        }
+      ],
+      "id": "6929fb0f-c4fc-4f2d-8379-371118432d40",
+      "prompt": "Implement $F=B+A\\overline C$ using only two-input NANDs.",
+      "steps": [
+        {
+          "explanation": "A NAND with tied inputs generates NOT C.",
+          "latex": "N_C=\\operatorname{NAND}(C,C)=\\overline C"
+        },
+        {
+          "explanation": "The one-literal term B also needs its complement at the last NAND.",
+          "latex": "N_B=\\operatorname{NAND}(B,B)=\\overline B"
+        },
+        {
+          "explanation": "Complement the other product.",
+          "latex": "N_P=\\operatorname{NAND}(A,N_C)=\\overline{A\\overline C}"
+        },
+        {
+          "explanation": "The final NAND restores the desired OR.",
+          "latex": "F=\\operatorname{NAND}(N_B,N_P)"
+        }
+      ],
+      "title": "Past midterm: a one-literal product term",
+      "type": "worked_example"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "f372e613-a826-40bf-92c2-dd5f11ecbfd1",
+          "source_id": "bf2ca805-96f9-49d4-87da-ba6471d6a531",
+          "version": 1
+        }
+      ],
+      "id": "112d9ac6-3b1f-4049-80e7-79247a3c3178",
+      "text": "```digital\n{\"kind\":\"circuit\",\"title\":\"NAND-only past midterm circuit\",\"nodes\":[{\"id\":\"B\",\"gate\":\"INPUT\",\"x\":70,\"y\":85},{\"id\":\"C\",\"gate\":\"INPUT\",\"x\":70,\"y\":265},{\"id\":\"A\",\"gate\":\"INPUT\",\"x\":260,\"y\":190},{\"id\":\"NB\",\"gate\":\"NAND\",\"x\":260,\"y\":85},{\"id\":\"NC\",\"gate\":\"NAND\",\"x\":260,\"y\":265},{\"id\":\"NP\",\"gate\":\"NAND\",\"x\":450,\"y\":225},{\"id\":\"G\",\"gate\":\"NAND\",\"x\":640,\"y\":145},{\"id\":\"F\",\"gate\":\"OUTPUT\",\"x\":820,\"y\":145}],\"wires\":[{\"start\":\"B.out\",\"end\":\"NB.0\"},{\"start\":\"B.out\",\"end\":\"NB.1\"},{\"start\":\"C.out\",\"end\":\"NC.0\"},{\"start\":\"C.out\",\"end\":\"NC.1\"},{\"start\":\"A.out\",\"end\":\"NP.0\"},{\"start\":\"NC.out\",\"end\":\"NP.1\"},{\"start\":\"NB.out\",\"end\":\"G.0\"},{\"start\":\"NP.out\",\"end\":\"G.1\"},{\"start\":\"G.out\",\"end\":\"F.0\"}]}\n```\n\n*Tied inputs generate NOT B and NOT C. Every drawn gate is a NAND.*",
+      "type": "paragraph"
+    },
+    {
+      "answer": "Four two-input NOR gates. Confirm equivalence to the SOP on all eight rows.",
+      "citations": [
+        {
+          "chunk_id": "9f2c4074-b82f-4015-83fc-a908c44306d3",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "d7d782e3-44c2-4126-ba10-8051663a098b",
+      "prompt": "Use $F=(A+B)(B+\\overline C)$ to obtain a NOR-only realization.",
+      "steps": [
+        {
+          "explanation": "Generate NOT C with a tied-input NOR.",
+          "latex": "N_C=\\operatorname{NOR}(C,C)"
+        },
+        {
+          "explanation": "Complement the two sum terms.",
+          "latex": "U=\\operatorname{NOR}(A,B),\\quad V=\\operatorname{NOR}(B,N_C)"
+        },
+        {
+          "explanation": "NOR the complemented sums.",
+          "latex": "F=\\operatorname{NOR}(U,V)"
+        }
+      ],
+      "title": "The same function with NORs",
+      "type": "worked_example"
+    },
+    {
+      "answer": "NAND: $AB+CD$. OR: $\\overline{ABCD}$.",
+      "citations": [],
+      "difficulty": "intermediate",
+      "id": "16a73786-bf35-48ab-bf8b-7eda42f5ac81",
+      "origin": "original",
+      "prompt": "If $U=\\overline{AB}$ and $V=\\overline{CD}$, what does NAND(U,V) produce? What does OR(U,V) produce?",
+      "solution": "",
+      "steps": [
+        {
+          "explanation": "Apply De Morgan to the final NAND.",
+          "latex": "\\overline{UV}=AB+CD"
+        },
+        {
+          "explanation": "OR does not provide the final complement.",
+          "latex": "U+V=\\overline{AB}+\\overline{CD}=\\overline{ABCD}"
+        }
+      ],
+      "title": "Try it: an inversion bubble changes the function",
+      "type": "practice_problem"
+    },
+    {
+      "citations": [
+        {
+          "chunk_id": "9f2c4074-b82f-4015-83fc-a908c44306d3",
+          "source_id": "a03a4d55-8676-487c-96f7-77757c75cb49",
+          "version": 1
+        }
+      ],
+      "id": "779b9cb9-b099-48fd-8c77-383daa75c22e",
+      "text": "```digital\n{\"kind\":\"circuit\",\"title\":\"NOR-only realization\",\"nodes\":[{\"id\":\"A\",\"gate\":\"INPUT\",\"x\":70,\"y\":85},{\"id\":\"B\",\"gate\":\"INPUT\",\"x\":70,\"y\":165},{\"id\":\"C\",\"gate\":\"INPUT\",\"x\":70,\"y\":285},{\"id\":\"NC\",\"gate\":\"NOR\",\"x\":260,\"y\":285},{\"id\":\"U\",\"gate\":\"NOR\",\"x\":450,\"y\":125},{\"id\":\"V\",\"gate\":\"NOR\",\"x\":450,\"y\":245},{\"id\":\"G\",\"gate\":\"NOR\",\"x\":645,\"y\":185},{\"id\":\"F\",\"gate\":\"OUTPUT\",\"x\":830,\"y\":185}],\"wires\":[{\"start\":\"A.out\",\"end\":\"U.0\"},{\"start\":\"B.out\",\"end\":\"U.1\"},{\"start\":\"C.out\",\"end\":\"NC.0\"},{\"start\":\"C.out\",\"end\":\"NC.1\"},{\"start\":\"B.out\",\"end\":\"V.0\",\"via\":[[160,165],[160,235]]},{\"start\":\"NC.out\",\"end\":\"V.1\"},{\"start\":\"U.out\",\"end\":\"G.0\"},{\"start\":\"V.out\",\"end\":\"G.1\"},{\"start\":\"G.out\",\"end\":\"F.0\"}]}\n```\n\n*F=(A+B)(B+NOT C). NC uses tied NOR inputs; U and V complement the two sum terms.*",
+      "type": "paragraph"
+    }
+  ],
+  "course_id": "d0b18428-9c03-4bbf-87af-7a1169d667ab",
+  "created_at": "2026-10-19T02:47:52.533278+00:00",
+  "deleted": false,
+  "document_id": "120cfcb1-7126-46ec-9e94-3780eabbd8cd",
+  "document_type": "study_notes",
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "revision": 4,
+  "schema_version": 1,
+  "title": "02 \u00b7 Introduction to Logic Circuits \u2014 Midterm",
+  "topic_keys": [
+    "boolean_algebra",
+    "logic_gates",
+    "truth_tables"
+  ],
+  "updated_at": "2026-10-19T03:03:02.327048+00:00",
+  "reference": {
+    "document_id": "120cfcb1-7126-46ec-9e94-3780eabbd8cd",
+    "course_id": "d0b18428-9c03-4bbf-87af-7a1169d667ab",
+    "revision": 4,
+    "title": "02 \u00b7 Introduction to Logic Circuits \u2014 Midterm",
+    "route": "/courses/d0b18428-9c03-4bbf-87af-7a1169d667ab/docs/120cfcb1-7126-46ec-9e94-3780eabbd8cd"
+  },
+  "potentially_outdated": false,
+  "outdated_source_ids": []
+}

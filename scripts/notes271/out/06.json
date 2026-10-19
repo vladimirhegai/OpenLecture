@@ -1,0 +1,494 @@
+{
+  "title": "06 · Later · Signed Numbers and Arithmetic Circuits",
+  "document_type": "study_notes",
+  "topic_keys": [
+    "signed_numbers",
+    "arithmetic_circuits",
+    "carry_lookahead"
+  ],
+  "folder_id": "a0ce20ce-b87b-408f-8488-44130e5ce4ea",
+  "blocks": [
+    {
+      "type": "paragraph",
+      "id": "4f01cac5-af41-5cf3-bf33-1bb5653d5690",
+      "citations": [
+        {
+          "source_id": "9b992641-0cd4-4a7c-af3e-d1ff18def2a3",
+          "version": 1,
+          "chunk_id": "3d1d98cf-58cb-4f27-8598-4ad80cd0ca25"
+        }
+      ],
+      "text": "**Later study — outside this midterm study set.** Keep this material for subsequent assessments; prioritize notes 01–03 now."
+    },
+    {
+      "type": "paragraph",
+      "id": "207d547e-bd0d-559b-b840-e136e822b68d",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "text": "Problem Set 4 provides the number-representation, adder, overflow, and carry-lookahead tasks for this note; no Section 5 lecture was supplied."
+    },
+    {
+      "type": "heading",
+      "id": "3880792a-66b9-5179-806b-170e46ee9336",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 1: Signed bit patterns"
+    },
+    {
+      "type": "paragraph",
+      "id": "ea2a80cb-cfb8-502e-8132-e6f0a41f25c5",
+      "citations": [],
+      "text": "Always state the width and encoding. The same bit pattern can mean different values. For $n$ bits:\n\n- **Unsigned:** 0 to $2^n-1$.\n- **Sign-and-magnitude:** the MSB is the sign; remaining bits hold the magnitude. Two zero encodings.\n- **One’s complement:** negate by inverting every bit. Two zero encodings.\n- **Two’s complement:** negate by inverting every bit and adding 1 at the fixed width. One zero encoding."
+    },
+    {
+      "type": "table",
+      "id": "45e02ae5-5454-5a35-984a-1401a029f4bd",
+      "citations": [],
+      "columns": [
+        "Encoding",
+        "Range for n bits",
+        "8-bit -5"
+      ],
+      "rows": [
+        [
+          "Sign-and-magnitude",
+          "$-(2^{n-1}-1)$ to $2^{n-1}-1$",
+          "10000101"
+        ],
+        [
+          "One’s complement",
+          "$-(2^{n-1}-1)$ to $2^{n-1}-1$",
+          "11111010"
+        ],
+        [
+          "Two’s complement",
+          "$-2^{n-1}$ to $2^{n-1}-1$",
+          "11111011"
+        ]
+      ]
+    },
+    {
+      "type": "equation",
+      "id": "c03fdbd1-1ee8-577d-b38d-ca806c9748aa",
+      "citations": [],
+      "latex": "V_{2\\mathrm{C}}=-b_{n-1}2^{n-1}+\\sum_{i=0}^{n-2}b_i2^i"
+    },
+    {
+      "type": "paragraph",
+      "id": "e8f2f7f7-fe60-5d1e-9cb4-8ea55262e4ea",
+      "citations": [],
+      "text": "A quick two’s-complement decode: interpret the pattern as unsigned $U$; if the MSB is 1, subtract $2^n$. If the MSB is 0, its value is simply $U$."
+    },
+    {
+      "type": "worked_example",
+      "id": "e8eb5863-3d41-5cfc-8214-d71d2dd50143",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "title": "PS4 Q2: decode a negative number",
+      "prompt": "Decode the 10-bit two’s-complement pattern 1011100111.",
+      "steps": [
+        {
+          "explanation": "The unsigned value is 512+128+64+32+4+2+1.",
+          "latex": "U=743"
+        },
+        {
+          "explanation": "The MSB is 1, so subtract 1024.",
+          "latex": "V=743-1024=-281"
+        }
+      ],
+      "answer": "$-281$."
+    },
+    {
+      "type": "worked_example",
+      "id": "91f73a82-8c55-5f2b-8c68-721c4864b764",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "title": "PS4 Q3: encode -95 at 12 bits",
+      "prompt": "Represent -95 in sign-and-magnitude, one’s complement, and two’s complement.",
+      "steps": [
+        {
+          "explanation": "Start with positive 95 padded to 12 bits.",
+          "latex": "95=(000001011111)_2"
+        },
+        {
+          "explanation": "For sign-and-magnitude, change only the sign bit.",
+          "latex": "-95\\longrightarrow100001011111"
+        },
+        {
+          "explanation": "For one’s complement, invert all 12 bits.",
+          "latex": "-95\\longrightarrow111110100000"
+        },
+        {
+          "explanation": "For two’s complement, add 1 to the inverted pattern.",
+          "latex": "-95\\longrightarrow111110100001"
+        }
+      ],
+      "answer": "Sign-and-magnitude: 100001011111; one’s: 111110100000; two’s: 111110100001."
+    },
+    {
+      "type": "paragraph",
+      "id": "3fb38345-43cb-5e9b-a52d-902abf341ae9",
+      "citations": [],
+      "text": "**Sign extension** preserves a two’s-complement value by repeating its sign bit on the left. Zero extension preserves an unsigned value. For example, 8-bit 11111011 becomes 12-bit 111111111011 and still means -5."
+    },
+    {
+      "type": "practice_problem",
+      "id": "46543f9c-780d-5cc6-acb1-bc5ade9dbb20",
+      "citations": [],
+      "title": "Try it: the exceptional negative value",
+      "prompt": "Can 8-bit two’s complement represent +128? What happens if you negate 10000000 at 8 bits?",
+      "steps": [
+        {
+          "explanation": "The signed range is -128 through +127.",
+          "latex": ""
+        },
+        {
+          "explanation": "Invert and add one: 01111111+1=10000000. The intended +128 is outside the range.",
+          "latex": ""
+        }
+      ],
+      "answer": "No; 10000000 represents -128. Its fixed-width negation overflows and produces the same bit pattern.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    },
+    {
+      "type": "heading",
+      "id": "e5bf28d1-c5ef-551d-8e91-9805ac5b10c2",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 2: Full adders, subtraction, and overflow"
+    },
+    {
+      "type": "paragraph",
+      "id": "f73106d0-5496-517a-bcef-b8509c609e63",
+      "citations": [],
+      "text": "A **half adder** adds two bits: sum $S=A\\oplus B$, carry $C=AB$. A **full adder** also accepts carry-in $C_{in}$. Its two outputs encode the integer $A+B+C_{in}$ as $2C_{out}+S$."
+    },
+    {
+      "type": "equation",
+      "id": "5f9fc803-5b9b-5504-b437-2685766d2a11",
+      "citations": [],
+      "latex": "S=A\\oplus B\\oplus C_{in}"
+    },
+    {
+      "type": "equation",
+      "id": "312fda8e-734e-5e06-9c37-ad872c67f36e",
+      "citations": [],
+      "latex": "C_{out}=AB+(A\\oplus B)C_{in}"
+    },
+    {
+      "type": "paragraph",
+      "id": "60671948-6378-589e-b57d-35cc52a1ef23",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "text": "```digital\n{\"kind\":\"circuit\",\"title\":\"Full adder from XOR and carry gates\",\"nodes\":[{\"id\":\"A\",\"gate\":\"INPUT\",\"x\":70,\"y\":80},{\"id\":\"B\",\"gate\":\"INPUT\",\"x\":70,\"y\":150},{\"id\":\"CI\",\"gate\":\"INPUT\",\"x\":260,\"y\":390,\"label\":\"Cin\"},{\"id\":\"P\",\"gate\":\"XOR\",\"x\":260,\"y\":115},{\"id\":\"G\",\"gate\":\"AND\",\"x\":260,\"y\":215},{\"id\":\"S\",\"gate\":\"XOR\",\"x\":455,\"y\":115},{\"id\":\"H\",\"gate\":\"AND\",\"x\":455,\"y\":310},{\"id\":\"CO\",\"gate\":\"OR\",\"x\":650,\"y\":250,\"label\":\"Cout\"},{\"id\":\"SUM\",\"gate\":\"OUTPUT\",\"x\":650,\"y\":115,\"label\":\"S\"}],\"wires\":[{\"start\":\"A.out\",\"end\":\"P.0\"},{\"start\":\"B.out\",\"end\":\"P.1\"},{\"start\":\"A.out\",\"end\":\"G.0\",\"via\":[[150,80],[150,205]]},{\"start\":\"B.out\",\"end\":\"G.1\",\"via\":[[175,150],[175,225]]},{\"start\":\"P.out\",\"end\":\"S.0\"},{\"start\":\"CI.out\",\"end\":\"S.1\",\"via\":[[370,390],[370,125]]},{\"start\":\"P.out\",\"end\":\"H.0\",\"via\":[[350,115],[350,300]]},{\"start\":\"CI.out\",\"end\":\"H.1\"},{\"start\":\"G.out\",\"end\":\"CO.0\"},{\"start\":\"H.out\",\"end\":\"CO.1\"},{\"start\":\"S.out\",\"end\":\"SUM.0\"}]}\n```\n\n*P=A XOR B; G=AB. The carry OR combines a generated carry with a propagated carry.*"
+    },
+    {
+      "type": "worked_example",
+      "id": "9b6743ed-70ad-531e-8281-863a3cbf0455",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "title": "PS4 Q5: why two half adders work",
+      "prompt": "Prove that a half adder for A,B followed by a half adder for its sum and Cin gives a full adder when their carries are ORed.",
+      "steps": [
+        {
+          "explanation": "The first sum and carry are P=A XOR B and G=AB.",
+          "latex": ""
+        },
+        {
+          "explanation": "The second stage gives S=P XOR Cin and H=P Cin.",
+          "latex": ""
+        },
+        {
+          "explanation": "OR the carries.",
+          "latex": "C_{out}=G+H=AB+(A\\oplus B)C_{in}"
+        }
+      ],
+      "answer": "The sum and carry match the full-adder equations for every one of the eight input cases."
+    },
+    {
+      "type": "paragraph",
+      "id": "1ebd1e61-b296-54d2-80f0-bac48da918fb",
+      "citations": [],
+      "text": "An $n$-bit **ripple-carry adder** connects each bit’s carry-out to the next bit’s carry-in. Fixed-width arithmetic keeps the lowest $n$ sum bits. A final carry is a separate output, not automatically a signed overflow."
+    },
+    {
+      "type": "equation",
+      "id": "8938ca6e-5d95-5fd7-a5d1-5ed6309ae582",
+      "citations": [],
+      "latex": "A-B=A+\\overline B+1\\pmod{2^n}"
+    },
+    {
+      "type": "paragraph",
+      "id": "913cf714-15cd-51f0-a0f2-4af940b7e180",
+      "citations": [],
+      "text": "One adder can perform both operations. XOR each $B_i$ with mode $M$ and set $C_0=M$: M=0 adds B; M=1 complements B and adds the extra 1 for subtraction."
+    },
+    {
+      "type": "worked_example",
+      "id": "8ec1a297-7bbf-5b5f-8cd4-e918440faaf7",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "title": "Carry-out and signed overflow differ",
+      "prompt": "Use eight-bit two’s-complement arithmetic for 100+60 and 100+(-60).",
+      "steps": [
+        {
+          "explanation": "For 100+60, the stored pattern is 10100000, which decodes as -96.",
+          "latex": "100+60=160>127"
+        },
+        {
+          "explanation": "Two positive operands produced a negative result, so signed overflow occurred.",
+          "latex": ""
+        },
+        {
+          "explanation": "For 100+(-60), the bit sum is 100+196=296: carry-out 1 and stored value 40.",
+          "latex": "100+(-60)=40"
+        }
+      ],
+      "answer": "100+60: signed overflow, carry-out 0. 100+(-60): no signed overflow, carry-out 1."
+    },
+    {
+      "type": "equation",
+      "id": "cd7ed529-34a4-5b4c-a5f0-82fd35a27891",
+      "citations": [],
+      "latex": "V=C_{n-1}\\oplus C_n"
+    },
+    {
+      "type": "paragraph",
+      "id": "3c5d015e-86b7-5cd8-8ae9-d2c64525cc3d",
+      "citations": [],
+      "text": "$C_{n-1}$ is carry into the sign bit and $C_n$ is carry out. For addition, overflow also means “same-sign operands, result with the opposite sign.”"
+    },
+    {
+      "type": "worked_example",
+      "id": "9d76e5ab-1800-552c-9422-4a33e65e8fe7",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "title": "PS4 Q6: prove the carry test",
+      "prompt": "Why does XOR of the carries into and out of the sign position detect signed overflow?",
+      "steps": [
+        {
+          "explanation": "When the operand sign bits differ, the carry-out equals carry-in. The sum lies between the operands and cannot exceed the signed range.",
+          "latex": ""
+        },
+        {
+          "explanation": "With signs 0,0, the output carry is 0; a carry-in 1 makes the result sign 1: positive overflow.",
+          "latex": ""
+        },
+        {
+          "explanation": "With signs 1,1, the output carry is 1; a carry-in 0 makes the result sign 0: negative overflow.",
+          "latex": ""
+        }
+      ],
+      "answer": "Exactly the overflow cases have unequal sign-position carries."
+    },
+    {
+      "type": "practice_problem",
+      "id": "235e385d-39d7-5883-8973-2089dd82f9a7",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "title": "Try it: three-input population count",
+      "prompt": "Design a circuit whose two-bit unsigned output gives the number of 1s among A,B,C.",
+      "steps": [
+        {
+          "explanation": "A full adder already encodes A+B+C as carry and sum.",
+          "latex": "N_1=AB+AC+BC,\\quad N_0=A\\oplus B\\oplus C"
+        }
+      ],
+      "answer": "Use a full adder; output N1N0 = Cout,S. For 111, the count is 11 (3).",
+      "difficulty": "intermediate",
+      "origin": "source"
+    },
+    {
+      "type": "heading",
+      "id": "f4797ad0-b347-5d76-8a38-e0035535ffd8",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "level": 1,
+      "text": "Topic 3: Carry lookahead"
+    },
+    {
+      "type": "paragraph",
+      "id": "a88065c6-c3d7-5ba8-96ad-4f334302a1df",
+      "citations": [],
+      "text": "For bit $i$, define **generate** $G_i=A_iB_i$ and **propagate** $P_i=A_i\\oplus B_i$. The carry relation is $C_{i+1}=G_i+P_iC_i$, and $S_i=P_i\\oplus C_i$. Lookahead expands the carry equations so carries need not ripple one bit at a time."
+    },
+    {
+      "type": "equation",
+      "id": "1db9979b-5c8d-544a-a5c8-94c3948af7c4",
+      "citations": [],
+      "latex": "C_1=G_0+P_0C_0"
+    },
+    {
+      "type": "equation",
+      "id": "d4b7ac15-d901-5fa5-a844-0148008748f7",
+      "citations": [],
+      "latex": "C_2=G_1+P_1G_0+P_1P_0C_0"
+    },
+    {
+      "type": "equation",
+      "id": "3935d3db-7eca-5f1b-912f-947d045155a0",
+      "citations": [],
+      "latex": "C_3=G_2+P_2G_1+P_2P_1G_0+P_2P_1P_0C_0"
+    },
+    {
+      "type": "worked_example",
+      "id": "e40e94b6-9bf6-5d6d-8f7c-a7cb11b49f81",
+      "citations": [],
+      "title": "Carry without a ripple chain",
+      "prompt": "For four-bit $A=1011$, $B=0101$, $C_0=0$, find the carries and sum.",
+      "steps": [
+        {
+          "explanation": "Write P and G in MSB-to-LSB order.",
+          "latex": "P=1110,\\quad G=0001"
+        },
+        {
+          "explanation": "Bit 0 generates a carry; every higher bit propagates it.",
+          "latex": "C_1=C_2=C_3=C_4=1"
+        },
+        {
+          "explanation": "XOR each P bit with its own carry-in.",
+          "latex": "S=0000"
+        }
+      ],
+      "answer": "Unsigned result is 1 0000 =16. As signed inputs, -5+5=0, with no signed overflow."
+    },
+    {
+      "type": "paragraph",
+      "id": "2c5847f4-da83-5c03-9693-615c2b6815a9",
+      "citations": [],
+      "text": "A two-bit block (low bit $i$, high bit $i+1$) has block propagate $P_b=P_{i+1}P_i$ and block generate $G_b=G_{i+1}+P_{i+1}G_i$. Its carry-out is $G_b+P_bC_i$."
+    },
+    {
+      "type": "worked_example",
+      "id": "4e21e29a-968e-5d5f-914e-da9a06454a02",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "title": "PS4 Q8: hierarchical four-bit lookahead",
+      "prompt": "Build a four-bit carry scheme from two two-bit blocks, L for bits 1:0 and H for bits 3:2.",
+      "steps": [
+        {
+          "explanation": "The lower block generates C2.",
+          "latex": "C_2=G_L+P_LC_0"
+        },
+        {
+          "explanation": "Substitute that carry into the upper block.",
+          "latex": "C_4=G_H+P_HG_L+P_HP_LC_0"
+        },
+        {
+          "explanation": "Within each block, compute its intermediate carry for the sum bits.",
+          "latex": ""
+        }
+      ],
+      "answer": "Use two two-bit blocks plus block-level carry logic; both propagate and generate signals are required."
+    },
+    {
+      "type": "worked_example",
+      "id": "78f7be0c-06a5-5ff4-81f3-0c1b78844089",
+      "citations": [
+        {
+          "source_id": "9e79cb1b-4f8e-48b2-b421-dadfc14b9fb2",
+          "version": 1,
+          "chunk_id": "2a050df8-824b-45ed-a6a9-29dae5318839"
+        }
+      ],
+      "title": "PS4 Q7: count a flat lookahead implementation",
+      "prompt": "Count gates for an n-bit adder with XOR propagate, variable $C_0$, unrestricted fan-in, and separately expanded carries. Do not share product gates across carries.",
+      "steps": [
+        {
+          "explanation": "P and S require 2n XORs; G requires n ANDs.",
+          "latex": ""
+        },
+        {
+          "explanation": "Carry Ck uses k new AND terms and one OR. Sum k from 1 to n.",
+          "latex": "N_{\\mathrm{AND,carry}}=\\tfrac{n(n+1)}2"
+        },
+        {
+          "explanation": "Add the n carry ORs.",
+          "latex": "N_{\\mathrm{gates}}=\\tfrac{n(n+1)}2+4n"
+        }
+      ],
+      "answer": "This count follows the stated architecture. Constants, sharing, library gates, or fan-in limits change it."
+    },
+    {
+      "type": "practice_problem",
+      "id": "b94020e6-e237-5ec0-a625-15bdb0dd043f",
+      "citations": [],
+      "title": "Try it: carry versus propagate",
+      "prompt": "If a two-bit block has Pb=0 and Gb=1, does its output carry depend on the block carry-in?",
+      "steps": [
+        {
+          "explanation": "Substitute the block values.",
+          "latex": "C_{out}=G_b+P_bC_{in}=1"
+        }
+      ],
+      "answer": "No. The block generates a carry regardless of its carry-in.",
+      "difficulty": "intermediate",
+      "origin": "original"
+    }
+  ],
+  "actor": "agent",
+  "idempotency_key": "elec271-06-v1"
+}

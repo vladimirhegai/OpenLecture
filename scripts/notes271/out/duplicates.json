@@ -1,0 +1,17 @@
+[
+  {
+    "removed": "Section2_Logic_Circuits-1.pdf",
+    "kept": "Section2_Logic_Circuits.pdf",
+    "sha256": "771c234719014b6e1a3601bea954fc43071d4b34c775d0b71524e7915ca108b3"
+  },
+  {
+    "removed": "Section2_Logic_Circuits-2.pdf",
+    "kept": "Section2_Logic_Circuits.pdf",
+    "sha256": "771c234719014b6e1a3601bea954fc43071d4b34c775d0b71524e7915ca108b3"
+  },
+  {
+    "removed": "Tutorial Week 2-1.pdf",
+    "kept": "Tutorial Week 2.pdf",
+    "sha256": "db44f4d86625b48e805b280dac757d8cb5b24988840a10b70cc91bb80931cb21"
+  }
+]
