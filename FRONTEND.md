@@ -78,3 +78,11 @@ Set `OPENLECTURE_API` to point the dev proxy elsewhere. The dev proxy strips the
 - `api.ts`: typed API client, SSE run reader, citation resolver. `theme.ts`: theme and stored-state hooks.
 
 Per-viewer preferences in `localStorage`: theme, selected course, model selection, chat panel open, last chat per course, PDF zoom, dark pages, last event sequence. Everything else lives in the backend.
+
+## Study Schedule
+
+The built-in **Study Schedule** is always the first entry in the course picker, separated from ordinary courses by a thin divider. It opens at `/study-schedule` and cannot be created through the New course form. It is a single workspace planner rather than a course with sources, generated notes, or chat.
+
+The monthly calendar starts on Monday and shows Morning, Afternoon, and Evening for every day. Click a period to edit its study note, then choose **Save plan**. Clear a note and save to remove it. Plans persist in the workspace SQLite database. Course codes and unambiguous three-digit numbers become course hyperlinks, including aliases for shared courses such as ELEC 226/326.
+
+Use the month arrows or **Today** to navigate. **Add exam** creates an all-day exam entry; the trash button beside an exam in the monthly summary removes it. The initial exams are ELEC 221 on October 27, ELEC 271 on October 29, and ELEC 226 and ELEC 231 on October 30, 2026. They are seeded once during migration. On narrow screens, the calendar scrolls horizontally.

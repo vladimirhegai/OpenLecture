@@ -22,11 +22,14 @@ import { BrandMark, Dialog, useToast } from "./components/ui";
 import { CourseHome, DocumentView, Shell, SourceView, Toolbar, type Ask, type Route } from "./components/Views";
 import { useStored, useTheme } from "./theme";
 import { newEntry, rememberScroll } from "./scroll";
+import { SCHEDULE_COURSE, SCHEDULE_ID } from "./schedule";
+import { StudySchedule } from "./components/StudySchedule";
 
 /* URL shape matches the backend's document reference routes: /courses/:id/docs/:doc */
 function parseLocation(): { courseId: string | null; route: Route } {
   const parts = location.pathname.split("/").filter(Boolean);
   const params = new URLSearchParams(location.search);
+  if (parts[0] === SCHEDULE_ID) return { courseId: SCHEDULE_ID, route: { kind: "home" } };
   if (parts[0] !== "courses" || !parts[1]) return { courseId: null, route: { kind: "home" } };
   if (parts[2] === "docs" && parts[3]) {
     const revision = Number(params.get("revision")) || undefined;
@@ -39,6 +42,7 @@ function parseLocation(): { courseId: string | null; route: Route } {
 }
 
 function toUrl(courseId: string, route: Route) {
+  if (courseId === SCHEDULE_ID) return "/study-schedule";
   const base = `/courses/${courseId}`;
   if (route.kind === "doc") return `${base}/docs/${route.id}${route.revision ? `?revision=${route.revision}` : ""}${route.block ? `#${route.block}` : ""}`;
   if (route.kind === "source") return `${base}/sources/${route.id}${route.page ? `?page=${route.page}` : ""}`;
@@ -87,6 +91,11 @@ export default function App() {
   const pollTimer = useRef<number | null>(null);
 
   const course = courses?.find((c) => c.id === courseId) ?? null;
+  const isSchedule = courseId === SCHEDULE_ID;
+
+  useEffect(() => {
+    if (initial.courseId) setCourseId(initial.courseId);
+  }, [initial, setCourseId]);
 
   /* ---------- Data ---------- */
 
@@ -103,11 +112,11 @@ export default function App() {
   }, [loadCourses, toast]);
 
   useEffect(() => {
-    if (courses && courses.length && !courses.some((c) => c.id === courseId)) setCourseId(courses[0].id);
-  }, [courses, courseId, setCourseId]);
+    if (courses && !isSchedule && !courses.some((c) => c.id === courseId)) setCourseId(courses[0]?.id ?? SCHEDULE_ID);
+  }, [courses, courseId, isSchedule, setCourseId]);
 
   const loadLists = useCallback(() => {
-    if (!courseId) return;
+    if (!courseId || courseId === SCHEDULE_ID) return;
     api<DocumentSummary[]>(`${coursePath(courseId)}/documents?limit=100`).then(
       (list) => setDocs([...list].sort((a, b) => (a.academic_week ?? 0) - (b.academic_week ?? 0) || a.title.localeCompare(b.title))),
       () => setDocs([]),
@@ -116,7 +125,7 @@ export default function App() {
   }, [courseId]);
 
   const loadTasks = useCallback(() => {
-    if (!courseId) return;
+    if (!courseId || courseId === SCHEDULE_ID) return;
     api<Task[]>(`${coursePath(courseId)}/tasks?limit=40`).then(setTasks, () => setTasks([]));
   }, [courseId]);
 
@@ -141,7 +150,7 @@ export default function App() {
 
   // Live workspace events: lists and the open view refresh when an agent or another client writes.
   useEffect(() => {
-    if (!courseId || localStorage.getItem("ol-token")) return;
+    if (!courseId || courseId === SCHEDULE_ID || localStorage.getItem("ol-token")) return;
     const key = `ol-seq:${courseId}`;
     let timer: number | undefined;
     const source = new EventSource(`/api/v1${coursePath(courseId)}/events?after=${Number(localStorage.getItem(key)) || 0}`);
@@ -360,12 +369,13 @@ export default function App() {
   /* ---------- Render ---------- */
 
   const shell = useMemo(
-    () => ({ openNav: () => setNavOpen(true), chatOpen, toggleChat: () => setChatOpen((o) => !o), dark }),
-    [chatOpen, setChatOpen, dark],
+    () => ({ openNav: () => setNavOpen(true), chatOpen: isSchedule || chatOpen, toggleChat: () => setChatOpen((o) => !o), dark }),
+    [chatOpen, isSchedule, setChatOpen, dark],
   );
 
   let main;
   if (courses === null) main = <div className="empty"><div className="spinner" /></div>;
+  else if (isSchedule) main = <StudySchedule courses={courses} onCourse={(id) => open({ kind: "home" }, { course: id })} />;
   else if (!course)
     main = (
       <>
@@ -435,8 +445,8 @@ export default function App() {
       <div className={`shell ${chatOpen && course ? "" : "chat-closed"} ${navOpen ? "nav-open" : ""}`}>
         {navOpen && <div className="nav-scrim mobile-only" onClick={() => setNavOpen(false)} />}
         <Sidebar
-          courses={courses ?? []}
-          course={course}
+          courses={[SCHEDULE_COURSE, ...(courses ?? [])]}
+          course={isSchedule ? SCHEDULE_COURSE : course}
           docs={docs}
           sources={sources}
           tasks={tasks}

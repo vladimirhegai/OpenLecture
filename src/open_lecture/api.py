@@ -2,6 +2,7 @@ import asyncio
 import hmac
 import json
 from contextlib import asynccontextmanager
+from datetime import date
 from pathlib import Path
 from typing import Annotated
 from uuid import UUID
@@ -12,7 +13,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse, Response, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import __version__, agents, circuits, digital, schematic
+from . import __version__, agents, circuits, digital, schedule, schematic
 from .config import Settings
 from .errors import DomainError
 from .math_engine import binomial, calculate
@@ -131,6 +132,24 @@ def create_app(settings: Settings | None = None):
     @app.post("/api/v1/courses", status_code=201)
     def create_course(data: CourseCreate):
         return ws().create_course(data)
+
+    @app.get("/api/v1/study-schedule")
+    def study_schedule():
+        return schedule.read_schedule(ws().db)
+
+    @app.put("/api/v1/study-schedule/days/{day}/{period}")
+    def save_schedule_slot(day: date, period: schedule.Period, data: schedule.ScheduleSlot):
+        return schedule.save_slot(ws().db, day, period, data.text)
+
+    @app.post("/api/v1/study-schedule/exams", status_code=201)
+    def add_schedule_exam(data: schedule.ScheduleExam):
+        return schedule.add_exam(ws().db, data)
+
+    @app.delete("/api/v1/study-schedule/exams/{exam_id}")
+    def delete_schedule_exam(exam_id: str):
+        with ws().db.transaction() as connection:
+            connection.execute("DELETE FROM study_schedule_exams WHERE id=?", (exam_id,))
+        return {"deleted": True}
 
     @app.get("/api/v1/courses")
     def courses(limit: Limit = 50, offset: Offset = 0):

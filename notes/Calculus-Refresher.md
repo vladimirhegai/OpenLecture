@@ -70,7 +70,7 @@ Divide by −3.
 
 ## Derivatives
 
-### Basic derivative rules
+### Basic derivative rules (Week 2 & Week 3)
 
 A **derivative** is the slope of a function at one instant. A rising curve has a positive derivative; a falling curve has a negative one.
 
@@ -123,7 +123,7 @@ Differentiate first, then put in t = 1.
 
 </details>
 
-### Chain rule
+### Chain rule (Week 2 & Week 3)
 
 In $e^{-2t}$, the outside function is the exponential and the inside is $-2t$. Differentiate the outside, keep the inside, then **multiply by the derivative of the inside**.
 
@@ -206,7 +206,7 @@ Combine the factors.
 
 </details>
 
-### Product rule and second derivatives
+### Product rule and second derivatives (Week 2 & Week 3)
 
 For a product of two changing functions, both contribute to the derivative. You do **not** multiply their derivatives together.
 
@@ -254,7 +254,7 @@ Combine the terms.
 
 </details>
 
-### Quotient rule
+### Quotient rule (Week 2 & Week 3)
 
 For a fraction, use the **quotient rule**: bottom × derivative of top, minus top × derivative of bottom, all over bottom squared.
 
@@ -292,7 +292,7 @@ Subtracting a negative gives a plus.
 
 </details>
 
-### Partial derivatives
+### Partial derivatives (Week 3)
 
 For a function $U(t,y)$ with two inputs, a **partial derivative** changes one input while holding the other fixed. The curly $\partial$ marks this difference.
 
@@ -330,7 +330,7 @@ Hold t fixed and differentiate the y terms.
 
 </details>
 
-### Implicit differentiation
+### Implicit differentiation (Week 3)
 
 **Implicit differentiation** is different: now $y=y(t)$ changes along a curve. When differentiating $y^2$ with respect to $t$, the chain rule gives $2yy^{\prime}$.
 
@@ -351,7 +351,7 @@ Solve for the derivative where y is nonzero.
 
 ## Integrals
 
-### Indefinite integrals
+### Indefinite integrals (Week 2)
 
 An **antiderivative** of $f(t)$ is a function whose derivative is $f(t)$. An **indefinite integral** asks for all of those functions, so include an arbitrary constant $K$.
 
@@ -388,7 +388,7 @@ The chain-rule factor −3 cancels −1/3.
 
 </details>
 
-### Definite integrals
+### Definite integrals (Week 2)
 
 A **definite integral** has a start and an end. It gives net accumulation (signed area), rather than a family of functions.
 
@@ -398,7 +398,7 @@ $$
 
 $a$ and $b$ are the integration limits. For example, $\int_0^2 6t\,dt=[3t^2]_0^2=12$; the notation $[F]_a^b$ means $F(b)-F(a)$, and the constant cancels.
 
-### Integration and initial conditions
+### Integration and initial conditions (Week 2)
 
 **Example 8 · Recover a voltage from its rate**
 
@@ -417,7 +417,7 @@ Put the constant back into the function.
 
 **Answer:** $v(t)=1+2t+t^2\,\mathrm V$. Equivalently, $v(t)-v(0)=\int_0^t(2+2s)\,ds$; $s$ is just a placeholder variable.
 
-### Substitution
+### Substitution (Week 3)
 
 **Substitution** reverses the chain rule. Replace a complicated inside expression by $u$, and replace its derivative times $dt$ by $du$.
 
@@ -457,7 +457,7 @@ Integrate and substitute back.
 
 </details>
 
-### Integration by parts
+### Integration by parts (Week 3)
 
 **Integration by parts** reverses the product rule. Use it for products such as $te^{2t}$, where differentiating the polynomial makes the remaining integral easier.
 
@@ -503,9 +503,9 @@ Integrate once more and factor.
 
 </details>
 
-## First-order differential equations
+## First-order differential equations (Week 2 & Week 3)
 
-### Classification and initial conditions
+### Classification and initial conditions (Week 2)
 
 A **differential equation** gives a relationship between a function and its derivatives. Solving it means finding the function, such as $i(t)$, rather than finding one number.
 
@@ -539,7 +539,7 @@ Check the initial condition separately.
 
 **Answer:** Yes. The ODE is first-order, linear, homogeneous, constant-coefficient and autonomous.
 
-### Separation of variables
+### Separation of variables (Week 3)
 
 To **solve** a separable equation, gather the $y$ terms with $dy$ and the $t$ terms with $dt$, then integrate each side. This is the separation-of-variables rule; use one integration constant after combining the two sides.
 
@@ -608,7 +608,7 @@ The initial condition gives A = −2.
 
 </details>
 
-### RC and RL responses
+### RC and RL responses (Week 2)
 
 This is the Week 2 pattern: $x(t)=x_f+(x_0-x_f)e^{-t/\tau}$ for a stable first-order circuit with a constant source. The gap from the final value shrinks exponentially.
 
@@ -619,7 +619,7 @@ This is the Week 2 pattern: $x(t)=x_f+(x_0-x_f)e^{-t/\tau}$ for a stable first-o
 
 $0^-$ and $0^+$ mean just before and just after switching; these continuity rules assume ordinary switching without impulses. Use the resistance seen by the component after switching; at DC steady state a capacitor acts open and an inductor acts like a wire.
 
-### Linear ODEs and integrating factors
+### Linear ODEs and integrating factors (Week 3)
 
 Separation does not always work. A first-order **linear** equation has the form below, with $a(t)$ and $f(t)$ known functions.
 
@@ -710,7 +710,7 @@ The initial condition gives K = 1.
 
 </details>
 
-### Existence and uniqueness
+### Existence and uniqueness (Week 3)
 
 For existence and uniqueness, **continuous** means the function has no break at the point in question. Start with domain checks: denominators cannot be zero, and real logarithms need positive arguments.
 
@@ -737,7 +737,7 @@ Both functions are continuous away from t = 2.
 
 ## Exact differential equations
 
-### Exactness test and solutions
+### Exactness test and solutions (Week 4)
 
 Week 4 writes some equations as $M(t,y)\,dt+N(t,y)\,dy=0$. The goal is to find a function $U$ with $U_t=M$ and $U_y=N$.
 
@@ -795,7 +795,7 @@ Leave the answer as a relation between t and y.
 
 </details>
 
-### Integrating factors
+### Integrating factors (Week 4)
 
 If the test fails, an integrating factor sometimes repairs it. For an equation in differential form, these are two useful tests; each must reduce to a function of only the indicated variable.
 
@@ -856,7 +856,7 @@ Set the reconstructed function constant.
 
 </details>
 
-## Second-order differential equations
+## Second-order differential equations (Week 5)
 
 ### Characteristic equation
 
@@ -1086,7 +1086,7 @@ There is no shrinking exponential envelope.
 
 ## Circuit applications
 
-### Capacitors and inductors
+### Capacitors and inductors (Week 2)
 
 A capacitor obeys $i_C=C\dfrac{dv_C}{dt}$; an inductor obeys $v_L=L\dfrac{di_L}{dt}$. Once a voltage or current function is known, these laws just ask for a derivative.
 
@@ -1109,7 +1109,7 @@ Multiply by the capacitance, using the stated current direction.
 
 **Answer:** $V_0=2\,\mathrm V$, $V_f=12\,\mathrm V$, $\tau=0.2\,\mathrm s$, $i_C=10e^{-5t}\,\mathrm A$.
 
-### RLC circuits
+### RLC circuits (Week 5)
 
 In a **series RLC circuit**, a resistor, inductor and capacitor give a second-order equation. With a constant applied voltage $V$, its capacitor voltage satisfies the model below; the course derives it from the circuit laws.
 

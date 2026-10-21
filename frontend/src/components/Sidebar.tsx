@@ -22,6 +22,7 @@ import { toolVerb } from "../labels";
 import { modelLabel, type Selection } from "./ModelPicker";
 import { BrandMark, Popover } from "./ui";
 import type { Route } from "./Views";
+import { SCHEDULE_ID } from "../schedule";
 
 const THEME_NEXT: Record<ThemePref, ThemePref> = { system: "light", light: "dark", dark: "system" };
 const THEME_ICON = { system: Monitor, light: Sun, dark: Moon };
@@ -161,8 +162,8 @@ export function Sidebar({
         {(close) => (
           <>
             {courses.map((c) => (
+              <div key={c.id}>
               <button
-                key={c.id}
                 className="menu-item"
                 role="menuitemradio"
                 aria-checked={c.id === course?.id}
@@ -177,6 +178,8 @@ export function Sidebar({
                 </span>
                 {c.id === course?.id && <Check size={15} className="check" />}
               </button>
+              {c.id === SCHEDULE_ID && <div className="menu-sep" />}
+              </div>
             ))}
             {courses.length > 0 && <div className="menu-sep" />}
             <button
@@ -192,7 +195,7 @@ export function Sidebar({
         )}
       </Popover>
 
-      <button className="search-trigger" onClick={onSearch} disabled={!course}>
+      <button className="search-trigger" onClick={onSearch} disabled={!course || course.id === SCHEDULE_ID}>
         <Search size={15} />
         <span>Search</span>
         <kbd>{isMac ? "⌘K" : "Ctrl K"}</kbd>
@@ -201,7 +204,8 @@ export function Sidebar({
       <Activity tasks={tasks} onCancel={onCancelTask} />
 
       <div className="nav">
-        {course && (
+        {course?.id === SCHEDULE_ID && <div className="nav-section"><div className="nav-item" aria-current="page"><NotebookPen size={16} /><span className="label">Study calendar</span></div><p className="nav-empty">Plan your mornings, afternoons and evenings. Course numbers in your notes become links.</p></div>}
+        {course && course.id !== SCHEDULE_ID && (
           <>
             <div className="nav-section">
               <button className="nav-item" aria-current={route.kind === "home" ? "page" : undefined} onClick={() => onOpen({ kind: "home" })}>
