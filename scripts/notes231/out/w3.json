@@ -10,448 +10,250 @@
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 1: Linear ODEs and the integrating factor",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "d1e1cce5-5133-4af5-9107-179e9d1b4ba9"
-    }
-   ],
-   "id": "5d4cdd91-4bb5-5114-9781-f093a63d5e4c"
+   "text": "Calculus refresher: integrate, then check by differentiating",
+   "citations": [],
+   "id": "0bb7ba1a-4d80-5244-9854-c87c9e6aab5e"
   },
   {
    "type": "paragraph",
-   "text": "A first-order ODE is **linear** if it can be written in standard form.\n\n**Standard form** $\\dfrac{dy}{dt}+a(t)\\,y=f(t)$:\n- $a(t)$: the **coefficient** of $y$\n- $f(t)$: the **forcing** (the input, e.g. a source)\n\n**The trick:** multiply both sides by the **integrating factor** $\\mu(t)=e^{\\int a(t)\\,dt}$ (mu).\n- The left side becomes the derivative of one product, $\\mu y$.\n- A single derivative can be undone by integrating.",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "d1e1cce5-5133-4af5-9107-179e9d1b4ba9"
-    }
-   ],
-   "id": "46876b2b-987c-527c-bf51-4aee62f9888a"
+   "text": "Week 2 gave you solution families. This week you learn how to find them: rearrange the equation until integrating can undo its derivatives.",
+   "citations": [],
+   "id": "298558c9-3bb0-55eb-a90d-f15e42842ff3"
   },
   {
    "type": "paragraph",
-   "text": "```steps\ntitle \"Why the integrating factor works (lecture)\"\n$$ \\dfrac{dy}{dt}+a(t)\\,y=f(t) $$\nStart from standard form.\n$$ \\hl{\\mu}\\dfrac{dy}{dt}+\\hl{\\mu}\\,a\\,y=\\hl{\\mu}\\,f $$\nMultiply every term by $\\mu=e^{\\int a\\,dt}$.\n$$ \\mu\\dfrac{dy}{dt}+\\hl{\\dfrac{d\\mu}{dt}}\\,y=\\mu f $$\nChain rule: $\\frac{d}{dt}e^{\\int a\\,dt}=a\\,e^{\\int a\\,dt}$, so $\\mu a$ is just $\\frac{d\\mu}{dt}$.\n$$ \\hl{\\dfrac{d}{dt}\\big[\\mu\\,y\\big]}=\\mu f $$\nProduct rule backwards: $\\frac{d}{dt}[\\mu y]=\\mu\\frac{dy}{dt}+\\frac{d\\mu}{dt}y$ is exactly the left side.\n$$ \\mu\\,y=\\hl{\\int\\mu f\\,dt+C} $$\nIntegrate both sides. The $+C$ appears here.\n$$ y=\\hl{\\dfrac{1}{\\mu}}\\Big[\\int\\mu f\\,dt+C\\Big] $$\nDivide by $\\mu$. Then the initial condition $y(t_0)=y_0$ fixes $C$.\n```",
+   "text": "Add an arbitrary constant $K$ to each indefinite integral below.",
    "citations": [],
-   "id": "8e587930-2774-5c8b-8308-f255d0ef9c74"
+   "id": "858c2b1d-648b-5ae8-a7e9-3584ebf5b43f"
   },
   {
-   "type": "equation",
-   "latex": "\\begin{gathered}\\mu(t)=e^{\\int a(t)\\,dt}, \\\\ y(t)=\\dfrac{1}{\\mu}\\Big[\\int\\mu\\,f\\,dt+C\\Big]\\end{gathered}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "d1e1cce5-5133-4af5-9107-179e9d1b4ba9"
-    }
+   "type": "table",
+   "columns": [
+    "Integral",
+    "Detail that is easy to forget"
    ],
-   "id": "3977c57b-07e1-527e-ad66-0d90f5ea17cc"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 1 · An RL circuit (lecture)",
-   "prompt": "The switch closes at $t=0$ and the inductor carries no current before that, so $i(0)=0$. Find $i(t)$.\n\n```schematic\nV1 0,3 -> 0,0 \"$100\\,\\mathrm{V}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$10\\,\\Omega$\"\nL1 6,3 -> 6,0 \"$2\\,\\mathrm{H}$\" i=\"$i$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
-   "steps": [
-    {
-     "explanation": "KVL: the resistor drop $Ri$ plus the inductor drop $L\\,di/dt$ equals the source.",
-     "latex": "2\\dfrac{di}{dt}+10\\,i=100"
-    },
-    {
-     "explanation": "Divide by $L=2$ first. The trap: here $a=5$, not $10$.",
-     "latex": "\\dfrac{di}{dt}+5\\,i=50"
-    },
-    {
-     "explanation": "$a$ is a constant, so $\\int5\\,dt=5t$. (No $+C$ is needed inside $\\mu$.)",
-     "latex": "\\mu=e^{5t}"
-    },
-    {
-     "explanation": "Multiply by $\\mu$; the left side collapses into one derivative.",
-     "latex": "\\dfrac{d}{dt}\\big[i\\,e^{5t}\\big]=50\\,e^{5t}"
-    },
-    {
-     "explanation": "Integrate, using $\\int e^{kt}dt=\\frac1k e^{kt}$.",
-     "latex": "i\\,e^{5t}=10\\,e^{5t}+C"
-    },
-    {
-     "explanation": "Put in $i(0)=0$ ($e^0=1$).",
-     "latex": "0=10+C\\ \\Rightarrow\\ C=-10"
-    },
-    {
-     "explanation": "Divide by $e^{5t}$.",
-     "latex": "i(t)=10-10\\,e^{-5t}=10\\big(1-e^{-5t}\\big)\\ \\mathrm{A}"
-    }
+   "rows": [
+    [
+     "$\\int t^n\\,dt=\\dfrac{t^{n+1}}{n+1}$",
+     "Increase the power by one and divide by the new power; this excludes $n=-1$."
+    ],
+    [
+     "$\\int\\dfrac{1}{t}\\,dt=\\ln|t|$",
+     "The logarithm is the special case. Work on an interval that avoids $t=0$."
+    ],
+    [
+     "$\\int e^{at}\\,dt=\\dfrac{1}{a}e^{at}$",
+     "Divide by the constant $a\\ne0$; differentiation would multiply by it."
+    ]
    ],
-   "answer": "$i(t)=10\\big(1-e^{-5t}\\big)\\ \\mathrm{A}$",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
-    },
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
-    }
-   ],
-   "id": "df6c6efc-6960-536d-9ee7-26086501e8ea"
+   "citations": [],
+   "id": "8dcfb9f8-a0a3-557e-bc5c-a9eb68510ef0"
   },
   {
    "type": "paragraph",
-   "text": "```graph\ntitle \"The lecture's sketch: change $R$ and watch $i(t)$\"\nx 0 1.2 label=\"$t$ (s)\"\ny 0 21 label=\"$i$ (A)\"\nslider R 5 20 10 step=1 label=\"$R$ ($\\Omega$)\"\ncurve \"(100/R)*(1-exp(-R*t/2))\" label=\"$i(t)$\" color=1\nhline \"100/R\" color=3 label=\"final value $100/R$\"\nvline \"2/R\" label=\"$t=\\tau=L/R$\"\nreadout \"final current $=$\" \"100/R\" unit=\" A\"\nreadout \"$\\tau=$\" \"2/R\" unit=\" s\"\ncaption \"Starts at 0 (an inductor's current can't jump), settles at $100/R$, and is $63\\%$ of the way there at $t=\\tau$. At $R=10\\,\\Omega$: 10 A, $\\tau=0.2$ s.\"\n```",
+   "text": "**Substitution** reverses the chain rule. For $\\int\\dfrac{2t}{1+t^2}\\,dt$, choose $u=1+t^2$; then $du=2t\\,dt$, so the integral becomes $\\int du/u=\\ln(1+t^2)+K$.",
    "citations": [],
-   "id": "5e66a06e-987e-5db9-a069-9c20be52214f"
+   "id": "05caff84-5889-57ff-9668-55e99456d02a"
   },
   {
-   "type": "worked_example",
-   "title": "Example 2 · A coefficient that changes with time (lecture Example 3.1)",
-   "prompt": "Solve $\\dfrac{dy}{dt}+\\dfrac{10\\,y}{2t+5}=10$ with $y(0)=0$.",
-   "steps": [
-    {
-     "explanation": "It is already in standard form.",
-     "latex": "a(t)=\\dfrac{10}{2t+5},\\qquad f(t)=10"
-    },
-    {
-     "explanation": "Integrate $a$ with the substitution $u=2t+5$, $du=2\\,dt$, and $\\int\\frac{du}{u}=\\ln u$.",
-     "latex": "\\int\\dfrac{10}{2t+5}\\,dt=5\\ln(2t+5)"
-    },
-    {
-     "explanation": "Move the 5 into the log ($k\\ln u=\\ln u^k$), then use $e^{\\ln A}=A$.",
-     "latex": "\\mu=e^{\\ln(2t+5)^5}=(2t+5)^5"
-    },
-    {
-     "explanation": "Multiply by $\\mu$ and collapse the left side.",
-     "latex": "\\dfrac{d}{dt}\\Big[y\\,(2t+5)^5\\Big]=10\\,(2t+5)^5"
-    },
-    {
-     "explanation": "Integrate with the same $u$ ($dt=\\frac{du}{2}$) and the power rule $\\int u^5du=\\frac{u^6}{6}$.",
-     "latex": "y\\,(2t+5)^5=\\dfrac56(2t+5)^6+C"
-    },
-    {
-     "explanation": "Put in $y(0)=0$; at $t=0$, $2t+5=5$.",
-     "latex": "0=\\dfrac56\\,5^6+C\\ \\Rightarrow\\ C=-\\dfrac{5^7}{6}\\approx-13\\,020.83"
-    },
-    {
-     "explanation": "Divide by $(2t+5)^5$.",
-     "latex": "y(t)=\\dfrac56(2t+5)-\\dfrac{5^7}{6\\,(2t+5)^5}"
-    }
-   ],
-   "answer": "$y(t)=\\dfrac56(2t+5)-\\dfrac{5^7}{6\\,(2t+5)^5}$",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "d1e1cce5-5133-4af5-9107-179e9d1b4ba9"
-    },
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
-    }
-   ],
-   "id": "f56244d3-a454-5cde-ac94-96d97414c6c2"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 3 · A ramp input: the integral needs parts",
-   "prompt": "Solve $\\dfrac{dy}{dt}+2y=4t$ with $y(0)=1$.",
-   "steps": [
-    {
-     "explanation": "$a=2$, so $\\mu=e^{2t}$. Multiply and collapse.",
-     "latex": "\\dfrac{d}{dt}\\big[y\\,e^{2t}\\big]=4t\\,e^{2t}"
-    },
-    {
-     "explanation": "The right side is a product, so integrate by parts with $u=4t$, $dv=e^{2t}dt$ (so $v=\\frac12e^{2t}$): $\\int u\\,dv=uv-\\int v\\,du$.",
-     "latex": "\\int4t\\,e^{2t}dt=2t\\,e^{2t}-\\int2e^{2t}dt"
-    },
-    {
-     "explanation": "The leftover integral is $\\int2e^{2t}dt=e^{2t}$.",
-     "latex": "y\\,e^{2t}=2t\\,e^{2t}-e^{2t}+C"
-    },
-    {
-     "explanation": "Divide by $e^{2t}$.",
-     "latex": "y=2t-1+C\\,e^{-2t}"
-    },
-    {
-     "explanation": "Put in $y(0)=1$: $1=-1+C$, so $C=2$.",
-     "latex": "y(t)=2t-1+2e^{-2t}"
-    }
-   ],
-   "answer": "$y(t)=2t-1+2e^{-2t}$\n\nThe $e^{-2t}$ part dies out, leaving the line $2t-1$ that tracks the ramp.",
+   "type": "paragraph",
+   "text": "Keep the differential with its variable: integrate $y\\,dy$ with respect to $y$, and $t\\,dt$ with respect to $t$. After integrating both sides of an equation, one free constant is enough because two constants can be combined.",
    "citations": [],
-   "id": "371fb9a8-d2c2-54a9-b45f-4ec26a218b28"
+   "id": "91c8e65f-f519-5be7-b880-7b1d2f3f8895"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 1 · Not in standard form yet",
+   "title": "Try it 1 · Two small integration checks · original",
    "difficulty": "introductory",
    "origin": "original",
-   "prompt": "Solve $\\dfrac{dy}{dt}=3y+6$ with $y(0)=0$.",
+   "prompt": "Find: (a) $\\int y^{-2}\\,dy$; (b) $\\int 6e^{3t}\\,dt$. Check each by differentiating.",
    "solution": "",
    "steps": [
     {
-     "explanation": "Move $3y$ to the left. The coefficient of $y$ is $a=-3$: keep the sign.",
-     "latex": "\\dfrac{dy}{dt}-3y=6"
+     "explanation": "For (a), the new power is −1; divide by −1.",
+     "latex": "\\int y^{-2}\\,dy=-y^{-1}+K"
     },
     {
-     "explanation": "$\\int(-3)\\,dt=-3t$.",
-     "latex": "\\mu=e^{-3t}"
-    },
-    {
-     "explanation": "Multiply, collapse, integrate ($\\int6e^{-3t}dt=-2e^{-3t}$).",
-     "latex": "y\\,e^{-3t}=-2e^{-3t}+C"
-    },
-    {
-     "explanation": "Divide by $e^{-3t}$ and put in $y(0)=0$: $0=-2+C$.",
-     "latex": "y(t)=2e^{3t}-2"
+     "explanation": "For (b), divide by the exponent coefficient 3.",
+     "latex": "\\int6e^{3t}\\,dt=2e^{3t}+K"
     }
    ],
-   "answer": "$y(t)=2e^{3t}-2$\n\nWith $a<0$ the solution grows instead of settling.",
+   "answer": "(a) $-1/y+K$, for $y\\ne0$. (b) $2e^{3t}+K$.",
    "citations": [],
-   "id": "6d959173-b5c5-5ff5-ae32-02d74ac6a3ef"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 2 · A $t$ in front of the derivative",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "Solve $t\\dfrac{dy}{dt}+2y=4t^2$ with $y(1)=2$, for $t>0$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Divide every term by $t$, the right side too.",
-     "latex": "\\dfrac{dy}{dt}+\\dfrac2t\\,y=4t"
-    },
-    {
-     "explanation": "$\\int\\frac2t\\,dt=2\\ln t$, and $e^{2\\ln t}=e^{\\ln t^2}=t^2$.",
-     "latex": "\\mu=t^2"
-    },
-    {
-     "explanation": "Multiply by $t^2$, collapse, and integrate ($\\int4t^3dt=t^4$).",
-     "latex": "\\dfrac{d}{dt}\\big[t^2y\\big]=4t^3\\ \\Rightarrow\\ t^2y=t^4+C"
-    },
-    {
-     "explanation": "Divide by $t^2$; $y(1)=2$ gives $2=1+C$, so $C=1$.",
-     "latex": "y(t)=t^2+\\dfrac{1}{t^2}"
-    }
-   ],
-   "answer": "$y(t)=t^2+\\dfrac{1}{t^2}$",
-   "citations": [],
-   "id": "2864d605-fa76-5021-9c6f-d3dbe4b72ebc"
+   "id": "8059240a-d40a-5c9b-a7a0-7fbba3e02d3c"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 2: Separable ODEs",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
-    },
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
-    }
-   ],
-   "id": "f8cdeb51-eaea-502b-ae94-23688603e224"
+   "text": "Week 3 overview",
+   "citations": [],
+   "id": "893b1b98-d2ab-5793-8829-ee01a7429c2f"
   },
   {
    "type": "paragraph",
-   "text": "An ODE is **separable** if it can be written $N(y)\\,\\dfrac{dy}{dt}=M(t)$ (lecture Definition 3.1):\n- $N(y)$: a function of $y$ only\n- $M(t)$: a function of $t$ only\n\nEquivalently, $\\dfrac{dy}{dt}$ factors into a $t$-part times a $y$-part.\n\n**How to solve:**\n- **Separate:** every $y$ with $dy$ on one side, every $t$ with $dt$ on the other.\n- **Integrate:** each side in its own variable. One $+C$ is enough.\n\nUnlike the integrating factor, this also works for nonlinear equations.",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
-    }
-   ],
-   "id": "d7f58e8e-1e96-55d7-8596-ef269a83659f"
+   "text": "First learn separation, which puts each variable on its own side. Then learn the integrating factor for linear equations. Finally, ask what can be guaranteed about an IVP before solving it; those guarantees are a different task from finding a formula.",
+   "citations": [],
+   "id": "550dc7a0-2a2a-5fe9-b1fc-563066ebdcd2"
   },
   {
-   "type": "equation",
-   "latex": "N(y)\\,\\dfrac{dy}{dt}=M(t)\\quad\\Rightarrow\\quad\\int N(y)\\,dy=\\int M(t)\\,dt+C",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
-    }
-   ],
-   "id": "4e09fe9d-9ce4-58ad-b237-7d4e2babb99c"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 4 · The same RL circuit, by separation (lecture)",
-   "prompt": "Solve $\\dfrac{di}{dt}+5i=50$, $i(0)=0$ (Example 1) by separating the variables.",
-   "steps": [
-    {
-     "explanation": "```steps\n$$ \\dfrac{di}{dt}=50-5i $$\nMove $5i$ to the right. There is no $t$ at all, so it factors trivially.\n$$ \\dfrac{\\hl{di}}{\\hl{50-5i}}=\\hl{dt} $$\nSeparate: every $i$ on the left, every $t$ on the right.\n$$ \\hl{-\\tfrac15\\ln|50-5i|}=\\hl{t}+C_1 $$\nIntegrate. Left: $u=50-5i$, $du=-5\\,di$, and $\\int\\frac{du}{u}=\\ln|u|$.\n$$ \\ln|50-5i|=\\hl{-5t+C_2} $$\nMultiply by $-5$. A constant times $-5$ is just a new constant, $C_2$.\n$$ |50-5i|=\\hl{e^{C_2}}\\,e^{-5t} $$\nExponentiate both sides ($e^{a+b}=e^ae^b$).\n$$ 50-5i=\\hl{A}\\,e^{-5t} $$\nDrop the bars: the constant $A=\\pm e^{C_2}$ carries the sign.\n$$ 50-0=A\\ \\Rightarrow\\ \\hl{A=50} $$\nPut in $i(0)=0$ ($e^0=1$).\n$$ i(t)=\\hl{10\\big(1-e^{-5t}\\big)}\\ \\mathrm{A} $$\nSolve for $i$: $5i=50-50e^{-5t}$, then divide by 5.\n```",
-     "latex": ""
-    }
-   ],
-   "answer": "$i(t)=10\\big(1-e^{-5t}\\big)\\ \\mathrm{A}$, the same as Example 1.\n\nThis ODE is both linear and separable.",
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 1: Separable equations",
    "citations": [
     {
      "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
      "version": 1,
      "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
-    }
-   ],
-   "id": "3ebc6f6e-1eae-5936-94a7-afc65b713f8d"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 5 · Dividing can lose a solution (lecture, Spiegel i)",
-   "prompt": "Find the general solution of $\\dfrac{dy}{dt}=\\dfrac{y^2}{t^3}$.",
-   "steps": [
-    {
-     "explanation": "Divide by $y^2$ (only allowed if $y\\neq0$) and multiply by $dt$.",
-     "latex": "\\dfrac{dy}{y^2}=\\dfrac{dt}{t^3}"
     },
-    {
-     "explanation": "Power rule on both sides: $\\int y^{-2}dy=-y^{-1}$ and $\\int t^{-3}dt=-\\frac12t^{-2}$.",
-     "latex": "-\\dfrac1y=-\\dfrac{1}{2t^2}+C"
-    },
-    {
-     "explanation": "Multiply by $-1$, write the right side over $2t^2$, and flip both sides.",
-     "latex": "\\dfrac1y=\\dfrac{1-2Ct^2}{2t^2}\\ \\Rightarrow\\ y=\\dfrac{2t^2}{1-2Ct^2}"
-    },
-    {
-     "explanation": "Now check the case the division threw away. $y=0$ gives $0=\\frac{0}{t^3}$ ✓, and no value of $C$ produces it.",
-     "latex": "y\\equiv0\\ \\text{is a solution too}"
-    }
-   ],
-   "answer": "$y=\\dfrac{2t^2}{1-2Ct^2}$ for any constant $C$, plus $y=0$",
-   "citations": [
     {
      "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
      "version": 1,
      "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
     }
    ],
-   "id": "ce5a79bd-e98f-5592-9fff-d622da39f774"
+   "id": "db708efd-1aa7-526c-9261-e493bd95f89a"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Separate first; integrate second",
+   "citations": [],
+   "id": "a761e7d3-e2de-51b2-a2f1-d97c8e59a5a9"
+  },
+  {
+   "type": "paragraph",
+   "text": "An equation is **separable** when $y'=g(t)h(y)$: a function of $t$ multiplied by a function of $y$. The aim is to put the $y$-expression beside $dy$ and the $t$-expression beside $dt$.",
+   "citations": [],
+   "id": "6d145384-11a3-5460-9fa6-3860cc27d97b"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{1}{h(y)}\\,dy=g(t)\\,dt",
+   "display": true,
+   "citations": [],
+   "id": "a1673494-a0c7-5214-8fa3-12111b8526ec"
+  },
+  {
+   "type": "paragraph",
+   "text": "This rearrangement assumes $h(y)\\ne0$. Whenever you divide by an expression involving the unknown, check its zero cases in the original equation too.",
+   "citations": [],
+   "id": "d855133c-8e2c-5f24-bc87-95e69eb9dcb3"
   },
   {
    "type": "worked_example",
-   "title": "Example 6 · Factor first (lecture, Spiegel ii)",
-   "prompt": "Solve $\\dfrac{dy}{dt}=\\dfrac{3t+t\\,y^2}{y+t^2y}$ with $y(1)=3$.",
+   "title": "Example 1 · A first complete separation · original",
+   "prompt": "Solve $y'=2ty$ with $y(0)=3$.",
    "steps": [
     {
-     "explanation": "It doesn't look separable until you factor $t$ out of the top and $y$ out of the bottom.",
-     "latex": "\\dfrac{dy}{dt}=\\dfrac{t\\,(3+y^2)}{y\\,(1+t^2)}"
+     "explanation": "For $y\\ne0$, separate the variables.",
+     "latex": "\\dfrac{dy}{y}=2t\\,dt"
     },
     {
-     "explanation": "Now separate.",
-     "latex": "\\dfrac{y}{3+y^2}\\,dy=\\dfrac{t}{t^2+1}\\,dt"
+     "explanation": "Integrate each side in its own variable.",
+     "latex": "\\ln|y|=t^2+K"
     },
     {
-     "explanation": "Each top is half the derivative of its bottom, so each side is $\\frac12\\ln(\\text{bottom})$ (substitute $u=$ bottom).",
-     "latex": "\\tfrac12\\ln(3+y^2)=\\tfrac12\\ln(t^2+1)+c"
+     "explanation": "Exponentiate. Combine the constant and the possible sign into $A$.",
+     "latex": "y=Ae^{t^2}"
     },
     {
-     "explanation": "Multiply by 2 and exponentiate; $C_1=e^{2c}$.",
-     "latex": "3+y^2=C_1\\,(t^2+1)"
-    },
-    {
-     "explanation": "Put in $y(1)=3$: $12=2C_1$.",
-     "latex": "C_1=6\\ \\Rightarrow\\ y^2=6t^2+3"
-    },
-    {
-     "explanation": "Take the $+$ square root, because $y(1)=+3$.",
-     "latex": "y(t)=\\sqrt{6t^2+3}"
+     "explanation": "Use $y(0)=3$, so $A=3$.",
+     "latex": "y=3e^{t^2}"
     }
    ],
-   "answer": "$y^2+3=6(t^2+1)$, i.e. $y(t)=\\sqrt{6t^2+3}$",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
-    }
-   ],
-   "id": "d0e2719c-0a13-5594-9f12-d861f643a09b"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 7 · Differential form, implicit answer (lecture, Spiegel iii)",
-   "prompt": "Solve $y\\,dt+(t^3y^2+t^3)\\,dy=0$.",
-   "steps": [
-    {
-     "explanation": "Factor $t^3$ out of the $dy$ term and move the $dt$ term across.",
-     "latex": "t^3\\,(y^2+1)\\,dy=-y\\,dt"
-    },
-    {
-     "explanation": "Divide by $t^3y$ to separate, and split the fraction: $\\frac{y^2+1}{y}=y+\\frac1y$.",
-     "latex": "\\Big(y+\\dfrac1y\\Big)dy=-t^{-3}\\,dt"
-    },
-    {
-     "explanation": "Integrate: $\\int y\\,dy=\\frac{y^2}{2}$, $\\int\\frac{dy}{y}=\\ln|y|$, $-\\int t^{-3}dt=\\frac{t^{-2}}{2}$.",
-     "latex": "\\dfrac{y^2}{2}+\\ln|y|=\\dfrac{t^{-2}}{2}+C"
-    },
-    {
-     "explanation": "Multiply by 2. $y$ can't be isolated (it is squared and inside a log), so leave the answer **implicit**: it is still a complete solution.",
-     "latex": "y^2+2\\ln|y|-t^{-2}=C_1"
-    }
-   ],
-   "answer": "$y^2+2\\ln|y|-t^{-2}=C_1$",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
-    }
-   ],
-   "id": "6c541ab4-bfef-55df-999e-030c9afa9c51"
+   "answer": "$y=3e^{t^2}$. The divided-out case $y=0$ also solves the ODE, but fails this initial condition.",
+   "citations": [],
+   "id": "f9cee480-29d6-5c53-a8c4-9eb678c2946f"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 3 · Pre-tutorial 3",
-   "difficulty": "intermediate",
+   "title": "Try it 2 · Only do the separation · warm-up and lecture equation",
+   "difficulty": "introductory",
    "origin": "source",
-   "prompt": "Solve:\n1. $\\dfrac{dy}{dt}=-\\dfrac{t}{y}$, $y(1)=2$. On what interval does the solution exist?\n2. $3t\\,(y^2+1)\\,dt+y\\,(t^2+2)\\,dy=0$.\n3. $\\dfrac{dy}{dt}=8ty+3y$, by separation **and** by the integrating factor. Which route can lose a solution?",
+   "prompt": "Rearrange each equation so it is ready to integrate. **Stop before integrating.**\n\n1. $y'=t(1+y^2)$\n2. $y'=\\dfrac{3t+ty^2}{y+t^2y}$",
    "solution": "",
    "steps": [
     {
-     "explanation": "(1) Multiply by $y\\,dt$, integrate (power rule) and double; $y(1)=2$ makes the constant $4+1=5$.",
-     "latex": "y\\,dy=-t\\,dt\\ \\Rightarrow\\ y^2+t^2=5"
+     "explanation": "1. Divide by the positive expression 1 + y².",
+     "latex": "\\dfrac{dy}{1+y^2}=t\\,dt"
     },
     {
-     "explanation": "A circle. Take the $+$ root since $y(1)>0$. It ends where $y=0$ (at $t=\\pm\\sqrt5$): there the slope $-\\frac ty$ is infinite.",
-     "latex": "y=\\sqrt{5-t^2},\\quad -\\sqrt5<t<\\sqrt5"
+     "explanation": "2. Factor numerator and denominator before rearranging.",
+     "latex": "y'=\\dfrac{t(3+y^2)}{y(1+t^2)}"
     },
     {
-     "explanation": "(2) Move the $dt$ term across and divide by $(y^2+1)(t^2+2)$, which is never 0.",
-     "latex": "\\dfrac{y}{y^2+1}\\,dy=-\\dfrac{3t}{t^2+2}\\,dt"
-    },
-    {
-     "explanation": "As in Example 6, each top is half the derivative of its bottom, so each side is a log.",
-     "latex": "\\tfrac12\\ln(y^2+1)=-\\tfrac32\\ln(t^2+2)+c"
-    },
-    {
-     "explanation": "Multiply by 2, combine the logs ($\\ln a+3\\ln b=\\ln ab^3$) and exponentiate; $K=e^{2c}$.",
-     "latex": "(y^2+1)(t^2+2)^3=K"
-    },
-    {
-     "explanation": "(3) Separation: factor out $y$, divide by it, integrate, exponentiate ($A=\\pm e^C$). Dividing by $y$ lost $y=0$: put it back by allowing $A=0$.",
-     "latex": "\\dfrac{dy}{y}=(8t+3)\\,dt\\ \\Rightarrow\\ y=A\\,e^{4t^2+3t}"
-    },
-    {
-     "explanation": "Integrating factor: standard form has $a=-(8t+3)$ and $f=0$.",
-     "latex": "\\dfrac{d}{dt}\\Big[e^{-(4t^2+3t)}\\,y\\Big]=0"
-    },
-    {
-     "explanation": "So the bracket is a constant $A$. Nothing was divided by $y$, so $A=0$ is included automatically.",
-     "latex": "y=A\\,e^{4t^2+3t}"
+     "explanation": "Keep every y-term on the left.",
+     "latex": "\\dfrac{y}{3+y^2}\\,dy=\\dfrac{t}{1+t^2}\\,dt"
     }
    ],
-   "answer": "- **(1)** $y=\\sqrt{5-t^2}$ on $-\\sqrt5<t<\\sqrt5$\n- **(2)** $(y^2+1)(t^2+2)^3=K$\n- **(3)** $y=Ae^{4t^2+3t}$\n\nSeparation loses $y=0$, the integrating factor does not.",
+   "answer": "1. $dy/(1+y^2)=t\\,dt$. 2. $\\dfrac{y}{3+y^2}\\,dy=\\dfrac{t}{1+t^2}\\,dt$; the original equation requires $y\\ne0$.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
+    }
+   ],
+   "id": "bc445c25-4cb4-5d2a-9ced-6585a306b8b4"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · Finish the factored equation · lecture Example 3.3",
+   "prompt": "Use the separated form from question 2, now with $y(1)=3$.",
+   "steps": [
+    {
+     "explanation": "On both sides, the numerator is half the derivative of the denominator.",
+     "latex": "\\dfrac12\\ln(3+y^2)=\\dfrac12\\ln(1+t^2)+K"
+    },
+    {
+     "explanation": "Multiply by 2 and exponentiate; call the positive constant A.",
+     "latex": "3+y^2=A(1+t^2)"
+    },
+    {
+     "explanation": "Use the initial condition before choosing a square-root branch.",
+     "latex": "3+3^2=A(1+1^2)\\quad\\Rightarrow\\quad A=6"
+    },
+    {
+     "explanation": "The positive branch matches y(1) = 3.",
+     "latex": "y=\\sqrt{6t^2+3}"
+    }
+   ],
+   "answer": "$y=\\sqrt{6t^2+3}$ for all real $t$. It stays positive, so the original denominator never vanishes.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
+    }
+   ],
+   "id": "5b272d59-fea6-5658-a5f8-bd6180ea688a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 3 · Use an initial value and choose the interval · Pre-tutorial 3(a)",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Solve $y'=-t/y$ with $y(1)=2$. After finding the formula, identify the largest open interval containing $t=1$ where it satisfies the original ODE.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Multiply by y and separate.",
+     "latex": "y\\,dy=-t\\,dt"
+    },
+    {
+     "explanation": "Integrate, then absorb the factor 2 into the constant.",
+     "latex": "y^2+t^2=K"
+    },
+    {
+     "explanation": "Use the starting point and choose its positive branch.",
+     "latex": "K=2^2+1^2=5,\\qquad y=\\sqrt{5-t^2}"
+    },
+    {
+     "explanation": "The original equation divides by y, so exclude the endpoints where y = 0.",
+     "latex": "-\\sqrt5<t<\\sqrt5"
+    }
+   ],
+   "answer": "$y=\\sqrt{5-t^2}$ on $(-\\sqrt5,\\sqrt5)$.",
    "citations": [
     {
      "source_id": "a637e1bd-8d81-49f9-89d6-abfe3fda44b6",
@@ -459,44 +261,430 @@
      "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
     }
    ],
-   "id": "5d42630b-3c84-5014-a405-09833342c3e3"
+   "id": "64ddab4a-cbb7-5558-b2ca-2217bebd91a7"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Two things integration can hide",
+   "citations": [],
+   "id": "fa800aa3-552b-55a7-9388-c8bfd84c159a"
+  },
+  {
+   "type": "paragraph",
+   "text": "**A lost solution:** for $y^{\\prime}=y^2/t^3$, separating divides by $y^2$. Integration gives $-1/y=-1/(2t^2)+K$, or $y=2t^2/(1-2Kt^2)$, but $y=0$ also solves the original equation and must be included separately.",
+   "citations": [],
+   "id": "eadb26f4-19f5-5035-9db9-2d5e39250f01"
+  },
+  {
+   "type": "paragraph",
+   "text": "Here $t\\ne0$, and the displayed denominator must also stay nonzero. Keep the solution on a connected interval avoiding those restrictions.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
+    }
+   ],
+   "id": "044595db-4f11-5231-ac01-d84a60717fd8"
+  },
+  {
+   "type": "paragraph",
+   "text": "**An implicit answer:** sometimes integration gives a relation between $t$ and $y$ that you cannot conveniently rearrange into $y=\\cdots$. That relation can still describe a solution; check it by implicit differentiation.",
+   "citations": [],
+   "id": "5ac20733-5436-570f-aa39-60b91908bfc6"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 4 · Which method fits?",
+   "title": "Try it 4 · Solve in differential form · Pre-tutorial 3(b)",
    "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "Linear, separable, both, or neither? (Don't solve.)\n1. $\\dfrac{dy}{dt}=t^2+y$\n2. $\\dfrac{dy}{dt}=e^{t+y}$\n3. $\\dfrac{dy}{dt}=2y-6$\n4. $\\dfrac{dy}{dt}=t+y^2$",
+   "origin": "source",
+   "prompt": "Solve $3t(y^2+1)\\,dt+y(t^2+2)\\,dy=0$. An implicit answer is enough.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Linear** test: $y$ appears only to the first power.",
-     "latex": ""
+     "explanation": "Move the dt-term and divide by the positive factors.",
+     "latex": "\\dfrac{y}{y^2+1}\\,dy=-\\dfrac{3t}{t^2+2}\\,dt"
     },
     {
-     "explanation": "**Separable** test: the right side factors into (function of $t$)$\\times$(function of $y$).",
-     "latex": ""
+     "explanation": "Use substitution on both sides.",
+     "latex": "\\dfrac12\\ln(y^2+1)=-\\dfrac32\\ln(t^2+2)+K"
     },
     {
-     "explanation": "(1) $y$ to the first power: linear. A sum that does not factor: not separable.",
-     "latex": "\\text{linear only}"
-    },
-    {
-     "explanation": "(2) $e^{t+y}=e^t\\,e^y$ factors: separable. $e^y$ is not first power: not linear.",
-     "latex": "\\text{separable only}"
-    },
-    {
-     "explanation": "(3) $2y-6=2(y-3)$ has no $t$, so it factors; and $y$ is first power.",
-     "latex": "\\text{both}"
-    },
-    {
-     "explanation": "(4) $y^2$ is not first power, and $t+y^2$ does not factor.",
-     "latex": "\\text{neither}"
+     "explanation": "Multiply by 2, combine logs, and exponentiate.",
+     "latex": "(y^2+1)(t^2+2)^3=A"
     }
    ],
-   "answer": "- **(1)** linear only\n- **(2)** separable only\n- **(3)** both\n- **(4)** neither",
+   "answer": "$(y^2+1)(t^2+2)^3=A$, with $A>0$ for real solution points. A differentiable branch must still satisfy the original equation.",
+   "citations": [
+    {
+     "source_id": "a637e1bd-8d81-49f9-89d6-abfe3fda44b6",
+     "version": 1,
+     "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
+    }
+   ],
+   "id": "221aa683-4d47-59b1-bf53-0fe2bc5079e1"
+  },
+  {
+   "type": "paragraph",
+   "text": "The lecture’s other implicit example is $y\\,dt+t^3(y^2+1)\\,dy=0$. For $t\\ne0$ and $y\\ne0$, separation gives $(y+1/y)\\,dy=-t^{-3}\\,dt$, hence $y^2+2\\ln|y|-t^{-2}=K$. Check $y=0$ separately: it also solves the original differential form.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
+    }
+   ],
+   "id": "42c08c06-6612-599e-b1a7-25644c4f5f76"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 2: Linear equations and integrating factors",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "d1e1cce5-5133-4af5-9107-179e9d1b4ba9"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
+    }
+   ],
+   "id": "4bb61d5a-68db-520a-bec4-9d1dee4594b4"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Make the derivative stand alone first",
    "citations": [],
-   "id": "2ba363ba-ed11-5d59-ad48-514fca77f77c"
+   "id": "26b3c958-2401-5a26-a29c-4530f971c128"
+  },
+  {
+   "type": "paragraph",
+   "text": "A first-order linear equation has standard form $y'+a(t)y=f(t)$. The coefficient $a(t)$ and forcing $f(t)$ may depend on $t$, but not on the unknown $y$.",
+   "citations": [],
+   "id": "0b426060-0530-5222-bc9c-eabb4b11d719"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 5 · Identify the coefficient before doing calculus · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Put each equation into standard form and identify $a(t)$ and $f(t)$.\n\n1. $y'=3y+6$\n2. $ty'+2y=4t^2$, with $t>0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "1. Move 3y left and keep its negative sign.",
+     "latex": "y'-3y=6,\\quad a=-3,\\quad f=6"
+    },
+    {
+     "explanation": "2. Divide every term by t.",
+     "latex": "y'+\\dfrac2t y=4t,\\quad a=\\dfrac2t,\\quad f=4t"
+    }
+   ],
+   "answer": "1. $a=-3$, $f=6$. 2. $a=2/t$, $f=4t$.",
+   "citations": [],
+   "id": "34d8971e-889a-589b-8fa5-580cb599b14d"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Why multiplying helps",
+   "citations": [],
+   "id": "30ea17ef-27a6-5351-86c1-fa36c4450d46"
+  },
+  {
+   "type": "paragraph",
+   "text": "The product rule says $(\\mu y)'=\\mu y'+\\mu'y$, where $\\mu$ is a function of $t$. If we choose $\\mu$ so that $\\mu'=a\\mu$, multiplying the linear ODE by it makes the entire left side one derivative.",
+   "citations": [],
+   "id": "edfcda18-315f-55e4-9d05-c8b5bcc18ffb"
+  },
+  {
+   "type": "paragraph",
+   "text": "```steps\ntitle \"Build the integrating-factor method\"\n$$ y'+a(t)y=f(t) $$\nStart in standard form.\n$$ \\mu=e^{\\int a(t)\\,dt} $$\nThis choice has derivative μ′ = aμ.\n$$ \\mu y'+\\hl{\\mu a}y=\\mu f $$\nMultiply every term by μ.\n$$ \\hl{(\\mu y)'}=\\mu f $$\nRecognise the product rule backwards.\n$$ \\mu y=\\hl{\\int\\mu f\\,dt+K} $$\nIntegrate once.\n$$ y=\\hl{\\dfrac{1}{\\mu}}\\left(\\int\\mu f\\,dt+K\\right) $$\nDivide by μ, then use the initial condition.\n```",
+   "citations": [],
+   "id": "e53dd14a-9aae-537d-b461-a0cc66c6d798"
+  },
+  {
+   "type": "paragraph",
+   "text": "Use one convenient antiderivative inside $\\mu$; you do not need an extra integration constant there. Multiplying $\\mu$ by a nonzero constant would give an equivalent method.",
+   "citations": [],
+   "id": "93905984-e009-54ac-8261-0b0ca9bf8967"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · Use the method with simple numbers · original",
+   "prompt": "Solve $y'+2y=6$, $y(0)=1$. This recovers Week 2’s solution without being given its family.",
+   "steps": [
+    {
+     "explanation": "The coefficient is 2, so compute the factor.",
+     "latex": "\\mu=e^{\\int2\\,dt}=e^{2t}"
+    },
+    {
+     "explanation": "Multiply and recognise the product derivative.",
+     "latex": "\\dfrac{d}{dt}(e^{2t}y)=6e^{2t}"
+    },
+    {
+     "explanation": "Integrate; divide by 2 when integrating the exponential.",
+     "latex": "e^{2t}y=3e^{2t}+K"
+    },
+    {
+     "explanation": "Divide by the factor and use the starting value.",
+     "latex": "y=3+Ke^{-2t},\\quad 1=3+K"
+    },
+    {
+     "explanation": "The initial condition sets K = −2.",
+     "latex": "y=3-2e^{-2t}"
+    }
+   ],
+   "answer": "$y=3-2e^{-2t}$.",
+   "citations": [],
+   "id": "cb07beca-23bc-5a2f-97ba-7ee843373aca"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 6 · A coefficient that varies with time · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Finish $ty'+2y=4t^2$, $y(1)=2$, on $t>0$. You already found its standard form above. Find the integrating factor, integrate, and apply the condition.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Integrate 2/t and simplify the exponential.",
+     "latex": "\\mu=e^{2\\ln t}=t^2"
+    },
+    {
+     "explanation": "Multiply the standard form by t².",
+     "latex": "\\dfrac{d}{dt}(t^2y)=4t^3"
+    },
+    {
+     "explanation": "Integrate and divide by t².",
+     "latex": "t^2y=t^4+K,\\qquad y=t^2+\\dfrac{K}{t^2}"
+    },
+    {
+     "explanation": "At t = 1, the given value is 2.",
+     "latex": "2=1+K\\quad\\Rightarrow\\quad K=1"
+    }
+   ],
+   "answer": "$y=t^2+1/t^2$ on $t>0$.",
+   "citations": [],
+   "id": "98af1e23-d8e2-582a-bb9b-ea0eace4f196"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Choose a method, then handle a harder integral",
+   "citations": [],
+   "id": "22e895ad-4b18-5b39-bf0e-c576de42023b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 7 · Separable, linear, both, or neither? · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Identify the method; do not solve.\n\n1. $y'=t^2+y$\n2. $y'=e^{t+y}$\n3. $y'=2y-6$\n4. $y'=t+y^2$",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "1. Linear; its sum does not separate into a t-factor times a y-factor.",
+     "latex": ""
+    },
+    {
+     "explanation": "2. Write $e^{t+y}=e^te^y$: separable, nonlinear.",
+     "latex": ""
+    },
+    {
+     "explanation": "3. Linear and separable; the right side is a function of y alone.",
+     "latex": ""
+    },
+    {
+     "explanation": "4. Neither linear nor separable.",
+     "latex": ""
+    }
+   ],
+   "answer": "1. Linear only. 2. Separable only. 3. Both. 4. Neither.",
+   "citations": [],
+   "id": "c3f3a72c-720c-5696-be31-03b3cab064fe"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · Use substitution inside the method · lecture Example 3.1",
+   "prompt": "Solve $y'+\\dfrac{10}{2t+5}y=10$, $y(0)=0$.",
+   "steps": [
+    {
+     "explanation": "Use $u=2t+5$, $du=2\\,dt$ to integrate the coefficient.",
+     "latex": "\\int\\dfrac{10}{2t+5}\\,dt=5\\ln|2t+5|"
+    },
+    {
+     "explanation": "The interval containing 0 has $t>-5/2$, so $2t+5>0$.",
+     "latex": "\\mu=(2t+5)^5"
+    },
+    {
+     "explanation": "Multiply; the left side becomes a product derivative.",
+     "latex": "\\dfrac{d}{dt}\\big[(2t+5)^5y\\big]=10(2t+5)^5"
+    },
+    {
+     "explanation": "Use the same substitution on the right.",
+     "latex": "(2t+5)^5y=\\dfrac56(2t+5)^6+K"
+    },
+    {
+     "explanation": "Apply y(0) = 0 before dividing.",
+     "latex": "0=\\dfrac56\\,5^6+K\\quad\\Rightarrow\\quad K=-\\dfrac{5^7}{6}"
+    },
+    {
+     "explanation": "Divide by the integrating factor.",
+     "latex": "y=\\dfrac56(2t+5)-\\dfrac{5^7}{6(2t+5)^5}"
+    }
+   ],
+   "answer": "The displayed solution holds on $t>-5/2$, the interval containing the starting time.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "d1e1cce5-5133-4af5-9107-179e9d1b4ba9"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
+    }
+   ],
+   "id": "0fa60d0e-4760-57ef-8f04-1e53222eb049"
+  },
+  {
+   "type": "paragraph",
+   "text": "**A brief integration-by-parts refresher:** if multiplying by $\\mu$ leaves an integral such as $\\int4te^{2t}\\,dt$, use $\\int u\\,dv=uv-\\int v\\,du$. Choose $u=4t$, $dv=e^{2t}dt$; then $du=4dt$ and $v=e^{2t}/2$.",
+   "citations": [],
+   "id": "68b8bfe1-c006-5de3-a098-1bebe730d2ca"
+  },
+  {
+   "type": "equation",
+   "latex": "\\int4te^{2t}\\,dt=2te^{2t}-e^{2t}+K",
+   "display": true,
+   "citations": [],
+   "id": "5273a047-3781-5920-9d45-55d1b8e80ee6"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 8 · When the integral needs parts · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Solve $y'+2y=4t$, $y(0)=1$. Use the integral just shown rather than learning a new ODE method.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "The factor is still e²ᵗ; only the right-hand integral changes.",
+     "latex": "\\dfrac{d}{dt}(e^{2t}y)=4te^{2t}"
+    },
+    {
+     "explanation": "Use the integration-by-parts result.",
+     "latex": "e^{2t}y=2te^{2t}-e^{2t}+K"
+    },
+    {
+     "explanation": "Divide and apply the initial condition.",
+     "latex": "y=2t-1+Ke^{-2t},\\quad K=2"
+    }
+   ],
+   "answer": "$y=2t-1+2e^{-2t}$.",
+   "citations": [],
+   "id": "5ae00794-3de7-5ba2-8b0c-c72ce7df5826"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 9 · One equation, two methods · Pre-tutorial 3(c)",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "For $y'=8ty+3y$, find the general solution using separation. Then identify the integrating factor and explain how it gives the same family, including the zero solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Factor y, divide by it for nonzero solutions, and integrate.",
+     "latex": "\\ln|y|=4t^2+3t+K"
+    },
+    {
+     "explanation": "Exponentiate; restore the divided-out solution by allowing A = 0.",
+     "latex": "y=Ae^{4t^2+3t}"
+    },
+    {
+     "explanation": "In linear form, a(t) = −(8t + 3).",
+     "latex": "\\mu=e^{-(4t^2+3t)}"
+    },
+    {
+     "explanation": "The product derivative is zero, so its value is an arbitrary constant.",
+     "latex": "\\dfrac{d}{dt}(\\mu y)=0\\quad\\Rightarrow\\quad\\mu y=A"
+    }
+   ],
+   "answer": "$y=Ae^{4t^2+3t}$ for any real $A$. The integrating-factor route never divides by $y$, so $A=0$ is included directly.",
+   "citations": [
+    {
+     "source_id": "a637e1bd-8d81-49f9-89d6-abfe3fda44b6",
+     "version": 1,
+     "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
+    }
+   ],
+   "id": "8e2926aa-103e-531c-b8f6-4bf843b22d0f"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Circuit connection: the lecture’s RL equation",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
+    }
+   ],
+   "id": "57e57843-6298-5468-a82d-14272fb57af8"
+  },
+  {
+   "type": "paragraph",
+   "text": "The lecture uses $2i^{\\prime}+10i=100$, $i(0)=0$. The drawing below follows that KVL equation, with the source positive at the top; the printed circuit figure has its source polarity reversed.",
+   "citations": [],
+   "id": "70e2b82d-8ce8-5604-afdb-365182deb4c8"
+  },
+  {
+   "type": "schematic",
+   "source": "V1 0,3 -> 0,0 \"$100\\,\\mathrm{V}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$10\\,\\Omega$\"\nL1 6,3 -> 6,0 \"$2\\,\\mathrm{H}$\" i=\"$i$\" v=\"$v_L$\"\nwire 6,0 -> 0,0\nground 0,0\n#~ flow\n#~ init L1 0\n#@ view \"Just after closing\"\n#@ node a 100 \"source: $100\\,\\mathrm{V}$\"\n#@ node b 100 \"after switch: $100\\,\\mathrm{V}$\"\n#@ node c 100 \"inductor: $100\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$100\\,\\mathrm{V}$\" col=0 id=src\n#@ el W a b \"closed\" col=1\n#@ el R b c \"$10\\,\\Omega$\" col=2 id=res\n#@ el L c g \"$2\\,\\mathrm{H}$\" col=3 plus=c v=\"$v_L$\" id=ind\n#@ step \"Ground the bottom wire.\" show=g\n#@ step \"The source fixes the top at 100 V; the closed switch has no step.\" show=a,b,src\n#@ step \"Current starts at zero, so R has no fall; L takes all 100 V.\" show=c,res,ind\n#@ view \"At one time constant\"\n#@ node a 100 \"source: $100\\,\\mathrm{V}$\"\n#@ node b 100 \"after switch: $100\\,\\mathrm{V}$\"\n#@ node c 36.787944 \"inductor: $36.79\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$100\\,\\mathrm{V}$\" col=0 i=\"$6.32\\,\\mathrm{A}$\" to=a\n#@ el W a b \"closed\" col=1 i=\"$6.32\\,\\mathrm{A}$\" to=b\n#@ el R b c \"$10\\,\\Omega$\" col=2 i=\"$6.32\\,\\mathrm{A}$\" to=c\n#@ el L c g \"$2\\,\\mathrm{H}$\" col=3 plus=c v=\"$v_L$\" i=\"$6.32\\,\\mathrm{A}$\" to=g\n#@ note \"Ground the bottom wire. At t = 0.2 s, i = 10(1 - 1/e) A. The 100 V source equals the resistor fall plus the inductor voltage.\"\n#@ view \"DC final value\"\n#@ node a 100 \"source: $100\\,\\mathrm{V}$\"\n#@ node b 100 \"after switch: $100\\,\\mathrm{V}$\"\n#@ node c 0 \"inductor: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$100\\,\\mathrm{V}$\" col=0 i=\"$10\\,\\mathrm{A}$\" to=a\n#@ el W a b \"closed\" col=1 i=\"$10\\,\\mathrm{A}$\" to=b\n#@ el R b c \"$10\\,\\Omega$\" col=2 i=\"$10\\,\\mathrm{A}$\" to=c\n#@ el L c g \"$2\\,\\mathrm{H}$\" col=3 plus=c v=\"$v_L$\" i=\"$10\\,\\mathrm{A}$\" to=g\n#@ note \"Ground the bottom wire. The inductor is a DC short; i = 100/10 = 10 A.\"",
+   "caption": "RL circuit, redrawn to match the lecture equation",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
+    }
+   ],
+   "id": "18c58fc2-6140-525b-8d93-363efc31f426"
+  },
+  {
+   "type": "paragraph",
+   "text": "Divide by $2$: $i'+5i=50$, so $\\mu=e^{5t}$. Integrating $(e^{5t}i)'=50e^{5t}$ gives $i=10+Ke^{-5t}$; $i(0)=0$ sets $K=-10$, hence $i=10(1-e^{-5t})\\,\\mathrm{A}$.",
+   "citations": [],
+   "id": "39f28adb-28a3-5930-90db-4accadcd2ab9"
+  },
+  {
+   "type": "paragraph",
+   "text": "Separation gives the same result: $di/(50-5i)=dt$, then $-\\frac15\\ln|50-5i|=t+K$. Its final current $10\\,\\mathrm{A}$ and time constant $2/10=0.2\\,\\mathrm{s}$ match Week 2’s circuit reasoning.",
+   "citations": [],
+   "id": "88bdbfc4-0c51-5844-a703-4f829f8d4440"
   },
   {
    "type": "heading",
@@ -509,176 +697,107 @@
      "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
     }
    ],
-   "id": "d9f58fe6-9899-5c09-a304-11de3e0ac6ff"
+   "id": "aac0b9a5-5874-52c0-906c-bdda4ba4fe9a"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Calculus reminder: a partial derivative holds t fixed",
+   "citations": [],
+   "id": "ab7571e6-1f1c-560f-9199-f17d60ca2a8e"
   },
   {
    "type": "paragraph",
-   "text": "An **initial value problem** (IVP) is an ODE plus a starting point:\n- $\\dfrac{dy}{dt}=F(t,y)$: the **ODE**\n- $y(t_0)=y_0$: the **starting point**\n\nBefore solving, ask: is there a solution through that point, and only one? The theorem answers with two checks on $F$.\n\n$\\dfrac{\\partial F}{\\partial y}$ (the **partial derivative**): differentiate $F$ with respect to $y$, treating $t$ as a constant.",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
-    }
-   ],
-   "id": "21dff238-79f4-5ece-8e6e-9ced3274d675"
-  },
-  {
-   "type": "callout",
-   "tone": "info",
-   "text": "**Existence and uniqueness theorem.** Suppose that in a region $R$ of the $ty$-plane, both $F(t,y)$ and $\\dfrac{\\partial F}{\\partial y}$ are:\n- real, finite and single-valued\n- continuous\n\nThen exactly one solution passes through each point of $R$.\n\nThe conditions are **sufficient, not necessary**: where they fail, the theorem says nothing. Typical failures:\n- dividing by zero\n- $\\ln$ of a number $\\le0$\n- negative powers of $y$ at $y=0$",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
-    }
-   ],
-   "id": "80770aa4-1651-5e73-b8d9-8e8817fbff4b"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 8 · Find where the theorem applies",
-   "prompt": "For $\\dfrac{dy}{dt}=\\dfrac{t+y}{t-y}$, is exactly one solution guaranteed through $(0,1)$? Through $(2,2)$?",
-   "steps": [
-    {
-     "explanation": "$F$ breaks only where its bottom is zero: on the line $y=t$.",
-     "latex": "F=\\dfrac{t+y}{t-y},\\qquad t\\neq y"
-    },
-    {
-     "explanation": "Quotient rule in $y$, with $t$ held fixed: the top $t+y$ has $y$-derivative $1$, the bottom $t-y$ has $-1$.",
-     "latex": "\\dfrac{\\partial F}{\\partial y}=\\dfrac{(t-y)+(t+y)}{(t-y)^2}=\\dfrac{2t}{(t-y)^2}"
-    },
-    {
-     "explanation": "It breaks on the same line, so $R$ is the whole plane minus the line $y=t$. $(0,1)$ is off it; $(2,2)$ is on it.",
-     "latex": "\\begin{gathered}(0,1):\\ \\text{one solution} \\\\ (2,2):\\ \\text{no promise}\\end{gathered}"
-    }
-   ],
-   "answer": "- **Through $(0,1)$:** yes, exactly one solution.\n- **Through $(2,2)$:** no guarantee. It sits on the line $y=t$, where $F$ is undefined.",
+   "text": "For a function of two variables, $F(t,y)$, the symbol $\\partial F/\\partial y$ means differentiate with respect to $y$ while treating $t$ as a constant. For example, if $F=t^2+3ty$, then $\\partial F/\\partial y=3t$.",
    "citations": [],
-   "id": "fd83b14a-7887-5225-868b-6421d21da68b"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 9 · Two solutions from one point",
-   "prompt": "For $\\dfrac{dy}{dt}=y^{1/3}$ with $y(0)=0$:\n1. Show that it has two different solutions.\n2. Explain why the theorem allows it.",
-   "steps": [
-    {
-     "explanation": "$F=y^{1/3}$ is continuous, but its $y$-derivative (power rule) has $y$ in the bottom.",
-     "latex": "\\dfrac{\\partial F}{\\partial y}=\\dfrac{1}{3\\,y^{2/3}}\\ \\to\\ \\infty\\ \\text{at}\\ y=0"
-    },
-    {
-     "explanation": "The start $(0,0)$ is on the bad line $y=0$, so the theorem promises nothing there. Solution 1 is the constant $y=0$: slope 0, and $0^{1/3}=0$.",
-     "latex": "y_1(t)=0"
-    },
-    {
-     "explanation": "Solution 2: separate, $y^{-1/3}dy=dt$. Power rule: $\\int y^{-1/3}dy=\\frac32y^{2/3}$. $y(0)=0$ makes $C=0$.",
-     "latex": "\\tfrac32\\,y^{2/3}=t"
-    },
-    {
-     "explanation": "Raise both sides to the power $\\frac32$.",
-     "latex": "y_2(t)=\\Big(\\dfrac{2t}{3}\\Big)^{3/2},\\quad t\\ge0"
-    }
-   ],
-   "answer": "$y=0$ and $y=(2t/3)^{3/2}$ both pass through $(0,0)$.\n\nNo contradiction: $\\partial F/\\partial y$ is infinite on $y=0$.",
-   "citations": [],
-   "id": "9d0b6428-2235-513c-9b7b-e925f1f7d7a2"
+   "id": "fdba0121-c53c-5f1a-bb2e-9206b6ce8d83"
   },
   {
    "type": "paragraph",
-   "text": "```graph\ntitle \"$dy/dt=y^{1/3}$: one curve per point, except on $y=0$\"\nx -3 4 label=\"$t$\"\ny -1.5 3 label=\"$y$\"\nregion \"abs(y)>0.1\" color=3 label=\"conditions hold ($y\\neq0$)\"\nfield \"cbrt(y)\"\nfamily c 0 3 0.5 \"if(t>c,(2*(t-c)/3)^1.5,0)\" color=4 label=\"solutions through $(0,0)$\"\nhline \"0\" color=2 label=\"$\\partial F/\\partial y=\\infty$\"\ndrag P -1 1 label=\"start\" color=1\nsolution \"cbrt(y)\" x0=\"P_x\" y0=\"P_y\" color=1 label=\"solution through your start\"\ncaption \"Drag the start anywhere off the axis: exactly one curve. The purple curves sit on $y=0$ and then lift off, so through any point on the axis pass many solutions.\"\n```",
+   "text": "Write the ODE as $y'=F(t,y)$. If $F$ and $\\partial F/\\partial y$ are real-valued and continuous on an open region around the initial point, the IVP has exactly one solution on some interval near its starting time.",
    "citations": [],
-   "id": "91171d67-2b99-515a-8143-f680016afa75"
+   "id": "92124708-4bee-5843-9b98-9742b5cfb46f"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Existence:** there is a solution through the starting point.",
+    "**Uniqueness:** there is only one such solution locally.",
+    "**If the conditions fail:** this theorem gives no conclusion; inspect the equation separately.",
+    "**Local guarantee:** even smooth formulas do not guarantee that a solution survives for all time."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "36ab9746-a8f2-5314-9864-7f87e5979044"
   },
   {
    "type": "worked_example",
-   "title": "Example 10 · A smooth $F$, yet the solution blows up",
-   "prompt": "Solve $\\dfrac{dy}{dt}=y^2$ with $y(0)=1$. For which $t$ does the solution exist?",
+   "title": "Example 5 · Check the point, without solving the ODE · original",
+   "prompt": "For $y'=(t+y)/(t-y)$, check whether the theorem guarantees a unique local solution through $(0,1)$ and through $(2,2)$.",
    "steps": [
     {
-     "explanation": "Check the theorem first: $F$ and its $y$-derivative are continuous everywhere, so there is exactly one solution.",
-     "latex": "F=y^2,\\qquad\\dfrac{\\partial F}{\\partial y}=2y"
+     "explanation": "The denominator vanishes on the line t = y.",
+     "latex": "F=\\dfrac{t+y}{t-y}"
     },
     {
-     "explanation": "Separate and integrate with the power rule, $\\int y^{-2}dy=-\\frac1y$.",
-     "latex": "\\dfrac{dy}{y^2}=dt\\ \\Rightarrow\\ -\\dfrac1y=t+C"
+     "explanation": "Use the quotient rule in y, holding t fixed.",
+     "latex": "\\dfrac{\\partial F}{\\partial y}=\\dfrac{2t}{(t-y)^2}"
     },
     {
-     "explanation": "Put in $y(0)=1$: $C=-1$. Solve for $y$.",
-     "latex": "-\\dfrac1y=t-1\\ \\Rightarrow\\ y=\\dfrac{1}{1-t}"
+     "explanation": "Both expressions are continuous near (0,1), which is off that line.",
+     "latex": ""
     },
     {
-     "explanation": "As $t\\to1$ the bottom goes to 0 and $y\\to\\infty$. The theorem only promises a solution **near** $t_0$; this one ends at $t=1$.",
-     "latex": "\\text{exists only for } t<1"
+     "explanation": "At (2,2), the original right side is undefined; it cannot define a classical solution through that point.",
+     "latex": ""
     }
    ],
-   "answer": "$y(t)=\\dfrac{1}{1-t}$, which exists only for $t<1$ (it blows up at $t=1$)",
+   "answer": "(0,1): a unique local solution is guaranteed. (2,2): the theorem does not apply, and the ODE itself is undefined there.",
    "citations": [],
-   "id": "d7ba1920-64b3-5650-9b84-4e7a1d3d1e0b"
-  },
-  {
-   "type": "paragraph",
-   "text": "```graph\ntitle \"$dy/dt=y^2$: drag the start, find the blow-up\"\nx -2 3 label=\"$t$\"\ny -2 6 label=\"$y$\"\nfield \"y^2\"\ndrag P 0 1 label=\"$(t_0,y_0)$\" color=1 snap=0.25\nsolution \"y^2\" x0=\"P_x\" y0=\"P_y\" color=1 label=\"the one solution\"\nvline \"P_x+1/P_y\" color=2 label=\"blow-up $t=t_0+1/y_0$\"\nreadout \"blows up at $t=$\" \"P_x+1/P_y\"\ncaption \"Start higher and it blows up sooner; start at $y_0=0$ and it stays $0$ forever. Below the axis it blows up to $-\\infty$ in the past.\"\n```",
-   "citations": [],
-   "id": "2a949d06-978a-514e-be13-0a418afa307a"
+   "id": "f36b70d8-5701-5841-9d23-c1caf61c4ed9"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 5 · A linear equation: the region is a strip",
-   "difficulty": "intermediate",
+   "title": "Try it 10 · Find a region containing the start · original",
+   "difficulty": "introductory",
    "origin": "original",
-   "prompt": "For $(t-3)\\dfrac{dy}{dt}+(\\ln t)\\,y=2t$ with $y(1)=2$:\n1. Where do the theorem's conditions hold?\n2. Is exactly one solution through the start guaranteed?",
+   "prompt": "For $(t-3)y'+(\\ln t)y=2t$ with $y(1)=2$, find the region containing the starting point where the theorem applies. Do not solve.",
    "solution": "",
    "steps": [
     {
-     "explanation": "Solve for $dy/dt$ to get $F$.",
-     "latex": "F=\\dfrac{2t-(\\ln t)\\,y}{t-3}"
+     "explanation": "First isolate the derivative.",
+     "latex": "F=\\dfrac{2t-(\\ln t)y}{t-3}"
     },
     {
-     "explanation": "Differentiate in $y$ ($t$ held fixed): only the $y$ term survives.",
+     "explanation": "Differentiate only with respect to y.",
      "latex": "\\dfrac{\\partial F}{\\partial y}=-\\dfrac{\\ln t}{t-3}"
     },
     {
-     "explanation": "$\\ln t$ needs $t>0$; dividing needs $t\\neq3$. Neither depends on $y$, so the good regions are vertical strips.",
-     "latex": "0<t<3\\quad\\text{or}\\quad t>3\\qquad(\\text{any }y)"
-    },
-    {
-     "explanation": "The start $(1,2)$ has $t=1$, inside $0<t<3$.",
-     "latex": "\\text{exactly one solution}"
+     "explanation": "The log requires t > 0, and division excludes t = 3. The start has t = 1.",
+     "latex": "0<t<3,\\qquad\\text{any real }y"
     }
    ],
-   "answer": "- **Conditions hold:** for $0<t<3$ and for $t>3$, at every $y$.\n- **Guaranteed?** Yes: the start is in $0<t<3$.",
+   "answer": "The strip $0<t<3$ contains the initial point and gives the local uniqueness guarantee.",
    "citations": [],
-   "id": "912822c1-229e-5468-9db0-36983c097486"
+   "id": "92ce0637-f0d4-5371-9f4f-41cb4504bb94"
   },
   {
-   "type": "practice_problem",
-   "title": "Try it 6 · Silent, not negative",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "For $t\\dfrac{dy}{dt}=y$: how many solutions pass through $(0,0)$? Through $(0,1)$?",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Both break at $t=0$, so the theorem says nothing about either start.",
-     "latex": "F=\\dfrac yt,\\quad\\dfrac{\\partial F}{\\partial y}=\\dfrac1t"
-    },
-    {
-     "explanation": "Separate and integrate ($\\ln|y|=\\ln|t|+C$): every solution is a line through the origin.",
-     "latex": "\\dfrac{dy}{y}=\\dfrac{dt}{t}\\ \\Rightarrow\\ y=c\\,t\\quad(\\text{any } c)"
-    },
-    {
-     "explanation": "Every line $y=ct$ passes through $(0,0)$: infinitely many solutions.",
-     "latex": "(0,0):\\ \\infty\\ \\text{solutions}"
-    },
-    {
-     "explanation": "Put $t=0$ into the ODE itself: every solution has $y(0)=0$, so none reaches $(0,1)$.",
-     "latex": "0\\cdot\\dfrac{dy}{dt}=y(0)\\ \\Rightarrow\\ y(0)=0"
-    }
-   ],
-   "answer": "- **Through $(0,0)$:** infinitely many (all $y=ct$).\n- **Through $(0,1)$:** none.\n\nWhere the conditions fail, anything can happen.",
+   "type": "paragraph",
+   "text": "**A local solution can end:** $y'=y^2$, $y(0)=1$ has solution $y=1/(1-t)$ on $t<1$. It blows up at $t=1$ despite smooth $F$ and $F_y$.",
    "citations": [],
-   "id": "b8b61498-c887-5cc3-98d7-1e90e99b4a57"
+   "id": "6fbb0a45-ceda-5784-9522-95d2788ce5ac"
+  },
+  {
+   "type": "paragraph",
+   "text": "**A failed test can allow multiple solutions:** for $y'=y^{1/3}$ at $y=0$, $F$ is continuous but $F_y$ is not. Both $y=0$ and a function that stays zero for $t\\le0$ then follows $(2t/3)^{3/2}$ for $t>0$ solve the IVP with $y(0)=0$.",
+   "citations": [],
+   "id": "450a1dcd-b280-5a7d-84ea-ac021856b687"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"A failed uniqueness test can allow several curves\"\nx -1 4 label=\"$t$\"\ny -0.2 3 label=\"$y$\"\nfamily c 0 2 0.5 \"if(t>c,(2*max(0,t-c)/3)^1.5,0)\" color=2\nhline \"0\" label=\"zero solution\" color=1\ncaption \"Each purple solution stays at zero until its own departure time. They all pass through (0,0); the y-partial derivative of F fails there.\"\n```",
+   "citations": [],
+   "id": "f99baec4-5d4a-5b47-8b9a-a3bc3ba59e05"
   }
  ]
 }

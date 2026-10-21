@@ -9,371 +9,442 @@
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 1: Exact equations",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
-    },
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
-    }
-   ],
-   "id": "26074f2e-9855-510c-b709-2732d4372333"
-  },
-  {
-   "type": "paragraph",
-   "text": "Every first-order ODE can be written as $M\\,dt+N\\,dy=0$.\n- $M$, $N$: expressions in $t$ and $y$\n- $U(t,y)$: one function whose two slopes are $M$ and $N$ (if it exists)\n- $\\dfrac{\\partial U}{\\partial t}$: a **partial derivative** (differentiate in $t$ while treating $y$ as a fixed number)\n\nThe equation is **exact** when $M=\\dfrac{\\partial U}{\\partial t}$ and $N=\\dfrac{\\partial U}{\\partial y}$.\n\nThen the left side is the change of $U$ for a small step ($dU$). So the equation says $U$ doesn't change:",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
-    },
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "cfa21f9f-1d90-48fa-a783-15abb54c6690"
-    }
-   ],
-   "id": "1514173f-8db6-5d1b-963d-84f3c8cbcd3d"
-  },
-  {
-   "type": "equation",
-   "latex": "M\\,dt+N\\,dy=\\dfrac{\\partial U}{\\partial t}dt+\\dfrac{\\partial U}{\\partial y}dy=dU=0",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
-    }
-   ],
-   "id": "6ee03401-9bcf-5aad-81b4-4c9522ffe5e6"
-  },
-  {
-   "type": "paragraph",
-   "text": "So $U$ never changes along a solution: **every solution is a curve $U(t,y)=C$**.\n\nYou can check an equation is exact without knowing $U$ (Theorem 4.1).\n\nIt works because both sides equal “differentiate $U$ once in $t$ and once in $y$”, and the order doesn't matter:",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
-    }
-   ],
-   "id": "792e4f3c-c08e-5e2a-b49c-81b21434f869"
-  },
-  {
-   "type": "equation",
-   "latex": "M\\,dt+N\\,dy=0\\ \\text{is exact}\\iff\\dfrac{\\partial M}{\\partial y}=\\dfrac{\\partial N}{\\partial t}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
-    }
-   ],
-   "id": "5a6f6338-39a2-5f60-a0e7-de7611f26fed"
-  },
-  {
-   "type": "paragraph",
-   "text": "```steps\ntitle \"Finding $U$ (lecture Example 4.1)\"\n$$ (2ty+3t^2)\\,dt+t^2\\,dy=0 $$\nHere $M=2ty+3t^2$ and $N=t^2$.\n$$ \\dfrac{\\partial M}{\\partial y}=\\hl{2t},\\qquad \\dfrac{\\partial N}{\\partial t}=\\hl{2t} $$\nTest: hold $t$ fixed to get $\\partial(2ty)/\\partial y=2t$; hold $y$ fixed to get $\\partial(t^2)/\\partial t=2t$. Equal, so exact.\n$$ \\dfrac{\\partial U}{\\partial t}=2ty+3t^2 $$\nSo some $U$ has $M$ as its $t$-slope. Undo that slope by integrating in $t$.\n$$ U=\\hl{t^2y+t^3+f(y)} $$\nWith $y$ fixed, $\\int 2ty\\,dt=t^2y$ and $\\int 3t^2dt=t^3$. The \"constant\" can be any $f(y)$, since $\\partial f(y)/\\partial t=0$.\n$$ \\dfrac{\\partial U}{\\partial y}=\\hl{t^2+f^{\\prime}(y)}=t^2 $$\nDifferentiate in $y$ and set it equal to $N=t^2$.\n$$ f^{\\prime}(y)=\\hl{0}\\ \\Rightarrow\\ f(y)=\\text{const} $$\nThe $t^2$ cancels. What is left must contain only $y$ (if a $t$ survives, you made a mistake).\n$$ \\hl{t^2y+t^3=C} $$\nThe solution is $U=C$ (the constant from $f$ is absorbed into $C$).\n```",
+   "text": "Calculus refresher: partial and implicit differentiation",
    "citations": [],
-   "id": "ce21d221-f523-5290-8cc1-004f977d9cc4"
+   "id": "dc052f48-dafc-5771-902c-30508fb86bca"
   },
   {
    "type": "paragraph",
-   "text": "The lecture also does it in the other order:\n- **Integrate $N$ in $y$:** $U=\\int t^2\\,dy=t^2y+g(t)$\n- **Match $M$:** $g^{\\prime}(t)=3t^2$, so $g=t^3$\n\nSame $U$. Start with whichever integral is easier.",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "cfa21f9f-1d90-48fa-a783-15abb54c6690"
-    }
-   ],
-   "id": "90566033-2982-548b-86fa-6ea8bd6bb0d0"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 1 · Lecture (a): the answer is a family of curves",
-   "prompt": "Solve $3t\\,dt+4y\\,dy=0$.",
-   "steps": [
-    {
-     "explanation": "$M=3t$ has no $y$ and $N=4y$ has no $t$, so both test derivatives are $0$: exact.",
-     "latex": "\\dfrac{\\partial M}{\\partial y}=0=\\dfrac{\\partial N}{\\partial t}"
-    },
-    {
-     "explanation": "Integrate $M$ in $t$ ($\\int t\\,dt=\\tfrac{t^2}{2}$) and add $f(y)$.",
-     "latex": "U=\\tfrac32t^2+f(y)"
-    },
-    {
-     "explanation": "Match $N$. This time $f$ is not constant: $\\int 4y\\,dy=2y^2$.",
-     "latex": "f^{\\prime}(y)=4y\\ \\Rightarrow\\ f(y)=2y^2"
-    },
-    {
-     "explanation": "Set $U=C$ and double it to clear the fraction ($2C$ is just another constant, so call it $C$ again).",
-     "latex": "3t^2+4y^2=C"
-    }
-   ],
-   "answer": "$3t^2+4y^2=C$: one ellipse for each $C>0$",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
-    }
-   ],
-   "id": "54eceb1f-235c-58c8-9fc5-d62d5aa5339f"
-  },
-  {
-   "type": "paragraph",
-   "text": "```graph3d\ntitle \"Solutions are level curves of $U$ (lecture (a))\"\nx -2 2 label=\"$t$\"\ny -2 2 label=\"$y$\"\nz 0 28 label=\"$U$\"\nview az=-55 el=30\nslider C 1 24 8 step=1 label=\"$C$\"\nsurface \"3*x^2+4*y^2\" label=\"$U=3t^2+4y^2$\" mesh=30\nplane \"C\" label=\"where $U=C$: one solution curve\"\ncaption \"Slide the plane: each height $C$ cuts the bowl in one ellipse, and its shadow on the floor is the solution $3t^2+4y^2=C$. An initial condition picks the height.\"\n```",
+   "text": "The same letter $y$ plays two different roles this week. When taking a **partial derivative**, hold the other variable fixed; when differentiating an equation along a solution $y(t)$, use the chain rule.",
    "citations": [],
-   "id": "2d198151-6742-551f-a848-f6f2de5ce6c0"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 2 · Lecture (b): start from $dy/dt$, then use a starting point",
-   "prompt": "Solve $\\dfrac{dy}{dt}=\\dfrac{t-y}{t+y}$ with $y(1)=0$.",
-   "steps": [
-    {
-     "explanation": "Multiply both sides by $(t+y)\\,dt$, then move everything to the left. The minus sign belongs to $N$.",
-     "latex": "(t-y)\\,dt-(t+y)\\,dy=0"
-    },
-    {
-     "explanation": "Test with $M=t-y$ and $N=-t-y$.",
-     "latex": "\\dfrac{\\partial M}{\\partial y}=-1=\\dfrac{\\partial N}{\\partial t}"
-    },
-    {
-     "explanation": "Integrate $M$ in $t$; with $y$ fixed, $\\int y\\,dt=ty$.",
-     "latex": "U=\\dfrac{t^2}{2}-ty+f(y)"
-    },
-    {
-     "explanation": "Match $N$: $-t+f^{\\prime}(y)=-t-y$, so $f^{\\prime}(y)=-y$.",
-     "latex": "f(y)=-\\tfrac{y^2}{2}"
-    },
-    {
-     "explanation": "Set $U=C$ and double.",
-     "latex": "t^2-2ty-y^2=C"
-    },
-    {
-     "explanation": "The starting point picks the curve: put $t=1$, $y=0$ into the left side.",
-     "latex": "C=1-0-0=1"
-    },
-    {
-     "explanation": "Check by differentiating in $t$, with $y=y(t)$.\n\n**Product rule:** $\\frac{d}{dt}(2ty)=2y+2ty^{\\prime}$.\n\n**Chain rule:** $\\frac{d}{dt}y^2=2yy^{\\prime}$.",
-     "latex": "2t-2y-2ty^{\\prime}-2yy^{\\prime}=0\\ \\Rightarrow\\ y^{\\prime}=\\dfrac{t-y}{t+y}\\ \\checkmark"
-    }
-   ],
-   "answer": "$t^2-2ty-y^2=1$",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
-    }
-   ],
-   "id": "5c4342dd-f164-5a28-8a8b-3326c1d1b05e"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 3 · Lecture (d): when the test fails",
-   "prompt": "Is $\\dfrac{dy}{dt}=\\dfrac{t}{t+y}$ exact?",
-   "steps": [
-    {
-     "explanation": "Cross-multiply and move everything to the left.",
-     "latex": "t\\,dt-(t+y)\\,dy=0"
-    },
-    {
-     "explanation": "Test with $M=t$ and $N=-(t+y)$.",
-     "latex": "\\dfrac{\\partial M}{\\partial y}=0\\ \\neq\\ -1=\\dfrac{\\partial N}{\\partial t}"
-    },
-    {
-     "explanation": "No $U$ exists, so the recipe can’t start.\n\nTopic 2 repairs some equations like this one, but not this one: both of its tests fail here.",
-     "latex": ""
-    }
-   ],
-   "answer": "Not exact",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
-    }
-   ],
-   "id": "493ad7c4-8ce1-5e19-b1e1-0b54cf8d5a05"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 1 · Lecture (c): find the mistake",
-   "difficulty": "introductory",
-   "origin": "source",
-   "prompt": "A classmate rewrites $2ty\\,\\dfrac{dy}{dt}=t^2-y^2$ as $(t^2-y^2)\\,dt+2ty\\,dy=0$.\n\nThey find $\\dfrac{\\partial M}{\\partial y}=-2y\\neq2y=\\dfrac{\\partial N}{\\partial t}$ and give up.\n\nWhat went wrong? Solve it.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Moving $2ty\\,dy$ to the left flips its sign, so $N=-2ty$, not $+2ty$.",
-     "latex": "(t^2-y^2)\\,dt-2ty\\,dy=0"
-    },
-    {
-     "explanation": "Now the test passes.",
-     "latex": "\\dfrac{\\partial M}{\\partial y}=-2y=\\dfrac{\\partial N}{\\partial t}"
-    },
-    {
-     "explanation": "Integrate $M$ in $t$ ($y^2$ is a constant here, so $\\int y^2dt=ty^2$).",
-     "latex": "U=\\dfrac{t^3}{3}-ty^2+f(y)"
-    },
-    {
-     "explanation": "Match $N$: $-2ty+f^{\\prime}(y)=-2ty$, so $f$ is constant. Set $U=C$ and multiply by 3.",
-     "latex": "t^3-3ty^2=C"
-    }
-   ],
-   "answer": "A lost minus sign. The solution is $t^3-3ty^2=C$.",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
-    }
-   ],
-   "id": "75863bcf-afe0-53ab-9800-1bf007522dd7"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 2 · Choose the constant",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "Find the number $k$ that makes $(2t\\sin y+y)\\,dt+(t^2\\cos y+kt)\\,dy=0$ exact.\n\nThen solve it with $y(1)=\\dfrac{\\pi}{2}$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Both test derivatives, using $\\frac{d}{dy}\\sin y=\\cos y$.",
-     "latex": "\\begin{gathered}\\dfrac{\\partial M}{\\partial y}=2t\\cos y+1, \\\\ \\dfrac{\\partial N}{\\partial t}=2t\\cos y+k\\end{gathered}"
-    },
-    {
-     "explanation": "They agree for every $t$ and $y$ only if $k=1$.",
-     "latex": "k=1"
-    },
-    {
-     "explanation": "Integrate $M$ in $t$ ($\\sin y$ is a constant factor).",
-     "latex": "U=t^2\\sin y+ty+f(y)"
-    },
-    {
-     "explanation": "Match $N=t^2\\cos y+t$: $\\partial U/\\partial y=t^2\\cos y+t+f^{\\prime}(y)$, so $f^{\\prime}=0$.",
-     "latex": "U=t^2\\sin y+ty"
-    },
-    {
-     "explanation": "Put in $t=1$, $y=\\frac{\\pi}{2}$, with $\\sin\\frac{\\pi}{2}=1$.",
-     "latex": "C=1+\\dfrac{\\pi}{2}"
-    }
-   ],
-   "answer": "$k=1$; $\\ t^2\\sin y+ty=1+\\dfrac{\\pi}{2}$",
-   "citations": [],
-   "id": "31163821-4ea4-5067-9bdd-a6aea0b374ce"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Topic 2: Integrating factors",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
-    },
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
-    }
-   ],
-   "id": "9786016b-d595-5181-8e32-b5a1aeab2ff3"
-  },
-  {
-   "type": "paragraph",
-   "text": "If an equation isn't exact, multiply it by a function $\\mu(t,y)$ (“mu”, an **integrating factor**).\n\nThe new equation $\\mu M\\,dt+\\mu N\\,dy=0$ has:\n- **the same solution curves** (wherever $\\mu\\neq0$)\n- **new coefficients**, which may pass the test\n\nThe lecture's two tests (Spiegel's Theorems 1 and 2) find a $\\mu$ that depends on one variable only:",
-   "citations": [
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
-    },
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
-    }
-   ],
-   "id": "3b95da59-1dc3-5a1a-b8b9-8e57ebfd129f"
+   "id": "8a88d882-52ac-5eb1-9dca-268e820d5e80"
   },
   {
    "type": "table",
    "columns": [
-    "",
-    "Compute",
-    "Works if only this is left",
-    "Integrating factor"
+    "Task",
+    "Example",
+    "Reason"
    ],
    "rows": [
     [
-     "Test 1",
-     "$\\dfrac{1}{N}\\Big(\\dfrac{\\partial M}{\\partial y}-\\dfrac{\\partial N}{\\partial t}\\Big)$",
-     "$t$: call it $f(t)$",
-     "$\\mu=e^{\\int f(t)\\,dt}$"
+     "Differentiate $ty^2$ partially in $t$",
+     "$\\dfrac{\\partial}{\\partial t}(ty^2)=y^2$",
+     "Hold $y$ fixed: it behaves like a constant multiplier."
     ],
     [
-     "Test 2",
-     "$\\dfrac{1}{M}\\Big(\\dfrac{\\partial N}{\\partial t}-\\dfrac{\\partial M}{\\partial y}\\Big)$",
-     "$y$: call it $g(y)$",
-     "$\\mu=e^{\\int g(y)\\,dy}$"
+     "Differentiate $ty^2$ partially in $y$",
+     "$\\dfrac{\\partial}{\\partial y}(ty^2)=2ty$",
+     "Hold $t$ fixed."
+    ],
+    [
+     "Differentiate $ty(t)^2$ along a curve",
+     "$\\dfrac{d}{dt}(ty^2)=y^2+2tyy^{\\prime}$",
+     "Both $t$ and $y(t)$ change: product rule, then chain rule."
     ]
    ],
+   "citations": [],
+   "id": "05ec73f1-2c55-5b5e-a4e4-82980a226517"
+  },
+  {
+   "type": "paragraph",
+   "text": "Integration with respect to one variable follows the same “hold the other fixed” idea: $\\int2ty\\,dt=t^2y+g(y)$. Any function $g(y)$ disappears when partially differentiated in $t$, so it is more general than adding just a number.",
+   "citations": [],
+   "id": "2ed20d0a-a3cf-5e6d-9fce-442dc7d7c48b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · Check which variable is fixed · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $U(t,y)=t^2y+y^3$, find (a) $U_t=\\partial U/\\partial t$ and (b) $U_y=\\partial U/\\partial y$. Then find (c) $\\int3y^2\\,dt$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Hold y fixed for (a).",
+     "latex": "U_t=2ty"
+    },
+    {
+     "explanation": "Hold t fixed for (b).",
+     "latex": "U_y=t^2+3y^2"
+    },
+    {
+     "explanation": "In (c), y² is constant with respect to t.",
+     "latex": "\\int3y^2\\,dt=3ty^2+g(y)"
+    }
+   ],
+   "answer": "(a) $2ty$. (b) $t^2+3y^2$. (c) $3ty^2+g(y)$.",
+   "citations": [],
+   "id": "35cfa5ae-80c2-5d36-9c81-f49df286e15e"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Week 4 overview",
+   "citations": [],
+   "id": "c17c355b-49eb-5540-a3a2-0ba2edcc090e"
+  },
+  {
+   "type": "paragraph",
+   "text": "An exact equation describes a function that stays constant along its solutions. First see what that means, then learn to recover the function. Only after that will we introduce integrating factors for equations that are not already exact.",
+   "citations": [],
+   "id": "e0aba764-fd92-519b-a89a-82ad6b9ab760"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 1: What “exact” means",
    "citations": [
     {
      "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
      "version": 1,
-     "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
+     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "cfa21f9f-1d90-48fa-a783-15abb54c6690"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
     }
    ],
-   "id": "3174f363-ddfe-559a-81e8-ebc9b0d3fa38"
+   "id": "b4d3e444-188a-5ef0-acad-ed7e5e29acd3"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Begin with a curve you already understand",
+   "citations": [],
+   "id": "96cd044d-608e-55b7-9d0a-a74c6380ece9"
   },
   {
    "type": "paragraph",
-   "text": "Note:\n- The two tests divide by different things and subtract in opposite orders.\n- A constant counts as “only $t$” and “only $y$”.\n\nThen multiply **both** $M$ and $N$ by $\\mu$, re-test, and solve as in Topic 1.",
+   "text": "The relation $t^2+y^2=9$ describes a circle. On a differentiable branch $y(t)$, differentiate both sides to get $2t+2yy^{\\prime}=0$; in differential form this is $2t\\,dt+2y\\,dy=0$.",
    "citations": [],
-   "id": "c47b61ae-523a-5da0-8f03-89e0d11f6a89"
+   "id": "7aa3dda3-2298-5f03-be0e-b29154b89fa3"
+  },
+  {
+   "type": "paragraph",
+   "text": "That equation says the quantity $U(t,y)=t^2+y^2$ does not change as you move along the solution. Solving the differential equation reverses this process: recover $U$, then write $U(t,y)=K$, with $K$ a constant.",
+   "citations": [],
+   "id": "3ef6e20a-f5f5-516d-87db-73fa6aacc97e"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Each constant selects a different curve\"\nx -4 4 label=\"$t$\"\ny -4 4 label=\"$y$\"\nequal\nslider K 1 12 9 step=1 label=\"$K$\"\nlevel \"x^2+y^2\" value=\"K\" label=\"$t^2+y^2=K$\" color=1\npoint \"0\" \"sqrt(K)\" label=\"positive branch at t=0\"\ncaption \"The whole circle is a level curve. A solution y(t) uses a branch; the top and bottom branches cannot be joined through a vertical tangent as one differentiable y(t).\"\n```",
+   "citations": [],
+   "id": "0a37adbd-818d-5c05-bea7-70922da99aea"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Read M and N from the differential form",
+   "citations": [],
+   "id": "2dac827e-ab09-5825-a335-c81b08ee2dcf"
+  },
+  {
+   "type": "equation",
+   "latex": "M(t,y)\\,dt+N(t,y)\\,dy=0",
+   "display": true,
+   "citations": [],
+   "id": "86b50c29-8ddb-5929-a690-da7e9ef29049"
+  },
+  {
+   "type": "paragraph",
+   "text": "$M$ is the expression multiplying $dt$, and $N$ multiplies $dy$. Exactness means there is one underlying function $U$ with $U_t=M$ and $U_y=N$, so the left side is its total differential $dU$.",
+   "citations": [],
+   "id": "4dbfb207-76b7-5698-b8c5-924349c20765"
+  },
+  {
+   "type": "equation",
+   "latex": "dU=U_t\\,dt+U_y\\,dy",
+   "display": true,
+   "citations": [],
+   "id": "695a8a53-a8ea-585f-8714-353d46585174"
+  },
+  {
+   "type": "paragraph",
+   "text": "To test exactness, compare $M_y=\\partial M/\\partial y$ with $N_t=\\partial N/\\partial t$. If they are equal, the equation is exact locally, assuming continuous partial derivatives on a neighbourhood; all the potentials constructed below are checked directly.",
+   "citations": [],
+   "id": "298d4211-e79f-558e-bb21-ff1384690291"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{\\partial M}{\\partial y}=\\dfrac{\\partial N}{\\partial t}",
+   "display": true,
+   "citations": [],
+   "id": "5f390c8d-78d6-5bd0-8bf5-f51a7e6299c0"
+  },
+  {
+   "type": "paragraph",
+   "text": "The cross derivatives agree because they would both differentiate the same U once in each variable. Do this test before trying to reconstruct U.",
+   "citations": [],
+   "id": "eda8d95a-22ca-59c5-af34-67055e1f8292"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · Identify and test; do not solve yet · lecture equations",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Write $M,N$ and test exactness for:\n\n1. $y'=\\dfrac{t-y}{t+y}$.\n2. $y'=\\dfrac{t}{t+y}$.\n\nCross-multiply, then move all terms to the left. Keep track of the minus sign.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "1. Move the dy term to the left.",
+     "latex": "(t-y)\\,dt-(t+y)\\,dy=0"
+    },
+    {
+     "explanation": "So M = t − y and N = −t − y; the test passes.",
+     "latex": "M_y=-1=N_t"
+    },
+    {
+     "explanation": "2. Here M = t and N = −t − y; the derivatives differ.",
+     "latex": "M_y=0\\ne-1=N_t"
+    }
+   ],
+   "answer": "1. Exact. 2. Not exact. The original slope formulas require t + y ≠ 0.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
+    }
+   ],
+   "id": "b8757f00-3f05-5c92-a893-b59d5921c43a"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 2: Recover the function U",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "cfa21f9f-1d90-48fa-a783-15abb54c6690"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
+    }
+   ],
+   "id": "b6e1cd39-5a19-5374-9bfb-a549486d7bb5"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Integrate one part, then use the other to finish",
+   "citations": [],
+   "id": "e510c8ae-1599-5cdf-bc51-6561cb2f0d7f"
+  },
+  {
+   "type": "paragraph",
+   "text": "Integrating $M$ with respect to $t$ gives part of $U$ and an unknown function $g(y)$. Differentiate that result in $y$ and match it to $N$ to discover what $g(y)$ must be.",
+   "citations": [],
+   "id": "3e6888b6-6657-5e45-995c-85bc047694c7"
   },
   {
    "type": "worked_example",
-   "title": "Example 4 · Lecture (e): Test 1 fails, Test 2 works",
-   "prompt": "Make $y\\,dt+(3+3t-y)\\,dy=0$ exact.",
+   "title": "Example 1 · A nonconstant “constant of integration” · original",
+   "prompt": "Solve $2ty\\,dt+(t^2+2y)\\,dy=0$.",
    "steps": [
     {
-     "explanation": "$M=y$, $N=3+3t-y$. Not exact.",
-     "latex": "\\dfrac{\\partial M}{\\partial y}=1\\ \\neq\\ 3=\\dfrac{\\partial N}{\\partial t}"
+     "explanation": "Identify the two expressions and test them.",
+     "latex": "M_y=2t=N_t"
     },
     {
-     "explanation": "Test 1: the result still contains $y$, so it fails.",
-     "latex": "\\dfrac{1}{N}(1-3)=\\dfrac{-2}{3+3t-y}"
+     "explanation": "Integrate M in t, keeping y fixed.",
+     "latex": "U=t^2y+g(y)"
     },
     {
-     "explanation": "Test 2: only $y$ is left.",
-     "latex": "\\dfrac{1}{M}(3-1)=\\dfrac{2}{y}=g(y)"
+     "explanation": "Differentiate in y and set it equal to N.",
+     "latex": "t^2+g^{\\prime}(y)=t^2+2y"
     },
     {
-     "explanation": "$\\int\\frac{1}{y}dy=\\ln|y|$, and $2\\ln|y|=\\ln y^2$, so $e^{2\\ln|y|}=y^2$ (not $2y$).",
-     "latex": "\\mu=e^{\\int\\frac{2}{y}dy}=e^{2\\ln|y|}=y^2"
+     "explanation": "The known t² terms cancel, leaving an ordinary integral in y.",
+     "latex": "g^{\\prime}(y)=2y\\quad\\Rightarrow\\quad g(y)=y^2"
     },
     {
-     "explanation": "Multiply **both** parts by $y^2$ (Eq. (4.13)) and re-test: both derivatives are now $3y^2$.",
-     "latex": "y^3\\,dt+(3y^2+3ty^2-y^3)\\,dy=0"
+     "explanation": "Combine the terms and set U equal to a constant.",
+     "latex": "t^2y+y^2=K"
     }
    ],
-   "answer": "$\\mu=y^2$; the new equation is exact",
+   "answer": "$t^2y+y^2=K$. A separate numeric constant inside $g$ can be absorbed into $K$.",
+   "citations": [],
+   "id": "054d2120-66d9-59c2-b7fe-c0d86bcd4602"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 3 · Finish the lecture’s missing steps · Example 4.1",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "For $(2ty+3t^2)\\,dt+t^2\\,dy=0$, the test gives $M_y=N_t=2t$. After integrating $M$ we have $U=t^2y+t^3+g(y)$.\n\nFind $U_y$, determine $g(y)$, and write the implicit solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Differentiate in y; t³ is a constant for this partial derivative.",
+     "latex": "U_y=t^2+g^{\\prime}(y)"
+    },
+    {
+     "explanation": "Match N = t².",
+     "latex": "g^{\\prime}(y)=0"
+    },
+    {
+     "explanation": "A constant g is absorbed into the final arbitrary constant.",
+     "latex": "t^2y+t^3=K"
+    }
+   ],
+   "answer": "$U_y=t^2+g^{\\prime}(y)$, $g$ is constant, and $t^2y+t^3=K$.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "cfa21f9f-1d90-48fa-a783-15abb54c6690"
+    }
+   ],
+   "id": "ba90f0fe-066b-5959-abad-0a736e2a084b"
+  },
+  {
+   "type": "paragraph",
+   "text": "You can start from $N$ instead: integrating $t^2$ in $y$ gives $U=t^2y+h(t)$. Matching $U_t=2ty+3t^2$ gives $h^{\\prime}(t)=3t^2$, so $h=t^3$ and the same answer results. Choose the easier integral.",
+   "citations": [],
+   "id": "0f37a0b6-8ea4-5e53-b24d-d2cd979b13e6"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 4 · A constant chooses a curve · lecture (a), added initial condition",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "The lecture equation $3t\\,dt+4y\\,dy=0$ gives $U=\\frac32t^2+2y^2$. Write its solution without fractions, then choose the constant for $y(2)=2$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Set U equal to a constant and multiply by 2; rename the constant.",
+     "latex": "3t^2+4y^2=K"
+    },
+    {
+     "explanation": "Substitute the starting point.",
+     "latex": "K=3(2^2)+4(2^2)=28"
+    }
+   ],
+   "answer": "$3t^2+4y^2=28$. Near $(2,2)$, use the positive y-branch.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
+    }
+   ],
+   "id": "39b30845-4157-56c4-a265-87f44b3519ae"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · From a slope equation to an IVP · lecture (b), added initial condition",
+   "prompt": "Solve $y'=(t-y)/(t+y)$, $y(1)=0$.",
+   "steps": [
+    {
+     "explanation": "The earlier test showed exactness with M = t − y, N = −t − y.",
+     "latex": "(t-y)\\,dt-(t+y)\\,dy=0"
+    },
+    {
+     "explanation": "Integrate M in t; y is held fixed.",
+     "latex": "U=\\dfrac{t^2}{2}-ty+g(y)"
+    },
+    {
+     "explanation": "Match the y-partial derivative to N.",
+     "latex": "-t+g^{\\prime}(y)=-t-y"
+    },
+    {
+     "explanation": "Integrate the remaining y-expression.",
+     "latex": "g(y)=-\\dfrac{y^2}{2}"
+    },
+    {
+     "explanation": "Set U constant, multiply by 2, and use the start.",
+     "latex": "t^2-2ty-y^2=K,\\quad K=1"
+    },
+    {
+     "explanation": "Check using implicit differentiation and solve for the derivative.",
+     "latex": "2t-2y-2ty^{\\prime}-2yy^{\\prime}=0"
+    }
+   ],
+   "answer": "$t^2-2ty-y^2=1$, on the branch through $(1,0)$ where $t+y\\ne0$. Differentiating recovers $y^{\\prime}=(t-y)/(t+y)$.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
+    }
+   ],
+   "id": "2785f86b-0d9f-5f17-8b5e-5a0f2e2c80ad"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 5 · A sign decides the test · lecture (c)",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "A student rewrites $2tyy^{\\prime}=t^2-y^2$ as $(t^2-y^2)\\,dt+2ty\\,dy=0$ and finds that it is not exact.\n\nCorrect the rearrangement and solve the corrected equation.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Moving the dy term left requires a minus sign.",
+     "latex": "(t^2-y^2)\\,dt-2ty\\,dy=0"
+    },
+    {
+     "explanation": "The corrected cross derivatives agree.",
+     "latex": "M_y=-2y=N_t"
+    },
+    {
+     "explanation": "Integrate M and match N; the remaining g is constant.",
+     "latex": "U=\\dfrac{t^3}{3}-ty^2+g(y),\\quad g^{\\prime}(y)=0"
+    },
+    {
+     "explanation": "Set U constant and multiply by 3.",
+     "latex": "t^3-3ty^2=K"
+    }
+   ],
+   "answer": "The dy coefficient must be $-2ty$; the solution relation is $t^3-3ty^2=K$.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
+    }
+   ],
+   "id": "665b0189-0789-5273-8f68-bdb5179b74d5"
+  },
+  {
+   "type": "paragraph",
+   "text": "To check an answer $U=K$, either compare $U_t$ and $U_y$ with $M,N$, or differentiate along $y(t)$ and recover the original equation. An implicit relation describes possible curves; use a differentiable branch satisfying any original denominators and initial conditions.",
+   "citations": [],
+   "id": "c7b56e88-14a9-5537-a576-906c9c125c84"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 3: Make a non-exact equation exact",
    "citations": [
     {
      "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
@@ -386,158 +457,195 @@
      "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
     }
    ],
-   "id": "b4581495-9444-5cf6-bb17-f799accc6be5"
+   "id": "d552b4ca-1db1-5982-8949-14ba0705c181"
+  },
+  {
+   "type": "paragraph",
+   "text": "An **integrating factor** $\\mu$ multiplies both terms: $\\mu M\\,dt+\\mu N\\,dy=0$. We look for a multiplier that makes the new cross derivatives equal; where $\\mu$ is finite and nonzero, this preserves the original equation.",
+   "citations": [],
+   "id": "35023663-4078-55a7-b5fb-018565c8077f"
+  },
+  {
+   "type": "paragraph",
+   "text": "First test exactness. If it fails, try the following two tests separately; they find certain integrating factors, not every possible one.",
+   "citations": [],
+   "id": "c7756bd3-0b90-5023-980d-5554c511cf97"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "First try a factor depending only on t",
+   "citations": [],
+   "id": "d4272f4e-fb89-52e7-9977-6467d4ea3138"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{M_y-N_t}{N}=f(t)\\quad\\Rightarrow\\quad\\mu(t)=e^{\\int f(t)\\,dt}",
+   "display": true,
+   "citations": [],
+   "id": "9719b583-3ac8-57f4-9c1b-d57b82be4bfb"
+  },
+  {
+   "type": "paragraph",
+   "text": "The ratio must simplify to a function of $t$ only. This follows by expanding $(\\mu M)_y=(\\mu N)_t$ with $\\mu=\\mu(t)$: the remaining equation is $\\mu^{\\prime}/\\mu=(M_y-N_t)/N$.",
+   "citations": [],
+   "id": "2e87bf63-1a7c-59e5-a784-381e2df0b0ef"
   },
   {
    "type": "worked_example",
-   "title": "Example 5 · Pre-tutorial 4: finish lecture (e)",
-   "prompt": "Solve $y^3\\,dt+y^2(3+3t-y)\\,dy=0$, Eq. (4.13).",
+   "title": "Example 3 · Find a t-only factor · original",
+   "prompt": "Solve $(t^2+y^2+t)\\,dt+ty\\,dy=0$ with $y(1)=1$, taking $t>0$.",
    "steps": [
     {
-     "explanation": "Integrate $M=y^3$ in $t$: with $y$ fixed it is a constant.",
-     "latex": "U=ty^3+f(y)"
+     "explanation": "The cross derivatives are 2y and y, so the equation is not exact.",
+     "latex": "\\dfrac{M_y-N_t}{N}=\\dfrac{2y-y}{ty}=\\dfrac1t"
     },
     {
-     "explanation": "Match $N=3y^2+3ty^2-y^3$: the $3ty^2$ cancels.",
-     "latex": "3ty^2+f^{\\prime}(y)=3y^2+3ty^2-y^3\\ \\Rightarrow\\ f^{\\prime}(y)=3y^2-y^3"
+     "explanation": "Integrate the ratio; on t > 0 the factor is t.",
+     "latex": "\\mu=e^{\\ln t}=t"
     },
     {
-     "explanation": "Power rule: $\\int y^n dy=\\frac{y^{n+1}}{n+1}$.",
-     "latex": "f(y)=y^3-\\dfrac{y^4}{4}"
+     "explanation": "Multiply both terms and re-test.",
+     "latex": "(t^3+ty^2+t^2)\\,dt+t^2y\\,dy=0"
     },
     {
-     "explanation": "Set $U=C$ and multiply by 4.",
-     "latex": "4(t+1)y^3-y^4=C"
+     "explanation": "The new cross derivatives are both 2ty. Integrate in t and match N.",
+     "latex": "U=\\dfrac{t^4}{4}+\\dfrac{t^2y^2}{2}+\\dfrac{t^3}{3}"
     },
     {
-     "explanation": "Lost solutions? Multiplying by $\\mu=y^2$ can hide the line where $\\mu=0$.\n\n$y=0$ does solve the original ($M=0$ and $dy=0$). It is the $C=0$ curve, so nothing is lost.",
-     "latex": ""
+     "explanation": "Multiply U = constant by 12 and apply the start.",
+     "latex": "3t^4+6t^2y^2+4t^3=13"
     }
    ],
-   "answer": "$4(t+1)y^3-y^4=C$",
+   "answer": "$3t^4+6t^2y^2+4t^3=13$, using the positive y-branch near $(1,1)$. The multiplier t is nonzero on the chosen domain.",
+   "citations": [],
+   "id": "f1af17f6-6a08-50fa-b2e4-ac9ff43af3d9"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 6 · Practise finding the factor only · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $2y\\,dt+t\\,dy=0$ on $t>0$, find the t-only integrating factor. Multiply both terms and check exactness; stop there.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Here M = 2y, N = t.",
+     "latex": "\\dfrac{M_y-N_t}{N}=\\dfrac{2-1}{t}=\\dfrac1t"
+    },
+    {
+     "explanation": "The factor is t.",
+     "latex": "2ty\\,dt+t^2\\,dy=0"
+    },
+    {
+     "explanation": "Differentiate the new coefficients across variables.",
+     "latex": "\\dfrac{\\partial(2ty)}{\\partial y}=2t=\\dfrac{\\partial(t^2)}{\\partial t}"
+    }
+   ],
+   "answer": "$\\mu=t$. The multiplied equation is exact.",
+   "citations": [],
+   "id": "798026f7-b903-57b4-b1d6-dd40eda3ae8d"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "If needed, try a factor depending only on y",
+   "citations": [],
+   "id": "02f005b0-c0bb-5f1f-84e3-37f0a89c8920"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{N_t-M_y}{M}=g(y)\\quad\\Rightarrow\\quad\\mu(y)=e^{\\int g(y)\\,dy}",
+   "display": true,
+   "citations": [],
+   "id": "bf5b9a44-b53b-577a-a3e7-cc056c07fda8"
+  },
+  {
+   "type": "paragraph",
+   "text": "Notice both changes: the subtraction order reverses, and the denominator becomes M. This time the ratio must contain only y. A constant qualifies as a function of either variable.",
+   "citations": [],
+   "id": "5963efd5-8164-5c98-975b-d5a861f54c58"
+  },
+  {
+   "type": "paragraph",
+   "text": "```steps\ntitle \"Repair the lecture equation\"\n$$ y\\,dt+(3+3t-y)\\,dy=0 $$\nIdentify M = y and N = 3 + 3t − y.\n$$ M_y=1,\\quad N_t=3 $$\nThe original equation is not exact.\n$$ \\dfrac{M_y-N_t}{N}=\\dfrac{-2}{3+3t-y} $$\nThe t-only test fails: this still contains y.\n$$ \\dfrac{N_t-M_y}{M}=\\hl{\\dfrac2y} $$\nThe y-only test works away from y = 0.\n$$ \\mu=e^{2\\ln|y|}=\\hl{y^2} $$\nIntegrate 2/y, then exponentiate.\n$$ \\hl{y^3}\\,dt+\\hl{y^2}(3+3t-y)\\,dy=0 $$\nMultiply both terms by the factor.\n$$ \\dfrac{\\partial(y^3)}{\\partial y}=\\hl{3y^2}=\\dfrac{\\partial[y^2(3+3t-y)]}{\\partial t} $$\nRe-test: the new equation is exact.\n```",
+   "citations": [],
+   "id": "9dd92152-7ee5-5ce4-a319-3c6cf84ea798"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 7 · Finish the repaired equation · Pre-tutorial 4",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Solve $y^3\\,dt+y^2(3+3t-y)\\,dy=0$. Start by integrating $M=y^3$ with respect to $t$, then determine the missing function of $y$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Treat y³ as constant while integrating in t.",
+     "latex": "U=ty^3+h(y)"
+    },
+    {
+     "explanation": "Match the y-partial derivative to N.",
+     "latex": "3ty^2+h^{\\prime}(y)=3y^2+3ty^2-y^3"
+    },
+    {
+     "explanation": "Cancel the shared term, then integrate in y.",
+     "latex": "h^{\\prime}(y)=3y^2-y^3,\\quad h=y^3-\\dfrac{y^4}{4}"
+    },
+    {
+     "explanation": "Set U constant and multiply by 4.",
+     "latex": "4(t+1)y^3-y^4=K"
+    }
+   ],
+   "answer": "$4(t+1)y^3-y^4=K$.",
    "citations": [
     {
      "source_id": "7fdc7c08-5ab7-4ab6-92c7-eef3bb83f715",
      "version": 1,
      "chunk_id": "9abd497e-d55e-437a-8059-0132dde1d377"
-    },
-    {
-     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
-     "version": 1,
-     "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
     }
    ],
-   "id": "fd9d3f88-caf4-50a4-b7b7-268f8a6582ea"
+   "id": "f1819c7b-6929-5a5d-94e7-3a2365e13f89"
   },
   {
    "type": "paragraph",
-   "text": "The grey slopes below come from the original $y\\,dt+(3+3t-y)\\,dy=0$, before multiplying.\n- **Drag the point:** the curve $4(t+1)y^3-y^4=C$ through it always follows them.\n- **Drag it onto $y=0$:** $C=0$ and the curve is the line $y=0$ (plus the line $y=4t+4$, which also solves the equation).\n\n```graph\ntitle \"Multiplying by $\\mu=y^2$ didn't change the solutions\"\nx -1 3 label=\"$t$\"\ny -1 4 label=\"$y$\"\nfield \"-y/(3+3*x-y)\"\ndrag P 0.5 1 label=\"$(t_0,y_0)$\" snap=0.25\nlevel \"4*(x+1)*y^3-y^4\" value=\"4*(P_x+1)*P_y^3-P_y^4\" label=\"$4(t+1)y^3-y^4=C$ through your point\" color=2\nreadout \"$C=$\" \"4*(P_x+1)*P_y^3-P_y^4\"\n```",
+   "text": "We multiplied the original equation by $y^2$, which vanishes on $y=0$. Check that line in the original equation separately: $y=0$ does solve it. Other branches must also be checked where the multiplier is zero or undefined; equivalence was guaranteed only where it was nonzero.",
    "citations": [],
-   "id": "daec18a6-308f-549f-9530-781dcf9a80f0"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 6 · Test 1 gives μ = t",
-   "prompt": "Solve $(t^2+y^2+t)\\,dt+ty\\,dy=0$ with $y(1)=1$ (take $t>0$).",
-   "steps": [
-    {
-     "explanation": "Test first: not exact.",
-     "latex": "\\dfrac{\\partial M}{\\partial y}=2y\\ \\neq\\ y=\\dfrac{\\partial N}{\\partial t}"
-    },
-    {
-     "explanation": "Test 1: the $y$ cancels, leaving only $t$.",
-     "latex": "\\dfrac{1}{N}(2y-y)=\\dfrac{y}{ty}=\\dfrac1t=f(t)"
-    },
-    {
-     "explanation": "$\\int\\frac1t dt=\\ln t$ and $e^{\\ln t}=t$.",
-     "latex": "\\mu=e^{\\ln t}=t"
-    },
-    {
-     "explanation": "Multiply both parts by $t$; both test derivatives are now $2ty$.",
-     "latex": "(t^3+ty^2+t^2)\\,dt+t^2y\\,dy=0"
-    },
-    {
-     "explanation": "Integrate the new $M$ in $t$. Matching $N=t^2y$ gives $f^{\\prime}(y)=0$.",
-     "latex": "U=\\dfrac{t^4}{4}+\\dfrac{t^2y^2}{2}+\\dfrac{t^3}{3}"
-    },
-    {
-     "explanation": "Multiply $U=C$ by 12, then put in $t=1$, $y=1$.",
-     "latex": "3t^4+6t^2y^2+4t^3=C,\\qquad C=13"
-    },
-    {
-     "explanation": "Here you can solve for $y$: isolate $y^2$, and take the $+$ root because $y(1)=1>0$.",
-     "latex": "y=\\sqrt{\\dfrac{13-3t^4-4t^3}{6t^2}}"
-    }
-   ],
-   "answer": "$y=\\sqrt{\\dfrac{13-3t^4-4t^3}{6t^2}}$",
-   "citations": [],
-   "id": "66ce9243-094c-5897-bda4-fab12d1f91b8"
+   "id": "3fbafd0e-16b6-55ad-aa35-1a10e9f80f27"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 3 · Both tests work, and one loses a solution",
-   "difficulty": "intermediate",
+   "title": "Try it 8 · Choose the test instead of memorising its answer · original",
+   "difficulty": "introductory",
    "origin": "original",
-   "prompt": "For $y\\,dt-t\\,dy=0$, show that both tests give an integrating factor.\n\nSolve it with the Test 2 factor. Which solution did that factor lose?",
+   "prompt": "For $t\\,dt-(t+y)\\,dy=0$, compute both ratios. Does either simple test supply a factor?",
    "solution": "",
    "steps": [
     {
-     "explanation": "$M=y$, $N=-t$, so $\\frac{\\partial M}{\\partial y}=1$, $\\frac{\\partial N}{\\partial t}=-1$. Test 1 leaves only $t$.",
-     "latex": "\\dfrac{1-(-1)}{-t}=-\\dfrac{2}{t}\\ \\Rightarrow\\ \\mu=e^{-2\\ln t}=\\dfrac{1}{t^2}"
+     "explanation": "For the t-only test, the ratio still contains y.",
+     "latex": "\\dfrac{M_y-N_t}{N}=-\\dfrac{1}{t+y}"
     },
     {
-     "explanation": "Test 2 leaves only $y$.",
-     "latex": "\\dfrac{-1-1}{y}=-\\dfrac{2}{y}\\ \\Rightarrow\\ \\mu=e^{-2\\ln y}=\\dfrac{1}{y^2}"
-    },
-    {
-     "explanation": "Multiply by $\\frac{1}{y^2}$, integrate $M=\\frac1y$ in $t$, and match $N=-\\frac{t}{y^2}$ (it already matches, $f$ is constant).",
-     "latex": "\\dfrac{1}{y}\\,dt-\\dfrac{t}{y^2}\\,dy=0\\ \\Rightarrow\\ \\dfrac{t}{y}=C"
-    },
-    {
-     "explanation": "$\\frac{t}{y}=C$ gives the lines $y=\\frac{t}{C}$, but never $y=0$.\n\nYet $y=0$ solves $y\\,dt-t\\,dy=0$ ($M=0$ and $dy=0$). It sits where $\\mu=\\frac{1}{y^2}$ is undefined, so add it back.",
-     "latex": "y=kt\\quad\\text{for any }k\\text{, including }k=0"
+     "explanation": "For the y-only test, the ratio contains t.",
+     "latex": "\\dfrac{N_t-M_y}{M}=-\\dfrac1t"
     }
    ],
-   "answer": "- **Test 1:** $\\mu=\\dfrac{1}{t^2}$\n- **Test 2:** $\\mu=\\dfrac{1}{y^2}$\n- **Solutions:** $y=kt$; $\\mu=\\dfrac{1}{y^2}$ loses $y=0$.",
+   "answer": "Neither test works. This does not prove that no integrating factor exists; these two tests are limited.",
    "citations": [],
-   "id": "8853cbba-60f2-51d4-8493-6cc74b3f5893"
+   "id": "6ecc1cfc-3a24-5577-9df2-ef4bd0415e67"
   },
   {
-   "type": "practice_problem",
-   "title": "Try it 4 · Linear equations are a special case",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "Show that Test 1 always works for a linear equation $\\dfrac{dy}{dt}+a(t)\\,y=b(t)$, and that it gives the Week 3 integrating factor.\n\nThen use it to solve $\\dfrac{dy}{dt}+2y=4$ with $y(0)=0$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Multiply by $dt$ and move everything left.",
-     "latex": "\\big(a(t)\\,y-b(t)\\big)\\,dt+1\\,dy=0"
-    },
-    {
-     "explanation": "$\\frac{\\partial M}{\\partial y}=a(t)$, $\\frac{\\partial N}{\\partial t}=0$, $N=1$: Test 1 leaves only $t$.",
-     "latex": "\\dfrac{1}{1}\\big(a(t)-0\\big)=a(t)\\ \\Rightarrow\\ \\mu=e^{\\int a(t)\\,dt}"
-    },
-    {
-     "explanation": "For $\\frac{dy}{dt}+2y=4$: $a=2$, so $\\mu=e^{2t}$.",
-     "latex": "(2y-4)e^{2t}\\,dt+e^{2t}\\,dy=0"
-    },
-    {
-     "explanation": "Integrating $N$ in $y$ is easier here ($e^{2t}$ is a constant factor). Add $g(t)$.",
-     "latex": "U=ye^{2t}+g(t)"
-    },
-    {
-     "explanation": "Match $M$: $g^{\\prime}(t)=-4e^{2t}$. Using $\\int e^{2t}dt=\\frac12e^{2t}$:",
-     "latex": "g(t)=-2e^{2t}\\ \\Rightarrow\\ U=(y-2)e^{2t}"
-    },
-    {
-     "explanation": "Put in $t=0$, $y=0$, then solve for $y$.",
-     "latex": "(y-2)e^{2t}=-2\\ \\Rightarrow\\ y=2-2e^{-2t}"
-    }
-   ],
-   "answer": "$\\mu=e^{\\int a(t)\\,dt}$ (the Week 3 factor); $\\ y=2-2e^{-2t}$",
+   "type": "heading",
+   "level": 2,
+   "text": "Connect this to Week 3",
    "citations": [],
-   "id": "9163d64a-f550-5547-84cc-e5eb5b3a3546"
+   "id": "95e35d74-5152-5c90-8b17-0d8d91e96f18"
+  },
+  {
+   "type": "paragraph",
+   "text": "Write a linear equation as $(a(t)y-f(t))\\,dt+dy=0$. Here $M=a(t)y-f(t)$ and $N=1$, so $(M_y-N_t)/N=a(t)$. The t-only test therefore gives exactly Week 3’s factor $\\mu=e^{\\int a(t)dt}$.",
+   "citations": [],
+   "id": "91d0439a-d215-598a-847a-a5ed687b6560"
   }
  ]
 }

@@ -1,0 +1,351 @@
+"""Week 5: learn each root case before combining second-order ODEs with circuits."""
+import sympy as sp
+
+from lib231 import Doc, S
+from learning_notes import finish, second, t, zero
+
+D = Doc(5, 'Week 5: Second-Order Linear ODEs and RLC Circuits',
+        ['second_order_homogeneous', 'existence_uniqueness_second_order', 'rlc_circuits'])
+
+D.H('Calculus refresher: second derivatives and products')
+D.P(r"A second derivative means differentiate twice: $y''=(y')'$. For $y=e^{st}$ with constant $s$, this gives $y'=se^{st}$ and $y''=s^2e^{st}$.")
+D.T(['Expression', 'Derivative', 'Rule'], [
+    [r'$te^{st}$', r'$e^{st}+ste^{st}$', 'Product rule: differentiate each factor in turn.'],
+    [r'$\cos(\omega t)$', r'$-\omega\sin(\omega t)$', 'Chain rule: retain the frequency factor.'],
+    [r'$\sin(\omega t)$', r'$\omega\cos(\omega t)$', 'The cosine term has a positive sign.'],
+])
+D.P(r'For an exponential times a bracket, keep the bracket intact while applying the product rule. For example, if $y=e^{-t}(A\cos2t+B\sin2t)$, then:')
+D.EQ(r"\begin{aligned}y'={}&-e^{-t}(A\cos2t+B\sin2t)\\&+e^{-t}(-2A\sin2t+2B\cos2t)\end{aligned}")
+D.P(r'At $t=0$, use $e^0=1$, $\cos0=1$, and $\sin0=0$. The expressions simplify to $y(0)=A$ and $y\prime(0)=-A+2B$.')
+D.PR('Differentiate before applying conditions · original',
+     r'Find (a) $y\prime$ and $y\prime\prime$ for $y=e^{-3t}$; (b) $y\prime(0)$ for $y=(A+Bt)e^{-2t}$.',
+     [S('Each derivative of the exponential brings out −3.', r"y'=-3e^{-3t},\qquad y''=9e^{-3t}"),
+      S('Use the product rule before setting t to zero.', r"y'=Be^{-2t}-2(A+Bt)e^{-2t}"),
+      S('At zero, the t term disappears.', r"y'(0)=B-2A")],
+     r"(a) $-3e^{-3t}$ and $9e^{-3t}$. (b) $B-2A$.")
+D.H('Week 5 overview')
+D.P('A second-order equation tracks both a value and its rate of change. First learn to turn a constant-coefficient equation into a quadratic, then build solutions for each type of root. RLC circuits use those same solutions, with starting conditions obtained from stored voltage and current.')
+D.P('Coverage follows the syllabus and Nilsson & Riedel Chapter 8. No Week 5 lecture file is currently uploaded; the mathematical explanations and original exercises below support that coverage.')
+
+D.H('Topic 1: Second-order equations, one root case at a time')
+D.H('Why an exponential turns the ODE into a quadratic', level=2)
+D.P(r"Consider $ay''+by'+cy=0$, where $a,b,c$ are constants and $a\ne0$. It is linear and homogeneous; try $y=e^{st}$, where $s$ is a number to be found.")
+D.STEPS('Find the characteristic equation', [
+    (r"ay''+by'+cy=0", 'Start with the homogeneous ODE.'),
+    (r'y=e^{st},\quad y\prime=se^{st},\quad y\prime\prime=s^2e^{st}', 'Differentiate the trial function.'),
+    (r'a\hl{s^2e^{st}}+b\hl{se^{st}}+c\hl{e^{st}}=0', 'Substitute into the ODE.'),
+    (r'\hl{(as^2+bs+c)}e^{st}=0', 'Factor out the common exponential.'),
+    (r'\hl{as^2+bs+c=0}', 'The exponential never vanishes, so the quadratic must be zero.'),
+])
+D.P(r'This quadratic is the **characteristic equation**. Factor it when possible, otherwise use $s=(-b\pm\sqrt{b^2-4ac})/(2a)$; the roots decide which form of solution to use.')
+D.P(r'The two constants in the general solution are fixed by two starting conditions: $y(t_0)$ gives the starting value, and $y\prime(t_0)$ gives the starting slope. Apply these to the solution and its derivative, not to the root equation.')
+D.H('Case 1: two different real roots', level=2)
+D.P(r'Each root produces an exponential. With roots $s_1\ne s_2$, the general solution is $y=Ae^{s_1t}+Be^{s_2t}$; sums and constant multiples remain solutions because the ODE is linear and homogeneous.')
+D.EX('Two roots, then two constants · original',
+     r"Solve $y''+3y'+2y=0$ with $y(0)=1$, $y'(0)=0$.",
+     [S('Factor the characteristic equation.', r's^2+3s+2=(s+1)(s+2)=0'),
+      S('Use roots −1 and −2, then differentiate the general solution.', r'y=Ae^{-t}+Be^{-2t}'),
+      S('Apply the value and slope at zero.', r'A+B=1,\qquad -A-2B=0'),
+      S('Add the equations to eliminate A, then substitute back.', r'B=-1,\qquad A=2')],
+     r'$y=2e^{-t}-e^{-2t}$. Its derivative is $-2e^{-t}+2e^{-2t}$, so both starting conditions check.')
+D.PR('Fit the constants yourself · original',
+     r"Solve $y''+5y'+6y=0$, $y(0)=2$, $y'(0)=-5$.",
+     [S('Factor the quadratic.', r'(s+2)(s+3)=0'),
+      S('Write the solution and apply both starting conditions.', r'y=Ae^{-2t}+Be^{-3t}'),
+      S('Solve the two simultaneous equations.', r'A+B=2,\quad -2A-3B=-5\quad\Rightarrow\quad A=B=1')],
+     r'$y=e^{-2t}+e^{-3t}$.')
+D.H('Case 2: one repeated real root', level=2)
+D.P(r'If the quadratic has the same root $s$ twice, $Ae^{st}+Be^{st}=(A+B)e^{st}$ only supplies one adjustable constant. A second independent solution is $te^{st}$, giving:')
+D.EQ(r'y=(A+Bt)e^{st}')
+D.P(r'The factor $t$ makes a different function, not a different constant. You can verify $te^{st}$ by differentiating twice and substituting into the ODE with the repeated root.')
+D.PR('Use the extra t · original',
+     r"Solve $4y''+4y'+y=0$, $y(0)=4$, $y'(0)=0$." '\n\n'
+     r"Start with $(2s+1)^2=0$, so $s=-1/2$. Write the form, then use the product rule to apply the slope condition.",
+     [S('Use the repeated-root form.', r'y=(A+Bt)e^{-t/2}'),
+      S('The starting value gives A = 4.', r'y(0)=A=4'),
+      S('The product rule gives the slope at zero.', r"y'(0)=B-\dfrac A2=0"),
+      S('So B = 2.', r'y=(4+2t)e^{-t/2}')],
+     r'$y=(4+2t)e^{-t/2}$.')
+D.H('Case 3: a complex-conjugate pair', level=2)
+D.P(r'Remember $j^2=-1$. Roots $s=\sigma\pm j\omega$ contain a real part $\sigma$ and imaginary parts $\pm\omega$; Euler’s relation $e^{j\omega t}=\cos\omega t+j\sin\omega t$ converts the exponentials into real functions.')
+D.EQ(r'y=e^{\sigma t}(A\cos\omega t+B\sin\omega t)')
+D.L([r'$e^{\sigma t}$ controls the envelope: decay if $\sigma<0$, growth if $\sigma>0$.',
+     r'$\omega>0$ is the oscillation frequency in radians per unit time.',
+     r'If $\sigma=0$, the envelope is constant rather than decaying.'])
+D.EX('Complex roots without complex-valued answers · original',
+     r"Solve $y''+2y'+5y=0$, $y(0)=1$, $y'(0)=1$.",
+     [S('Use the quadratic formula; √(−16) = j4.', r's=\dfrac{-2\pm\sqrt{4-20}}2=-1\pm j2'),
+      S('Use σ = −1 and ω = 2 in the real solution form.', r'y=e^{-t}(A\cos2t+B\sin2t)'),
+      S('At zero, the value is A.', r'A=1'),
+      S('Use the derivative from the refresher.', r"y'(0)=-A+2B=1\quad\Rightarrow\quad B=1")],
+     r'$y=e^{-t}(\cos2t+\sin2t)$.')
+D.PR('Read a different complex root pair · original',
+     r"The roots are $-3\pm j4$. Write the general solution, then select $y(0)=0$, $y'(0)=8$. Do not expand the derivative more than necessary.",
+     [S('The real part is −3 and the frequency is 4.', r'y=e^{-3t}(A\cos4t+B\sin4t)'),
+      S('The starting value is zero, so A = 0.', r'A=0'),
+      S('At zero, the product rule gives −3A + 4B = 8.', r'B=2')],
+     r'$y=2e^{-3t}\sin4t$.')
+D.H('Now compare the cases', level=2)
+D.T(['Quadratic discriminant', 'Roots', 'General solution'], [
+    [r'$b^2-4ac>0$', 'Distinct real', r'$Ae^{s_1t}+Be^{s_2t}$'],
+    [r'$b^2-4ac=0$', 'Repeated real', r'$(A+Bt)e^{st}$'],
+    [r'$b^2-4ac<0$', r'$\sigma\pm j\omega$', r'$e^{\sigma t}(A\cos\omega t+B\sin\omega t)$'],
+])
+D.PR('Choose a form before calculating constants · original',
+     r"For $y''+2y'+ky=0$, find which values of $k$ give each root case. At $k=0$, write the general solution and decide whether every solution tends to zero.",
+     [S('The discriminant is 4 − 4k.', r'\begin{gathered}k<1:\text{ distinct real}\\k=1:\text{ repeated}\\k>1:\text{ complex}\end{gathered}'),
+      S('At k = 0, factor s(s + 2) = 0. The zero root gives e⁰ᵗ = 1.', r'y=A+Be^{-2t}'),
+      S('The exponential decays but the constant remains.', r'y(t)\to A')],
+     r'$k<1$, $k=1$, $k>1$ give the three cases respectively. At $k=0$, $y=A+Be^{-2t}$ need not decay to zero.')
+D.GRAPH(r'''
+title "Compare the three root cases with the same starting values"
+x 0 8 label="$t$"
+y -0.5 1.2 label="$y$"
+curve "2*exp(-t)-exp(-2*t)" label="distinct real roots" color=1
+curve "(1+t)*exp(-t)" label="repeated root" color=2
+curve "exp(-t)*(cos(2*t)+0.5*sin(2*t))" label="complex pair" color=3
+caption "All three start at y=1 with slope zero. Their equations differ. The complex-root response oscillates; the other two shown approach zero without oscillating."
+''')
+
+D.H('Topic 2: Why two conditions select one solution')
+D.H('Check the interval where the theorem applies', level=2)
+D.P(r"First divide by the coefficient of $y''$ to write $y''+p(t)y'+q(t)y=g(t)$. If $p,q,g$ are continuous on an open interval containing $t_0$, then specifying $y(t_0)$ and $y'(t_0)$ gives exactly one solution throughout that interval.")
+D.P('For constant coefficients the theorem applies on the whole real line. With variable coefficients, locate the points where the normalised expressions fail, then choose the interval containing the starting time.')
+D.PR('Find the interval; do not solve · original',
+     r"For $(t-1)y''+y'+y=\ln t$, find the largest interval guaranteed by the theorem for (a) $t_0=2$ and (b) $t_0=1/2$.",
+     [S('Divide by t − 1 and inspect all three expressions.', r'p=q=\dfrac1{t-1},\qquad g=\dfrac{\ln t}{t-1}'),
+      S('The log excludes t ≤ 0, and the denominator excludes t = 1.'),
+      S('Choose the connected interval containing each starting time.', r'\text{(a) }(1,\infty),\qquad\text{(b) }(0,1)')],
+     r'(a) $(1,\infty)$. (b) $(0,1)$.')
+D.H('Two functions must supply two independent choices', level=2)
+D.P(r"Suppose $y_1,y_2$ are solutions of the same homogeneous linear ODE. Fitting $Ay_1+By_2$ to a value and slope gives two simultaneous equations; their determinant is the **Wronskian**:")
+D.EQ(r'W(t)=y_1y_2\prime-y_1\prime y_2')
+D.P(r'If $W(t_0)\ne0$, the constants can be uniquely fitted at that point. Two scalar multiples of the same function have $W=0$, so they do not supply two independent choices.')
+D.PR('Why the repeated-root form works · original',
+     r"For $y''+4y'+4y=0$, compare the pairs (a) $e^{-2t},3e^{-2t}$ and (b) $e^{-2t},te^{-2t}$. Compute their Wronskians and decide which pair can form a general solution.",
+     [S('For (a), differentiate both functions and substitute.', r'W=e^{-2t}(-6e^{-2t})-(-2e^{-2t})(3e^{-2t})=0'),
+      S('For (b), the derivative of te⁻²ᵗ is (1 − 2t)e⁻²ᵗ.', r'W=e^{-2t}(1-2t)e^{-2t}+2te^{-4t}=e^{-4t}'),
+      S('The second Wronskian never vanishes, so its two constants remain independent.')],
+     r'(a) $W=0$: not a fundamental pair. (b) $W=e^{-4t}\ne0$: the form is $(A+Bt)e^{-2t}$.')
+D.P(r"A useful application of uniqueness: if a regular homogeneous linear ODE has $y(t_0)=0$ and $y'(t_0)=0$, then $y=0$ is the unique solution. It already satisfies the equation and both conditions.")
+
+D.H('Topic 3: RLC circuits — translate the circuit into the same math')
+D.H('A series circuit gives value and slope from stored energy', level=2)
+D.P(r'Use capacitor voltage $v_C$ as the unknown in a series RLC circuit. The loop current enters its positive terminal, so $i=Cv_C\prime$; capacitor voltage and inductor current carry over through an ordinary switch or source step.')
+D.L([r'**Starting value:** $v_C(0^+)=V_0$, the stored capacitor voltage.',
+     r'**Starting slope:** $v_C\prime(0^+)=I_0/C$, where $I_0$ is the series inductor current in the shown direction.',
+     r'**Post-step source:** a constant $V_s$ supplies the forcing term in the ODE.'])
+series = r'''
+V1 0,3 -> 0,0 "$V_s$"
+R1 0,3 -> 3,3 "$4\,\Omega$" i="$i$"
+L1 3,3 -> 6,3 "$40\,\mathrm{mH}$"
+C1 6,3 -> 6,0 "$10\,\mathrm{mF}$" v="$v_C$"
+wire 6,0 -> 0,0
+ground 0,0
+#~ flow
+#~ value V1 100
+#~ init C1 200
+#~ init L1 0
+#@ view "Before the source changes"
+#@ node a 200 "$V_s$: $200\,\mathrm{V}$"
+#@ node b 200 "R end: $200\,\mathrm{V}$"
+#@ node c 200 "$C$: $200\,\mathrm{V}$"
+#@ node g 0 "$0\,\mathrm{V}$" ground
+#@ el V a g "$200\,\mathrm{V}$" col=0
+#@ el R a b "$4\,\Omega$" col=1
+#@ el L b c "$40\,\mathrm{mH}$" col=2
+#@ el C c g "$10\,\mathrm{mF}$" col=3 plus=c v="$v_C$"
+#@ note "Ground the bottom wire. In DC steady state i = 0, so R and L have no step. The capacitor holds the source voltage, 200 V."
+#@ view "Just after the source changes"
+#@ node a 100 "$V_s$: $100\,\mathrm{V}$"
+#@ node b 100 "R end: $100\,\mathrm{V}$"
+#@ node c 200 "$C$: $200\,\mathrm{V}$"
+#@ node g 0 "$0\,\mathrm{V}$" ground
+#@ el V a g "$100\,\mathrm{V}$" col=0 id=src
+#@ el R a b "$4\,\Omega$" col=1 id=res
+#@ el L b c "$40\,\mathrm{mH}$" col=2 id=ind
+#@ el C c g "$10\,\mathrm{mF}$" col=3 plus=c v="$v_C$" id=cap
+#@ step "Ground the bottom wire." show=g
+#@ step "The new source fixes its top at 100 V." show=a,src
+#@ step "Inductor current stays zero, so R has no fall." show=b,res
+#@ step "Capacitor voltage stays 200 V; the inductor voltage from left to right is −100 V." show=c,cap,ind
+#@ view "At 20 ms"
+#@ node a 100 "$V_s$: $100\,\mathrm{V}$"
+#@ node b 173.575888 "R end: $173.58\,\mathrm{V}$"
+#@ node c 173.575888 "$C$: $173.58\,\mathrm{V}$"
+#@ node g 0 "$0\,\mathrm{V}$" ground
+#@ el V a g "$100\,\mathrm{V}$" col=0 i="$18.39\,\mathrm{A}$" to=g
+#@ el R a b "$4\,\Omega$" col=1 i="$18.39\,\mathrm{A}$" to=a
+#@ el L b c "$40\,\mathrm{mH}$" col=2 i="$18.39\,\mathrm{A}$" to=b
+#@ el C c g "$10\,\mathrm{mF}$" col=3 plus=c v="$v_C$" i="$18.39\,\mathrm{A}$" to=c
+#@ note "Ground the bottom wire. At 20 ms, i = −50/e A in the clockwise reference; actual current runs back toward the source. The capacitor releases energy."
+#@ view "Final DC state"
+#@ node a 100 "$V_s$: $100\,\mathrm{V}$"
+#@ node b 100 "R end: $100\,\mathrm{V}$"
+#@ node c 100 "$C$: $100\,\mathrm{V}$"
+#@ node g 0 "$0\,\mathrm{V}$" ground
+#@ el V a g "$100\,\mathrm{V}$" col=0
+#@ el R a b "$4\,\Omega$" col=1
+#@ el L b c "$40\,\mathrm{mH}$" col=2
+#@ el C c g "$10\,\mathrm{mF}$" col=3 plus=c v="$v_C$"
+#@ note "Ground the bottom wire. Current tends to zero, so the capacitor approaches the new 100 V source."
+'''.strip()
+D.SCH(series, 'Textbook P8.53: source changes from 200 V to 100 V at t = 0', cites=D.tb('8.53'))
+D.PR('Find only the starting conditions · P8.53 setup',
+     r'The circuit above ran for a long time with $V_s=200\,\mathrm{V}$. At $t=0$, the source becomes $100\,\mathrm{V}$. Before solving any ODE, find $v_C(0^-)$, $i(0^-)$, $v_C(0^+)$, and $v_C\prime(0^+)$.',
+     [S('Before the step, the capacitor is a DC open circuit, so series current is zero.', r'i(0^-)=0'),
+      S('With no resistor fall and no inductor voltage, the capacitor holds the old source voltage.', r'v_C(0^-)=200\,\mathrm{V}'),
+      S('The two stored quantities are continuous.', r'v_C(0^+)=200\,\mathrm{V},\quad i(0^+)=0'),
+      S('Translate series current into the starting voltage slope.', r'v_C\prime(0^+)=\dfrac{0}{0.01}=0')],
+     r'$v_C(0^-)=v_C(0^+)=200\,\mathrm{V}$, $i(0^-)=0$, and $v_C\prime(0^+)=0$. The capacitor does not instantly become 100 V.', cites=D.tb('8.53'))
+D.STEPS('Derive the series RLC equation', [
+    (r'V_s=Ri+Li\prime+v_C', 'KVL: the three element voltages sum to the source.'),
+    (r'i=\hl{Cv_C\prime}', 'The series loop current equals capacitor current.'),
+    (r'V_s=RCv_C\prime+LCv_C\prime\prime+v_C', 'Substitute the current and its derivative.'),
+    (r'v_C\prime\prime+\hl{\dfrac RL}v_C\prime+\hl{\dfrac1{LC}}v_C=\hl{\dfrac{V_s}{LC}}', 'Divide by LC to normalise the equation.'),
+    (r'v_C=\hl{V_s}+u', 'For constant source voltage, subtract the constant particular solution.'),
+    (r'u\prime\prime+\dfrac RL u\prime+\dfrac1{LC}u=0', 'The remaining transient obeys a homogeneous equation.'),
+])
+D.EX('Finish the same circuit · textbook P8.53',
+     r'Find $v_C(t)$ for $t\ge0$, using the starting conditions already found above.',
+     [S('Convert mH and mF to H and F, then form the normalised equation.', r'v_C\prime\prime+100v_C\prime+2500v_C=250000'),
+      S('Subtract the final value 100 V; the transient has a repeated root.', r's^2+100s+2500=(s+50)^2'),
+      S('Keep the final-value term as well as the repeated-root transient.', r'v_C=100+(A+Bt)e^{-50t}'),
+      S('The starting voltage is 200 V.', r'100+A=200\quad\Rightarrow\quad A=100'),
+      S('The starting slope is zero; use the product rule.', r'B-50A=0\quad\Rightarrow\quad B=5000')],
+     r'$v_C=100+(100+5000t)e^{-50t}\,\mathrm{V}$ for $t\ge0$, with $t$ in seconds. It starts at 200 V with slope zero and approaches 100 V.', cites=D.tb('8.53'))
+D.H('Name the response only after finding its roots', level=2)
+D.P(r'Write the transient equation as $u\prime\prime+2\alpha u\prime+\omega_0^2u=0$. For series RLC, $\alpha=R/(2L)$ and $\omega_0=1/\sqrt{LC}$; the roots are $-\alpha\pm\sqrt{\alpha^2-\omega_0^2}$.')
+D.T(['Compare', 'Root case', 'Circuit name'], [
+    [r'$\alpha>\omega_0$', 'Distinct real', 'Overdamped'],
+    [r'$\alpha=\omega_0$', 'Repeated real', 'Critically damped'],
+    [r'$0<\alpha<\omega_0$', 'Complex pair with negative real part', 'Underdamped'],
+    [r'$\alpha=0$, $\omega_0>0$', 'Purely imaginary pair', 'Undamped'],
+])
+D.P(r'For an underdamped response, the oscillation frequency is $\omega_d=\sqrt{\omega_0^2-\alpha^2}$. In P8.53, $\alpha=\omega_0=50\,\mathrm{s^{-1}}$, so the response is critically damped.')
+D.H('Parallel RLC: the starting slope comes from KCL', level=2)
+D.P(r'In a source-free parallel RLC circuit, all branches share voltage $v$ and all reference currents below point down. KCL gives $Cv\prime+i_L+v/R=0$; differentiating and using $i_L\prime=v/L$ gives the second-order voltage equation.')
+D.EQ(r'v\prime\prime+\dfrac1{RC}v\prime+\dfrac1{LC}v=0')
+D.P(r'The natural frequency is still $1/\sqrt{LC}$, but now $\alpha=1/(2RC)$. Most importantly, the starting slope is **not** $I_0/C$ as in the series circuit:')
+D.EQ(r'v\prime(0^+)=-\dfrac{I_0+V_0/R}{C}')
+parallel = r'''
+C1 0,3 -> 0,0 "$10\,\mathrm{nF}$" v="$v$" i="$i_C$"
+wire 0,3 -> 3,3
+L1 3,3 -> 3,0 "$250\,\mathrm{mH}$" i="$i_L$"
+wire 3,3 -> 6,3
+R1 6,3 -> 6,0 "$\dfrac{12500}{3}\,\Omega$" i="$i_R$"
+wire 6,0 -> 0,0
+ground 0,0
+#@ view "Initial state"
+#@ node a 90 "top: $90\,\mathrm{V}$"
+#@ node g 0 "$0\,\mathrm{V}$" ground
+#@ el C a g "$10\,\mathrm{nF}$" col=0 plus=a v="$v$" i="$8.4\,\mathrm{mA}$" to=g id=cap
+#@ el L a g "$250\,\mathrm{mH}$" col=1 i="$30\,\mathrm{mA}$" to=a id=ind
+#@ el R a g "$4166.67\,\Omega$" col=2 i="$21.6\,\mathrm{mA}$" to=g id=res
+#@ step "Ground the bottom wire." show=g
+#@ step "The given capacitor voltage sets the common top node at 90 V." show=a,cap
+#@ step "Resistor current is 90/R = 21.6 mA downward; inductor current is 30 mA upward." show=ind,res
+#@ step "KCL leaves 8.4 mA downward through C; divide by C to obtain its voltage slope." show=cap
+#@ view "Final state"
+#@ node a 0 "top: $0\,\mathrm{V}$"
+#@ node g 0 "$0\,\mathrm{V}$" ground
+#@ el C a g "$10\,\mathrm{nF}$" col=0 plus=a v="$v$"
+#@ el L a g "$250\,\mathrm{mH}$" col=1
+#@ el R a g "$4166.67\,\Omega$" col=2
+#@ note "Ground the bottom wire. With no external source and finite positive R, the stored energy dissipates and the branch currents and voltage tend to zero."
+'''.strip()
+D.SCH(parallel, 'Textbook P8.7 uses P8.5 initial conditions: V₀ = 90 V, I₀ = −30 mA', cites=D.tb('8.7'))
+D.PR('Find the parallel-circuit slope first · P8.7 setup',
+     r'For the circuit above, $V_0=90\,\mathrm{V}$ and $I_0=-30\,\mathrm{mA}$ in the downward inductor reference. Find $i_R(0^+)$, $i_C(0^+)$ and $v\prime(0^+)$.',
+     [S('Use the common voltage across R.', r'i_R=\dfrac{90}{12500/3}=0.0216\,\mathrm{A}'),
+      S('KCL uses the signed inductor current.', r'i_C=-i_L-i_R=0.0300-0.0216=0.0084\,\mathrm{A}'),
+      S('Divide capacitor current by capacitance.', r'v\prime(0^+)=\dfrac{0.0084}{10^{-8}}=840000\,\mathrm{V/s}')],
+     r'$i_R=21.6\,\mathrm{mA}$, $i_C=8.4\,\mathrm{mA}$ and $v\prime(0^+)=8.4\times10^5\,\mathrm{V/s}$.', cites=D.tb('8.7'))
+D.EX('Use that slope to complete the response · textbook P8.7',
+     r'Find $v(t)$ in the parallel circuit. Its initial voltage and slope are now known.',
+     [S('Use the parallel formula for damping and the common natural-frequency formula.', r'\alpha=12000,\quad\omega_0=20000\quad(\mathrm{s^{-1}})'),
+      S('The roots are complex; compute the damped oscillation frequency.', r'\omega_d=\sqrt{20000^2-12000^2}=16000\,\mathrm{rad/s}'),
+      S('Write the underdamped form and apply v(0) = 90.', r'v=e^{-12000t}(90\cos16000t+B\sin16000t)'),
+      S('Use the product rule at zero and the slope from the preceding question.', r'-12000(90)+16000B=840000'),
+      S('Solve for B.', r'B=120')],
+     r'$v=e^{-12000t}(90\cos16000t+120\sin16000t)\,\mathrm{V}$ for $t\ge0$.', cites=D.tb('8.7'))
+D.H('Remove the resistor: oscillation without a decaying envelope', level=2)
+lc = r'''
+C1 0,3 -> 0,0 "$250\,\mathrm{mF}$" v="$v$" i="$i_C$"
+wire 0,3 -> 3,3
+L1 3,3 -> 3,0 "$0.4\,\mathrm{H}$" i="$i_L$"
+wire 3,0 -> 0,0
+ground 0,0
+#@ spoiler
+#@ view "Initial state"
+#@ node a 0 "top: $0\,\mathrm{V}$"
+#@ node g 0 "$0\,\mathrm{V}$" ground
+#@ el C a g "$250\,\mathrm{mF}$" col=0 plus=a v="$v$" i="$3\,\mathrm{A}$" to=g id=cap
+#@ el L a g "$0.4\,\mathrm{H}$" col=1 i="$3\,\mathrm{A}$" to=a id=ind
+#@ step "Ground the bottom wire; the given capacitor voltage is zero." show=g,a
+#@ step "The given inductor current is 3 A upward; KCL requires 3 A downward through C." show=cap,ind
+#@ note "The voltage is instantaneously zero, but the inductor still stores energy. Capacitor voltage begins increasing at 3/0.25 = 12 V/s."
+'''.strip()
+D.PR('An ideal LC response · textbook P8.14',
+     r'This is the P8.13 circuit with its resistor removed. Initially $v(0)=0$ and $i_L(0)=-3\,\mathrm{A}$ in the downward reference.' '\n\n'
+     + '```schematic\n' + lc + '\n```\n\n'
+     r'Find (a) $v(t)$, (b) its angular frequency and (c) its maximum amplitude. With no resistor branch, KCL is $i_C+i_L=0$.',
+     [S('Without a resistor, the voltage equation is undamped.', r'v\prime\prime+\dfrac1{LC}v=v\prime\prime+10v=0'),
+      S('The starting voltage removes the cosine term.', r'v=B\sin(\sqrt{10}\,t)'),
+      S('KCL gives the starting slope.', r'v\prime(0)=\dfrac3{0.25}=12'),
+      S('Apply the slope to determine the sine coefficient.', r'B\sqrt{10}=12\quad\Rightarrow\quad B=\dfrac{12}{\sqrt{10}}')],
+     r'(a) $v=\dfrac{12}{\sqrt{10}}\sin(\sqrt{10}\,t)\,\mathrm{V}$. '
+     r'(b) $\omega_0=\sqrt{10}\approx3.162\,\mathrm{rad/s}$. '
+     r'(c) Amplitude $12/\sqrt{10}\approx3.795\,\mathrm{V}$; it does not decay in this ideal model.', cites=D.tb('8.14'))
+
+
+def verify():
+    E=sp.exp
+    A,B=sp.symbols('A B',real=True)
+    zero(sp.diff(E(-3*t),t)+3*E(-3*t))
+    zero(sp.diff(E(-3*t),t,2)-9*E(-3*t))
+    zero(sp.diff((A+B*t)*E(-2*t),t).subs(t,0)-(B-2*A))
+    second(2*E(-t)-E(-2*t),1,3,2,initial=(0,1,0))
+    second(E(-2*t)+E(-3*t),1,5,6,initial=(0,2,-5))
+    second(t*E(-t/2),4,4,1)
+    second((4+2*t)*E(-t/2),4,4,1,initial=(0,4,0))
+    second(E(-t)*(sp.cos(2*t)+sp.sin(2*t)),1,2,5,initial=(0,1,1))
+    second(2*E(-3*t)*sp.sin(4*t),1,6,25,initial=(0,0,8))
+    second(A+B*E(-2*t),1,2,0)
+    second((1+t)*E(-t),1,2,1,initial=(0,1,0))
+    second(E(-t)*(sp.cos(2*t)+sp.sin(2*t)/2),1,2,5,initial=(0,1,0))
+    f,g=E(-2*t),3*E(-2*t)
+    zero(f*sp.diff(g,t)-sp.diff(f,t)*g)
+    g=t*E(-2*t)
+    zero(f*sp.diff(g,t)-sp.diff(f,t)*g-E(-4*t))
+    vs=100+(100+5000*t)*E(-50*t)
+    second(vs,1,100,2500,250000,initial=(0,200,0))
+    assert sp.limit(vs,t,sp.oo)==100
+    current=sp.Rational(1,100)*sp.diff(vs,t)
+    zero(current.subs(t,sp.Rational(1,50))+50/E(1))
+    zero(sp.Rational(4,100)*sp.diff(current,t).subs(t,sp.Rational(1,50)))
+    for ts,expected in [(0,200),(sp.Rational(1,50),100+200/E(1))]:
+        zero(vs.subs(t,ts)-expected)
+        zero(4*current.subs(t,ts)+sp.Rational(4,100)*sp.diff(current,t).subs(t,ts)+vs.subs(t,ts)-100)
+    C=sp.Rational(1,10**8)
+    L=sp.Rational(1,4)
+    R=sp.Rational(12500,3)
+    alpha=1/(2*R*C)
+    omega=1/sp.sqrt(L*C)
+    assert alpha==12000 and omega==20000
+    vp=E(-12000*t)*(90*sp.cos(16000*t)+120*sp.sin(16000*t))
+    slope=-(sp.Rational(-30,1000)+90/R)/C
+    assert slope==840000
+    second(vp,1,1/(R*C),1/(L*C),initial=(0,90,slope))
+    il=-C*sp.diff(vp,t)-vp/R
+    zero(il.subs(t,0)+sp.Rational(30,1000))
+    zero(L*sp.diff(il,t)-vp)
+    vlc=12/sp.sqrt(10)*sp.sin(sp.sqrt(10)*t)
+    second(vlc,1,0,10,initial=(0,0,12))
+    assert 1/(sp.Rational(1,4)*sp.Rational(2,5))==10
+    assert abs(float(12/sp.sqrt(10))-3.795)<0.001
+
+
+if __name__ == '__main__':
+    verify()
+    finish(D, 'Week-5-Second-Order-Linear-ODEs-and-RLC-Circuits.md')

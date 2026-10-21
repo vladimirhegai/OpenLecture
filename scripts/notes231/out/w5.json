@@ -10,503 +10,553 @@
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 1: Second-order equations: guess $e^{st}$",
-   "citations": [
-    {
-     "source_id": "0a505e49-c707-4c33-99fd-7d3f15b5be82",
-     "version": 1,
-     "chunk_id": "82a3e61c-4405-4baa-b501-0ab5970211c2"
-    }
-   ],
-   "id": "173f3e4a-0d69-5a5c-ba64-a32ce09364b3"
-  },
-  {
-   "type": "paragraph",
-   "text": "A **second-order** ODE contains $y''=\\dfrac{d^2y}{dt^2}$, the derivative of the derivative.\n\nThis week it has the form $ay''+by'+cy=0$:\n- $a,b,c$: **constant** numbers\n- right side $0$: **homogeneous** (no source)\n\n**Guess $y=e^{st}$.** Each derivative of it is the same exponential times the number $s$, so everything can cancel.",
-   "citations": [
-    {
-     "source_id": "0a505e49-c707-4c33-99fd-7d3f15b5be82",
-     "version": 1,
-     "chunk_id": "82a3e61c-4405-4baa-b501-0ab5970211c2"
-    }
-   ],
-   "id": "46dac5ee-b0c8-5f79-93ac-e0eb9506fb4f"
-  },
-  {
-   "type": "paragraph",
-   "text": "```steps\ntitle \"From the ODE to the characteristic equation\"\n$$ ay''+by'+cy=0 $$\n$a$, $b$, $c$ are constants.\n$$ y=e^{st},\\quad y'=\\hl{s}e^{st},\\quad y''=\\hl{s^2}e^{st} $$\nEach derivative brings out a factor $s$ (chain rule: $\\frac{d}{dt}e^{st}=se^{st}$).\n$$ a\\hl{s^2e^{st}}+b\\hl{se^{st}}+c\\hl{e^{st}}=0 $$\nSubstitute the three pieces.\n$$ \\hl{(as^2+bs+c)}\\,e^{st}=0 $$\nFactor out $e^{st}$.\n$$ as^2+bs+c=0 $$\n$e^{st}$ is never $0$, so the bracket is. This is the **characteristic equation**.\n$$ s_{1,2}=\\dfrac{-b\\pm\\sqrt{\\hl{b^2-4ac}}}{2a} $$\nQuadratic formula. The sign of $b^2-4ac$ decides the kind of roots.\n```",
+   "text": "Calculus refresher: second derivatives and products",
    "citations": [],
-   "id": "b943355c-bb3d-552f-bbf1-fc1252f56b56"
+   "id": "fb534f09-8ee0-520b-8ef2-fd51b15892f5"
+  },
+  {
+   "type": "paragraph",
+   "text": "A second derivative means differentiate twice: $y''=(y')'$. For $y=e^{st}$ with constant $s$, this gives $y'=se^{st}$ and $y''=s^2e^{st}$.",
+   "citations": [],
+   "id": "795d42d0-cbbf-5a75-915f-b4ce3ee9668f"
   },
   {
    "type": "table",
    "columns": [
+    "Expression",
+    "Derivative",
+    "Rule"
+   ],
+   "rows": [
+    [
+     "$te^{st}$",
+     "$e^{st}+ste^{st}$",
+     "Product rule: differentiate each factor in turn."
+    ],
+    [
+     "$\\cos(\\omega t)$",
+     "$-\\omega\\sin(\\omega t)$",
+     "Chain rule: retain the frequency factor."
+    ],
+    [
+     "$\\sin(\\omega t)$",
+     "$\\omega\\cos(\\omega t)$",
+     "The cosine term has a positive sign."
+    ]
+   ],
+   "citations": [],
+   "id": "063b691a-4877-5c09-a942-e6a7cb01e5af"
+  },
+  {
+   "type": "paragraph",
+   "text": "For an exponential times a bracket, keep the bracket intact while applying the product rule. For example, if $y=e^{-t}(A\\cos2t+B\\sin2t)$, then:",
+   "citations": [],
+   "id": "fca7c51f-2c3b-55bd-95fe-7d4f5e243a35"
+  },
+  {
+   "type": "equation",
+   "latex": "\\begin{aligned}y'={}&-e^{-t}(A\\cos2t+B\\sin2t)\\\\&+e^{-t}(-2A\\sin2t+2B\\cos2t)\\end{aligned}",
+   "display": true,
+   "citations": [],
+   "id": "4ff483bd-c10b-5a9f-8726-b6ed05733045"
+  },
+  {
+   "type": "paragraph",
+   "text": "At $t=0$, use $e^0=1$, $\\cos0=1$, and $\\sin0=0$. The expressions simplify to $y(0)=A$ and $y^{\\prime}(0)=-A+2B$.",
+   "citations": [],
+   "id": "68c8b381-442f-52a9-8ec2-99e109bf4d92"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · Differentiate before applying conditions · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Find (a) $y^{\\prime}$ and $y^{\\prime\\prime}$ for $y=e^{-3t}$; (b) $y^{\\prime}(0)$ for $y=(A+Bt)e^{-2t}$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Each derivative of the exponential brings out −3.",
+     "latex": "y'=-3e^{-3t},\\qquad y''=9e^{-3t}"
+    },
+    {
+     "explanation": "Use the product rule before setting t to zero.",
+     "latex": "y'=Be^{-2t}-2(A+Bt)e^{-2t}"
+    },
+    {
+     "explanation": "At zero, the t term disappears.",
+     "latex": "y'(0)=B-2A"
+    }
+   ],
+   "answer": "(a) $-3e^{-3t}$ and $9e^{-3t}$. (b) $B-2A$.",
+   "citations": [],
+   "id": "471949a8-0827-549b-9313-d5d54cde0056"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Week 5 overview",
+   "citations": [],
+   "id": "672d5b97-7070-5cd5-9b98-ef07dc3d7f1e"
+  },
+  {
+   "type": "paragraph",
+   "text": "A second-order equation tracks both a value and its rate of change. First learn to turn a constant-coefficient equation into a quadratic, then build solutions for each type of root. RLC circuits use those same solutions, with starting conditions obtained from stored voltage and current.",
+   "citations": [],
+   "id": "b9ef0bfd-3035-58e4-9edb-5d529e1c7918"
+  },
+  {
+   "type": "paragraph",
+   "text": "Coverage follows the syllabus and Nilsson & Riedel Chapter 8. No Week 5 lecture file is currently uploaded; the mathematical explanations and original exercises below support that coverage.",
+   "citations": [],
+   "id": "a150610c-13b3-5bf9-a570-ccce6d4cb858"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 1: Second-order equations, one root case at a time",
+   "citations": [],
+   "id": "50f9ea48-a840-5962-a8e1-c3d970c566a1"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Why an exponential turns the ODE into a quadratic",
+   "citations": [],
+   "id": "ce7a2dff-76bd-507f-8574-daa13c24a63c"
+  },
+  {
+   "type": "paragraph",
+   "text": "Consider $ay''+by'+cy=0$, where $a,b,c$ are constants and $a\\ne0$. It is linear and homogeneous; try $y=e^{st}$, where $s$ is a number to be found.",
+   "citations": [],
+   "id": "a8488ced-da40-5355-996b-485bdb16fda7"
+  },
+  {
+   "type": "paragraph",
+   "text": "```steps\ntitle \"Find the characteristic equation\"\n$$ ay''+by'+cy=0 $$\nStart with the homogeneous ODE.\n$$ y=e^{st},\\quad y^{\\prime}=se^{st},\\quad y^{\\prime\\prime}=s^2e^{st} $$\nDifferentiate the trial function.\n$$ a\\hl{s^2e^{st}}+b\\hl{se^{st}}+c\\hl{e^{st}}=0 $$\nSubstitute into the ODE.\n$$ \\hl{(as^2+bs+c)}e^{st}=0 $$\nFactor out the common exponential.\n$$ \\hl{as^2+bs+c=0} $$\nThe exponential never vanishes, so the quadratic must be zero.\n```",
+   "citations": [],
+   "id": "1b553176-a737-5ddd-95cc-478d63a13c73"
+  },
+  {
+   "type": "paragraph",
+   "text": "This quadratic is the **characteristic equation**. Factor it when possible, otherwise use $s=(-b\\pm\\sqrt{b^2-4ac})/(2a)$; the roots decide which form of solution to use.",
+   "citations": [],
+   "id": "257a8433-226d-5e6c-8f48-fc6641e6ad1a"
+  },
+  {
+   "type": "paragraph",
+   "text": "The two constants in the general solution are fixed by two starting conditions: $y(t_0)$ gives the starting value, and $y^{\\prime}(t_0)$ gives the starting slope. Apply these to the solution and its derivative, not to the root equation.",
+   "citations": [],
+   "id": "7b4010a1-d1bb-548a-99ce-d7d03e66f67d"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Case 1: two different real roots",
+   "citations": [],
+   "id": "6f258c83-cd1e-5f95-8413-3bf8080b9a3c"
+  },
+  {
+   "type": "paragraph",
+   "text": "Each root produces an exponential. With roots $s_1\\ne s_2$, the general solution is $y=Ae^{s_1t}+Be^{s_2t}$; sums and constant multiples remain solutions because the ODE is linear and homogeneous.",
+   "citations": [],
+   "id": "61e70fbb-eb38-5a05-9ed0-e95897df3b17"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · Two roots, then two constants · original",
+   "prompt": "Solve $y''+3y'+2y=0$ with $y(0)=1$, $y'(0)=0$.",
+   "steps": [
+    {
+     "explanation": "Factor the characteristic equation.",
+     "latex": "s^2+3s+2=(s+1)(s+2)=0"
+    },
+    {
+     "explanation": "Use roots −1 and −2, then differentiate the general solution.",
+     "latex": "y=Ae^{-t}+Be^{-2t}"
+    },
+    {
+     "explanation": "Apply the value and slope at zero.",
+     "latex": "A+B=1,\\qquad -A-2B=0"
+    },
+    {
+     "explanation": "Add the equations to eliminate A, then substitute back.",
+     "latex": "B=-1,\\qquad A=2"
+    }
+   ],
+   "answer": "$y=2e^{-t}-e^{-2t}$. Its derivative is $-2e^{-t}+2e^{-2t}$, so both starting conditions check.",
+   "citations": [],
+   "id": "9b79080b-4643-5e04-9ac0-565bf9185d62"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · Fit the constants yourself · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Solve $y''+5y'+6y=0$, $y(0)=2$, $y'(0)=-5$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Factor the quadratic.",
+     "latex": "(s+2)(s+3)=0"
+    },
+    {
+     "explanation": "Write the solution and apply both starting conditions.",
+     "latex": "y=Ae^{-2t}+Be^{-3t}"
+    },
+    {
+     "explanation": "Solve the two simultaneous equations.",
+     "latex": "A+B=2,\\quad -2A-3B=-5\\quad\\Rightarrow\\quad A=B=1"
+    }
+   ],
+   "answer": "$y=e^{-2t}+e^{-3t}$.",
+   "citations": [],
+   "id": "c50cf942-7454-5920-a1a7-a92e457c42ac"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Case 2: one repeated real root",
+   "citations": [],
+   "id": "8371f9af-a49f-5a96-a431-173d68f60eb7"
+  },
+  {
+   "type": "paragraph",
+   "text": "If the quadratic has the same root $s$ twice, $Ae^{st}+Be^{st}=(A+B)e^{st}$ only supplies one adjustable constant. A second independent solution is $te^{st}$, giving:",
+   "citations": [],
+   "id": "0d43c7f6-b639-5ef5-b31b-707a9f37c036"
+  },
+  {
+   "type": "equation",
+   "latex": "y=(A+Bt)e^{st}",
+   "display": true,
+   "citations": [],
+   "id": "1dc9256f-d722-5f3b-9ad8-a6643288a129"
+  },
+  {
+   "type": "paragraph",
+   "text": "The factor $t$ makes a different function, not a different constant. You can verify $te^{st}$ by differentiating twice and substituting into the ODE with the repeated root.",
+   "citations": [],
+   "id": "4bf31cd3-270d-5b94-89fc-f113af2189f7"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 3 · Use the extra t · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Solve $4y''+4y'+y=0$, $y(0)=4$, $y'(0)=0$.\n\nStart with $(2s+1)^2=0$, so $s=-1/2$. Write the form, then use the product rule to apply the slope condition.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Use the repeated-root form.",
+     "latex": "y=(A+Bt)e^{-t/2}"
+    },
+    {
+     "explanation": "The starting value gives A = 4.",
+     "latex": "y(0)=A=4"
+    },
+    {
+     "explanation": "The product rule gives the slope at zero.",
+     "latex": "y'(0)=B-\\dfrac A2=0"
+    },
+    {
+     "explanation": "So B = 2.",
+     "latex": "y=(4+2t)e^{-t/2}"
+    }
+   ],
+   "answer": "$y=(4+2t)e^{-t/2}$.",
+   "citations": [],
+   "id": "4266266f-c2c2-52e2-a9cb-3345a3818c17"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Case 3: a complex-conjugate pair",
+   "citations": [],
+   "id": "06dd8415-4050-5b55-8545-b3fd6ef757b4"
+  },
+  {
+   "type": "paragraph",
+   "text": "Remember $j^2=-1$. Roots $s=\\sigma\\pm j\\omega$ contain a real part $\\sigma$ and imaginary parts $\\pm\\omega$; Euler’s relation $e^{j\\omega t}=\\cos\\omega t+j\\sin\\omega t$ converts the exponentials into real functions.",
+   "citations": [],
+   "id": "b49008a4-e06a-5154-b057-b7aa2edc9452"
+  },
+  {
+   "type": "equation",
+   "latex": "y=e^{\\sigma t}(A\\cos\\omega t+B\\sin\\omega t)",
+   "display": true,
+   "citations": [],
+   "id": "7c0edd72-d074-5075-a5ae-2a244025e928"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$e^{\\sigma t}$ controls the envelope: decay if $\\sigma<0$, growth if $\\sigma>0$.",
+    "$\\omega>0$ is the oscillation frequency in radians per unit time.",
+    "If $\\sigma=0$, the envelope is constant rather than decaying."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "78aa4d9e-686d-52b9-89e1-b238e8af6667"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · Complex roots without complex-valued answers · original",
+   "prompt": "Solve $y''+2y'+5y=0$, $y(0)=1$, $y'(0)=1$.",
+   "steps": [
+    {
+     "explanation": "Use the quadratic formula; √(−16) = j4.",
+     "latex": "s=\\dfrac{-2\\pm\\sqrt{4-20}}2=-1\\pm j2"
+    },
+    {
+     "explanation": "Use σ = −1 and ω = 2 in the real solution form.",
+     "latex": "y=e^{-t}(A\\cos2t+B\\sin2t)"
+    },
+    {
+     "explanation": "At zero, the value is A.",
+     "latex": "A=1"
+    },
+    {
+     "explanation": "Use the derivative from the refresher.",
+     "latex": "y'(0)=-A+2B=1\\quad\\Rightarrow\\quad B=1"
+    }
+   ],
+   "answer": "$y=e^{-t}(\\cos2t+\\sin2t)$.",
+   "citations": [],
+   "id": "bba7fa98-5af9-535a-a395-0c1163c15c42"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 4 · Read a different complex root pair · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "The roots are $-3\\pm j4$. Write the general solution, then select $y(0)=0$, $y'(0)=8$. Do not expand the derivative more than necessary.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "The real part is −3 and the frequency is 4.",
+     "latex": "y=e^{-3t}(A\\cos4t+B\\sin4t)"
+    },
+    {
+     "explanation": "The starting value is zero, so A = 0.",
+     "latex": "A=0"
+    },
+    {
+     "explanation": "At zero, the product rule gives −3A + 4B = 8.",
+     "latex": "B=2"
+    }
+   ],
+   "answer": "$y=2e^{-3t}\\sin4t$.",
+   "citations": [],
+   "id": "bfe1f2f1-19aa-5cf7-958e-7082d910ad12"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Now compare the cases",
+   "citations": [],
+   "id": "16737cc9-20b8-57e9-a634-db44b06e31fe"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Quadratic discriminant",
     "Roots",
     "General solution"
    ],
    "rows": [
     [
-     "two real, $s_1\\neq s_2$ ($b^2-4ac>0$)",
-     "$y=C_1e^{s_1t}+C_2e^{s_2t}$"
+     "$b^2-4ac>0$",
+     "Distinct real",
+     "$Ae^{s_1t}+Be^{s_2t}$"
     ],
     [
-     "one repeated, $s$ ($b^2-4ac=0$)",
-     "$y=(C_1+C_2t)\\,e^{st}$"
+     "$b^2-4ac=0$",
+     "Repeated real",
+     "$(A+Bt)e^{st}$"
     ],
     [
-     "complex pair, $\\sigma\\pm j\\omega$ ($b^2-4ac<0$)",
-     "$y=e^{\\sigma t}(C_1\\cos\\omega t+C_2\\sin\\omega t)$"
+     "$b^2-4ac<0$",
+     "$\\sigma\\pm j\\omega$",
+     "$e^{\\sigma t}(A\\cos\\omega t+B\\sin\\omega t)$"
     ]
    ],
    "citations": [],
-   "id": "a06c264f-42fc-5541-81c7-8cf68d77e5bb"
-  },
-  {
-   "type": "paragraph",
-   "text": "Two constants need two conditions:\n- $y(0)$: the start **value**\n- $y'(0)$: the start **slope**\n\nEach example below is one row of the table.",
-   "citations": [],
-   "id": "9ab6d6e8-8314-53a7-ab7d-6a750b4c9e37"
-  },
-  {
-   "type": "paragraph",
-   "text": "```graph\ntitle \"Where the roots of $s^2+bs+c=0$ sit\"\nx -8.5 3.5 label=\"Re $s$\"\ny -3.6 3.6 label=\"Im $s$\"\nequal\nslider b -2 8 1 step=0.1 label=\"$b$\" animate\nslider c 0 10 4 step=0.25 label=\"$c$\"\nregion \"x>0\" color=6 label=\"right half: $e^{st}$ grows\"\ncircle \"0\" \"0\" \"sqrt(c)\" dash color=0 label=\"circle $|s|=\\sqrt c$\"\npoint \"if(b^2-4*c>=0,(-b+sqrt(b^2-4*c))/2,-b/2)\" \"if(b^2-4*c>=0,0,sqrt(4*c-b^2)/2)\" color=1\npoint \"if(b^2-4*c>=0,(-b-sqrt(b^2-4*c))/2,-b/2)\" \"if(b^2-4*c>=0,0,-sqrt(4*c-b^2)/2)\" color=3\ntext \"if(b^2-4*c>=0,(-b+sqrt(b^2-4*c))/2,-b/2)+0.12\" \"if(b^2-4*c>=0,0,sqrt(4*c-b^2)/2)+0.12\" \"$s_1$\" color=1\ntext \"if(b^2-4*c>=0,(-b-sqrt(b^2-4*c))/2,-b/2)+0.12\" \"if(b^2-4*c>=0,0,-sqrt(4*c-b^2)/2)-0.55\" \"$s_2$\" color=3\ntext \"if(b^2-4*c-0.05,-8.2,sqrt(-1))\" \"3.1\" \"**two real roots**\"\ntext \"if(abs(b^2-4*c)<0.05,-8.2,sqrt(-1))\" \"3.1\" \"**one repeated root**\"\ntext \"if(4*c-b^2-0.05,-8.2,sqrt(-1))\" \"3.1\" \"**complex pair** $\\sigma\\pm j\\omega$\"\nreadout \"$b^2-4c=$\" \"b^2-4*c\"\nreadout \"$s_1=$\" \"(-b+sqrt(b^2-4*c))/2\"\nreadout \"$s_2=$\" \"(-b-sqrt(b^2-4*c))/2\"\nreadout \"$\\sigma=$\" \"if(4*c-b^2,-b/2,sqrt(-1))\"\nreadout \"$\\omega=$\" \"sqrt(4*c-b^2)/2\"\ncaption \"Press play on $b$ and watch the two roots move.\"\n```",
-   "citations": [],
-   "id": "f867b4c7-b277-5091-b132-d7b20273bc55"
-  },
-  {
-   "type": "paragraph",
-   "text": "What happens as $b$ changes (with $c=4$):\n- **From $b=1$:** the complex pair slides round the dashed circle.\n- **At $b=4$:** the roots meet on the real axis (repeated).\n- **Above $b=4$:** they split into two real roots.\n- **Negative $b$:** the roots move into the shaded half: growing solutions.",
-   "citations": [],
-   "id": "54954fd0-168c-59be-a52f-ff612fd5fe8f"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 1 · Two real roots: fit the two constants",
-   "prompt": "Solve $y''+3y'+2y=0$ with $y(0)=1$, $y'(0)=0$.",
-   "steps": [
-    {
-     "explanation": "Characteristic equation; it factors ($1\\cdot2=2$, $1+2=3$).",
-     "latex": "s^2+3s+2=(s+1)(s+2)=0\\ \\Rightarrow\\ s=-1,\\ -2"
-    },
-    {
-     "explanation": "Two different real roots: first row of the table.",
-     "latex": "y=C_1e^{-t}+C_2e^{-2t}"
-    },
-    {
-     "explanation": "```steps\ntitle \"Fit $C_1$ and $C_2$\"\n$$ y=C_1e^{-t}+C_2e^{-2t} $$\nThe general solution.\n$$ y'=\\hl{-C_1e^{-t}-2C_2e^{-2t}} $$\nDifferentiate each term: $\\frac{d}{dt}e^{st}=se^{st}$.\n$$ y(0)=\\hl{C_1+C_2}=1 $$\nPut $t=0$ in $y$; every $e^{0}=1$.\n$$ y'(0)=\\hl{-C_1-2C_2}=0 $$\nPut $t=0$ in $y'$.\n$$ \\hl{-C_2=1}\\ \\Rightarrow\\ C_2=-1 $$\nAdd the two equations: $C_1$ cancels.\n$$ C_1=1-C_2=\\hl{2} $$\nBack into the first equation.\n$$ y=\\hl{2}e^{-t}\\hl{-}e^{-2t} $$\nCheck: $y(0)=2-1=1$, $y'(0)=-2+2=0$ ✓\n```",
-     "latex": ""
-    }
-   ],
-   "answer": "$y=2e^{-t}-e^{-2t}$ (decays to $0$ without crossing it)",
-   "citations": [],
-   "id": "be658788-3edd-57be-b430-e6ab01fd0d85"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 2 · Repeated root: the extra $t$",
-   "prompt": "Solve $4y''+4y'+y=0$ with $y(0)=4$, $y'(0)=0$.",
-   "steps": [
-    {
-     "explanation": "Keep $a=4$ (a common slip is $s^2+4s+1$). The left side is a perfect square.",
-     "latex": "4s^2+4s+1=(2s+1)^2=0\\ \\Rightarrow\\ s=-\\tfrac12\\ \\text{twice}"
-    },
-    {
-     "explanation": "One root gives only $e^{-t/2}$. Two copies of it are really one constant: it can't match a value **and** a slope.",
-     "latex": "C_1e^{-t/2}+C_2e^{-t/2}=(C_1+C_2)\\,e^{-t/2}"
-    },
-    {
-     "explanation": "The second solution is $te^{-t/2}$:",
-     "latex": "y=(C_1+C_2t)\\,e^{-t/2}"
-    },
-    {
-     "explanation": "Check that $te^{-t/2}$ is a solution: differentiate with the product rule, substitute, and everything cancels.",
-     "latex": "\\begin{gathered}y'=(1-\\tfrac t2)e^{-t/2}, \\\\ y''=(-1+\\tfrac t4)e^{-t/2} \\\\ 4(-1+\\tfrac t4)+4(1-\\tfrac t2)+t=0\\ \\checkmark\\end{gathered}"
-    },
-    {
-     "explanation": "Differentiate the general solution (product rule) and put $t=0$.",
-     "latex": "y(0)=C_1=4,\\qquad y'(0)=C_2-\\tfrac12C_1=0"
-    },
-    {
-     "explanation": "So $C_2=\\tfrac12\\cdot4=2$.",
-     "latex": "y=(4+2t)\\,e^{-t/2}"
-    }
-   ],
-   "answer": "$y=(4+2t)\\,e^{-t/2}$",
-   "citations": [],
-   "id": "5d8382ac-fb72-5b25-9677-1a0bce80ea15"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 3 · Complex roots: where the cosine comes from",
-   "prompt": "Solve $y''+2y'+5y=0$ with $y(0)=1$, $y'(0)=1$.",
-   "steps": [
-    {
-     "explanation": "Quadratic formula; $\\sqrt{-16}=j4$.",
-     "latex": "s=\\frac{-2\\pm\\sqrt{4-20}}{2}=-1\\pm j2"
-    },
-    {
-     "explanation": "Euler (Week 1) splits each complex exponential into a cosine and a sine.",
-     "latex": "e^{(-1\\pm j2)t}=e^{-t}(\\cos2t\\pm j\\sin2t)"
-    },
-    {
-     "explanation": "Half their sum, and their difference over $2j$, are solutions too (sums and multiples of solutions are). No $j$ is left:",
-     "latex": "y=e^{-t}(C_1\\cos2t+C_2\\sin2t)"
-    },
-    {
-     "explanation": "At $t=0$: $\\cos0=1$, $\\sin0=0$.",
-     "latex": "y(0)=C_1=1"
-    },
-    {
-     "explanation": "Product rule, then $t=0$. In general $y'(0)=\\sigma C_1+\\omega C_2$, here with $\\sigma=-1$, $\\omega=2$.",
-     "latex": "y'(0)=-C_1+2C_2=1\\ \\Rightarrow\\ C_2=1"
-    }
-   ],
-   "answer": "$y=e^{-t}(\\cos2t+\\sin2t)$: oscillates at $2$ rad/s inside the shrinking envelope $e^{-t}$",
-   "citations": [],
-   "id": "599e206a-83ff-5054-9b1b-310fc98ddead"
+   "id": "db36dd97-b8c0-5d31-926d-2e4b1241bde2"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 1 · One equation, every case",
+   "title": "Try it 5 · Choose a form before calculating constants · original",
    "difficulty": "introductory",
    "origin": "original",
-   "prompt": "Consider $y''+2y'+ky=0$.\n\n1. For which $k$ are the roots two real, repeated, or complex? (Check in the graph: $b=2$, slide $c$.)\n2. At $k=0$ one root is $s=0$. What is the general solution, and does every solution die out?",
+   "prompt": "For $y''+2y'+ky=0$, find which values of $k$ give each root case. At $k=0$, write the general solution and decide whether every solution tends to zero.",
    "solution": "",
    "steps": [
     {
-     "explanation": "The case is the sign of $b^2-4ac$ with $a=1$, $b=2$, $c=k$.",
-     "latex": "b^2-4ac=4-4k"
+     "explanation": "The discriminant is 4 − 4k.",
+     "latex": "\\begin{gathered}k<1:\\text{ distinct real}\\\\k=1:\\text{ repeated}\\\\k>1:\\text{ complex}\\end{gathered}"
     },
     {
-     "explanation": "Positive, zero, negative:",
-     "latex": "k<1:\\ \\text{two real},\\quad k=1:\\ \\text{repeated},\\quad k>1:\\ \\text{complex}"
+     "explanation": "At k = 0, factor s(s + 2) = 0. The zero root gives e⁰ᵗ = 1.",
+     "latex": "y=A+Be^{-2t}"
     },
     {
-     "explanation": "$k=0$: $s^2+2s=s(s+2)=0$. The root $s=0$ gives $e^{0t}=1$, a constant.",
-     "latex": "y=C_1+C_2e^{-2t}"
-    },
-    {
-     "explanation": "$e^{-2t}\\to0$ but $C_1$ stays: the solution settles at $C_1$, not $0$ (a root on the vertical axis does not decay).",
-     "latex": "y\\to C_1"
+     "explanation": "The exponential decays but the constant remains.",
+     "latex": "y(t)\\to A"
     }
    ],
-   "answer": "1. $k<1$: two real; $k=1$: repeated; $k>1$: complex.\n2. $y=C_1+C_2e^{-2t}\\to C_1$, so no.",
+   "answer": "$k<1$, $k=1$, $k>1$ give the three cases respectively. At $k=0$, $y=A+Be^{-2t}$ need not decay to zero.",
    "citations": [],
-   "id": "3dd61a17-86cf-5161-930b-a0d69c654164"
+   "id": "98ad4121-23bd-563f-9dbe-80b3864988f1"
   },
   {
-   "type": "practice_problem",
-   "title": "Try it 2 · Work backwards from a solution",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "One solution of $y''+by'+cy=0$ is $e^{-3t}\\cos4t$.\n\n1. Find $b$ and $c$.\n2. Solve with $y(0)=0$, $y'(0)=8$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "$e^{\\sigma t}\\cos\\omega t$ comes from the roots $\\sigma\\pm j\\omega$.",
-     "latex": "s=-3\\pm j4"
-    },
-    {
-     "explanation": "Rebuild the quadratic as $(s-s_1)(s-s_2)$; note $(j4)^2=-16$.",
-     "latex": "(s+3)^2-(j4)^2=s^2+6s+25\\ \\Rightarrow\\ b=6,\\ c=25"
-    },
-    {
-     "explanation": "Complex row; $y(0)=C_1=0$ and $y'(0)=\\sigma C_1+\\omega C_2=4C_2=8$.",
-     "latex": "C_1=0,\\quad C_2=2"
-    }
-   ],
-   "answer": "1. $b=6$, $c=25$\n2. $y=2e^{-3t}\\sin4t$",
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Compare the three root cases with the same starting values\"\nx 0 8 label=\"$t$\"\ny -0.5 1.2 label=\"$y$\"\ncurve \"2*exp(-t)-exp(-2*t)\" label=\"distinct real roots\" color=1\ncurve \"(1+t)*exp(-t)\" label=\"repeated root\" color=2\ncurve \"exp(-t)*(cos(2*t)+0.5*sin(2*t))\" label=\"complex pair\" color=3\ncaption \"All three start at y=1 with slope zero. Their equations differ. The complex-root response oscillates; the other two shown approach zero without oscillating.\"\n```",
    "citations": [],
-   "id": "dd6c3f61-f7ca-572d-8661-087f3fcba411"
+   "id": "3d4cd790-e034-5a9b-811a-09e405aebe64"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 2: Existence and uniqueness: why two conditions are enough",
-   "citations": [
-    {
-     "source_id": "0a505e49-c707-4c33-99fd-7d3f15b5be82",
-     "version": 1,
-     "chunk_id": "82a3e61c-4405-4baa-b501-0ab5970211c2"
-    },
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
-    }
-   ],
-   "id": "47c1485c-3e91-5667-955b-a667f6b81ae0"
-  },
-  {
-   "type": "paragraph",
-   "text": "A second-order equation needs two starting facts:\n- $y(t_0)$: the start **value**\n- $y'(t_0)$: the start **slope**\n\nIn a circuit they come from the capacitor voltage and the inductor current.\n\nWith both given there is **exactly one** solution. So once a formula fits both, it *is* the answer.\n\nThis is the second-order version of Week 3's theorem.",
-   "citations": [
-    {
-     "source_id": "0a505e49-c707-4c33-99fd-7d3f15b5be82",
-     "version": 1,
-     "chunk_id": "82a3e61c-4405-4baa-b501-0ab5970211c2"
-    },
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
-    }
-   ],
-   "id": "7d7f0fdd-8ac9-526f-927a-be3bfbadc868"
-  },
-  {
-   "type": "callout",
-   "tone": "info",
-   "text": "**Theorem.** Divide by the coefficient of $y''$ to get $y''+p(t)\\,y'+q(t)\\,y=g(t)$.\n\n- **If** $p$, $q$, $g$ are continuous on an open interval $I$ containing $t_0$,\n- **then** for any numbers $Y_0$, $Y_1$ the problem $y(t_0)=Y_0$, $y'(t_0)=Y_1$ has **exactly one** solution, and it exists on all of $I$.\n\nConstant coefficients are continuous everywhere, so Topic 1's solutions hold for all $t$.",
-   "citations": [
-    {
-     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
-     "version": 1,
-     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
-    }
-   ],
-   "id": "b94e45a9-b087-5aea-9725-e0280ac6606e"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Why $C_1y_1+C_2y_2$ can always be fitted.** The two conditions are two linear equations for $C_1$, $C_2$.\n\nThey have a solution for every $Y_0$, $Y_1$ exactly when their determinant, the **Wronskian**, is not zero:",
+   "text": "Topic 2: Why two conditions select one solution",
    "citations": [],
-   "id": "f6f48964-e40b-5855-a08d-f742a3fa94e5"
+   "id": "39e0a0f2-1ef8-5686-94e6-04b1abc3bb13"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Check the interval where the theorem applies",
+   "citations": [],
+   "id": "238f6887-81ab-5c37-bc94-3b5b14a9bca4"
+  },
+  {
+   "type": "paragraph",
+   "text": "First divide by the coefficient of $y''$ to write $y''+p(t)y'+q(t)y=g(t)$. If $p,q,g$ are continuous on an open interval containing $t_0$, then specifying $y(t_0)$ and $y'(t_0)$ gives exactly one solution throughout that interval.",
+   "citations": [],
+   "id": "7c71b803-4693-5764-97e0-6c2ff49305dc"
+  },
+  {
+   "type": "paragraph",
+   "text": "For constant coefficients the theorem applies on the whole real line. With variable coefficients, locate the points where the normalised expressions fail, then choose the interval containing the starting time.",
+   "citations": [],
+   "id": "433bfd9e-b30d-5494-9bb6-01ac5768d364"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 6 · Find the interval; do not solve · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $(t-1)y''+y'+y=\\ln t$, find the largest interval guaranteed by the theorem for (a) $t_0=2$ and (b) $t_0=1/2$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Divide by t − 1 and inspect all three expressions.",
+     "latex": "p=q=\\dfrac1{t-1},\\qquad g=\\dfrac{\\ln t}{t-1}"
+    },
+    {
+     "explanation": "The log excludes t ≤ 0, and the denominator excludes t = 1.",
+     "latex": ""
+    },
+    {
+     "explanation": "Choose the connected interval containing each starting time.",
+     "latex": "\\text{(a) }(1,\\infty),\\qquad\\text{(b) }(0,1)"
+    }
+   ],
+   "answer": "(a) $(1,\\infty)$. (b) $(0,1)$.",
+   "citations": [],
+   "id": "b137cfe7-9c7e-5a54-b57f-feb3f16c01d5"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Two functions must supply two independent choices",
+   "citations": [],
+   "id": "39136ae3-b8f2-51af-9f2e-e599ce9f20e1"
+  },
+  {
+   "type": "paragraph",
+   "text": "Suppose $y_1,y_2$ are solutions of the same homogeneous linear ODE. Fitting $Ay_1+By_2$ to a value and slope gives two simultaneous equations; their determinant is the **Wronskian**:",
+   "citations": [],
+   "id": "d0ff4a11-7c33-56e5-8b26-29ef523d6664"
   },
   {
    "type": "equation",
-   "latex": "W=\\begin{vmatrix}y_1&y_2\\\\ y_1'&y_2'\\end{vmatrix}=y_1y_2'-y_1'y_2\\neq0",
+   "latex": "W(t)=y_1y_2^{\\prime}-y_1^{\\prime} y_2",
    "display": true,
    "citations": [],
-   "id": "4d3cfd12-a533-52f9-ac7e-59e00a02edb0"
+   "id": "36d3d006-2778-579c-b7c5-906bb2f42105"
   },
   {
-   "type": "worked_example",
-   "title": "Example 4 · Largest interval: division by zero",
-   "prompt": "$(t^2-9)\\,y''+t\\,y'+4y=e^t$, $\\ y(1)=0$, $\\ y'(1)=2$.\n\nFind the largest interval on which this surely has exactly one solution.",
-   "steps": [
-    {
-     "explanation": "Divide by $t^2-9$, the coefficient of $y''$.",
-     "latex": "y''+\\frac{t}{t^2-9}\\,y'+\\frac{4}{t^2-9}\\,y=\\frac{e^t}{t^2-9}"
-    },
-    {
-     "explanation": "$p$, $q$, $g$ break only where the bottom is $0$.",
-     "latex": "t^2-9=0\\ \\Rightarrow\\ t=\\pm3"
-    },
-    {
-     "explanation": "Take the piece between the bad points that contains $t_0=1$. (Starting at $t_0=5$ would give $t>3$ instead.)",
-     "latex": "-3<t<3"
-    }
-   ],
-   "answer": "$-3<t<3$",
+   "type": "paragraph",
+   "text": "If $W(t_0)\\ne0$, the constants can be uniquely fitted at that point. Two scalar multiples of the same function have $W=0$, so they do not supply two independent choices.",
    "citations": [],
-   "id": "c6bc6101-3549-5bc0-be99-5f322bbb9911"
+   "id": "8e215125-3f4b-5176-9396-0021019c7cc2"
   },
   {
-   "type": "worked_example",
-   "title": "Example 5 · Largest interval: the nearest trouble on each side",
-   "prompt": "Same question for $(t-2)\\,y''+y'+(t-2)(\\tan t)\\,y=0$, $y(3)=1$, $y'(3)=0$.",
+   "type": "practice_problem",
+   "title": "Try it 7 · Why the repeated-root form works · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $y''+4y'+4y=0$, compare the pairs (a) $e^{-2t},3e^{-2t}$ and (b) $e^{-2t},te^{-2t}$. Compute their Wronskians and decide which pair can form a general solution.",
+   "solution": "",
    "steps": [
     {
-     "explanation": "Divide by $t-2$; in the last term it cancels.",
-     "latex": "y''+\\frac{1}{t-2}\\,y'+(\\tan t)\\,y=0"
-    },
-    {
-     "explanation": "The $y'$ coefficient breaks at $t=2$. $\\tan t$ (sine over cosine) breaks where $\\cos t=0$.",
-     "latex": "\\begin{gathered}t=2, \\\\ t=\\pm\\tfrac{\\pi}{2}\\approx\\pm1.57,\\ \\pm\\tfrac{3\\pi}{2}\\approx\\pm4.71,\\ \\dots\\end{gathered}"
-    },
-    {
-     "explanation": "Nearest bad point left of $t_0=3$ is $2$; nearest on the right is $3\\pi/2$.",
-     "latex": "2<t<\\dfrac{3\\pi}{2}"
-    }
-   ],
-   "answer": "$2<t<\\dfrac{3\\pi}{2}\\approx4.71$",
-   "citations": [],
-   "id": "8f9bad19-6118-564f-83da-d2aa48415eb2"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 6 · The Wronskian: why the repeated root needs $t$",
-   "prompt": "For $y''+4y'+4y=0$ (root $s=-2$ twice), test two pairs:\n\n1. $e^{-2t}$ and $3e^{-2t}$\n2. $e^{-2t}$ and $te^{-2t}$",
-   "steps": [
-    {
-     "explanation": "**Pair 1:** $y_2'=-6e^{-2t}$, and the two products cancel.",
+     "explanation": "For (a), differentiate both functions and substitute.",
      "latex": "W=e^{-2t}(-6e^{-2t})-(-2e^{-2t})(3e^{-2t})=0"
     },
     {
-     "explanation": "$W=0$ because $3e^{-2t}$ is just a multiple of $e^{-2t}$: this pair can't fit both conditions.",
+     "explanation": "For (b), the derivative of te⁻²ᵗ is (1 − 2t)e⁻²ᵗ.",
+     "latex": "W=e^{-2t}(1-2t)e^{-2t}+2te^{-4t}=e^{-4t}"
+    },
+    {
+     "explanation": "The second Wronskian never vanishes, so its two constants remain independent.",
      "latex": ""
-    },
-    {
-     "explanation": "**Pair 2:** product rule gives $y_2'=(1-2t)e^{-2t}$; use $e^{-2t}e^{-2t}=e^{-4t}$.",
-     "latex": "W=(1-2t)e^{-4t}+2t\\,e^{-4t}=e^{-4t}\\neq0"
     }
    ],
-   "answer": "Only $e^{-2t}$ with $te^{-2t}$ works ($W=e^{-4t}\\neq0$).\n\nSo $(C_1+C_2t)e^{-2t}$ is the general solution.",
+   "answer": "(a) $W=0$: not a fundamental pair. (b) $W=e^{-4t}\\ne0$: the form is $(A+Bt)e^{-2t}$.",
    "citations": [],
-   "id": "b6f18671-36da-5701-ba25-fd421ebca22f"
+   "id": "f55de68b-57a7-5217-94bb-afb2f2239c04"
   },
   {
-   "type": "practice_problem",
-   "title": "Try it 3 · Logarithms: the start decides",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "For $(t-1)\\,y''+y'+y=\\ln t$, find the largest guaranteed interval when the conditions are given at:\n\n1. $t_0=2$\n2. $t_0=\\tfrac12$",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "Divide by $t-1$.",
-     "latex": "y''+\\frac{1}{t-1}\\,y'+\\frac{1}{t-1}\\,y=\\frac{\\ln t}{t-1}"
-    },
-    {
-     "explanation": "Bad points: $t=1$ (division by zero) and $t\\le0$ (no $\\ln$ there).",
-     "latex": "t\\le0,\\qquad t=1"
-    },
-    {
-     "explanation": "From $t_0=2$: nothing stops it on the right. From $t_0=\\tfrac12$: trapped between $0$ and $1$.",
-     "latex": "(1)\\ t>1,\\qquad (2)\\ 0<t<1"
-    }
-   ],
-   "answer": "1. $t>1$\n2. $0<t<1$",
+   "type": "paragraph",
+   "text": "A useful application of uniqueness: if a regular homogeneous linear ODE has $y(t_0)=0$ and $y'(t_0)=0$, then $y=0$ is the unique solution. It already satisfies the equation and both conditions.",
    "citations": [],
-   "id": "d2c8d851-fb8d-5be9-9a5b-ae0a379a7c0b"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 4 · Uniqueness as a shortcut",
-   "difficulty": "advanced",
-   "origin": "original",
-   "prompt": "1. Solve $y''+t\\,y'+e^t\\,y=0$ with $y(2)=0$, $y'(2)=0$ without any formula.\n2. Why can $y=t^2$ never solve an equation $y''+p(t)\\,y'+q(t)\\,y=0$ with $p$, $q$ continuous near $t=0$?",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "$y=0$ satisfies the equation and both conditions. $p=t$, $q=e^t$ are continuous, so it is the only solution.",
-     "latex": "y(t)=0"
-    },
-    {
-     "explanation": "$y=t^2$ has $y(0)=0$ and $y'(0)=0$: the same start as $y=0$.",
-     "latex": "y(0)=0,\\quad y'(0)=0"
-    },
-    {
-     "explanation": "Uniqueness would force $t^2=0$ near $t=0$, which is false. So no such equation exists.",
-     "latex": "t^2\\not\\equiv0"
-    }
-   ],
-   "answer": "1. $y=0$.\n2. $t^2$ and $0$ share the same start, so uniqueness would make them equal.",
-   "citations": [],
-   "id": "41a0bda8-9487-56bf-bb49-d14edd6e94ac"
+   "id": "df99250b-8376-5344-bf52-bf70295f1846"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 3: RLC circuits",
-   "citations": [
-    {
-     "source_id": "0a505e49-c707-4c33-99fd-7d3f15b5be82",
-     "version": 1,
-     "chunk_id": "82a3e61c-4405-4baa-b501-0ab5970211c2"
-    }
+   "text": "Topic 3: RLC circuits — translate the circuit into the same math",
+   "citations": [],
+   "id": "8e57f8ac-dee4-5bf2-b179-a65bc07d85cc"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "A series circuit gives value and slope from stored energy",
+   "citations": [],
+   "id": "f2f9aa50-5c86-5f2e-ae9f-044ce60725e8"
+  },
+  {
+   "type": "paragraph",
+   "text": "Use capacitor voltage $v_C$ as the unknown in a series RLC circuit. The loop current enters its positive terminal, so $i=Cv_C^{\\prime}$; capacitor voltage and inductor current carry over through an ordinary switch or source step.",
+   "citations": [],
+   "id": "57550d35-7747-5a5f-ac45-becf867b167b"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Starting value:** $v_C(0^+)=V_0$, the stored capacitor voltage.",
+    "**Starting slope:** $v_C^{\\prime}(0^+)=I_0/C$, where $I_0$ is the series inductor current in the shown direction.",
+    "**Post-step source:** a constant $V_s$ supplies the forcing term in the ODE."
    ],
-   "id": "ffb5a5dc-d0a7-51e3-8e00-ea2e08c1f510"
+   "ordered": false,
+   "citations": [],
+   "id": "847122ad-87dc-56a4-9cb2-88e0e7cf6507"
   },
   {
    "type": "schematic",
-   "source": "V1 0,3 -> 0,0 \"$V$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$R$\" i=\"$i$\"\nL1 6,3 -> 9,3 \"$L$\"\nC1 9,3 -> 9,0 \"$C$\" v=\"$v_C$\"\nwire 9,0 -> 0,0\nground 0,0",
-   "caption": "Series RLC with a constant impressed voltage $V$, switched in at $t=0$.",
-   "citations": [
-    {
-     "source_id": "0a505e49-c707-4c33-99fd-7d3f15b5be82",
-     "version": 1,
-     "chunk_id": "82a3e61c-4405-4baa-b501-0ab5970211c2"
-    }
-   ],
-   "id": "6f9514a8-9f2e-5841-b948-910fb2b9ae6a"
-  },
-  {
-   "type": "paragraph",
-   "text": "The circuit stores energy in two places, so it gives a second-order equation:\n- the **capacitor** (its voltage $v_C$)\n- the **inductor** (its current $i$)\n\nNeither can jump at the switch, so the two starting facts are:\n- $V_0=v_C(0^+)$\n- $I_0=i(0^+)$",
-   "citations": [],
-   "id": "c1d924f3-7859-5146-861b-ffd6a6fbcb98"
-  },
-  {
-   "type": "paragraph",
-   "text": "```steps\ntitle \"KVL gives a Topic 1 equation (Nilsson & Riedel 8.4)\"\n$$ V=Ri+L\\dfrac{di}{dt}+v_C $$\nKVL around the loop for $t>0$.\n$$ V=\\hl{RC\\dfrac{dv_C}{dt}}+\\hl{LC\\dfrac{d^2v_C}{dt^2}}+v_C $$\nThe loop current is the capacitor current: $i=C\\frac{dv_C}{dt}$.\n$$ \\dfrac{d^2v_C}{dt^2}+\\hl{\\dfrac{R}{L}}\\dfrac{dv_C}{dt}+\\hl{\\dfrac{1}{LC}}v_C=\\hl{\\dfrac{V}{LC}} $$\nDivide by $LC$.\n$$ v_C=\\hl{V}+v_n(t) $$\nA constant solves it only if it equals $V$ (its derivatives are $0$): the **final value**. The rest, $v_n$, solves the same equation with $0$ on the right.\n$$ s^2+\\hl{2\\alpha}s+\\hl{\\omega_0^2}=0,\\quad \\alpha=\\dfrac{R}{2L},\\ \\ \\omega_0=\\dfrac{1}{\\sqrt{LC}} $$\nCharacteristic equation of $v_n$. Textbook names: $\\alpha$ (alpha, s$^{-1}$), $\\omega_0$ (omega-zero, rad/s).\n$$ s_{1,2}=-\\alpha\\pm\\sqrt{\\hl{\\alpha^2-\\omega_0^2}} $$\nQuadratic formula: compare $\\alpha$ with $\\omega_0$.\n```",
-   "citations": [],
-   "id": "6eed7641-b2f5-59a0-a64e-2f5e85c26a22"
-  },
-  {
-   "type": "table",
-   "columns": [
-    "Case",
-    "Test",
-    "$v_C(t)$ for $t\\ge0$"
-   ],
-   "rows": [
-    [
-     "**overdamped**",
-     "$\\alpha>\\omega_0$",
-     "$V+A_1e^{s_1t}+A_2e^{s_2t}$"
-    ],
-    [
-     "**critically damped**",
-     "$\\alpha=\\omega_0$",
-     "$V+(D_1t+D_2)\\,e^{-\\alpha t}$"
-    ],
-    [
-     "**underdamped**",
-     "$\\alpha<\\omega_0$",
-     "$V+e^{-\\alpha t}(B_1\\cos\\omega_dt+B_2\\sin\\omega_dt)$, $\\ \\omega_d=\\sqrt{\\omega_0^2-\\alpha^2}$"
-    ]
-   ],
-   "citations": [],
-   "id": "0ab58eb9-e7db-52f7-8f97-bc3c6aa313c1"
-  },
-  {
-   "type": "callout",
-   "tone": "tip",
-   "text": "**The two conditions at $t=0^+$:**\n- **Value:** $v_C(0^+)=V_0$\n- **Slope:** $\\dfrac{dv_C}{dt}(0^+)=\\dfrac{i_C(0^+)}{C}$, from $i_C=C\\dfrac{dv_C}{dt}$\n- **Series loop:** $i_C=i$, so the slope is $I_0/C$\n\n**Parallel** RLC (no source, Fig. 8.1): KCL gives the same equation for $v$, with:\n- $\\alpha=\\dfrac{1}{2RC}$\n- no $V$\n- $\\omega_0$ unchanged",
-   "citations": [],
-   "id": "2ef24874-d813-59a7-9f9a-cc1670ea975a"
-  },
-  {
-   "type": "paragraph",
-   "text": "```graph\ntitle \"Slide $R$ through the three cases\"\nx 0 8 label=\"$t$ (s)\"\ny 0 24 label=\"$v_C$ (V)\"\nslider R 0 10 1 step=0.1 label=\"$R$ ($\\Omega$)\" animate\nhline \"10\" label=\"final value $V$\"\ncurve \"10*(1-if((R^2/4-4)-0.001,((-(R/2)+sqrt((R^2/4-4)))*exp((-(R/2)-sqrt((R^2/4-4)))*t)-(-(R/2)-sqrt((R^2/4-4)))*exp((-(R/2)+sqrt((R^2/4-4)))*t))/(2*sqrt((R^2/4-4))),if(-(R^2/4-4)-0.001,exp(-(R/2)*t)*(cos(sqrt(4-R^2/4)*t)+(R/2)/sqrt(4-R^2/4)*sin(sqrt(4-R^2/4)*t)),(1+(R/2)*t)*exp(-(R/2)*t))))\" color=1 label=\"$v_C(t)$\"\ntext \"if((R^2/4-4)-0.001,4.2,sqrt(-1))\" \"22.6\" \"**overdamped**\"\ntext \"if(abs((R^2/4-4))<0.001,4.2,sqrt(-1))\" \"22.6\" \"**critically damped**\"\ntext \"if((-(R^2/4-4)-0.001)*(R>0.001),4.2,sqrt(-1))\" \"22.6\" \"**underdamped**\"\ntext \"if(R<0.001,4.2,sqrt(-1))\" \"22.6\" \"**undamped** (LC: $\\alpha=0$)\"\nreadout \"$\\alpha=$\" \"R/2\"\nreadout \"$\\omega_0=$\" \"2\"\nreadout \"$s_1=$\" \"-R/2+sqrt(R^2/4-4)\"\nreadout \"$s_2=$\" \"-R/2-sqrt(R^2/4-4)\"\nreadout \"$\\omega_d=$\" \"sqrt(4-R^2/4)\"\ncaption \"$L=1$ H, $C=0.25$ F, $V=10$ V, starting from $v_C(0)=0$, $i(0)=0$. A dash in a readout means that kind of root doesn't exist.\"\n```",
-   "citations": [],
-   "id": "86f29ea7-afec-59eb-bde1-77aa46d66bc5"
-  },
-  {
-   "type": "paragraph",
-   "text": "Critical at $R=4\\,\\Omega$, where $\\alpha=\\omega_0=2$:\n- **Below it:** the voltage overshoots and rings ($R=0$: forever).\n- **Above it:** it creeps up.",
-   "citations": [],
-   "id": "cfd7f78b-3895-5887-afd5-13592fad013d"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 7 · Constant impressed voltage: a step response (textbook 8.53)",
-   "prompt": "The circuit has run for a long time with $v_s=200\\,\\mathrm{V}$. At $t=0$ the source drops to $100\\,\\mathrm{V}$.\n\nFind $v_o(t)$ for $t\\ge0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$v_s$\"\nR1 0,3 -> 3,3 \"$4\\,\\Omega$\" i=\"$i$\"\nL1 3,3 -> 6,3 \"$40\\,\\mathrm{mH}$\"\nC1 6,3 -> 6,0 \"$10\\,\\mathrm{mF}$\" v=\"$v_o$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
-   "steps": [
-    {
-     "explanation": "Before $t=0$ (DC for a long time) the capacitor is an open circuit: no current, so it holds all $200$ V.",
-     "latex": "V_0=200\\ \\mathrm{V},\\qquad I_0=0"
-    },
-    {
-     "explanation": "After the drop, $V=100$ V. Series formulas ($L=0.04$ H, $C=0.01$ F):",
-     "latex": "\\begin{gathered}\\alpha=\\frac{4}{2(0.04)}=50, \\\\ \\omega_0=\\frac{1}{\\sqrt{0.04\\cdot0.01}}=50\\end{gathered}"
-    },
-    {
-     "explanation": "$\\alpha=\\omega_0$: critically damped, root $-50$ twice. The final value is the new source voltage.",
-     "latex": "v_o=100+(D_1t+D_2)\\,e^{-50t}"
-    },
-    {
-     "explanation": "Value at $t=0$: the $D_1t$ term is $0$. Keep the $100$ (forgetting it is the classic slip).",
-     "latex": "100+D_2=200\\ \\Rightarrow\\ D_2=100"
-    },
-    {
-     "explanation": "Slope at $0^+$ is $I_0/C=0$. The form has slope $D_1-50D_2$ at $t=0$ (product rule).",
-     "latex": "D_1-50(100)=0\\ \\Rightarrow\\ D_1=5000"
-    }
-   ],
-   "answer": "$v_o(t)=100+(5000t+100)\\,e^{-50t}$ V: from $200$ V down to $100$ V with no overshoot",
+   "source": "V1 0,3 -> 0,0 \"$V_s$\"\nR1 0,3 -> 3,3 \"$4\\,\\Omega$\" i=\"$i$\"\nL1 3,3 -> 6,3 \"$40\\,\\mathrm{mH}$\"\nC1 6,3 -> 6,0 \"$10\\,\\mathrm{mF}$\" v=\"$v_C$\"\nwire 6,0 -> 0,0\nground 0,0\n#~ flow\n#~ value V1 100\n#~ init C1 200\n#~ init L1 0\n#@ view \"Before the source changes\"\n#@ node a 200 \"$V_s$: $200\\,\\mathrm{V}$\"\n#@ node b 200 \"R end: $200\\,\\mathrm{V}$\"\n#@ node c 200 \"$C$: $200\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$200\\,\\mathrm{V}$\" col=0\n#@ el R a b \"$4\\,\\Omega$\" col=1\n#@ el L b c \"$40\\,\\mathrm{mH}$\" col=2\n#@ el C c g \"$10\\,\\mathrm{mF}$\" col=3 plus=c v=\"$v_C$\"\n#@ note \"Ground the bottom wire. In DC steady state i = 0, so R and L have no step. The capacitor holds the source voltage, 200 V.\"\n#@ view \"Just after the source changes\"\n#@ node a 100 \"$V_s$: $100\\,\\mathrm{V}$\"\n#@ node b 100 \"R end: $100\\,\\mathrm{V}$\"\n#@ node c 200 \"$C$: $200\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$100\\,\\mathrm{V}$\" col=0 id=src\n#@ el R a b \"$4\\,\\Omega$\" col=1 id=res\n#@ el L b c \"$40\\,\\mathrm{mH}$\" col=2 id=ind\n#@ el C c g \"$10\\,\\mathrm{mF}$\" col=3 plus=c v=\"$v_C$\" id=cap\n#@ step \"Ground the bottom wire.\" show=g\n#@ step \"The new source fixes its top at 100 V.\" show=a,src\n#@ step \"Inductor current stays zero, so R has no fall.\" show=b,res\n#@ step \"Capacitor voltage stays 200 V; the inductor voltage from left to right is −100 V.\" show=c,cap,ind\n#@ view \"At 20 ms\"\n#@ node a 100 \"$V_s$: $100\\,\\mathrm{V}$\"\n#@ node b 173.575888 \"R end: $173.58\\,\\mathrm{V}$\"\n#@ node c 173.575888 \"$C$: $173.58\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$100\\,\\mathrm{V}$\" col=0 i=\"$18.39\\,\\mathrm{A}$\" to=g\n#@ el R a b \"$4\\,\\Omega$\" col=1 i=\"$18.39\\,\\mathrm{A}$\" to=a\n#@ el L b c \"$40\\,\\mathrm{mH}$\" col=2 i=\"$18.39\\,\\mathrm{A}$\" to=b\n#@ el C c g \"$10\\,\\mathrm{mF}$\" col=3 plus=c v=\"$v_C$\" i=\"$18.39\\,\\mathrm{A}$\" to=c\n#@ note \"Ground the bottom wire. At 20 ms, i = −50/e A in the clockwise reference; actual current runs back toward the source. The capacitor releases energy.\"\n#@ view \"Final DC state\"\n#@ node a 100 \"$V_s$: $100\\,\\mathrm{V}$\"\n#@ node b 100 \"R end: $100\\,\\mathrm{V}$\"\n#@ node c 100 \"$C$: $100\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el V a g \"$100\\,\\mathrm{V}$\" col=0\n#@ el R a b \"$4\\,\\Omega$\" col=1\n#@ el L b c \"$40\\,\\mathrm{mH}$\" col=2\n#@ el C c g \"$10\\,\\mathrm{mF}$\" col=3 plus=c v=\"$v_C$\"\n#@ note \"Ground the bottom wire. Current tends to zero, so the capacitor approaches the new 100 V source.\"",
+   "caption": "Textbook P8.53: source changes from 200 V to 100 V at t = 0",
    "citations": [
     {
      "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
@@ -514,35 +564,173 @@
      "chunk_id": "447a0540-ae9e-4dc3-9fd0-6a03ab990c54"
     }
    ],
-   "id": "18bfa80d-8109-5dd8-884c-295961a2f825"
+   "id": "3d932656-662f-500b-86c1-dc5673e02b06"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 8 · Find only the starting conditions · P8.53 setup",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "The circuit above ran for a long time with $V_s=200\\,\\mathrm{V}$. At $t=0$, the source becomes $100\\,\\mathrm{V}$. Before solving any ODE, find $v_C(0^-)$, $i(0^-)$, $v_C(0^+)$, and $v_C^{\\prime}(0^+)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Before the step, the capacitor is a DC open circuit, so series current is zero.",
+     "latex": "i(0^-)=0"
+    },
+    {
+     "explanation": "With no resistor fall and no inductor voltage, the capacitor holds the old source voltage.",
+     "latex": "v_C(0^-)=200\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "The two stored quantities are continuous.",
+     "latex": "v_C(0^+)=200\\,\\mathrm{V},\\quad i(0^+)=0"
+    },
+    {
+     "explanation": "Translate series current into the starting voltage slope.",
+     "latex": "v_C^{\\prime}(0^+)=\\dfrac{0}{0.01}=0"
+    }
+   ],
+   "answer": "$v_C(0^-)=v_C(0^+)=200\\,\\mathrm{V}$, $i(0^-)=0$, and $v_C^{\\prime}(0^+)=0$. The capacitor does not instantly become 100 V.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "447a0540-ae9e-4dc3-9fd0-6a03ab990c54"
+    }
+   ],
+   "id": "c3592236-fb58-55ac-a029-630c9ab228b8"
+  },
+  {
+   "type": "paragraph",
+   "text": "```steps\ntitle \"Derive the series RLC equation\"\n$$ V_s=Ri+Li^{\\prime}+v_C $$\nKVL: the three element voltages sum to the source.\n$$ i=\\hl{Cv_C^{\\prime}} $$\nThe series loop current equals capacitor current.\n$$ V_s=RCv_C^{\\prime}+LCv_C^{\\prime\\prime}+v_C $$\nSubstitute the current and its derivative.\n$$ v_C^{\\prime\\prime}+\\hl{\\dfrac RL}v_C^{\\prime}+\\hl{\\dfrac1{LC}}v_C=\\hl{\\dfrac{V_s}{LC}} $$\nDivide by LC to normalise the equation.\n$$ v_C=\\hl{V_s}+u $$\nFor constant source voltage, subtract the constant particular solution.\n$$ u^{\\prime\\prime}+\\dfrac RL u^{\\prime}+\\dfrac1{LC}u=0 $$\nThe remaining transient obeys a homogeneous equation.\n```",
+   "citations": [],
+   "id": "b623ef33-34e2-547b-b220-474e971f5498"
   },
   {
    "type": "worked_example",
-   "title": "Example 8 · Parallel, underdamped (textbook 8.7)",
-   "prompt": "Source-free parallel RLC:\n- **Parts:** $R=12\\,500/3\\,\\Omega$, $L=250\\,\\mathrm{mH}$, $C=10\\,\\mathrm{nF}$\n- **Start:** $V_0=v(0)=90\\,\\mathrm{V}$, $I_0=i_L(0)=-30\\,\\mathrm{mA}$\n\nFind $v(t)$.\n\n```schematic\nC1 0,3 -> 0,0 \"$10\\,\\mathrm{nF}$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$250\\,\\mathrm{mH}$\" i=\"$i_L$\"\nwire 3,3 -> 6,3\nR1 6,3 -> 6,0 \"$R$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "title": "Example 3 · Finish the same circuit · textbook P8.53",
+   "prompt": "Find $v_C(t)$ for $t\\ge0$, using the starting conditions already found above.",
    "steps": [
     {
-     "explanation": "Parallel uses $\\alpha=1/(2RC)$; dividing by $12\\,500/3$ puts the $3$ on top.",
-     "latex": "\\alpha=\\frac{3}{2(12\\,500)(10^{-8})}=12\\,000\\ \\mathrm{s^{-1}}"
+     "explanation": "Convert mH and mF to H and F, then form the normalised equation.",
+     "latex": "v_C^{\\prime\\prime}+100v_C^{\\prime}+2500v_C=250000"
     },
     {
-     "explanation": "$\\omega_0$ is bigger than $\\alpha$: underdamped.",
-     "latex": "\\begin{gathered}\\omega_0=\\frac{1}{\\sqrt{(0.25)(10^{-8})}}=20\\,000, \\\\ \\omega_d=\\sqrt{20\\,000^2-12\\,000^2}=16\\,000\\ \\mathrm{rad/s}\\end{gathered}"
+     "explanation": "Subtract the final value 100 V; the transient has a repeated root.",
+     "latex": "s^2+100s+2500=(s+50)^2"
     },
     {
-     "explanation": "Underdamped form (no source, so no $V$); at $t=0$ it gives $B_1=V_0$.",
-     "latex": "v=e^{-12\\,000t}(B_1\\cos16\\,000t+B_2\\sin16\\,000t),\\quad B_1=90"
+     "explanation": "Keep the final-value term as well as the repeated-root transient.",
+     "latex": "v_C=100+(A+Bt)e^{-50t}"
     },
     {
-     "explanation": "Slope from KCL ($i_C+i_L+i_R=0$). $I_0$ is $-30$ mA, so $-I_0=+0.03$: watch the sign.",
-     "latex": "i_C(0^+)=-\\frac{90}{12\\,500/3}+0.03=0.0084\\ \\mathrm{A}"
+     "explanation": "The starting voltage is 200 V.",
+     "latex": "100+A=200\\quad\\Rightarrow\\quad A=100"
     },
     {
-     "explanation": "Starting slope $i_C/C=8.4\\times10^5$ V/s. The form has slope $-\\alpha B_1+\\omega_dB_2$ at $t=0$.",
-     "latex": "-12\\,000(90)+16\\,000B_2=8.4\\times10^5\\ \\Rightarrow\\ B_2=120"
+     "explanation": "The starting slope is zero; use the product rule.",
+     "latex": "B-50A=0\\quad\\Rightarrow\\quad B=5000"
     }
    ],
-   "answer": "$v(t)=e^{-12\\,000t}(90\\cos16\\,000t+120\\sin16\\,000t)$ V",
+   "answer": "$v_C=100+(100+5000t)e^{-50t}\\,\\mathrm{V}$ for $t\\ge0$, with $t$ in seconds. It starts at 200 V with slope zero and approaches 100 V.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "447a0540-ae9e-4dc3-9fd0-6a03ab990c54"
+    }
+   ],
+   "id": "a6895ce7-6ecd-5cca-a460-75f89fe15fc2"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Name the response only after finding its roots",
+   "citations": [],
+   "id": "873f140d-f638-55e1-b505-62ab4de6884e"
+  },
+  {
+   "type": "paragraph",
+   "text": "Write the transient equation as $u^{\\prime\\prime}+2\\alpha u^{\\prime}+\\omega_0^2u=0$. For series RLC, $\\alpha=R/(2L)$ and $\\omega_0=1/\\sqrt{LC}$; the roots are $-\\alpha\\pm\\sqrt{\\alpha^2-\\omega_0^2}$.",
+   "citations": [],
+   "id": "daa4e324-8b65-5089-8491-e763f8904537"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Compare",
+    "Root case",
+    "Circuit name"
+   ],
+   "rows": [
+    [
+     "$\\alpha>\\omega_0$",
+     "Distinct real",
+     "Overdamped"
+    ],
+    [
+     "$\\alpha=\\omega_0$",
+     "Repeated real",
+     "Critically damped"
+    ],
+    [
+     "$0<\\alpha<\\omega_0$",
+     "Complex pair with negative real part",
+     "Underdamped"
+    ],
+    [
+     "$\\alpha=0$, $\\omega_0>0$",
+     "Purely imaginary pair",
+     "Undamped"
+    ]
+   ],
+   "citations": [],
+   "id": "2c8d1359-83fe-5972-a674-cbc5b100c08b"
+  },
+  {
+   "type": "paragraph",
+   "text": "For an underdamped response, the oscillation frequency is $\\omega_d=\\sqrt{\\omega_0^2-\\alpha^2}$. In P8.53, $\\alpha=\\omega_0=50\\,\\mathrm{s^{-1}}$, so the response is critically damped.",
+   "citations": [],
+   "id": "35582ddc-42ec-5783-b00e-816f3adacfb6"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Parallel RLC: the starting slope comes from KCL",
+   "citations": [],
+   "id": "bf0a47a9-7ddf-5eac-a845-e4c315a2e1dc"
+  },
+  {
+   "type": "paragraph",
+   "text": "In a source-free parallel RLC circuit, all branches share voltage $v$ and all reference currents below point down. KCL gives $Cv^{\\prime}+i_L+v/R=0$; differentiating and using $i_L^{\\prime}=v/L$ gives the second-order voltage equation.",
+   "citations": [],
+   "id": "6fd0aad3-a45d-586d-839b-41176aea99aa"
+  },
+  {
+   "type": "equation",
+   "latex": "v^{\\prime\\prime}+\\dfrac1{RC}v^{\\prime}+\\dfrac1{LC}v=0",
+   "display": true,
+   "citations": [],
+   "id": "6bf51892-c07a-518c-bfdc-5f62aacbf6a3"
+  },
+  {
+   "type": "paragraph",
+   "text": "The natural frequency is still $1/\\sqrt{LC}$, but now $\\alpha=1/(2RC)$. Most importantly, the starting slope is **not** $I_0/C$ as in the series circuit:",
+   "citations": [],
+   "id": "112d4c75-3acf-53c6-8a3d-82888f12896b"
+  },
+  {
+   "type": "equation",
+   "latex": "v^{\\prime}(0^+)=-\\dfrac{I_0+V_0/R}{C}",
+   "display": true,
+   "citations": [],
+   "id": "07ef19cb-9322-5b5b-9c60-bf682c84baa5"
+  },
+  {
+   "type": "schematic",
+   "source": "C1 0,3 -> 0,0 \"$10\\,\\mathrm{nF}$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$250\\,\\mathrm{mH}$\" i=\"$i_L$\"\nwire 3,3 -> 6,3\nR1 6,3 -> 6,0 \"$\\dfrac{12500}{3}\\,\\Omega$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\nground 0,0\n#@ view \"Initial state\"\n#@ node a 90 \"top: $90\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el C a g \"$10\\,\\mathrm{nF}$\" col=0 plus=a v=\"$v$\" i=\"$8.4\\,\\mathrm{mA}$\" to=g id=cap\n#@ el L a g \"$250\\,\\mathrm{mH}$\" col=1 i=\"$30\\,\\mathrm{mA}$\" to=a id=ind\n#@ el R a g \"$4166.67\\,\\Omega$\" col=2 i=\"$21.6\\,\\mathrm{mA}$\" to=g id=res\n#@ step \"Ground the bottom wire.\" show=g\n#@ step \"The given capacitor voltage sets the common top node at 90 V.\" show=a,cap\n#@ step \"Resistor current is 90/R = 21.6 mA downward; inductor current is 30 mA upward.\" show=ind,res\n#@ step \"KCL leaves 8.4 mA downward through C; divide by C to obtain its voltage slope.\" show=cap\n#@ view \"Final state\"\n#@ node a 0 \"top: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el C a g \"$10\\,\\mathrm{nF}$\" col=0 plus=a v=\"$v$\"\n#@ el L a g \"$250\\,\\mathrm{mH}$\" col=1\n#@ el R a g \"$4166.67\\,\\Omega$\" col=2\n#@ note \"Ground the bottom wire. With no external source and finite positive R, the stored energy dissipates and the branch currents and voltage tend to zero.\"",
+   "caption": "Textbook P8.7 uses P8.5 initial conditions: V₀ = 90 V, I₀ = −30 mA",
    "citations": [
     {
      "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
@@ -550,30 +738,108 @@
      "chunk_id": "26153a6c-2ee9-43df-83be-ce262af53ec3"
     }
    ],
-   "id": "6ce01720-c541-5bc1-ba59-e24e090568a5"
+   "id": "0e907bad-82de-56a1-9b79-cee77702fa29"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 5 · No resistor (textbook 8.14)",
-   "difficulty": "intermediate",
+   "title": "Try it 9 · Find the parallel-circuit slope first · P8.7 setup",
+   "difficulty": "introductory",
    "origin": "source",
-   "prompt": "Remove the resistor: $C=250\\,\\mathrm{mF}$ in parallel with $L=0.4\\,\\mathrm{H}$. The start:\n- $v(0)=0$\n- $i_L(0)=-3\\,\\mathrm{A}$ (drawn downward)\n\n```schematic\nC1 0,3 -> 0,0 \"$250\\,\\mathrm{mF}$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$0.4\\,\\mathrm{H}$\" i=\"$i_L$\"\nwire 3,0 -> 0,0\nground 0,0\n```\n\nFind $v(t)$, its frequency in rad/s and its amplitude.",
+   "prompt": "For the circuit above, $V_0=90\\,\\mathrm{V}$ and $I_0=-30\\,\\mathrm{mA}$ in the downward inductor reference. Find $i_R(0^+)$, $i_C(0^+)$ and $v^{\\prime}(0^+)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "No $R$ means no $\\frac{1}{RC}$ term, so $\\alpha=0$. And $LC=0.4\\cdot0.25=0.1$.",
-     "latex": "v''+10v=0\\ \\Rightarrow\\ s=\\pm j\\sqrt{10}"
+     "explanation": "Use the common voltage across R.",
+     "latex": "i_R=\\dfrac{90}{12500/3}=0.0216\\,\\mathrm{A}"
     },
     {
-     "explanation": "$\\sigma=0$: the envelope is $e^{0t}=1$. $v(0)=0$ removes the cosine.",
-     "latex": "v=B_2\\sin\\sqrt{10}\\,t"
+     "explanation": "KCL uses the signed inductor current.",
+     "latex": "i_C=-i_L-i_R=0.0300-0.0216=0.0084\\,\\mathrm{A}"
     },
     {
-     "explanation": "KCL with two branches gives $i_C(0)=-i_L(0)=3$ A. The slope is $i_C/C$; the form's slope at $0$ is $\\sqrt{10}\\,B_2$.",
-     "latex": "v'(0)=\\frac{3}{0.25}=12=\\sqrt{10}\\,B_2\\ \\Rightarrow\\ B_2=\\frac{12}{\\sqrt{10}}\\approx3.795\\ \\mathrm{V}"
+     "explanation": "Divide capacitor current by capacitance.",
+     "latex": "v^{\\prime}(0^+)=\\dfrac{0.0084}{10^{-8}}=840000\\,\\mathrm{V/s}"
     }
    ],
-   "answer": "$v=3.795\\sin(3.162\\,t)$ V\n- frequency $\\sqrt{10}\\approx3.162$ rad/s\n- amplitude $3.795$ V\n- it never dies out",
+   "answer": "$i_R=21.6\\,\\mathrm{mA}$, $i_C=8.4\\,\\mathrm{mA}$ and $v^{\\prime}(0^+)=8.4\\times10^5\\,\\mathrm{V/s}$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "26153a6c-2ee9-43df-83be-ce262af53ec3"
+    }
+   ],
+   "id": "09639854-6f8e-584d-a11c-c3c52008386e"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · Use that slope to complete the response · textbook P8.7",
+   "prompt": "Find $v(t)$ in the parallel circuit. Its initial voltage and slope are now known.",
+   "steps": [
+    {
+     "explanation": "Use the parallel formula for damping and the common natural-frequency formula.",
+     "latex": "\\alpha=12000,\\quad\\omega_0=20000\\quad(\\mathrm{s^{-1}})"
+    },
+    {
+     "explanation": "The roots are complex; compute the damped oscillation frequency.",
+     "latex": "\\omega_d=\\sqrt{20000^2-12000^2}=16000\\,\\mathrm{rad/s}"
+    },
+    {
+     "explanation": "Write the underdamped form and apply v(0) = 90.",
+     "latex": "v=e^{-12000t}(90\\cos16000t+B\\sin16000t)"
+    },
+    {
+     "explanation": "Use the product rule at zero and the slope from the preceding question.",
+     "latex": "-12000(90)+16000B=840000"
+    },
+    {
+     "explanation": "Solve for B.",
+     "latex": "B=120"
+    }
+   ],
+   "answer": "$v=e^{-12000t}(90\\cos16000t+120\\sin16000t)\\,\\mathrm{V}$ for $t\\ge0$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "26153a6c-2ee9-43df-83be-ce262af53ec3"
+    }
+   ],
+   "id": "5e9c7d99-2898-5d7a-998c-01cc0ab3be3c"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Remove the resistor: oscillation without a decaying envelope",
+   "citations": [],
+   "id": "9f066861-8f1e-50c6-afb6-d88aff55ad0c"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 10 · An ideal LC response · textbook P8.14",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "This is the P8.13 circuit with its resistor removed. Initially $v(0)=0$ and $i_L(0)=-3\\,\\mathrm{A}$ in the downward reference.\n\n```schematic\nC1 0,3 -> 0,0 \"$250\\,\\mathrm{mF}$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$0.4\\,\\mathrm{H}$\" i=\"$i_L$\"\nwire 3,0 -> 0,0\nground 0,0\n#@ spoiler\n#@ view \"Initial state\"\n#@ node a 0 \"top: $0\\,\\mathrm{V}$\"\n#@ node g 0 \"$0\\,\\mathrm{V}$\" ground\n#@ el C a g \"$250\\,\\mathrm{mF}$\" col=0 plus=a v=\"$v$\" i=\"$3\\,\\mathrm{A}$\" to=g id=cap\n#@ el L a g \"$0.4\\,\\mathrm{H}$\" col=1 i=\"$3\\,\\mathrm{A}$\" to=a id=ind\n#@ step \"Ground the bottom wire; the given capacitor voltage is zero.\" show=g,a\n#@ step \"The given inductor current is 3 A upward; KCL requires 3 A downward through C.\" show=cap,ind\n#@ note \"The voltage is instantaneously zero, but the inductor still stores energy. Capacitor voltage begins increasing at 3/0.25 = 12 V/s.\"\n```\n\nFind (a) $v(t)$, (b) its angular frequency and (c) its maximum amplitude. With no resistor branch, KCL is $i_C+i_L=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Without a resistor, the voltage equation is undamped.",
+     "latex": "v^{\\prime\\prime}+\\dfrac1{LC}v=v^{\\prime\\prime}+10v=0"
+    },
+    {
+     "explanation": "The starting voltage removes the cosine term.",
+     "latex": "v=B\\sin(\\sqrt{10}\\,t)"
+    },
+    {
+     "explanation": "KCL gives the starting slope.",
+     "latex": "v^{\\prime}(0)=\\dfrac3{0.25}=12"
+    },
+    {
+     "explanation": "Apply the slope to determine the sine coefficient.",
+     "latex": "B\\sqrt{10}=12\\quad\\Rightarrow\\quad B=\\dfrac{12}{\\sqrt{10}}"
+    }
+   ],
+   "answer": "(a) $v=\\dfrac{12}{\\sqrt{10}}\\sin(\\sqrt{10}\\,t)\\,\\mathrm{V}$. (b) $\\omega_0=\\sqrt{10}\\approx3.162\\,\\mathrm{rad/s}$. (c) Amplitude $12/\\sqrt{10}\\approx3.795\\,\\mathrm{V}$; it does not decay in this ideal model.",
    "citations": [
     {
      "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
@@ -581,42 +847,7 @@
      "chunk_id": "96fd98f4-14b6-4d63-aa7c-5505132ac79b"
     }
    ],
-   "id": "240c512d-baba-58e8-850e-7fff02ebfba6"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 6 · From the response back to the circuit (textbook 8.2)",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "In this source-free parallel RLC:\n- $C=18\\,\\mu\\mathrm{F}$\n- $v(t)=-12\\left(e^{-200t}+e^{-1800t}\\right)$ V for $t\\ge0$\n\nFind $R$ and $i_L(0^+)$.\n\n```schematic\nC1 0,3 -> 0,0 \"$18\\,\\mu\\mathrm{F}$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$L$\" i=\"$i_L$\"\nwire 3,3 -> 6,3\nR1 6,3 -> 6,0 \"$R$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "The exponents are the roots $-200$, $-1800$. Rebuild the characteristic equation and match it to $s^2+\\frac{1}{RC}s+\\frac{1}{LC}$.",
-     "latex": "(s+200)(s+1800)=s^2+2000s+360\\,000"
-    },
-    {
-     "explanation": "So $\\frac{1}{RC}=2000$.",
-     "latex": "R=\\frac{1}{2000\\,(18\\times10^{-6})}\\approx27.78\\ \\Omega"
-    },
-    {
-     "explanation": "Read the start off $v(t)$ ($\\frac{d}{dt}e^{st}=se^{st}$), then $i_C=Cv'$ and $i_R=v/R$.",
-     "latex": "\\begin{gathered}v(0)=-24\\ \\mathrm{V}, \\\\ v'(0)=-12(-200-1800)=24\\,000\\ \\mathrm{V/s} \\\\ i_C=0.432\\ \\mathrm{A},\\quad i_R=-0.864\\ \\mathrm{A}\\end{gathered}"
-    },
-    {
-     "explanation": "KCL: $i_L=-i_C-i_R$.",
-     "latex": "i_L(0^+)=-0.432+0.864=0.432\\ \\mathrm{A}"
-    }
-   ],
-   "answer": "$R\\approx27.78\\,\\Omega$, $i_L(0^+)=432$ mA",
-   "citations": [
-    {
-     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
-     "version": 1,
-     "chunk_id": "26153a6c-2ee9-43df-83be-ce262af53ec3"
-    }
-   ],
-   "id": "04b9be40-034b-5e7e-8e57-30492a14e31e"
+   "id": "63bf9e3c-0edf-597a-917a-21555f834ae8"
   }
  ]
 }
