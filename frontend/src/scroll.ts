@@ -19,6 +19,11 @@ function currentKey(): string {
   return entry.key;
 }
 
+/** The scroll position saved for the current history entry, if the reader has been here before. */
+export function savedScroll(): number | undefined {
+  return saved.get(currentKey());
+}
+
 /** Call before navigating away from the current entry. */
 export function rememberScroll() {
   const element = document.querySelector<HTMLElement>("[data-scroll-memory]");

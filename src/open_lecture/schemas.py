@@ -78,7 +78,7 @@ class ListBlock(BaseBlock):
 class Callout(BaseBlock):
     type: Literal["callout"] = "callout"
     text: str = Field(min_length=1, max_length=10000)
-    tone: Literal["info", "warning", "tip"] = "info"
+    tone: Literal["info", "warning", "tip", "reminder"] = "info"
 
 
 class Table(BaseBlock):

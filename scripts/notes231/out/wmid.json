@@ -1,0 +1,4989 @@
+{
+ "title": "ELEC 231 Midterm: Weeks 1–6 by Problem Type",
+ "week": "mid",
+ "topic_keys": [
+  "complex_numbers",
+  "separable_odes",
+  "linear_first_order",
+  "exact_equations",
+  "integrating_factors",
+  "second_order_homogeneous",
+  "undetermined_coefficients",
+  "reduction_of_order",
+  "existence_uniqueness",
+  "rc_rl_circuits",
+  "rlc_circuits"
+ ],
+ "blocks": [
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Start here: what the midterm asks",
+   "citations": [],
+   "id": "3766c6e1-e5b7-59a5-88dc-46a30cbf55f6"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Midterm:** Friday Oct 30 · 2 hours · 30 marks · Weeks 1–6 · Casio 991 only.",
+   "citations": [],
+   "id": "917b4f8f-1a4b-5efa-b9b0-615d05493502"
+  },
+  {
+   "type": "paragraph",
+   "text": "Every solution in this note is written in the same three moves. Use them on the exam too:",
+   "citations": [],
+   "id": "88549be0-2906-5ee1-82f6-efad74a06795"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Type:** name the kind of problem, and the clue in the question that told you.",
+    "**Method:** follow the numbered steps from that subtopic.",
+    "**Conditions:** use the given values (or the circuit before the switch) to fix the constants."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "64484aaa-651b-58ad-a118-2c6e43fe8a22"
+  },
+  {
+   "type": "paragraph",
+   "text": "Find your question in the left column, then jump to its section. Clicking a link scrolls there; the browser’s Back button returns.",
+   "citations": [],
+   "id": "7776a4e1-0c82-5baa-aa17-2861c9d68d8a"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "The question gives you…",
+    "Go to",
+    "Weeks"
+   ],
+   "rows": [
+    [
+     "a complex number to convert, multiply, divide, raise to a power or take roots of",
+     "[Topic A](#topic-a)",
+     "1"
+    ],
+    [
+     "an ODE to classify, or a function to check",
+     "[Topic B](#topic-b)",
+     "2"
+    ],
+    [
+     "a first-order ODE where the $y$’s and $t$’s can be split apart",
+     "[B1 · Separable](#b1)",
+     "3"
+    ],
+    [
+     "$y^{\\prime}+a(t)\\,y=f(t)$",
+     "[B2 · Integrating factor](#b2)",
+     "3"
+    ],
+    [
+     "$M\\,dt+N\\,dy=0$",
+     "[B3 · Exact](#b3), [B4 · Make it exact](#b4)",
+     "4"
+    ],
+    [
+     "$ay^{\\prime\\prime}+by^{\\prime}+cy=0$ (numbers $a,b,c$)",
+     "[B5 · Characteristic equation](#b5)",
+     "4–5"
+    ],
+    [
+     "$ay^{\\prime\\prime}+by^{\\prime}+cy=g(t)$",
+     "[B6 · Undetermined coefficients](#b6)",
+     "6"
+    ],
+    [
+     "a second-order ODE with $t$ in the coefficients, and one solution given",
+     "[B7 · Reduction of order](#b7)",
+     "6"
+    ],
+    [
+     "“does a unique solution exist?”, an interval, or two solutions to compare",
+     "[Topic C](#topic-c)",
+     "3, 5, 6"
+    ],
+    [
+     "a circuit with a switch: find $v(t)$ or $i(t)$",
+     "[Topic D](#topic-d)",
+     "1–3, 5"
+    ]
+   ],
+   "citations": [],
+   "id": "44050c96-2bde-5444-982b-3962c64e158c"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic A: Complex numbers",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "790f92a7-351a-43a2-b445-fbaa2f9f121c"
+    },
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "e5c51af4-47bd-4231-aae1-14ec8d308ce8"
+    },
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
+    },
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
+    }
+   ],
+   "id": "f765e689-a114-5556-a086-80e8130da53d"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 1 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#079a564f-840a-46b1-9f12-5d8d123edad9) [Week 1 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#fef2e73f-cd85-498c-9b6a-1ff1e058d7d3)",
+   "citations": [],
+   "id": "b224e055-a9bf-5e39-957c-1621f6032840"
+  },
+  {
+   "type": "paragraph",
+   "text": "Complex numbers show up twice on the midterm:",
+   "citations": [],
+   "id": "85ed1aea-a6b1-5dac-bca6-7e37764be033"
+  },
+  {
+   "type": "list",
+   "items": [
+    "as their own question (convert, divide, raise to a power, take roots);",
+    "inside [B5](#b5), when a characteristic equation has no real roots and you need $\\sqrt{-36}=j6$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "8e8c0326-5209-5cfa-999d-1e0d3df4c79c"
+  },
+  {
+   "type": "paragraph",
+   "text": "**One number, two ways to write it.** A complex number is a point (an arrow) in the plane. You can give its coordinates, or its length and angle:",
+   "citations": [],
+   "id": "bf77ef4a-92ab-547a-b1f3-89106cdba462"
+  },
+  {
+   "type": "equation",
+   "latex": "z=a+jb=c\\,e^{j\\theta}=c\\angle\\theta",
+   "display": true,
+   "citations": [],
+   "id": "4adee1a1-8558-5660-89c8-e95cb85e284d"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$a=\\mathrm{Re}\\{z\\}$: the **real part**, how far right",
+    "$b=\\mathrm{Im}\\{z\\}$: the **imaginary part**, how far up",
+    "$c=|z|$: the **magnitude**, the length of the arrow",
+    "$\\theta=\\angle z$: the **angle**, measured from the positive real axis",
+    "$j=\\sqrt{-1}$, so $j^2=-1$ (this course writes $j$, not $i$)"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "e095fcb8-f11c-5e4f-8e1b-b59493c1d421"
+  },
+  {
+   "type": "paragraph",
+   "text": "Example: $3+j4$ has $a=3$, $b=4$, $c=\\sqrt{9+16}=5$ and $\\theta=\\tan^{-1}(4/3)=53.13^\\circ$, so $3+j4=5\\angle53.13^\\circ$.",
+   "citations": [],
+   "id": "55f7e059-ebc7-5290-9267-9d78f3b9c5b2"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Converting between the two forms:**",
+   "citations": [],
+   "id": "ebf43fb4-4c99-5ec5-aa55-25ae5b294990"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Direction",
+    "Formula"
+   ],
+   "rows": [
+    [
+     "polar → rectangular",
+     "$a=c\\cos\\theta,\\quad b=c\\sin\\theta$"
+    ],
+    [
+     "rectangular → polar",
+     "$c=\\sqrt{a^2+b^2},\\quad \\theta=\\tan^{-1}\\!\\left(\\dfrac{b}{a}\\right)$, then fix the quadrant"
+    ]
+   ],
+   "citations": [],
+   "id": "9faacc43-a408-5a7e-9b5a-bd727669ee72"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**The quadrant trap.** The calculator’s $\\tan^{-1}$ only returns angles between $-90^\\circ$ and $90^\\circ$. Look at the signs of $a$ and $b$ first. If $a<0$ (left half of the plane), **add $180^\\circ$** to what the calculator gives.",
+   "citations": [],
+   "id": "e3e05fc0-b167-506b-80a7-e43ff0f0a254"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Arithmetic: pick the form that makes the operation easy.**",
+   "citations": [],
+   "id": "576481f8-aef3-5092-9da4-49236138ab39"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Operation",
+    "Use",
+    "Rule"
+   ],
+   "rows": [
+    [
+     "$z_1\\pm z_2$",
+     "rectangular",
+     "add (subtract) real parts and imaginary parts separately"
+    ],
+    [
+     "$z_1z_2$",
+     "polar",
+     "multiply magnitudes, **add** angles: $c_1c_2\\angle(\\theta_1+\\theta_2)$"
+    ],
+    [
+     "$z_1/z_2$",
+     "polar",
+     "divide magnitudes, **subtract** angles: $\\frac{c_1}{c_2}\\angle(\\theta_1-\\theta_2)$"
+    ],
+    [
+     "$z_1/z_2$",
+     "rectangular",
+     "multiply top and bottom by the **conjugate** of the bottom: $(a+jb)^*=a-jb$"
+    ],
+    [
+     "$z^k$",
+     "polar",
+     "$c^k\\angle k\\theta$ (de Moivre)"
+    ]
+   ],
+   "citations": [],
+   "id": "c8bda93b-1239-53ef-8fb7-b7b0ebc1819f"
+  },
+  {
+   "type": "paragraph",
+   "text": "The conjugate works because $(a+jb)(a-jb)=a^2+b^2$, a real number. Powers of $j$ repeat every four: $j^2=-1$, $j^3=-j$, $j^4=1$, and $\\dfrac1j=-j$.",
+   "citations": [],
+   "id": "db6312a7-f2b7-5c2c-937c-8b81e8bc7c1d"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Roots: a $k$-th root question always has $k$ answers.** Write $z$ in polar form, then:",
+   "citations": [],
+   "id": "74fc5cdd-8d20-599d-ab2b-83e9e78c8eed"
+  },
+  {
+   "type": "equation",
+   "latex": "\\begin{gathered}z^{1/k}=c^{1/k}\\angle\\dfrac{\\theta+360^\\circ\\ell}{k}, \\\\ \\ell=0,1,\\dots,k-1\\end{gathered}",
+   "display": true,
+   "citations": [],
+   "id": "e74b747f-6ee5-5efb-a2a2-411c730b2191"
+  },
+  {
+   "type": "list",
+   "items": [
+    "all $k$ roots have the **same magnitude** $c^{1/k}$;",
+    "the first is at angle $\\theta/k$;",
+    "the rest follow, each $360^\\circ/k$ further round the circle."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "3ce2da7c-085e-587e-a8e8-f49172b97a62"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Drag $z$, change $k$: the $k$ roots sit evenly on one circle\"\nx -3 3 label=\"Re\"\ny -3 3 label=\"Im\"\nequal\ndrag Z 0 2.5 label=\"$z$\" color=1\nslider k 2 6 3 step=1 label=\"$k$\"\nlet c \"hypot(Z_x,Z_y)\"\nlet th \"atan2(Z_y,Z_x)\"\nlet r \"c^(1/k)\"\narrow \"Z_x\" \"Z_y\" color=1\ncircle \"0\" \"0\" \"r\" color=0 dash\npoint \"r*cos(th/k)\" \"r*sin(th/k)\" label=\"the $k$ roots of $z$\" color=2\npoint \"r*cos((th+2*pi)/k)\" \"r*sin((th+2*pi)/k)\" color=2\npoint \"if(k>2, r*cos((th+4*pi)/k), 99)\" \"if(k>2, r*sin((th+4*pi)/k), 99)\" color=2\npoint \"if(k>3, r*cos((th+6*pi)/k), 99)\" \"if(k>3, r*sin((th+6*pi)/k), 99)\" color=2\npoint \"if(k>4, r*cos((th+8*pi)/k), 99)\" \"if(k>4, r*sin((th+8*pi)/k), 99)\" color=2\npoint \"if(k>5, r*cos((th+10*pi)/k), 99)\" \"if(k>5, r*sin((th+10*pi)/k), 99)\" color=2\nreadout \"$|z|$\" \"c\"\nreadout \"$\\angle z$\" \"deg(th)\" unit=\"°\"\nreadout \"root magnitude\" \"r\"\ncaption \"Start: $z=2.5\\angle90^\\circ$, $k=3$. The roots have magnitude $2.5^{1/3}$; the first is at $90^\\circ/3=30^\\circ$, the others $120^\\circ$ apart.\"\n```",
+   "citations": [],
+   "id": "2b0a08c8-8452-5fbe-8fd5-6f28b3908335"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why multiplying adds angles.** In polar form $z_1z_2=c_1e^{j\\theta_1}\\,c_2e^{j\\theta_2}=c_1c_2\\,e^{j(\\theta_1+\\theta_2)}$: the exponent rule $e^Ae^B=e^{A+B}$ adds the angles. Euler’s identity $e^{j\\theta}=\\cos\\theta+j\\sin\\theta$ connects the two forms. The lecture uses it to get trig identities for free: expand $e^{jA}e^{jB}=e^{j(A+B)}$ and compare real parts to get $\\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B$.",
+   "citations": [],
+   "id": "744533e8-45e8-5a50-9ecc-b52aa9421a5d"
+  },
+  {
+   "type": "callout",
+   "tone": "tip",
+   "text": "**Casio 991 check:** complex mode does $+,-,\\times,\\div$ and can show the answer as $r\\angle\\theta$. Use it to check, but write the steps: the marks are for the working.",
+   "citations": [],
+   "id": "ca842730-2e8d-555f-a647-e7e8ac7aca91"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · W1 · All four fourth roots · lecture Example 1.2",
+   "prompt": "Find the fourth roots of $z=81e^{j60^\\circ}$.",
+   "steps": [
+    {
+     "explanation": "**Type:** roots ($k=4$). The number is already polar: $c=81$, $\\theta=60^\\circ$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Method:** magnitude $81^{1/4}=3$; first angle $60^\\circ/4=15^\\circ$; spacing $360^\\circ/4=90^\\circ$.",
+     "latex": "\\begin{gathered}z^{1/4}=3\\angle(15^\\circ+90^\\circ\\ell), \\\\ \\ell=0,1,2,3\\end{gathered}"
+    }
+   ],
+   "answer": "$3\\angle15^\\circ,\\ 3\\angle105^\\circ,\\ 3\\angle195^\\circ,\\ 3\\angle285^\\circ$.",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
+    }
+   ],
+   "id": "55dc0571-3302-593f-a2e0-0136266514cf"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 1 · W1 · Convert, watching the quadrant",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Write (a) $-3+j4$ and (b) $-3-j4$ in polar form.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** rectangular → polar. Both have $a<0$: left half, so the $180^\\circ$ fix applies.",
+     "latex": ""
+    },
+    {
+     "explanation": "Magnitude (same for both).",
+     "latex": "c=\\sqrt{(-3)^2+4^2}=5"
+    },
+    {
+     "explanation": "(a) The calculator gives $\\tan^{-1}(4/-3)=-53.13^\\circ$. The point is in quadrant II, so add $180^\\circ$.",
+     "latex": "\\theta=126.87^\\circ"
+    },
+    {
+     "explanation": "(b) The calculator gives $\\tan^{-1}(-4/-3)=53.13^\\circ$. The point is in quadrant III, so add $180^\\circ$.",
+     "latex": "\\theta=233.13^\\circ\\ \\ (=-126.87^\\circ)"
+    }
+   ],
+   "answer": "(a) $5\\angle126.87^\\circ$. (b) $5\\angle233.13^\\circ$, the same as $5\\angle-126.87^\\circ$.",
+   "citations": [],
+   "id": "505f3a4f-e45a-5079-bda5-6d988ae70dc7"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 2 · W1 · Divide in rectangular form · lecture Example 1.1",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Compute $\\dfrac{80+j18}{8+j10}$. Give the answer in rectangular and polar form.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** division of two rectangular numbers: multiply top and bottom by the conjugate $8-j10$.",
+     "latex": "\\dfrac{(80+j18)(8-j10)}{(8+j10)(8-j10)}"
+    },
+    {
+     "explanation": "Bottom: $8^2+10^2=164$. Top: expand, using $j^2=-1$.",
+     "latex": "(640+180)+j(144-800)=820-j656"
+    },
+    {
+     "explanation": "Divide both parts by 164.",
+     "latex": "5-j4"
+    },
+    {
+     "explanation": "Polar: $a>0$, $b<0$, quadrant IV, so the calculator angle is already right.",
+     "latex": "\\sqrt{41}\\angle-38.66^\\circ"
+    }
+   ],
+   "answer": "$5-j4=\\sqrt{41}\\angle-38.66^\\circ\\approx6.40\\angle-38.66^\\circ$.",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
+    }
+   ],
+   "id": "26ec4cd4-a433-551b-bde3-43c925797019"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 3 · W1 · A high power",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Compute $(1+j)^8$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** power. Go polar first: $c=\\sqrt2$, $\\theta=45^\\circ$.",
+     "latex": "1+j=\\sqrt2\\angle45^\\circ"
+    },
+    {
+     "explanation": "de Moivre: raise the magnitude to the 8th, multiply the angle by 8.",
+     "latex": "(\\sqrt2)^8\\angle360^\\circ=16\\angle0^\\circ"
+    }
+   ],
+   "answer": "$(1+j)^8=16$.",
+   "citations": [],
+   "id": "e077da3a-d65a-56e8-83c7-3217f7491899"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 4 · W1 · Cube roots of a negative number",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Find all three cube roots of $-8$, in polar and rectangular form.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** roots ($k=3$). Polar first: $-8$ sits on the negative real axis.",
+     "latex": "-8=8\\angle180^\\circ"
+    },
+    {
+     "explanation": "Magnitude $8^{1/3}=2$; first angle $180^\\circ/3=60^\\circ$; spacing $120^\\circ$.",
+     "latex": "2\\angle60^\\circ,\\quad 2\\angle180^\\circ,\\quad 2\\angle300^\\circ"
+    },
+    {
+     "explanation": "Rectangular: $a=2\\cos\\theta$, $b=2\\sin\\theta$.",
+     "latex": "1+j\\sqrt3,\\quad -2,\\quad 1-j\\sqrt3"
+    }
+   ],
+   "answer": "$2\\angle60^\\circ=1+j\\sqrt3$, $2\\angle180^\\circ=-2$, $2\\angle300^\\circ=1-j\\sqrt3$. The real root $-2$ is only one of three.",
+   "citations": [],
+   "id": "6bd1a2bd-32b0-54a5-90c7-d146fa51f292"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 5 · W1 + W5 · The complex roots of a quadratic",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $s^2+4s+13=0$. (This is exactly the step you meet in [B5](#b5).)",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** quadratic with $b^2-4ac<0$: the roots are complex.",
+     "latex": "s=\\dfrac{-4\\pm\\sqrt{16-52}}{2}=\\dfrac{-4\\pm\\sqrt{-36}}{2}"
+    },
+    {
+     "explanation": "$\\sqrt{-36}=\\sqrt{36}\\,\\sqrt{-1}=j6$.",
+     "latex": "s=\\dfrac{-4\\pm j6}{2}"
+    }
+   ],
+   "answer": "$s=-2\\pm j3$: a conjugate pair (same real part, opposite imaginary parts).",
+   "citations": [],
+   "id": "b029c801-daae-56f4-a813-81ed896fdaa2"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic B: Find the general solution",
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
+    }
+   ],
+   "id": "269373f6-5a36-557e-8209-00a7dd30646b"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 2 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#68929800-f011-4be7-a85a-29543465ed52) [Week 2 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#49e5b3a7-1038-4f16-a4cc-2170fbbd61dc)",
+   "citations": [],
+   "id": "215dec97-43fa-5361-bfdc-d4aac115d8d5"
+  },
+  {
+   "type": "paragraph",
+   "text": "This is the core of the midterm: you are given an ODE (ordinary differential equation) and must find $y(t)$. There are seven methods, B1–B7. Which one works depends only on what the equation looks like, so the first move is always to **name the equation**.",
+   "citations": [],
+   "id": "001fac40-3db2-5935-adf5-89ea40d0cb57"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Step 1: name it.** Ask these five questions:",
+   "citations": [],
+   "id": "e948b904-d0bb-5f73-b0b6-5e440c5ea607"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Label",
+    "Ask",
+    "Yes",
+    "No"
+   ],
+   "rows": [
+    [
+     "**Order**",
+     "What is the highest derivative?",
+     "$y^{\\prime\\prime}+y=0$: 2nd order",
+     "—"
+    ],
+    [
+     "**Linear**",
+     "Do $y,y^{\\prime},y^{\\prime\\prime}$ appear only to the first power, never multiplied together or inside a function? ($t$ may appear anywhere.)",
+     "$t^3y^{\\prime\\prime}+e^ty^{\\prime}+y=0$",
+     "$yy^{\\prime}=t$, $\\ y^{\\prime}=\\sin y$, $\\ y^{\\prime}=y^2$"
+    ],
+    [
+     "**Homogeneous** (linear only)",
+     "With every $y$-term on the left, is the right side $0$?",
+     "$y^{\\prime\\prime}+4y=0$",
+     "$y^{\\prime\\prime}+4y=8$"
+    ],
+    [
+     "**Constant coefficients**",
+     "Are the numbers in front of $y,y^{\\prime},y^{\\prime\\prime}$ constants?",
+     "$y^{\\prime\\prime}+3y^{\\prime}+2y=0$",
+     "$ty^{\\prime\\prime}+y=0$"
+    ],
+    [
+     "**Autonomous**",
+     "Is $t$ missing from the equation completely?",
+     "$y^{\\prime}=y(1-y)$",
+     "$y^{\\prime}=t-y$"
+    ]
+   ],
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
+    }
+   ],
+   "id": "27ccc246-098f-5f18-8408-0798b4a02990"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Step 2: pick the method.**",
+   "citations": [],
+   "id": "a204751c-5af6-507c-a8ef-e9c002bac9e3"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "If the equation is…",
+    "Method",
+    "Go to"
+   ],
+   "rows": [
+    [
+     "1st order, $\\dfrac{dy}{dt}=g(t)\\,h(y)$",
+     "separate the variables",
+     "[B1](#b1)"
+    ],
+    [
+     "1st order, linear: $y^{\\prime}+a(t)\\,y=f(t)$",
+     "integrating factor",
+     "[B2](#b2)"
+    ],
+    [
+     "$M\\,dt+N\\,dy=0$ with $\\dfrac{\\partial M}{\\partial y}=\\dfrac{\\partial N}{\\partial t}$",
+     "exact equation",
+     "[B3](#b3)"
+    ],
+    [
+     "$M\\,dt+N\\,dy=0$, but the test fails",
+     "integrating factor that makes it exact",
+     "[B4](#b4)"
+    ],
+    [
+     "$ay^{\\prime\\prime}+by^{\\prime}+cy=0$, constants $a,b,c$",
+     "characteristic equation",
+     "[B5](#b5)"
+    ],
+    [
+     "$ay^{\\prime\\prime}+by^{\\prime}+cy=g(t)$",
+     "undetermined coefficients",
+     "[B6](#b6)"
+    ],
+    [
+     "2nd order, $t$ in the coefficients, one solution $y_1$ given",
+     "reduction of order",
+     "[B7](#b7)"
+    ]
+   ],
+   "citations": [],
+   "id": "d38b0f1e-a407-5c3b-9793-a093ad48cd7e"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Step 3: fix the constants.** Every method ends with a **general solution**: a formula with arbitrary constants.",
+   "citations": [],
+   "id": "48a33830-7563-55dc-a78a-0a14265621bf"
+  },
+  {
+   "type": "list",
+   "items": [
+    "1st order: one constant, $C$. One condition, like $y(1)=2$, fixes it.",
+    "2nd order: two constants, $c_1,c_2$. Two conditions fix them: usually $y(0)$ and $y^{\\prime}(0)$.",
+    "A problem with a condition is an **initial value problem** (IVP). Substitute the condition into the general solution and solve for the constant."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "b93b08a2-e13c-5320-8207-1db33e7e98ec"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Checking a solution** (a Week 2 question type): substitute $y$ and its derivatives into the ODE. It is a solution if the two sides match for **every** $t$. For an IVP, also check the starting value.",
+   "citations": [],
+   "id": "d4e0dfed-91f0-56ef-ba46-708224248b85"
+  },
+  {
+   "type": "paragraph",
+   "text": "Example: $y=e^{-2t}$ and $y^{\\prime}+2y=0$: $\\;-2e^{-2t}+2e^{-2t}=0$ ✓.",
+   "citations": [],
+   "id": "b001c9f6-1437-5aa1-a533-a238c9368060"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 6 · W2 · Name it, then route it · lecture Example 2.1 and others",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "For each equation, give its order, and say whether it is linear, homogeneous, constant-coefficient and autonomous. Then name the subtopic (B1–B7) that solves it.\n\n(a) $t^3y^{\\prime\\prime}+e^ty^{\\prime}+y=0$\n\n(b) $\\dfrac{dy}{dt}=\\dfrac{y^2}{t^3}$\n\n(c) $y^{\\prime\\prime}+2y^{\\prime}+5y=10$\n\n(d) $\\dfrac{di}{dt}+5i=50$\n\n(e) $(t-y)\\,dt-(t+y)\\,dy=0$",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) Highest derivative $y^{\\prime\\prime}$; $y$ terms are first power with $t$-only coefficients; right side 0; coefficients $t^3,e^t$ vary; $t$ appears. 2nd order, linear, homogeneous, **not** constant-coefficient, not autonomous → [B7](#b7) (once one solution is given).",
+     "latex": ""
+    },
+    {
+     "explanation": "(b) $y^2$ is not first power, so nonlinear; $t$ appears. It splits as $\\frac{1}{t^3}\\cdot y^2$ → [B1](#b1).",
+     "latex": ""
+    },
+    {
+     "explanation": "(c) 2nd order, linear, right side $10\\neq0$ so **non**homogeneous, constant coefficients, autonomous → [B6](#b6).",
+     "latex": ""
+    },
+    {
+     "explanation": "(d) 1st order, linear, nonhomogeneous, constant coefficients, autonomous → [B2](#b2) (it also separates: $\\frac{di}{50-5i}=dt$).",
+     "latex": ""
+    },
+    {
+     "explanation": "(e) As $y^{\\prime}=\\frac{t-y}{t+y}$: $y$ sits in a denominator, so nonlinear. In $M\\,dt+N\\,dy$ form, test exactness → [B3](#b3).",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) 2nd, linear, homogeneous, variable coefficients → B7. (b) 1st, nonlinear → B1. (c) 2nd, linear, nonhomogeneous, constant → B6. (d) 1st, linear, constant → B2. (e) 1st, nonlinear → B3.",
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
+    }
+   ],
+   "id": "10c73a36-7a62-58c6-8152-e8b4f53d1394"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 7 · W2 · Check, then pick the member that fits",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Which of $y=t^2$, $\\;y=t^2+1$, $\\;y=5t^2$ solve $ty^{\\prime}-2y=0$? Which one also satisfies $y(1)=5$?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** checking solutions: substitute each one.",
+     "latex": ""
+    },
+    {
+     "explanation": "$y=t^2$: $y^{\\prime}=2t$.",
+     "latex": "t(2t)-2t^2=0\\ \\checkmark"
+    },
+    {
+     "explanation": "$y=t^2+1$: $y^{\\prime}=2t$.",
+     "latex": "t(2t)-2(t^2+1)=-2\\neq0\\ \\times"
+    },
+    {
+     "explanation": "$y=5t^2$: $y^{\\prime}=10t$.",
+     "latex": "t(10t)-2(5t^2)=0\\ \\checkmark"
+    },
+    {
+     "explanation": "**Condition:** at $t=1$, $t^2=1$ and $5t^2=5$.",
+     "latex": ""
+    }
+   ],
+   "answer": "$t^2$ and $5t^2$ are solutions (both are $Ct^2$); $t^2+1$ is not. Only $y=5t^2$ satisfies $y(1)=5$.",
+   "citations": [],
+   "id": "7290ca99-0f0d-5c0b-b498-3a9a5b992627"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B1 · Separable equations",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
+    }
+   ],
+   "id": "d553a11d-4792-5159-ad53-1e4ac30b1a90"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 3 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#c40cdedd-01db-45b4-9498-4c4929ba8f49)",
+   "citations": [],
+   "id": "86429aba-0c52-5782-a153-e39631cd22f9"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The simplest case.** If you can move every $y$ to one side and every $t$ to the other, you can integrate each side on its own.",
+   "citations": [],
+   "id": "fda895ed-59ac-5d8c-a3be-5b3145c0001d"
+  },
+  {
+   "type": "paragraph",
+   "text": "A first-order ODE is **separable** when it can be written as:",
+   "citations": [],
+   "id": "7633f26e-e70d-5329-bab2-db0a6bf72d4a"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{dy}{dt}=g(t)\\,h(y)",
+   "display": true,
+   "citations": [],
+   "id": "ac91a1d1-75f5-5a27-bc46-1d271c3e381b"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$g(t)$ = a part with only $t$ in it",
+    "$h(y)$ = a part with only $y$ in it"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "75f349ed-f296-584a-be74-034023e6abc8"
+  },
+  {
+   "type": "paragraph",
+   "text": "Example: $\\dfrac{dy}{dt}=\\dfrac{y^2}{t^3}$ has $g=\\dfrac{1}{t^3}$ and $h=y^2$. Not separable: $\\dfrac{dy}{dt}=t+y$, because a **sum** can’t be split into a product (that one goes to [B2](#b2)).",
+   "citations": [],
+   "id": "093bd120-3dc8-51d3-8178-57d9646e5f59"
+  },
+  {
+   "type": "paragraph",
+   "text": "An equation already written as $M(t)\\,dt+N(y)\\,dy=0$, with only $t$ in $M$ and only $y$ in $N$, is separated already.",
+   "citations": [],
+   "id": "4b1ad785-2505-5063-b7bb-2adecd25fbb2"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "e1f3d88f-7be9-5d76-8242-fb2c425c0c68"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Separate:** divide by $h(y)$ and multiply by $dt$:  $\\dfrac{dy}{h(y)}=g(t)\\,dt$.",
+    "**Integrate** both sides. Write one constant $C$, on the $t$ side.",
+    "**Condition:** substitute the given point to find $C$.",
+    "**Solve for $y$** if you can. If you can’t, the implicit answer (like $y^2+3=6(t^2+1)$) is a full answer."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "6e9e3795-b232-58c0-a168-7d91f20494e1"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Calculus you need here:**",
+   "citations": [],
+   "id": "91a1ff40-31c1-5cec-9789-f2ffa52973a2"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Integral",
+    "Result",
+    "Note"
+   ],
+   "rows": [
+    [
+     "$\\int t^n\\,dt$",
+     "$\\dfrac{t^{n+1}}{n+1}$",
+     "any $n\\neq-1$, e.g. $\\int t^{-3}dt=-\\dfrac{1}{2t^2}$"
+    ],
+    [
+     "$\\int \\dfrac1y\\,dy$",
+     "$\\ln|y|$",
+     "the $n=-1$ case"
+    ],
+    [
+     "$\\int \\dfrac{f^{\\prime}(t)}{f(t)}\\,dt$",
+     "$\\ln|f(t)|$",
+     "spot “top = derivative of bottom”: $\\int\\dfrac{t}{t^2+1}dt=\\dfrac12\\ln(t^2+1)$"
+    ],
+    [
+     "$\\int e^{at}\\,dt$",
+     "$\\dfrac{1}{a}e^{at}$",
+     ""
+    ],
+    [
+     "undo $\\ln$",
+     "$e^{\\ln A}=A$",
+     "$e^{C}$ is just another constant; $\\ln A+\\ln B=\\ln(AB)$"
+    ]
+   ],
+   "citations": [],
+   "id": "4d706306-0189-500f-9fea-3c861fc0e247"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Dividing by $h(y)$ hides constant solutions.** If $h(y_0)=0$ for a number $y_0$, then $y=y_0$ is a solution too. For $\\dfrac{dy}{dt}=\\dfrac{y^2}{t^3}$, $y=0$ is a solution that the separated formula misses.",
+   "citations": [],
+   "id": "ffae50a1-4a3a-55d1-8d8c-d8c4f4308a94"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why separating is allowed.** Divide by $h$: $\\dfrac{1}{h(y)}\\dfrac{dy}{dt}=g(t)$. Integrate both sides with respect to $t$. By the chain rule, $\\int\\dfrac{1}{h(y)}\\dfrac{dy}{dt}\\,dt=\\int\\dfrac{1}{h(y)}\\,dy$. Writing “$dy$” and “$dt$” as separate pieces is shorthand for exactly this.",
+   "citations": [],
+   "id": "df428b10-e25a-5ffc-ac0e-f29bfd9019ba"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · W3 · Separate after factoring · lecture Example 3.3",
+   "prompt": "Solve $\\dfrac{dy}{dt}=\\dfrac{3t+ty^2}{y+t^2y}$, $\\;y(1)=3$.",
+   "steps": [
+    {
+     "explanation": "**Type:** factor top and bottom; it becomes $g(t)\\,h(y)$, so separable.",
+     "latex": "\\dfrac{dy}{dt}=\\dfrac{t(3+y^2)}{y(1+t^2)}"
+    },
+    {
+     "explanation": "**Separate:** $y$’s left, $t$’s right.",
+     "latex": "\\dfrac{y}{3+y^2}\\,dy=\\dfrac{t}{1+t^2}\\,dt"
+    },
+    {
+     "explanation": "**Integrate:** both are “top = half the derivative of bottom”.",
+     "latex": "\\tfrac12\\ln(3+y^2)=\\tfrac12\\ln(1+t^2)+c"
+    },
+    {
+     "explanation": "Multiply by 2 and exponentiate; $e^{2c}$ becomes a new constant $C_1$.",
+     "latex": "3+y^2=C_1(1+t^2)"
+    },
+    {
+     "explanation": "**Condition** $y(1)=3$: $\\;3+9=C_1(2)$.",
+     "latex": "C_1=6"
+    },
+    {
+     "explanation": "Solve for $y$; take the $+$ root because $y(1)=3>0$.",
+     "latex": "y^2=6t^2+3"
+    }
+   ],
+   "answer": "$y^2+3=6(t^2+1)$, i.e. $y=\\sqrt{6t^2+3}$.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
+    }
+   ],
+   "id": "dddda49f-21e4-5fbc-a399-c3d3490b6bc5"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 8 · W3 · Separate and use a starting value · Pre-tutorial 3(a)",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Solve $\\dfrac{dy}{dt}=-\\dfrac{t}{y}$, $\\;y=2$ when $t=1$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** $-\\dfrac{t}{y}=(-t)\\cdot\\dfrac1y$: separable.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Separate:** multiply by $y\\,dt$.",
+     "latex": "y\\,dy=-t\\,dt"
+    },
+    {
+     "explanation": "**Integrate.**",
+     "latex": "\\dfrac{y^2}{2}=-\\dfrac{t^2}{2}+C"
+    },
+    {
+     "explanation": "**Condition:** $\\frac{4}{2}=-\\frac12+C$, so $C=\\frac52$. Multiply by 2.",
+     "latex": "t^2+y^2=5"
+    },
+    {
+     "explanation": "Solve for $y$, keeping the $+$ root since $y(1)=2>0$.",
+     "latex": "y=\\sqrt{5-t^2}"
+    }
+   ],
+   "answer": "$y=\\sqrt{5-t^2}$ (a circle of radius $\\sqrt5$, upper half), valid for $-\\sqrt5<t<\\sqrt5$.",
+   "citations": [
+    {
+     "source_id": "a637e1bd-8d81-49f9-89d6-abfe3fda44b6",
+     "version": 1,
+     "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
+    }
+   ],
+   "id": "1e60cd1e-298a-5a92-88d1-c0aa4121e37a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 9 · W3 · A general solution with a power · lecture Example 3.2",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Find the general solution of $\\dfrac{dy}{dt}=\\dfrac{y^2}{t^3}$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** separable, $g=t^{-3}$, $h=y^2$.",
+     "latex": "y^{-2}\\,dy=t^{-3}\\,dt"
+    },
+    {
+     "explanation": "**Integrate** with the power rule ($n=-2$ and $n=-3$).",
+     "latex": "-y^{-1}=-\\tfrac12t^{-2}+C"
+    },
+    {
+     "explanation": "Multiply by $-1$ and flip (rename $-C$ as $C$).",
+     "latex": "\\dfrac1y=\\dfrac{1}{2t^2}+C\\quad\\Rightarrow\\quad y=\\dfrac{2t^2}{1+2Ct^2}"
+    }
+   ],
+   "answer": "$\\dfrac1y=\\dfrac{1}{2t^2}+C$, i.e. $y=\\dfrac{2t^2}{1+2Ct^2}$. Also $y=0$ (the constant solution lost by dividing by $y^2$).",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
+    }
+   ],
+   "id": "c060f16e-4854-5b6a-be02-017f967da39b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 10 · W3 · An exponential of y",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $\\dfrac{dy}{dt}=2t\\,e^{-y}$, $\\;y(0)=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** $2t\\cdot e^{-y}$: separable. Dividing by $e^{-y}$ is multiplying by $e^{y}$.",
+     "latex": "e^{y}\\,dy=2t\\,dt"
+    },
+    {
+     "explanation": "**Integrate.**",
+     "latex": "e^{y}=t^2+C"
+    },
+    {
+     "explanation": "**Condition:** $e^0=0+C$, so $C=1$.",
+     "latex": "e^{y}=t^2+1"
+    },
+    {
+     "explanation": "Take $\\ln$ of both sides.",
+     "latex": "y=\\ln(t^2+1)"
+    }
+   ],
+   "answer": "$y=\\ln(t^2+1)$.",
+   "citations": [],
+   "id": "0c9eca06-2da4-54bd-a6b1-c5640cd3715a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 11 · W3 · Differential form · Pre-tutorial 3(b)",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "Solve $3t(y^2+1)\\,dt+y(t^2+2)\\,dy=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** each term is (t-part)(y-part), so dividing by $(y^2+1)(t^2+2)$ separates it.",
+     "latex": "\\dfrac{3t}{t^2+2}\\,dt+\\dfrac{y}{y^2+1}\\,dy=0"
+    },
+    {
+     "explanation": "**Integrate:** both are “top = derivative of bottom” (times $\\frac32$ and $\\frac12$).",
+     "latex": "\\tfrac32\\ln(t^2+2)+\\tfrac12\\ln(y^2+1)=c"
+    },
+    {
+     "explanation": "Multiply by 2, then combine the logs: $3\\ln A+\\ln B=\\ln(A^3B)$.",
+     "latex": "\\ln\\!\\big[(t^2+2)^3(y^2+1)\\big]=2c"
+    },
+    {
+     "explanation": "Exponentiate.",
+     "latex": "(t^2+2)^3(y^2+1)=C"
+    }
+   ],
+   "answer": "$(t^2+2)^3(y^2+1)=C$ (implicit; $C>0$).",
+   "citations": [
+    {
+     "source_id": "a637e1bd-8d81-49f9-89d6-abfe3fda44b6",
+     "version": 1,
+     "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
+    }
+   ],
+   "id": "1fd90f5a-99a1-59a0-9b0b-19e50f6b655f"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 12 · W3 · Collect before separating · lecture Example 3.4",
+   "difficulty": "advanced",
+   "origin": "source",
+   "prompt": "Solve $y\\,dt+(t^3y^2+t^3)\\,dy=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** factor $t^3$ out of the $dy$ term: $y\\,dt+t^3(y^2+1)\\,dy=0$. Dividing by $t^3y$ separates it.",
+     "latex": "t^{-3}\\,dt+\\dfrac{y^2+1}{y}\\,dy=0"
+    },
+    {
+     "explanation": "Split the fraction: $\\dfrac{y^2+1}{y}=y+\\dfrac1y$.",
+     "latex": "\\int t^{-3}\\,dt+\\int\\left(y+\\dfrac1y\\right)dy=C"
+    },
+    {
+     "explanation": "**Integrate.**",
+     "latex": "-\\dfrac{1}{2t^2}+\\dfrac{y^2}{2}+\\ln|y|=C"
+    },
+    {
+     "explanation": "Multiply by 2 (rename $2C$ as $C_1$).",
+     "latex": "y^2+2\\ln|y|-t^{-2}=C_1"
+    }
+   ],
+   "answer": "$y^2+2\\ln|y|-t^{-2}=C_1$ (implicit), plus the constant solution $y=0$.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
+    }
+   ],
+   "id": "d66f0287-4002-50df-b68e-63e2348138d7"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B2 · Linear equations: the integrating factor",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "d1e1cce5-5133-4af5-9107-179e9d1b4ba9"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
+    }
+   ],
+   "id": "a83b311e-9a5a-5163-b486-84967fef37e2"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 3 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#a43fc96e-8dc5-4a1e-bfdf-bf1acf01f98b)",
+   "citations": [],
+   "id": "302ecdcb-5565-5396-9277-74e39f2bec1e"
+  },
+  {
+   "type": "paragraph",
+   "text": "**What if you can’t separate the variables?** $\\dfrac{dy}{dt}=t-y$ won’t split into ($t$-part)×($y$-part), so [B1](#b1) fails. But if the equation is **linear**, an integrating factor solves it every time.",
+   "citations": [],
+   "id": "7946e08f-8382-5ffd-a835-e604d40f7bbb"
+  },
+  {
+   "type": "paragraph",
+   "text": "First-order linear equations can be written as:",
+   "citations": [],
+   "id": "8e757e7d-846e-5e00-91fd-b82985ef5d40"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{dy}{dt}+a(t)\\,y=f(t)",
+   "display": true,
+   "citations": [],
+   "id": "bc1ed581-990a-59cd-8515-3b1d05c7efe1"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$a(t)$ = the coefficient of $y$: everything multiplying $y$, **sign included**",
+    "$f(t)$ = the forcing: everything left over, with no $y$ in it"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "42553076-2857-54b6-86f4-36315524d473"
+  },
+  {
+   "type": "paragraph",
+   "text": "Examples:",
+   "citations": [],
+   "id": "58630a70-6ce5-5bab-9747-b7d5a81bb8e2"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$y^{\\prime}=t-y$ → move $y$ left: $y^{\\prime}+y=t$. So $a(t)=1$, $f(t)=t$.",
+    "$ty^{\\prime}+2y=t^2$ → divide by $t$: $y^{\\prime}+\\frac2t\\,y=t$. So $a(t)=\\frac2t$, $f(t)=t$.",
+    "$y^{\\prime}=(8t+3)y$ → $y^{\\prime}-(8t+3)y=0$. So $a(t)=-(8t+3)$, $f(t)=0$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "0f960c16-af98-5eef-a6be-de39b5d168d6"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "Get $y^{\\prime}$ **alone** first (coefficient 1). Read $a(t)$ only after dividing: in $ty^{\\prime}+2y=t^2$, $a(t)$ is $\\frac2t$, not $2$.",
+   "citations": [],
+   "id": "279ef955-82d0-516f-a4bd-fc55ea0ec03a"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The integrating factor.** An integrating factor is a special function $\\mu(t)$ that we multiply the entire equation by, to turn its left side into **one derivative**. The formula is:",
+   "citations": [],
+   "id": "d4b7e433-ef33-571b-ac61-2b196d89cc3e"
+  },
+  {
+   "type": "equation",
+   "latex": "\\mu(t)=e^{\\int a(t)\\,dt}",
+   "display": true,
+   "citations": [],
+   "id": "310ba212-e9bd-5e02-b48b-d8a0646e9e9e"
+  },
+  {
+   "type": "paragraph",
+   "text": "After multiplying by $\\mu$, the left side is exactly $(\\mu y)^{\\prime}$, so the equation becomes:",
+   "citations": [],
+   "id": "124771b5-56c0-56c7-8ea5-a82b182339d8"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{d}{dt}\\big(\\mu\\,y\\big)=\\mu\\,f",
+   "display": true,
+   "citations": [],
+   "id": "79b12962-4346-5335-84f4-0b036341747d"
+  },
+  {
+   "type": "paragraph",
+   "text": "Integrate both sides:",
+   "citations": [],
+   "id": "4ccc5d76-171b-5c53-8a61-33373eb7b2f3"
+  },
+  {
+   "type": "equation",
+   "latex": "\\mu\\,y=\\int\\mu\\,f\\,dt+C",
+   "display": true,
+   "citations": [],
+   "id": "d8e77d78-1d6b-5b01-b7e0-b89b2468a29e"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "fb70e966-46e8-55db-b366-c7f3f556a6dd"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Standard form:** get $y^{\\prime}$ alone; read $a(t)$ and $f(t)$.",
+    "**Integrating factor:** $\\mu=e^{\\int a\\,dt}$. Leave out the $+C$ in this integral.",
+    "**Rewrite:** $(\\mu y)^{\\prime}=\\mu f$.",
+    "**Integrate:** $\\mu y=\\int\\mu f\\,dt+C$. This is where the constant goes; don’t forget it.",
+    "**Divide by $\\mu$**, then use the condition to find $C$."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "dd6f419e-e989-5c47-a61d-6a12d63282d4"
+  },
+  {
+   "type": "paragraph",
+   "text": "```steps\ntitle \"The method on y′ + 2y = 4\"\n$$ y'+2y=4 $$\nStandard form already: $a=2$, $f=4$.\n$$ \\mu=e^{\\int2\\,dt}=\\hl{e^{2t}} $$\nIntegrating factor.\n$$ \\hl{e^{2t}}y'+\\hl{2e^{2t}}y=\\hl{4e^{2t}} $$\nMultiply every term by $\\mu$.\n$$ \\hl{\\big(e^{2t}y\\big)^{\\prime}}=4e^{2t} $$\nThe left side is one derivative (product rule backwards).\n$$ e^{2t}y=2e^{2t}+\\hl{C} $$\nIntegrate both sides: $\\int4e^{2t}dt=2e^{2t}$.\n$$ y=2+Ce^{-2t} $$\nDivide by $e^{2t}$.\n```",
+   "citations": [],
+   "id": "6a0a8ab1-529d-5860-8334-13af338f8676"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Calculus you need here:**",
+   "citations": [],
+   "id": "91e6e849-d82c-5cf1-afe6-60cd682f4c8d"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Expression",
+    "Result",
+    "Note"
+   ],
+   "rows": [
+    [
+     "$e^{\\int k\\,dt}$",
+     "$e^{kt}$",
+     "constant $a(t)=k$"
+    ],
+    [
+     "$e^{\\int\\frac{k}{t}dt}$",
+     "$e^{k\\ln t}=t^k$",
+     "e.g. $a=\\frac2t$ gives $\\mu=t^2$; $a=-\\frac1t$ gives $\\mu=\\frac1t$"
+    ],
+    [
+     "$\\int(2t+5)^5\\,dt$",
+     "$\\dfrac{(2t+5)^6}{12}$",
+     "substitution $u=2t+5$, $du=2\\,dt$"
+    ],
+    [
+     "$\\int t\\,e^{t}\\,dt$",
+     "$(t-1)\\,e^{t}$",
+     "integration by parts; check by differentiating"
+    ],
+    [
+     "$\\int t\\,e^{t^2}dt$",
+     "$\\tfrac12e^{t^2}$",
+     "substitution $u=t^2$"
+    ]
+   ],
+   "citations": [],
+   "id": "5bfd2c60-118e-54e1-ac13-6c2acb4e703b"
+  },
+  {
+   "type": "callout",
+   "tone": "tip",
+   "text": "**Shortcut for constant $a=k$ and constant $f=F$:** $\\;y=\\dfrac{F}{k}+Ce^{-kt}$. Every RC and RL circuit equation has this shape (see [D1](#d1)).",
+   "citations": [],
+   "id": "ee894694-24d6-50b4-a439-352d47c88b79"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why does the integrating factor work?** Recall the **product rule** from calculus: $(\\mu y)^{\\prime}=\\mu y^{\\prime}+\\mu^{\\prime} y$. With $\\mu=e^{\\int a\\,dt}$, the chain rule gives $\\mu^{\\prime}=a\\,\\mu$. So\n\n$$\n(\\mu y)^{\\prime}=\\mu y^{\\prime}+a\\mu y=\\mu\\,(y^{\\prime}+ay)\n$$\n\nwhich is exactly $\\mu$ times the left side of the equation. Multiplying by $\\mu$ turns “$y^{\\prime}+ay$” into a single derivative you can integrate.",
+   "citations": [],
+   "id": "5f4df7d6-7811-576b-a8fc-89719ae6c3e1"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Both separable and linear?** For example $y^{\\prime}=(8t+3)y$, or any equation with constant $a$ and $f$. Then either method works: separating is usually faster.",
+   "citations": [],
+   "id": "3b80b3ea-e32b-5768-9489-6ced7a4291d2"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · W3 · A coefficient that varies with t · lecture Example 3.1",
+   "prompt": "Solve $\\dfrac{dy}{dt}+\\dfrac{10\\,y}{2t+5}=10$, $\\;y(0)=0$.",
+   "steps": [
+    {
+     "explanation": "**Type:** linear, $y^{\\prime}$ already alone. $a(t)=\\dfrac{10}{2t+5}$, $f(t)=10$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Integrating factor:** $\\int\\frac{10}{2t+5}dt=5\\ln(2t+5)$, and $e^{5\\ln(2t+5)}=(2t+5)^5$.",
+     "latex": "\\mu=(2t+5)^5"
+    },
+    {
+     "explanation": "**Rewrite:** $(\\mu y)^{\\prime}=\\mu f$.",
+     "latex": "\\dfrac{d}{dt}\\big[(2t+5)^5y\\big]=10(2t+5)^5"
+    },
+    {
+     "explanation": "**Integrate** with $u=2t+5$, $du=2\\,dt$: $\\;10\\int u^5\\frac{du}{2}=\\frac56u^6$.",
+     "latex": "(2t+5)^5y=\\tfrac56(2t+5)^6+C"
+    },
+    {
+     "explanation": "**Condition** $y(0)=0$: $\\;0=\\frac56\\cdot5^6+C$.",
+     "latex": "C=-\\dfrac{5^7}{6}"
+    },
+    {
+     "explanation": "**Divide** by $(2t+5)^5$.",
+     "latex": "y=\\tfrac56(2t+5)-\\dfrac{5^7}{6(2t+5)^5}"
+    }
+   ],
+   "answer": "$y=\\dfrac56(2t+5)-\\dfrac{5^7}{6(2t+5)^5}$.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "d1e1cce5-5133-4af5-9107-179e9d1b4ba9"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
+    }
+   ],
+   "id": "802c52ef-8bee-5103-b860-79a6cd93f018"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 13 · W3 · The lecture’s RL equation · lecture §1.1",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Solve $\\dfrac{di}{dt}+5i=50$, $\\;i(0)=0$ (the series RL circuit of the Week 3 lecture, $i$ in amperes).",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** linear with constant $a=5$, $f=50$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Integrating factor** and rewrite.",
+     "latex": "\\mu=e^{5t},\\qquad \\big(e^{5t}i\\big)^{\\prime}=50e^{5t}"
+    },
+    {
+     "explanation": "**Integrate:** $\\int50e^{5t}dt=10e^{5t}$.",
+     "latex": "e^{5t}i=10e^{5t}+C"
+    },
+    {
+     "explanation": "**Condition:** $0=10+C$, so $C=-10$. Divide by $e^{5t}$.",
+     "latex": "i=10-10e^{-5t}"
+    }
+   ],
+   "answer": "$i(t)=10(1-e^{-5t})\\,\\mathrm{A}$. It rises from 0 towards 10 A (the shortcut: $F/k=50/5=10$).",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
+    }
+   ],
+   "id": "8c34014f-4fc6-573f-84fe-85a8912c533e"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 14 · W3 · Linear and separable: solve it both ways · Pre-tutorial 3(c)",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Find the general solution of $\\dfrac{dy}{dt}=8ty+3y$ with an integrating factor, then check it by separating.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** linear. Standard form: $y^{\\prime}-(8t+3)y=0$, so $a=-(8t+3)$, $f=0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Integrating factor:** $\\int-(8t+3)\\,dt=-4t^2-3t$.",
+     "latex": "\\mu=e^{-4t^2-3t}"
+    },
+    {
+     "explanation": "**Rewrite and integrate:** $f=0$, so the right side integrates to just $C$.",
+     "latex": "\\big(\\mu y\\big)^{\\prime}=0\\quad\\Rightarrow\\quad e^{-4t^2-3t}y=C"
+    },
+    {
+     "explanation": "**Divide** by $\\mu$.",
+     "latex": "y=Ce^{4t^2+3t}"
+    },
+    {
+     "explanation": "**Check by separating:** $\\dfrac{dy}{y}=(8t+3)\\,dt$ gives $\\ln|y|=4t^2+3t+c$, the same family.",
+     "latex": ""
+    }
+   ],
+   "answer": "$y=Ce^{4t^2+3t}$.",
+   "citations": [
+    {
+     "source_id": "a637e1bd-8d81-49f9-89d6-abfe3fda44b6",
+     "version": 1,
+     "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
+    }
+   ],
+   "id": "baa7f626-4ae3-521b-8a81-d452729b5d6c"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 15 · W3 · An integral that needs parts",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime}+y=t$, $\\;y(0)=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** linear, $a=1$, $f=t$. Not separable ($t-y$ is a sum).",
+     "latex": ""
+    },
+    {
+     "explanation": "**Integrating factor** and rewrite.",
+     "latex": "\\mu=e^{t},\\qquad\\big(e^{t}y\\big)^{\\prime}=te^{t}"
+    },
+    {
+     "explanation": "**Integrate** with the calculus table: $\\int te^tdt=(t-1)e^t$.",
+     "latex": "e^{t}y=(t-1)e^{t}+C"
+    },
+    {
+     "explanation": "Divide by $e^t$.",
+     "latex": "y=t-1+Ce^{-t}"
+    },
+    {
+     "explanation": "**Condition:** $0=-1+C$, so $C=1$.",
+     "latex": "y=t-1+e^{-t}"
+    }
+   ],
+   "answer": "$y=t-1+e^{-t}$.",
+   "citations": [],
+   "id": "26dfa381-1a86-512a-9a7c-30c52d00bcf9"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 16 · W3 · Divide first, then a power of t",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $t\\,y^{\\prime}+2y=t^2$, $\\;y(1)=0$, for $t>0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** linear. Divide by $t$ to get $y^{\\prime}$ alone.",
+     "latex": "y'+\\dfrac{2}{t}\\,y=t"
+    },
+    {
+     "explanation": "**Integrating factor:** $e^{\\int\\frac2t dt}=e^{2\\ln t}=t^2$.",
+     "latex": "\\big(t^2y\\big)^{\\prime}=t^3"
+    },
+    {
+     "explanation": "**Integrate.**",
+     "latex": "t^2y=\\dfrac{t^4}{4}+C"
+    },
+    {
+     "explanation": "**Condition:** $0=\\frac14+C$, so $C=-\\frac14$. Divide by $t^2$.",
+     "latex": "y=\\dfrac{t^2}{4}-\\dfrac{1}{4t^2}"
+    }
+   ],
+   "answer": "$y=\\dfrac{t^2}{4}-\\dfrac{1}{4t^2}$.",
+   "citations": [],
+   "id": "37cf773f-dbea-5e51-8cfb-9db63d22ba1c"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 17 · W3 · An integrating factor with t²",
+   "difficulty": "advanced",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime}+2t\\,y=t$, $\\;y(0)=1$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** linear, $a=2t$, $f=t$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Integrating factor:** $\\int2t\\,dt=t^2$.",
+     "latex": "\\mu=e^{t^2},\\qquad\\big(e^{t^2}y\\big)^{\\prime}=te^{t^2}"
+    },
+    {
+     "explanation": "**Integrate** with $u=t^2$: $\\int te^{t^2}dt=\\frac12e^{t^2}$.",
+     "latex": "e^{t^2}y=\\tfrac12e^{t^2}+C"
+    },
+    {
+     "explanation": "Divide by $e^{t^2}$.",
+     "latex": "y=\\tfrac12+Ce^{-t^2}"
+    },
+    {
+     "explanation": "**Condition:** $1=\\frac12+C$, so $C=\\frac12$.",
+     "latex": "y=\\tfrac12+\\tfrac12e^{-t^2}"
+    }
+   ],
+   "answer": "$y=\\dfrac12\\big(1+e^{-t^2}\\big)$. (It is also separable: $y^{\\prime}=t(1-2y)$.)",
+   "citations": [],
+   "id": "199f3a70-6867-5b7e-8ccb-9eb34d91a63f"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B3 · Exact equations",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "cfa21f9f-1d90-48fa-a783-15abb54c6690"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
+    }
+   ],
+   "id": "c0bbccb2-6656-5963-a7e6-f495aa0faacf"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 4 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#c9f71086-78d7-4bc3-a405-e0c6375fb6ca) [Week 4 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#954310f2-d355-42ff-bd75-4e6b1d00f02d)",
+   "citations": [],
+   "id": "03da5e7a-affa-515f-b54d-ab5b76dbe5e8"
+  },
+  {
+   "type": "paragraph",
+   "text": "**When the equation comes in “$dt$ and $dy$” form.** Some first-order equations are neither separable nor linear, but their left side is the change of one hidden function $U(t,y)$. Then the solution is simply $U(t,y)=C$.",
+   "citations": [],
+   "id": "d3eb6541-69dc-53e0-bdfb-1ce6ade38dbd"
+  },
+  {
+   "type": "paragraph",
+   "text": "Write the equation with everything on the left:",
+   "citations": [],
+   "id": "1191cba3-920b-57d2-919b-692f9ad731f2"
+  },
+  {
+   "type": "equation",
+   "latex": "M(t,y)\\,dt+N(t,y)\\,dy=0",
+   "display": true,
+   "citations": [],
+   "id": "7b4e0f73-16ee-5bc1-b2f5-5d2eabc119f6"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$M$ = everything multiplying $dt$, **sign included**",
+    "$N$ = everything multiplying $dy$, **sign included**"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "cbd7b888-3334-5b41-99ad-2d1abf5a00ba"
+  },
+  {
+   "type": "paragraph",
+   "text": "Examples:",
+   "citations": [],
+   "id": "27fff998-ecb3-54c9-97e8-4b7cdd0cdba3"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$3t\\,dt+4y\\,dy=0$: $\\;M=3t$, $N=4y$.",
+    "$y^{\\prime}=\\dfrac{t-y}{t+y}$ → cross-multiply: $(t+y)\\,dy=(t-y)\\,dt$ → move all left: $(t-y)\\,dt-(t+y)\\,dy=0$. So $M=t-y$, $N=-(t+y)$.",
+    "$2ty\\,y^{\\prime}=t^2-y^2$ → $(t^2-y^2)\\,dt-2ty\\,dy=0$. So $M=t^2-y^2$, $N=-2ty$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "16ca159c-8e2c-5499-9388-de083855de68"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "Moving the $dy$ term across the $=$ sign flips its sign. In $y^{\\prime}=\\frac{t-y}{t+y}$, $N$ is $-(t+y)$, not $t+y$. One wrong sign makes the test fail.",
+   "citations": [],
+   "id": "387ce530-31fe-5109-b33c-5eaa2e0a6e03"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The exactness test.** The equation is **exact** when the cross derivatives match:",
+   "citations": [],
+   "id": "fd91962e-9f44-54b5-b41f-63f67a180030"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{\\partial M}{\\partial y}=\\dfrac{\\partial N}{\\partial t}",
+   "display": true,
+   "citations": [],
+   "id": "20b714d5-9d4e-5027-b5ac-20d4fc86a6d7"
+  },
+  {
+   "type": "paragraph",
+   "text": "Then there is a function $U(t,y)$ with",
+   "citations": [],
+   "id": "c8053bf3-eeab-5aa1-b04a-e4c750fc2a42"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{\\partial U}{\\partial t}=M,\\quad \\dfrac{\\partial U}{\\partial y}=N",
+   "display": true,
+   "citations": [],
+   "id": "64dac745-8a22-581a-92db-0e79e1eec7e0"
+  },
+  {
+   "type": "paragraph",
+   "text": "and the general solution is",
+   "citations": [],
+   "id": "7b565c7e-8162-5a9e-b654-401270be04f0"
+  },
+  {
+   "type": "equation",
+   "latex": "U(t,y)=C",
+   "display": true,
+   "citations": [],
+   "id": "da3c9e0b-281b-5bbd-9968-1296e1f5201a"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "0d055c32-b811-55d4-85b7-b6e45bbdc127"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Rewrite** as $M\\,dt+N\\,dy=0$ (everything on the left).",
+    "**Test:** is $M_y=N_t$? ($M_y$ means $\\partial M/\\partial y$.) If not, go to [B4](#b4).",
+    "**Integrate $M$ in $t$:** $U=\\int M\\,dt+f(y)$. The “constant” is a whole function $f(y)$.",
+    "**Match $N$:** differentiate that $U$ in $y$, set it equal to $N$, solve for $f^{\\prime}(y)$, integrate.",
+    "**Answer:** $U(t,y)=C$. Use the condition to find $C$."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "f6b397d0-97e7-50b3-a5d4-e879a04da01e"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Calculus you need here** (partial derivatives: hold the other letter fixed, like a number):",
+   "citations": [],
+   "id": "45cc3312-b2cc-50ab-b4c3-c4014530cd52"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Expression",
+    "Result",
+    "Note"
+   ],
+   "rows": [
+    [
+     "$\\dfrac{\\partial}{\\partial t}(t^2y)$",
+     "$2ty$",
+     "$y$ is a constant multiplier"
+    ],
+    [
+     "$\\dfrac{\\partial}{\\partial y}(t^2y)$",
+     "$t^2$",
+     "$t^2$ is a constant multiplier"
+    ],
+    [
+     "$\\dfrac{\\partial}{\\partial y}(t-y)$",
+     "$-1$",
+     "$t$ is a constant: its derivative is 0"
+    ],
+    [
+     "$\\int(2ty+3t^2)\\,dt$",
+     "$t^2y+t^3+f(y)$",
+     "integrate in $t$ with $y$ fixed; anything with only $y$ vanishes under $\\partial/\\partial t$, so the constant is $f(y)$"
+    ]
+   ],
+   "citations": [],
+   "id": "261af761-d436-5c28-8fa1-9ed8776be3d6"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why the test works, and what the answer means.** If $U$ exists, then $M_y=U_{ty}$ and $N_t=U_{yt}$. Mixed partial derivatives are equal, so $M_y=N_t$ must hold. Along a solution, $dU=U_t\\,dt+U_y\\,dy=M\\,dt+N\\,dy=0$: $U$ never changes. So each solution is a **level curve** $U(t,y)=C$ of the surface $z=U(t,y)$.",
+   "citations": [],
+   "id": "87ddcdf3-dcf9-5a84-8cfb-1c5ccbade41f"
+  },
+  {
+   "type": "paragraph",
+   "text": "Slide $C$: the plane cuts the surface along one solution curve (an ellipse), drawn again on the floor.\n\n```graph3d\ntitle \"Solutions of $3t\\,dt+4y\\,dy=0$ are level curves of $3t^2+4y^2$\"\nx -3 3 label=\"$t$\"\ny -3 3 label=\"$y$\"\nz 0 30 label=\"$U$\"\nview az=-55 el=28\nslider C 1 24 12 step=1 label=\"$C$\"\nsurface \"3*x^2+4*y^2\" label=\"$U=3t^2+4y^2$\"\nplane \"C\" label=\"height $C$\"\n```",
+   "citations": [],
+   "id": "779de2d5-0715-5b62-8e7c-258de5e3f39d"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · W4 · Test, integrate, match · lecture Example 4.1",
+   "prompt": "Solve $(2ty+3t^2)\\,dt+t^2\\,dy=0$.",
+   "steps": [
+    {
+     "explanation": "**Type:** $M\\,dt+N\\,dy=0$ form, with $M=2ty+3t^2$ and $N=t^2$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Test:** hold $t$ fixed for $M_y$, hold $y$ fixed for $N_t$.",
+     "latex": "M_y=2t=N_t\\quad\\checkmark"
+    },
+    {
+     "explanation": "**Integrate $M$ in $t$** ($y$ fixed).",
+     "latex": "U=t^2y+t^3+f(y)"
+    },
+    {
+     "explanation": "**Match $N$:** $U_y$ must equal $t^2$.",
+     "latex": "t^2+f^{\\prime}(y)=t^2\\quad\\Rightarrow\\quad f^{\\prime}(y)=0"
+    },
+    {
+     "explanation": "So $f$ is a plain constant, which joins $C$.",
+     "latex": "t^2y+t^3=C"
+    }
+   ],
+   "answer": "$t^2y+t^3=C$ (explicitly, $y=\\dfrac{C-t^3}{t^2}$).",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "2e93adf0-cf36-4f3d-a69f-19b135d3203e"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "cfa21f9f-1d90-48fa-a783-15abb54c6690"
+    }
+   ],
+   "id": "44680978-68c6-52c6-9a1d-d9f56f2619a9"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 18 · W4 · Test, then solve · lecture exercise (a)",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Test $3t\\,dt+4y\\,dy=0$ for exactness, and if so, solve.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** $M\\,dt+N\\,dy=0$ with $M=3t$, $N=4y$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Test:** $M$ has no $y$, $N$ has no $t$.",
+     "latex": "M_y=0=N_t\\quad\\checkmark"
+    },
+    {
+     "explanation": "**Integrate $M$ in $t$.**",
+     "latex": "U=\\tfrac32t^2+f(y)"
+    },
+    {
+     "explanation": "**Match $N$:** $f^{\\prime}(y)=4y$, so $f=2y^2$.",
+     "latex": "U=\\tfrac32t^2+2y^2"
+    },
+    {
+     "explanation": "**Answer:** $U=C$; multiply by 2 and rename the constant.",
+     "latex": "3t^2+4y^2=C"
+    }
+   ],
+   "answer": "Exact. $3t^2+4y^2=C$ (ellipses: the graph above). It is also separable.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
+    }
+   ],
+   "id": "5a18c4f5-2fe4-5793-bf6c-7253974264ff"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 19 · W4 · Test before you integrate · lecture exercise (d)",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Is $y^{\\prime}=\\dfrac{t}{t+y}$ exact?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** a slope formula: rewrite it in $M\\,dt+N\\,dy=0$ form first.",
+     "latex": "t\\,dt-(t+y)\\,dy=0"
+    },
+    {
+     "explanation": "**Read** $M=t$ and $N=-(t+y)$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Test.**",
+     "latex": "M_y=0,\\qquad N_t=-1"
+    },
+    {
+     "explanation": "$0\\neq-1$: **not exact**. The next move would be [B4](#b4), but neither of its ratios works here: $\\frac{M_y-N_t}{N}=-\\frac{1}{t+y}$ has both letters, and $\\frac{N_t-M_y}{M}=-\\frac1t$ has no $y$. The lecture stops at “not exact”.",
+     "latex": ""
+    }
+   ],
+   "answer": "Not exact: $M_y=0\\neq-1=N_t$.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
+    }
+   ],
+   "id": "7c596520-cfd9-5b54-9135-5b2a2c604811"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 20 · W4 · Cross-multiply, then use a condition · lecture exercise (b)",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "Solve $y^{\\prime}=\\dfrac{t-y}{t+y}$, $\\;y(0)=1$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** slope formula → cross-multiply and move everything left.",
+     "latex": "(t-y)\\,dt-(t+y)\\,dy=0"
+    },
+    {
+     "explanation": "**Test:** $M=t-y$, $N=-t-y$.",
+     "latex": "M_y=-1=N_t\\quad\\checkmark"
+    },
+    {
+     "explanation": "**Integrate $M$ in $t$.**",
+     "latex": "U=\\tfrac12t^2-ty+f(y)"
+    },
+    {
+     "explanation": "**Match $N$:** $-t+f^{\\prime}(y)=-t-y$, so $f^{\\prime}=-y$ and $f=-\\frac12y^2$.",
+     "latex": "\\tfrac12t^2-ty-\\tfrac12y^2=C"
+    },
+    {
+     "explanation": "Multiply by 2 (rename the constant).",
+     "latex": "t^2-2ty-y^2=C"
+    },
+    {
+     "explanation": "**Condition** $y(0)=1$: $\\;0-0-1=C$.",
+     "latex": "C=-1"
+    }
+   ],
+   "answer": "$t^2-2ty-y^2=-1$.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
+    }
+   ],
+   "id": "30c4af00-e3ce-5309-ae17-d8b71ba0e093"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 21 · W4 · The sign trap · lecture exercise (c)",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "Solve $2ty\\,y^{\\prime}=t^2-y^2$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** write $y^{\\prime}=\\frac{dy}{dt}$, multiply by $dt$ and move the $dy$ term left: it becomes **negative**.",
+     "latex": "(t^2-y^2)\\,dt-2ty\\,dy=0"
+    },
+    {
+     "explanation": "**Test:** $M=t^2-y^2$, $N=-2ty$.",
+     "latex": "M_y=-2y=N_t\\quad\\checkmark"
+    },
+    {
+     "explanation": "**Integrate $M$ in $t$.**",
+     "latex": "U=\\tfrac13t^3-ty^2+f(y)"
+    },
+    {
+     "explanation": "**Match $N$:** $-2ty+f^{\\prime}(y)=-2ty$, so $f^{\\prime}=0$.",
+     "latex": "\\tfrac13t^3-ty^2=C"
+    },
+    {
+     "explanation": "Multiply by 3 (rename the constant).",
+     "latex": "t^3-3ty^2=C"
+    }
+   ],
+   "answer": "$t^3-3ty^2=C$. With $+2ty\\,dy$ (wrong sign) the test gives $-2y\\neq2y$ and fails.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
+    }
+   ],
+   "id": "32a6e676-f230-56f9-b4ea-be76c7f02be6"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B4 · Not exact: make it exact with an integrating factor",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
+    }
+   ],
+   "id": "6f7ee546-cc63-5263-8d56-da777c085e48"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 4 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#ebb7e8ad-4fda-4034-97dc-a9c048d71335)",
+   "citations": [],
+   "id": "2553c957-7c8b-5020-9e5b-8cfa3bd5c9fd"
+  },
+  {
+   "type": "paragraph",
+   "text": "**What if the exactness test fails?** Multiply the whole equation by a function $\\mu$ (an **integrating factor**) chosen so that the new equation passes the test. Then finish with [B3](#b3).",
+   "citations": [],
+   "id": "f34dfc6e-734c-5be4-a789-15d50468a8f9"
+  },
+  {
+   "type": "paragraph",
+   "text": "Start from $M\\,dt+N\\,dy=0$ with $M_y\\neq N_t$, and compute the **mismatch**:",
+   "citations": [],
+   "id": "6b48f9f3-abbc-529c-8d04-54859335915a"
+  },
+  {
+   "type": "equation",
+   "latex": "M_y-N_t",
+   "display": true,
+   "citations": [],
+   "id": "f9a9f114-5daa-5d39-b4e0-f9106b1cd3cb"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Theorem 1.** If this ratio depends on $t$ only, call it $f(t)$:",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
+    }
+   ],
+   "id": "e33330ba-9d90-5069-9057-d8b9a758ec34"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{M_y-N_t}{N}=f(t)\\quad\\Rightarrow\\quad \\mu=e^{\\int f(t)\\,dt}",
+   "display": true,
+   "citations": [],
+   "id": "807c5075-88f2-59fa-8db7-877ddcb26085"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Theorem 2.** If this ratio depends on $y$ only, call it $g(y)$:",
+   "citations": [],
+   "id": "e2a82759-9aa5-5f71-9bf6-da34c404ceec"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{N_t-M_y}{M}=g(y)\\quad\\Rightarrow\\quad \\mu=e^{\\int g(y)\\,dy}",
+   "display": true,
+   "citations": [],
+   "id": "971a3777-335f-5a04-9a33-a352a272942d"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Memory aid:**",
+   "citations": [],
+   "id": "4e4aa0cd-6812-5db7-8312-a0057837d97e"
+  },
+  {
+   "type": "list",
+   "items": [
+    "Theorem 1 divides the mismatch by $N$ and must leave only $t$.",
+    "Theorem 2 divides by $M$, with the subtraction **flipped** ($N_t-M_y$), and must leave only $y$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "a66ebaa8-ee0e-5f97-8657-319c57b0c4f1"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "b3fd2e60-2273-5283-9429-1775bd033acd"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Test:** $M_y\\neq N_t$ (otherwise it is already exact: [B3](#b3)).",
+    "**Ratios:** compute both. Keep the one that depends on a single letter.",
+    "**Integrating factor:** $\\mu=e^{\\int f\\,dt}$ or $\\mu=e^{\\int g\\,dy}$ (no $+C$ needed).",
+    "**Multiply the whole equation** by $\\mu$: both $M$ and $N$.",
+    "**Re-test** (it must pass now), then solve with the [B3](#b3) steps."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "2756c8a8-dc94-5632-bace-dce7d355155f"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Calculus you need here:**",
+   "citations": [],
+   "id": "24ee2dc0-fb14-5f37-8485-c04663660f04"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Expression",
+    "Result",
+    "Note"
+   ],
+   "rows": [
+    [
+     "$e^{\\int\\frac{k}{y}dy}$",
+     "$e^{k\\ln|y|}=|y|^k$",
+     "e.g. $g=\\frac2y$ gives $\\mu=y^2$; $g=-\\frac1y$ gives $\\mu=\\frac1y$"
+    ],
+    [
+     "$e^{\\int\\frac{k}{t}dt}$",
+     "$t^k$",
+     "e.g. $f=-\\frac2t$ gives $\\mu=t^{-2}=\\frac{1}{t^2}$"
+    ],
+    [
+     "$e^{\\int k\\,dt}$",
+     "$e^{kt}$",
+     "constant ratio"
+    ]
+   ],
+   "citations": [],
+   "id": "31e6d706-0881-58f1-97f8-d3583e075785"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): where Theorem 1 comes from.** Multiply by $\\mu(t)$ and ask for the new equation to pass the test: $(\\mu M)_y=(\\mu N)_t$, i.e. $\\mu M_y=\\mu^{\\prime} N+\\mu N_t$. Rearranged:\n\n$$\n\\dfrac{\\mu^{\\prime}}{\\mu}=\\dfrac{M_y-N_t}{N}\n$$\n\nA $\\mu$ depending on $t$ alone can only exist if the right side depends on $t$ alone. Then $\\ln\\mu=\\int f\\,dt$. Theorem 2 is the same argument with $\\mu(y)$.",
+   "citations": [],
+   "id": "fe8e798b-6c0b-58f0-aefa-1cdec5441134"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · W4 · Repair, then finish · lecture exercise (e) and Pre-tutorial 4",
+   "prompt": "Solve $y\\,dt+(3+3t-y)\\,dy=0$.",
+   "steps": [
+    {
+     "explanation": "**Type:** $M\\,dt+N\\,dy=0$ with $M=y$, $N=3+3t-y$. **Test:** $M_y=1$, $N_t=3$: not exact.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Ratios:** Theorem 1 gives $\\frac{1-3}{3+3t-y}$, which has both letters. Theorem 2 gives $y$ only.",
+     "latex": "\\dfrac{N_t-M_y}{M}=\\dfrac{3-1}{y}=\\dfrac2y"
+    },
+    {
+     "explanation": "**Integrating factor:** $e^{\\int\\frac2y dy}=e^{2\\ln|y|}$.",
+     "latex": "\\mu=y^2"
+    },
+    {
+     "explanation": "**Multiply the whole equation** by $y^2$.",
+     "latex": "y^3\\,dt+(3y^2+3ty^2-y^3)\\,dy=0"
+    },
+    {
+     "explanation": "**Re-test.**",
+     "latex": "M_y=3y^2=N_t\\quad\\checkmark"
+    },
+    {
+     "explanation": "**Integrate $M$ in $t$** ($y$ fixed).",
+     "latex": "U=ty^3+f(y)"
+    },
+    {
+     "explanation": "**Match $N$:** $3ty^2+f^{\\prime}(y)=3y^2+3ty^2-y^3$, so $f^{\\prime}=3y^2-y^3$.",
+     "latex": "f(y)=y^3-\\tfrac14y^4"
+    }
+   ],
+   "answer": "$ty^3+y^3-\\dfrac{y^4}{4}=C$.",
+   "citations": [
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
+    },
+    {
+     "source_id": "1de781c7-35fb-49bf-8ad3-5a1c400749ff",
+     "version": 1,
+     "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
+    },
+    {
+     "source_id": "7fdc7c08-5ab7-4ab6-92c7-eef3bb83f715",
+     "version": 1,
+     "chunk_id": "9abd497e-d55e-437a-8059-0132dde1d377"
+    }
+   ],
+   "id": "93616dde-3b96-5416-bbef-3eac125a9f89"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 22 · W4 · A factor in t only",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Solve $(t^2+y)\\,dt-t\\,dy=0$ for $t>0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** $M=t^2+y$, $N=-t$. **Test:** $M_y=1$, $N_t=-1$: not exact.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Ratios:** Theorem 1 leaves only $t$.",
+     "latex": "\\dfrac{M_y-N_t}{N}=\\dfrac{1-(-1)}{-t}=-\\dfrac2t"
+    },
+    {
+     "explanation": "**Integrating factor:** $e^{\\int-\\frac2t dt}=e^{-2\\ln t}$.",
+     "latex": "\\mu=\\dfrac{1}{t^2}"
+    },
+    {
+     "explanation": "**Multiply the whole equation** by $\\frac{1}{t^2}$.",
+     "latex": "\\Big(1+\\dfrac{y}{t^2}\\Big)dt-\\dfrac1t\\,dy=0"
+    },
+    {
+     "explanation": "**Re-test.**",
+     "latex": "M_y=\\dfrac{1}{t^2}=N_t\\quad\\checkmark"
+    },
+    {
+     "explanation": "**Integrate $M$ in $t$:** $\\int\\frac{y}{t^2}dt=-\\frac yt$.",
+     "latex": "U=t-\\dfrac{y}{t}+f(y)"
+    },
+    {
+     "explanation": "**Match $N$:** $-\\frac1t+f^{\\prime}=-\\frac1t$, so $f^{\\prime}=0$.",
+     "latex": "t-\\dfrac yt=C"
+    }
+   ],
+   "answer": "$t-\\dfrac{y}{t}=C$, i.e. $y=t^2-Ct$. Check with [B2](#b2): the equation is also linear, $y^{\\prime}-\\frac{y}{t}=t$, and gives the same family.",
+   "citations": [],
+   "id": "4b2d66a9-d608-52ff-9611-f5235af5c20d"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 23 · W4 · A factor in y only",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y\\,dt+(2t+y^3)\\,dy=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** $M=y$, $N=2t+y^3$. **Test:** $M_y=1$, $N_t=2$: not exact.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Ratios:** Theorem 1 gives $\\frac{-1}{2t+y^3}$ (both letters). Theorem 2:",
+     "latex": "\\dfrac{N_t-M_y}{M}=\\dfrac{2-1}{y}=\\dfrac1y"
+    },
+    {
+     "explanation": "**Integrating factor:** $e^{\\int\\frac1y dy}=e^{\\ln|y|}$.",
+     "latex": "\\mu=y"
+    },
+    {
+     "explanation": "**Multiply the whole equation** by $y$.",
+     "latex": "y^2\\,dt+(2ty+y^4)\\,dy=0"
+    },
+    {
+     "explanation": "**Re-test.**",
+     "latex": "M_y=2y=N_t\\quad\\checkmark"
+    },
+    {
+     "explanation": "**Integrate $M$ in $t$.**",
+     "latex": "U=ty^2+f(y)"
+    },
+    {
+     "explanation": "**Match $N$:** $2ty+f^{\\prime}=2ty+y^4$, so $f=\\frac{y^5}{5}$.",
+     "latex": "ty^2+\\dfrac{y^5}{5}=C"
+    }
+   ],
+   "answer": "$ty^2+\\dfrac{y^5}{5}=C$.",
+   "citations": [],
+   "id": "e5cd26b0-c51e-55b7-914c-6b783cb56733"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 24 · W4 · Which theorem applies?",
+   "difficulty": "advanced",
+   "origin": "original",
+   "prompt": "Find an integrating factor for each equation, then solve it.\n\n(a) $(2y+3t)\\,dt+t\\,dy=0$\n\n(b) $y^2\\,dt+(ty+1)\\,dy=0$",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Test:** $M_y=2$, $N_t=1$. Theorem 1: $\\frac{2-1}{t}=\\frac1t$, only $t$.",
+     "latex": "\\mu=e^{\\int\\frac1t dt}=t"
+    },
+    {
+     "explanation": "(a) Multiply by $t$: this is exactly the B3 worked example.",
+     "latex": "(2ty+3t^2)\\,dt+t^2\\,dy=0"
+    },
+    {
+     "explanation": "(a) Its solution (from B3).",
+     "latex": "t^2y+t^3=C"
+    },
+    {
+     "explanation": "(b) **Test:** $M_y=2y$, $N_t=y$. Theorem 1 gives $\\frac{y}{ty+1}$ (both letters). Theorem 2:",
+     "latex": "\\dfrac{N_t-M_y}{M}=\\dfrac{y-2y}{y^2}=-\\dfrac1y"
+    },
+    {
+     "explanation": "(b) **Integrating factor:** $e^{-\\ln|y|}$.",
+     "latex": "\\mu=\\dfrac1y"
+    },
+    {
+     "explanation": "(b) Multiply by $\\frac1y$ and re-test: $M_y=1=N_t$.",
+     "latex": "y\\,dt+\\Big(t+\\dfrac1y\\Big)dy=0"
+    },
+    {
+     "explanation": "(b) $U=ty+f(y)$; matching $N$ gives $f^{\\prime}=\\frac1y$, so $f=\\ln|y|$.",
+     "latex": "ty+\\ln|y|=C"
+    }
+   ],
+   "answer": "(a) $\\mu=t$, $\\;t^2y+t^3=C$. (b) $\\mu=\\dfrac1y$, $\\;ty+\\ln|y|=C$.",
+   "citations": [],
+   "id": "dc159e43-fd32-5697-a4ff-0f33215f5ae4"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B5 · Second order, constant coefficients: the characteristic equation",
+   "citations": [],
+   "id": "adfae45b-97fe-5126-ac53-547b288b6b75"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 5 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#92fa557c-ab2a-49cb-a238-b9f4e76fa0b8)",
+   "citations": [],
+   "id": "9acc4035-037b-5f7e-9ed8-a996c89b1f30"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Now the equation has $y^{\\prime\\prime}$.** When every coefficient is a plain number, one guess solves it: $y=e^{st}$. Each derivative just brings out another $s$, so the whole ODE turns into a quadratic in $s$.",
+   "citations": [],
+   "id": "03f4f400-758b-501b-ad3e-c587e42bdd8a"
+  },
+  {
+   "type": "paragraph",
+   "text": "Second-order linear homogeneous equations with constant coefficients look like:",
+   "citations": [],
+   "id": "efc01dd4-3884-5145-8f8e-d4752e45214f"
+  },
+  {
+   "type": "equation",
+   "latex": "a\\,y^{\\prime\\prime}+b\\,y^{\\prime}+c\\,y=0",
+   "display": true,
+   "citations": [],
+   "id": "53cf67c9-8a28-5caa-8768-a707d0c77d39"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$a,b,c$ = numbers (constants), with $a\\neq0$",
+    "right side $=0$ (homogeneous). If it isn’t $0$, you also need [B6](#b6)."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "ae305ac6-342f-513f-a101-cc726049d4ed"
+  },
+  {
+   "type": "paragraph",
+   "text": "Reading off the characteristic equation (replace $y^{\\prime\\prime}\\to s^2$, $y^{\\prime}\\to s$, $y\\to1$):",
+   "citations": [],
+   "id": "0c9df3a0-5bd2-512c-af45-ac27b2cbb46d"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$y^{\\prime\\prime}+3y^{\\prime}+2y=0$ → $s^2+3s+2=0$",
+    "$4y^{\\prime\\prime}+4y^{\\prime}+y=0$ → $4s^2+4s+1=0$",
+    "$y^{\\prime\\prime}+9y=0$ → $s^2+9=0$ (no $y^{\\prime}$ term, so no $s$ term)"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "98dc936f-c2bc-5489-a70d-b96296be0bc7"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The characteristic equation.** Its roots decide the form of the solution:",
+   "citations": [],
+   "id": "95a50b9f-30fa-519a-9acc-36cac186cdcd"
+  },
+  {
+   "type": "equation",
+   "latex": "a\\,s^2+b\\,s+c=0",
+   "display": true,
+   "citations": [],
+   "id": "fc90c1b2-c4f2-522c-9131-9a71ede20c23"
+  },
+  {
+   "type": "paragraph",
+   "text": "Solve it by factoring, or with the quadratic formula:",
+   "citations": [],
+   "id": "1554ed62-8864-5404-9151-73761b9ba742"
+  },
+  {
+   "type": "equation",
+   "latex": "s=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}",
+   "display": true,
+   "citations": [],
+   "id": "8f190713-9fd1-5fb2-b7a0-69f06c78cdfc"
+  },
+  {
+   "type": "paragraph",
+   "text": "If $b^2-4ac<0$, the square root is of a negative number: $\\sqrt{-16}=j4$. See [Topic A](#topic-a) for complex roots.",
+   "citations": [],
+   "id": "e4789180-82e3-5e1c-a7b3-62df9a70d8ef"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Roots",
+    "General solution $y(t)$",
+    "$y(0)$",
+    "$y^{\\prime}(0)$"
+   ],
+   "rows": [
+    [
+     "two different real: $s_1\\neq s_2$",
+     "$Ae^{s_1t}+Be^{s_2t}$",
+     "$A+B$",
+     "$s_1A+s_2B$"
+    ],
+    [
+     "one repeated real: $s$",
+     "$(A+Bt)\\,e^{st}$",
+     "$A$",
+     "$sA+B$"
+    ],
+    [
+     "complex pair: $\\sigma\\pm j\\omega$",
+     "$e^{\\sigma t}(A\\cos\\omega t+B\\sin\\omega t)$",
+     "$A$",
+     "$\\sigma A+\\omega B$"
+    ]
+   ],
+   "citations": [],
+   "id": "ca237382-5939-557f-a4e9-7d7175e074a7"
+  },
+  {
+   "type": "paragraph",
+   "text": "The last two columns are the time saver: with conditions at $t=0$ you get the two equations for $A$ and $B$ without differentiating. For conditions at any other time, differentiate $y(t)$ yourself.",
+   "citations": [],
+   "id": "8c3a4bbb-7eec-5679-96d4-55c46641b853"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "116ef97f-ed9e-5adf-a79d-fa99970c6976"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Characteristic equation:** replace $y^{\\prime\\prime}\\to s^2$, $y^{\\prime}\\to s$, $y\\to1$.",
+    "**Roots:** factor, or use the quadratic formula.",
+    "**Form:** pick the row of the table that matches the roots.",
+    "**Conditions:** $y(0)$ and $y^{\\prime}(0)$ give two equations; solve for $A$ and $B$."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "d9ba21a0-4975-5c7d-8914-7562424eac5e"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Calculus you need here** (to differentiate the forms yourself):",
+   "citations": [],
+   "id": "66943026-77d7-564e-8e4a-8b1f34d1ac8c"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Function",
+    "Derivative",
+    "Rule"
+   ],
+   "rows": [
+    [
+     "$e^{st}$",
+     "$s\\,e^{st}$",
+     "chain rule"
+    ],
+    [
+     "$t\\,e^{st}$",
+     "$(1+st)\\,e^{st}$",
+     "product rule"
+    ],
+    [
+     "$e^{\\sigma t}\\cos\\omega t$",
+     "$e^{\\sigma t}(\\sigma\\cos\\omega t-\\omega\\sin\\omega t)$",
+     "product rule"
+    ],
+    [
+     "$e^{\\sigma t}\\sin\\omega t$",
+     "$e^{\\sigma t}(\\sigma\\sin\\omega t+\\omega\\cos\\omega t)$",
+     "product rule"
+    ]
+   ],
+   "citations": [],
+   "id": "927088ca-b6b6-552b-8438-596fa22b0cc8"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Slide $k$ through 1: the same start, three kinds of response\"\nx 0 8 label=\"$t$\"\ny -0.6 1.2 label=\"$y$\"\nslider k 0 5 0.5 step=0.05 label=\"$k$\" animate\nlet d \"sqrt(abs(1-k))\"\nlet s1 \"-1+d\"\nlet s2 \"-1-d\"\ncurve \"if(k<0.999, (s2*exp(s1*x)-s1*exp(s2*x))/(s2-s1), if(k>1.001, exp(-x)*(cos(d*x)+sin(d*x)/d), (1+x)*exp(-x)))\" label=\"$y(t)$\" color=1\nhline \"0\"\nreadout \"$b^2-4ac=4-4k$\" \"4-4*k\"\ncaption \"$y^{\\prime\\prime}+2y^{\\prime}+ky=0$ with $y(0)=1$, $y^{\\prime}(0)=0$. For $k<1$: two real roots, a smooth decay. At $k=1$: a repeated root. For $k>1$: complex roots, and the solution oscillates inside a decaying envelope $e^{-t}$.\"\n```",
+   "citations": [],
+   "id": "9e024eab-cc72-50de-b773-c6fcd02280fb"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why $e^{st}$ turns the ODE into a quadratic.** Put $y=e^{st}$, $y^{\\prime}=se^{st}$, $y^{\\prime\\prime}=s^2e^{st}$ into the ODE:\n\n$$\nas^2e^{st}+bse^{st}+ce^{st}=(as^2+bs+c)\\,e^{st}=0\n$$\n\nSince $e^{st}$ is never zero, the bracket must be: that is the characteristic equation. Complex roots give real answers through Euler, $e^{(\\sigma\\pm j\\omega)t}=e^{\\sigma t}(\\cos\\omega t\\pm j\\sin\\omega t)$. The extra $t$ for a repeated root comes from reduction of order ([B7](#b7)).",
+   "citations": [],
+   "id": "83c655e8-7cbb-5f6a-bf8a-64af458d75ac"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 6 · W5 · Complex roots, real answer",
+   "prompt": "Solve $y''+2y'+5y=0$, $\\;y(0)=1$, $y'(0)=1$.",
+   "steps": [
+    {
+     "explanation": "**Type:** second order, constant coefficients, right side 0.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Characteristic equation** and roots; $\\sqrt{4-20}=\\sqrt{-16}=j4$.",
+     "latex": "s^2+2s+5=0\\quad\\Rightarrow\\quad s=\\dfrac{-2\\pm j4}{2}=-1\\pm j2"
+    },
+    {
+     "explanation": "**Form:** complex row, with $\\sigma=-1$ and $\\omega=2$.",
+     "latex": "y=e^{-t}(A\\cos2t+B\\sin2t)"
+    },
+    {
+     "explanation": "**Conditions** from the table: $y(0)=A$ and $y^{\\prime}(0)=\\sigma A+\\omega B$.",
+     "latex": "A=1,\\qquad -A+2B=1\\ \\Rightarrow\\ B=1"
+    }
+   ],
+   "answer": "$y=e^{-t}(\\cos2t+\\sin2t)$: an oscillation (frequency 2 rad/s) inside a decaying envelope $e^{-t}$.",
+   "citations": [],
+   "id": "b9ad7d91-90f7-52b2-8809-79b1087ebc92"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 25 · W5 · Two different real roots",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Solve $y''+5y'+6y=0$, $\\;y(0)=2$, $y'(0)=-5$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** constant coefficients, homogeneous.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Characteristic equation:** factor it.",
+     "latex": "s^2+5s+6=(s+2)(s+3)=0\\quad\\Rightarrow\\quad s=-2,\\,-3"
+    },
+    {
+     "explanation": "**Form:** two different real roots.",
+     "latex": "y=Ae^{-2t}+Be^{-3t}"
+    },
+    {
+     "explanation": "**Conditions:** $y(0)=A+B$, $y^{\\prime}(0)=-2A-3B$.",
+     "latex": "A+B=2,\\qquad -2A-3B=-5"
+    },
+    {
+     "explanation": "Multiply the first by 2 and add: $-B=-1$.",
+     "latex": "B=1,\\qquad A=1"
+    }
+   ],
+   "answer": "$y=e^{-2t}+e^{-3t}$.",
+   "citations": [],
+   "id": "b8087869-8321-55da-9597-28899d0c0fbc"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 26 · W5 · A repeated root",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Solve $4y''+4y'+y=0$, $\\;y(0)=4$, $y'(0)=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** constant coefficients, homogeneous.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Characteristic equation:** a perfect square.",
+     "latex": "4s^2+4s+1=(2s+1)^2=0\\quad\\Rightarrow\\quad s=-\\tfrac12\\ \\text{(twice)}"
+    },
+    {
+     "explanation": "**Form:** repeated root, so the extra $t$.",
+     "latex": "y=(A+Bt)\\,e^{-t/2}"
+    },
+    {
+     "explanation": "**Conditions:** $y(0)=A$, $y^{\\prime}(0)=sA+B$ with $s=-\\frac12$.",
+     "latex": "A=4,\\qquad -2+B=0\\ \\Rightarrow\\ B=2"
+    }
+   ],
+   "answer": "$y=(4+2t)\\,e^{-t/2}$.",
+   "citations": [],
+   "id": "d82b9a21-74b1-502b-86d6-cf150d9d7889"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 27 · W5 · No damping term",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Solve $y''+9y=0$, $\\;y(0)=2$, $y'(0)=3$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** constant coefficients, homogeneous; there is no $y^{\\prime}$ term ($b=0$).",
+     "latex": ""
+    },
+    {
+     "explanation": "**Characteristic equation:** $s^2=-9$.",
+     "latex": "s=\\pm j3\\qquad(\\sigma=0,\\ \\omega=3)"
+    },
+    {
+     "explanation": "**Form:** complex row with $e^{0t}=1$.",
+     "latex": "y=A\\cos3t+B\\sin3t"
+    },
+    {
+     "explanation": "**Conditions:** $y(0)=A$, $y^{\\prime}(0)=\\omega B=3B$.",
+     "latex": "A=2,\\qquad B=1"
+    }
+   ],
+   "answer": "$y=2\\cos3t+\\sin3t$. With $\\sigma=0$ it never decays: this is the ideal LC circuit in [Topic D](#topic-d).",
+   "citations": [],
+   "id": "a03778a4-ccc2-5d8e-9af8-c4ba3871a58f"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 28 · W5 · Work backwards from the roots",
+   "difficulty": "advanced",
+   "origin": "original",
+   "prompt": "A constant-coefficient equation $y^{\\prime\\prime}+by^{\\prime}+cy=0$ has characteristic roots $-3\\pm j4$. \n\n(a) Find $b$ and $c$. (b) Write the general solution. (c) Find the solution with $y(0)=0$, $y^{\\prime}(0)=8$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** reverse question: build the quadratic from its roots, $(s-s_1)(s-s_2)=0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) Multiply out the conjugate pair: $(s+3)^2-(j4)^2=(s+3)^2+16$.",
+     "latex": "s^2+6s+25=0\\quad\\Rightarrow\\quad b=6,\\ c=25"
+    },
+    {
+     "explanation": "(b) **Form:** complex row with $\\sigma=-3$, $\\omega=4$.",
+     "latex": "y=e^{-3t}(A\\cos4t+B\\sin4t)"
+    },
+    {
+     "explanation": "(c) **Conditions:** $y(0)=A=0$; $y^{\\prime}(0)=\\sigma A+\\omega B=4B=8$.",
+     "latex": "A=0,\\qquad B=2"
+    }
+   ],
+   "answer": "(a) $y^{\\prime\\prime}+6y^{\\prime}+25y=0$. (b) $y=e^{-3t}(A\\cos4t+B\\sin4t)$. (c) $y=2e^{-3t}\\sin4t$.",
+   "citations": [],
+   "id": "454fb671-f6b1-589b-97f0-41f83bff4982"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B6 · Undetermined coefficients",
+   "citations": [
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "f622d763-6626-4aec-9544-1d9452473623"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "1bb7e382-04e5-42ed-84e7-a194ca300ce4"
+    },
+    {
+     "source_id": "f8bccc80-ff70-4727-b896-a89d7b612824",
+     "version": 1,
+     "chunk_id": "84f57b26-8cc8-4568-9372-eece88ff9a48"
+    }
+   ],
+   "id": "bf304212-b97f-56d4-abc9-617138769854"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 6 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/357f26bd-d16c-4769-af0a-d1b2f535d62e#77a5aea3-a3f4-4738-a817-01c3f18cfdae)",
+   "citations": [],
+   "id": "1717fc9e-7fae-52e2-be6a-594c54903e0d"
+  },
+  {
+   "type": "paragraph",
+   "text": "**What if the right side isn’t zero?** The forcing $g(t)$ (a source, in a circuit) pushes the solution. The [B5](#b5) solutions only ever produce $0$ on the right, so they need a partner that produces $g(t)$.",
+   "citations": [],
+   "id": "14bd3912-9604-5e25-8b3c-eeecaf5c5621"
+  },
+  {
+   "type": "paragraph",
+   "text": "Second-order linear equations with constant coefficients and a forcing term look like:",
+   "citations": [],
+   "id": "f20ba608-26ab-5634-a45e-df2555810567"
+  },
+  {
+   "type": "equation",
+   "latex": "a\\,y^{\\prime\\prime}+b\\,y^{\\prime}+c\\,y=g(t)",
+   "display": true,
+   "citations": [],
+   "id": "b6b983dd-6f28-5e19-afb0-d981f753902d"
+  },
+  {
+   "type": "list",
+   "items": [
+    "left side = the same as in B5 (numbers $a,b,c$)",
+    "$g(t)$ = the **forcing**: everything with no $y$ in it, moved to the right"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "aecabd64-5a6d-5f92-a247-486c43d8d81c"
+  },
+  {
+   "type": "paragraph",
+   "text": "The solution is always built from two pieces:",
+   "citations": [],
+   "id": "3c847cfb-40e4-5a3e-9031-1856ee5bfd4e"
+  },
+  {
+   "type": "equation",
+   "latex": "y=y_c+y_p",
+   "display": true,
+   "citations": [],
+   "id": "f0b8f02d-5bce-5507-95de-3129c7847644"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$y_c$ = the **complementary solution**: the general solution with $g$ replaced by $0$ (that is [B5](#b5)). It holds the two constants $c_1,c_2$.",
+    "$y_p$ = a **particular solution**: any one function that produces $g(t)$. No constants."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "cdfae45a-8951-5770-a219-51a55ce9cf75"
+  },
+  {
+   "type": "paragraph",
+   "text": "Mini example: $y^{\\prime\\prime}+y=3$. Then $y_c=c_1\\sin t+c_2\\cos t$, and $y_p=3$ works ($0+3=3$). So $y=3+c_1\\sin t+c_2\\cos t$.",
+   "citations": [],
+   "id": "813647f9-c3f3-5a25-8801-75cce2c97f81"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Finding $y_p$: guess its form from $g(t)$.** Write a guess with unknown coefficients ($A,B,\\dots$), substitute it, and match coefficients. The guess copies the shape of $g$:",
+   "citations": [],
+   "id": "51a7986e-eeb1-5ff0-a7f1-792f56230324"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Term in $g(t)$",
+    "Guess for $y_p$"
+   ],
+   "rows": [
+    [
+     "constant, or polynomial of degree $n$",
+     "$A_nt^n+\\dots+A_1t+A_0$ (**all** lower powers)"
+    ],
+    [
+     "$e^{at}$",
+     "$Ae^{at}$"
+    ],
+    [
+     "$\\sin rt$ or $\\cos rt$",
+     "$A\\cos rt+B\\sin rt$ (**always both**)"
+    ],
+    [
+     "$e^{at}\\cos rt$ or $e^{at}\\sin rt$",
+     "$e^{at}(A\\cos rt+B\\sin rt)$"
+    ],
+    [
+     "a sum of these",
+     "the sum of their guesses"
+    ]
+   ],
+   "citations": [
+    {
+     "source_id": "f8bccc80-ff70-4727-b896-a89d7b612824",
+     "version": 1,
+     "chunk_id": "84f57b26-8cc8-4568-9372-eece88ff9a48"
+    }
+   ],
+   "id": "63c1ec1d-1771-5462-9617-6b27a47ff0db"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**The $\\times t$ rule.** If any term of your guess already appears in $y_c$, substituting it gives $0$, so it can never produce $g$. **Multiply that guess by $t$.** If it is still in $y_c$ (a repeated root), multiply by $t^2$.",
+   "citations": [],
+   "id": "9fcb7ae2-3cb3-5cc8-8d7f-56d7f8186ab1"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "a26ec0e0-0949-5fce-91e0-7a5163b917e9"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Complementary:** solve the equation with $g=0$ ([B5](#b5)) to get $y_c$.",
+    "**Guess:** take $y_p$’s form from the table. Compare it with $y_c$; apply the $\\times t$ rule if needed.",
+    "**Substitute** $y_p$ into the ODE and **match coefficients** (constants, each $\\cos$, each $\\sin$, each power of $t$). Solve for $A,B,\\dots$",
+    "**Add:** $y=y_c+y_p$.",
+    "**Conditions** on the **whole** $y$, never on $y_c$ or $y_p$ alone."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "8b51254d-50e8-5ae6-aac4-c92a51932692"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Calculus you need here:**",
+   "citations": [],
+   "id": "882d4aa7-f8af-530b-852b-47d1b337a3f9"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Expression",
+    "Result",
+    "Note"
+   ],
+   "rows": [
+    [
+     "$\\cos^2t$",
+     "$\\tfrac12+\\tfrac12\\cos2t$",
+     "remove squares before guessing"
+    ],
+    [
+     "$\\sin^2t$",
+     "$\\tfrac12-\\tfrac12\\cos2t$",
+     ""
+    ],
+    [
+     "$(A\\cos rt+B\\sin rt)^{\\prime\\prime}$",
+     "$-r^2(A\\cos rt+B\\sin rt)$",
+     "each derivative brings out an $r$"
+    ],
+    [
+     "$(te^{at})^{\\prime}$",
+     "$(1+at)\\,e^{at}$",
+     "product rule"
+    ],
+    [
+     "$(t\\,f)^{\\prime\\prime}$",
+     "$t\\,f^{\\prime\\prime}+2f^{\\prime}$",
+     "product rule twice, for a $\\times t$ guess"
+    ]
+   ],
+   "citations": [],
+   "id": "2be66c0f-c903-52c4-83cb-e4b9c1ba0bd9"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why $y=y_c+y_p$ works.** The left side is linear: put in $y_c+y_p$ and you get (what $y_c$ gives) + (what $y_p$ gives) $=0+g=g$. And $y_c$ still carries two free constants, enough to meet any two conditions. The $\\times t$ rule has the same root: a term of $y_c$ gives $0$ on the left, so it is useless as a guess.",
+   "citations": [],
+   "id": "38e4fad6-34ab-5759-bd87-251bf9a90f3c"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 7 · W6 · The tutorial problem, with two boundary values · Week 6 tutorial, lecture notes p. 3–4",
+   "prompt": "Solve $\\ddot y+y=6\\cos^2t$ with $y(0)=0$ and $y(\\pi/2)=0$. The tutorial gives the forms $y_c=c_1\\sin t+c_2\\cos t$ and $y_p=A+B\\cos2t+D\\sin2t$. ($\\ddot y$ is the professor’s notation for $y^{\\prime\\prime}$.)",
+   "steps": [
+    {
+     "explanation": "**Type:** constant coefficients with forcing $6\\cos^2t$. **Complementary:** $s^2+1=0$ gives $s=\\pm j$.",
+     "latex": "y_c=c_1\\sin t+c_2\\cos t"
+    },
+    {
+     "explanation": "Remove the square with the identity, so the guess table applies.",
+     "latex": "6\\cos^2t=3+3\\cos2t"
+    },
+    {
+     "explanation": "**Guess:** constant → $A$; $\\cos2t$ → both $\\cos2t$ and $\\sin2t$. None of them is in $y_c$.",
+     "latex": "y_p=A+B\\cos2t+D\\sin2t"
+    },
+    {
+     "explanation": "Differentiate twice: each derivative brings out a 2.",
+     "latex": "y_p''=-4B\\cos2t-4D\\sin2t"
+    },
+    {
+     "explanation": "**Substitute** $y_p^{\\prime\\prime}+y_p$ and collect.",
+     "latex": "A-3B\\cos2t-3D\\sin2t=3+3\\cos2t"
+    },
+    {
+     "explanation": "**Match** constants, cosines and sines.",
+     "latex": "A=3,\\qquad B=-1,\\qquad D=0"
+    },
+    {
+     "explanation": "**Add** $y_c$ **before** using the conditions: they apply to the whole $y$.",
+     "latex": "y=3-\\cos2t+c_1\\sin t+c_2\\cos t"
+    },
+    {
+     "explanation": "**Condition** $y(0)=0$: $\\sin0=0$, $\\cos0=1$.",
+     "latex": "3-1+c_2=0\\quad\\Rightarrow\\quad c_2=-2"
+    },
+    {
+     "explanation": "**Condition** $y(\\pi/2)=0$: $\\cos\\pi=-1$, $\\sin\\frac\\pi2=1$, $\\cos\\frac\\pi2=0$.",
+     "latex": "3+1+c_1=0\\quad\\Rightarrow\\quad c_1=-4"
+    }
+   ],
+   "answer": "$y=3-\\cos2t-4\\sin t-2\\cos t$.",
+   "citations": [
+    {
+     "source_id": "2ebde3e8-c2a0-462c-be36-dfb00d2e7cc3",
+     "version": 1,
+     "chunk_id": "8ea1fd84-8ed9-4e24-b2a8-d1e31acc455a"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "f622d763-6626-4aec-9544-1d9452473623"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "1bb7e382-04e5-42ed-84e7-a194ca300ce4"
+    }
+   ],
+   "id": "db8fc264-ca6f-5b58-939d-f2ea0daaad4a"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Tutorial problem: pick the constants\"\nx 0 6.3 label=\"$t$\"\ny -8 8 label=\"$y$\"\nslider c1 -6 6 0 step=0.5 label=\"$c_1$\"\nslider c2 -6 6 0 step=0.5 label=\"$c_2$\"\ncurve \"3-cos(2*x)\" label=\"$y_p=3-\\cos2t$\" color=0 dash\ncurve \"3-cos(2*x)+c1*sin(x)+c2*cos(x)\" label=\"$y=y_p+c_1\\sin t+c_2\\cos t$\" color=1\npoint \"0\" \"0\" label=\"must pass $(0,0)$\" color=3\npoint \"pi/2\" \"0\" label=\"must pass $(\\pi/2,0)$\" color=3\nreadout \"$y(0)$\" \"2+c2\"\nreadout \"$y(\\pi/2)$\" \"4+c1\"\ncaption \"Every $c_1,c_2$ gives a solution of the ODE. Only $c_1=-4$, $c_2=-2$ passes through both points.\"\n```",
+   "citations": [],
+   "id": "4143f622-a568-510e-8d4a-870a706e3295"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Why the $\\times t$ rule matters.** When the forcing matches a term of $y_c$, the response does not settle to the shape of $g$: it keeps growing, like $t\\cos2t$. Slide $\\omega$ to 2:",
+   "citations": [],
+   "id": "7b91336d-302c-5054-82f2-eb9729a70699"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Forcing at the natural frequency\"\nx 0 12 label=\"$t$\"\ny -25 25 label=\"$y$\"\nslider w 1 3 1.5 step=0.05 label=\"$\\omega$\" animate\ncurve \"if(abs(w-2)<0.001, sin(2*x)-2*x*cos(2*x), 8/(4-w^2)*(sin(w*x)-w/2*sin(2*x)))\" label=\"$y(t)$, starting at rest\" color=1\ncurve \"2*x\" label=\"$\\pm2t$\" color=0 dash\ncurve \"-2*x\" color=0 dash\ncaption \"Solutions of $y''+4y=8\\sin\\omega t$ with $y(0)=y'(0)=0$. Here $y_c$ contains $\\sin2t$ and $\\cos2t$. For $\\omega$ far from 2 the swing stays small. At $\\omega=2$ the forcing is in $y_c$, the particular solution needs the extra $t$, and the swing grows along $\\pm2t$.\"\n```",
+   "citations": [],
+   "id": "fe23b2f0-2e83-5272-910c-7750f4d827f0"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 29 · W6 · A constant forcing, from rest",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Solve $y''+4y=8$, $\\;y(0)=0$, $y'(0)=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** constant coefficients, constant forcing. **Complementary:** $s^2+4=0$, $s=\\pm j2$.",
+     "latex": "y_c=c_1\\cos2t+c_2\\sin2t"
+    },
+    {
+     "explanation": "**Guess:** a constant, $y_p=A$ (not in $y_c$). **Substitute:** $0+4A=8$.",
+     "latex": "y_p=2"
+    },
+    {
+     "explanation": "**Add.**",
+     "latex": "y=2+c_1\\cos2t+c_2\\sin2t"
+    },
+    {
+     "explanation": "**Conditions:** $y(0)=2+c_1=0$; $y^{\\prime}(0)=2c_2=0$.",
+     "latex": "c_1=-2,\\qquad c_2=0"
+    }
+   ],
+   "answer": "$y=2-2\\cos2t$. A constant source gives a constant $y_p$: the same idea as an RLC circuit switched onto a DC source ([Topic D](#topic-d)).",
+   "citations": [],
+   "id": "997f7bb9-4d62-5955-90bf-840654e1f927"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 30 · W6 · A polynomial guess needs every lower power",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Find the general solution of $y''+y'-2y=2t$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** forcing $2t$. **Complementary:** $s^2+s-2=(s+2)(s-1)$.",
+     "latex": "y_c=c_1e^{t}+c_2e^{-2t}"
+    },
+    {
+     "explanation": "**Guess:** degree 1, so $At+B$. The $B$ is needed even though $g$ has no constant.",
+     "latex": "y_p=At+B,\\quad y_p'=A,\\quad y_p''=0"
+    },
+    {
+     "explanation": "**Substitute.**",
+     "latex": "A-2(At+B)=2t"
+    },
+    {
+     "explanation": "**Match** the $t$ terms, then the constants.",
+     "latex": "-2A=2,\\qquad A-2B=0"
+    },
+    {
+     "explanation": "Solve.",
+     "latex": "A=-1,\\qquad B=-\\tfrac12"
+    }
+   ],
+   "answer": "$y=c_1e^{t}+c_2e^{-2t}-t-\\tfrac12$. Guessing only $At$ fails: the leftover constant $A$ has nothing to match.",
+   "citations": [],
+   "id": "7d6e013a-db77-594e-8732-aa16cbe0c0f5"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 31 · W6 · The guess is already in the complementary solution",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Find the general solution of $y''-y'-2y=3e^{2t}$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** exponential forcing. **Complementary:** $s^2-s-2=(s-2)(s+1)$.",
+     "latex": "y_c=c_1e^{2t}+c_2e^{-t}"
+    },
+    {
+     "explanation": "**Guess:** the table says $Ae^{2t}$, but that is in $y_c$ (it would give $0=3e^{2t}$). Multiply by $t$.",
+     "latex": "y_p=Ate^{2t}"
+    },
+    {
+     "explanation": "Product rule, twice.",
+     "latex": "y_p'=A(1+2t)e^{2t},\\qquad y_p''=A(4+4t)e^{2t}"
+    },
+    {
+     "explanation": "**Substitute** and divide by $e^{2t}$. The $t$ terms cancel.",
+     "latex": "A\\big[(4+4t)-(1+2t)-2t\\big]=3A=3"
+    },
+    {
+     "explanation": "Solve.",
+     "latex": "A=1"
+    }
+   ],
+   "answer": "$y_p=te^{2t}$, so $y=c_1e^{2t}+c_2e^{-t}+te^{2t}$.",
+   "citations": [],
+   "id": "4bafb8a2-726c-587a-ba01-a99572af154b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 32 · W6 · Choose the form; do not solve",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "For $y''-2y'+y=g(t)$, write the guess for $y_p$ when $g$ is (a) $t^2$, (b) $e^{-t}$, (c) $e^t$, (d) $\\cos t$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** guessing only. **Complementary** first: $s^2-2s+1=(s-1)^2$, a repeated root.",
+     "latex": "y_c=(c_1+c_2t)e^t"
+    },
+    {
+     "explanation": "(a) Degree 2: all lower powers.",
+     "latex": "At^2+Bt+C"
+    },
+    {
+     "explanation": "(b) $e^{-t}$ is not in $y_c$.",
+     "latex": "Ae^{-t}"
+    },
+    {
+     "explanation": "(c) $Ae^t$ and $Ate^t$ are **both** in $y_c$, so multiply by $t^2$.",
+     "latex": "At^2e^t"
+    },
+    {
+     "explanation": "(d) Cosine needs both cosine and sine.",
+     "latex": "A\\cos t+B\\sin t"
+    }
+   ],
+   "answer": "(a) $At^2+Bt+C$. (b) $Ae^{-t}$. (c) $At^2e^t$. (d) $A\\cos t+B\\sin t$.",
+   "citations": [],
+   "id": "bd3b64a2-c32c-51eb-bcf5-a5bd6459796f"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 33 · W6 · A trig guess that is already in the complementary solution",
+   "difficulty": "advanced",
+   "origin": "original",
+   "prompt": "Find a particular solution of $y''+9y=12\\cos3t$. Use $(tf)^{\\prime\\prime}=tf^{\\prime\\prime}+2f^{\\prime}$ from the calculus table.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** trig forcing. **Complementary:** $y_c=c_1\\cos3t+c_2\\sin3t$ already contains $\\cos3t$, so multiply the guess by $t$.",
+     "latex": "y_p=t\\,f,\\qquad f=A\\cos3t+B\\sin3t"
+    },
+    {
+     "explanation": "**Substitute:** since $f^{\\prime\\prime}=-9f$, the $t$ terms cancel in $y_p^{\\prime\\prime}+9y_p$.",
+     "latex": "y_p''+9y_p=t(f''+9f)+2f'=2f'"
+    },
+    {
+     "explanation": "Differentiate $f$.",
+     "latex": "2f'=-6A\\sin3t+6B\\cos3t"
+    },
+    {
+     "explanation": "**Match** with $12\\cos3t$.",
+     "latex": "6B=12,\\qquad -6A=0"
+    }
+   ],
+   "answer": "$A=0$, $B=2$: $y_p=2t\\sin3t$. The swing grows like $2t$, as in the graph above.",
+   "citations": [],
+   "id": "be7d8cc1-e56e-5da4-8c79-67996df60fce"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B7 · Reduction of order",
+   "citations": [
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "5530868e-c560-4d1c-bcb9-4caa35e2817d"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "e5b9df43-539d-422c-a3db-7f94dba31ef0"
+    }
+   ],
+   "id": "9331a292-c95e-5eb1-9171-5a6c11317b7c"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 6 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/357f26bd-d16c-4769-af0a-d1b2f535d62e#400c9eda-6dcb-4cf4-9c21-265384342cb1)",
+   "citations": [],
+   "id": "a82e2d65-474e-56d3-bcd3-770216769c9c"
+  },
+  {
+   "type": "paragraph",
+   "text": "**What if the coefficients have $t$ in them?** Like $y^{\\prime\\prime}-ty^{\\prime}+y=0$. The characteristic equation ([B5](#b5)) only works when the coefficients are numbers. But if the question **gives you one solution** $y_1$, reduction of order finds the second one.",
+   "citations": [],
+   "id": "68e2cc19-b161-5424-a36a-aabe99bd63c4"
+  },
+  {
+   "type": "paragraph",
+   "text": "Write the equation with $y^{\\prime\\prime}$ alone (divide by its coefficient):",
+   "citations": [],
+   "id": "3a751372-ddd7-550e-b0a3-2ddddf0e93d8"
+  },
+  {
+   "type": "equation",
+   "latex": "y^{\\prime\\prime}+p(t)\\,y^{\\prime}+q(t)\\,y=0",
+   "display": true,
+   "citations": [],
+   "id": "35e1b2d9-548b-52e3-a2f5-4cea7c295ddb"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$p(t)$ = the coefficient of $y^{\\prime}$ (sign included)",
+    "$q(t)$ = the coefficient of $y$",
+    "$y_1(t)$ = the solution you are given. Check it first: it must give $0$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "f42cb467-4a71-5515-afc4-33f0862aca5a"
+  },
+  {
+   "type": "paragraph",
+   "text": "Mini examples:",
+   "citations": [],
+   "id": "7475e09f-d590-57e2-8634-4b3cde771e77"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$y^{\\prime\\prime}-ty^{\\prime}+y=0$ with $y_1=t$: here $p=-t$, $q=1$. Check: $0-t\\cdot1+t=0$ ✓.",
+    "$t^2y^{\\prime\\prime}-3ty^{\\prime}+4y=0$ with $y_1=t^2$: divide by $t^2$, so $p=-\\frac3t$, $q=\\frac4{t^2}$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "3acd9ebf-78fd-5cfb-95e9-0d85a9744809"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The idea.** Look for the second solution as the known one times an unknown function $v(t)$:",
+   "citations": [],
+   "id": "0041bcf8-1d76-5910-ac85-396df32ac829"
+  },
+  {
+   "type": "equation",
+   "latex": "y=y_1\\,v",
+   "display": true,
+   "citations": [],
+   "id": "62210054-851e-50f6-ac9d-38bdbb163611"
+  },
+  {
+   "type": "paragraph",
+   "text": "Substituting makes every plain-$v$ term cancel, so only $v^{\\prime}$ and $v^{\\prime\\prime}$ are left. Setting $z=v^{\\prime}$ turns that into a **first-order** equation: the order went down by one.",
+   "citations": [],
+   "id": "7afe82dd-9bca-5f90-bb36-983747fddd74"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "881b6e6f-7db7-522c-ad0a-c792f5578ced"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Substitute** $y=y_1v$, with $y^{\\prime}=y_1^{\\prime} v+y_1v^{\\prime}$ and $y^{\\prime\\prime}=y_1^{\\prime\\prime} v+2y_1^{\\prime} v^{\\prime}+y_1v^{\\prime\\prime}$.",
+    "**Collect** terms: the plain-$v$ terms cancel, because $y_1$ is a solution.",
+    "**Set $z=v^{\\prime}$** and solve the first-order equation for $z$ (usually separable, [B1](#b1); or linear, [B2](#b2)).",
+    "**Integrate:** $v=\\int z\\,dt$, plus a constant.",
+    "**Multiply back:** $y=y_1v$. The constant from step 4 gives back $C\\,y_1$, the solution you started with."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "8319b709-0af0-5930-8fb1-61bb4e00f376"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Check with the formula.** Reduction of order always ends at",
+   "citations": [],
+   "id": "a769cdbb-85d7-5073-8f5b-1e979ce44db9"
+  },
+  {
+   "type": "equation",
+   "latex": "y_2=y_1\\int\\dfrac{e^{-\\int p\\,dt}}{y_1^{\\,2}}\\,dt",
+   "display": true,
+   "citations": [],
+   "id": "3e0e11f9-ca96-5bf6-85e3-078a81a5ee62"
+  },
+  {
+   "type": "paragraph",
+   "text": "Use it to check your answer, or as a shortcut if the question allows it.",
+   "citations": [],
+   "id": "a2d588b8-b669-5dff-8c6e-6bfd733c6258"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Calculus you need here:**",
+   "citations": [],
+   "id": "6ac80fbf-3a04-5a7e-a761-624c4bc06ff2"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Expression",
+    "Result",
+    "Note"
+   ],
+   "rows": [
+    [
+     "$(y_1v)^{\\prime}$",
+     "$y_1^{\\prime} v+y_1v^{\\prime}$",
+     "product rule"
+    ],
+    [
+     "$(y_1v)^{\\prime\\prime}$",
+     "$y_1^{\\prime\\prime} v+2y_1^{\\prime} v^{\\prime}+y_1v^{\\prime\\prime}$",
+     "product rule twice; the middle terms combine"
+    ],
+    [
+     "$\\int\\frac1z\\,dz$",
+     "$\\ln|z|$",
+     "for the separable $z$ equation"
+    ],
+    [
+     "$e^{-2\\ln t}$",
+     "$\\dfrac{1}{t^2}$",
+     "$e^{k\\ln t}=t^k$"
+    ],
+    [
+     "$\\int\\dfrac{e^{t^2/2}}{t^2}\\,dt$",
+     "no formula",
+     "leave it as an integral: that is a full answer"
+    ]
+   ],
+   "citations": [],
+   "id": "cedfa593-fc18-5d19-a4c2-05442b29d9bb"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why the plain-$v$ terms cancel.** After substituting, collect everything that multiplies $v$ itself: it is $v\\,(y_1^{\\prime\\prime}+p\\,y_1^{\\prime}+q\\,y_1)$. The bracket is the ODE applied to $y_1$, which is $0$ because $y_1$ is a solution.",
+   "citations": [],
+   "id": "f7262562-e929-54f6-a3f4-111969716c7c"
+  },
+  {
+   "type": "paragraph",
+   "text": "The professor’s example, step by step:\n\n```steps\ntitle \"Lecture: reduce y″ − t y′ + y = 0, given y₁ = t\"\n$$ y''-ty'+y=0,\\qquad y_1=t $$\nCheck: $y_1=t$ gives $0-t+t=0$.\n$$ y=\\hl{tv} $$\nMultiply the known solution by an unknown $v$.\n$$ y'=\\hl{v+tv'},\\qquad y''=\\hl{2v'+tv''} $$\nProduct rule (calculus table).\n$$ (2v'+tv'')-t(v+tv')+tv=0 $$\nSubstitute all three into the ODE.\n$$ \\hl{tv''+(2-t^2)v'}=0 $$\nCollect terms. The $-tv$ and $+tv$ cancel.\n$$ t\\hl{z'}+(2-t^2)\\hl{z}=0 $$\nSet $z=v^{\\prime}$: first order in $z$.\n```",
+   "citations": [],
+   "id": "692c88b3-4ce2-5cdb-b89c-6419b52e7b1d"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 8 · W6 · Finish the lecture example · handwritten notes p. 1–2",
+   "prompt": "Solve $tz'+(2-t^2)z=0$ (from the stepper above), then find the general solution of $y''-ty'+y=0$ for $t\\neq0$.",
+   "steps": [
+    {
+     "explanation": "**Type:** the $z$ equation is separable. Divide by $tz$ and move the $t$ terms right.",
+     "latex": "\\dfrac{dz}{z}=\\dfrac{t^2-2}{t}\\,dt=\\left(t-\\dfrac2t\\right)dt"
+    },
+    {
+     "explanation": "**Integrate** both sides: $\\int\\frac1z\\,dz=\\ln|z|$.",
+     "latex": "\\ln|z|=\\dfrac{t^2}2-2\\ln|t|+C"
+    },
+    {
+     "explanation": "Exponentiate; $e^{-2\\ln|t|}=1/t^2$.",
+     "latex": "z=C_1\\,\\dfrac{e^{t^2/2}}{t^2}"
+    },
+    {
+     "explanation": "**Integrate** again, $v=\\int z\\,dt$. This integral has no formula, so it stays.",
+     "latex": "v=C_1\\int\\dfrac{e^{t^2/2}}{t^2}\\,dt+C_2"
+    },
+    {
+     "explanation": "**Multiply back** by $y_1=t$.",
+     "latex": "y=tv"
+    }
+   ],
+   "answer": "$y=C_2\\,t+C_1\\,t\\displaystyle\\int\\frac{e^{t^2/2}}{t^2}\\,dt$. Formula check: $p=-t$, so $e^{-\\int p\\,dt}=e^{t^2/2}$ and $y_1^2=t^2$. ✓",
+   "citations": [
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "5530868e-c560-4d1c-bcb9-4caa35e2817d"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "e5b9df43-539d-422c-a3db-7f94dba31ef0"
+    }
+   ],
+   "id": "1785591f-39e7-5241-907d-537d3c7045c2"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 34 · W5 + W6 · Where the repeated-root t comes from",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "$y''+4y'+4y=0$ has the repeated characteristic root $s=-2$, so $y_1=e^{-2t}$. Use reduction of order to find the general solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** one solution given: reduction of order. **Substitute** $y=e^{-2t}v$.",
+     "latex": "y'=e^{-2t}(v'-2v)"
+    },
+    {
+     "explanation": "Differentiate again.",
+     "latex": "y''=e^{-2t}(v''-4v'+4v)"
+    },
+    {
+     "explanation": "**Collect:** substitute and divide by $e^{-2t}$. The $v^{\\prime}$ terms cancel too.",
+     "latex": "(v''-4v'+4v)+4(v'-2v)+4v=v''=0"
+    },
+    {
+     "explanation": "**Integrate** twice.",
+     "latex": "v=C_1+C_2t"
+    },
+    {
+     "explanation": "**Multiply back.**",
+     "latex": "y=(C_1+C_2t)\\,e^{-2t}"
+    }
+   ],
+   "answer": "$y=(C_1+C_2t)e^{-2t}$: exactly the repeated-root row of [B5](#b5). The extra $t$ is $v$.",
+   "citations": [],
+   "id": "9b64e126-7a65-5432-b33e-957053fd430a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 35 · W6 · A second solution with a logarithm",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "For $t>0$, $y_1=t^2$ solves $t^2y''-3ty'+4y=0$. Find the general solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** variable coefficients, one solution given. **Substitute** $y=t^2v$.",
+     "latex": "y'=2tv+t^2v',\\qquad y''=2v+4tv'+t^2v''"
+    },
+    {
+     "explanation": "**Collect:** the plain $v$ terms cancel ($2-6+4=0$).",
+     "latex": "t^4v''+t^3v'=0"
+    },
+    {
+     "explanation": "Divide by $t^4$ and **set $z=v^{\\prime}$**.",
+     "latex": "z'+\\dfrac zt=0"
+    },
+    {
+     "explanation": "Separate: $\\int\\frac{dz}{z}=-\\int\\frac{dt}{t}$, so $\\ln|z|=-\\ln t+C$.",
+     "latex": "z=\\dfrac{C_2}t"
+    },
+    {
+     "explanation": "**Integrate:** $\\int\\frac1t\\,dt=\\ln t$ for $t>0$.",
+     "latex": "v=C_1+C_2\\ln t"
+    },
+    {
+     "explanation": "**Multiply back** by $t^2$.",
+     "latex": "y=C_1t^2+C_2t^2\\ln t"
+    }
+   ],
+   "answer": "$y=C_1t^2+C_2t^2\\ln t$. Formula check: $p=-\\frac3t$, $e^{-\\int p}=t^3$, $\\int\\frac{t^3}{t^4}dt=\\ln t$. ✓",
+   "citations": [],
+   "id": "1060a535-d2ae-5a19-93f1-36f7e4ef4fe1"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic C: Does exactly one solution exist?",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
+    }
+   ],
+   "id": "fa7887f2-4814-53aa-bc64-972132712393"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 3 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#8c746b9b-2fbf-48f4-8a2d-704a643bdcf7) [Week 5 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#b4f41ebe-f4f6-4d5d-816d-ceaa37811b8f)",
+   "citations": [],
+   "id": "35d6c798-0e3b-55ad-891d-6e7fdd6cae2e"
+  },
+  {
+   "type": "paragraph",
+   "text": "Some midterm questions ask **whether** a problem has exactly one solution, or **where** it is guaranteed, without solving anything. Two theorems answer that: one for first-order equations, one for second-order linear ones.",
+   "citations": [],
+   "id": "f0d158d6-27e0-52ec-94a4-f1f187bcb639"
+  },
+  {
+   "type": "paragraph",
+   "text": "The answer is always found the same way: write the equation in a standard form, then look for the places where something breaks (division by zero, a log of a negative, a square root of a negative).",
+   "citations": [],
+   "id": "2c6a1d42-11e6-546f-9ee1-a7eb006220d4"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "C1 · First order: is there exactly one solution through this point?",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
+    }
+   ],
+   "id": "db257f63-bbd6-56aa-b764-180b8769db1b"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 3 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#8c746b9b-2fbf-48f4-8a2d-704a643bdcf7)",
+   "citations": [],
+   "id": "5f5bc84c-b814-5007-bf94-cb852266aa3c"
+  },
+  {
+   "type": "paragraph",
+   "text": "**When:** the question gives $\\dfrac{dy}{dt}=F(t,y)$ and a starting point $(t_0,y_0)$, and asks if a unique solution passes through it.",
+   "citations": [],
+   "id": "5436d848-8821-59f2-b816-877f578a1310"
+  },
+  {
+   "type": "paragraph",
+   "text": "Write the equation with the derivative alone:",
+   "citations": [],
+   "id": "2770eccf-554e-5f74-b0c5-61889637869a"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{dy}{dt}=F(t,y)",
+   "display": true,
+   "citations": [],
+   "id": "72bee323-1580-5414-8877-34952cacbd69"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$F(t,y)$ = everything on the right side once $\\dfrac{dy}{dt}$ is alone",
+    "$\\dfrac{\\partial F}{\\partial y}$ = its **partial derivative** in $y$: differentiate in $y$ while treating $t$ as a constant"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "0f7a2ec0-803d-55a3-9c25-9335a0b52f37"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The theorem** (Spiegel, used in the Week 3 lecture):",
+   "citations": [],
+   "id": "f124728e-c0f8-513c-8a9b-d71c17d79601"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "If $F$ and $\\dfrac{\\partial F}{\\partial y}$ are both continuous (finite, defined) in a region around $(t_0,y_0)$, then **exactly one** solution passes through $(t_0,y_0)$.",
+   "citations": [],
+   "id": "30818208-5c95-594c-96e0-0fa28244911d"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Conditions hold** → existence and uniqueness are guaranteed (near $t_0$).",
+    "**Conditions fail** → the theorem says **nothing**. There may be no solution, one, or many. The conditions are sufficient, not necessary."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "6dc7e192-e426-58b4-80ac-5ba9a08621ff"
+  },
+  {
+   "type": "paragraph",
+   "text": "Mini examples:",
+   "citations": [],
+   "id": "e9f358c4-c0f6-5bf9-96d2-8700e0d88ca6"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$y^{\\prime}=t^2+3ty$: $F_y=3t$. Both are fine everywhere → unique through **every** point.",
+    "$y^{\\prime}=\\dfrac{t}{y}$: $F_y=-\\dfrac{t}{y^2}$. Both break on the line $y=0$ → guaranteed only at points with $y_0\\neq0$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "f6338ec2-82f1-5063-9282-eef06275e865"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "bc10b72b-c963-5df1-9ccc-aae0cec29952"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Write $F$:** get $\\dfrac{dy}{dt}$ alone.",
+    "**Differentiate:** find $\\dfrac{\\partial F}{\\partial y}$, holding $t$ fixed.",
+    "**Find the bad set:** where is $F$ or $\\dfrac{\\partial F}{\\partial y}$ undefined (divide by 0, $\\ln$ of $\\le0$, $\\sqrt{\\ }$ of $<0$, $y^{-1/2}$ at $y=0$)?",
+    "**Check the point:** is $(t_0,y_0)$ away from the bad set? Yes → unique solution. No → no conclusion."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "47a4707e-2bd9-5f18-82a2-a8ffd7d24dda"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Calculus you need here:**",
+   "citations": [],
+   "id": "769ca5b1-76d9-5a75-8117-c4446d9ebd94"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "$F$",
+    "$\\dfrac{\\partial F}{\\partial y}$",
+    "Note"
+   ],
+   "rows": [
+    [
+     "$t^2+3ty$",
+     "$3t$",
+     "$t$ is a constant: $t^2$ disappears"
+    ],
+    [
+     "$\\dfrac{t}{y}=t\\,y^{-1}$",
+     "$-t\\,y^{-2}$",
+     "power rule in $y$"
+    ],
+    [
+     "$\\sqrt{y}=y^{1/2}$",
+     "$\\dfrac{1}{2\\sqrt y}$",
+     "undefined at $y=0$"
+    ],
+    [
+     "$\\dfrac{2t-(\\ln t)\\,y}{t-3}$",
+     "$-\\dfrac{\\ln t}{t-3}$",
+     "only the $y$ term survives"
+    ]
+   ],
+   "citations": [],
+   "id": "4b48d597-c722-5b03-8100-27a67c346afe"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"$y^{\\prime}=\\sqrt{y}$: one solution through $(1,4)$, many through $(1,0)$\"\nx -1 5 label=\"$t$\"\ny -0.5 6 label=\"$y$\"\nfield \"sqrt(max(y,0))\" density=18\nhline \"0\" label=\"$y=0$ is a solution\" color=1\nfamily c 1 3 0.5 \"if(x>c,(x-c)^2/4,0)\" color=2 label=\"also solutions through $(1,0)$\"\ncurve \"((x+3)/2)^2\" from=-3 label=\"the only solution through $(1,4)$\" color=3\npoint \"1\" \"0\" color=1\npoint \"1\" \"4\" color=3\ncaption \"At $y=0$, $\\partial F/\\partial y=1/(2\\sqrt y)$ is undefined, so the theorem gives no guarantee, and indeed many curves leave $(1,0)$: each stays at 0, then rises as $(t-c)^2/4$. Above the axis everything is smooth and the solution is unique.\"\n```",
+   "citations": [],
+   "id": "b016e0e1-57bd-5319-83f0-d664d2b4485a"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why a blown-up $\\partial F/\\partial y$ allows several solutions.** $\\partial F/\\partial y$ measures how strongly nearby curves are pushed apart. If it stays finite, two solutions that start together can never separate. At $y=0$ for $\\sqrt y$ it is infinite, so a curve can “peel off” the axis at any moment.",
+   "citations": [],
+   "id": "d223e3cb-3375-586c-994b-bdb5051498ac"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 36 · W3 · Same equation, two starting points",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "For $\\dfrac{dy}{dt}=\\sqrt{y}$: (a) does the theorem guarantee a unique solution through $(1,4)$? (b) through $(1,0)$? For (b), check that $y=0$ and $y=\\dfrac{(t-1)^2}{4}$ (for $t\\ge1$) both pass through $(1,0)$ and solve the ODE.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** existence and uniqueness, first order. $F=\\sqrt y$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Differentiate** in $y$.",
+     "latex": "\\dfrac{\\partial F}{\\partial y}=\\dfrac{1}{2\\sqrt y}"
+    },
+    {
+     "explanation": "**Bad set:** $F$ needs $y\\ge0$; $F_y$ is undefined at $y=0$. So the bad set is $y\\le0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) $(1,4)$ has $y_0=4>0$: both are continuous around it → unique.",
+     "latex": ""
+    },
+    {
+     "explanation": "(b) $(1,0)$ lies on $y=0$ → no conclusion from the theorem.",
+     "latex": ""
+    },
+    {
+     "explanation": "Check $y=\\frac{(t-1)^2}{4}$: $y^{\\prime}=\\frac{t-1}{2}$ and $\\sqrt y=\\frac{t-1}{2}$ for $t\\ge1$ ✓. And $y=0$: $0=\\sqrt0$ ✓. Both equal 0 at $t=1$.",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) Yes, exactly one solution through $(1,4)$. (b) The theorem gives no guarantee, and in fact at least two solutions pass through $(1,0)$.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
+    }
+   ],
+   "id": "7a53f25a-9938-56ca-b0a8-d7711e39c419"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 37 · W3 · Which points are guaranteed?",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "For $\\dfrac{dy}{dt}=\\dfrac{t}{y}$, decide whether the theorem guarantees a unique solution through (a) $(2,1)$, (b) $(0,3)$, (c) $(2,0)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** existence and uniqueness, first order. $F=\\dfrac ty$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Differentiate** in $y$ (power rule).",
+     "latex": "\\dfrac{\\partial F}{\\partial y}=-\\dfrac{t}{y^2}"
+    },
+    {
+     "explanation": "**Bad set:** both divide by $y$, so the line $y=0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Check the points:** (a) $y_0=1$ and (b) $y_0=3$ are off the line; (c) $y_0=0$ is on it.",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) Yes. (b) Yes. (c) No guarantee: $F$ itself is undefined at $(2,0)$.",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
+    }
+   ],
+   "id": "26f010b8-3a15-5310-87cc-61d1f5c0df13"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 38 · W3 · A strip, not a point",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "For $(t-3)\\,y^{\\prime}+(\\ln t)\\,y=2t$, $\\;y(1)=2$, find the region containing the starting point where the theorem applies. Do not solve.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** existence and uniqueness. **Write $F$:** isolate $y^{\\prime}$.",
+     "latex": "F=\\dfrac{2t-(\\ln t)\\,y}{t-3}"
+    },
+    {
+     "explanation": "**Differentiate** in $y$; only the $y$ term survives.",
+     "latex": "\\dfrac{\\partial F}{\\partial y}=-\\dfrac{\\ln t}{t-3}"
+    },
+    {
+     "explanation": "**Bad set:** $\\ln t$ needs $t>0$; division needs $t\\neq3$. Nothing restricts $y$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Check the point:** $t_0=1$ lies between $0$ and $3$.",
+     "latex": "0<t<3,\\quad\\text{any }y"
+    }
+   ],
+   "answer": "The strip $0<t<3$ (all $y$). The start $(1,2)$ is inside it, so exactly one solution passes through it.",
+   "citations": [],
+   "id": "ad575377-f52c-5136-b15d-f59b93e0bfed"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "C2 · Second order linear: interval, zero start, independent solutions",
+   "citations": [
+    {
+     "source_id": "0a505e49-c707-4c33-99fd-7d3f15b5be82",
+     "version": 1,
+     "chunk_id": "82a3e61c-4405-4baa-b501-0ab5970211c2"
+    }
+   ],
+   "id": "df1bc1e7-d577-57a3-9caa-1914dd6df484"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 5 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#b4f41ebe-f4f6-4d5d-816d-ceaa37811b8f)",
+   "citations": [],
+   "id": "f6a963f0-0799-563e-8583-cab7f8d96068"
+  },
+  {
+   "type": "paragraph",
+   "text": "**When:** a second-order **linear** equation with two conditions $y(t_0)$, $y^{\\prime}(t_0)$, and the question asks on what interval exactly one solution exists, or whether two given solutions can build the general solution.",
+   "citations": [],
+   "id": "98033680-b992-5b68-aff8-18fc9a3ee904"
+  },
+  {
+   "type": "paragraph",
+   "text": "First divide by the coefficient of $y^{\\prime\\prime}$ so it stands alone:",
+   "citations": [],
+   "id": "81f1e4ea-fabd-50a9-80d5-bd561db711c1"
+  },
+  {
+   "type": "equation",
+   "latex": "y^{\\prime\\prime}+p(t)\\,y^{\\prime}+q(t)\\,y=g(t)",
+   "display": true,
+   "citations": [],
+   "id": "d2ba3626-387e-5b2a-9aba-e26ac53a2fcf"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$p(t)$ = the coefficient of $y^{\\prime}$ (after dividing)",
+    "$q(t)$ = the coefficient of $y$ (after dividing)",
+    "$g(t)$ = the forcing (after dividing)"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "12db4eab-7044-5c64-bac8-b80c1692a4df"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**The theorem.** If $p$, $q$ and $g$ are continuous on an open interval $I$ containing $t_0$, then for **any** values of $y(t_0)$ and $y^{\\prime}(t_0)$ there is **exactly one** solution, and it exists on the **whole** interval $I$.",
+   "citations": [],
+   "id": "c9a1b24e-9df2-5f12-b348-9ffef0442a03"
+  },
+  {
+   "type": "list",
+   "items": [
+    "The largest such $I$ runs from the nearest “trouble point” on the left of $t_0$ to the nearest on the right.",
+    "Constant coefficients ($ay^{\\prime\\prime}+by^{\\prime}+cy=g$ with continuous $g$): no trouble points, $I$ is the whole real line."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "95046cd3-6c80-5490-8d0d-cd0964dd3da3"
+  },
+  {
+   "type": "paragraph",
+   "text": "Mini example: $t\\,y^{\\prime\\prime}+y=0$ → divide by $t$: $q=\\dfrac1t$, trouble at $t=0$. For $t_0=5$: $I=(0,\\infty)$. For $t_0=-2$: $I=(-\\infty,0)$.",
+   "citations": [],
+   "id": "7dd5fd63-4934-599f-bd68-900df5a694d4"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method (interval):**",
+   "citations": [],
+   "id": "944d6d3a-6767-559c-9313-57c566572980"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Divide** by the coefficient of $y^{\\prime\\prime}$; read $p,q,g$.",
+    "**Trouble points:** where $p$, $q$ or $g$ is undefined (zero denominators, $\\ln$ of $\\le0$, …).",
+    "**Pick the piece** of the $t$-axis between trouble points that contains $t_0$. Use open ends."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "ec7aeb82-118a-50bf-8d83-f1b9148d5d04"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Zero start.** If the equation is linear and **homogeneous** ($g=0$) and both conditions are zero, $y(t_0)=0$ and $y^{\\prime}(t_0)=0$, then:",
+   "citations": [],
+   "id": "15a0fb96-1379-5b8f-9490-e13093069f43"
+  },
+  {
+   "type": "equation",
+   "latex": "y(t)\\equiv0",
+   "display": true,
+   "citations": [],
+   "id": "de5e7846-a30d-5d71-9618-969805edba3d"
+  },
+  {
+   "type": "paragraph",
+   "text": "Reason in one line: $y=0$ obviously solves it and fits both conditions, and the theorem says there is only one solution. No solving needed.",
+   "citations": [],
+   "id": "f8eb0568-f3e4-5977-a671-487b264dc061"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Two solutions → the general solution?** If $y_1$ and $y_2$ solve the same homogeneous linear equation, compute their **Wronskian**:",
+   "citations": [],
+   "id": "f4a9cd29-4e6d-52f2-81e3-5a0903dd2e73"
+  },
+  {
+   "type": "equation",
+   "latex": "W=y_1\\,y_2^{\\prime}-y_1^{\\prime}\\,y_2",
+   "display": true,
+   "citations": [],
+   "id": "38fd27d1-ae94-5f49-a929-8824772c5d5e"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$W\\neq0$ → $y_1,y_2$ are **independent**, and $y=c_1y_1+c_2y_2$ is the general solution.",
+    "$W=0$ → one is a multiple of the other; they give only one real constant, so they are **not** enough."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "f65b1769-9d64-55f3-9141-705e9b5cce95"
+  },
+  {
+   "type": "paragraph",
+   "text": "This is why the repeated-root case in [B5](#b5) uses $(c_1+c_2t)e^{st}$ and not $c_1e^{st}+c_2e^{st}$.",
+   "citations": [],
+   "id": "a33f11cb-16ad-5bf7-a37c-9bd8a90c39b7"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why the Wronskian decides it.** Fitting $c_1y_1+c_2y_2$ to $y(t_0)$ and $y^{\\prime}(t_0)$ gives two equations:\n\n$$\nc_1y_1+c_2y_2=y(t_0),\\quad c_1y_1^{\\prime}+c_2y_2^{\\prime}=y^{\\prime}(t_0)\n$$\n\nThat $2\\times2$ system has a unique answer exactly when its determinant $y_1y_2^{\\prime}-y_1^{\\prime} y_2=W$ is not zero. $W\\neq0$ means every pair of starting values can be matched.",
+   "citations": [],
+   "id": "862bd122-97f9-55f5-aa9d-51216f1a0dc2"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 39 · W5 · Find the interval; do not solve",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "For $(t-1)\\,y^{\\prime\\prime}+y^{\\prime}+y=\\ln t$, find the largest interval on which the theorem guarantees exactly one solution for (a) $t_0=2$, (b) $t_0=\\tfrac12$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** existence and uniqueness, second-order linear. **Divide** by $t-1$.",
+     "latex": "\\begin{gathered}p=\\dfrac1{t-1}, \\\\ q=\\dfrac1{t-1}, \\\\ g=\\dfrac{\\ln t}{t-1}\\end{gathered}"
+    },
+    {
+     "explanation": "**Trouble points:** $\\ln t$ needs $t>0$; the denominator needs $t\\neq1$. So the pieces are $(0,1)$ and $(1,\\infty)$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Pick the piece:** $t_0=2$ is in $(1,\\infty)$; $t_0=\\tfrac12$ is in $(0,1)$.",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) $(1,\\infty)$. (b) $(0,1)$.",
+   "citations": [],
+   "id": "f0811fce-5ced-5ad0-91c0-4fcde75f171c"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 40 · W5 · Which pair gives the general solution?",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Both pairs solve $y^{\\prime\\prime}+4y^{\\prime}+4y=0$: (a) $e^{-2t}$ and $3e^{-2t}$; (b) $e^{-2t}$ and $te^{-2t}$. Compute each Wronskian and decide which pair gives the general solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** independence: compute $W=y_1y_2^{\\prime}-y_1^{\\prime} y_2$.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) $y_2^{\\prime}=-6e^{-2t}$, $y_1^{\\prime}=-2e^{-2t}$.",
+     "latex": "W=e^{-2t}(-6e^{-2t})-(-2e^{-2t})(3e^{-2t})=0"
+    },
+    {
+     "explanation": "(b) Product rule: $(te^{-2t})^{\\prime}=(1-2t)e^{-2t}$.",
+     "latex": "W=e^{-2t}(1-2t)e^{-2t}-(-2e^{-2t})\\,te^{-2t}=e^{-4t}"
+    },
+    {
+     "explanation": "$e^{-4t}$ is never zero, so pair (b) is independent.",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) $W=0$: not enough (they are multiples). (b) $W=e^{-4t}\\neq0$: general solution $y=(c_1+c_2t)e^{-2t}$.",
+   "citations": [],
+   "id": "478cae82-d3be-5805-b08c-3cbca21ff496"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 41 · W5 + W6 · The answer without solving",
+   "difficulty": "advanced",
+   "origin": "original",
+   "prompt": "Solve $y^{\\prime\\prime}+t\\,y^{\\prime}+e^{t}\\,y=0$, $\\;y(0)=0$, $\\;y^{\\prime}(0)=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** looks unsolvable with our methods ($t$ and $e^t$ coefficients), but it is linear, homogeneous, with a **zero start**.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Interval:** $p=t$, $q=e^t$, $g=0$ are continuous everywhere, so exactly one solution exists on the whole real line.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Guess the obvious one:** $y=0$ gives $0+0+0=0$ ✓, and $y(0)=0$, $y^{\\prime}(0)=0$ ✓.",
+     "latex": ""
+    },
+    {
+     "explanation": "By uniqueness, that is **the** solution.",
+     "latex": ""
+    }
+   ],
+   "answer": "$y(t)\\equiv0$ for all $t$.",
+   "citations": [],
+   "id": "5f738a8f-a88b-5472-b579-36f107cca61c"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic D: Circuits → ODE → solution",
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "a1b278af-8c29-4cde-9921-b62abc1cea16"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
+    },
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
+    }
+   ],
+   "id": "47aa6d93-2ff4-570d-b1d8-2cc3d7344b97"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 2 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#77c9c878-68d6-44e3-8f1e-2f68ba18701b) [Week 5 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#d5ad9ba9-0ec5-4b62-acf5-b1c7e17d6463)",
+   "citations": [],
+   "id": "420ec76d-08a9-596d-9547-8aeb9ddf4773"
+  },
+  {
+   "type": "paragraph",
+   "text": "Every circuit question in this course is the same job: a switch moves (or a source changes) at $t=0$, and you need $v(t)$ or $i(t)$ afterwards.",
+   "citations": [],
+   "id": "1b3c4371-72d1-5f92-bbfe-73633fe45746"
+  },
+  {
+   "type": "paragraph",
+   "text": "The circuit hands you two things:",
+   "citations": [],
+   "id": "101de08a-917f-5c15-97f3-e87563626318"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**the ODE**, from KVL or KCL after the switch;",
+    "**the starting values**, from the circuit before the switch."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "268c051c-55a3-5ee6-99bd-0c028ce8700a"
+  },
+  {
+   "type": "paragraph",
+   "text": "Then Topic B solves the ODE, exactly as before.",
+   "citations": [],
+   "id": "49a97f64-c928-558f-8175-974f1ce356a1"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The element facts.** Everything in this topic comes from these three rows:",
+   "citations": [],
+   "id": "94511c38-b92a-5096-9d37-9a81539c2278"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Element",
+    "Law",
+    "In DC steady state",
+    "At the switching instant"
+   ],
+   "rows": [
+    [
+     "Capacitor $C$",
+     "$i=C\\dfrac{dv}{dt}$",
+     "**open circuit** ($i=0$)",
+     "$v_C$ **cannot jump**: $v_C(0^+)=v_C(0^-)$"
+    ],
+    [
+     "Inductor $L$",
+     "$v=L\\dfrac{di}{dt}$",
+     "**short circuit** ($v=0$)",
+     "$i_L$ **cannot jump**: $i_L(0^+)=i_L(0^-)$"
+    ],
+    [
+     "Resistor $R$",
+     "$v=iR$",
+     "—",
+     "its current and voltage **can** jump"
+    ]
+   ],
+   "citations": [
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "a1b278af-8c29-4cde-9921-b62abc1cea16"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
+    }
+   ],
+   "id": "6035e7ab-a435-5394-8024-d834961c0a57"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**DC steady state** = “the switch has been there **for a long time**”: nothing changes any more, so every $\\frac{d}{dt}$ is 0.",
+    "$0^-$ = just before the switch moves; $0^+$ = just after."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "74fad69e-946b-5114-b128-0afb97e26b54"
+  },
+  {
+   "type": "paragraph",
+   "text": "So always solve for the quantity that **can’t jump**: $v_C$ in a capacitor circuit, $i_L$ in an inductor circuit. Get everything else (resistor currents, $i_C$, $v_L$) from it afterwards.",
+   "citations": [],
+   "id": "fe23a6a0-b2c5-5733-bbca-8d8d68bcce79"
+  },
+  {
+   "type": "paragraph",
+   "text": "**What each element looks like at the three moments you need:**",
+   "citations": [],
+   "id": "36af86e7-ef46-5a2d-8c05-840b80a1ad02"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "",
+    "$t=0^-$ (old DC state)",
+    "$t=0^+$ (just after)",
+    "$t\\to\\infty$ (new DC state)"
+   ],
+   "rows": [
+    [
+     "Capacitor",
+     "open circuit, holding $V_0$",
+     "a **voltage source** $V_0$",
+     "open circuit again"
+    ],
+    [
+     "Inductor",
+     "short circuit, carrying $I_0$",
+     "a **current source** $I_0$",
+     "short circuit again"
+    ],
+    [
+     "Resistor",
+     "Ohm’s law",
+     "Ohm’s law (may jump)",
+     "Ohm’s law"
+    ]
+   ],
+   "citations": [],
+   "id": "bed96b7d-ac8d-58df-96fd-577b29c1f968"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"A capacitor charging from $0\\,\\mathrm{V}$: its voltage is continuous, its current jumps\"\nx -1 5 label=\"$t/\\tau$\"\ny -0.2 1.2 label=\"fraction of final value\"\ncurve \"if(x<0, 0, 1-exp(-x))\" label=\"$v_C$: starts at 0, no jump\" color=1\ncurve \"if(x<0, 0, exp(-x))\" label=\"$i_C$: 0 before, jumps at $t=0$\" color=2\nvline \"0\" label=\"switch closes\" color=0\ncaption \"Pre-tutorial 2 in picture form. Before the switch closes no current flows. Just after, $v_C$ is still 0, so all of the source current goes into the capacitor: $i_C$ jumps, $v_C$ doesn’t.\"\n```",
+   "citations": [],
+   "id": "eef94301-2c03-5878-b1e7-bfe013fbe96d"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The switching recipe** (every circuit problem):",
+   "citations": [],
+   "id": "1e4d731c-804a-50d5-b76b-733f6dbcdad8"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Before ($t<0$):** the switch has been in its old position for a long time, so the circuit is in DC steady state. Replace $C$ by an open circuit and $L$ by a short. Find $v_C(0^-)$ or $i_L(0^-)$.",
+    "**Just after ($t=0^+$):** carry them over: $v_C(0^+)=v_C(0^-)$, $i_L(0^+)=i_L(0^-)$. To find anything else at $0^+$, redraw the **new** circuit with $C$ as a voltage source $v_C(0^+)$ and $L$ as a current source $i_L(0^+)$, then use KVL/KCL.",
+    "**After ($t>0$):** in the new circuit, write KCL at a node or KVL around the loop. Replace $i_C$ by $C\\frac{dv}{dt}$ and $v_L$ by $L\\frac{di}{dt}$. That is the ODE.",
+    "**Solve:** one $L$ or $C$ → first order → [B2](#b2) (or the [D1](#d1) formula). An $L$ and a $C$ → second order → [B5](#b5) (no source) or [B6](#b6) (constant source), see [D2](#d2). The values from step 2 are the conditions.",
+    "**Check ($t\\to\\infty$):** DC steady state again ($C$ open, $L$ short). Your answer must approach this final value."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "2bb00f2c-88f0-5fab-b1b7-bbd7479cfcb8"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Before and after are two different circuits.** Draw both. Use the old one only for step 1; write the ODE (step 3) from the new one, with only the parts still connected.",
+   "citations": [],
+   "id": "389da62d-68ed-5041-8e54-2c40bce11f15"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Signs come from the drawn arrow.** If the reference arrow for $i_L$ points against the real current, the starting value is **negative**. Find the real direction first, then compare it with the arrow.",
+   "citations": [],
+   "id": "2030253a-a57a-52b3-a9dc-e4e7313c4cd4"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): why $v_C$ and $i_L$ can’t jump.** If $v_C$ jumped, $\\frac{dv}{dt}$ would be infinite, so $i=C\\frac{dv}{dt}$ would be infinite: no real circuit supplies that. The same with $v=L\\frac{di}{dt}$ for an inductor current. The stored energy $\\frac12Cv^2$ or $\\frac12Li^2$ cannot change instantly.",
+   "citations": [],
+   "id": "bf8dee2e-6bf4-55a3-832d-aee0e1b8fa28"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "D1 · First-order RC and RL circuits",
+   "citations": [
+    {
+     "source_id": "fc8bf046-baea-4798-ab0a-7d7b414355f0",
+     "version": 1,
+     "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "3454942c-9543-465e-8e68-77a3da871efa"
+    },
+    {
+     "source_id": "e3e8b017-8a9a-478a-bfbd-a29ba48b2e26",
+     "version": 1,
+     "chunk_id": "724f3da6-c2ee-4cf9-8fe6-49e948e11540"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
+    }
+   ],
+   "id": "565f62aa-c192-58b5-a753-d6494f5c0f12"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 1 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#ab5bf400-4411-4869-8d74-7790f8ee6f2c) [Week 2 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#77c9c878-68d6-44e3-8f1e-2f68ba18701b) [Week 3 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#a43fc96e-8dc5-4a1e-bfdf-bf1acf01f98b)",
+   "citations": [],
+   "id": "2ce3023d-4d16-5f77-928d-fcb79d7867fd"
+  },
+  {
+   "type": "paragraph",
+   "text": "**When:** after the switch, the circuit has **one** capacitor or **one** inductor (after combining), plus resistors and DC sources. Then the ODE is first order, and it always has the same shape.",
+   "citations": [],
+   "id": "7b6f5d7d-60c0-5fcc-ae88-fab51d32c2c0"
+  },
+  {
+   "type": "paragraph",
+   "text": "Call $x$ the quantity that can’t jump ($v_C$ or $i_L$). For $t>0$, KCL or KVL always gives:",
+   "citations": [],
+   "id": "de3f1200-ff56-5c66-af9f-272349773357"
+  },
+  {
+   "type": "equation",
+   "latex": "\\dfrac{dx}{dt}+\\dfrac{x}{\\tau}=\\dfrac{x_f}{\\tau}",
+   "display": true,
+   "citations": [],
+   "id": "9dd1f8ef-c087-536f-b0e1-e1ed5f81f2f5"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$x$ = $v_C$ in an RC circuit, $i_L$ in an RL circuit",
+    "$\\tau$ = the **time constant** (seconds): $\\;\\tau=R_{th}C\\;$ or $\\;\\tau=\\dfrac{L}{R_{th}}$",
+    "$x_f$ = the **final value** $x(\\infty)$, from the DC steady state after the switch ($x_f=0$ if no source is left)",
+    "$R_{th}$ = the resistance the $C$ or $L$ “sees”: turn the sources off (voltage source → short, current source → open) and combine the resistors between its two terminals, in the $t>0$ circuit"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "52b9094b-dae5-5e29-90aa-8b54eb50febe"
+  },
+  {
+   "type": "paragraph",
+   "text": "This is a [B2](#b2) equation with constant $a=\\frac1\\tau$ and constant $f=\\frac{x_f}{\\tau}$. Its shortcut solution, with the starting value $x(0)=x_0$, is the one formula you need:",
+   "citations": [],
+   "id": "3e8c6160-3472-5b76-a9c3-11ca47330fc4"
+  },
+  {
+   "type": "equation",
+   "latex": "x(t)=x_f+\\big(x_0-x_f\\big)\\,e^{-t/\\tau},\\qquad t\\ge0",
+   "display": true,
+   "citations": [],
+   "id": "e9d2849e-b4b8-5136-a324-e5ffd3bb7149"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method** (the D0 recipe, specialised):",
+   "citations": [],
+   "id": "3424cf67-5283-59a5-a534-6f7573f789e2"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**$x_0$:** from the $t<0$ DC circuit ($C$ open, $L$ short), carried over to $0^+$.",
+    "**$x_f$:** from the $t\\to\\infty$ DC circuit, with the switch in its **new** position.",
+    "**$\\tau$:** find $R_{th}$ seen by the $C$ or $L$ in the $t>0$ circuit; $\\tau=R_{th}C$ or $L/R_{th}$.",
+    "**Plug in:** $x(t)=x_f+(x_0-x_f)e^{-t/\\tau}$.",
+    "**Anything else** from $x(t)$: Ohm’s law, KCL, $i_C=C\\frac{dv_C}{dt}$, $v_L=L\\frac{di_L}{dt}$."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "d8802c67-54b7-51d5-86c6-66c0dacb8d20"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "",
+    "Natural response",
+    "Step response"
+   ],
+   "rows": [
+    [
+     "When",
+     "no source is left after $t=0$: stored energy dies out",
+     "a DC source drives the circuit after $t=0$"
+    ],
+    [
+     "Final value",
+     "$x_f=0$",
+     "$x_f$ from the new DC steady state"
+    ],
+    [
+     "Answer",
+     "$x_0\\,e^{-t/\\tau}$",
+     "$x_f+(x_0-x_f)\\,e^{-t/\\tau}$"
+    ]
+   ],
+   "citations": [],
+   "id": "836b9c3b-e418-5160-b25f-91ae1a858f20"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Reading the curve:** after $1\\tau$, $e^{-1}=37\\%$ of the starting gap $x_0-x_f$ is left (63% done); after $2\\tau$, 13.5%; after $5\\tau$, under 1% (“done”).",
+   "citations": [],
+   "id": "f87374a9-ec80-56b3-9cb1-aac72dc72054"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Drag the sliders: the curve always heads for $x_f$, and the tangent at $t=0$ reaches $x_f$ at $t=\\tau$\"\nx 0 8 label=\"$t$\"\ny -12 12 label=\"$x$\"\nslider x0 -10 10 10 step=1 label=\"$x_0$\"\nslider xf -10 10 2 step=1 label=\"$x_f$\"\nslider tau 0.2 3 1 step=0.1 label=\"$\\tau$\"\ncurve \"xf+(x0-xf)*exp(-x/tau)\" label=\"$x(t)=x_f+(x_0-x_f)e^{-t/\\tau}$\" color=1\ncurve \"x0+(xf-x0)*x/tau\" from=0 to=\"tau\" label=\"tangent at $t=0$\" color=0 dash\nhline \"xf\" label=\"$x_f$\" color=3\npoint \"tau\" \"xf+(x0-xf)*exp(-1)\" label=\"at $t=\\tau$: 37% of the gap left\" color=2\nreadout \"$x(5\\tau)$\" \"xf+(x0-xf)*exp(-5)\"\ncaption \"Set $x_f=0$ for a natural response. A bigger $\\tau$ (bigger $RC$ or $L/R$) means a slower circuit.\"\n```",
+   "citations": [],
+   "id": "49e75af8-64d3-546b-bc35-98dafd7c58df"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Formulas you’ll also need:**",
+   "citations": [],
+   "id": "b663a7c9-973d-5d75-b1e9-327752d01ba2"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Quantity",
+    "Formula",
+    "Note"
+   ],
+   "rows": [
+    [
+     "derivative of the exponential",
+     "$\\dfrac{d}{dt}e^{-t/\\tau}=-\\dfrac1\\tau e^{-t/\\tau}$",
+     "for $i_C=C\\frac{dv}{dt}$ and $v_L=L\\frac{di}{dt}$"
+    ],
+    [
+     "energy stored",
+     "$w_C=\\tfrac12Cv^2,\\quad w_L=\\tfrac12Li^2$",
+     "in joules"
+    ],
+    [
+     "parallel resistors",
+     "$R_1\\parallel R_2=\\dfrac{R_1R_2}{R_1+R_2}$",
+     "for $R_{th}$"
+    ]
+   ],
+   "citations": [],
+   "id": "3afa5dd2-0eb8-5bd4-b4f8-11837ca5280b"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): where the formula comes from (the lecture’s RC step response).** A current source $I_s$, a resistor $R$ and a capacitor $C$ in parallel. KCL at the top node: capacitor current plus resistor current equals the source current:\n\n$$\nC\\dfrac{dv}{dt}+\\dfrac{v}{R}=I_s\\quad\\Rightarrow\\quad\\dfrac{dv}{dt}+\\dfrac{v}{RC}=\\dfrac{I_s}{C}\n$$\n\nThat is the standard form with $\\tau=RC$ and $x_f=RI_s$, so $v=RI_s+(V_0-RI_s)e^{-t/RC}$. It is [B2](#b2) with constant coefficients, and it also separates ([B1](#b1)), as the lecture showed for the RL circuit.",
+   "citations": [],
+   "id": "bda6c034-1c3b-5143-a6f2-47fe63e61ed8"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 9 · W3 · Circuit → ODE → answer · lecture §1.1",
+   "prompt": "The switch closes at $t=0$; the inductor carries no current before. Find $i(t)$ for $t\\ge0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$100\\,\\mathrm{V}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$10\\,\\Omega$\" i=\"$i$\"\nL1 6,3 -> 6,0 \"$2\\,\\mathrm{H}$\" v=\"$v$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "steps": [
+    {
+     "explanation": "**Type:** one inductor, one DC source → first-order RL step response. Solve for $i$ (the inductor current).",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before:** the switch is open, so no current: $i(0^-)=0$, and $i(0^+)=0$ (it can’t jump).",
+     "latex": ""
+    },
+    {
+     "explanation": "**After:** KVL around the loop: the source equals the resistor voltage plus the inductor voltage.",
+     "latex": "2\\dfrac{di}{dt}+10i=100"
+    },
+    {
+     "explanation": "Divide by $L=2$ to get the standard form: $\\frac1\\tau=5$, so $\\tau=0.2\\,\\mathrm{s}$ (check: $L/R=2/10$).",
+     "latex": "\\dfrac{di}{dt}+5i=50"
+    },
+    {
+     "explanation": "**Final value:** at $t\\to\\infty$ the inductor is a short, so $i_f=100/10=10\\,\\mathrm{A}$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Plug in** $x_0=0$, $x_f=10$, $\\tau=0.2$.",
+     "latex": "i(t)=10+(0-10)e^{-5t}"
+    }
+   ],
+   "answer": "$i(t)=10\\big(1-e^{-5t}\\big)\\,\\mathrm{A}$, the same answer the integrating factor gave (Problem in [B2](#b2)).",
+   "citations": [
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
+    },
+    {
+     "source_id": "23d3a15e-f6e4-499a-8c00-84985ac92d2a",
+     "version": 1,
+     "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
+    }
+   ],
+   "id": "ff678e89-73bf-551b-a6a9-648963747d80"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 42 · W1 · RL natural response · Pre-tutorial 1",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "The switch has been closed for a long time and opens at $t=0$. With $L=8\\,\\mathrm{mH}$, $R=4\\,\\Omega$ and $I_s=4\\,\\mathrm{A}$, find the numerical expression for $i(t)$, $t\\ge0$, and sketch it.\n\n```schematic\nI1 0,0 -> 0,3 \"$I_s=4\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$R_0$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=open\nL1 6,3 -> 6,0 \"$8\\,\\mathrm{mH}$\" i=\"$i$\"\nwire 6,3 -> 9,3\nR2 9,3 -> 9,0 \"$4\\,\\Omega$\" v=\"$v$\"\nwire 9,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** after the switch opens, only the $L$–$R$ loop is left, with no source: RL **natural** response. Solve for $i$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before:** DC steady state, so $L$ is a short. It shorts $R_0$ and $R$, so all of $I_s$ flows down through $L$.",
+     "latex": "i(0^-)=4\\,\\mathrm{A}=i(0^+)"
+    },
+    {
+     "explanation": "**After:** $L$ discharges through $R$. No source, so $x_f=0$.",
+     "latex": "\\tau=\\dfrac{L}{R}=\\dfrac{8\\times10^{-3}}{4}=2\\,\\mathrm{ms}"
+    },
+    {
+     "explanation": "**Plug in:** $\\frac1\\tau=500\\,\\mathrm{s^{-1}}$.",
+     "latex": "i(t)=4e^{-500t}\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**Sketch:** starts at 4 A, is $4e^{-1}\\approx1.47\\,\\mathrm{A}$ at $t=2\\,\\mathrm{ms}$, and is essentially 0 after $5\\tau=10\\,\\mathrm{ms}$.",
+     "latex": ""
+    }
+   ],
+   "answer": "$i(t)=4e^{-500t}\\,\\mathrm{A}$, $t\\ge0$ ($\\tau=2\\,\\mathrm{ms}$): an exponential decay from 4 A.",
+   "citations": [
+    {
+     "source_id": "7891d331-9abf-44c7-955e-7e54746460da",
+     "version": 1,
+     "chunk_id": "7fb47787-7b88-4412-bdcd-84d1c876bd27"
+    }
+   ],
+   "id": "6ba11288-d20d-5e12-be6b-07873276ada5"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 43 · W2 · Can the capacitor current jump? · Pre-tutorial 2",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "The capacitor is uncharged ($V_0=0$). The switch closes at $t=0$, with $I_s=2\\,\\mathrm{A}$ and $R=1\\,\\mathrm{k\\Omega}$. Find the capacitor current at $t=0^-$ (switch open) and at $t=0^+$ (switch closed). Is there a discontinuity in the capacitor current, unlike the capacitor voltage?\n\n```schematic\nI1 0,0 -> 0,3 \"$I_s=2\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$1\\,\\mathrm{k\\Omega}$\" i=\"$v/R$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nC1 6,3 -> 6,0 \"$C$\" v=\"$v$\" i=\"$i_C$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** a $0^-$/$0^+$ question: use “$v_C$ can’t jump”, then KCL at $0^+$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before:** the switch is open, so the capacitor is disconnected.",
+     "latex": "i_C(0^-)=0"
+    },
+    {
+     "explanation": "**Just after:** $v(0^+)=v(0^-)=0$ (can’t jump). So the resistor current is $v/R=0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "KCL at the top node: all of the source current must go into the capacitor.",
+     "latex": "i_C(0^+)=I_s-\\dfrac{v(0^+)}{R}=2-0=2\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**Afterwards:** $v$ rises towards $RI_s=2000\\,\\mathrm{V}$ and $i_C$ decays to 0.",
+     "latex": ""
+    }
+   ],
+   "answer": "$i_C(0^-)=0$, $i_C(0^+)=2\\,\\mathrm{A}$: yes, the capacitor **current** jumps; the capacitor **voltage** stays continuous at 0.",
+   "citations": [
+    {
+     "source_id": "b0208f55-a2d4-44c4-b05c-36d9cf00fa52",
+     "version": 1,
+     "chunk_id": "fa6e0545-adbd-4b78-a96a-a91ef31b58f7"
+    }
+   ],
+   "id": "555281aa-7f2c-533d-8589-a72fb46b248e"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 44 · W2–W3 · Read the circuit from its response · textbook P7.42",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "In this circuit the switch closes at $t=0$, and for $t\\ge0$:\n\n$i(t)=\\big(10-10e^{-500t}\\big)\\,\\mathrm{A},\\qquad v(t)=200e^{-500t}\\,\\mathrm{V}\\ (t\\ge0^+)$\n\nFind $V_s$, $R$, the initial current $I_0$ and $L$.\n\n```schematic\nV1 0,3 -> 0,0 \"$V_s$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$R$\" i=\"$i$\"\nL1 6,3 -> 6,0 \"$L$\" v=\"$v$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** RL step response read backwards: match $x_f+(x_0-x_f)e^{-t/\\tau}$ term by term.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Starting value:** $I_0=i(0)=10-10=0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Just after:** $i=0$, so the resistor has no voltage and the whole source appears across $L$.",
+     "latex": "V_s=v(0^+)=200\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**Final value:** $L$ is a short, so $i_f=V_s/R$.",
+     "latex": "10=\\dfrac{200}{R}\\quad\\Rightarrow\\quad R=20\\,\\Omega"
+    },
+    {
+     "explanation": "**Time constant:** $\\frac1\\tau=500$, so $\\tau=2\\,\\mathrm{ms}=L/R$.",
+     "latex": "L=20\\times0.002=40\\,\\mathrm{mH}"
+    },
+    {
+     "explanation": "**Check:** $L\\frac{di}{dt}=0.04\\times5000e^{-500t}=200e^{-500t}$ ✓.",
+     "latex": ""
+    }
+   ],
+   "answer": "$V_s=200\\,\\mathrm{V}$, $R=20\\,\\Omega$, $I_0=0$, $L=40\\,\\mathrm{mH}$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "74cdb060-d137-4ab5-a638-7a3a9203811f"
+    }
+   ],
+   "id": "273673a8-96a9-5e11-884d-4fe2881ad114"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 45 · W2 · RC natural response with a divider first · textbook P7.22",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "The switch has been closed for a long time and opens at $t=0$. Find (a) $v(0)$, (b) $\\tau$ for $t>0$, (c) $v(t)$, (d) the initial energy stored in the capacitor.\n\n```schematic\nI1 0,0 -> 0,3 \"$7.5\\,\\mathrm{mA}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$80\\,\\mathrm{k\\Omega}$\"\nR2 3,3 -> 6,3 \"$20\\,\\mathrm{k\\Omega}$\"\nS1 6,3 -> 9,3 \"$t=0$\" action=open\nC1 9,3 -> 9,0 \"$0.4\\,\\mu\\mathrm{F}$\" v=\"$v(t)$\"\nwire 9,3 -> 12,3\nR3 12,3 -> 12,0 \"$50\\,\\mathrm{k\\Omega}$\"\nwire 12,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** after the switch opens, only $C$ and $50\\,\\mathrm{k\\Omega}$ are left, no source: RC **natural** response. Solve for $v$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before:** $C$ is open, so the source current splits between $80\\,\\mathrm{k\\Omega}$ and the $20+50=70\\,\\mathrm{k\\Omega}$ path (current divider).",
+     "latex": "i_{70}=7.5\\,\\mathrm{mA}\\cdot\\dfrac{80}{80+70}=4\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "(a) $v$ is the voltage across $50\\,\\mathrm{k\\Omega}$.",
+     "latex": "v(0^-)=4\\,\\mathrm{mA}\\times50\\,\\mathrm{k\\Omega}=200\\,\\mathrm{V}=v(0^+)"
+    },
+    {
+     "explanation": "(b) **After:** $C$ sees only $50\\,\\mathrm{k\\Omega}$.",
+     "latex": "\\tau=RC=50\\times10^3\\times0.4\\times10^{-6}=20\\,\\mathrm{ms}"
+    },
+    {
+     "explanation": "(c) **Plug in** $x_f=0$, $\\frac1\\tau=50\\,\\mathrm{s^{-1}}$.",
+     "latex": "v(t)=200e^{-50t}\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "(d) **Energy.**",
+     "latex": "w=\\tfrac12Cv^2=\\tfrac12(0.4\\times10^{-6})(200)^2=8\\,\\mathrm{mJ}"
+    }
+   ],
+   "answer": "(a) $200\\,\\mathrm{V}$. (b) $20\\,\\mathrm{ms}$. (c) $v(t)=200e^{-50t}\\,\\mathrm{V}$, $t\\ge0$. (d) $8\\,\\mathrm{mJ}$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "899d24ef-e215-4d36-a1eb-8bacda10e034"
+    }
+   ],
+   "id": "7b094f7c-9275-5760-b532-116e1021048b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 46 · W1–W2 · The sign of the reference arrow · textbook P7.1",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "The switch has been closed for a long time and opens at $t=0$. Note the direction of $i$ (**up** through the inductor). Find (a) the initial value of $i$, (b) the initial energy stored in the inductor, (c) the time constant for $t>0$, (d) the numerical expression for $i(t)$, $t\\ge0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$120\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$3\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$30\\,\\Omega$\"\nR3 3,3 -> 6,3 \"$6\\,\\Omega$\"\nS1 6,3 -> 9,3 \"$t=0$\" action=open\nL1 9,0 -> 9,3 \"$8\\,\\mathrm{mH}$\" i=\"$i$\"\nwire 9,3 -> 12,3\nR4 12,3 -> 12,0 \"$2\\,\\Omega$\"\nwire 12,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** after the switch opens, only $L$ and $2\\,\\Omega$ are left, no source: RL **natural** response. Solve for $i$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before:** $L$ is a short, which also shorts the $2\\,\\Omega$. The source sees $3\\,\\Omega$ in series with $30\\parallel6=5\\,\\Omega$.",
+     "latex": "I=\\dfrac{120}{3+5}=15\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "The middle node is at $120-15\\times3=75\\,\\mathrm{V}$, so $75/6=12.5\\,\\mathrm{A}$ flows right through $6\\,\\Omega$ and then **down** through $L$.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) The arrow points **up**, against the real current, so the value is negative.",
+     "latex": "i(0^-)=i(0^+)=-12.5\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "(b) **Energy** (the sign doesn’t matter: $i$ is squared).",
+     "latex": "w=\\tfrac12(8\\times10^{-3})(12.5)^2=0.625\\,\\mathrm{J}"
+    },
+    {
+     "explanation": "(c) **After:** $L$ sees only $2\\,\\Omega$.",
+     "latex": "\\tau=\\dfrac{L}{R}=\\dfrac{8\\times10^{-3}}{2}=4\\,\\mathrm{ms}"
+    },
+    {
+     "explanation": "(d) **Plug in** $x_0=-12.5$, $x_f=0$, $\\frac1\\tau=250$.",
+     "latex": "i(t)=-12.5e^{-250t}\\,\\mathrm{A}"
+    }
+   ],
+   "answer": "(a) $-12.5\\,\\mathrm{A}$. (b) $0.625\\,\\mathrm{J}$. (c) $4\\,\\mathrm{ms}$. (d) $i(t)=-12.5e^{-250t}\\,\\mathrm{A}$, $t\\ge0$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "c19d2dd9-bad0-4da3-9be6-40a6f1637ee1"
+    }
+   ],
+   "id": "8fba4eec-6df9-5fb6-b2e2-439032e53385"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 47 · W2 · Step response that needs a Thévenin equivalent · textbook P7.52(a)",
+   "difficulty": "advanced",
+   "origin": "source",
+   "prompt": "The switch has been in position $a$ for a long time. At $t=0$ it moves to position $b$ and stays there. Find the initial and final values of the capacitor voltage, the time constant for $t\\ge0$, and $v_C(t)$ for $t\\ge0$. (The $200\\,\\mathrm{V}$ source has its $-$ on top. The two $t=0$ switches are one two-position switch: at $t=0$ the contact at $a$ opens and the contact at $b$ closes.)\n\n```schematic\nV1 0,3 -> 0,0 \"$120\\,\\mathrm{V}$\"\nR1 0,3 -> 2,3 \"$10\\,\\mathrm{k\\Omega}$\"\nS1 2,3 -> 4,3 \"$t=0$\" action=open\nC1 4,3 -> 4,0 \"$40\\,\\mathrm{nF}$\" v=\"$v_C$\" i=\"$i$\"\nS2 4,3 -> 6,3 \"$t=0$\" action=close\nR2 6,3 -> 8,3 \"$12.5\\,\\mathrm{k\\Omega}$\"\nR3 8,3 -> 8,0 \"$150\\,\\mathrm{k\\Omega}$\"\nR4 8,3 -> 10,3 \"$50\\,\\mathrm{k\\Omega}$\"\nV2 10,0 -> 10,3 \"$200\\,\\mathrm{V}$\"\nwire 10,0 -> 0,0\nlabel 2,3 \"$a$\" above\nlabel 6,3 \"$b$\" above\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** one capacitor, a DC source after the switch: RC **step** response. Solve for $v_C$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before (position $a$):** $C$ is open, so no current flows through $10\\,\\mathrm{k\\Omega}$: the capacitor holds the full source.",
+     "latex": "v_C(0^-)=120\\,\\mathrm{V}=v_C(0^+)"
+    },
+    {
+     "explanation": "**After (position $b$):** replace everything right of $b$ by its Thévenin equivalent. With $C$ removed, no current flows in $12.5\\,\\mathrm{k\\Omega}$; the divider gives the node voltage (the source’s top is at $-200\\,\\mathrm{V}$).",
+     "latex": "V_{th}=-200\\cdot\\dfrac{150}{150+50}=-150\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "Sources off (the $200\\,\\mathrm{V}$ source becomes a short): $12.5\\,\\mathrm{k\\Omega}$ plus $150\\parallel50$.",
+     "latex": "R_{th}=12.5+37.5=50\\,\\mathrm{k\\Omega}"
+    },
+    {
+     "explanation": "**Final value and time constant:** $C$ ends at $V_{th}$.",
+     "latex": "\\begin{gathered}v_f=-150\\,\\mathrm{V}, \\\\ \\tau=(50\\times10^{3})(40\\times10^{-9})=2\\,\\mathrm{ms}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in:** $x_0-x_f=120-(-150)=270$, $\\frac1\\tau=500$.",
+     "latex": "v_C(t)=-150+270e^{-500t}\\,\\mathrm{V}"
+    }
+   ],
+   "answer": "$v_C(0)=120\\,\\mathrm{V}$, $v_C(\\infty)=-150\\,\\mathrm{V}$, $\\tau=2\\,\\mathrm{ms}$, $v_C(t)=-150+270e^{-500t}\\,\\mathrm{V}$, $t\\ge0$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "792a0b6a-dea1-44b0-90b3-938c95ac3b2a"
+    }
+   ],
+   "id": "3868a2a8-e7bb-5bf0-ada4-451cf00af769"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "D2 · RLC circuits (second order)",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "447a0540-ae9e-4dc3-9fd0-6a03ab990c54"
+    }
+   ],
+   "id": "d8d64036-16fe-5932-9864-d9a4c4385f16"
+  },
+  {
+   "type": "paragraph",
+   "text": "[Week 5 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#d5ad9ba9-0ec5-4b62-acf5-b1c7e17d6463)",
+   "citations": [],
+   "id": "959301a4-361f-54b3-83dd-86cca163ec95"
+  },
+  {
+   "type": "paragraph",
+   "text": "**When the circuit has one inductor and one capacitor** (after combining), its equation is **second order**. The math is [B5](#b5) (and [B6](#b6) when a source stays on). The new part is getting the equation and the two starting values from the circuit.",
+   "citations": [],
+   "id": "7fa9a345-71bb-5eb7-87e5-fe2740c0be98"
+  },
+  {
+   "type": "paragraph",
+   "text": "Before anything, find the starting values with the switching recipe in [Topic D](#topic-d): $v_C(0^+)$ and $i_L(0^+)$ carry over from just before the switch.",
+   "citations": [],
+   "id": "a6849c0a-bacf-5c68-9d08-f2c383b3a561"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The two circuits you will meet:**",
+   "citations": [],
+   "id": "18eaf8e6-efbd-5e45-9f42-c5d51ed98823"
+  },
+  {
+   "type": "schematic",
+   "source": "V1 0,3 -> 0,0 \"$V_s$\"\nR1 0,3 -> 3,3 \"$R$\" i=\"$i$\"\nL1 3,3 -> 6,3 \"$L$\"\nC1 6,3 -> 6,0 \"$C$\" v=\"$v_C$\"\nwire 6,0 -> 0,0\nground 0,0",
+   "caption": "Series RLC: one loop, one current $i$ through all four elements.",
+   "citations": [],
+   "id": "56891a5c-a267-5a95-a6f7-a339919d5e0d"
+  },
+  {
+   "type": "schematic",
+   "source": "C1 0,3 -> 0,0 \"$C$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$L$\" i=\"$i_L$\"\nwire 3,3 -> 6,3\nR1 6,3 -> 6,0 \"$R$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\nground 0,0",
+   "caption": "Parallel RLC: two nodes, one voltage $v$ across all three elements; all currents point down.",
+   "citations": [],
+   "id": "718d2b5b-c24b-505c-acb9-eb25e3eb15e0"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "",
+    "Series",
+    "Parallel"
+   ],
+   "rows": [
+    [
+     "Unknown",
+     "$v_C$ (or the loop current $i$)",
+     "the common voltage $v$"
+    ],
+    [
+     "Equation",
+     "$v_C^{\\prime\\prime}+\\dfrac{R}{L}v_C^{\\prime}+\\dfrac{1}{LC}v_C=\\dfrac{V_s}{LC}$",
+     "$v^{\\prime\\prime}+\\dfrac{1}{RC}v^{\\prime}+\\dfrac{1}{LC}v=0$"
+    ],
+    [
+     "Damping $\\alpha$",
+     "$\\dfrac{R}{2L}$",
+     "$\\dfrac{1}{2RC}$"
+    ],
+    [
+     "Natural frequency $\\omega_0$",
+     "$\\dfrac{1}{\\sqrt{LC}}$",
+     "$\\dfrac{1}{\\sqrt{LC}}$ (the same)"
+    ],
+    [
+     "Starting value",
+     "$v_C(0^+)=v_C(0^-)$",
+     "$v(0^+)=v_C(0^-)$"
+    ],
+    [
+     "Starting slope",
+     "$v_C^{\\prime}(0^+)=\\dfrac{i(0^+)}{C}$, with $i=i_L$ entering the $+$ of $C$",
+     "$v^{\\prime}(0^+)=\\dfrac{i_C(0^+)}{C}$, with $i_C(0^+)$ from KCL"
+    ]
+   ],
+   "citations": [],
+   "id": "7b90241f-333b-54de-a3e2-8afeacfe898f"
+  },
+  {
+   "type": "paragraph",
+   "text": "Both equations have the shape below, so the characteristic equation and its roots are:",
+   "citations": [],
+   "id": "6c818b4c-7882-5c5e-89d4-8b7448ec84d3"
+  },
+  {
+   "type": "equation",
+   "latex": "s^2+2\\alpha s+\\omega_0^2=0",
+   "display": true,
+   "citations": [],
+   "id": "b0fc08ed-0c00-54d5-b521-6a623fc71b15"
+  },
+  {
+   "type": "equation",
+   "latex": "s=-\\alpha\\pm\\sqrt{\\alpha^2-\\omega_0^2}",
+   "display": true,
+   "citations": [],
+   "id": "a3b02da2-1a07-51af-8338-083a03a5c313"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Compare $\\alpha$ with $\\omega_0$ to know the shape before solving.** These are the three root cases of [B5](#b5) with circuit names:",
+   "citations": [],
+   "id": "b17c4936-f79f-51b5-879e-f5565931d8a3"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Compare",
+    "Roots",
+    "Name",
+    "Form of the response"
+   ],
+   "rows": [
+    [
+     "$\\alpha>\\omega_0$",
+     "two real",
+     "**overdamped**",
+     "$A_1e^{s_1t}+A_2e^{s_2t}$"
+    ],
+    [
+     "$\\alpha=\\omega_0$",
+     "one repeated",
+     "**critically damped**",
+     "$(A_1+A_2t)e^{-\\alpha t}$"
+    ],
+    [
+     "$\\alpha<\\omega_0$",
+     "$-\\alpha\\pm j\\omega_d$",
+     "**underdamped**",
+     "$e^{-\\alpha t}(B_1\\cos\\omega_dt+B_2\\sin\\omega_dt)$"
+    ],
+    [
+     "$\\alpha=0$ (no $R$)",
+     "$\\pm j\\omega_0$",
+     "**undamped** (LC)",
+     "$B_1\\cos\\omega_0t+B_2\\sin\\omega_0t$"
+    ]
+   ],
+   "citations": [],
+   "id": "48544489-6965-5b8b-83d4-7ebbd53f9c77"
+  },
+  {
+   "type": "paragraph",
+   "text": "Here $\\omega_d=\\sqrt{\\omega_0^2-\\alpha^2}$ is the **damped frequency**: how fast an underdamped response oscillates.",
+   "citations": [],
+   "id": "49d46337-0259-5251-9498-f7e0917e0161"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Slide R through the three cases (series RLC, $L=1\\,\\mathrm{H}$, $C=0.25\\,\\mathrm{F}$)\"\nx 0 6 label=\"$t$ (s)\"\ny -8 11 label=\"$v_C$ (V)\"\nslider R 0 10 1 step=0.1 label=\"$R$ ($\\Omega$)\" animate\nlet a \"R/2\"\nlet wd \"sqrt(abs(4-a^2))\"\nlet s1 \"-a+wd\"\nlet s2 \"-a-wd\"\ncurve \"if(abs(a-2)<0.001, 10*(1+2*t)*exp(-2*t), if(a<2, 10*exp(-a*t)*(cos(wd*t)+a/wd*sin(wd*t)), 10*(s2*exp(s1*t)-s1*exp(s2*t))/(s2-s1)))\" label=\"$v_C(t)$, from $10\\,\\mathrm{V}$ with $i=0$\" color=1\nhline \"0\"\nreadout \"$\\alpha=R/2L$\" \"a\"\nreadout \"$\\omega_0=1/\\sqrt{LC}$\" \"2\"\ncaption \"$\\omega_0=2$ is fixed. $R<4$: $\\alpha<\\omega_0$, underdamped (it swings below zero). $R=4$: critically damped, the fastest return without overshoot. $R>4$: overdamped, a slow creep back. $R=0$: undamped, it never dies out.\"\n```",
+   "citations": [],
+   "id": "6e1f71ba-bf91-5902-8ff9-8dbc9d4e8e76"
+  },
+  {
+   "type": "paragraph",
+   "text": "**With a source that stays on** (a step response), the answer is a **final value** plus a part that dies out. The final value comes from the DC steady state ($C$ open, $L$ short): it is the constant $y_p$ of [B6](#b6). Fit the constants to $v_C=V_f+(\\text{transient})$, not to the transient alone.",
+   "citations": [],
+   "id": "fd4e134a-9483-53f1-a11e-d358fd7d4992"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Method:**",
+   "citations": [],
+   "id": "aeb319ff-1824-5dbf-ae86-2c1331ceb974"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Before:** DC steady state for $t<0$ gives $v_C(0^-)$ and $i_L(0^-)$.",
+    "**Starting values:** $v_C(0^+)=v_C(0^-)$, $i_L(0^+)=i_L(0^-)$, then the starting slope (table above).",
+    "**Equation:** series or parallel? Compute $\\alpha$ and $\\omega_0$; compare them to pick the form.",
+    "**Final value:** $0$ with no source; otherwise the DC steady state after the switch.",
+    "**Constants:** use the starting value and slope on the full expression (product rule for the slope)."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "c6518a42-64e3-5162-b3bb-f5fc66b22b11"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Units.** Convert $\\mathrm{mH}$, $\\mathrm{mF}$, $\\mu\\mathrm{F}$, $\\mathrm{nF}$ to H and F before computing $\\alpha$ and $\\omega_0$. $1\\,\\mathrm{nF}=10^{-9}\\,\\mathrm{F}$, $1\\,\\mu\\mathrm{F}=10^{-6}\\,\\mathrm{F}$, $1\\,\\mathrm{mH}=10^{-3}\\,\\mathrm{H}$.",
+   "citations": [],
+   "id": "fa9277e7-0e33-5078-8533-894bba3adba0"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Bonus (skip-safe): where the series equation comes from.** KVL around the loop, then replace the current by $Cv_C^{\\prime}$:\n\n```steps\n$$ V_s=Ri+Li^{\\prime}+v_C $$\nKVL: the three element voltages add up to the source.\n$$ i=\\hl{Cv_C^{\\prime}} $$\nThe loop current is the capacitor current.\n$$ V_s=RC\\,v_C^{\\prime}+LC\\,v_C^{\\prime\\prime}+v_C $$\nSubstitute the current and its derivative.\n$$ v_C^{\\prime\\prime}+\\hl{\\dfrac RL}v_C^{\\prime}+\\hl{\\dfrac1{LC}}v_C=\\hl{\\dfrac{V_s}{LC}} $$\nDivide by $LC$.\n```\n\nFor the parallel circuit, KCL at the top node is $Cv^{\\prime}+i_L+\\dfrac vR=0$. Differentiate once and use $i_L^{\\prime}=\\dfrac vL$.",
+   "citations": [],
+   "id": "a74171ea-8ee5-50c5-ac74-995c1ee7f39b"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 10 · W5 · A series step response · textbook P8.53",
+   "prompt": "The circuit has been in operation for a long time with $V_s=200\\,\\mathrm{V}$. At $t=0$ the source drops to $100\\,\\mathrm{V}$. Find $v_C(t)$ for $t\\ge0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$200\\to100\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$4\\,\\Omega$\" i=\"$i$\"\nL1 3,3 -> 6,3 \"$40\\,\\mathrm{mH}$\"\nC1 6,3 -> 6,0 \"$10\\,\\mathrm{mF}$\" v=\"$v_C$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "steps": [
+    {
+     "explanation": "**Type:** one $L$, one $C$ in one loop with a source that stays on: series RLC step response.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before:** DC steady state, $C$ open so $i=0$. No drop on $R$ or $L$, so $C$ holds the old source voltage.",
+     "latex": "v_C(0^-)=200\\,\\mathrm{V},\\quad i(0^-)=0"
+    },
+    {
+     "explanation": "**Starting values:** both carry over. The slope is $i/C$.",
+     "latex": "v_C(0^+)=200,\\quad v_C'(0^+)=\\dfrac{0}{0.01}=0"
+    },
+    {
+     "explanation": "**Equation:** $\\alpha=\\frac{4}{2(0.04)}=50$, $\\omega_0=\\frac{1}{\\sqrt{0.04\\times0.01}}=50$. Equal: critically damped.",
+     "latex": "v_C''+100v_C'+2500v_C=250000"
+    },
+    {
+     "explanation": "**Final value:** new DC steady state, $C$ open again, so $v_C\\to100\\,\\mathrm{V}$. Write final value + repeated-root transient.",
+     "latex": "v_C=100+(A_1+A_2t)e^{-50t}"
+    },
+    {
+     "explanation": "**Constants:** the value gives $A_1$.",
+     "latex": "100+A_1=200\\ \\Rightarrow\\ A_1=100"
+    },
+    {
+     "explanation": "The slope (product rule) gives $A_2$.",
+     "latex": "A_2-50A_1=0\\ \\Rightarrow\\ A_2=5000"
+    }
+   ],
+   "answer": "$v_C=100+(100+5000t)e^{-50t}\\,\\mathrm{V}$, $t\\ge0$ ($t$ in seconds). It starts at 200 V, flat, and settles at 100 V without overshoot.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "447a0540-ae9e-4dc3-9fd0-6a03ab990c54"
+    }
+   ],
+   "id": "d151127d-7657-5d0a-8117-01a5bab3e1bc"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 48 · W5 · No resistor: an ideal LC circuit · textbook P8.14",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "$C=250\\,\\mathrm{mF}$ and $L=0.4\\,\\mathrm{H}$ are in parallel. Initially $v(0)=0$ and $i_L(0)=-3\\,\\mathrm{A}$ (reference downward). Find (a) $v(t)$, (b) its frequency in rad/s, (c) its maximum amplitude.\n\n```schematic\nC1 0,3 -> 0,0 \"$250\\,\\mathrm{mF}$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$0.4\\,\\mathrm{H}$\" i=\"$i_L$\"\nwire 3,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** parallel, no $R$: $\\alpha=0$, undamped.",
+     "latex": "v''+\\dfrac{1}{LC}v=v''+10v=0"
+    },
+    {
+     "explanation": "**Form:** $\\omega_0=\\sqrt{10}$; the cosine term is zero because $v(0)=0$.",
+     "latex": "v=B\\sin(\\sqrt{10}\\,t)"
+    },
+    {
+     "explanation": "**Starting slope:** KCL $i_C+i_L=0$, so $i_C(0^+)=3\\,\\mathrm{A}$ downward.",
+     "latex": "v'(0^+)=\\dfrac{3}{0.25}=12\\,\\mathrm{V/s}"
+    },
+    {
+     "explanation": "**Constant:** $v^{\\prime}(0)=\\sqrt{10}\\,B=12$.",
+     "latex": "B=\\dfrac{12}{\\sqrt{10}}\\approx3.795"
+    }
+   ],
+   "answer": "(a) $v=\\dfrac{12}{\\sqrt{10}}\\sin(\\sqrt{10}\\,t)\\,\\mathrm{V}$. (b) $\\omega_0=\\sqrt{10}\\approx3.162\\,\\mathrm{rad/s}$. (c) $3.795\\,\\mathrm{V}$; with no $R$ it never decays.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "96fd98f4-14b6-4d63-aa7c-5505132ac79b"
+    }
+   ],
+   "id": "cb758499-3164-58a0-b582-d063b3ce5290"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 49 · W5 · Read the circuit back from its response · textbook P8.3",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "In a parallel RLC circuit, $C=50\\,\\mathrm{nF}$ and the voltage is $v=-5e^{-5000t}+20e^{-20000t}\\,\\mathrm{V}$ for $t\\ge0$. Find $\\alpha$, $\\omega_0$, $L$ and $R$.\n\n```schematic\nC1 0,3 -> 0,0 \"$50\\,\\mathrm{nF}$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$L$\" i=\"$i_L$\"\nwire 3,3 -> 6,3\nR1 6,3 -> 6,0 \"$R$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** two decaying exponentials = overdamped. The exponents are the roots $s_1=-5000$, $s_2=-20000$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Roots → equation:** $s^2+2\\alpha s+\\omega_0^2=(s+5000)(s+20000)$. Compare: $2\\alpha$ is the sum, $\\omega_0^2$ the product.",
+     "latex": "s^2+25000s+10^8=0"
+    },
+    {
+     "explanation": "So $\\alpha=12500\\,\\mathrm{s^{-1}}$ and $\\omega_0=10^4\\,\\mathrm{rad/s}$.",
+     "latex": ""
+    },
+    {
+     "explanation": "$\\omega_0^2=\\dfrac{1}{LC}$ gives $L$.",
+     "latex": "L=\\dfrac{1}{10^8\\times50\\times10^{-9}}=0.2\\,\\mathrm{H}"
+    },
+    {
+     "explanation": "Parallel: $\\alpha=\\dfrac{1}{2RC}$ gives $R$.",
+     "latex": "R=\\dfrac{1}{2(12500)(50\\times10^{-9})}=800\\,\\Omega"
+    }
+   ],
+   "answer": "$\\alpha=12500\\,\\mathrm{s^{-1}}$, $\\omega_0=10^4\\,\\mathrm{rad/s}$, $L=0.2\\,\\mathrm{H}$, $R=800\\,\\Omega$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "26153a6c-2ee9-43df-83be-ce262af53ec3"
+    }
+   ],
+   "id": "5e900768-ace6-58b7-8e5b-7ff81cc9ff68"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 50 · W5 · Switch to a series loop · textbook P8.44",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "The switch has been in position $a$ for a long time. At $t=0$ it moves to $b$. Find $i(t)$ for $t\\ge0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$70\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$50\\,\\Omega$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=open\nC1 6,3 -> 6,0 \"$200\\,\\mathrm{nF}$\" v=\"$v_C$\"\nS2 6,3 -> 9,3 \"$t=0$\" action=close\nR2 9,3 -> 12,3 \"$200\\,\\Omega$\" i=\"$i$\"\nL1 12,3 -> 12,0 \"$100\\,\\mathrm{mH}$\"\nwire 12,0 -> 0,0\nground 0,0\nlabel 3,3 \"$a$\" above\nlabel 9,3 \"$b$\" above\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** after the switch, $C$, $200\\,\\Omega$ and $L$ form one loop with no source: series RLC natural response.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before:** in position $a$, $C$ is open in steady state, so no current in $50\\,\\Omega$ and $C$ charges to the source. $L$ is disconnected.",
+     "latex": "v_C(0^-)=70\\,\\mathrm{V},\\quad i(0^-)=0"
+    },
+    {
+     "explanation": "**Starting slope:** KVL round the new loop, $v_C=Ri+L\\,i^{\\prime}$, at $0^+$.",
+     "latex": "i'(0^+)=\\dfrac{70-200(0)}{0.1}=700\\,\\mathrm{A/s}"
+    },
+    {
+     "explanation": "**Equation:** $\\alpha=\\dfrac{200}{2(0.1)}=1000$, $\\omega_0^2=\\dfrac{1}{0.1\\times200\\times10^{-9}}=5\\times10^7$. $\\alpha<\\omega_0$: underdamped.",
+     "latex": "\\omega_d=\\sqrt{5\\times10^7-10^6}=7000\\,\\mathrm{rad/s}"
+    },
+    {
+     "explanation": "**Form:** $i(0)=0$ removes the cosine.",
+     "latex": "i=B\\,e^{-1000t}\\sin7000t"
+    },
+    {
+     "explanation": "**Constant:** at $t=0$ the slope is $7000B=700$.",
+     "latex": "B=0.1"
+    }
+   ],
+   "answer": "$i=0.1\\,e^{-1000t}\\sin7000t\\ \\mathrm{A}$ $=100\\,e^{-1000t}\\sin7000t\\ \\mathrm{mA}$, $t\\ge0$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "b37a6069-581f-40ac-8046-ae0851061af6"
+    }
+   ],
+   "id": "1443e76b-8d9e-55c8-8f4a-b2d5a9d3d4fc"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 51 · W5 · The slope comes from KCL · textbook P8.7",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$R=\\tfrac{12500}{3}\\,\\Omega$, $L=250\\,\\mathrm{mH}$, $C=10\\,\\mathrm{nF}$ in parallel. Initially $v(0)=90\\,\\mathrm{V}$ and $i_L(0)=-30\\,\\mathrm{mA}$ (references as drawn). Find $v(t)$ for $t\\ge0$.\n\n```schematic\nC1 0,3 -> 0,0 \"$10\\,\\mathrm{nF}$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$250\\,\\mathrm{mH}$\" i=\"$i_L$\"\nwire 3,3 -> 6,3\nR1 6,3 -> 6,0 \"$\\tfrac{12500}{3}\\,\\Omega$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** parallel RLC, no source: natural response.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Starting slope:** $i_R=\\dfrac{90}{12500/3}=21.6\\,\\mathrm{mA}$. KCL $i_C+i_L+i_R=0$.",
+     "latex": "i_C(0^+)=30-21.6=8.4\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "Divide by $C$.",
+     "latex": "v'(0^+)=\\dfrac{8.4\\times10^{-3}}{10^{-8}}=8.4\\times10^5\\,\\mathrm{V/s}"
+    },
+    {
+     "explanation": "**Equation:** $\\alpha=\\dfrac{1}{2RC}=12000$, $\\omega_0=\\dfrac{1}{\\sqrt{LC}}=20000$. $\\alpha<\\omega_0$: underdamped.",
+     "latex": "\\omega_d=\\sqrt{20000^2-12000^2}=16000"
+    },
+    {
+     "explanation": "**Form** with $v(0)=90$ as the cosine coefficient.",
+     "latex": "v=e^{-12000t}(90\\cos16000t+B_2\\sin16000t)"
+    },
+    {
+     "explanation": "**Constant:** slope at 0 is $-\\alpha(90)+\\omega_dB_2$.",
+     "latex": "-12000(90)+16000B_2=840000\\ \\Rightarrow\\ B_2=120"
+    }
+   ],
+   "answer": "$v=e^{-12000t}(90\\cos16000t+120\\sin16000t)\\,\\mathrm{V}$, $t\\ge0$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "26153a6c-2ee9-43df-83be-ce262af53ec3"
+    }
+   ],
+   "id": "99e0f52b-b9cc-5943-8952-6d735b574c45"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 52 · W5 · Choose R for critical damping · textbook P8.42",
+   "difficulty": "advanced",
+   "origin": "source",
+   "prompt": "$R$ is adjusted for critical damping. At the moment the switch closes, $v_C=90\\,\\mathrm{V}$ and the inductor current is $i=24\\,\\mathrm{mA}$. Find (a) $R$, (b) $i$ and $\\dfrac{di}{dt}$ just after closing, (c) $i(t)$ and $v_C(t)$ for $t\\ge0$.\n\n```schematic\nC1 0,3 -> 0,0 \"$160\\,\\mathrm{nF}$\" v=\"$v_C$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nR1 3,3 -> 6,3 \"$R$\" i=\"$i$\"\nL1 6,3 -> 6,0 \"$250\\,\\mathrm{mH}$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** one loop, no source: series RLC natural response. Critical means $\\alpha=\\omega_0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**(a)** $\\omega_0=\\dfrac{1}{\\sqrt{0.25\\times160\\times10^{-9}}}=5000$. Set $\\dfrac{R}{2L}=5000$.",
+     "latex": "R=2(0.25)(5000)=2500\\,\\Omega"
+    },
+    {
+     "explanation": "**(b)** $i$ is an inductor current, so it carries over. KVL round the loop: $v_C=Ri+L\\,i^{\\prime}$.",
+     "latex": "i'(0^+)=\\dfrac{90-2500(0.024)}{0.25}=120\\,\\mathrm{A/s}"
+    },
+    {
+     "explanation": "**(c) Form:** repeated root $-5000$.",
+     "latex": "i=(A_1+A_2t)e^{-5000t}"
+    },
+    {
+     "explanation": "**Constants:** $A_1=i(0)=0.024$; slope $A_2-5000A_1=120$.",
+     "latex": "A_2=240"
+    },
+    {
+     "explanation": "Then $v_C=Ri+L\\,i^{\\prime}$ (or check: $i=-C\\,v_C^{\\prime}$, since $i$ leaves the $+$ of $C$).",
+     "latex": "v_C=(90+3\\times10^5\\,t)e^{-5000t}"
+    }
+   ],
+   "answer": "(a) $R=2500\\,\\Omega$. (b) $i(0^+)=24\\,\\mathrm{mA}$, $i^{\\prime}(0^+)=120\\,\\mathrm{A/s}$. (c) $i=(0.024+240t)e^{-5000t}\\,\\mathrm{A}$, $v_C=(90+3\\times10^5t)e^{-5000t}\\,\\mathrm{V}$.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "b37a6069-581f-40ac-8046-ae0851061af6"
+    }
+   ],
+   "id": "c1f4b75e-b8d4-5f0f-833d-0b67c998ccf6"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Problem 53 · W5 + W6 · The answer is zero · textbook P8.24",
+   "difficulty": "advanced",
+   "origin": "source",
+   "prompt": "The switch has been open a long time; the capacitor is uncharged. At $t=0$ it closes. Find $v_o(t)$ for $t\\ge0$.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$400\\,\\Omega$\"\nL1 3,3 -> 3,0 \"$1.25\\,\\mathrm{H}$\" i=\"$i_L$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nC1 6,3 -> 6,0 \"$1.25\\,\\mu\\mathrm{F}$\" v=\"$v_o$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** after closing, $L$ and $C$ share the top node, fed through $400\\,\\Omega$: a parallel RLC with a DC source.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Before:** $L$ is a short in steady state, so it carries all the source current; $C$ is disconnected and uncharged.",
+     "latex": "i_L(0^-)=\\dfrac{12}{400}=30\\,\\mathrm{mA},\\quad v_o(0^-)=0"
+    },
+    {
+     "explanation": "**Starting slope:** at $0^+$, $v_o=0$ so the $400\\,\\Omega$ still carries $30\\,\\mathrm{mA}$, and all of it goes into $L$. KCL leaves nothing for $C$.",
+     "latex": "i_C(0^+)=30-30=0\\ \\Rightarrow\\ v_o^{\\prime}(0^+)=0"
+    },
+    {
+     "explanation": "**Equation:** KCL $\\dfrac{v_o-12}{400}+i_L+Cv_o^{\\prime}=0$. Differentiating removes the constant 12, so the equation is homogeneous.",
+     "latex": "Cv_o''+\\dfrac{v_o'}{400}+\\dfrac{v_o}{L}=0"
+    },
+    {
+     "explanation": "**Condition:** a homogeneous linear equation with $v_o(0)=0$ and $v_o^{\\prime}(0)=0$ has only the zero solution (the zero-start rule in [Topic C](#topic-c)).",
+     "latex": ""
+    }
+   ],
+   "answer": "$v_o(t)=0$ for all $t\\ge0$. The inductor already carries the whole source current, so nothing ever flows into the capacitor.",
+   "citations": [
+    {
+     "source_id": "c00436ce-ecb3-4417-ad98-c305d442e7e2",
+     "version": 1,
+     "chunk_id": "4a27e476-1d79-4ae6-a737-aedb523f00a2"
+    }
+   ],
+   "id": "35318c81-9702-5a04-9427-f5e313341303"
+  }
+ ]
+}

@@ -1,9 +1,37 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { schematicImage, schematicSeen } from "../api";
 import { CurrentFlow } from "./flow/CurrentFlow";
 import { parseFlow } from "./flow/circuit";
 import { drawingOnly, ElevationButton, ElevationDialog, ElevationInline, parseElevation } from "./Elevation";
 import { Markdown } from "./Markdown";
+import { loadSvg, useAutoLayout, wrapPart, type Parsed } from "./mathtools/svgLayout";
+
+/** The server's SVG drawn inline (not as an <img>) so autoLayout can move overlapping labels apart. */
+function InlineSchematic({ drawing, alt, fallback }: { drawing: string; alt: string; fallback: string }) {
+  const [parsed, setParsed] = useState<Parsed | null>(null);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    let live = true;
+    loadSvg(drawing).then(
+      (p) => live && setParsed(p),
+      () => live && setFailed(true),
+    );
+    return () => {
+      live = false;
+    };
+  }, [drawing]);
+  const html = useMemo(() => parsed?.parts.map((p) => wrapPart(p)).join("") ?? "", [parsed]);
+  const ref = useRef<SVGSVGElement>(null);
+  useAutoLayout(ref, [html]);
+  if (failed) return <img src={fallback} alt={alt} />;
+  if (!parsed) return <div className="schematic-wait" />;
+  const { x, y, w, h } = parsed.box;
+  return (
+    <svg ref={ref} className="schematic-svg" viewBox={`${x} ${y} ${w} ${h}`} width={(w * 4) / 3} role="img" aria-label={alt}>
+      <g dangerouslySetInnerHTML={{ __html: html }} />
+    </svg>
+  );
+}
 
 /** A circuit drawn in the schematic language, rendered by the server as SVG. */
 export function Schematic({ source, caption }: { source: string; caption?: string }) {
@@ -44,7 +72,7 @@ export function Schematic({ source, caption }: { source: string; caption?: strin
       {state.url && flow && typeof flow === "object" ? (
         <CurrentFlow url={state.url} spec={flow} alt={caption || "Circuit diagram"} />
       ) : state.url ? (
-        <img src={state.url} alt={caption || "Circuit diagram"} />
+        <InlineSchematic drawing={drawing} alt={caption || "Circuit diagram"} fallback={state.url} />
       ) : (
         <div className="schematic-wait" />
       )}

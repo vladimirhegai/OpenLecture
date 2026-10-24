@@ -66,7 +66,9 @@ def steps_fence(title, steps):
 
 class Doc:
     def __init__(self, week, title, topic_keys):
+        """week: the academic week (int), or a key such as 'mid' for a note that belongs to no single week."""
         self.week, self.title, self.topic_keys = week, title, topic_keys
+        self.academic_week = week if isinstance(week, int) else None
         self.B = []
         self.ex = 0  # running example number
         self.tr = 0  # running try-it number
@@ -194,12 +196,13 @@ class Doc:
         docs = json.load(open(DOCS)) if os.path.exists(DOCS) else {}
         key = str(self.week)
         if key not in docs:
-            body = {"title": self.title, "document_type": "study_notes", "academic_week": self.week,
+            body = {"title": self.title, "document_type": "study_notes", "academic_week": self.academic_week,
                     "topic_keys": self.topic_keys, "blocks": self.B, "actor": "agent",
                     "idempotency_key": f'elec231-w{self.week}-v1'}
             out = _send(f'{API}/documents', body, 'POST')
             # The create response shape varies; look the new note up by week and title instead.
-            hits = [d for d in _get(f'{API}/documents?academic_week={self.week}') if d['title'] == self.title]
+            query = f'?academic_week={self.academic_week}' if self.academic_week is not None else '?limit=100'
+            hits = [d for d in _get(f'{API}/documents{query}') if d['title'] == self.title]
             docs[key] = hits[0]['document_id']
             json.dump(docs, open(DOCS, 'w'), indent=1)
             print('created', docs[key])

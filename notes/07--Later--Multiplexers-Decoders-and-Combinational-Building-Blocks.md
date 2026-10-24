@@ -1,0 +1,203 @@
+# 07 · Later · Multiplexers, Decoders, and Combinational Building Blocks
+
+**Later study — outside this midterm study set.** Keep this material for subsequent assessments; prioritize notes 01–03 now.
+
+This note follows the design tasks in Problem Set 5 and the lecture’s 2-to-1 multiplexer example.
+
+## Topic 1: Multiplexers and Shannon expansion
+
+A **multiplexer (MUX)** selects one data input. For a 2-to-1 mux, select $S=0$ chooses $D_0$; $S=1$ chooses $D_1$. The select bit is a control input, not a third data choice.
+
+$$Y=\overline S D_0+SD_1$$
+
+```digital
+{"kind":"circuit","title":"Two-to-one multiplexer","nodes":[{"id":"D0","gate":"INPUT","x":70,"y":90},{"id":"D1","gate":"INPUT","x":70,"y":160},{"id":"SEL","gate":"INPUT","x":70,"y":230,"label":"S"},{"id":"M","gate":"MUX","x":285,"y":160},{"id":"Y","gate":"OUTPUT","x":485,"y":160}],"wires":[{"start":"D0.out","end":"M.0"},{"start":"D1.out","end":"M.1"},{"start":"SEL.out","end":"M.2"},{"start":"M.out","end":"Y.0"}]}
+```
+
+*MUX ports are labeled 0, 1 and S; the output equals the selected data input.*
+
+A **cofactor** fixes one input: $F_0=F|_{A=0}$ and $F_1=F|_{A=1}$. Shannon expansion says $F=\overline A F_0+AF_1$. A mux therefore implements any function if its data inputs implement the two cofactors.
+
+**Example: PS5 Q3: design a mux from cofactors**
+
+Implement $F(A,B,C)=\sum m(0,4,6,7)$ with one 2-to-1 mux and other necessary gates. Select on A.
+
+1. When A=0, only BC=00 gives 1.
+
+   $$F_0=\overline B\overline C$$
+2. When A=1, BC=00,10,11 give 1.
+
+   $$F_1=B+\overline C$$
+3. Connect the cofactors to the corresponding mux data pins.
+
+   $$S=A,\quad D_0=\overline B\overline C,\quad D_1=B+\overline C$$
+
+**Answer:** The mux chooses F0 for A=0 and F1 for A=1. Share NOT C between the two cofactor circuits.
+
+**Example: Use two select inputs instead**
+
+Implement the same function with a 4-to-1 mux, selecting by AB.
+
+1. For AB=00, F follows NOT C; for 01, F is always 0.
+2. For AB=10, F follows NOT C; for 11, F is always 1.
+
+   $$D_0=\overline C,\ D_1=0,\ D_2=\overline C,\ D_3=1$$
+
+**Answer:** One 4-to-1 mux and an inverter; address order must match AB=00,01,10,11.
+
+Applying Shannon expansion repeatedly eventually fixes every input. The result is the canonical sum of minterms. Stopping earlier gives a useful mux tree instead.
+
+**Example: Build a function from two-input LUTs**
+
+Implement $F=AB+AC+BC$ using five 2-input LUTs.
+
+1. Three LUTs generate P=AB, Q=AC, R=BC. Each stores 0001 in address order 00,01,10,11.
+2. A fourth LUT generates U=P OR Q; the fifth generates F=U OR R. Each OR LUT stores 0111.
+
+**Answer:** Five LUTs suffice. These are truth-table contents, not FPGA configuration-file bit ordering.
+
+**Problem: Try it: a mux as an inverter** (intermediate)
+
+Implement NOT A using one 2-to-1 mux with select A and constant data inputs.
+
+<details><summary>Solution</summary>
+
+1. At A=0 the output must be 1; at A=1 it must be 0.
+
+   $$D_0=1,\quad D_1=0$$
+
+**Answer:** Connect D0=1 and D1=0.
+
+</details>
+
+## Topic 2: Decoders and encoders
+
+An active-high **n-to-$2^n$ decoder** activates exactly the output whose index equals the binary input. Its outputs are the input minterms. With an enable E, all outputs are inactive when E=0.
+
+| AB | Y0 | Y1 | Y2 | Y3 |
+|---|---|---|---|---|
+| 00 | 1 | 0 | 0 | 0 |
+| 01 | 0 | 1 | 0 | 0 |
+| 10 | 0 | 0 | 1 | 0 |
+| 11 | 0 | 0 | 0 | 1 |
+
+$$Y_0=E\overline A\overline B,\quad Y_1=E\overline A B$$
+
+$$Y_2=EA\overline B,\quad Y_3=EAB$$
+
+**Example: PS5 Q1: implement a function with a decoder**
+
+$F(A,B,C)=\sum m(0,2,3,4,5,7)$. Use a 3-to-8 active-high decoder.
+
+1. Connect A,B,C to the decoder in that bit order.
+2. OR the outputs corresponding to the required minterms.
+
+   $$F=Y_0+Y_2+Y_3+Y_4+Y_5+Y_7$$
+
+**Answer:** A 3-to-8 decoder plus the OR of those six outputs. Active-low decoder outputs require a different combining gate.
+
+**Example: PS5 Q9: build a decoder hierarchically**
+
+Construct an enabled 3-to-8 decoder from two enabled 2-to-4 decoders.
+
+1. Feed the low two input bits B,C into both decoders.
+2. Enable the lower-output bank with E AND NOT A, and the upper bank with E AND A.
+3. The lower bank drives Y0–Y3; the upper drives Y4–Y7.
+
+**Answer:** Exactly one bank can be enabled for a binary A. This requires the sub-decoders to have enable inputs.
+
+An **encoder** does the reverse when exactly one input is active: it outputs that input’s binary index. A **priority encoder** defines which active input wins when several are 1. A separate valid flag distinguishes “input 0 active” from “nothing active.”
+
+| D3 D2 D1 D0 | Valid | Index (D3 highest priority) |
+|---|---|---|
+| 1--- | 1 | 11 |
+| 01-- | 1 | 10 |
+| 001- | 1 | 01 |
+| 0001 | 1 | 00 |
+| 0000 | 0 | 00 (chosen default) |
+
+```vhdl
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity priority4 is
+  port (d : in std_logic_vector(3 downto 0);
+        code : out std_logic_vector(1 downto 0);
+        valid : out std_logic);
+end entity;
+architecture rtl of priority4 is
+begin
+  code <= "11" when d(3)='1' else
+          "10" when d(2)='1' else
+          "01" when d(1)='1' else "00";
+  valid <= d(3) or d(2) or d(1) or d(0);
+end architecture;
+```
+
+**Problem: Try it: active-low outputs** (intermediate)
+
+A decoder produces active-low outputs N0–N7. How do you combine N1,N3,N6 to implement a function that is 1 at minterms 1,3,6?
+
+<details><summary>Solution</summary>
+
+1. Each Ni is the complement of the corresponding minterm.
+
+   $$F=\overline{N_1N_3N_6}$$
+
+**Answer:** Use a NAND of N1,N3,N6; an OR would give the wrong function.
+
+</details>
+
+## Topic 3: Shifters and equality
+
+A **logical shifter** routes bit positions and fills vacated positions with zeroes. Let $W=w_3w_2w_1w_0$ and $Y=y_3y_2y_1y_0$, with $w_3$ the MSB.
+
+- Hold: $Y=W$.
+- Shift left: $Y=w_2w_1w_0 0$.
+- Shift right: $Y=0w_3w_2w_1$.
+
+**Example: PS5 Q10: four-bit bidirectional shifter**
+
+Design hold/left/right selection when Right and Left are never both 1.
+
+1. Use the same two controls for one mux per output bit. Let H mean neither shift is requested.
+
+   $$H=\overline R\overline L$$
+2. MSB chooses hold w3, left w2, or right zero.
+
+   $$y_3=Hw_3+Lw_2$$
+3. Interior bits choose their corresponding neighbors.
+
+   $$y_2=Hw_2+Lw_1+Rw_3$$
+4. Finish the low two positions.
+
+   $$y_1=Hw_1+Lw_0+Rw_2,\quad y_0=Hw_0+Rw_1$$
+
+**Answer:** Four routing muxes. The equations rely on the specified exclusion of R=L=1.
+
+**Example: Follow the bit order**
+
+For W=1011, give hold, one logical left shift, and one logical right shift.
+
+1. Keep four output positions and discard bits shifted out.
+2. Fill the new position with zero.
+
+**Answer:** Hold 1011; left 0110; right 0101. Arithmetic right shift is different for a negative signed value.
+
+A four-bit equality detector compares corresponding bits using XNOR, then ANDs the four equality results. It checks bit-pattern equality regardless of whether those patterns are interpreted as signed or unsigned.
+
+$$Equal=\prod_{i=0}^{3}\overline{A_i\oplus B_i}$$
+
+**Problem: Try it: replace zero-fill with rotation** (intermediate)
+
+What is the one-bit rotate-left result for W=1011? How must the shifter’s MSB/LSB routing change?
+
+<details><summary>Solution</summary>
+
+1. A rotation returns the bit shifted out to the other end.
+
+   $$Y=w_2w_1w_0w_3$$
+
+**Answer:** 0111. For rotate left, y0 receives w3 instead of 0; the other left-shift connections are unchanged.
+
+</details>

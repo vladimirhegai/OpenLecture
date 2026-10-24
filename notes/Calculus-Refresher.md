@@ -30,11 +30,11 @@ An **exponential** has the variable in its exponent: $e^t$, where $e\approx2.718
 
 $\ln$ is the **natural logarithm**: it undoes an exponential with base $e$. It lets you bring an exponent down so you can solve for time.
 
-**Example 1 · When has a current halved?**
+**Example: Example 1 · When has a current halved?**
 
 A current is $i(t)=4e^{-2t}\,\mathrm A$. Find when it reaches $2\,\mathrm A$. No calculus yet.
 
-```steps
+1. ```steps
 $$ 2=4e^{-2t} $$
 Put the requested current into the formula.
 $$ \hl{\dfrac12}=e^{-2t} $$
@@ -47,13 +47,13 @@ Since ln(1/2) = −ln 2, dividing by −2 gives a positive time.
 
 **Answer:** $t=\dfrac{\ln2}{2}\approx0.347\,\mathrm s$.
 
-**Try it 1 · Solve for time**
+**Problem: Try it 1 · Solve for time** (introductory)
 
 A voltage is $v(t)=12(1-e^{-3t})\,\mathrm V$. When does it reach $9\,\mathrm V$?
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ 9=12(1-e^{-3t}) $$
 Substitute the requested voltage.
 $$ e^{-3t}=\hl{\dfrac14} $$
@@ -74,9 +74,7 @@ Divide by −3.
 
 A **derivative** is the slope of a function at one instant. A rising curve has a positive derivative; a falling curve has a negative one.
 
-$$
-y^{\prime}(t)=\dfrac{dy}{dt}
-$$
+$$y^{\prime}(t)=\dfrac{dy}{dt}$$
 
 These are two names for the same derivative. If $i$ is in amperes and $t$ in seconds, $\dfrac{di}{dt}$ is in A/s; it tells you how fast the current changes.
 
@@ -91,11 +89,11 @@ These are two names for the same derivative. If $i$ is in amperes and $t$ in sec
 
 Differentiate sums term by term; keep constant multipliers. For trig derivatives, angles must be in **radians** ($\pi$ radians $=180^\circ$).
 
-**Example 2 · Differentiate term by term**
+**Example: Example 2 · Differentiate term by term**
 
 Find the derivative of $y(t)=3t^2-4t+2$.
 
-```steps
+1. ```steps
 $$ y=3t^2-4t+2 $$
 Start with the function.
 $$ y^{\prime}=3\hl{(2t)}-4\hl{(1)}+\hl{0} $$
@@ -106,13 +104,13 @@ Collect the terms.
 
 **Answer:** $y^{\prime}=6t-4$.
 
-**Try it 2 · A slope at a particular time**
+**Problem: Try it 2 · A slope at a particular time** (introductory)
 
 For $y(t)=t^3-2t$, find $\dfrac{dy}{dt}$ and its value at $t=1$. Is the curve rising or falling there?
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ y^{\prime}=\hl{3t^2-2} $$
 Use the power rule on each term.
 $$ y^{\prime}(1)=3(1)^2-2=\hl{1} $$
@@ -127,15 +125,13 @@ Differentiate first, then put in t = 1.
 
 In $e^{-2t}$, the outside function is the exponential and the inside is $-2t$. Differentiate the outside, keep the inside, then **multiply by the derivative of the inside**.
 
-$$
-\dfrac{d}{dt}f(g(t))=f^{\prime}(g(t))g^{\prime}(t)
-$$
+$$\dfrac{d}{dt}f(g(t))=f^{\prime}(g(t))g^{\prime}(t)$$
 
-**Example 3 · The rate of an exponential decay**
+**Example: Example 3 · The rate of an exponential decay**
 
 Find $\dfrac{di}{dt}$ for $i(t)=4e^{-2t}\,\mathrm A$.
 
-```steps
+1. ```steps
 $$ i=4e^{-2t} $$
 The 4 stays as a constant multiplier.
 $$ \dfrac{di}{dt}=4e^{-2t}\hl{(-2)} $$
@@ -168,13 +164,13 @@ caption "Move T forward: the current still decreases, but the tangent becomes le
 
 $a$ and $\omega$ (omega) are constants. For example, $\dfrac{d}{dt}\cos(2t)=-2\sin(2t)$: the extra 2 comes from the inside.
 
-**Try it 3 · A voltage building up**
+**Problem: Try it 3 · A voltage building up** (intermediate)
 
 For $v(t)=12-10e^{-5t}\,\mathrm V$, find $\dfrac{dv}{dt}$ and the initial rate $v^{\prime}(0)$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ v^{\prime}=0-10e^{-5t}\hl{(-5)} $$
 Differentiate the constant and use the chain rule.
 $$ v^{\prime}=\hl{50e^{-5t}} $$
@@ -187,13 +183,13 @@ At t = 0, the exponential is 1.
 
 </details>
 
-**Try it 4 · A changing logarithm**
+**Problem: Try it 4 · A changing logarithm** (intermediate)
 
 Differentiate $y(t)=\ln(1+t^2)$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ y=\ln(1+t^2) $$
 The outside is ln; the inside is 1 + t².
 $$ y^{\prime}=\dfrac{1}{1+t^2}\hl{(2t)} $$
@@ -210,17 +206,15 @@ Combine the factors.
 
 For a product of two changing functions, both contribute to the derivative. You do **not** multiply their derivatives together.
 
-$$
-\dfrac{d}{dt}(uv)=u^{\prime}v+uv^{\prime}
-$$
+$$\dfrac{d}{dt}(uv)=u^{\prime}v+uv^{\prime}$$
 
 $u$ and $v$ here are any two functions of $t$. A **second derivative**, $y^{\prime\prime}=\dfrac{d^2y}{dt^2}$, means differentiate the result again; it is not $(y^{\prime})^2$.
 
-**Example 4 · A product you will see with repeated roots**
+**Example: Example 4 · A product you will see with repeated roots**
 
 Find $y^{\prime}$ and $y^{\prime\prime}$ for $y=te^{-2t}$.
 
-```steps
+1. ```steps
 $$ y=te^{-2t} $$
 There are two changing factors.
 $$ y^{\prime}=\hl{1}e^{-2t}+t\hl{(-2e^{-2t})} $$
@@ -235,13 +229,13 @@ Collect the factors multiplying the exponential.
 
 **Answer:** $y^{\prime}=(1-2t)e^{-2t}$; $y^{\prime\prime}=(4t-4)e^{-2t}$.
 
-**Try it 5 · Differentiate twice**
+**Problem: Try it 5 · Differentiate twice** (intermediate)
 
 Find $y^{\prime}$ and $y^{\prime\prime}$ for $y=(2+t)e^{-t}$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ y^{\prime}=e^{-t}-(2+t)e^{-t}=\hl{-(1+t)e^{-t}} $$
 Apply the product rule and combine.
 $$ y^{\prime\prime}=-e^{-t}+(1+t)e^{-t} $$
@@ -258,15 +252,13 @@ Combine the terms.
 
 For a fraction, use the **quotient rule**: bottom × derivative of top, minus top × derivative of bottom, all over bottom squared.
 
-$$
-\dfrac{d}{dt}\left(\dfrac uv\right)=\dfrac{vu^{\prime}-uv^{\prime}}{v^2}
-$$
+$$\dfrac{d}{dt}\left(\dfrac uv\right)=\dfrac{vu^{\prime}-uv^{\prime}}{v^2}$$
 
-**Example 5 · A quotient**
+**Example: Example 5 · A quotient**
 
 Differentiate $y=\dfrac{t}{1+t}$, for $t\ne-1$.
 
-```steps
+1. ```steps
 $$ y^{\prime}=\dfrac{(1+t)\hl{(1)}-t\hl{(1)}}{(1+t)^2} $$
 Here the derivatives of both the top and bottom are 1.
 $$ y^{\prime}=\hl{\dfrac{1}{(1+t)^2}} $$
@@ -275,13 +267,13 @@ The t terms cancel in the numerator.
 
 **Answer:** $y^{\prime}=\dfrac1{(1+t)^2}$.
 
-**Try it 6 · Keep the quotient-rule signs**
+**Problem: Try it 6 · Keep the quotient-rule signs** (introductory)
 
 Differentiate $y=\dfrac{1+t}{1-t}$, for $t\ne1$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ y^{\prime}=\dfrac{(1-t)(1)-(1+t)\hl{(-1)}}{(1-t)^2} $$
 The derivative of the bottom is −1.
 $$ y^{\prime}=\dfrac{1-t+1+t}{(1-t)^2}=\hl{\dfrac2{(1-t)^2}} $$
@@ -296,11 +288,11 @@ Subtracting a negative gives a plus.
 
 For a function $U(t,y)$ with two inputs, a **partial derivative** changes one input while holding the other fixed. The curly $\partial$ marks this difference.
 
-**Example 6 · Partial and mixed derivatives**
+**Example: Example 6 · Partial and mixed derivatives**
 
 For $U(t,y)=t^2y+3y^2$, find $U_t=\dfrac{\partial U}{\partial t}$ and $U_y=\dfrac{\partial U}{\partial y}$.
 
-```steps
+1. ```steps
 $$ U=t^2y+3y^2 $$
 Start with two independent inputs.
 $$ U_t=\hl{2ty} $$
@@ -313,13 +305,13 @@ Differentiate each result in the other variable; these mixed partials agree.
 
 **Answer:** $U_t=2ty$; $U_y=t^2+6y$; both mixed partial derivatives are $2t$.
 
-**Try it 7 · A partial derivative with trig**
+**Problem: Try it 7 · A partial derivative with trig** (introductory)
 
 For $U(t,y)=t^2\sin y+y^3$, find $U_t$ and $U_y$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ U_t=\hl{2t\sin y} $$
 Hold y fixed, so sin y is a constant multiplier.
 $$ U_y=\hl{t^2\cos y+3y^2} $$
@@ -334,11 +326,11 @@ Hold t fixed and differentiate the y terms.
 
 **Implicit differentiation** is different: now $y=y(t)$ changes along a curve. When differentiating $y^2$ with respect to $t$, the chain rule gives $2yy^{\prime}$.
 
-**Example 7 · Implicit derivative of a circle**
+**Example: Example 7 · Implicit derivative of a circle**
 
 Find $y^{\prime}$ from $t^2+y^2=5$.
 
-```steps
+1. ```steps
 $$ t^2+y^2=5 $$
 The equation describes a curve; y depends on t along it.
 $$ 2t+\hl{2yy^{\prime}}=0 $$
@@ -355,9 +347,7 @@ Solve for the derivative where y is nonzero.
 
 An **antiderivative** of $f(t)$ is a function whose derivative is $f(t)$. An **indefinite integral** asks for all of those functions, so include an arbitrary constant $K$.
 
-$$
-\int f(t)\,dt=F(t)+K\quad\text{if }F^{\prime}(t)=f(t)
-$$
+$$\int f(t)\,dt=F(t)+K\quad\text{if }F^{\prime}(t)=f(t)$$
 
 The $dt$ tells you the integration variable. The constant is necessary because $F$, $F+3$ and $F-8$ all have the same derivative.
 
@@ -371,13 +361,13 @@ The $dt$ tells you the integration variable. The constant is necessary because $
 
 Integrate sums term by term and keep constant multipliers. For example, $\int(6t-2)\,dt=3t^2-2t+K$; check it by differentiating.
 
-**Try it 8 · Undo an exponential derivative**
+**Problem: Try it 8 · Undo an exponential derivative** (introductory)
 
 Find $\int e^{-3t}\,dt$, then differentiate your answer to check it.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ \int e^{-3t}\,dt=\hl{-\dfrac13e^{-3t}+K} $$
 Divide by the exponent coefficient −3.
 $$ \dfrac{d}{dt}\left(-\dfrac13e^{-3t}+K\right)=\hl{e^{-3t}} $$
@@ -392,19 +382,17 @@ The chain-rule factor −3 cancels −1/3.
 
 A **definite integral** has a start and an end. It gives net accumulation (signed area), rather than a family of functions.
 
-$$
-\int_a^b f(t)\,dt=F(b)-F(a)
-$$
+$$\int_a^b f(t)\,dt=F(b)-F(a)$$
 
 $a$ and $b$ are the integration limits. For example, $\int_0^2 6t\,dt=[3t^2]_0^2=12$; the notation $[F]_a^b$ means $F(b)-F(a)$, and the constant cancels.
 
 ### Integration and initial conditions (Week 2)
 
-**Example 8 · Recover a voltage from its rate**
+**Example: Example 8 · Recover a voltage from its rate**
 
 A voltage changes at $\dfrac{dv}{dt}=2+2t$ V/s and starts at $v(0)=1\,\mathrm V$. Find $v(t)$.
 
-```steps
+1. ```steps
 $$ v(t)=\hl{\int(2+2t)\,dt} $$
 Undo the derivative by integrating.
 $$ v(t)=\hl{2t+t^2+K} $$
@@ -421,11 +409,11 @@ Put the constant back into the function.
 
 **Substitution** reverses the chain rule. Replace a complicated inside expression by $u$, and replace its derivative times $dt$ by $du$.
 
-**Example 9 · A fraction that becomes a logarithm**
+**Example: Example 9 · A fraction that becomes a logarithm**
 
 Find $\int\dfrac{2t}{1+t^2}\,dt$.
 
-```steps
+1. ```steps
 $$ \int\dfrac{2t}{1+t^2}\,dt $$
 The numerator is the derivative of the denominator.
 $$ u=\hl{1+t^2},\qquad du=\hl{2t\,dt} $$
@@ -438,13 +426,13 @@ Substitute back; 1 + t² is positive, so absolute-value bars are unnecessary.
 
 **Answer:** $\ln(1+t^2)+K$.
 
-**Try it 9 · The numerator is almost the derivative**
+**Problem: Try it 9 · The numerator is almost the derivative** (intermediate)
 
 Find $\int\dfrac{t}{t^2+4}\,dt$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ u=t^2+4,\qquad du=2t\,dt $$
 Choose the denominator as u.
 $$ \int\dfrac{t}{t^2+4}\,dt=\hl{\dfrac12}\int\dfrac{du}{u} $$
@@ -461,17 +449,15 @@ Integrate and substitute back.
 
 **Integration by parts** reverses the product rule. Use it for products such as $te^{2t}$, where differentiating the polynomial makes the remaining integral easier.
 
-$$
-\int u\,dv=uv-\int v\,du
-$$
+$$\int u\,dv=uv-\int v\,du$$
 
 Choose $u$ to differentiate and $dv$ to integrate. Here $u$ and $v$ are temporary names, unrelated to a circuit voltage.
 
-**Example 10 · A polynomial times an exponential**
+**Example: Example 10 · A polynomial times an exponential**
 
 Find $\int te^{2t}\,dt$.
 
-```steps
+1. ```steps
 $$ u=t,\quad du=dt $$
 Differentiate the polynomial.
 $$ dv=e^{2t}dt,\quad v=\hl{\dfrac12e^{2t}} $$
@@ -484,13 +470,13 @@ Integrate the remaining exponential.
 
 **Answer:** $\dfrac t2e^{2t}-\dfrac14e^{2t}+K$.
 
-**Try it 10 · By parts with a negative exponent**
+**Problem: Try it 10 · By parts with a negative exponent** (intermediate)
 
 Find $\int te^{-t}\,dt$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ u=t,\quad dv=e^{-t}dt,\quad v=\hl{-e^{-t}} $$
 Choose the polynomial to differentiate.
 $$ \int te^{-t}dt=\hl{-te^{-t}+\int e^{-t}dt} $$
@@ -524,11 +510,11 @@ Dividing by $L$ gives $\dfrac{di}{dt}=-\dfrac RL i$. With $R,L>0$, positive curr
 
 A **general solution** contains free constants. An **initial value problem** (IVP) adds a starting value, such as $i(0)=4$, to select a particular solution.
 
-**Example 11 · Check a proposed solution**
+**Example: Example 11 · Check a proposed solution**
 
 Does $i(t)=4e^{-2t}$ satisfy $i^{\prime}+2i=0$ and $i(0)=4$?
 
-```steps
+1. ```steps
 $$ i^{\prime}=\hl{-8e^{-2t}} $$
 Differentiate the proposed current.
 $$ i^{\prime}+2i=-8e^{-2t}+8e^{-2t}=\hl{0} $$
@@ -543,11 +529,11 @@ Check the initial condition separately.
 
 To **solve** a separable equation, gather the $y$ terms with $dy$ and the $t$ terms with $dt$, then integrate each side. This is the separation-of-variables rule; use one integration constant after combining the two sides.
 
-**Example 12 · Derive the Week 1 decay**
+**Example: Example 12 · Derive the Week 1 decay**
 
 Solve $\dfrac{di}{dt}=-2i$ with $i(0)=4$.
 
-```steps
+1. ```steps
 $$ \dfrac{di}{dt}=-2i $$
 Start with the rate equation.
 $$ \hl{\dfrac1i\,di}=\hl{-2\,dt} $$
@@ -566,13 +552,13 @@ Use the initial condition.
 
 In the RL model, $2$ is replaced by $R/L=1/\tau$. Thus $i(t)=I_0e^{-t/\tau}$ with $\tau=L/R$; $I_0=i(0)$ and $\tau$ (tau) is the time constant.
 
-**Try it 11 · Solve a decay and keep every solution**
+**Problem: Try it 11 · Solve a decay and keep every solution** (intermediate)
 
 Solve $y^{\prime}=-3y$ with $y(0)=6$. Also state the general solution and identify the solution excluded when dividing by $y$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ \dfrac{dy}{y}=-3\,dt $$
 Separate for y nonzero.
 $$ \ln|y|=\hl{-3t+K} $$
@@ -587,13 +573,13 @@ Use the initial condition.
 
 </details>
 
-**Try it 12 · Separate when the final value is nonzero**
+**Problem: Try it 12 · Separate when the final value is nonzero** (intermediate)
 
 Solve $y^{\prime}=6-2y$ with $y(0)=1$. Hint: $6-2y=-2(y-3)$, and $y=3$ is a constant solution.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ \dfrac{dy}{y-3}=\hl{-2\,dt} $$
 Separate for y different from 3.
 $$ \ln|y-3|=\hl{-2t+K} $$
@@ -623,27 +609,21 @@ $0^-$ and $0^+$ mean just before and just after switching; these continuity rule
 
 Separation does not always work. A first-order **linear** equation has the form below, with $a(t)$ and $f(t)$ known functions.
 
-$$
-y^{\prime}+a(t)y=f(t)
-$$
+$$y^{\prime}+a(t)y=f(t)$$
 
 The **integrating factor** $\mu(t)$ (mu) is chosen so multiplying the equation makes the left side one product derivative. This uses the product rule you already know.
 
-$$
-\mu(t)=e^{\int a(t)\,dt}
-$$
+$$\mu(t)=e^{\int a(t)\,dt}$$
 
-$$
-\dfrac{d}{dt}[\mu(t)y(t)]=\mu(t)f(t)
-$$
+$$\dfrac{d}{dt}[\mu(t)y(t)]=\mu(t)f(t)$$
 
 Then integrate both sides, divide by $\mu$, and use the initial condition. Choose any convenient antiderivative in $\mu$; its extra constant multiplier is unnecessary.
 
-**Example 13 · A changing input: combine the earlier rules**
+**Example: Example 13 · A changing input: combine the earlier rules**
 
 Solve $y^{\prime}+2y=4t$, $y(0)=1$.
 
-```steps
+1. ```steps
 $$ \mu=e^{\int2\,dt}=\hl{e^{2t}} $$
 The coefficient of y is 2.
 $$ e^{2t}y^{\prime}+2e^{2t}y=4te^{2t} $$
@@ -662,13 +642,13 @@ Substitute the constant.
 
 **Answer:** $y=2t-1+2e^{-2t}$.
 
-**Try it 13 · A constant input builds up**
+**Problem: Try it 13 · A constant input builds up** (intermediate)
 
 Solve $y^{\prime}+2y=8$, $y(0)=0$, using an integrating factor.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ \mu=e^{2t} $$
 Integrate the coefficient of y, then exponentiate.
 $$ \dfrac{d}{dt}(e^{2t}y)=\hl{8e^{2t}} $$
@@ -685,13 +665,13 @@ K = −4; the response approaches 4.
 
 </details>
 
-**Try it 14 · A coefficient that depends on time**
+**Problem: Try it 14 · A coefficient that depends on time** (intermediate)
 
 For $t>0$, solve $ty^{\prime}+2y=4t^2$, $y(1)=2$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ y^{\prime}+\hl{\dfrac2t}y=4t $$
 Divide by t so the coefficient of the derivative is 1.
 $$ \mu=e^{\int(2/t)dt}=e^{2\ln t}=\hl{t^2} $$
@@ -716,13 +696,13 @@ For existence and uniqueness, **continuous** means the function has no break at 
 
 For $y^{\prime}=F(t,y)$, if $F$ and $\partial F/\partial y$ are continuous in a region around the starting point, there is exactly one solution locally. If this test fails, it makes no promise; failure does not itself prove there are several solutions.
 
-**Try it 15 · Where is the uniqueness test safe?**
+**Problem: Try it 15 · Where is the uniqueness test safe?** (introductory)
 
 For $y^{\prime}=\dfrac{y}{t-2}$, find $\partial F/\partial y$. Does the test apply at $(t,y)=(0,1)$? At $(2,1)$?
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ F(t,y)=\dfrac{y}{t-2} $$
 Treat t as fixed when taking the y partial derivative.
 $$ \dfrac{\partial F}{\partial y}=\hl{\dfrac1{t-2}} $$
@@ -743,17 +723,15 @@ Week 4 writes some equations as $M(t,y)\,dt+N(t,y)\,dy=0$. The goal is to find a
 
 Along a solution curve, the chain rule says $\dfrac{dU}{dt}=U_t+U_y y^{\prime}=0$, so $U$ stays constant. That gives the implicit answer $U(t,y)=K$.
 
-$$
-\dfrac{\partial M}{\partial y}=\dfrac{\partial N}{\partial t}
-$$
+$$\dfrac{\partial M}{\partial y}=\dfrac{\partial N}{\partial t}$$
 
 This is the **exactness test**: on a small region where the first partial derivatives are continuous, matching these mixed slopes lets us rebuild $U$. The examples here use such regions.
 
-**Example 14 · The integration constant becomes a function**
+**Example: Example 14 · The integration constant becomes a function**
 
 Solve $2ty\,dt+(t^2+6y)\,dy=0$.
 
-```steps
+1. ```steps
 $$ M=2ty,\quad N=t^2+6y $$
 Read off the coefficients of dt and dy.
 $$ M_y=\hl{2t}=N_t $$
@@ -770,13 +748,13 @@ The reconstructed function stays constant along solutions.
 
 **Answer:** $t^2y+3y^2=K$.
 
-**Try it 16 · Rebuild U, then use a starting point**
+**Problem: Try it 16 · Rebuild U, then use a starting point** (intermediate)
 
 Solve $(ty^2+3t^2)\,dt+t^2y\,dy=0$ with $y(1)=2$. You may leave the answer implicit.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ M_y=\hl{2ty}=N_t $$
 Check exactness first.
 $$ U=\hl{\dfrac12t^2y^2+t^3+g(y)} $$
@@ -806,11 +784,11 @@ If the test fails, an integrating factor sometimes repairs it. For an equation i
 
 These ratios require their denominators to be nonzero on the region used. Multiply **both** $M$ and $N$ by $\mu$, then repeat the exact-equation method.
 
-**Example 15 · Repair an equation using a t factor**
+**Example: Example 15 · Repair an equation using a t factor**
 
 For $t>0$, solve $y\,dt+3t\,dy=0$.
 
-```steps
+1. ```steps
 $$ M_y=1,\quad N_t=3 $$
 The equation is not exact yet.
 $$ \dfrac{M_y-N_t}{N}=\hl{-\dfrac2{3t}} $$
@@ -829,13 +807,13 @@ Set U constant and absorb the factor of 3 into K.
 
 **Answer:** $t^{1/3}y=K$, or $y=Kt^{-1/3}$, for $t>0$.
 
-**Try it 17 · Repair with a y factor**
+**Problem: Try it 17 · Repair with a y factor** (intermediate)
 
 On a region where $y>0$, solve $y\,dt-t\,dy=0$ using the y-only test above.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ M=y,\quad N=-t,\quad M_y=1,\quad N_t=-1 $$
 Read the coefficients and differentiate.
 $$ \dfrac{N_t-M_y}{M}=\hl{-\dfrac2y} $$
@@ -885,11 +863,11 @@ This is the **characteristic equation**. Find its roots by factoring or using $s
 
 A second-order IVP gives both $y(0)$ and $y^{\prime}(0)$. Put them into the solution and its derivative to find the two constants.
 
-**Example 16 · Two different real roots**
+**Example: Example 16 · Two different real roots**
 
 Solve $y^{\prime\prime}+3y^{\prime}+2y=0$, $y(0)=1$, $y^{\prime}(0)=0$.
 
-```steps
+1. ```steps
 $$ s^2+3s+2=(s+1)(s+2)=0 $$
 Factor the characteristic equation.
 $$ s=\hl{-1,-2} $$
@@ -908,11 +886,11 @@ Substitute the constants.
 
 **Answer:** $y=2e^{-t}-e^{-2t}$.
 
-**Example 17 · A repeated root needs the extra t**
+**Example: Example 17 · A repeated root needs the extra t**
 
 Solve $y^{\prime\prime}+4y^{\prime}+4y=0$, $y(0)=1$, $y^{\prime}(0)=0$.
 
-```steps
+1. ```steps
 $$ s^2+4s+4=\hl{(s+2)^2}=0 $$
 There is one root −2, repeated twice.
 $$ y=\hl{(K_1+K_2t)e^{-2t}} $$
@@ -929,13 +907,13 @@ Substitute the constants.
 
 **Answer:** $y=(1+2t)e^{-2t}$.
 
-**Try it 18 · Fit the two constants**
+**Problem: Try it 18 · Fit the two constants** (intermediate)
 
 Solve $y^{\prime\prime}+4y^{\prime}+3y=0$, $y(0)=0$, $y^{\prime}(0)=2$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ s^2+4s+3=\hl{(s+1)(s+3)}=0 $$
 The roots are −1 and −3.
 $$ y=K_1e^{-t}+K_2e^{-3t} $$
@@ -952,13 +930,13 @@ Substitute the constants.
 
 </details>
 
-**Try it 19 · A repeated root with a starting slope**
+**Problem: Try it 19 · A repeated root with a starting slope** (intermediate)
 
 Solve $y^{\prime\prime}+2y^{\prime}+y=0$, $y(0)=0$, $y^{\prime}(0)=3$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ (s+1)^2=0\ \Rightarrow\ y=(K_1+K_2t)e^{-t} $$
 The root −1 is repeated.
 $$ y(0)=K_1=\hl{0} $$
@@ -989,9 +967,7 @@ The remaining case is a negative discriminant. Use $j^2=-1$, so $\sqrt{-16}=4j$ 
 
 These are **complex conjugates**: the same real part, with opposite imaginary parts. Euler’s formula connects complex exponentials to real oscillations; $\theta$ is an angle in radians.
 
-$$
-e^{j\theta}=\cos\theta+j\sin\theta
-$$
+$$e^{j\theta}=\cos\theta+j\sin\theta$$
 
 ```steps
 title "Turn a complex exponential into real oscillations"
@@ -1007,17 +983,15 @@ With real coefficients, the real and imaginary parts each solve the ODE.
 
 For roots $s=\sigma\pm j\omega$, with $\omega>0$, the real general solution is:
 
-$$
-y=e^{\sigma t}(K_1\cos\omega t+K_2\sin\omega t)
-$$
+$$y=e^{\sigma t}(K_1\cos\omega t+K_2\sin\omega t)$$
 
 $\sigma$ (sigma) sets decay or growth; $\omega$ sets the oscillation rate in rad/s. Negative $\sigma$ gives decaying oscillations; zero $\sigma$ gives oscillations with a constant amplitude.
 
-**Example 18 · Complex roots and two initial conditions**
+**Example: Example 18 · Complex roots and two initial conditions**
 
 Solve $y^{\prime\prime}+2y^{\prime}+5y=0$, $y(0)=1$, $y^{\prime}(0)=1$.
 
-```steps
+1. ```steps
 $$ s=\dfrac{-2\pm\sqrt{4-20}}2=\hl{-1\pm2j} $$
 Apply the quadratic formula.
 $$ y=\hl{e^{-t}(K_1\cos2t+K_2\sin2t)} $$
@@ -1040,13 +1014,13 @@ With K₁ = 1, the slope condition gives K₂ = 1.
 
 In general, evaluating that product derivative at zero gives $y^{\prime}(0)=\sigma K_1+\omega K_2$. It is a shortcut from the product and chain rules, not a separate rule to memorize.
 
-**Try it 20 · A decaying oscillation**
+**Problem: Try it 20 · A decaying oscillation** (intermediate)
 
 Solve $y^{\prime\prime}+4y^{\prime}+13y=0$, $y(0)=0$, $y^{\prime}(0)=3$.
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ s=\dfrac{-4\pm\sqrt{16-52}}2=\hl{-2\pm3j} $$
 Find the characteristic roots.
 $$ y=e^{-2t}(K_1\cos3t+K_2\sin3t) $$
@@ -1063,13 +1037,13 @@ Substitute the constants.
 
 </details>
 
-**Try it 21 · Oscillation without decay**
+**Problem: Try it 21 · Oscillation without decay** (intermediate)
 
 Solve $y^{\prime\prime}+4y=0$, $y(0)=1$, $y^{\prime}(0)=0$. What changes when the real part of the roots is zero?
 
 <details><summary>Solution</summary>
 
-```steps
+1. ```steps
 $$ s^2+4=0\ \Rightarrow\ s=\hl{\pm2j} $$
 The roots have sigma = 0.
 $$ y=\hl{K_1\cos2t+K_2\sin2t} $$
@@ -1090,11 +1064,11 @@ There is no shrinking exponential envelope.
 
 A capacitor obeys $i_C=C\dfrac{dv_C}{dt}$; an inductor obeys $v_L=L\dfrac{di_L}{dt}$. Once a voltage or current function is known, these laws just ask for a derivative.
 
-**Example 19 · Read a response and find the capacitor current**
+**Example: Example 19 · Read a response and find the capacitor current**
 
 A capacitor has $C=0.2\,\mathrm F$ and $v_C(t)=12-10e^{-5t}\,\mathrm V$. The current enters its positive-voltage terminal. Find the starting voltage, final voltage, time constant and current.
 
-```steps
+1. ```steps
 $$ v_C(0)=12-10=\hl{2\,\mathrm V} $$
 Set t = 0 to read the starting value.
 $$ v_C(t)\to\hl{12\,\mathrm V} $$
@@ -1113,15 +1087,11 @@ Multiply by the capacitance, using the stated current direction.
 
 In a **series RLC circuit**, a resistor, inductor and capacitor give a second-order equation. With a constant applied voltage $V$, its capacitor voltage satisfies the model below; the course derives it from the circuit laws.
 
-$$
-LCv_C^{\prime\prime}+RCv_C^{\prime}+v_C=V
-$$
+$$LCv_C^{\prime\prime}+RCv_C^{\prime}+v_C=V$$
 
 The final constant solution is $v_C=V$. Put $y=v_C-V$ to describe the remaining deviation; its derivatives are the same as those of $v_C$, so $y$ satisfies a homogeneous equation.
 
-$$
-y^{\prime\prime}+\dfrac RL y^{\prime}+\dfrac1{LC}y=0
-$$
+$$y^{\prime\prime}+\dfrac RL y^{\prime}+\dfrac1{LC}y=0$$
 
 | Characteristic roots | Circuit response |
 |---|---|

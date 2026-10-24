@@ -41,7 +41,7 @@ import { toolVerb } from "../labels";
 import { Blocks } from "./Blocks";
 import { Markdown } from "./Markdown";
 import { Popover, useToast } from "./ui";
-import { useScrollMemory } from "../scroll";
+import { savedScroll, useScrollMemory } from "../scroll";
 
 export type Route =
   | { kind: "home" }
@@ -327,10 +327,22 @@ export function DocumentView({
     };
   }, [base, route.revision, refresh]);
 
+  // False until this note has been shown once: arriving from elsewhere lands on the target at once, while a jump
+  // inside a note that is already open scrolls smoothly.
+  const settled = useRef(false);
   useEffect(() => {
-    if (!route.block || !doc) return;
+    if (!doc) return;
+    const behavior: ScrollBehavior = settled.current ? "smooth" : "instant";
+    settled.current = true;
+    if (!route.block) {
+      // Back to an entry with no target (e.g. after an in-note link): return to where the reader was.
+      const top = savedScroll();
+      if (behavior === "smooth" && top !== undefined) scroller.current?.scrollTo({ top, behavior });
+      return;
+    }
     const element = document.getElementById(`b-${route.block}`);
-    element?.scrollIntoView({ block: "center" });
+    // A heading is the start of what the reader asked for, so it goes to the top; other blocks are centred.
+    element?.scrollIntoView({ block: element.classList.contains("block-heading") ? "start" : "center", behavior });
     setFlash(route.block);
     const timer = setTimeout(() => setFlash(null), 1600);
     return () => clearTimeout(timer);

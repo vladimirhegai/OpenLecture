@@ -1,0 +1,768 @@
+{
+  "Practice 01 (week1&2)-1.pdf": {
+    "1": {
+      "source_id": "50e2652a-ee53-495c-9bdd-b449000555a8",
+      "version": 1,
+      "chunk_id": "0a97238a-a1ac-4761-90a7-c16e251c64b8"
+    },
+    "2": {
+      "source_id": "50e2652a-ee53-495c-9bdd-b449000555a8",
+      "version": 1,
+      "chunk_id": "c388fae1-3ba5-47a6-b1b5-f23747794e9b"
+    }
+  },
+  "Tutorial 1 (week2)-2.pdf": {},
+  "ELEC226_326_Fall2026_Syllabus-1.pdf": {
+    "1": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "b22bb67e-b710-4d17-adbf-beea1efc5edd"
+    },
+    "2": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "76956df9-68b0-4c50-a404-00adb3eb780b"
+    },
+    "3": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "0d6dc308-937d-4e71-ba52-3e938e421a9e"
+    },
+    "4": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "cc2aabc1-d2b5-44b7-b273-19d5199e1016"
+    },
+    "5": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "6f91db65-dbe1-4864-abfb-b0dc0cbb39cb"
+    },
+    "6": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "cba8d970-51c0-4ee7-b370-18312efbb3a0"
+    },
+    "7": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "e4be1ee0-d444-494d-9086-a3525fd387c0"
+    },
+    "8": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "56fdee67-a4ce-4085-91a7-41f497448955"
+    },
+    "9": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "1601f251-1440-41de-b375-426351a2ee70"
+    },
+    "10": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "95c3a14e-6c50-42b4-a080-b4990a5e3b06"
+    },
+    "11": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "c0b79979-ebfc-4681-9235-4ff3396a922b"
+    },
+    "12": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "e6228811-6571-4837-8563-2335f61b00a7"
+    },
+    "13": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "f4cd5c6d-7cb2-44ae-adb5-715c8e6bb91d"
+    },
+    "14": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "2d763366-c5cb-446d-b55f-5add80a42f22"
+    },
+    "15": {
+      "source_id": "de32f654-268d-47f4-9814-b90fa2cf8c27",
+      "version": 1,
+      "chunk_id": "03de521f-1766-46c3-9d5c-0cf253668360"
+    }
+  },
+  "ELEC226_326 Lec01-1.pdf": {
+    "1": {
+      "source_id": "50e651df-9cc4-49fe-a905-523c261c68ea",
+      "version": 1,
+      "chunk_id": "2e6297b6-c107-42ba-a241-a83f64df7d0a"
+    },
+    "2": {
+      "source_id": "50e651df-9cc4-49fe-a905-523c261c68ea",
+      "version": 1,
+      "chunk_id": "489026c7-fe89-463b-b0e2-db4215735af4"
+    },
+    "3": {
+      "source_id": "50e651df-9cc4-49fe-a905-523c261c68ea",
+      "version": 1,
+      "chunk_id": "1224f1bb-6a05-49f8-b976-f16cbdafaf7f"
+    },
+    "4": {
+      "source_id": "50e651df-9cc4-49fe-a905-523c261c68ea",
+      "version": 1,
+      "chunk_id": "b157cd1e-36da-4fbc-88ab-d34e4b0c561c"
+    },
+    "5": {
+      "source_id": "50e651df-9cc4-49fe-a905-523c261c68ea",
+      "version": 1,
+      "chunk_id": "171af507-c10b-4fda-94d4-71417a648138"
+    },
+    "6": {
+      "source_id": "50e651df-9cc4-49fe-a905-523c261c68ea",
+      "version": 1,
+      "chunk_id": "35eb4396-f413-4f56-b028-923974fe0cac"
+    },
+    "7": {
+      "source_id": "50e651df-9cc4-49fe-a905-523c261c68ea",
+      "version": 1,
+      "chunk_id": "8568e47f-45bb-4dfa-b0f1-4e12b5f0e73c"
+    },
+    "8": {
+      "source_id": "50e651df-9cc4-49fe-a905-523c261c68ea",
+      "version": 1,
+      "chunk_id": "0cfb7868-461e-4e4b-bc11-7cabd19a6310"
+    }
+  },
+  "ELEC226_326 Lec02-1.pdf": {
+    "1": {
+      "source_id": "55ed8b4c-55cd-417b-929f-f4b16974eb8a",
+      "version": 1,
+      "chunk_id": "8fc8a5f1-f5d8-4a3a-95d5-85329c60f379"
+    },
+    "2": {
+      "source_id": "55ed8b4c-55cd-417b-929f-f4b16974eb8a",
+      "version": 1,
+      "chunk_id": "82d3e031-446e-4e4f-a625-1471d91d9ff1"
+    },
+    "3": {
+      "source_id": "55ed8b4c-55cd-417b-929f-f4b16974eb8a",
+      "version": 1,
+      "chunk_id": "c28ffae9-d56d-4bcc-b1be-42d96ee055cd"
+    },
+    "4": {
+      "source_id": "55ed8b4c-55cd-417b-929f-f4b16974eb8a",
+      "version": 1,
+      "chunk_id": "edaab35f-31b3-42e5-9b7e-298599f51fb9"
+    },
+    "5": {
+      "source_id": "55ed8b4c-55cd-417b-929f-f4b16974eb8a",
+      "version": 1,
+      "chunk_id": "e952524b-ab44-48c8-9b33-a724a23cc30f"
+    },
+    "6": {
+      "source_id": "55ed8b4c-55cd-417b-929f-f4b16974eb8a",
+      "version": 1,
+      "chunk_id": "800cf5d6-e1cb-4ce9-8b6a-6d2172acbe0f"
+    },
+    "7": {
+      "source_id": "55ed8b4c-55cd-417b-929f-f4b16974eb8a",
+      "version": 1,
+      "chunk_id": "96b67df6-62b7-4645-be55-11be0d7c0717"
+    },
+    "8": {
+      "source_id": "55ed8b4c-55cd-417b-929f-f4b16974eb8a",
+      "version": 1,
+      "chunk_id": "8055fedd-1325-4bbf-a448-ec57ada6afd5"
+    }
+  },
+  "ELEC226_326 Lec03-1.pdf": {
+    "1": {
+      "source_id": "b553fb3f-785e-475b-9145-e73c6fce12e9",
+      "version": 1,
+      "chunk_id": "00ce220a-5430-4d79-9d6b-89d660697070"
+    },
+    "2": {
+      "source_id": "b553fb3f-785e-475b-9145-e73c6fce12e9",
+      "version": 1,
+      "chunk_id": "11ca1662-0b37-48ea-a477-b8ecd88b6985"
+    },
+    "3": {
+      "source_id": "b553fb3f-785e-475b-9145-e73c6fce12e9",
+      "version": 1,
+      "chunk_id": "cc003a01-8940-48a8-bc53-15605e05d4b1"
+    },
+    "4": {
+      "source_id": "b553fb3f-785e-475b-9145-e73c6fce12e9",
+      "version": 1,
+      "chunk_id": "7b755a2a-3350-418b-a272-ca35296b075e"
+    },
+    "5": {
+      "source_id": "b553fb3f-785e-475b-9145-e73c6fce12e9",
+      "version": 1,
+      "chunk_id": "7fe5358a-e65f-4875-b6a2-b6c4d226a738"
+    },
+    "6": {
+      "source_id": "b553fb3f-785e-475b-9145-e73c6fce12e9",
+      "version": 1,
+      "chunk_id": "e3d1b4b0-6b49-4a7c-839a-1c6b3245bbb4"
+    }
+  },
+  "ELEC226_326 Lec04-1.pdf": {
+    "1": {
+      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
+      "version": 1,
+      "chunk_id": "3a37160a-a1b1-4b28-b8d5-5d855238d3c8"
+    },
+    "2": {
+      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
+      "version": 1,
+      "chunk_id": "944ed2c1-a7a5-45c0-93ef-5b5a566e29a7"
+    },
+    "3": {
+      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
+      "version": 1,
+      "chunk_id": "470dad54-79f6-416b-8e7c-62669b0fd9ef"
+    },
+    "4": {
+      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
+      "version": 1,
+      "chunk_id": "eba98bbb-0775-4a5d-8fd5-67ff6483d45d"
+    },
+    "5": {
+      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
+      "version": 1,
+      "chunk_id": "e8f139a9-97e1-4145-a319-86f70af4981c"
+    },
+    "6": {
+      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
+      "version": 1,
+      "chunk_id": "db69fcff-b209-4d0d-91f5-751f0e37effc"
+    },
+    "7": {
+      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
+      "version": 1,
+      "chunk_id": "bb158576-a0c9-41d7-ace4-2e71b7b951e6"
+    },
+    "8": {
+      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
+      "version": 1,
+      "chunk_id": "8aeb0ddf-d4a5-459b-91ce-5127c3f66d0f"
+    }
+  },
+  "ELEC226_326 Lec05-1.pdf": {
+    "1": {
+      "source_id": "efb0275b-9f01-4cbd-95c7-e416f2b0cd60",
+      "version": 1,
+      "chunk_id": "e037f7d1-5b45-4f52-a5ad-5a8195e3eb3a"
+    },
+    "2": {
+      "source_id": "efb0275b-9f01-4cbd-95c7-e416f2b0cd60",
+      "version": 1,
+      "chunk_id": "3d9e6d85-2c94-43cf-936b-3fe0ac176edc"
+    },
+    "3": {
+      "source_id": "efb0275b-9f01-4cbd-95c7-e416f2b0cd60",
+      "version": 1,
+      "chunk_id": "01faf3e9-2728-4448-b93e-141159d9008e"
+    },
+    "4": {
+      "source_id": "efb0275b-9f01-4cbd-95c7-e416f2b0cd60",
+      "version": 1,
+      "chunk_id": "6633831e-4203-4b63-bdaa-d7b90dd008b4"
+    },
+    "5": {
+      "source_id": "efb0275b-9f01-4cbd-95c7-e416f2b0cd60",
+      "version": 1,
+      "chunk_id": "3f91a1cd-4dc8-4185-b999-2f150ba9645b"
+    },
+    "6": {
+      "source_id": "efb0275b-9f01-4cbd-95c7-e416f2b0cd60",
+      "version": 1,
+      "chunk_id": "b7796d09-4873-414c-9b68-509dae18fb11"
+    },
+    "7": {
+      "source_id": "efb0275b-9f01-4cbd-95c7-e416f2b0cd60",
+      "version": 1,
+      "chunk_id": "ae033ea4-4ba5-4523-9c2c-10410459bfa1"
+    },
+    "8": {
+      "source_id": "efb0275b-9f01-4cbd-95c7-e416f2b0cd60",
+      "version": 1,
+      "chunk_id": "7764e7d5-1384-4ed3-a134-20398d136d68"
+    }
+  },
+  "ELEC226_326 Lec06-2.pdf": {
+    "1": {
+      "source_id": "d7ee1402-19d7-43fb-962d-9a08f2fbe6ab",
+      "version": 1,
+      "chunk_id": "c5e38f17-ed52-42be-b2fc-7ad6c683c0cc"
+    },
+    "2": {
+      "source_id": "d7ee1402-19d7-43fb-962d-9a08f2fbe6ab",
+      "version": 1,
+      "chunk_id": "7004acef-4454-4b2c-96f0-62f93f8e784e"
+    },
+    "3": {
+      "source_id": "d7ee1402-19d7-43fb-962d-9a08f2fbe6ab",
+      "version": 1,
+      "chunk_id": "54ce7491-7dbb-4248-8399-7343a2d47bc7"
+    },
+    "4": {
+      "source_id": "d7ee1402-19d7-43fb-962d-9a08f2fbe6ab",
+      "version": 1,
+      "chunk_id": "2d8e92c8-2d3d-4204-9931-935ec9735e0d"
+    },
+    "5": {
+      "source_id": "d7ee1402-19d7-43fb-962d-9a08f2fbe6ab",
+      "version": 1,
+      "chunk_id": "3efefad9-b0ca-4136-a732-b4740c39abee"
+    },
+    "6": {
+      "source_id": "d7ee1402-19d7-43fb-962d-9a08f2fbe6ab",
+      "version": 1,
+      "chunk_id": "6eadc6bf-fdbc-4900-89eb-6e15311291c7"
+    },
+    "7": {
+      "source_id": "d7ee1402-19d7-43fb-962d-9a08f2fbe6ab",
+      "version": 1,
+      "chunk_id": "16be0255-69a9-4de7-8bab-c1150105a84d"
+    }
+  },
+  "ELEC226_326 Lec07-1.pdf": {
+    "1": {
+      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
+      "version": 1,
+      "chunk_id": "611cfbf9-c4f5-41a0-9a08-2ae0fb70879a"
+    },
+    "2": {
+      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
+      "version": 1,
+      "chunk_id": "4d12a2f2-c9d1-4fc3-87b1-4d228708ab91"
+    },
+    "3": {
+      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
+      "version": 1,
+      "chunk_id": "00ea87ae-feb2-4f24-9135-68dc5e61ebf2"
+    },
+    "4": {
+      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
+      "version": 1,
+      "chunk_id": "381e054b-d711-4fff-8a08-f599a93371f1"
+    },
+    "5": {
+      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
+      "version": 1,
+      "chunk_id": "7f7f773c-8d78-4dc7-a28c-bc8cdc088ce9"
+    },
+    "6": {
+      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
+      "version": 1,
+      "chunk_id": "05325b9a-5392-43be-b131-9ea6b5b85ef6"
+    },
+    "7": {
+      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
+      "version": 1,
+      "chunk_id": "29766df0-f658-4c31-9238-70e838866c3a"
+    }
+  },
+  "ELEC226_326 Lec08.pdf": {
+    "1": {
+      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
+      "version": 1,
+      "chunk_id": "e472c359-4974-4dc6-bbdb-b5a92955ebae"
+    },
+    "2": {
+      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
+      "version": 1,
+      "chunk_id": "52cac2d5-28ad-4077-844b-d55720b08626"
+    },
+    "3": {
+      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
+      "version": 1,
+      "chunk_id": "35f81dc1-57b9-47ae-94e4-fda09f9d0fb7"
+    },
+    "4": {
+      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
+      "version": 1,
+      "chunk_id": "f6e7f6c1-b4eb-4edd-ba66-a4e90c7a4700"
+    },
+    "5": {
+      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
+      "version": 1,
+      "chunk_id": "e22c0106-b34e-4202-8360-b4f834ccb3da"
+    },
+    "6": {
+      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
+      "version": 1,
+      "chunk_id": "38ff2542-662e-4214-b9df-ce346da8ab92"
+    },
+    "7": {
+      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
+      "version": 1,
+      "chunk_id": "4dc75ec0-b96b-4c11-ae05-48d024d3d6f0"
+    }
+  },
+  "ELEC226_326 Lec09.pdf": {
+    "1": {
+      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+      "version": 1,
+      "chunk_id": "7dfb9c8e-f11d-49bd-9d64-5fb8d509187f"
+    },
+    "2": {
+      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+      "version": 1,
+      "chunk_id": "9da48eda-56cf-48d4-aabf-f344f0c3c9de"
+    },
+    "3": {
+      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+      "version": 1,
+      "chunk_id": "a93ead94-0bf0-47f6-aee3-42af3f5cfb5d"
+    },
+    "4": {
+      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+      "version": 1,
+      "chunk_id": "ffe2be55-a527-440d-89e9-8fa816005537"
+    },
+    "5": {
+      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+      "version": 1,
+      "chunk_id": "daa189cb-f7db-4598-b3df-1d8166bdcaa4"
+    },
+    "6": {
+      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+      "version": 1,
+      "chunk_id": "869ae10a-358d-41ba-b0d0-655fe510d17e"
+    },
+    "7": {
+      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+      "version": 1,
+      "chunk_id": "a51a9a40-8b36-4c8d-b1f3-7d34913b117c"
+    },
+    "8": {
+      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+      "version": 1,
+      "chunk_id": "e59899bd-78d2-4233-af73-4b504f002cbf"
+    }
+  },
+  "ELEC226_326 Lec10.pdf": {
+    "1": {
+      "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+      "version": 1,
+      "chunk_id": "9ac74905-2a39-448d-b0da-363f196f948e"
+    },
+    "2": {
+      "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+      "version": 1,
+      "chunk_id": "8e4935f2-96c7-4122-b622-a74fc15d4744"
+    },
+    "3": {
+      "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+      "version": 1,
+      "chunk_id": "84f78a1d-4d26-4c22-a575-eaa2d5ce6fa6"
+    },
+    "4": {
+      "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+      "version": 1,
+      "chunk_id": "98067cee-6ada-49dc-9a53-51e6ce216e3a"
+    },
+    "5": {
+      "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+      "version": 1,
+      "chunk_id": "7d94994c-7a6d-42ad-bde9-113f7668dccb"
+    },
+    "6": {
+      "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+      "version": 1,
+      "chunk_id": "c0dd9d2c-78d9-4477-bb78-036702e3d6c7"
+    },
+    "7": {
+      "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+      "version": 1,
+      "chunk_id": "3841deaa-b7e6-4977-9764-8bcf7f9785d2"
+    },
+    "8": {
+      "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+      "version": 1,
+      "chunk_id": "2765690d-ffea-4bba-8998-f9b1095c0dc0"
+    }
+  },
+  "ELEC226_326 Lec11.pdf": {
+    "1": {
+      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+      "version": 1,
+      "chunk_id": "c05b6c21-3c16-4ded-81ef-37cac1e34a5b"
+    },
+    "2": {
+      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+      "version": 1,
+      "chunk_id": "2c15188c-104e-4bbf-be7a-ff8820ac8484"
+    },
+    "3": {
+      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+      "version": 1,
+      "chunk_id": "77f999fd-1723-4e56-a2ea-089aecc8f575"
+    },
+    "4": {
+      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+      "version": 1,
+      "chunk_id": "1ed7f8a1-4153-4f99-9ae5-6347e57802a0"
+    },
+    "5": {
+      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+      "version": 1,
+      "chunk_id": "d067bd0f-961a-4d57-aaaf-a696ccdff0bf"
+    },
+    "6": {
+      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+      "version": 1,
+      "chunk_id": "c94dcea8-d0e5-417e-9460-f7920a68553e"
+    },
+    "7": {
+      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+      "version": 1,
+      "chunk_id": "2cc1ee41-e6c3-4fd5-a41c-67fb0c8d5b40"
+    },
+    "8": {
+      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+      "version": 1,
+      "chunk_id": "81443470-b993-498d-9945-558851b03e47"
+    }
+  },
+  "ELEC226_326 Lec12.pdf": {
+    "1": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "1ea570c1-749a-46f9-a7b4-1a001500edae"
+    },
+    "2": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "87da869b-2cf9-4dd0-8397-b436da482e58"
+    },
+    "3": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "1fa5f1c7-2d1d-4842-a1f9-1949b30bc7b2"
+    },
+    "4": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "d265eb48-420d-4e76-858a-49452a94d127"
+    },
+    "5": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "0eb0a16e-6d2c-40a6-83e1-031a1f0dae55"
+    },
+    "6": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "6039489c-426b-46ac-8fd2-e52106e4a341"
+    },
+    "7": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "7e0019b1-d1d3-4c15-8850-3e91dc4e8719"
+    },
+    "8": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "27f2e489-3e85-4171-b6d6-358170b19bc4"
+    },
+    "9": {
+      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+      "version": 1,
+      "chunk_id": "35a0186d-c0e5-48d4-89d2-9f5548bcda6b"
+    }
+  },
+  "ELEC226_326 Lec13.pdf": {
+    "1": {
+      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+      "version": 1,
+      "chunk_id": "4b867380-affe-4f33-a583-8903afcc97aa"
+    },
+    "2": {
+      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+      "version": 1,
+      "chunk_id": "72ec1f08-5a0f-478f-8963-c20f6396f281"
+    },
+    "3": {
+      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+      "version": 1,
+      "chunk_id": "e3a36a46-a9a1-41da-89bc-cdc1cc104ae6"
+    },
+    "4": {
+      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+      "version": 1,
+      "chunk_id": "061ca83b-a397-4cdf-b0d0-e3f23afbc005"
+    },
+    "5": {
+      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+      "version": 1,
+      "chunk_id": "500ec2d7-6fac-497b-b5a0-7e71fe769c5f"
+    },
+    "6": {
+      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+      "version": 1,
+      "chunk_id": "2e08d2f4-7ce3-47dd-8074-24db399beabf"
+    },
+    "7": {
+      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+      "version": 1,
+      "chunk_id": "3048b6a0-cc38-4246-9b1c-bfc308f953fb"
+    },
+    "8": {
+      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+      "version": 1,
+      "chunk_id": "e53a486e-4ab4-4c95-aa26-930d8671e975"
+    }
+  },
+  "ELEC226_326 Lec14.pdf": {
+    "1": {
+      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
+      "version": 1,
+      "chunk_id": "e753d065-56e9-4ae9-89b4-8321aa886a13"
+    },
+    "2": {
+      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
+      "version": 1,
+      "chunk_id": "d9617600-27dd-4cf7-9e1d-8e6ceb5a6445"
+    },
+    "3": {
+      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
+      "version": 1,
+      "chunk_id": "1d66e547-c5e8-41a6-bcfa-a351228e8590"
+    },
+    "4": {
+      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
+      "version": 1,
+      "chunk_id": "2eed7acb-8ac6-4738-99c3-478135a51df2"
+    },
+    "5": {
+      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
+      "version": 1,
+      "chunk_id": "655b2b16-b365-41d0-a2b3-9b54ab2ab2a7"
+    },
+    "6": {
+      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
+      "version": 1,
+      "chunk_id": "f45a8bd3-2dcf-40e3-92d0-a724966c6dd7"
+    },
+    "7": {
+      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
+      "version": 1,
+      "chunk_id": "6db5e3e1-b721-4a08-8829-211016f210f6"
+    }
+  },
+  "ELEC226_326 Lec15.pdf": {
+    "1": {
+      "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+      "version": 1,
+      "chunk_id": "cbcba062-3a3f-4433-ad53-7050ac630d53"
+    },
+    "2": {
+      "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+      "version": 1,
+      "chunk_id": "28df4f3d-382b-4027-b8f5-4cc69b31d12d"
+    },
+    "3": {
+      "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+      "version": 1,
+      "chunk_id": "fd718252-73f2-407f-8817-901a9e20efea"
+    },
+    "4": {
+      "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+      "version": 1,
+      "chunk_id": "658939db-bdae-456b-9cc2-00f8a5d1d239"
+    },
+    "5": {
+      "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+      "version": 1,
+      "chunk_id": "c95de292-0b58-4163-9f5f-ae7296874275"
+    },
+    "6": {
+      "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+      "version": 1,
+      "chunk_id": "026ebc91-2bdc-4df5-9463-b8b9fd3c7c40"
+    }
+  },
+  "ELEC226_326 The Story So Far & What Comes Next.pdf": {
+    "1": {
+      "source_id": "24f5194e-b317-46c5-bd9f-ea0ce209353c",
+      "version": 1,
+      "chunk_id": "6f31e799-5521-4daa-8b4d-7445b1cf975f"
+    },
+    "2": {
+      "source_id": "24f5194e-b317-46c5-bd9f-ea0ce209353c",
+      "version": 1,
+      "chunk_id": "5212c216-da61-46ac-9c77-498cb5fc5eaa"
+    },
+    "3": {
+      "source_id": "24f5194e-b317-46c5-bd9f-ea0ce209353c",
+      "version": 1,
+      "chunk_id": "be8d0e5f-3e5f-4211-ab21-2c31769353c0"
+    }
+  },
+  "Practice 02.pdf": {
+    "1": {
+      "source_id": "369e3c07-a6c8-40d0-8b8c-41f2e6a3bc4b",
+      "version": 1,
+      "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
+    },
+    "2": {
+      "source_id": "369e3c07-a6c8-40d0-8b8c-41f2e6a3bc4b",
+      "version": 1,
+      "chunk_id": "c5660b21-07be-4de7-8a70-292f3abc2f90"
+    }
+  },
+  "Practice 03.pdf": {
+    "1": {
+      "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+      "version": 1,
+      "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
+    },
+    "2": {
+      "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+      "version": 1,
+      "chunk_id": "1f2ee630-5190-42fa-a945-2d6fdf2e12c0"
+    },
+    "3": {
+      "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+      "version": 1,
+      "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
+    }
+  },
+  "Tutorial 2-2.pdf": {
+    "1": {
+      "source_id": "79045332-ad82-4bc0-9029-1e2e50deab2c",
+      "version": 1,
+      "chunk_id": "b06d67ad-f8be-4015-91df-f7b8dc81ed01"
+    }
+  },
+  "Tutorial 3-2.pdf": {
+    "1": {
+      "source_id": "de4d1db1-eb13-4c83-9232-afdabb6c52fe",
+      "version": 1,
+      "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
+    }
+  },
+  "Tutorial 4.pdf": {
+    "1": {
+      "source_id": "4d61db5e-8336-42fa-9292-37c2b7a2378a",
+      "version": 1,
+      "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
+    }
+  },
+  "Tutorial 5.pdf": {
+    "1": {
+      "source_id": "a2bcf96c-29bc-4570-bbde-f69160346624",
+      "version": 1,
+      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
+    }
+  },
+  "Tutorial 6.pdf": {
+    "1": {
+      "source_id": "8b50801c-193d-4e1e-92f4-d54dc3a7332b",
+      "version": 1,
+      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
+    }
+  }
+}

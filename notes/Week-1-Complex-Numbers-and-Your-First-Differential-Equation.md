@@ -286,6 +286,16 @@ wire 6,3 -> 9,3
 R1 9,3 -> 9,0 "$R$" v="$v$"
 wire 0,0 -> 9,0
 ground 0,0
+#~ flow
+#~ value I1 4
+#~ value R0 10
+#~ value L1 8m
+#~ value R1 4
+#~ slow 1000
+#~ probe L1 "inductor $L$:"
+#~ probe R1 "resistor $R$:"
+#~ probe R0 "resistor $R_0$:"
+#~ note "Dots show the current: faster dots, more current. Values: $I_s=4$ A, $R_0=10\,\Omega$, $L=8$ mH, $R=4\,\Omega$."
 ```
 
 - **Before $t=0$:** the inductor has been in DC a long time, so it acts like a wire and carries all of $I_s$.

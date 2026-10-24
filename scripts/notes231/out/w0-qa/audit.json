@@ -1,0 +1,188 @@
+{
+  "hiddenSolutions": 21,
+  "outline": [
+    {
+      "level": 1,
+      "title": "Algebra and notation",
+      "topic": "Algebra and notation"
+    },
+    {
+      "level": 2,
+      "title": "Exponentials and logarithms",
+      "topic": "Algebra and notation"
+    },
+    {
+      "level": 1,
+      "title": "Derivatives",
+      "topic": "Derivatives"
+    },
+    {
+      "level": 2,
+      "title": "Basic derivative rules",
+      "topic": "Derivatives"
+    },
+    {
+      "level": 2,
+      "title": "Chain rule",
+      "topic": "Derivatives"
+    },
+    {
+      "level": 2,
+      "title": "Product rule and second derivatives",
+      "topic": "Derivatives"
+    },
+    {
+      "level": 2,
+      "title": "Quotient rule",
+      "topic": "Derivatives"
+    },
+    {
+      "level": 2,
+      "title": "Partial derivatives",
+      "topic": "Derivatives"
+    },
+    {
+      "level": 2,
+      "title": "Implicit differentiation",
+      "topic": "Derivatives"
+    },
+    {
+      "level": 1,
+      "title": "Integrals",
+      "topic": "Integrals"
+    },
+    {
+      "level": 2,
+      "title": "Indefinite integrals",
+      "topic": "Integrals"
+    },
+    {
+      "level": 2,
+      "title": "Definite integrals",
+      "topic": "Integrals"
+    },
+    {
+      "level": 2,
+      "title": "Integration and initial conditions",
+      "topic": "Integrals"
+    },
+    {
+      "level": 2,
+      "title": "Substitution",
+      "topic": "Integrals"
+    },
+    {
+      "level": 2,
+      "title": "Integration by parts",
+      "topic": "Integrals"
+    },
+    {
+      "level": 1,
+      "title": "First-order differential equations",
+      "topic": "First-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Classification and initial conditions",
+      "topic": "First-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Separation of variables",
+      "topic": "First-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "RC and RL responses",
+      "topic": "First-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Linear ODEs and integrating factors",
+      "topic": "First-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Existence and uniqueness",
+      "topic": "First-order differential equations"
+    },
+    {
+      "level": 1,
+      "title": "Exact differential equations",
+      "topic": "Exact differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Exactness test and solutions",
+      "topic": "Exact differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Integrating factors",
+      "topic": "Exact differential equations"
+    },
+    {
+      "level": 1,
+      "title": "Second-order differential equations",
+      "topic": "Second-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Characteristic equation",
+      "topic": "Second-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Real roots",
+      "topic": "Second-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Wronskian",
+      "topic": "Second-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Existence and uniqueness",
+      "topic": "Second-order differential equations"
+    },
+    {
+      "level": 2,
+      "title": "Complex roots",
+      "topic": "Second-order differential equations"
+    },
+    {
+      "level": 1,
+      "title": "Circuit applications",
+      "topic": "Circuit applications"
+    },
+    {
+      "level": 2,
+      "title": "Capacitors and inductors",
+      "topic": "Circuit applications"
+    },
+    {
+      "level": 2,
+      "title": "RLC circuits",
+      "topic": "Circuit applications"
+    }
+  ],
+  "stability": [
+    {
+      "viewport": "desktop 1300px",
+      "cards": 42,
+      "transitions": 137,
+      "maxMovement": 0
+    },
+    {
+      "viewport": "narrow 390px",
+      "cards": 42,
+      "transitions": 137,
+      "maxMovement": 0
+    }
+  ],
+  "allSteppers": 42,
+  "renderedSteps": 179,
+  "errors": [],
+  "overflow": []
+}

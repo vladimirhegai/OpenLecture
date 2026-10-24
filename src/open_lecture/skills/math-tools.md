@@ -94,3 +94,39 @@ plane "C" label="the curve $F=C$"
 ## Writing them from Python
 
 The ELEC 231 builder (`scripts/notes231/lib231.py`) has `D.STEPS(title, [(latex, note), …])`, `D.GRAPH(lines)` and `D.GRAPH3D(lines)`. Write builder files with the Write tool, never through a shell heredoc, because heredocs collapse `\\` in LaTeX.
+
+## ```circuitsteps — a circuit that transforms step by step
+
+For circuit solutions (mesh, nodal, supernode/supermesh, Thévenin/Norton, superposition, max power): each step is a whole drawing plus notes. The reader clicks Next; parts that appear fade in and stay blue for that step, parts that disappear flash red and fade out, and new overlays draw themselves in. All steps share one frame, so keep unchanged parts at the same grid points.
+
+```
+```circuitsteps
+title "Find $V_o$: Thévenin with mesh + Ohm's law"
+== Pull out the load
+R1 0,3 -> 0,0 "$2\,\mathrm{k\Omega}$"
+...schematic statements (no #@ / #~ needed)...
+#= mesh 1.5,1.5 "$I_1$" ccw r=0.75
+--
+Notes for this step: Markdown, lists, $math$, and display math as
+$$
+6kI_1=6
+$$
+== next step ...
+```
+```
+
+Overlays (`#=` lines, grid points; each takes `color=purple|pink|blue|green|orange|accent`):
+
+| Statement | Draws |
+|---|---|
+| `#= mesh CX,CY "$I_1$" cw\|ccw r=0.9` | Mesh-current loop arrow (purple), name in the middle. |
+| `#= path X,Y -> X,Y -> ... "label" [thin]` | Arrow along wires (pink, translucent): a KVL walk or where a current flows. Draw it ON the wires. |
+| `#= sign X,Y +\|-` | Polarity box (+ blue, − pink), e.g. where a mesh current enters a resistor. |
+| `#= text X,Y "$2\,\mathrm{V}$"` | Callout centred on the point (Ohm's-law results, node voltages). |
+| `#= region X0,Y0 X1,Y1 "supernode"` | Dashed box: supernode, supermesh, the part being replaced. |
+
+**Values found:** a `#+ $I_1=1\,\mathrm{mA}$` line in a step's drawing adds that value to the "Found so far" panel beside the circuit, from that step on (highlighted in the step that finds it). Add one for every value a later step reuses.
+
+The card is as tall as its longest step (every title and note shares one grid cell), so Next never moves the page.
+
+Write display math in notes on its own lines (`$$` / equation / `$$`): a one-line `$$…$$` renders inline-sized. Builder and checks: `scripts/practice221/` (`build_practice.py`, one module per problem, `stepshots.cjs <docId> <out> [--dark] [--mid]`).

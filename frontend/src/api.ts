@@ -10,7 +10,7 @@ export type Block = BlockBase &
     | { type: "heading"; text: string; level: number }
     | { type: "equation"; latex: string; display: boolean }
     | { type: "list"; items: string[]; ordered: boolean }
-    | { type: "callout"; text: string; tone: "info" | "warning" | "tip" }
+    | { type: "callout"; text: string; tone: "info" | "warning" | "tip" | "reminder" }
     | { type: "table"; columns: string[]; rows: string[][] }
     | { type: "code"; language: string; text: string }
     | { type: "derivation"; title: string; steps: { explanation: string; latex: string }[] }

@@ -1,4 +1,4 @@
-import { AlertTriangle, BookOpen, ChevronRight, Info, Lightbulb, MessageSquarePlus } from "lucide-react";
+import { AlertTriangle, BookOpen, ChevronRight, History, Info, Lightbulb, MessageSquarePlus } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { resolveCitation, type Block, type Citation, type Step } from "../api";
 import { ArtifactCard } from "./ArtifactCard";
@@ -93,7 +93,8 @@ function Content({ block, courseId, onCite, toggle }: { block: Block; courseId: 
       );
     }
     case "callout": {
-      const Icon = block.tone === "warning" ? AlertTriangle : block.tone === "tip" ? Lightbulb : Info;
+      const Icon =
+        block.tone === "warning" ? AlertTriangle : block.tone === "tip" ? Lightbulb : block.tone === "reminder" ? History : Info;
       return (
         <aside className={`callout ${block.tone}`}>
           <Icon size={17} />
@@ -344,7 +345,10 @@ export function Blocks({ blocks, courseId, onCite, onAsk, flash }: Handlers & { 
       saveCollapsed(next);
       return next;
     });
-    requestAnimationFrame(() => document.getElementById(`b-${flash}`)?.scrollIntoView({ block: "center" }));
+    requestAnimationFrame(() => {
+      const element = document.getElementById(`b-${flash}`);
+      element?.scrollIntoView({ block: element.classList.contains("block-heading") ? "start" : "center" });
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flash]);
 

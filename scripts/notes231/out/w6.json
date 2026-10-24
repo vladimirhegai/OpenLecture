@@ -1,0 +1,595 @@
+{
+ "title": "Week 6: Reduction of Order and Undetermined Coefficients",
+ "week": 6,
+ "topic_keys": [
+  "reduction_of_order",
+  "undetermined_coefficients"
+ ],
+ "blocks": [
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Calculus refresher: the product rule twice, and squared trig",
+   "citations": [],
+   "id": "df6f45a8-1e9f-517f-a417-8411f7157bbb"
+  },
+  {
+   "type": "paragraph",
+   "text": "This week you substitute $y=y_1v$, where $y_1$ is a known function and $v$ an unknown one. Differentiating a product twice gives a middle term with a 2 in front:",
+   "citations": [],
+   "id": "d0cfd8f0-daaa-55a5-bd98-e573e6b93e60"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Expression",
+    "Result",
+    "Rule"
+   ],
+   "rows": [
+    [
+     "$(y_1v)^{\\prime}$",
+     "$y_1^{\\prime} v+y_1v^{\\prime}$",
+     "Product rule."
+    ],
+    [
+     "$(y_1v)^{\\prime\\prime}$",
+     "$y_1^{\\prime\\prime} v+2y_1^{\\prime} v^{\\prime}+y_1v^{\\prime\\prime}$",
+     "Product rule again; the two middle terms combine."
+    ],
+    [
+     "$\\int\\frac1z\\,dz$",
+     "$\\ln|z|$",
+     "Used when separating a first-order equation."
+    ],
+    [
+     "$\\cos^2t$",
+     "$\\frac12+\\frac12\\cos2t$",
+     "Double-angle identity: removes the square."
+    ],
+    [
+     "$\\sin^2t$",
+     "$\\frac12-\\frac12\\cos2t$",
+     "Same identity, opposite sign."
+    ]
+   ],
+   "citations": [],
+   "id": "1cf2f6be-8694-5110-b652-b9da982765f7"
+  },
+  {
+   "type": "paragraph",
+   "text": "Some integrals, such as $\\int e^{t^2/2}/t^2\\,dt$, have no formula in ordinary functions. Leave them as an integral: that is a complete answer.",
+   "citations": [],
+   "id": "993840b6-c9d9-5cca-a281-9133a83cf8b0"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · Differentiate a product twice; remove a square · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "(a) Find $(tv)^{\\prime\\prime}$, where $v(t)$ is unknown. (b) Write $8\\sin^2t$ as a constant plus a cosine.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "First derivative: product rule.",
+     "latex": "(tv)'=v+tv'"
+    },
+    {
+     "explanation": "Differentiate again; v′ appears twice.",
+     "latex": "(tv)''=v'+v'+tv''=2v'+tv''"
+    },
+    {
+     "explanation": "Multiply the sin² identity by 8.",
+     "latex": "8\\sin^2t=4-4\\cos2t"
+    }
+   ],
+   "answer": "(a) $tv''+2v'$. (b) $4-4\\cos2t$.",
+   "citations": [],
+   "id": "9879d275-9af1-5f4f-a753-727be7f10d86"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Week 6 overview",
+   "citations": [],
+   "id": "6743ab4f-f533-5c70-b5e2-def6c1ca285f"
+  },
+  {
+   "type": "paragraph",
+   "text": "Week 6 has two methods for second-order linear ODEs:",
+   "citations": [],
+   "id": "1d328dd2-f68a-525a-b9f4-6a07aeb4989e"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Reduction of order:** you know one solution $y_1$ of a homogeneous equation; find the second one.",
+    "**Undetermined coefficients:** the equation has a forcing term $g(t)$; guess the form of a particular solution from $g$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "8fcfe203-61e8-5c0a-bd8a-5f61a1e63411"
+  },
+  {
+   "type": "paragraph",
+   "text": "Both come from the professor’s handwritten notes (Spiegel, *Applied Differential Equations*). The Week 6 tutorial problem is Example 4. The notes write $\\dot y,\\ \\ddot y$ for $y^{\\prime},\\ y^{\\prime\\prime}$.",
+   "citations": [],
+   "id": "e2944629-8f78-5670-b511-4e972a949718"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 1: Reduction of order",
+   "citations": [
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "5530868e-c560-4d1c-bcb9-4caa35e2817d"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "e5b9df43-539d-422c-a3db-7f94dba31ef0"
+    }
+   ],
+   "id": "f5adc21d-73ea-5a5c-b095-b38f0333e3f2"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Multiply the known solution by an unknown function",
+   "citations": [],
+   "id": "c0d6a6a4-570f-59c0-bc00-40abc6b78b82"
+  },
+  {
+   "type": "paragraph",
+   "text": "Suppose $y_1$ solves a second-order linear homogeneous ODE. Look for the second solution as $y=y_1v$, where $v(t)$ is unknown.",
+   "citations": [],
+   "id": "bfb27f49-9a43-5bf4-84c9-4a7e525dd716"
+  },
+  {
+   "type": "paragraph",
+   "text": "The recipe:",
+   "citations": [],
+   "id": "0e616da9-a357-5d1f-b0f0-d98c21e824ef"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Substitute** $y=y_1v$, using the product rule for $y^{\\prime}$ and $y^{\\prime\\prime}$.",
+    "**Collect terms:** every term with plain $v$ cancels, because $y_1$ is a solution.",
+    "**Set $z=v^{\\prime}$:** what remains is a first-order equation in $z$ (the order went down by one).",
+    "**Solve for $z$**, then integrate once more: $v=\\int z\\,dt$.",
+    "**Multiply back:** $y=y_1v$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "e4fe67ef-fdaf-54d7-847d-1b757f59de09"
+  },
+  {
+   "type": "paragraph",
+   "text": "The professor’s example, step by step:\n\n```steps\ntitle \"Lecture: reduce y″ − t y′ + y = 0, given y = t\"\n$$ y''-ty'+y=0,\\qquad y_1=t $$\nCheck: $y_1=t$ gives $0-t+t=0$.\n$$ y=\\hl{tv} $$\nMultiply the known solution by an unknown $v$.\n$$ y'=\\hl{v+tv'},\\qquad y''=\\hl{2v'+tv''} $$\nProduct rule (refresher table).\n$$ (2v'+tv'')-t(v+tv')+tv=0 $$\nSubstitute all three into the ODE.\n$$ \\hl{tv''+(2-t^2)v'}=0 $$\nCollect terms. The $-tv$ and $+tv$ cancel, as promised.\n$$ t\\hl{z'}+(2-t^2)\\hl{z}=0,\\qquad z=v' $$\nOnly $v^{\\prime}$ and $v^{\\prime\\prime}$ remain: first order in $z$.\n```",
+   "citations": [],
+   "id": "ff673e32-5b58-59dc-b8af-45e5e20feb31"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · Finish the lecture example · handwritten notes p. 1–2",
+   "prompt": "Solve $tz'+(2-t^2)z=0$ (from the stepper above), then find the general solution of $y''-ty'+y=0$ for $t\\ne0$.",
+   "steps": [
+    {
+     "explanation": "The equation is separable. Divide by $tz$ and move the $t$ terms right.",
+     "latex": "\\dfrac{dz}{z}=\\dfrac{t^2-2}{t}\\,dt=\\left(t-\\dfrac2t\\right)dt"
+    },
+    {
+     "explanation": "Integrate both sides: $\\int\\frac1z\\,dz=\\ln|z|$.",
+     "latex": "\\ln|z|=\\dfrac{t^2}2-2\\ln|t|+C"
+    },
+    {
+     "explanation": "Exponentiate; $e^{-2\\ln|t|}=1/t^2$.",
+     "latex": "z=C_1\\,\\dfrac{e^{t^2/2}}{t^2}"
+    },
+    {
+     "explanation": "$z=v^{\\prime}$, so integrate again. The integral has no closed form, so it stays.",
+     "latex": "v=C_1\\int\\dfrac{e^{t^2/2}}{t^2}\\,dt+C_2"
+    },
+    {
+     "explanation": "Multiply back by $y_1=t$.",
+     "latex": "y=tv"
+    }
+   ],
+   "answer": "$y=C_2\\,t+C_1\\,t\\displaystyle\\int\\frac{e^{t^2/2}}{t^2}\\,dt$. The known solution $t$ reappears as the $C_2$ term.",
+   "citations": [
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "5530868e-c560-4d1c-bcb9-4caa35e2817d"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "e5b9df43-539d-422c-a3db-7f94dba31ef0"
+    }
+   ],
+   "id": "6dfc7294-5e06-5b8d-8260-9118fadd351d"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Where the repeated-root $te^{st}$ comes from",
+   "citations": [],
+   "id": "2892220f-d64e-57e5-9399-90d30eb4240a"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · Reduce a constant-coefficient equation · original",
+   "prompt": "$y''+4y'+4y=0$ has the repeated root $s=-2$, so $y_1=e^{-2t}$. Use reduction of order to find the second solution.",
+   "steps": [
+    {
+     "explanation": "Set $y=e^{-2t}v$ and differentiate with the product rule.",
+     "latex": "y'=e^{-2t}(v'-2v)"
+    },
+    {
+     "explanation": "Differentiate again.",
+     "latex": "y''=e^{-2t}(v''-4v'+4v)"
+    },
+    {
+     "explanation": "Substitute and divide by $e^{-2t}$. The $v^{\\prime}$ terms cancel too.",
+     "latex": "(v''-4v'+4v)+4(v'-2v)+4v=v''=0"
+    },
+    {
+     "explanation": "Integrate twice.",
+     "latex": "v=C_1+C_2t"
+    }
+   ],
+   "answer": "$y=(C_1+C_2t)e^{-2t}$: exactly the Week 5 repeated-root form. The extra $t$ is $v$.",
+   "citations": [],
+   "id": "1e5fe244-8962-587b-830b-b62a5323582a"
+  },
+  {
+   "type": "callout",
+   "tone": "tip",
+   "text": "**Check with the formula.** Write the ODE as $y^{\\prime\\prime}+p(t)y^{\\prime}+q(t)y=0$. Reduction of order always ends at\n\n$$\ny_2=y_1\\int\\frac{e^{-\\int p\\,dt}}{y_1^2}\\,dt\n$$\n\nLecture example: $p=-t$, so $e^{-\\int p\\,dt}=e^{t^2/2}$ and $y_1^2=t^2$, matching Example 1.",
+   "citations": [],
+   "id": "c3958ef5-5824-5889-bfcb-8e1a918cedef"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · A second solution with a logarithm · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $t>0$, $y_1=t^2$ solves $t^2y''-3ty'+4y=0$. Find the general solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Set $y=t^2v$ and use the product rule twice.",
+     "latex": "y'=2tv+t^2v',\\qquad y''=2v+4tv'+t^2v''"
+    },
+    {
+     "explanation": "Substitute; the plain $v$ terms cancel ($2-6+4=0$).",
+     "latex": "t^4v''+t^3v'=0"
+    },
+    {
+     "explanation": "Divide by $t^4$ and set $z=v^{\\prime}$.",
+     "latex": "z'+\\dfrac zt=0"
+    },
+    {
+     "explanation": "Separate: $\\int\\frac{dz}{z}=-\\int\\frac{dt}{t}$, so $\\ln|z|=-\\ln t+C$.",
+     "latex": "z=\\dfrac{C_2}t"
+    },
+    {
+     "explanation": "Integrate: $\\int\\frac1t\\,dt=\\ln t$ for $t>0$.",
+     "latex": "v=C_1+C_2\\ln t"
+    }
+   ],
+   "answer": "$y=C_1t^2+C_2t^2\\ln t$.",
+   "citations": [],
+   "id": "f9638672-8163-5438-8b68-4eaa303ae16a"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic 2: Undetermined coefficients",
+   "citations": [
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "f622d763-6626-4aec-9544-1d9452473623"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "1bb7e382-04e5-42ed-84e7-a194ca300ce4"
+    },
+    {
+     "source_id": "f8bccc80-ff70-4727-b896-a89d7b612824",
+     "version": 1,
+     "chunk_id": "84f57b26-8cc8-4568-9372-eece88ff9a48"
+    }
+   ],
+   "id": "87283966-56fe-5c24-8bcf-ef6862c28d43"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Total solution = complementary + particular",
+   "citations": [],
+   "id": "e4b1eca1-a9ae-5355-9121-8e7fd27af5f6"
+  },
+  {
+   "type": "paragraph",
+   "text": "Now the right side is a forcing term: $ay^{\\prime\\prime}+by^{\\prime}+cy=g(t)$.",
+   "citations": [],
+   "id": "5f88264c-5730-5df6-86c7-fec7cc2f7049"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$y_c$: the **complementary solution**, the general solution with $g=0$ (Week 5). It holds the two constants.",
+    "$y_p$: one **particular solution**, any single function that produces $g(t)$. No constants.",
+    "$y=y_c+y_p$: the general solution."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "9b1f9ee4-1190-546c-b491-0c36778ea5fa"
+  },
+  {
+   "type": "paragraph",
+   "text": "To find $y_p$, guess a form that looks like $g(t)$ with unknown coefficients, substitute, and match coefficients on both sides.",
+   "citations": [],
+   "id": "aacabc9c-87cc-5146-8f13-d4bec66b2481"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Term in $g(t)$",
+    "Guess for $y_p$"
+   ],
+   "rows": [
+    [
+     "constant or polynomial of degree $n$",
+     "$A_nt^n+\\dots+A_1t+A_0$ (all lower powers)"
+    ],
+    [
+     "$e^{at}$",
+     "$Ae^{at}$"
+    ],
+    [
+     "$\\sin rt$ or $\\cos rt$",
+     "$A\\cos rt+B\\sin rt$ (always both)"
+    ],
+    [
+     "$e^{at}\\cos rt$ or $e^{at}\\sin rt$",
+     "$e^{at}(A\\cos rt+B\\sin rt)$"
+    ],
+    [
+     "a sum of these",
+     "the sum of their guesses"
+    ]
+   ],
+   "citations": [
+    {
+     "source_id": "f8bccc80-ff70-4727-b896-a89d7b612824",
+     "version": 1,
+     "chunk_id": "84f57b26-8cc8-4568-9372-eece88ff9a48"
+    }
+   ],
+   "id": "e886b57b-3910-5a1d-81e3-1447362aadb8"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · A polynomial guess needs every lower power · original",
+   "prompt": "Find the general solution of $y''+y'-2y=2t$.",
+   "steps": [
+    {
+     "explanation": "Complementary: $s^2+s-2=(s+2)(s-1)$.",
+     "latex": "y_c=C_1e^t+C_2e^{-2t}"
+    },
+    {
+     "explanation": "$2t$ has degree 1, so guess $At+B$. The $B$ is needed even though $g$ has no constant.",
+     "latex": "y_p=At+B,\\quad y_p'=A,\\quad y_p''=0"
+    },
+    {
+     "explanation": "Substitute.",
+     "latex": "A-2(At+B)=2t"
+    },
+    {
+     "explanation": "Match the $t$ terms, then the constants.",
+     "latex": "-2A=2,\\qquad A-2B=0"
+    },
+    {
+     "explanation": "Solve.",
+     "latex": "A=-1,\\qquad B=-\\tfrac12"
+    }
+   ],
+   "answer": "$y=C_1e^t+C_2e^{-2t}-t-\\tfrac12$. Guessing only $At$ fails: the constant $A$ left over has nothing to match.",
+   "citations": [],
+   "id": "d6d67ab9-bc42-539d-860d-b184f851b6b7"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · The Week 6 tutorial problem (also the lecture example) · tutorial 6, notes p. 3–4",
+   "prompt": "Solve $\\ddot y+y=6\\cos^2t$ with $y(0)=0$ and $y(\\pi/2)=0$. The tutorial gives the forms $y_c=c_1\\sin t+c_2\\cos t$ and $y_p=A+B\\cos2t+D\\sin2t$.",
+   "steps": [
+    {
+     "explanation": "Complementary: $s^2+1=0$ gives $s=\\pm j$.",
+     "latex": "y_c=c_1\\sin t+c_2\\cos t"
+    },
+    {
+     "explanation": "Remove the square with the identity, so the guess table applies.",
+     "latex": "6\\cos^2t=3+3\\cos2t"
+    },
+    {
+     "explanation": "Constant → $A$; cos 2t → both cos 2t and sin 2t.",
+     "latex": "y_p=A+B\\cos2t+D\\sin2t"
+    },
+    {
+     "explanation": "Differentiate twice: each derivative brings out a 2.",
+     "latex": "y_p''=-4B\\cos2t-4D\\sin2t"
+    },
+    {
+     "explanation": "Substitute $y_p^{\\prime\\prime}+y_p$ and collect.",
+     "latex": "A-3B\\cos2t-3D\\sin2t=3+3\\cos2t"
+    },
+    {
+     "explanation": "Match constants, cosines and sines.",
+     "latex": "A=3,\\qquad B=-1,\\qquad D=0"
+    },
+    {
+     "explanation": "Add $y_c$ **before** using the conditions: they apply to the whole $y$.",
+     "latex": "y=3-\\cos2t+c_1\\sin t+c_2\\cos t"
+    },
+    {
+     "explanation": "$y(0)=0$: $\\sin0=0$, $\\cos0=1$.",
+     "latex": "3-1+c_2=0\\quad\\Rightarrow\\quad c_2=-2"
+    },
+    {
+     "explanation": "$y(\\pi/2)=0$: $\\cos\\pi=-1$, $\\sin\\frac\\pi2=1$, $\\cos\\frac\\pi2=0$.",
+     "latex": "3+1+c_1=0\\quad\\Rightarrow\\quad c_1=-4"
+    }
+   ],
+   "answer": "$y=3-\\cos2t-4\\sin t-2\\cos t$.",
+   "citations": [
+    {
+     "source_id": "2ebde3e8-c2a0-462c-be36-dfb00d2e7cc3",
+     "version": 1,
+     "chunk_id": "8ea1fd84-8ed9-4e24-b2a8-d1e31acc455a"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "f622d763-6626-4aec-9544-1d9452473623"
+    },
+    {
+     "source_id": "49144def-7174-4f3b-886a-ee4cc4117cea",
+     "version": 1,
+     "chunk_id": "1bb7e382-04e5-42ed-84e7-a194ca300ce4"
+    }
+   ],
+   "id": "96f38eee-62a5-56f5-882b-59079a1b779a"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Tutorial problem: pick the constants\"\nx 0 6.3 label=\"$t$\"\ny -8 8 label=\"$y$\"\nslider c1 -6 6 0 step=0.5 label=\"$c_1$\"\nslider c2 -6 6 0 step=0.5 label=\"$c_2$\"\ncurve \"3-cos(2*x)\" label=\"$y_p=3-\\cos2t$\" color=0 dash\ncurve \"3-cos(2*x)+c1*sin(x)+c2*cos(x)\" label=\"$y=y_p+c_1\\sin t+c_2\\cos t$\" color=1\npoint \"0\" \"0\" label=\"must pass $(0,0)$\" color=3\npoint \"pi/2\" \"0\" label=\"must pass $(\\pi/2,0)$\" color=3\nreadout \"$y(0)$\" \"2+c2\"\nreadout \"$y(\\pi/2)$\" \"4+c1\"\ncaption \"Every $c_1,c_2$ gives a solution of the ODE. Only $c_1=-4$, $c_2=-2$ passes through both points.\"\n```",
+   "citations": [],
+   "id": "07f53019-bb4c-5cb3-a5ff-f0c946a1979f"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "When the guess is already in $y_c$: multiply by $t$",
+   "citations": [],
+   "id": "e54b2884-652f-5b9e-adcf-184159bf3ce9"
+  },
+  {
+   "type": "paragraph",
+   "text": "If a term of your guess already solves the homogeneous equation, substituting it gives $0$, so it can never produce $g$.",
+   "citations": [],
+   "id": "79775879-1efa-51de-b665-da234c40c5de"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Fix:** multiply that guess by $t$. If the result is still in $y_c$ (a repeated root), multiply by $t^2$.",
+   "citations": [],
+   "id": "7225a7f7-f786-505b-8319-412b82e4c367"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · The guess is already in the complementary solution · original",
+   "prompt": "Find a particular solution of $y''-y'-2y=3e^{2t}$.",
+   "steps": [
+    {
+     "explanation": "Complementary: $s^2-s-2=(s-2)(s+1)$.",
+     "latex": "y_c=C_1e^{2t}+C_2e^{-t}"
+    },
+    {
+     "explanation": "The table says $Ae^{2t}$, but that is in $y_c$: it gives $0=3e^{2t}$. Multiply by $t$.",
+     "latex": "y_p=Ate^{2t}"
+    },
+    {
+     "explanation": "Product rule, twice.",
+     "latex": "y_p'=A(1+2t)e^{2t},\\qquad y_p''=A(4+4t)e^{2t}"
+    },
+    {
+     "explanation": "Substitute and divide by $e^{2t}$. The $t$ terms cancel.",
+     "latex": "A\\big[(4+4t)-(1+2t)-2t\\big]=3A=3"
+    },
+    {
+     "explanation": "Solve.",
+     "latex": "A=1"
+    }
+   ],
+   "answer": "$y_p=te^{2t}$, so $y=C_1e^{2t}+C_2e^{-t}+te^{2t}$.",
+   "citations": [],
+   "id": "0b5a250e-c045-53eb-9cae-6e09a504f402"
+  },
+  {
+   "type": "paragraph",
+   "text": "```graph\ntitle \"Why the extra t: forcing at the natural frequency\"\nx 0 12 label=\"$t$\"\ny -25 25 label=\"$y$\"\nslider w 1 3 1.5 step=0.05 label=\"$\\omega$\" animate\ncurve \"if(abs(w-2)<0.001, sin(2*x)-2*x*cos(2*x), 8/(4-w^2)*(sin(w*x)-w/2*sin(2*x)))\" label=\"$y(t)$, starting at rest\" color=1\ncurve \"2*x\" label=\"$\\pm2t$\" color=0 dash\ncurve \"-2*x\" color=0 dash\ncaption \"Solutions of $y''+4y=8\\sin\\omega t$ with $y(0)=y'(0)=0$. Here $y_c$ contains $\\sin2t$ and $\\cos2t$. For $\\omega$ far from 2 the swing stays small. At $\\omega=2$ the forcing is in $y_c$, the particular solution has the extra $t$, and the swing grows along $\\pm2t$.\"\n```",
+   "citations": [],
+   "id": "9763e9fd-4e84-52b4-9771-b8d50033b98a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 3 · Choose the form; do not solve · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For $y''-2y'+y=g(t)$, write the guess for $y_p$ when $g$ is (a) $t^2$, (b) $e^{-t}$, (c) $e^t$, (d) $\\cos t$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "Complementary first: $s^2-2s+1=(s-1)^2$, a repeated root.",
+     "latex": "y_c=(C_1+C_2t)e^t"
+    },
+    {
+     "explanation": "(a) Degree 2: all lower powers.",
+     "latex": "At^2+Bt+C"
+    },
+    {
+     "explanation": "(b) $e^{-t}$ is not in $y_c$.",
+     "latex": "Ae^{-t}"
+    },
+    {
+     "explanation": "(c) $Ae^t$ and $Ate^t$ are both in $y_c$, so multiply by $t^2$.",
+     "latex": "At^2e^t"
+    },
+    {
+     "explanation": "(d) Cosine needs both cosine and sine.",
+     "latex": "A\\cos t+B\\sin t"
+    }
+   ],
+   "answer": "(a) $At^2+Bt+C$. (b) $Ae^{-t}$. (c) $At^2e^t$. (d) $A\\cos t+B\\sin t$.",
+   "citations": [],
+   "id": "19a9e4a1-ed28-58dc-be78-dbfbcfb4926e"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 4 · A trig guess that is already in the complementary solution · original",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Find a particular solution of $y''+9y=12\\cos3t$. Use $(tf)^{\\prime\\prime}=tf^{\\prime\\prime}+2f^{\\prime}$ from Try it 1.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "$y_c=c_1\\cos3t+c_2\\sin3t$ already contains $\\cos3t$, so multiply the guess by $t$.",
+     "latex": "y_p=t\\,f,\\qquad f=A\\cos3t+B\\sin3t"
+    },
+    {
+     "explanation": "Since $f^{\\prime\\prime}=-9f$, the $t$ terms cancel in $y_p^{\\prime\\prime}+9y_p$.",
+     "latex": "y_p''+9y_p=t(f''+9f)+2f'=2f'"
+    },
+    {
+     "explanation": "Differentiate $f$.",
+     "latex": "2f'=-6A\\sin3t+6B\\cos3t"
+    },
+    {
+     "explanation": "Match with 12 cos 3t.",
+     "latex": "6B=12,\\qquad -6A=0"
+    }
+   ],
+   "answer": "$A=0$, $B=2$: $y_p=2t\\sin3t$. The swing grows like $2t$, as in the graph above.",
+   "citations": [],
+   "id": "618dc6c1-f272-5b78-81c1-a2ad0afa2845"
+  }
+ ]
+}

@@ -45,6 +45,7 @@ Never skip a level, and do not put examples or problems under their own headings
    - At least one `worked_example` (format below). Prefer the lecture's own examples.
    - `callout` tone `warning` for common mistakes (sign conventions, reference directions, units, special cases).
    - `callout` tone `tip` for a method choice rule or exam shortcut, when there is one.
+   - `callout` tone `reminder` (purple) for a short recap of earlier material the topic relies on (a previous test's rules, calculus). Only when the topic actually uses it.
 3. **Practice problems** (level 1): one short `paragraph` on how to use them, then 5–8 `practice_problem` blocks that together cover every topic of the week, ordered from introductory to advanced. Include at least 3 textbook problems and, when the week has them, tutorial or assessment problems. Rules are in `textbook-problems`.
 4. **Summary** (level 1): a `list` of 5–8 key takeaways, then a level 2 `Formula sheet` heading and a `table` with the columns Result | Formula | Use when.
 
