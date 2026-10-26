@@ -60,6 +60,7 @@ barely read it."* "Bullets only when necessary" never means dense paragraphs. **
 - Reference layout: the Topic 1 opening of `build_w1v2.py` (bold label line, then its bullets).
 
 ## Writing
+- Voice and explanations: follow `.claude/skills/student-explanations/SKILL.md` (plain speech, what → example → why).
 - Worked-example steps: one short sentence (what and why) + the math. Skip nothing a student could get stuck on, but
   don't narrate the obvious.
   Good: `S('Divide by $L$ so $\\dfrac{di}{dt}$ stands alone.', r'\dfrac{di}{dt}+5i=50')`

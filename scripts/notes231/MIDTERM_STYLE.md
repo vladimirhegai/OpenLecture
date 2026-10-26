@@ -42,6 +42,10 @@ Weeks 1–6). They learn visually and from examples. Teach what is needed to sol
 - Every answer verified in `verify()` with sympy (`first`, `implicit`, `second`, `zero` from midlib).
 
 ## Writing and formatting
+- **Voice and explanations: follow `.claude/skills/student-explanations/SKILL.md`** (plain TA speech, never textbook;
+  every rule gets what → example → why; one-liner vs short vs full examples).
+- Comparing methods (like Topic B's Step 2): a short routing table, then one card per method below it
+  (bold lead → form as `D.EQ` → `**Example:**` / `**Method:**` / `**Why…?**` bullets). Table cells hold a few words only.
 - One idea per line. Paragraphs ≤ 2 short sentences. Several items → bullets. No walls of text.
 - Bold sparingly: the term being defined, the lead word of a step.
 - Notation: `j` for √−1, `t` independent, `y(t)`, primes in text as `y\prime` (finish() converts them).
@@ -55,3 +59,8 @@ Weeks 1–6). They learn visually and from examples. Teach what is needed to sol
 - `python build_midterm.py --preview b3 b4` publishes only those parts to a preview note (own ids file, safe in parallel).
 - `node toolshots.cjs <docId> <dir>` (tool errors, overflow); `node ../height_notes/pageshot.cjs <docId> <dir>` with
   `COURSE=206af2a6-c1f1-4700-ac44-5eba708c676b`, then look at the screenshots (open solutions too).
+- The full note is >60k px tall and pageshot's single image stops at ~30k. Use
+  `node chunkshot.cjs <repoRoot> <docId> <dir>` (one PNG per screen) and `node mathcheck.cjs <repoRoot> <docId>`
+  (KaTeX errors, overflowing displays/tables, stray `$`, with all solutions open).
+- Delete a preview note when done: `POST /api/v1/courses/<course>/documents/<id>/delete` with body
+  `{"expected_revision": <current revision>}` (there is no HTTP DELETE route).

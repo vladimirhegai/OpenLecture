@@ -1015,6 +1015,12 @@ kbd {
   font-weight: 600;
 }
 
+/* Keep each formula in a cell on one line: KaTeX may otherwise break after every = or +. */
+.sheet td .katex,
+.chat-md td .katex {
+  white-space: nowrap;
+}
+
 .derivation-title,
 .problem-head {
   margin-bottom: 0.4em;

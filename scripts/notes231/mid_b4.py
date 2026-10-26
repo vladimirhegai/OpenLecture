@@ -8,77 +8,83 @@ def build(D):
     W4 = lambda *p: D.cite('W4', *p)
     D.H('B4 · Not exact: make it exact with an integrating factor', level=2, cites=W4(4, 5))
     TAGS(D, (4, 3))
-    D.P(r'**What if the exactness test fails?** Multiply the whole equation by a function $\mu$ (an **integrating factor**) '
-        r'chosen so that the new equation passes the test. Then finish with ' + link('B3', 'b3') + '.')
-    D.P(r'Start from $M\,dt+N\,dy=0$ with $M_y\neq N_t$, and compute the **mismatch**:')
+    D.P(r'**What if the exactness test fails?** Take $y\,dt+(3+3t-y)\,dy=0$: $M_y=1$ but $N_t=3$, so ' + link('B3', 'b3') + r' can’t start.')
+    D.P(r'The fix: multiply the whole equation by a function $\mu$, called an **integrating factor**, picked so the new equation '
+        r'passes the test. Then solve it with the ' + link('B3', 'b3') + r' steps. Same idea as in ' + link('B2', 'b2') +
+        r': multiply by the right thing and the equation becomes easy.')
+    D.P(r'**How to find $\mu$.** Start with the mismatch between the two cross derivatives:')
     D.EQ(r'M_y-N_t')
-    D.P(r'**Theorem 1.** If this ratio depends on $t$ only, call it $f(t)$:', cites=W4(5))
+    D.P(r'In the example: $M_y-N_t=1-3=-2$. Now divide it, and see which case you’re in.')
+    D.P(r'**Case 1: divide by $N$, and only $t$ is left.** (The lecture calls this Theorem 1.)', cites=W4(5))
     D.EQ(r'\dfrac{M_y-N_t}{N}=f(t)\quad\Rightarrow\quad \mu=e^{\int f(t)\,dt}')
-    D.P(r'**Theorem 2.** If this ratio depends on $y$ only, call it $g(y)$:')
+    D.P(r'Example: $(t^2+y)\,dt-t\,dy=0$ gives $\frac{1-(-1)}{-t}=-\frac2t$. Only $t$, so $\mu=e^{\int-\frac2t\,dt}=\frac{1}{t^2}$.')
+    D.P(r'**Case 2: flip the subtraction, divide by $M$, and only $y$ is left.** (Theorem 2.)')
     D.EQ(r'\dfrac{N_t-M_y}{M}=g(y)\quad\Rightarrow\quad \mu=e^{\int g(y)\,dy}')
-    D.P('**Memory aid:**')
-    D.L([r'Theorem 1 divides the mismatch by $N$ and must leave only $t$.',
-         r'Theorem 2 divides by $M$, with the subtraction **flipped** ($N_t-M_y$), and must leave only $y$.'])
+    D.P(r'Example: $y\,dt+(3+3t-y)\,dy=0$ gives $\frac{3-1}{y}=\frac2y$. Only $y$, so $\mu=e^{\int\frac2y\,dy}=y^2$.')
+    D.P(r'Why only one letter: $\mu$ will be a function of one letter, so the ratio you integrate to get it can only contain that letter. '
+        r'If neither ratio has just one letter, these two cases don’t help.')
     D.P('**Method:**')
-    D.L([r'**Test:** $M_y\neq N_t$ (otherwise it is already exact: ' + link('B3', 'b3') + ').',
-         r'**Ratios:** compute both. Keep the one that depends on a single letter.',
-         r'**Integrating factor:** $\mu=e^{\int f\,dt}$ or $\mu=e^{\int g\,dy}$ (no $+C$ needed).',
+    D.L([r'**Test:** check that $M_y\neq N_t$. (If they’re equal, it’s already exact: go to ' + link('B3', 'b3') + '.)',
+         r'**Ratios:** compute both. Keep the one that has only one letter in it.',
+         r'**Integrating factor:** $\mu=e^{\int f\,dt}$ or $\mu=e^{\int g\,dy}$. No $+C$ needed: any one $\mu$ works.',
          r'**Multiply the whole equation** by $\mu$: both $M$ and $N$.',
-         r'**Re-test** (it must pass now), then solve with the ' + link('B3', 'b3') + ' steps.'],
+         r'**Re-test:** it must pass now (if not, recheck your algebra). Then solve with the ' + link('B3', 'b3') + ' steps.'],
         ordered=True)
-    D.P('**Calculus you need here:**')
-    D.T(['Expression', 'Result', 'Note'], [
-        [r'$e^{\int\frac{k}{y}dy}$', r'$e^{k\ln|y|}=|y|^k$', r'e.g. $g=\frac2y$ gives $\mu=y^2$; $g=-\frac1y$ gives $\mu=\frac1y$'],
-        [r'$e^{\int\frac{k}{t}dt}$', r'$t^k$', r'e.g. $f=-\frac2t$ gives $\mu=t^{-2}=\frac{1}{t^2}$'],
-        [r'$e^{\int k\,dt}$', r'$e^{kt}$', r'constant ratio'],
+    D.P(r'**Calculus you need here** ($e$ and $\ln$ cancel: $e^{k\ln y}=y^k$):')
+    D.T(['Expression', 'Result', 'Example'], [
+        [r'$e^{\int\frac{k}{y}dy}$', r'$e^{k\ln|y|}=|y|^k$', r'$g=\frac2y$ gives $\mu=y^2$; $g=-\frac1y$ gives $\mu=\frac1y$'],
+        [r'$e^{\int\frac{k}{t}dt}$', r'$t^k$', r'$f=-\frac2t$ gives $\mu=t^{-2}=\frac{1}{t^2}$'],
+        [r'$e^{\int k\,dt}$', r'$e^{kt}$', r'the ratio is a constant $k$'],
     ])
-    D.CO('info', r'**Bonus (skip-safe): where Theorem 1 comes from.** Multiply by $\mu(t)$ and ask for the new equation to pass the test: '
-         r'$(\mu M)_y=(\mu N)_t$, i.e. $\mu M_y=\mu\prime N+\mu N_t$. Rearranged:'
+    D.CO('info', r'**Bonus (skip-safe): where Case 1 comes from.** Multiply by $\mu(t)$ and ask the new equation to pass the test, $(\mu M)_y=(\mu N)_t$. '
+         r'On the left, $\mu$ has no $y$, so it just comes out: $\mu M_y$. On the right, the product rule gives $\mu\prime N+\mu N_t$. Rearrange:'
          '\n\n$$\n' r'\dfrac{\mu\prime}{\mu}=\dfrac{M_y-N_t}{N}' '\n$$\n\n'
-         r'A $\mu$ depending on $t$ alone can only exist if the right side depends on $t$ alone. Then $\ln\mu=\int f\,dt$. Theorem 2 is the same argument with $\mu(y)$.')
+         r'The left side only has $t$ in it, so the right side must too. Then $\ln\mu=\int f\,dt$. Case 2 is the same argument with $\mu(y)$.')
 
     D.EX('W4 · Repair, then finish · lecture exercise (e) and Pre-tutorial 4',
          r'Solve $y\,dt+(3+3t-y)\,dy=0$.',
-         [S(r'**Type:** $M\,dt+N\,dy=0$ with $M=y$, $N=3+3t-y$. **Test:** $M_y=1$, $N_t=3$: not exact.'),
-          S(r'**Ratios:** Theorem 1 gives $\frac{1-3}{3+3t-y}$, which has both letters. Theorem 2 gives $y$ only.', r'\dfrac{N_t-M_y}{M}=\dfrac{3-1}{y}=\dfrac2y'),
+         [S(r'**Type:** $M\,dt+N\,dy=0$ form, with $M=y$, $N=3+3t-y$.'),
+          S(r'**Test:** the two cross derivatives don’t match, so it’s not exact.', r'M_y=1\neq3=N_t'),
+          S(r'**Ratios:** Case 1 gives $\frac{1-3}{3+3t-y}$, which has both letters. Case 2 leaves only $y$.', r'\dfrac{N_t-M_y}{M}=\dfrac{3-1}{y}=\dfrac2y'),
           S(r'**Integrating factor:** $e^{\int\frac2y dy}=e^{2\ln|y|}$.', r'\mu=y^2'),
           S(r'**Multiply the whole equation** by $y^2$.', r'y^3\,dt+(3y^2+3ty^2-y^3)\,dy=0'),
-          S(r'**Re-test.**', r'M_y=3y^2=N_t\quad\checkmark'),
-          S(r'**Integrate $M$ in $t$** ($y$ fixed).', r'U=ty^3+f(y)'),
-          S(r'**Match $N$:** $3ty^2+f\prime(y)=3y^2+3ty^2-y^3$, so $f\prime=3y^2-y^3$.', r'f(y)=y^3-\tfrac14y^4')],
+          S(r'**Re-test:** it passes now.', r'M_y=3y^2=N_t\quad\checkmark'),
+          S(r'**Integrate $M$ in $t$** ($y$ is a number).', r'U=ty^3+f(y)'),
+          S(r'**Match $N$:** $U_y=3ty^2+f\prime(y)$ must equal $3y^2+3ty^2-y^3$. So $f\prime=3y^2-y^3$.', r'f(y)=y^3-\tfrac14y^4'),
+          S(r'**Answer:** set $U=C$.', r'ty^3+y^3-\tfrac14y^4=C')],
          r'$ty^3+y^3-\dfrac{y^4}{4}=C$.', cites=W4(4, 5) + D.cite('T4', 1))
 
     P(D, 'W4 · A factor in t only',
       r'Solve $(t^2+y)\,dt-t\,dy=0$ for $t>0$.',
       [S(r'**Type:** $M=t^2+y$, $N=-t$. **Test:** $M_y=1$, $N_t=-1$: not exact.'),
-       S(r'**Ratios:** Theorem 1 leaves only $t$.', r'\dfrac{M_y-N_t}{N}=\dfrac{1-(-1)}{-t}=-\dfrac2t'),
-       S(r'**Integrating factor:** $e^{\int-\frac2t dt}=e^{-2\ln t}$.', r'\mu=\dfrac{1}{t^2}'),
+       S(r'**Ratios:** Case 1 leaves only $t$.', r'\dfrac{M_y-N_t}{N}=\dfrac{1-(-1)}{-t}=-\dfrac2t'),
+       S(r'**Integrating factor:** $e^{\int-\frac2t dt}=e^{-2\ln t}=t^{-2}$.', r'\mu=\dfrac{1}{t^2}'),
        S(r'**Multiply the whole equation** by $\frac{1}{t^2}$.', r'\Big(1+\dfrac{y}{t^2}\Big)dt-\dfrac1t\,dy=0'),
-       S(r'**Re-test.**', r'M_y=\dfrac{1}{t^2}=N_t\quad\checkmark'),
-       S(r'**Integrate $M$ in $t$:** $\int\frac{y}{t^2}dt=-\frac yt$.', r'U=t-\dfrac{y}{t}+f(y)'),
-       S(r'**Match $N$:** $-\frac1t+f\prime=-\frac1t$, so $f\prime=0$.', r't-\dfrac yt=C')],
-      r'$t-\dfrac{y}{t}=C$, i.e. $y=t^2-Ct$. Check with ' + link('B2', 'b2') + r': the equation is also linear, $y\prime-\frac{y}{t}=t$, and gives the same family.')
+       S(r'**Re-test:** it passes now.', r'M_y=\dfrac{1}{t^2}=N_t\quad\checkmark'),
+       S(r'**Integrate $M$ in $t$:** $\int1\,dt=t$, and $\int\frac{y}{t^2}dt=-\frac yt$ ($y$ is a number).', r'U=t-\dfrac{y}{t}+f(y)'),
+       S(r'**Match $N$:** $U_y=-\frac1t+f\prime$ must equal $-\frac1t$, so $f\prime=0$.', r't-\dfrac yt=C')],
+      r'$t-\dfrac{y}{t}=C$, so $y=t^2-Ct$. Check with ' + link('B2', 'b2') + r': the equation is also linear, $y\prime-\frac{y}{t}=t$, and gives the same family.')
     P(D, 'W4 · A factor in y only',
       r'Solve $y\,dt+(2t+y^3)\,dy=0$.',
       [S(r'**Type:** $M=y$, $N=2t+y^3$. **Test:** $M_y=1$, $N_t=2$: not exact.'),
-       S(r'**Ratios:** Theorem 1 gives $\frac{-1}{2t+y^3}$ (both letters). Theorem 2:', r'\dfrac{N_t-M_y}{M}=\dfrac{2-1}{y}=\dfrac1y'),
+       S(r'**Ratios:** Case 1 gives $\frac{-1}{2t+y^3}$ (both letters). Case 2 leaves only $y$:', r'\dfrac{N_t-M_y}{M}=\dfrac{2-1}{y}=\dfrac1y'),
        S(r'**Integrating factor:** $e^{\int\frac1y dy}=e^{\ln|y|}$.', r'\mu=y'),
        S(r'**Multiply the whole equation** by $y$.', r'y^2\,dt+(2ty+y^4)\,dy=0'),
-       S(r'**Re-test.**', r'M_y=2y=N_t\quad\checkmark'),
+       S(r'**Re-test:** it passes now.', r'M_y=2y=N_t\quad\checkmark'),
        S(r'**Integrate $M$ in $t$.**', r'U=ty^2+f(y)'),
-       S(r'**Match $N$:** $2ty+f\prime=2ty+y^4$, so $f=\frac{y^5}{5}$.', r'ty^2+\dfrac{y^5}{5}=C')],
+       S(r'**Match $N$:** $U_y=2ty+f\prime$ must equal $2ty+y^4$. So $f\prime=y^4$ and $f=\frac{y^5}{5}$.', r'ty^2+\dfrac{y^5}{5}=C')],
       r'$ty^2+\dfrac{y^5}{5}=C$.', diff='intermediate')
-    P(D, 'W4 · Which theorem applies?',
+    P(D, 'W4 · Which case applies?',
       r'Find an integrating factor for each equation, then solve it.' '\n\n'
       r'(a) $(2y+3t)\,dt+t\,dy=0$' '\n\n'
       r'(b) $y^2\,dt+(ty+1)\,dy=0$',
-      [S(r'(a) **Test:** $M_y=2$, $N_t=1$. Theorem 1: $\frac{2-1}{t}=\frac1t$, only $t$.', r'\mu=e^{\int\frac1t dt}=t'),
-       S(r'(a) Multiply by $t$: this is exactly the B3 worked example.', r'(2ty+3t^2)\,dt+t^2\,dy=0'),
-       S(r'(a) Its solution (from B3).', r't^2y+t^3=C'),
-       S(r'(b) **Test:** $M_y=2y$, $N_t=y$. Theorem 1 gives $\frac{y}{ty+1}$ (both letters). Theorem 2:', r'\dfrac{N_t-M_y}{M}=\dfrac{y-2y}{y^2}=-\dfrac1y'),
-       S(r'(b) **Integrating factor:** $e^{-\ln|y|}$.', r'\mu=\dfrac1y'),
-       S(r'(b) Multiply by $\frac1y$ and re-test: $M_y=1=N_t$.', r'y\,dt+\Big(t+\dfrac1y\Big)dy=0'),
-       S(r'(b) $U=ty+f(y)$; matching $N$ gives $f\prime=\frac1y$, so $f=\ln|y|$.', r'ty+\ln|y|=C')],
+      [S(r'(a) **Test:** $M_y=2$, $N_t=1$, not exact. **Ratios:** Case 1 gives $\frac{2-1}{t}=\frac1t$, only $t$.', r'\mu=e^{\int\frac1t dt}=t'),
+       S(r'(a) **Multiply** by $t$: you get exactly the B3 worked example.', r'(2ty+3t^2)\,dt+t^2\,dy=0'),
+       S(r'(a) **Answer:** the solution from B3.', r't^2y+t^3=C'),
+       S(r'(b) **Test:** $M_y=2y$, $N_t=y$, not exact. **Ratios:** Case 1 gives $\frac{y}{ty+1}$ (both letters). Case 2:', r'\dfrac{N_t-M_y}{M}=\dfrac{y-2y}{y^2}=-\dfrac1y'),
+       S(r'(b) **Integrating factor:** $e^{\int-\frac1y dy}=e^{-\ln|y|}$.', r'\mu=\dfrac1y'),
+       S(r'(b) **Multiply** by $\frac1y$ and re-test: $M_y=1=N_t$, it passes.', r'y\,dt+\Big(t+\dfrac1y\Big)dy=0'),
+       S(r'(b) **Integrate and match:** $U=ty+f(y)$. $U_y=t+f\prime$ must equal $t+\frac1y$, so $f\prime=\frac1y$ and $f=\ln|y|$.', r'ty+\ln|y|=C')],
       r'(a) $\mu=t$, $\;t^2y+t^3=C$. (b) $\mu=\dfrac1y$, $\;ty+\ln|y|=C$.', diff='advanced')
 
 

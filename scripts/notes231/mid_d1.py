@@ -96,31 +96,49 @@ ground 0,0
 def build(D):
     D.H('D1 · First-order RC and RL circuits', level=2, cites=D.cite('W1', 6) + D.cite('W2', 4, 5) + D.cite('W3', 2, 3))
     TAGS(D, (1, 3), (2, 3), (3, 2))
-    D.P(r'**When:** after the switch, the circuit has **one** capacitor or **one** inductor (after combining), plus resistors and DC sources. '
-        'Then the ODE is first order, and it always has the same shape.')
-    D.P(r'Call $x$ the quantity that can’t jump ($v_C$ or $i_L$). For $t>0$, KCL or KVL always gives:')
+    D.P(r'**When is a circuit first order?** When, after the switch, only **one** capacitor or **one** inductor is left (after combining), plus resistors and DC sources.')
+    D.P('Then the ODE always has the same shape, and one formula solves it.')
+    D.P(r'Call $x$ the quantity that can’t jump: $v_C$ in an RC circuit, $i_L$ in an RL circuit. For $t>0$, KVL or KCL always gives:')
     D.EQ(r'\dfrac{dx}{dt}+\dfrac{x}{\tau}=\dfrac{x_f}{\tau}')
-    D.L([r'$x$ = $v_C$ in an RC circuit, $i_L$ in an RL circuit',
-         r'$\tau$ = the **time constant** (seconds): $\;\tau=R_{th}C\;$ or $\;\tau=\dfrac{L}{R_{th}}$',
-         r'$x_f$ = the **final value** $x(\infty)$, from the DC steady state after the switch ($x_f=0$ if no source is left)',
-         r'$R_{th}$ = the resistance the $C$ or $L$ “sees”: turn the sources off (voltage source → short, current source → open) '
-         r'and combine the resistors between its two terminals, in the $t>0$ circuit'])
-    D.P(r'This is a ' + link('B2', 'b2') + r' equation with constant $a=\frac1\tau$ and constant $f=\frac{x_f}{\tau}$. '
-        r'Its shortcut solution, with the starting value $x(0)=x_0$, is the one formula you need:')
+    D.L([r'$x$ = $v_C$ (RC circuit) or $i_L$ (RL circuit)',
+         r'$\tau$ = the **time constant**, in seconds: $\;\tau=R_{th}C\;$ or $\;\tau=\dfrac{L}{R_{th}}$',
+         r'$x_f$ = the **final value** $x(\infty)$: where $x$ ends up long after the switch ($x_f=0$ if no source is left)',
+         r'$R_{th}$ = the resistance the $C$ or $L$ “sees” (how to find it is just below)'])
+    D.P('Examples of reading the form:')
+    D.L([r'$\dfrac{di}{dt}+5i=50$ → $\frac1\tau=5$, so $\tau=0.2\,\mathrm{s}$. And $\frac{x_f}{\tau}=50$, so $x_f=50\times0.2=10\,\mathrm{A}$.',
+         r'$\dfrac{dv}{dt}+50v=0$ → $\tau=\frac1{50}\,\mathrm{s}=20\,\mathrm{ms}$, and $x_f=0$ (no source).'])
+    D.P(r'**Finding $R_{th}$**, in the $t>0$ circuit:')
+    D.L([r'**Turn the sources off:** a voltage source becomes a wire, a current source becomes a gap.',
+         r'**Combine** the resistors between the two ends of the $C$ or $L$.'], ordered=True)
+    D.P(r'Example: a voltage source in series with $6\,\Omega$ feeds a capacitor, and a $3\,\Omega$ sits across the capacitor. '
+        r'The source becomes a wire, so the capacitor sees $6\parallel3=2\,\Omega$.')
+    D.P(r'Why the sources go off: they only set the right side of the ODE ($x_f$). The speed, $\tau$, comes from the left side, which only has the resistors and the $C$ or $L$.')
+    D.P(r'**The formula.** The ODE above is a ' + link('B2', 'b2') + r' equation with constants $a=\frac1\tau$ and $f=\frac{x_f}{\tau}$. '
+        r'Solve it once, with starting value $x(0)=x_0$, and you get the one formula you need:')
     D.EQ(r'x(t)=x_f+\big(x_0-x_f\big)\,e^{-t/\tau},\qquad t\ge0')
-    D.P('**Method** (the D0 recipe, specialised):')
-    D.L([r'**$x_0$:** from the $t<0$ DC circuit ($C$ open, $L$ short), carried over to $0^+$.',
-         r'**$x_f$:** from the $t\to\infty$ DC circuit, with the switch in its **new** position.',
-         r'**$\tau$:** find $R_{th}$ seen by the $C$ or $L$ in the $t>0$ circuit; $\tau=R_{th}C$ or $L/R_{th}$.',
+    D.P('Why it makes sense:')
+    D.L([r'at $t=0$: $e^0=1$, so $x=x_f+x_0-x_f=x_0$, the starting value ✓',
+         r'as $t\to\infty$: $e^{-t/\tau}\to0$, so $x\to x_f$, the final value ✓'])
+    D.P(r'**Method.** You don’t even have to write the ODE: find three numbers and plug in.')
+    D.L([r'**$x_0$:** from the $t<0$ circuit ($C$ = gap, $L$ = wire). It carries over to $0^+$.',
+         r'**$x_f$:** from the $t\to\infty$ circuit, with the switch in its **new** spot ($C$ = gap, $L$ = wire again).',
+         r'**$\tau$:** find $R_{th}$ in the $t>0$ circuit. Then $\tau=R_{th}C$ or $\tau=L/R_{th}$.',
          r'**Plug in:** $x(t)=x_f+(x_0-x_f)e^{-t/\tau}$.',
-         r'**Anything else** from $x(t)$: Ohm’s law, KCL, $i_C=C\frac{dv_C}{dt}$, $v_L=L\frac{di_L}{dt}$.'],
+         r'**Anything else** comes from $x(t)$: Ohm’s law, KCL, $i_C=C\frac{dv_C}{dt}$, $v_L=L\frac{di_L}{dt}$.'],
         ordered=True)
+    D.P('Two names you’ll see:')
+    D.L([r'**Natural response:** no source after $t=0$. The stored energy drains away through the resistors, so $x_f=0$.',
+         r'**Step response:** a DC source is still connected after $t=0$. It pushes $x$ to a new value $x_f$.'])
     D.T(['', 'Natural response', 'Step response'], [
-        ['When', r'no source is left after $t=0$: stored energy dies out', r'a DC source drives the circuit after $t=0$'],
-        ['Final value', r'$x_f=0$', r'$x_f$ from the new DC steady state'],
+        ['Final value', r'$x_f=0$', r'$x_f$ from the new DC circuit'],
         ['Answer', r'$x_0\,e^{-t/\tau}$', r'$x_f+(x_0-x_f)\,e^{-t/\tau}$'],
+        ['Example', r'$i=4e^{-500t}$', r'$i=10\big(1-e^{-5t}\big)$'],
     ])
-    D.P(r'**Reading the curve:** after $1\tau$, $e^{-1}=37\%$ of the starting gap $x_0-x_f$ is left (63% done); after $2\tau$, 13.5%; after $5\tau$, under 1% (“done”).')
+    D.P(r'**How fast does it settle?** Count in time constants. After:')
+    D.L([r'$1\tau$: 37% of the gap $x_0-x_f$ is left (63% done), since $e^{-1}\approx0.37$',
+         r'$2\tau$: 13.5% left',
+         r'$5\tau$: under 1% left; call it done'])
+    D.P(r'Example: $\tau=2\,\mathrm{ms}$ → the circuit has settled after about $5\tau=10\,\mathrm{ms}$.')
     D.GRAPH(r'''
     title "Drag the sliders: the curve always heads for $x_f$, and the tangent at $t=0$ reaches $x_f$ at $t=\tau$"
     x 0 8 label="$t$"
@@ -141,82 +159,83 @@ def build(D):
         ['energy stored', r'$w_C=\tfrac12Cv^2,\quad w_L=\tfrac12Li^2$', 'in joules'],
         ['parallel resistors', r'$R_1\parallel R_2=\dfrac{R_1R_2}{R_1+R_2}$', r'for $R_{th}$'],
     ])
-    D.CO('info', r'**Bonus (skip-safe): where the formula comes from (the lecture’s RC step response).** A current source $I_s$, a resistor $R$ and a capacitor $C$ in parallel. '
-         r'KCL at the top node: capacitor current plus resistor current equals the source current:'
+    D.CO('info', r'**Bonus (skip-safe): where the formula comes from (the lecture’s RC step response).** Take a current source $I_s$, a resistor $R$ and a capacitor $C$, all in parallel. '
+         r'KCL at the top node: capacitor current + resistor current = source current.'
          '\n\n$$\n' r'C\dfrac{dv}{dt}+\dfrac{v}{R}=I_s\quad\Rightarrow\quad\dfrac{dv}{dt}+\dfrac{v}{RC}=\dfrac{I_s}{C}' '\n$$\n\n'
-         r'That is the standard form with $\tau=RC$ and $x_f=RI_s$, so $v=RI_s+(V_0-RI_s)e^{-t/RC}$. '
-         r'It is ' + link('B2', 'b2') + r' with constant coefficients, and it also separates (' + link('B1', 'b1') + r'), as the lecture showed for the RL circuit.')
+         r'That’s the standard form with $\tau=RC$ and $x_f=RI_s$. Plug in: $v=RI_s+(V_0-RI_s)e^{-t/RC}$. '
+         r'You can solve it with ' + link('B2', 'b2') + r', or separate it (' + link('B1', 'b1') + r'), as the lecture did for the RL circuit.')
 
     D.EX('W3 · Circuit → ODE → answer · lecture §1.1',
-         'The switch closes at $t=0$; the inductor carries no current before. Find $i(t)$ for $t\\ge0$.\n\n' + fence(LECTURE_RL),
-         [S(r'**Type:** one inductor, one DC source → first-order RL step response. Solve for $i$ (the inductor current).'),
-          S(r'**Before:** the switch is open, so no current: $i(0^-)=0$, and $i(0^+)=0$ (it can’t jump).'),
-          S(r'**After:** KVL around the loop: the source equals the resistor voltage plus the inductor voltage.', r'2\dfrac{di}{dt}+10i=100'),
-          S(r'Divide by $L=2$ to get the standard form: $\frac1\tau=5$, so $\tau=0.2\,\mathrm{s}$ (check: $L/R=2/10$).', r'\dfrac{di}{dt}+5i=50'),
-          S(r'**Final value:** at $t\to\infty$ the inductor is a short, so $i_f=100/10=10\,\mathrm{A}$.'),
+         'The switch closes at $t=0$. The inductor carries no current before that. Find $i(t)$ for $t\\ge0$.\n\n' + fence(LECTURE_RL),
+         [S(r'**Type:** one inductor and one DC source → first-order RL **step** response. Solve for $i$, the inductor current.'),
+          S(r'**Before:** the switch is open, so no current flows: $i(0^-)=0$. It can’t jump, so $i(0^+)=0$ too.'),
+          S(r'**After:** KVL around the loop: source voltage = resistor voltage + inductor voltage.', r'2\dfrac{di}{dt}+10i=100'),
+          S(r'**Standard form:** divide by $L=2$. Then $\frac1\tau=5$, so $\tau=0.2\,\mathrm{s}$ (check: $L/R=2/10$ ✓).', r'\dfrac{di}{dt}+5i=50'),
+          S(r'**Final value:** long after, the inductor is a wire, so $i_f=100/10=10\,\mathrm{A}$.'),
           S(r'**Plug in** $x_0=0$, $x_f=10$, $\tau=0.2$.', r'i(t)=10+(0-10)e^{-5t}')],
-         r'$i(t)=10\big(1-e^{-5t}\big)\,\mathrm{A}$, the same answer the integrating factor gave (Problem in ' + link('B2', 'b2') + ').',
+         r'$i(t)=10\big(1-e^{-5t}\big)\,\mathrm{A}$. Same answer as the integrating-factor problem in ' + link('B2', 'b2') + '.',
          cites=D.cite('W3', 2, 3))
 
     P(D, 'W1 · RL natural response · Pre-tutorial 1',
-      r'The switch has been closed for a long time and opens at $t=0$. With $L=8\,\mathrm{mH}$, $R=4\,\Omega$ and $I_s=4\,\mathrm{A}$, '
-      r'find the numerical expression for $i(t)$, $t\ge0$, and sketch it.' '\n\n' + fence(T1),
-      [S(r'**Type:** after the switch opens, only the $L$–$R$ loop is left, with no source: RL **natural** response. Solve for $i$.'),
-       S(r'**Before:** DC steady state, so $L$ is a short. It shorts $R_0$ and $R$, so all of $I_s$ flows down through $L$.', r'i(0^-)=4\,\mathrm{A}=i(0^+)'),
-       S(r'**After:** $L$ discharges through $R$. No source, so $x_f=0$.', r'\tau=\dfrac{L}{R}=\dfrac{8\times10^{-3}}{4}=2\,\mathrm{ms}'),
+      r'The switch has been closed for a long time and opens at $t=0$. Use $L=8\,\mathrm{mH}$, $R=4\,\Omega$ and $I_s=4\,\mathrm{A}$. '
+      r'Find $i(t)$ for $t\ge0$ (with numbers) and sketch it.' '\n\n' + fence(T1),
+      [S(r'**Type:** once the switch opens, only $L$ and the $4\,\Omega$ are left in a loop, with no source. That’s an RL **natural** response. Solve for $i$.'),
+       S(r'**Before:** a long time, so $L$ is a wire. That wire shorts out $R_0$ and the $4\,\Omega$, so all of $I_s$ goes down through $L$.', r'i(0^-)=4\,\mathrm{A}=i(0^+)'),
+       S(r'**After:** $L$ dumps its energy into the $4\,\Omega$. No source, so $x_f=0$.', r'\tau=\dfrac{L}{R}=\dfrac{8\times10^{-3}}{4}=2\,\mathrm{ms}'),
        S(r'**Plug in:** $\frac1\tau=500\,\mathrm{s^{-1}}$.', r'i(t)=4e^{-500t}\,\mathrm{A}'),
-       S(r'**Sketch:** starts at 4 A, is $4e^{-1}\approx1.47\,\mathrm{A}$ at $t=2\,\mathrm{ms}$, and is essentially 0 after $5\tau=10\,\mathrm{ms}$.')],
+       S(r'**Sketch:** it starts at 4 A, drops to $4e^{-1}\approx1.47\,\mathrm{A}$ at $t=\tau=2\,\mathrm{ms}$, and is basically 0 after $5\tau=10\,\mathrm{ms}$.')],
       r'$i(t)=4e^{-500t}\,\mathrm{A}$, $t\ge0$ ($\tau=2\,\mathrm{ms}$): an exponential decay from 4 A.', cites=D.cite('T1', 1))
     P(D, 'W2 · Can the capacitor current jump? · Pre-tutorial 2',
-      r'The capacitor is uncharged ($V_0=0$). The switch closes at $t=0$, with $I_s=2\,\mathrm{A}$ and $R=1\,\mathrm{k\Omega}$. '
-      r'Find the capacitor current at $t=0^-$ (switch open) and at $t=0^+$ (switch closed). Is there a discontinuity in the capacitor current, unlike the capacitor voltage?' '\n\n' + fence(T2),
-      [S(r'**Type:** a $0^-$/$0^+$ question: use “$v_C$ can’t jump”, then KCL at $0^+$.'),
-       S(r'**Before:** the switch is open, so the capacitor is disconnected.', r'i_C(0^-)=0'),
-       S(r'**Just after:** $v(0^+)=v(0^-)=0$ (can’t jump). So the resistor current is $v/R=0$.'),
-       S(r'KCL at the top node: all of the source current must go into the capacitor.', r'i_C(0^+)=I_s-\dfrac{v(0^+)}{R}=2-0=2\,\mathrm{A}'),
-       S(r'**Afterwards:** $v$ rises towards $RI_s=2000\,\mathrm{V}$ and $i_C$ decays to 0.')],
-      r'$i_C(0^-)=0$, $i_C(0^+)=2\,\mathrm{A}$: yes, the capacitor **current** jumps; the capacitor **voltage** stays continuous at 0.', cites=D.cite('T2', 1))
+      r'The capacitor starts uncharged ($V_0=0$). The switch closes at $t=0$. Use $I_s=2\,\mathrm{A}$ and $R=1\,\mathrm{k\Omega}$. '
+      r'Find the capacitor current just before ($t=0^-$, switch open) and just after ($t=0^+$, switch closed). Does the capacitor current jump, even though the capacitor voltage can’t?' '\n\n' + fence(T2),
+      [S(r'**Type:** a just-before / just-after question. Use “$v_C$ can’t jump”, then KCL at $0^+$.'),
+       S(r'**Before:** the switch is open, so the capacitor isn’t connected to anything.', r'i_C(0^-)=0'),
+       S(r'**Just after:** $v(0^+)=v(0^-)=0$, since it can’t jump. The resistor sits across the capacitor, so its current is $v/R=0$.'),
+       S(r'**KCL** at the top node: the resistor takes nothing, so all of the source current goes into the capacitor.', r'i_C(0^+)=I_s-\dfrac{v(0^+)}{R}=2-0=2\,\mathrm{A}'),
+       S(r'**Afterwards:** $v$ rises toward $RI_s=2000\,\mathrm{V}$ and $i_C$ dies down to 0.')],
+      r'$i_C(0^-)=0$, $i_C(0^+)=2\,\mathrm{A}$. So yes, the capacitor **current** jumps. The capacitor **voltage** doesn’t: it stays at 0.', cites=D.cite('T2', 1))
     P(D, 'W2–W3 · Read the circuit from its response · textbook P7.42',
-      r'In this circuit the switch closes at $t=0$, and for $t\ge0$:' '\n\n'
+      r'The switch closes at $t=0$. For $t\ge0$ you measure:' '\n\n'
       r'$i(t)=\big(10-10e^{-500t}\big)\,\mathrm{A},\qquad v(t)=200e^{-500t}\,\mathrm{V}\ (t\ge0^+)$' '\n\n'
-      r'Find $V_s$, $R$, the initial current $I_0$ and $L$.' '\n\n' + fence(P742),
-      [S(r'**Type:** RL step response read backwards: match $x_f+(x_0-x_f)e^{-t/\tau}$ term by term.'),
-       S(r'**Starting value:** $I_0=i(0)=10-10=0$.'),
-       S(r'**Just after:** $i=0$, so the resistor has no voltage and the whole source appears across $L$.', r'V_s=v(0^+)=200\,\mathrm{V}'),
-       S(r'**Final value:** $L$ is a short, so $i_f=V_s/R$.', r'10=\dfrac{200}{R}\quad\Rightarrow\quad R=20\,\Omega'),
-       S(r'**Time constant:** $\frac1\tau=500$, so $\tau=2\,\mathrm{ms}=L/R$.', r'L=20\times0.002=40\,\mathrm{mH}'),
-       S(r'**Check:** $L\frac{di}{dt}=0.04\times5000e^{-500t}=200e^{-500t}$ ✓.')],
+      r'Find $V_s$, $R$, the starting current $I_0$ and $L$.' '\n\n' + fence(P742),
+      [S(r'**Type:** RL step response, read backwards. Match each piece to $x_f+(x_0-x_f)e^{-t/\tau}$.'),
+       S(r'**Starting value:** put $t=0$ into $i(t)$: $I_0=10-10=0$.'),
+       S(r'**Just after:** $i=0$, so the resistor has 0 V across it. The whole source voltage sits on $L$.', r'V_s=v(0^+)=200\,\mathrm{V}'),
+       S(r'**Final value:** long after, $L$ is a wire, so $i_f=V_s/R$. From $i(t)$, $i_f=10$.', r'10=\dfrac{200}{R}\quad\Rightarrow\quad R=20\,\Omega'),
+       S(r'**Time constant:** the exponent is $-500t$, so $\frac1\tau=500$ and $\tau=2\,\mathrm{ms}$. Use $\tau=L/R$.', r'L=20\times0.002=40\,\mathrm{mH}'),
+       S(r'**Check:** $L\frac{di}{dt}=0.04\times5000e^{-500t}=200e^{-500t}$, which matches $v(t)$ ✓.')],
       r'$V_s=200\,\mathrm{V}$, $R=20\,\Omega$, $I_0=0$, $L=40\,\mathrm{mH}$.', diff='intermediate', cites=D.tb('7.42'))
     P(D, 'W2 · RC natural response with a divider first · textbook P7.22',
-      r'The switch has been closed for a long time and opens at $t=0$. Find (a) $v(0)$, (b) $\tau$ for $t>0$, (c) $v(t)$, (d) the initial energy stored in the capacitor.' '\n\n' + fence(P722),
-      [S(r'**Type:** after the switch opens, only $C$ and $50\,\mathrm{k\Omega}$ are left, no source: RC **natural** response. Solve for $v$.'),
-       S(r'**Before:** $C$ is open, so the source current splits between $80\,\mathrm{k\Omega}$ and the $20+50=70\,\mathrm{k\Omega}$ path (current divider).',
+      r'The switch has been closed for a long time and opens at $t=0$. Find (a) $v(0)$, (b) $\tau$ for $t>0$, (c) $v(t)$, (d) the energy stored in the capacitor at $t=0$.' '\n\n' + fence(P722),
+      [S(r'**Type:** once the switch opens, only $C$ and the $50\,\mathrm{k\Omega}$ are left, with no source. RC **natural** response. Solve for $v$.'),
+       S(r'**Before:** $C$ is a gap, so the source current has two paths: the $80\,\mathrm{k\Omega}$, or $20+50=70\,\mathrm{k\Omega}$. Current divider:',
          r'i_{70}=7.5\,\mathrm{mA}\cdot\dfrac{80}{80+70}=4\,\mathrm{mA}'),
-       S(r'(a) $v$ is the voltage across $50\,\mathrm{k\Omega}$.', r'v(0^-)=4\,\mathrm{mA}\times50\,\mathrm{k\Omega}=200\,\mathrm{V}=v(0^+)'),
-       S(r'(b) **After:** $C$ sees only $50\,\mathrm{k\Omega}$.', r'\tau=RC=50\times10^3\times0.4\times10^{-6}=20\,\mathrm{ms}'),
+       S(r'(a) $v$ is the voltage across the $50\,\mathrm{k\Omega}$ (it sits on the same two nodes as $C$).', r'v(0^-)=4\,\mathrm{mA}\times50\,\mathrm{k\Omega}=200\,\mathrm{V}=v(0^+)'),
+       S(r'(b) **After:** $C$ only sees the $50\,\mathrm{k\Omega}$.', r'\tau=RC=50\times10^3\times0.4\times10^{-6}=20\,\mathrm{ms}'),
        S(r'(c) **Plug in** $x_f=0$, $\frac1\tau=50\,\mathrm{s^{-1}}$.', r'v(t)=200e^{-50t}\,\mathrm{V}'),
-       S(r'(d) **Energy.**', r'w=\tfrac12Cv^2=\tfrac12(0.4\times10^{-6})(200)^2=8\,\mathrm{mJ}')],
+       S(r'(d) **Energy:** use $w=\frac12Cv^2$ with $v(0)=200\,\mathrm{V}$.', r'w=\tfrac12Cv^2=\tfrac12(0.4\times10^{-6})(200)^2=8\,\mathrm{mJ}')],
       r'(a) $200\,\mathrm{V}$. (b) $20\,\mathrm{ms}$. (c) $v(t)=200e^{-50t}\,\mathrm{V}$, $t\ge0$. (d) $8\,\mathrm{mJ}$.', diff='intermediate', cites=D.tb('7.22'))
     P(D, 'W1–W2 · The sign of the reference arrow · textbook P7.1',
-      r'The switch has been closed for a long time and opens at $t=0$. Note the direction of $i$ (**up** through the inductor). Find (a) the initial value of $i$, '
-      r'(b) the initial energy stored in the inductor, (c) the time constant for $t>0$, (d) the numerical expression for $i(t)$, $t\ge0$.' '\n\n' + fence(P71),
-      [S(r'**Type:** after the switch opens, only $L$ and $2\,\Omega$ are left, no source: RL **natural** response. Solve for $i$.'),
-       S(r'**Before:** $L$ is a short, which also shorts the $2\,\Omega$. The source sees $3\,\Omega$ in series with $30\parallel6=5\,\Omega$.', r'I=\dfrac{120}{3+5}=15\,\mathrm{A}'),
-       S(r'The middle node is at $120-15\times3=75\,\mathrm{V}$, so $75/6=12.5\,\mathrm{A}$ flows right through $6\,\Omega$ and then **down** through $L$.'),
-       S(r'(a) The arrow points **up**, against the real current, so the value is negative.', r'i(0^-)=i(0^+)=-12.5\,\mathrm{A}'),
-       S(r'(b) **Energy** (the sign doesn’t matter: $i$ is squared).', r'w=\tfrac12(8\times10^{-3})(12.5)^2=0.625\,\mathrm{J}'),
-       S(r'(c) **After:** $L$ sees only $2\,\Omega$.', r'\tau=\dfrac{L}{R}=\dfrac{8\times10^{-3}}{2}=4\,\mathrm{ms}'),
+      r'The switch has been closed for a long time and opens at $t=0$. Watch the direction of $i$: it points **up** through the inductor. Find (a) the starting value of $i$, '
+      r'(b) the energy stored in the inductor at $t=0$, (c) the time constant for $t>0$, (d) $i(t)$ for $t\ge0$, with numbers.' '\n\n' + fence(P71),
+      [S(r'**Type:** once the switch opens, only $L$ and the $2\,\Omega$ are left, with no source. RL **natural** response. Solve for $i$.'),
+       S(r'**Before:** $L$ is a wire, and it shorts out the $2\,\Omega$. So the source sees $3\,\Omega$ in series with $30\parallel6=5\,\Omega$.', r'I=\dfrac{120}{3+5}=15\,\mathrm{A}'),
+       S(r'The middle node sits at $120-15\times3=75\,\mathrm{V}$. So $75/6=12.5\,\mathrm{A}$ goes right through the $6\,\Omega$, then **down** through $L$.'),
+       S(r'(a) The arrow points **up**, but the real current goes down, so the value is negative.', r'i(0^-)=i(0^+)=-12.5\,\mathrm{A}'),
+       S(r'(b) **Energy:** the sign doesn’t matter, because $i$ gets squared.', r'w=\tfrac12(8\times10^{-3})(12.5)^2=0.625\,\mathrm{J}'),
+       S(r'(c) **After:** $L$ only sees the $2\,\Omega$.', r'\tau=\dfrac{L}{R}=\dfrac{8\times10^{-3}}{2}=4\,\mathrm{ms}'),
        S(r'(d) **Plug in** $x_0=-12.5$, $x_f=0$, $\frac1\tau=250$.', r'i(t)=-12.5e^{-250t}\,\mathrm{A}')],
       r'(a) $-12.5\,\mathrm{A}$. (b) $0.625\,\mathrm{J}$. (c) $4\,\mathrm{ms}$. (d) $i(t)=-12.5e^{-250t}\,\mathrm{A}$, $t\ge0$.', diff='intermediate', cites=D.tb('7.1'))
     P(D, 'W2 · Step response that needs a Thévenin equivalent · textbook P7.52(a)',
-      r'The switch has been in position $a$ for a long time. At $t=0$ it moves to position $b$ and stays there. '
-      r'Find the initial and final values of the capacitor voltage, the time constant for $t\ge0$, and $v_C(t)$ for $t\ge0$. (The $200\,\mathrm{V}$ source has its $-$ on top. The two $t=0$ switches are one two-position switch: at $t=0$ the contact at $a$ opens and the contact at $b$ closes.)' '\n\n' + fence(P752),
-      [S(r'**Type:** one capacitor, a DC source after the switch: RC **step** response. Solve for $v_C$.'),
-       S(r'**Before (position $a$):** $C$ is open, so no current flows through $10\,\mathrm{k\Omega}$: the capacitor holds the full source.', r'v_C(0^-)=120\,\mathrm{V}=v_C(0^+)'),
-       S(r'**After (position $b$):** replace everything right of $b$ by its Thévenin equivalent. With $C$ removed, no current flows in $12.5\,\mathrm{k\Omega}$; '
-         r'the divider gives the node voltage (the source’s top is at $-200\,\mathrm{V}$).', r'V_{th}=-200\cdot\dfrac{150}{150+50}=-150\,\mathrm{V}'),
-       S(r'Sources off (the $200\,\mathrm{V}$ source becomes a short): $12.5\,\mathrm{k\Omega}$ plus $150\parallel50$.', r'R_{th}=12.5+37.5=50\,\mathrm{k\Omega}'),
-       S(r'**Final value and time constant:** $C$ ends at $V_{th}$.', r'v_f=-150\,\mathrm{V},\qquad\tau=(50\times10^{3})(40\times10^{-9})=2\,\mathrm{ms}'),
+      r'The switch has been at $a$ for a long time. At $t=0$ it moves to $b$ and stays there. '
+      r'Find the starting and final capacitor voltage, the time constant for $t\ge0$, and $v_C(t)$ for $t\ge0$. (The $200\,\mathrm{V}$ source has its $-$ on top. The two $t=0$ switches are one two-position switch: at $t=0$ the contact at $a$ opens and the contact at $b$ closes.)' '\n\n' + fence(P752),
+      [S(r'**Type:** one capacitor, and a DC source still connected after the switch. RC **step** response. Solve for $v_C$.'),
+       S(r'**Before (at $a$):** $C$ is a gap, so no current flows through the $10\,\mathrm{k\Omega}$ and it drops 0 V. The capacitor gets the full source.', r'v_C(0^-)=120\,\mathrm{V}=v_C(0^+)'),
+       S(r'**After (at $b$):** shrink everything right of $b$ into one source $V_{th}$ plus one resistor $R_{th}$ (Thévenin). Then it’s a plain RC loop.'),
+       S(r'**$V_{th}$:** take $C$ out. No current flows in the $12.5\,\mathrm{k\Omega}$, so $V_{th}$ is the voltage on the $150\,\mathrm{k\Omega}$: a divider with the $50\,\mathrm{k\Omega}$. '
+         r'The source’s top is at $-200\,\mathrm{V}$.', r'V_{th}=-200\cdot\dfrac{150}{150+50}=-150\,\mathrm{V}'),
+       S(r'**$R_{th}$:** turn the source off (it becomes a wire). That leaves $12.5\,\mathrm{k\Omega}$ in series with $150\parallel50=37.5\,\mathrm{k\Omega}$.', r'R_{th}=12.5+37.5=50\,\mathrm{k\Omega}'),
+       S(r'**Final value and time constant:** in the end $C$ is a gap again, so no current flows and $C$ sits at $V_{th}$.', r'v_f=-150\,\mathrm{V},\qquad\tau=(50\times10^{3})(40\times10^{-9})=2\,\mathrm{ms}'),
        S(r'**Plug in:** $x_0-x_f=120-(-150)=270$, $\frac1\tau=500$.', r'v_C(t)=-150+270e^{-500t}\,\mathrm{V}')],
       r'$v_C(0)=120\,\mathrm{V}$, $v_C(\infty)=-150\,\mathrm{V}$, $\tau=2\,\mathrm{ms}$, $v_C(t)=-150+270e^{-500t}\,\mathrm{V}$, $t\ge0$.',
       diff='advanced', cites=D.tb('7.52'))

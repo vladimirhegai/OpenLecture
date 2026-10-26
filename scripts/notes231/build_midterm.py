@@ -37,7 +37,7 @@ def main():
     if preview:
         key = 'prev-' + '-'.join(parts)
         # A note with no week is identified by its topic keys, so each preview needs its own (else HTTP 409).
-        D = Doc(key, '[preview] Midterm sections ' + ', '.join(parts), [f'midterm_{key}'])
+        D = Doc(key, '[preview] Midterm sections ' + ', '.join(parts), [f'midterm_{key}'.replace('-', '_')])
         # Previews run in parallel: keep their ids out of the shared out/docs.json (which also holds the week notes).
         lib231.DOCS = os.path.join(lib231.OUT, f'docs_{key}.json')
         if '--publish' not in sys.argv:

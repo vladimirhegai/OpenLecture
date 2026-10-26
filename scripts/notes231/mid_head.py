@@ -5,16 +5,20 @@ from midlib import link
 def build(D):
     D.H('Start here: what the midterm asks')
     D.P('**Midterm:** Friday Oct 30 · 2 hours · 30 marks · Weeks 1–6 · Casio 991 only.')
-    D.P('Every solution in this note is written in the same three moves. Use them on the exam too:')
-    D.L([r'**Type:** name the kind of problem, and the clue in the question that told you.',
-         r'**Method:** follow the numbered steps from that subtopic.',
-         r'**Conditions:** use the given values (or the circuit before the switch) to fix the constants.'],
+    D.P('Every solution in this note uses the same three moves. Use them on the exam too. '
+        'Naming the type first is what tells you which method to use.')
+    D.L([r'**Type:** say what kind of problem it is, and the clue that told you. '
+         r'Example: “$y\prime=t^2y$ is separable: the right side is a $t$-part times a $y$-part.”',
+         r'**Method:** do the numbered steps from that section.',
+         r'**Conditions:** plug in the given values to find the constants. Example: $y=Ce^{2t}$ with $y(0)=5$ gives $C=5$. '
+         r'(In a circuit, the values come from the circuit just before the switch moves.)'],
         ordered=True)
-    D.P('Find your question in the left column, then jump to its section. Clicking a link scrolls there; the browser’s Back button returns.')
+    D.P('**Where do I go?** Find what your question gives you in the left column, then click the link. '
+        'The browser’s Back button brings you back here.')
     D.T(['The question gives you…', 'Go to', 'Weeks'], [
         ['a complex number to convert, multiply, divide, raise to a power or take roots of', link('Topic A', 'topic-a'), '1'],
-        ['an ODE to classify, or a function to check', link('Topic B', 'topic-b'), '2'],
-        [r'a first-order ODE where the $y$’s and $t$’s can be split apart', link('B1 · Separable', 'b1'), '3'],
+        ['an ODE to classify, or a function to check as a solution', link('Topic B', 'topic-b'), '2'],
+        [r'a first-order ODE where you can split the $y$’s from the $t$’s', link('B1 · Separable', 'b1'), '3'],
         [r'$y\prime+a(t)\,y=f(t)$', link('B2 · Integrating factor', 'b2'), '3'],
         [r'$M\,dt+N\,dy=0$', link('B3 · Exact', 'b3') + ', ' + link('B4 · Make it exact', 'b4'), '4'],
         [r'$ay\prime\prime+by\prime+cy=0$ (numbers $a,b,c$)', link('B5 · Characteristic equation', 'b5'), '4–5'],
