@@ -30,6 +30,7 @@ SECTIONS = [
     ('B', 'Nodal, mesh and source transformation'),
     ('C', 'Thévenin and Norton'),
     ('D', 'Maximum power transfer and superposition'),
+    ('M', 'Midterm Practice'),
 ]
 # Document order; problems are numbered 1, 2, 3, ... in this order.
 MODULES = [
@@ -41,6 +42,8 @@ MODULES = [
     'c2_p4_64', 'c13_p4_67', 'c14_tb_ap4_19',
     # max power, then superposition
     'd1_ap4_19', 'd3_ap4_21', 'd5_p4_91', 'd2_p4_94', 'd4_p4_96', 'd6_p4_98',
+    # past midterm (Fall 2025), in exam order
+    'm1_mt25_q1', 'm2_mt25_q2', 'm3_mt25_q3', 'm4_mt25_q4',
 ]
 # Built and checked but left out (the user wants about 8 Thévenin/Norton problems, 2026-10-23):
 # c6_p4_68 (≈ AP 4.16), c7_p4_73 (≈ AP 4.18), c10_p4_80 (≈ AP 4.20), c8_p4_69 (works backwards),

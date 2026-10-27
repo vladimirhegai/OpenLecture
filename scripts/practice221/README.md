@@ -7,7 +7,7 @@ Check the result with `node stepshots.cjs <docId> <outDir> [--dark] [--only=<tit
 ## Module interface
 
 ```python
-SECTION = 'B'                       # A Kirchhoff (meters, bridges, Δ–Y) · B nodal/mesh/source transf. · C Thévenin/Norton · D max power/superposition
+SECTION = 'B'                       # A Kirchhoff (meters, bridges, Δ–Y) · B nodal/mesh/source transf. · C Thévenin/Norton · D max power/superposition · M past midterm questions ("Midterm Practice", m<N>_mt<YY>_q<K>.py)
 TITLE = 'Two sources, one bridge'   # after "Problem N · ". Section B: never name the method (the reader picks it). Section C: say "Thévenin" or "Norton".
 SOURCE = 'Tutorial 4, Problem 4'    # shown in italics above the statement
 CITES = [...]                       # citation dicts, copied from the week-note block when reused

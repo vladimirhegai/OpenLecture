@@ -577,3 +577,100 @@ wire 0,0 -> 8,0
 label 4,3 "$n$" above
 ground 0,0
 ```
+
+## Midterm Practice
+
+### Problem 27 · Q1: Thévenin and maximum power
+
+*ELEC 221 Midterm, Fall 2025, Question 1 (Fig. P1)*
+
+**(a)** Find the Thévenin equivalent circuit seen by $R_L$. **(b)** Find the $R_L$ that receives the maximum power. **(c)** With this $R_L$, find the maximum power delivered to $R_L$.
+
+*$R_L$ is drawn straight here instead of diagonal: it still goes from the top-right node $a$ down to the bottom wire $b$.*
+
+```schematic
+V1 0,3 -> 0,0 "$5\,\mathrm{V}$"
+R2A 0,3 -> 3,3 "$2\,\Omega$"
+wire 0,3 -> 0,5
+R4 0,5 -> 6,5 "$4\,\Omega$"
+wire 6,5 -> 6,3
+I1 3,0 -> 3,3 "$3\,\mathrm{A}$"
+R2B 3,3 -> 6,3 "$2\,\Omega$"
+RL 6,3 -> 6,0 "$R_L=12\,\Omega$" v="$V_L$"
+wire 6,3 -> 9,3
+R1 9,3 -> 9,0 "$1\,\Omega$"
+R5 9,0 -> 6,0 "$5\,\Omega$"
+wire 0,0 -> 6,0
+label 7,3 "$a$" above
+label 6,0 "$b$" below
+ground 0,0
+```
+
+### Problem 28 · Q2: Superposition, add a source
+
+*ELEC 221 Midterm, Fall 2025, Question 2 (Fig. P2)*
+
+In the circuit of Question 1, the voltage across $R_L=12\,\Omega$ is $V_L$. A voltage source $v_x=3\,\mathrm{V}$ is added in series with the $4\,\Omega$, as shown. How much does $V_L$ change? *Hint: use superposition.*
+
+```schematic
+V1 0,3 -> 0,0 "$5\,\mathrm{V}$"
+R2A 0,3 -> 3,3 "$2\,\Omega$"
+wire 0,3 -> 0,5
+R4 0,5 -> 3,5 "$4\,\Omega$"
+VX 6,5 -> 3,5 "$v_x=3\,\mathrm{V}$"
+wire 6,5 -> 6,3
+I1 3,0 -> 3,3 "$3\,\mathrm{A}$"
+R2B 3,3 -> 6,3 "$2\,\Omega$"
+RL 6,3 -> 6,0 "$R_L=12\,\Omega$" v="$V_L$"
+wire 6,3 -> 9,3
+R1 9,3 -> 9,0 "$1\,\Omega$"
+R5 9,0 -> 6,0 "$5\,\Omega$"
+wire 0,0 -> 6,0
+label 7,3 "$a$" above
+label 6,0 "$b$" below
+ground 0,0
+```
+
+### Problem 29 · Q3: Series and parallel back and forth
+
+*ELEC 221 Midterm, Fall 2025, Question 3 (Fig. P3)*
+
+Find $I_x$ and $V_x$.
+
+*The current source's value is cut off on the posted exam, so we use $9\,\mathrm{A}$ here.*
+
+```schematic
+I1 0,0 -> 0,4 "$9\,\mathrm{A}$"
+wire 0,4 -> 2,4
+R2 2,4 -> 2,0 "$2\,\Omega$"
+R1 2,4 -> 5,4 "$1\,\Omega$" v="$V_x$"
+R4 5,4 -> 5,2 "$4\,\Omega$"
+wire 4,2 -> 6,2
+R3 4,2 -> 4,0 "$3\,\Omega$" i="$I_x$"
+R6 6,2 -> 6,0 "$6\,\Omega$"
+R12A 5,4 -> 8,4 "$1.2\,\Omega$"
+R8 8,4 -> 8,0 "$8\,\Omega$"
+wire 8,4 -> 10,4
+R12 10,4 -> 10,0 "$12\,\Omega$"
+wire 0,0 -> 10,0
+ground 0,0
+```
+
+### Problem 30 · Q4: Dependent source, equations then solve
+
+*ELEC 221 Midterm, Fall 2025, Question 4*
+
+**(a)** Write (but do not solve) the set of simultaneous equations needed to solve the circuit, using either the node-voltage or the mesh-current method. **(b)** Solve for $i_\Delta$ any way you choose.
+
+```schematic
+E1 0,3 -> 0,0 "$5i_\Delta$"
+wire 0,3 -> 0,5
+RT 6,5 -> 0,5 "$10\,\Omega$" i="$i_\Delta$"
+wire 6,5 -> 6,3
+RA 0,3 -> 3,3 "$10\,\Omega$"
+RB 3,3 -> 6,3 "$10\,\Omega$"
+I1 3,0 -> 3,3 "$2\,\mathrm{A}$"
+R30 6,3 -> 6,0 "$30\,\Omega$"
+wire 0,0 -> 6,0
+ground 0,0
+```
