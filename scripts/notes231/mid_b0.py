@@ -61,7 +61,7 @@ def build(D):
          r'Is the **right side $0$**?'], ordered=True)
     D.T(['In front of $y$', r'Right side $0$', r'Right side $g(t)$'], [
         [r'**Numbers in front**', link('B5', 'b5') + ' characteristic equation', link('B6', 'b6') + ' undetermined coefficients'],
-        [r'**$t$ in front**', link('B7', 'b7') + ' reduction of order', 'not in Weeks 1–6'],
+        [r'**$t$ in front**', link('B7', 'b7') + ' reduction of order', 'not on the midterm'],
     ])
 
     D.P(r'**Numbers in front, right side 0** → ' + link('B5', 'b5') + '.')

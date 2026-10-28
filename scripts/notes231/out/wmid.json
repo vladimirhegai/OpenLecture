@@ -24,15 +24,31 @@
   },
   {
    "type": "paragraph",
-   "text": "**Midterm:** Friday Oct 30 · 2 hours · 30 marks · Weeks 1–6 · Casio 991 only.",
+   "text": "**Midterm:** Friday Oct 30 · 2 hours · 30 marks · Casio 991 only.",
    "citations": [],
-   "id": "917b4f8f-1a4b-5efa-b9b0-615d05493502"
+   "id": "394d55b2-867a-5716-b5ae-a2b1cde349a7"
+  },
+  {
+   "type": "paragraph",
+   "text": "**What’s on it** (announced in class): everything up to and including Monday Oct 26’s lecture (the comments on undetermined coefficients), plus this week’s tutorials (Mon Oct 26 and Wed Oct 28). That is every section of this note.",
+   "citations": [],
+   "id": "a86096c7-4b7d-5c97-9434-65726a8c844e"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Not on it: Laplace transforms.** Skip them for now.",
+    "**This week’s tutorial problem** is Pre-tutorial 5: $y^{\\prime\\prime}+y=6\\cos^2t$ with $y(0)=0$, $y(\\pi/2)=0$. It’s the worked example in [B6](#b6). Practise it until you can do it without looking."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "6ac4a739-4c87-55f7-973d-16378e8eae08"
   },
   {
    "type": "paragraph",
    "text": "Every solution in this note uses the same three moves. Use them on the exam too. Naming the type first is what tells you which method to use.",
    "citations": [],
-   "id": "f02c6cdd-5aec-5905-8d33-d9b86af2cc35"
+   "id": "a38dba9c-7a87-5da1-bf1e-ba80f31549f9"
   },
   {
    "type": "list",
@@ -43,13 +59,13 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "1770cdd4-68a8-59bd-8957-7a477744ae1d"
+   "id": "2be46a6e-f63a-5aa9-9630-51044b89ba71"
   },
   {
    "type": "paragraph",
    "text": "**Where do I go?** Find what your question gives you in the left column, then click the link. The browser’s Back button brings you back here.",
    "citations": [],
-   "id": "b0222073-853f-5fc5-91eb-203fda2f6033"
+   "id": "419f9cc9-e1aa-5d8b-bd1b-0b9b82ece427"
   },
   {
    "type": "table",
@@ -108,10 +124,15 @@
      "a circuit with a switch: find $v(t)$ or $i(t)$",
      "[Topic D](#topic-d)",
      "1–3, 5"
+    ],
+    [
+     "a mixed set of exam-style problems, to practise like the real thing",
+     "[Topic E](#topic-e)",
+     "1–6"
     ]
    ],
    "citations": [],
-   "id": "44050c96-2bde-5444-982b-3962c64e158c"
+   "id": "522e6ed1-2ea7-5371-bf84-6cea92c91886"
   },
   {
    "type": "heading",
@@ -139,19 +160,19 @@
      "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
     }
    ],
-   "id": "f765e689-a114-5556-a086-80e8130da53d"
+   "id": "79d7922e-0bab-5172-9a00-1384a6ff72cd"
   },
   {
    "type": "paragraph",
    "text": "[Week 1 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#079a564f-840a-46b1-9f12-5d8d123edad9) [Week 1 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#fef2e73f-cd85-498c-9b6a-1ff1e058d7d3)",
    "citations": [],
-   "id": "b224e055-a9bf-5e39-957c-1621f6032840"
+   "id": "a91934e5-a9f8-5bf8-90bd-e9013a736c41"
   },
   {
    "type": "paragraph",
    "text": "Complex numbers show up in two places on the midterm:",
    "citations": [],
-   "id": "6a8e8a18-d08c-529d-b2ba-eab5fc5fe34a"
+   "id": "dba6f6fc-fb41-53ea-a93c-66e0e7e7567a"
   },
   {
    "type": "list",
@@ -161,20 +182,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "51516ee1-148f-5f24-96dd-65463438e989"
+   "id": "ffdaaeb8-fec7-5a48-8653-1dcd7ac5b7bc"
   },
   {
    "type": "paragraph",
    "text": "**One number, two ways to write it.** Think of a complex number as an arrow from the origin. You can say where its tip is (how far right, how far up), or how long it is and which way it points:",
    "citations": [],
-   "id": "d09c5e2b-a7ef-5250-995f-fbf9f1f176a9"
+   "id": "4951ca34-68f5-5499-906b-1cb0e6ecac4c"
   },
   {
    "type": "equation",
    "latex": "z=a+jb=c\\,e^{j\\theta}=c\\angle\\theta",
    "display": true,
    "citations": [],
-   "id": "4adee1a1-8558-5660-89c8-e95cb85e284d"
+   "id": "a109fa09-901e-5557-a348-56db63078850"
   },
   {
    "type": "list",
@@ -187,70 +208,70 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "0c4aaf45-c0f4-5a73-890d-c04782253169"
+   "id": "40e623d3-4496-5b05-b555-246384f1232f"
   },
   {
    "type": "paragraph",
    "text": "Example: $3+j4$ is 3 right and 4 up. Its length is $c=\\sqrt{9+16}=5$ and its angle is $\\theta=\\tan^{-1}(4/3)=53.13^\\circ$, so $3+j4=5\\angle53.13^\\circ$.",
    "citations": [],
-   "id": "49355829-450e-534a-8cac-0e5a8eaebcd8"
+   "id": "fcc3d660-db66-5141-81ea-27fcefb0e4e5"
   },
   {
    "type": "paragraph",
    "text": "Why two forms? Adding is easy in $a+jb$. Multiplying, dividing and powers are easy in $c\\angle\\theta$.",
    "citations": [],
-   "id": "118b9c0e-dc9d-5acc-a35b-207801356671"
+   "id": "abd912c7-a859-5be9-8a5a-622df49271ab"
   },
   {
    "type": "paragraph",
    "text": "**Polar → rectangular.** The arrow is the long side of a right triangle, so use cos and sin:",
    "citations": [],
-   "id": "2fde852e-b054-570b-8da2-c1dcc944b92f"
+   "id": "f779c3f8-5436-5b50-a026-433003a71fc7"
   },
   {
    "type": "equation",
    "latex": "a=c\\cos\\theta,\\quad b=c\\sin\\theta",
    "display": true,
    "citations": [],
-   "id": "d43301ca-d51f-529d-801f-8cd99fb827f5"
+   "id": "6b1faf5b-3719-5e78-a475-768619e2c7d5"
   },
   {
    "type": "paragraph",
    "text": "Example: $2\\angle30^\\circ=2\\cos30^\\circ+j\\,2\\sin30^\\circ=\\sqrt3+j$.",
    "citations": [],
-   "id": "667cb166-39ca-5e7a-b45d-a651bcf2c81d"
+   "id": "eac4ce2a-8da3-5518-8638-6f724dc8014d"
   },
   {
    "type": "paragraph",
    "text": "**Rectangular → polar.** Pythagoras gives the length, $\\tan^{-1}$ gives the angle:",
    "citations": [],
-   "id": "688aff1b-7298-5e8f-89ad-d8f8194cd71a"
+   "id": "7026756d-6a5c-557b-94da-ab4fa19476a3"
   },
   {
    "type": "equation",
    "latex": "c=\\sqrt{a^2+b^2},\\quad \\theta=\\tan^{-1}\\!\\left(\\dfrac{b}{a}\\right)",
    "display": true,
    "citations": [],
-   "id": "41b692b9-0ce8-5323-b8f4-6784d37a5683"
+   "id": "232d0573-acb4-5279-90bf-96c2a1e5d247"
   },
   {
    "type": "paragraph",
    "text": "Example: the $3+j4=5\\angle53.13^\\circ$ above. But watch the quadrant:",
    "citations": [],
-   "id": "90992f6e-818b-5ad2-b24c-544067490f70"
+   "id": "66b88339-8ded-54ac-b8a7-32e080b23fbe"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "**The quadrant trap.** The calculator’s $\\tan^{-1}$ only gives angles between $-90^\\circ$ and $90^\\circ$, i.e. arrows pointing right. If $a<0$, your arrow points left, so **add $180^\\circ$** to what the calculator says. Example: $-1+j$ points up-left. The calculator gives $\\tan^{-1}(1/{-1})=-45^\\circ$, but the real angle is $-45^\\circ+180^\\circ=135^\\circ$.",
    "citations": [],
-   "id": "2d2fbf1d-6669-5612-8aa6-d885c95b6beb"
+   "id": "b1a925f2-f436-57fe-86d6-668e59f027c5"
   },
   {
    "type": "paragraph",
    "text": "**Arithmetic: pick the form that makes the job easy.**",
    "citations": [],
-   "id": "b924ba1b-f22e-53d9-a022-256210749b3d"
+   "id": "4b9689af-a049-59ef-ad22-541bd94ae69d"
   },
   {
    "type": "list",
@@ -263,32 +284,32 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "a06533e4-604e-5022-92f3-8758b9241902"
+   "id": "5a69a496-6ea4-53ff-9322-a08cdec58c79"
   },
   {
    "type": "paragraph",
    "text": "Why the conjugate works: $(a+jb)(a-jb)=a^2+b^2$ is a plain real number, so the bottom stops being complex.",
    "citations": [],
-   "id": "d6212d22-9ca0-5cd7-af75-12dfadd3616f"
+   "id": "5f2a2c6f-631b-5be3-bce0-da07c0882fe7"
   },
   {
    "type": "paragraph",
    "text": "Powers of $j$ repeat every four: $j^2=-1$, $j^3=j^2\\cdot j=-j$, $j^4=(j^2)^2=1$. And $\\dfrac1j=\\dfrac{j}{j\\cdot j}=-j$.",
    "citations": [],
-   "id": "8cd926d3-538e-5c97-92b1-0443193bc6e2"
+   "id": "898121ab-85ba-5fbe-b954-b07db73a41ee"
   },
   {
    "type": "paragraph",
    "text": "**Roots: a $k$-th root question always has $k$ answers.** Write $z$ in polar form, then use:",
    "citations": [],
-   "id": "1563b15f-44a6-5d00-93df-b8959a9c2e9a"
+   "id": "457f2da5-d162-5c8c-92b2-dd8b6d1533dc"
   },
   {
    "type": "equation",
    "latex": "z^{1/k}=c^{1/k}\\angle\\dfrac{\\theta+360^\\circ\\ell}{k},\\quad \\ell=0,1,\\dots,k-1",
    "display": true,
    "citations": [],
-   "id": "c683a752-3faf-5279-9b2d-bcebc89f1baa"
+   "id": "330fd35c-683b-5f1e-9003-dfa4f7b3f642"
   },
   {
    "type": "list",
@@ -299,39 +320,39 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "60ca66cc-ec6f-5a03-a7fd-9a99819b0f7e"
+   "id": "621fb12a-f905-5aea-8a6c-ff8a5bdc92fb"
   },
   {
    "type": "paragraph",
    "text": "Example: the square roots of $4\\angle60^\\circ$ have length $\\sqrt4=2$ and angles $30^\\circ$ and $30^\\circ+180^\\circ=210^\\circ$. So they are $2\\angle30^\\circ$ and $2\\angle210^\\circ$.",
    "citations": [],
-   "id": "1298c328-5a10-5c37-b6e2-6d8071f6f2cf"
+   "id": "8728af3f-de05-5d39-b97e-7464f0eff00e"
   },
   {
    "type": "paragraph",
    "text": "Why $k$ answers: $\\theta$ and $\\theta+360^\\circ$ are the same arrow, but after you divide by $k$ they point different ways.",
    "citations": [],
-   "id": "2696160a-8c3e-597a-8b2d-fe296a5d14c8"
+   "id": "8b3d94e1-ff9e-5f3e-bfc5-07a854d08b8c"
   },
   {
    "type": "paragraph",
    "text": "```graph\ntitle \"Drag $z$, change $k$: the $k$ roots sit evenly on one circle\"\nx -3 3 label=\"Re\"\ny -3 3 label=\"Im\"\nequal\ndrag Z 0 2.5 label=\"$z$\" color=1\nslider k 2 6 3 step=1 label=\"$k$\"\nlet c \"hypot(Z_x,Z_y)\"\nlet th \"atan2(Z_y,Z_x)\"\nlet r \"c^(1/k)\"\narrow \"Z_x\" \"Z_y\" color=1\ncircle \"0\" \"0\" \"r\" color=0 dash\npoint \"r*cos(th/k)\" \"r*sin(th/k)\" label=\"the $k$ roots of $z$\" color=2\npoint \"r*cos((th+2*pi)/k)\" \"r*sin((th+2*pi)/k)\" color=2\npoint \"if(k>2, r*cos((th+4*pi)/k), 99)\" \"if(k>2, r*sin((th+4*pi)/k), 99)\" color=2\npoint \"if(k>3, r*cos((th+6*pi)/k), 99)\" \"if(k>3, r*sin((th+6*pi)/k), 99)\" color=2\npoint \"if(k>4, r*cos((th+8*pi)/k), 99)\" \"if(k>4, r*sin((th+8*pi)/k), 99)\" color=2\npoint \"if(k>5, r*cos((th+10*pi)/k), 99)\" \"if(k>5, r*sin((th+10*pi)/k), 99)\" color=2\nreadout \"$|z|$\" \"c\"\nreadout \"$\\angle z$\" \"deg(th)\" unit=\"°\"\nreadout \"root magnitude\" \"r\"\ncaption \"Start: $z=2.5\\angle90^\\circ$, $k=3$. The roots have length $2.5^{1/3}$. The first is at $90^\\circ/3=30^\\circ$, the others $120^\\circ$ apart.\"\n```",
    "citations": [],
-   "id": "14eb3df6-1e7d-5f7b-a75f-aa59f786b0b3"
+   "id": "d1e3a493-703f-53ee-ad9c-24016c1a662d"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why multiplying adds angles.** Write both numbers as exponentials and use $e^Ae^B=e^{A+B}$: $z_1z_2=c_1e^{j\\theta_1}\\,c_2e^{j\\theta_2}=c_1c_2\\,e^{j(\\theta_1+\\theta_2)}$. The two forms are linked by Euler’s identity, $e^{j\\theta}=\\cos\\theta+j\\sin\\theta$. The lecture uses it to get trig identities for free: expand $e^{jA}e^{jB}=e^{j(A+B)}$, and the real parts give $\\cos(A+B)=\\cos A\\cos B-\\sin A\\sin B$.",
    "citations": [],
-   "id": "7c0afac1-83ce-5641-8687-5af0bfa6ddcd"
+   "id": "22bc3924-53c0-5e74-9f47-a2a82fc1d5c4"
   },
   {
    "type": "callout",
    "tone": "tip",
    "text": "**Casio 991 check:** complex mode does $+,-,\\times,\\div$ and can show the answer as $r\\angle\\theta$. Use it to check your answer, but write the steps: the marks are for the working.",
    "citations": [],
-   "id": "f65d03ea-6a90-5e01-bcf8-7e0a7069121b"
+   "id": "ddc3ec0e-1965-5f1f-abad-70da53548067"
   },
   {
    "type": "worked_example",
@@ -359,7 +380,7 @@
      "chunk_id": "ef047078-342a-4212-90dc-f26dfa2e7118"
     }
    ],
-   "id": "f6db1ce1-74b1-51d1-b05c-44dd33d253ba"
+   "id": "7aa20c7b-5309-5377-808b-832540e25714"
   },
   {
    "type": "practice_problem",
@@ -388,7 +409,7 @@
    ],
    "answer": "(a) $5\\angle126.87^\\circ$. (b) $5\\angle233.13^\\circ$, the same as $5\\angle-126.87^\\circ$.",
    "citations": [],
-   "id": "c4500356-f9af-52cb-a04a-c0084754570c"
+   "id": "7beb2b7e-4055-5f30-8c87-0a79882c0701"
   },
   {
    "type": "practice_problem",
@@ -423,7 +444,7 @@
      "chunk_id": "46fe55fc-32b5-47ae-a4d7-4d1870429343"
     }
    ],
-   "id": "7867820d-b69c-5712-b925-0b4b0a10992e"
+   "id": "b8614275-fac4-5ef6-b779-a8435b70cb96"
   },
   {
    "type": "practice_problem",
@@ -444,7 +465,7 @@
    ],
    "answer": "$(1+j)^8=16$.",
    "citations": [],
-   "id": "e633b428-be63-524c-8462-7f43effd6a42"
+   "id": "471e25c2-ade3-5f53-8274-0c8f6a601a70"
   },
   {
    "type": "practice_problem",
@@ -469,7 +490,7 @@
    ],
    "answer": "$2\\angle60^\\circ=1+j\\sqrt3$, $2\\angle180^\\circ=-2$, $2\\angle300^\\circ=1-j\\sqrt3$. The real root $-2$ is only one of three.",
    "citations": [],
-   "id": "7aae30ec-f97b-5efc-a9e8-1208610f88a9"
+   "id": "6b042226-5770-5a6c-ae5d-bd8cce8e7cf6"
   },
   {
    "type": "practice_problem",
@@ -490,7 +511,7 @@
    ],
    "answer": "$s=-2\\pm j3$: a conjugate pair (same real part, opposite imaginary parts).",
    "citations": [],
-   "id": "e736e895-6a56-5077-8c12-0486d7c9e47d"
+   "id": "2f2038c2-db8d-586e-b9bc-4c7bd9164eaf"
   },
   {
    "type": "heading",
@@ -508,31 +529,31 @@
      "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
     }
    ],
-   "id": "34d85f9b-d93e-59df-860d-82b356eb793c"
+   "id": "e43ac83b-8890-5a4d-8afb-41f873f8c932"
   },
   {
    "type": "paragraph",
    "text": "[Week 2 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#68929800-f011-4be7-a85a-29543465ed52) [Week 2 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#49e5b3a7-1038-4f16-a4cc-2170fbbd61dc)",
    "citations": [],
-   "id": "738ecb72-eeb4-53d8-9546-623e9ae929a8"
+   "id": "12e4992b-996a-5d40-b329-5d44adde1138"
   },
   {
    "type": "paragraph",
    "text": "This is the core of the midterm. You get an ODE (ordinary differential equation) and you have to find $y(t)$.",
    "citations": [],
-   "id": "10833025-e78d-5fb9-a23e-794e2a76121a"
+   "id": "c190fd12-9b1f-5ecf-a034-7aaead1848c7"
   },
   {
    "type": "paragraph",
    "text": "There are seven methods, B1–B7. Which one you use depends only on **what the equation looks like**. So the first move is always to name the equation.",
    "citations": [],
-   "id": "9ac4f099-eeba-57c7-97db-a4d29bde533f"
+   "id": "f26f2e8a-f813-5184-8fe6-e8768b16aac4"
   },
   {
    "type": "paragraph",
    "text": "**Step 1: name it.** Ask these five questions:",
    "citations": [],
-   "id": "5de708b5-f2e6-5880-af42-a69748dc7cb5"
+   "id": "48511f01-91db-5864-876c-8e3d9e07eafa"
   },
   {
    "type": "table",
@@ -586,19 +607,19 @@
      "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
     }
    ],
-   "id": "38bb28b4-ed80-58f6-96c7-3d3c10124740"
+   "id": "43187dce-ca38-5818-9f6f-6d4f821b66b4"
   },
   {
    "type": "paragraph",
    "text": "**Step 2: pick the method.** Look at the **order** first. 1st-order and 2nd-order equations use completely different methods.",
    "citations": [],
-   "id": "4c19ae81-e11e-5ed2-95fc-98f5d95b5764"
+   "id": "03d3648a-911d-59d1-96ed-768baa133553"
   },
   {
    "type": "paragraph",
    "text": "**1st order** (the highest derivative is $y^{\\prime}$). Check these in order and stop at the first one that fits:",
    "citations": [],
-   "id": "036913c5-26d4-5bbf-8bc5-d62da769ca2c"
+   "id": "783e8ba8-2415-5c36-a4b0-f773f94aa32b"
   },
   {
    "type": "table",
@@ -630,20 +651,20 @@
     ]
    ],
    "citations": [],
-   "id": "a67c468a-5f9c-58b3-9311-06a969b69879"
+   "id": "58595ca3-c05b-5577-af99-9ca9b2f88cb4"
   },
   {
    "type": "paragraph",
    "text": "**1. Separable** → [B1](#b1). The right side is a $t$-part **times** a $y$-part:",
    "citations": [],
-   "id": "dc2f56da-9394-5a0a-9e5c-b3750361df40"
+   "id": "42ebefb4-417d-5a4e-9144-892f80b999b1"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{dy}{dt}=g(t)\\,h(y)",
    "display": true,
    "citations": [],
-   "id": "43ad5cd8-e95c-5d9a-b384-06cba5d1487a"
+   "id": "d7f8dbf9-1b0a-5fde-924c-59f148343938"
   },
   {
    "type": "list",
@@ -654,20 +675,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "f2e2ae16-15c8-596e-959b-86b082365aa0"
+   "id": "dc20d728-5fd5-5b22-97a7-d24303e21e11"
   },
   {
    "type": "paragraph",
    "text": "**2. Linear** → [B2](#b2). You can’t split it, but $y$ and $y^{\\prime}$ only appear to the power 1:",
    "citations": [],
-   "id": "bb782e09-4fd8-5ff3-908f-cec633bebe49"
+   "id": "1ac64125-b2d3-53c1-a7a4-77ddc3a85d29"
   },
   {
    "type": "equation",
    "latex": "y^{\\prime}+a(t)\\,y=f(t)",
    "display": true,
    "citations": [],
-   "id": "ae3f7198-3897-5f4d-a0df-f168ddd298b2"
+   "id": "7f5de47b-d8bd-538b-ada9-39c3ba7df6d7"
   },
   {
    "type": "list",
@@ -678,20 +699,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "2601d2f7-314d-5165-8200-aa2befbc3290"
+   "id": "3cf156be-32c3-59a0-b3df-271167201f25"
   },
   {
    "type": "paragraph",
    "text": "**3. Exact** → [B3](#b3). Not separable, not linear. Write it with $dt$ and $dy$:",
    "citations": [],
-   "id": "15f60594-9682-5b00-bd16-3ac7d5ced6c2"
+   "id": "dcdb9f36-65bb-5104-9f6c-c8b66b6d0b1d"
   },
   {
    "type": "equation",
    "latex": "M\\,dt+N\\,dy=0",
    "display": true,
    "citations": [],
-   "id": "e075976d-ddf3-55d3-b421-9a1f7a29cbfa"
+   "id": "1b7c1c97-8e5f-50e8-bd22-4860c6d656c1"
   },
   {
    "type": "list",
@@ -702,13 +723,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "9e8bb7ab-a898-58b3-ba4c-13d980b31d32"
+   "id": "dfeea83e-c299-5821-9019-4264920851ee"
   },
   {
    "type": "paragraph",
    "text": "**4. Not exact** → [B4](#b4). Same form, but the test fails:",
    "citations": [],
-   "id": "4d9ef100-db66-52d0-9233-750fb8013063"
+   "id": "cf869251-0c6e-5218-86cb-bf45149d75d9"
   },
   {
    "type": "list",
@@ -718,13 +739,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "2ed5bed9-902c-5f26-b99b-5716581ebcb5"
+   "id": "9f3fe429-b58b-55c4-856f-b2e2531fe99b"
   },
   {
    "type": "paragraph",
    "text": "**2nd order** (the highest derivative is $y^{\\prime\\prime}$). In Weeks 1–6 these are all **linear**, so you only ask two questions:",
    "citations": [],
-   "id": "38e07bb4-5a05-5ac6-b460-f98a65a8c798"
+   "id": "d0e7ff54-a91a-58cb-8380-49274c0b4476"
   },
   {
    "type": "list",
@@ -734,7 +755,7 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "2e06b3fb-1995-5533-9094-3d8db55d2b78"
+   "id": "41ca4ed6-9fa0-5d56-86fe-1a3cfa08896e"
   },
   {
    "type": "table",
@@ -752,24 +773,24 @@
     [
      "**$t$ in front**",
      "[B7](#b7) reduction of order",
-     "not in Weeks 1–6"
+     "not on the midterm"
     ]
    ],
    "citations": [],
-   "id": "11e64344-c622-52c7-9c07-37971f7f29f4"
+   "id": "68ec5ca3-970a-5ed0-8106-ae9daea13261"
   },
   {
    "type": "paragraph",
    "text": "**Numbers in front, right side 0** → [B5](#b5).",
    "citations": [],
-   "id": "9e1c6323-249b-5845-a29f-fc8b4ad29e33"
+   "id": "b442f21d-ebaa-5db7-9830-8920c664779e"
   },
   {
    "type": "equation",
    "latex": "a\\,y^{\\prime\\prime}+b\\,y^{\\prime}+c\\,y=0",
    "display": true,
    "citations": [],
-   "id": "b21dd92d-fbc4-503f-ba6e-96982aaec5c8"
+   "id": "bfdd9efa-7122-58a9-8933-9e70199b321d"
   },
   {
    "type": "list",
@@ -780,20 +801,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "18daeaa5-bfef-5daa-a0b6-dc0e2fc81b90"
+   "id": "b571f7d6-3611-58ea-8788-207b5d7249ec"
   },
   {
    "type": "paragraph",
    "text": "**Numbers in front, right side not 0** → [B6](#b6).",
    "citations": [],
-   "id": "07fc8bfa-914a-501a-a4df-b4a2c5b901a7"
+   "id": "d8953904-c207-5a2a-84ab-2624d5d4de5b"
   },
   {
    "type": "equation",
    "latex": "a\\,y^{\\prime\\prime}+b\\,y^{\\prime}+c\\,y=g(t)",
    "display": true,
    "citations": [],
-   "id": "61e25ce3-b5e0-51b9-9166-dea873822e1e"
+   "id": "9e1f22b0-0105-583d-9116-1d2bb46c2edb"
   },
   {
    "type": "list",
@@ -805,20 +826,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "f0e7987e-eb13-5e69-ad9d-c93d84647a70"
+   "id": "d6eca673-68ba-59f2-a351-b9c591711feb"
   },
   {
    "type": "paragraph",
    "text": "**$t$ in front, right side 0** → [B7](#b7).",
    "citations": [],
-   "id": "a62c5bf1-149f-536a-a1bc-e7d0b77a09a4"
+   "id": "34224575-2481-5a62-a673-26370c0d6b5c"
   },
   {
    "type": "equation",
    "latex": "y^{\\prime\\prime}+p(t)\\,y^{\\prime}+q(t)\\,y=0",
    "display": true,
    "citations": [],
-   "id": "5c22b4d6-fd5b-5bb4-9204-6303f6746050"
+   "id": "300b0d24-0ecc-55cc-b937-ae2071a31c8c"
   },
   {
    "type": "list",
@@ -829,20 +850,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "4dc0b982-a568-567e-957d-f6b1adaa98a6"
+   "id": "7effa560-2f47-54a6-beaa-80844ac3b10a"
   },
   {
    "type": "callout",
    "tone": "tip",
    "text": "**Where does “autonomous” matter?** Only for 1st order: no $t$ means separable. For 2nd order, ignore it.",
    "citations": [],
-   "id": "59e63e14-dea9-5902-a7ea-a3832cc72905"
+   "id": "a5c4066d-d9ab-5b44-9fff-b87572e106fa"
   },
   {
    "type": "paragraph",
    "text": "**Step 3: fix the constants.** Every method gives a **general solution**: a formula with unknown constants in it.",
    "citations": [],
-   "id": "34d49491-f161-565d-8cf2-27afa7be9240"
+   "id": "a5e86899-f69b-5303-bc02-e55a785ad00f"
   },
   {
    "type": "list",
@@ -853,19 +874,19 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "54735c3b-c20c-528b-b447-72c9fe9a89bd"
+   "id": "1acc4705-b992-54a5-bc48-ef8268499a4e"
   },
   {
    "type": "paragraph",
    "text": "**Checking a solution** (Week 2 asks this). Plug $y$ and its derivatives into the ODE. If both sides match for **every** $t$, it’s a solution.",
    "citations": [],
-   "id": "f7175d26-0eb1-5b3a-9e67-02a940253d83"
+   "id": "6b1e9d5c-6a9f-544b-a817-2356c3253b3e"
   },
   {
    "type": "paragraph",
    "text": "Example: is $y=e^{-2t}$ a solution of $y^{\\prime}+2y=0$? $\\;-2e^{-2t}+2e^{-2t}=0$ ✓. Yes.",
    "citations": [],
-   "id": "d40c8385-1137-5cc0-abc6-b8b512520f0b"
+   "id": "87b7cc17-52d0-51b1-9413-c184774ae58a"
   },
   {
    "type": "practice_problem",
@@ -904,7 +925,7 @@
      "chunk_id": "17b4044f-5a50-4a34-8e92-621517c20b98"
     }
    ],
-   "id": "a6ee25b8-2590-56cf-8ccb-1333be2d52c4"
+   "id": "b2ac6b5b-8ec2-51b8-a5be-a50cae3097ea"
   },
   {
    "type": "practice_problem",
@@ -937,7 +958,7 @@
    ],
    "answer": "$t^2$ and $5t^2$ are solutions (both are $Ct^2$); $t^2+1$ is not. Only $y=5t^2$ satisfies $y(1)=5$.",
    "citations": [],
-   "id": "fce3b7e4-8ce5-5bd4-ba9b-6fd2d75e0cea"
+   "id": "d3a5136b-1517-52e2-89d4-94807dac3601"
   },
   {
    "type": "heading",
@@ -950,32 +971,32 @@
      "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
     }
    ],
-   "id": "257b1175-79ca-5051-8f3b-eccd2eb21c55"
+   "id": "2be11861-09d5-5c43-b53c-82a51763fb1d"
   },
   {
    "type": "paragraph",
    "text": "[Week 3 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#c40cdedd-01db-45b4-9498-4c4929ba8f49)",
    "citations": [],
-   "id": "a4054a87-4c91-5f34-81bc-d877b195d775"
+   "id": "a324c83a-d565-537d-9412-50dcc2d972dc"
   },
   {
    "type": "paragraph",
    "text": "**Start here: can you pull the $y$’s and the $t$’s apart?** If every $y$ can go on one side and every $t$ on the other, you just integrate each side. That kind of equation is called **separable**.",
    "citations": [],
-   "id": "180566a8-03df-5f0e-af48-2c2396d6acf1"
+   "id": "8c507eef-47ef-5620-bb2c-cfd1f796f741"
   },
   {
    "type": "paragraph",
    "text": "It looks like this:",
    "citations": [],
-   "id": "4b2cda4a-9537-50c1-92c2-664f7807d1c9"
+   "id": "37c45f8e-f084-5e2c-a1b9-21392c309e9c"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{dy}{dt}=g(t)\\,h(y)",
    "display": true,
    "citations": [],
-   "id": "d6a61684-7b1d-54df-857d-64d1bd014473"
+   "id": "63481e7a-4d53-5329-ad8c-c57fa050e44a"
   },
   {
    "type": "list",
@@ -985,13 +1006,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "fdffa0c5-6996-5d91-a1e6-2d0dbe001872"
+   "id": "fadbdc57-3912-5bf3-9311-930a20c83900"
   },
   {
    "type": "paragraph",
    "text": "Reading the form:",
    "citations": [],
-   "id": "93d6f9ae-b8a4-5ae0-aee4-4d2baa904d85"
+   "id": "316a2e6c-f890-5f77-af37-f4aae6077363"
   },
   {
    "type": "list",
@@ -1003,26 +1024,26 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "53abc5fc-746e-5b6b-a9e1-492c720bd17c"
+   "id": "b642a813-82bc-59af-b761-0c46fd1caa92"
   },
   {
    "type": "paragraph",
    "text": "Why it works: once it reads $\\dfrac{dy}{h(y)}=g(t)\\,dt$, each side has only one letter, so you can integrate each side on its own.",
    "citations": [],
-   "id": "07955b8e-21b0-5c7e-8123-8a056d12d688"
+   "id": "7fa9aacf-db3a-5756-bb66-fa760744102a"
   },
   {
    "type": "paragraph",
    "text": "**The method:**",
    "citations": [],
-   "id": "f0f48b0f-bcb6-5a5a-a327-1c5f58e5b3e4"
+   "id": "959c241a-759f-55de-a44f-324e11720766"
   },
   {
    "type": "equation",
    "latex": "\\int\\dfrac{dy}{h(y)}=\\int g(t)\\,dt+C",
    "display": true,
    "citations": [],
-   "id": "13b35535-688d-5a30-97ab-73afa461315d"
+   "id": "b1d4b100-1efe-50bb-adfb-b6a336aafec7"
   },
   {
    "type": "list",
@@ -1034,19 +1055,19 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "fb503c81-75ac-5769-8a08-7af0324c5a8a"
+   "id": "e0088624-bf8f-526c-96a4-99f9c9d3f1e6"
   },
   {
    "type": "paragraph",
    "text": "```steps\ntitle \"The method on dy/dt = 2ty, y(0) = 3\"\n$$ \\dfrac{dy}{dt}=2t\\,y $$\nSeparable: $g=2t$, $h=y$.\n$$ \\hl{\\dfrac{dy}{y}}=\\hl{2t\\,dt} $$\n**Separate:** divide by $y$, multiply by $dt$.\n$$ \\ln|y|=t^2+\\hl{C} $$\n**Integrate** each side. One constant, on the $t$ side.\n$$ \\ln3=0+C\\;\\Rightarrow\\;\\hl{C=\\ln3} $$\n**Condition** $y(0)=3$.\n$$ |y|=e^{t^2+\\ln3}=\\hl{3e^{t^2}} $$\n**Solve for $y$:** raise $e$ to both sides, and use $e^{a+b}=e^a\\,e^b$.\n$$ \\hl{y}=3e^{t^2} $$\n$y(0)=3$ is positive, so take the $+$ sign.\n```",
    "citations": [],
-   "id": "cd31f0f7-d730-53ad-8aa7-eb9a350c9066"
+   "id": "691df62a-e957-51fe-b152-87fc18422afd"
   },
   {
    "type": "paragraph",
    "text": "**Calculus you need here:**",
    "citations": [],
-   "id": "c7832f9e-8a95-58d8-b514-a4e11fab1b36"
+   "id": "53e39f38-473d-57ea-ae00-5b487594251c"
   },
   {
    "type": "table",
@@ -1088,21 +1109,21 @@
     ]
    ],
    "citations": [],
-   "id": "84b632c3-d03e-54d6-9879-bde38388f434"
+   "id": "07872296-5f88-5853-af11-42f38c063137"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "**Dividing by $h(y)$ can lose a solution.** If $h(y_0)=0$ for some number $y_0$, the flat line $y=y_0$ is a solution too. You can’t divide by zero, so the separated answer skips it.\n\nExample: in $\\dfrac{dy}{dt}=\\dfrac{y^2}{t^3}$, $h=y^2$ is zero at $y=0$. And $y=0$ works ($0=0$), so list it next to your answer.",
    "citations": [],
-   "id": "0304e55f-d775-5bfc-bac0-102588d87095"
+   "id": "04df7b57-5154-5fbc-aaa0-de45ead968b7"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why can you move $dy$ and $dt$ around like fractions?** Divide by $h$: $\\dfrac{1}{h(y)}\\dfrac{dy}{dt}=g(t)$. Now integrate both sides with respect to $t$. The chain rule says $\\int\\dfrac{1}{h(y)}\\dfrac{dy}{dt}\\,dt=\\int\\dfrac{1}{h(y)}\\,dy$. Moving “$dt$” across is a shortcut for exactly this.",
    "citations": [],
-   "id": "8b32cfb8-3fa1-5f71-be2f-fb7df9353722"
+   "id": "afa2769e-93e4-5305-802e-a7c6514aa439"
   },
   {
    "type": "worked_example",
@@ -1142,7 +1163,7 @@
      "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
     }
    ],
-   "id": "c1d538b6-2a58-5bda-b4f2-9db700b44860"
+   "id": "914f8d7b-cdf4-5a74-9046-4b45abd3b2a5"
   },
   {
    "type": "practice_problem",
@@ -1181,7 +1202,7 @@
      "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
     }
    ],
-   "id": "334416c5-9199-5613-90fb-cf4a31e22617"
+   "id": "b9f8b2cf-a135-53c0-ba14-8557c0568802"
   },
   {
    "type": "practice_problem",
@@ -1216,7 +1237,7 @@
      "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
     }
    ],
-   "id": "d17fee6a-a524-5a9f-8479-f00616f0a1d2"
+   "id": "05933d57-f5e2-584a-8ca0-7cd7bb4186de"
   },
   {
    "type": "practice_problem",
@@ -1249,7 +1270,7 @@
    ],
    "answer": "$y=\\ln(t^2+1)$.",
    "citations": [],
-   "id": "fa3fb4f8-2ebc-506e-95e0-c4cd04acca9a"
+   "id": "fcb6ba80-ad1c-5105-8bfa-38e847f64d37"
   },
   {
    "type": "practice_problem",
@@ -1288,7 +1309,7 @@
      "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
     }
    ],
-   "id": "6466d9a6-9903-5b9b-9bc1-f59b1bbecefd"
+   "id": "257c76c7-6810-54ba-83e1-bd83a9933bed"
   },
   {
    "type": "practice_problem",
@@ -1327,7 +1348,7 @@
      "chunk_id": "283baa15-3db9-462c-be69-e36771ea66bd"
     }
    ],
-   "id": "21319d12-bd8b-5e57-b87b-e4df7a3ba76b"
+   "id": "62ef4a32-71f0-5c69-907f-11920ee6b7e8"
   },
   {
    "type": "heading",
@@ -1350,38 +1371,38 @@
      "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
     }
    ],
-   "id": "8c69c836-0041-5643-bbea-e1836ff1d5c8"
+   "id": "2db3a352-6459-5836-b70e-c2ffe00417e8"
   },
   {
    "type": "paragraph",
    "text": "[Week 3 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#a43fc96e-8dc5-4a1e-bfdf-bf1acf01f98b)",
    "citations": [],
-   "id": "a00f63e1-387d-5227-bc80-e14737da2b89"
+   "id": "e3aff892-3756-5678-9520-5af014ade57d"
   },
   {
    "type": "paragraph",
    "text": "**What if you can’t separate the variables?** Take $y^{\\prime}=t-y$. The right side is a sum, so it won’t split into a $t$-piece times a $y$-piece, and [B1](#b1) fails.",
    "citations": [],
-   "id": "020b846b-3b6e-5dc4-9d48-98f762e307f0"
+   "id": "ee8a35f0-44b2-5981-af06-0e06d4e279c8"
   },
   {
    "type": "paragraph",
    "text": "But it is **linear**: $y$ and $y^{\\prime}$ show up only to the first power (no $y^2$, no $\\sin y$). Every linear equation can be solved with an **integrating factor**.",
    "citations": [],
-   "id": "5651f2fc-bfc3-55d4-8bae-c6c06e0ed67b"
+   "id": "eeed8900-5577-5b42-a049-e86f7857eee4"
   },
   {
    "type": "paragraph",
    "text": "First get it into this shape:",
    "citations": [],
-   "id": "7e5b4a37-2a74-5876-b574-e15413589325"
+   "id": "c1799467-df91-5348-b228-707c8824a6fe"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{dy}{dt}+a(t)\\,y=f(t)",
    "display": true,
    "citations": [],
-   "id": "8650f9f2-6be0-556d-b58e-c399ae7bec97"
+   "id": "a752fad3-1d90-5653-8a50-c535222983fa"
   },
   {
    "type": "list",
@@ -1391,13 +1412,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "5666e077-aa12-529e-8fa8-4262675bdb99"
+   "id": "9ed079dd-7cc7-56e9-a366-4ba46f48c13b"
   },
   {
    "type": "paragraph",
    "text": "Reading the form:",
    "citations": [],
-   "id": "f5ae83d8-7f06-582b-9ca1-b222291f5260"
+   "id": "28148322-9c9d-52ff-914a-971b58c44259"
   },
   {
    "type": "list",
@@ -1408,65 +1429,65 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "c3873cc5-7a7f-5e94-a4ec-bdd1718e009e"
+   "id": "50852090-7b59-55e4-b90b-76cca881b83d"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "**Get $y^{\\prime}$ alone first.** The number in front of $y^{\\prime}$ must be 1 before you read $a(t)$. Example: in $ty^{\\prime}+2y=t^2$, divide by $t$ first. Then $a(t)=\\frac2t$, not $2$.",
    "citations": [],
-   "id": "54b7bdd7-b6fa-57f2-ba88-d38727439258"
+   "id": "346b3e8d-8090-5c4d-b96f-2bbeb245c458"
   },
   {
    "type": "paragraph",
    "text": "**The trick.** Multiply the whole equation by a function $\\mu(t)$, called the **integrating factor**:",
    "citations": [],
-   "id": "4a4c6900-e288-5452-8941-999a0ce0b2f8"
+   "id": "cc35c68a-669d-52ff-a3bc-b6dcc9b3820f"
   },
   {
    "type": "equation",
    "latex": "\\mu(t)=e^{\\int a(t)\\,dt}",
    "display": true,
    "citations": [],
-   "id": "06e2dcd8-5373-5902-a79b-4eaa904b9bce"
+   "id": "837337d0-04ee-52c9-8fe1-c4b312552cf8"
   },
   {
    "type": "paragraph",
    "text": "Example: $y^{\\prime}+2y=4$ has $a=2$, so $\\mu=e^{\\int2\\,dt}=e^{2t}$.",
    "citations": [],
-   "id": "b80a107a-12cf-5c88-a73f-850ba175539b"
+   "id": "22db7bee-4abe-5ac9-9fd8-8ace111d935a"
   },
   {
    "type": "paragraph",
    "text": "Why: after you multiply by this $\\mu$, the left side is exactly one derivative, $(\\mu y)^{\\prime}$ (the product rule backwards). So the equation becomes:",
    "citations": [],
-   "id": "1902a9fb-bb6d-577c-b309-7ce38fd9ac37"
+   "id": "2962befa-f1ee-51b9-a525-44cba52ca3f5"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{d}{dt}\\big(\\mu\\,y\\big)=\\mu\\,f",
    "display": true,
    "citations": [],
-   "id": "0d71aaa7-7ed8-55f2-92cd-4e7cb54bea17"
+   "id": "1421bc1d-b5f1-51c9-9570-bea24129152a"
   },
   {
    "type": "paragraph",
    "text": "A single derivative is easy to undo. Integrate both sides:",
    "citations": [],
-   "id": "fe114b7e-5fe3-59db-9bd6-195385581bdf"
+   "id": "96e90d19-e025-5513-aa80-60a7c6101a9f"
   },
   {
    "type": "equation",
    "latex": "\\mu\\,y=\\int\\mu\\,f\\,dt+C",
    "display": true,
    "citations": [],
-   "id": "0b801e54-9237-52c5-8fbe-67cb2d1d97cb"
+   "id": "7123a0ac-d2ca-51a4-986d-6accfe7ea351"
   },
   {
    "type": "paragraph",
    "text": "**The method:**",
    "citations": [],
-   "id": "76113b35-b26a-55e8-b8eb-692dffe03e5e"
+   "id": "6ec343c6-1b93-5b05-a3bd-2be9deeb1835"
   },
   {
    "type": "list",
@@ -1479,19 +1500,19 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "c4ecd2cd-f8e0-5aca-a307-1230311f9f94"
+   "id": "1ce7973b-7a91-59bf-981e-6d49dba5bd8b"
   },
   {
    "type": "paragraph",
    "text": "```steps\ntitle \"The method on y′ + 2y = 4\"\n$$ y'+2y=4 $$\nStandard form already: $a=2$, $f=4$.\n$$ \\mu=e^{\\int2\\,dt}=\\hl{e^{2t}} $$\nIntegrating factor.\n$$ \\hl{e^{2t}}y'+\\hl{2e^{2t}}y=\\hl{4e^{2t}} $$\nMultiply every term by $\\mu$.\n$$ \\hl{\\big(e^{2t}y\\big)^{\\prime}}=4e^{2t} $$\nThe left side is one derivative (product rule backwards).\n$$ e^{2t}y=2e^{2t}+\\hl{C} $$\nIntegrate both sides: $\\int4e^{2t}dt=2e^{2t}$.\n$$ y=2+Ce^{-2t} $$\nDivide by $e^{2t}$.\n```",
    "citations": [],
-   "id": "6768cdce-5309-51ce-a28a-d905ea05a1e5"
+   "id": "49141d13-a414-5ab5-8e79-75646e05579d"
   },
   {
    "type": "paragraph",
    "text": "**Calculus you need here:**",
    "citations": [],
-   "id": "c612c1c1-d67b-5891-a2f9-a74b5599125c"
+   "id": "2c8c5b1c-caa2-5548-89c7-9eda03b6bb80"
   },
   {
    "type": "table",
@@ -1528,28 +1549,28 @@
     ]
    ],
    "citations": [],
-   "id": "b6c99efa-fbff-520c-ae3f-6acf56dc7b40"
+   "id": "116ea658-9cd2-52cd-b787-731abd830678"
   },
   {
    "type": "callout",
    "tone": "tip",
    "text": "**Shortcut when $a=k$ and $f=F$ are both constants:** $\\;y=\\dfrac{F}{k}+Ce^{-kt}$. Example: $y^{\\prime}+2y=4$ gives $y=2+Ce^{-2t}$, same as the stepper. Every RC and RL circuit equation has this shape (see [D1](#d1)).",
    "citations": [],
-   "id": "36896f4e-922f-5401-a3c6-64bd4f3e5453"
+   "id": "5f98c63a-a0cd-55dd-8ae6-6ad3be6fad9e"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why does the integrating factor work?** The product rule says $(\\mu y)^{\\prime}=\\mu y^{\\prime}+\\mu^{\\prime} y$. With $\\mu=e^{\\int a\\,dt}$, the chain rule gives $\\mu^{\\prime}=a\\,\\mu$. So\n\n$$\n(\\mu y)^{\\prime}=\\mu y^{\\prime}+a\\mu y=\\mu\\,(y^{\\prime}+ay)\n$$\n\nThat’s $\\mu$ times the left side of your equation. So multiplying by $\\mu$ is exactly what turns $y^{\\prime}+ay$ into one derivative.",
    "citations": [],
-   "id": "76c5c0f5-b832-5cc5-baac-2e4e4c3910b9"
+   "id": "7cbd7970-124d-5fb8-84f6-b2e2ae30b795"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Both separable and linear?** Some equations are both. Then either method works, and separating is usually faster.\n\n**When $f=0$:** $y^{\\prime}=(8t+3)y$ separates as $\\dfrac{dy}{y}=(8t+3)\\,dt$.\n\n**When $a$ and $f$ are both constants:** $y^{\\prime}+2y=4$ separates as $\\dfrac{dy}{4-2y}=dt$.",
    "citations": [],
-   "id": "ea9f102d-5c02-5639-b123-7aa31c1eed66"
+   "id": "fdf9085d-c43d-5d62-b2b9-397601737c41"
   },
   {
    "type": "worked_example",
@@ -1594,7 +1615,7 @@
      "chunk_id": "4e333526-c87c-4711-a4fd-d4bfe7454151"
     }
    ],
-   "id": "a5a38ce3-f7d1-58df-9279-aff4aa72b0d5"
+   "id": "ae4a1a5d-f775-5cac-a1c6-6cb1eb82d994"
   },
   {
    "type": "practice_problem",
@@ -1629,7 +1650,7 @@
      "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
     }
    ],
-   "id": "1bb43939-d4d3-5a98-a266-02d9b051f7bb"
+   "id": "d192363c-9d43-5c61-a957-f7ae756e1e91"
   },
   {
    "type": "practice_problem",
@@ -1668,7 +1689,7 @@
      "chunk_id": "b0a4c2bd-697d-4b6a-80ed-aad0e045436e"
     }
    ],
-   "id": "2271ed1c-c226-51a4-822e-fcb1ad4dd26b"
+   "id": "3b4cea1b-a4d5-50ee-9ded-bf4695cdf7f6"
   },
   {
    "type": "practice_problem",
@@ -1701,7 +1722,7 @@
    ],
    "answer": "$y=t-1+e^{-t}$.",
    "citations": [],
-   "id": "ffffa712-9ba2-5b26-b14f-7ae1cd167a5b"
+   "id": "0d2bfa86-5e7a-5af4-bf08-be85aa13c957"
   },
   {
    "type": "practice_problem",
@@ -1730,7 +1751,7 @@
    ],
    "answer": "$y=\\dfrac{t^2}{4}-\\dfrac{1}{4t^2}$.",
    "citations": [],
-   "id": "355d19b8-d7bf-56c0-b03a-96a9acb50094"
+   "id": "c734b447-d858-5fd7-857d-79102a75a442"
   },
   {
    "type": "practice_problem",
@@ -1763,7 +1784,7 @@
    ],
    "answer": "$y=\\dfrac12\\big(1+e^{-t^2}\\big)$. It also separates, $y^{\\prime}=t(1-2y)$, so you could check it with [B1](#b1).",
    "citations": [],
-   "id": "8a086004-39ba-575f-8ae9-e39549f7af8b"
+   "id": "9975c47f-e2fc-56d7-ae7a-de3828e5209b"
   },
   {
    "type": "heading",
@@ -1791,38 +1812,38 @@
      "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
     }
    ],
-   "id": "252511b3-2e89-580b-a34e-095f378bbf9f"
+   "id": "509c7733-67ce-5b89-8ce9-1236cc4b92db"
   },
   {
    "type": "paragraph",
    "text": "[Week 4 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#c9f71086-78d7-4bc3-a405-e0c6375fb6ca) [Week 4 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#954310f2-d355-42ff-bd75-4e6b1d00f02d)",
    "citations": [],
-   "id": "d49714bc-1148-5cd4-9b82-9bddec08a5c9"
+   "id": "cdfb9f5b-04ce-5a33-828e-3b3ada7a2478"
   },
   {
    "type": "paragraph",
    "text": "**What if it’s neither separable nor linear?** Take $y^{\\prime}=\\dfrac{t-y}{t+y}$. It won’t split into ($t$-part)×($y$-part), and $y$ sits in the bottom, so [B1](#b1) and [B2](#b2) both fail.",
    "citations": [],
-   "id": "604d2272-d763-5bde-ba7e-b12622b1fa14"
+   "id": "f668d8d5-4613-5e79-808e-667a3f388ecd"
   },
   {
    "type": "paragraph",
    "text": "Some of these equations are **exact**. Then the answer is one formula in $t$ and $y$ set equal to a constant, $U(t,y)=C$, and you find $U$ by integrating.",
    "citations": [],
-   "id": "323a754b-853e-5079-879b-abb0aff91577"
+   "id": "7e0cda2e-8a5a-56d6-bb2b-4a9a7e55ddeb"
   },
   {
    "type": "paragraph",
    "text": "**First, write it in $dt$, $dy$ form,** with everything on the left:",
    "citations": [],
-   "id": "28cf7262-d12c-50a6-ad0b-0f431b112173"
+   "id": "9c68c389-3161-5d44-89e7-88dddeaf2a03"
   },
   {
    "type": "equation",
    "latex": "M(t,y)\\,dt+N(t,y)\\,dy=0",
    "display": true,
    "citations": [],
-   "id": "10ee4d2e-f91e-5e55-be97-d741f4d64fd1"
+   "id": "9ba226e5-40ff-5e27-b2d7-f97c69eda1e0"
   },
   {
    "type": "list",
@@ -1832,13 +1853,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "c2f2e9ed-987c-5875-a08f-cd5770b5cb9f"
+   "id": "7fe12d2a-5a66-56ab-8705-f2fe1910d1d2"
   },
   {
    "type": "paragraph",
    "text": "Examples:",
    "citations": [],
-   "id": "20963e37-2747-5853-862b-0ae2ea5cd867"
+   "id": "2f8d5f63-8b48-5c7f-b911-2e919dd3a437"
   },
   {
    "type": "list",
@@ -1849,27 +1870,27 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "baa85949-13e5-573d-b2d1-b7c94b68af40"
+   "id": "8a1d6903-774e-50c9-a55b-f2885629ff49"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "Moving the $dy$ term to the other side of the $=$ flips its sign. In $y^{\\prime}=\\frac{t-y}{t+y}$, $N$ is $-(t+y)$, not $t+y$. One wrong sign and the test below fails.",
    "citations": [],
-   "id": "4c323dbd-cc9d-54bd-8112-778df7f483df"
+   "id": "f37ffb29-b473-5133-8ab7-185a25be832a"
   },
   {
    "type": "paragraph",
    "text": "**Is it exact? Do the cross test.** Differentiate $M$ in $y$, and $N$ in $t$. If you get the same thing, it’s **exact**:",
    "citations": [],
-   "id": "8ac73d1d-07c2-5aba-b048-ef58cbfcfa90"
+   "id": "6368f8db-67fb-5f4a-b312-795697607106"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{\\partial M}{\\partial y}=\\dfrac{\\partial N}{\\partial t}",
    "display": true,
    "citations": [],
-   "id": "cec08d63-e267-54bd-b4a4-295f94c53a6d"
+   "id": "be3b390c-8ed8-5847-8aa9-7c2d5794e8d1"
   },
   {
    "type": "list",
@@ -1879,57 +1900,57 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "5fb820ce-b926-57f6-8775-1212f35f4f9c"
+   "id": "906266b0-4ec5-5dbc-b35c-66868c6b50b9"
   },
   {
    "type": "paragraph",
    "text": "Example: $(2ty+3t^2)\\,dt+t^2\\,dy=0$ has $M_y=2t$ and $N_t=2t$. Same, so it’s exact.",
    "citations": [],
-   "id": "da5c5375-59d7-515f-9ec2-b82fd0f66f60"
+   "id": "1e598791-4016-54f1-9ab0-801b7536af88"
   },
   {
    "type": "paragraph",
    "text": "**If it’s exact, find $U$.** $U$ is the function whose two partial derivatives are $M$ and $N$:",
    "citations": [],
-   "id": "e294a118-44fc-5e0f-a154-02785ccf17ad"
+   "id": "7acb605d-25d5-51d6-84ef-d58b8e65948c"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{\\partial U}{\\partial t}=M,\\quad \\dfrac{\\partial U}{\\partial y}=N",
    "display": true,
    "citations": [],
-   "id": "1215c1c4-5d07-5c41-a257-19f9501f7808"
+   "id": "c65f4c3d-cfa7-56c3-806f-ffedc53b0869"
   },
   {
    "type": "paragraph",
    "text": "and the general solution is",
    "citations": [],
-   "id": "2ddaac25-24ea-5501-9949-6c93dc729a58"
+   "id": "99c1be23-37aa-50ae-aef9-e434afab33ce"
   },
   {
    "type": "equation",
    "latex": "U(t,y)=C",
    "display": true,
    "citations": [],
-   "id": "8de6f912-a540-59c8-bdff-378a4740a69c"
+   "id": "92f70676-9224-5123-b0f3-72c4a788e733"
   },
   {
    "type": "paragraph",
    "text": "Example: for the equation above, $U=t^2y+t^3$. Check: $U_t=2ty+3t^2=M$ and $U_y=t^2=N$. So the answer is $t^2y+t^3=C$.",
    "citations": [],
-   "id": "2c50558b-e334-543d-847e-2aa97fe783f4"
+   "id": "9a2b30a4-0027-5938-885e-cff69ddb7830"
   },
   {
    "type": "paragraph",
    "text": "Why $U=C$: $M\\,dt+N\\,dy$ is the small change in $U$. The equation sets that change to 0, so $U$ stays at one constant value.",
    "citations": [],
-   "id": "d82ac52a-e246-5503-9ecc-a89cd769e1b3"
+   "id": "c93924c8-020d-508e-9a2f-f5f89e2d2197"
   },
   {
    "type": "paragraph",
    "text": "**Method:**",
    "citations": [],
-   "id": "7cd02af3-c616-5e95-9f15-a1dd8dded757"
+   "id": "116ef97f-ed9e-5adf-a79d-fa99970c6976"
   },
   {
    "type": "list",
@@ -1942,13 +1963,13 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "17c56124-d626-5b38-b932-f358e90c17ef"
+   "id": "384823dc-2984-567b-8b70-65bb5dcb2434"
   },
   {
    "type": "paragraph",
    "text": "**Calculus you need here: partial derivatives.** Differentiate in one letter and treat the other like a plain number:",
    "citations": [],
-   "id": "df539d37-acfd-5b01-b0c1-64da827a06f1"
+   "id": "88e2844c-bfbf-5882-9d6a-4e1bbf2dccf3"
   },
   {
    "type": "table",
@@ -1980,20 +2001,20 @@
     ]
    ],
    "citations": [],
-   "id": "722cbf0c-00c3-541a-a6f3-dff10e374ee8"
+   "id": "af553e4c-06ce-5dc9-9677-3d0e6a3414fb"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why the cross test works.** If $U$ exists, then $M=U_t$ and $N=U_y$. So $M_y$ is $U$ differentiated in $t$ then $y$, and $N_t$ is $U$ differentiated in $y$ then $t$. The order doesn’t change the result, so the two must match. The picture: each solution is a **level curve** $U(t,y)=C$ of the surface $z=U(t,y)$, like a contour line on a map.",
    "citations": [],
-   "id": "f371a2d2-8f80-535d-8999-6e311027de6b"
+   "id": "0e6fdd87-eac0-5e89-8230-6104b59035fe"
   },
   {
    "type": "paragraph",
    "text": "Slide $C$: the plane at height $C$ cuts the surface along one solution curve (an ellipse). The same curve is drawn on the floor.\n\n```graph3d\ntitle \"Solutions of $3t\\,dt+4y\\,dy=0$ are level curves of $3t^2+4y^2$\"\nx -3 3 label=\"$t$\"\ny -3 3 label=\"$y$\"\nz 0 30 label=\"$U$\"\nview az=-55 el=28\nslider C 1 24 12 step=1 label=\"$C$\"\nsurface \"3*x^2+4*y^2\" label=\"$U=3t^2+4y^2$\"\nplane \"C\" label=\"height $C$\"\n```",
    "citations": [],
-   "id": "bf1422a8-9927-5dfc-b34c-dbc37462aa3f"
+   "id": "c293f3ef-8193-594e-9e2b-d3621eba2d4b"
   },
   {
    "type": "worked_example",
@@ -2034,7 +2055,7 @@
      "chunk_id": "cfa21f9f-1d90-48fa-a783-15abb54c6690"
     }
    ],
-   "id": "2c5fc999-36d7-584b-b0bc-5e2f6614f09c"
+   "id": "fd004a5a-8a40-5012-a1d5-53d63c9572a6"
   },
   {
    "type": "practice_problem",
@@ -2073,7 +2094,7 @@
      "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
     }
    ],
-   "id": "fb9f11d5-2bce-5931-9889-199757f76c52"
+   "id": "78237712-1ad0-5472-b4fa-3be059c81a1c"
   },
   {
    "type": "practice_problem",
@@ -2108,7 +2129,7 @@
      "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
     }
    ],
-   "id": "cae908f1-25e2-50e9-a378-456a4c6b9b35"
+   "id": "dd0c1b95-816d-5f1d-b6e3-db2c3af80b33"
   },
   {
    "type": "practice_problem",
@@ -2151,7 +2172,7 @@
      "chunk_id": "612cb25d-1931-4168-a6b0-3de59d4d3a24"
     }
    ],
-   "id": "5d31f69e-de00-5056-8bdc-a40048c8e87e"
+   "id": "7b04c07d-32d2-502a-965f-0e6c4b3b4e28"
   },
   {
    "type": "practice_problem",
@@ -2190,7 +2211,7 @@
      "chunk_id": "65894f54-ed6b-4009-9327-dee5c2b1d687"
     }
    ],
-   "id": "2e651941-a4cb-5286-8d6b-a89787a1e719"
+   "id": "607498c2-1a43-570a-8278-2fcf72042b63"
   },
   {
    "type": "heading",
@@ -2208,44 +2229,44 @@
      "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
     }
    ],
-   "id": "34380499-04d4-5dee-bdd6-ec121d2159e1"
+   "id": "50f3f076-d86f-5330-919d-d32b79c7c605"
   },
   {
    "type": "paragraph",
    "text": "[Week 4 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#ebb7e8ad-4fda-4034-97dc-a9c048d71335)",
    "citations": [],
-   "id": "ce3b1d1c-f62e-5b8d-baa8-0d3f671cbc8b"
+   "id": "949f7ebc-3557-5787-9202-ba56d39fec91"
   },
   {
    "type": "paragraph",
    "text": "**What if the exactness test fails?** Take $y\\,dt+(3+3t-y)\\,dy=0$: $M_y=1$ but $N_t=3$, so [B3](#b3) can’t start.",
    "citations": [],
-   "id": "7ee1268a-9915-57df-8623-cb3de3805b5a"
+   "id": "6a314d4c-d403-53fa-8760-c91aa4f804f8"
   },
   {
    "type": "paragraph",
    "text": "The fix: multiply the whole equation by a function $\\mu$, called an **integrating factor**, picked so the new equation passes the test. Then solve it with the [B3](#b3) steps. Same idea as in [B2](#b2): multiply by the right thing and the equation becomes easy.",
    "citations": [],
-   "id": "59fe09f5-5674-5944-9d7a-f5c3a769be16"
+   "id": "91a235d4-b955-5e71-a42a-61c28e5951d5"
   },
   {
    "type": "paragraph",
    "text": "**How to find $\\mu$.** Start with the mismatch between the two cross derivatives:",
    "citations": [],
-   "id": "37540901-f16b-5ace-8286-bee6d4b910c6"
+   "id": "b0c663ff-486f-53da-ad99-c16b8f4fef24"
   },
   {
    "type": "equation",
    "latex": "M_y-N_t",
    "display": true,
    "citations": [],
-   "id": "b63ad216-5de1-5f09-86df-cb7aaba64481"
+   "id": "cbaca5fe-7ba0-59bf-ac7d-069dd775e53b"
   },
   {
    "type": "paragraph",
    "text": "In the example: $M_y-N_t=1-3=-2$. Now divide it, and see which case you’re in.",
    "citations": [],
-   "id": "e4f89366-0543-5a01-a684-8a835649c3fd"
+   "id": "bafa2ad8-4aca-5063-bf1c-6453a23cfa74"
   },
   {
    "type": "paragraph",
@@ -2257,51 +2278,51 @@
      "chunk_id": "8c1b086c-bc00-43d3-b64f-13f7fc46f98f"
     }
    ],
-   "id": "46247837-bcad-5ad9-be63-cc2947a3c2fc"
+   "id": "086207c0-af7a-5f3e-b028-1fef22249146"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{M_y-N_t}{N}=f(t)\\quad\\Rightarrow\\quad \\mu=e^{\\int f(t)\\,dt}",
    "display": true,
    "citations": [],
-   "id": "8e9c7344-b5e1-55fc-8d4e-9cba292592df"
+   "id": "32363dba-fc01-5bc9-885f-40b3ccb3d1b3"
   },
   {
    "type": "paragraph",
    "text": "Example: $(t^2+y)\\,dt-t\\,dy=0$ gives $\\frac{1-(-1)}{-t}=-\\frac2t$. Only $t$, so $\\mu=e^{\\int-\\frac2t\\,dt}=\\frac{1}{t^2}$.",
    "citations": [],
-   "id": "ef8395d6-e807-57cc-8589-a84eaf2f9ded"
+   "id": "00dc01bd-2da5-5b9b-980e-6569c0348c37"
   },
   {
    "type": "paragraph",
    "text": "**Case 2: flip the subtraction, divide by $M$, and only $y$ is left.** (Theorem 2.)",
    "citations": [],
-   "id": "814ede19-270f-532e-824e-a249a383e2cb"
+   "id": "1f1d7103-ff48-585b-8b56-361fb494a1b7"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{N_t-M_y}{M}=g(y)\\quad\\Rightarrow\\quad \\mu=e^{\\int g(y)\\,dy}",
    "display": true,
    "citations": [],
-   "id": "d5486e94-e013-5249-8170-9b755230423c"
+   "id": "6744c9b9-aa9d-5c1f-81a7-71d130d7cc49"
   },
   {
    "type": "paragraph",
    "text": "Example: $y\\,dt+(3+3t-y)\\,dy=0$ gives $\\frac{3-1}{y}=\\frac2y$. Only $y$, so $\\mu=e^{\\int\\frac2y\\,dy}=y^2$.",
    "citations": [],
-   "id": "34411b80-21d4-5531-b288-35e27857dee4"
+   "id": "7ada0300-f258-5c53-8d19-b0dc1ba9174d"
   },
   {
    "type": "paragraph",
    "text": "Why only one letter: $\\mu$ will be a function of one letter, so the ratio you integrate to get it can only contain that letter. If neither ratio has just one letter, these two cases don’t help.",
    "citations": [],
-   "id": "eee8d3a7-ae2b-5978-8c9f-aad0a8a810f0"
+   "id": "34784379-9eb6-545e-a871-1a54753c335a"
   },
   {
    "type": "paragraph",
    "text": "**Method:**",
    "citations": [],
-   "id": "0e833c5a-b243-511c-aed9-b5725d943a04"
+   "id": "13a341f6-54ba-50eb-8d95-d08b522449d2"
   },
   {
    "type": "list",
@@ -2314,13 +2335,13 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "5cb558df-ca2a-56d9-89eb-8696f2b49ced"
+   "id": "d0f1c7e2-e917-59b1-a89f-e8a5a71f4145"
   },
   {
    "type": "paragraph",
    "text": "**Calculus you need here** ($e$ and $\\ln$ cancel: $e^{k\\ln y}=y^k$):",
    "citations": [],
-   "id": "173b4184-ba63-59e2-a554-24715c58ebad"
+   "id": "b94ca803-ddca-5482-b0f2-f08239d14bd2"
   },
   {
    "type": "table",
@@ -2347,14 +2368,14 @@
     ]
    ],
    "citations": [],
-   "id": "f1a8e745-a201-5cad-b793-24f6e7172736"
+   "id": "2514bf13-b522-5ee1-a681-fea2ca911fe9"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): where Case 1 comes from.** Multiply by $\\mu(t)$ and ask the new equation to pass the test, $(\\mu M)_y=(\\mu N)_t$. On the left, $\\mu$ has no $y$, so it just comes out: $\\mu M_y$. On the right, the product rule gives $\\mu^{\\prime} N+\\mu N_t$. Rearrange:\n\n$$\n\\dfrac{\\mu^{\\prime}}{\\mu}=\\dfrac{M_y-N_t}{N}\n$$\n\nThe left side only has $t$ in it, so the right side must too. Then $\\ln\\mu=\\int f\\,dt$. Case 2 is the same argument with $\\mu(y)$.",
    "citations": [],
-   "id": "269cb2d8-9488-5ece-a480-dca6e386b5ca"
+   "id": "e745a59d-1ad5-5ef2-b990-f04f4afb6765"
   },
   {
    "type": "worked_example",
@@ -2416,7 +2437,7 @@
      "chunk_id": "9abd497e-d55e-437a-8059-0132dde1d377"
     }
    ],
-   "id": "0f6b16f0-6478-5e22-9c72-97993f7d0e98"
+   "id": "f9c63f3a-f341-5cd7-9c93-868f37e69779"
   },
   {
    "type": "practice_problem",
@@ -2457,7 +2478,7 @@
    ],
    "answer": "$t-\\dfrac{y}{t}=C$, so $y=t^2-Ct$. Check with [B2](#b2): the equation is also linear, $y^{\\prime}-\\frac{y}{t}=t$, and gives the same family.",
    "citations": [],
-   "id": "ec448fc5-ad3d-58ce-8405-df3d3a4cc517"
+   "id": "ac73e828-f301-5061-9aba-b6fb0256f8fd"
   },
   {
    "type": "practice_problem",
@@ -2498,7 +2519,7 @@
    ],
    "answer": "$ty^2+\\dfrac{y^5}{5}=C$.",
    "citations": [],
-   "id": "96339459-a289-5aff-a598-dc68412e7659"
+   "id": "b4f71c6f-bc73-555e-aa8b-a72148f96acd"
   },
   {
    "type": "practice_problem",
@@ -2539,45 +2560,45 @@
    ],
    "answer": "(a) $\\mu=t$, $\\;t^2y+t^3=C$. (b) $\\mu=\\dfrac1y$, $\\;ty+\\ln|y|=C$.",
    "citations": [],
-   "id": "8f7a66e1-317c-5d72-b89a-d25ae5870da8"
+   "id": "f4dc3400-062b-5b0c-9416-d53d289ba51c"
   },
   {
    "type": "heading",
    "level": 2,
    "text": "B5 · Second order, constant coefficients: the characteristic equation",
    "citations": [],
-   "id": "5588ffed-d9f4-5bde-9217-9507bce6a8ea"
+   "id": "ac1beb21-b23d-57f3-8938-edfaf8677723"
   },
   {
    "type": "paragraph",
    "text": "[Week 5 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#92fa557c-ab2a-49cb-a238-b9f4e76fa0b8)",
    "citations": [],
-   "id": "9e710406-45ea-5135-9278-4678eac7b2bd"
+   "id": "e355e843-8c81-5fd4-b672-65a6d61ff3a8"
   },
   {
    "type": "paragraph",
    "text": "**What if the equation has a $y^{\\prime\\prime}$ in it?** Like $y^{\\prime\\prime}+3y^{\\prime}+2y=0$. If every coefficient is a plain number, there’s a shortcut: guess $y=e^{st}$.",
    "citations": [],
-   "id": "301caef7-0f40-582a-ab41-52fab04e5f47"
+   "id": "0cddb41b-0166-5787-9d02-09efec6abe9c"
   },
   {
    "type": "paragraph",
    "text": "Why that guess works: each derivative of $e^{st}$ is $e^{st}$ again, times one more $s$. So the whole ODE turns into a quadratic in $s$, and you already know how to solve those.",
    "citations": [],
-   "id": "03ca7124-54c2-5a80-83ea-5fc3b55e331d"
+   "id": "0c20695f-cd21-5a6e-a97d-6f5bea15d271"
   },
   {
    "type": "paragraph",
    "text": "The equations this works on look like:",
    "citations": [],
-   "id": "32decb3e-9c3b-5ad9-8180-d5cb6c552af0"
+   "id": "7dbfe5bb-4fed-5d1e-8a84-b6c8e9544eb9"
   },
   {
    "type": "equation",
    "latex": "a\\,y^{\\prime\\prime}+b\\,y^{\\prime}+c\\,y=0",
    "display": true,
    "citations": [],
-   "id": "2b828626-ba8e-51ad-b33c-43a4bee82204"
+   "id": "dace4e00-967c-5ba2-aa1b-3c0ae22c5cbb"
   },
   {
    "type": "list",
@@ -2588,20 +2609,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "410b86e0-d2a8-5243-a69c-b2a092ff0021"
+   "id": "e24cb608-3668-540e-a88e-d868c1113286"
   },
   {
    "type": "paragraph",
    "text": "**Step 1: the characteristic equation.** Swap each derivative for a power of $s$: $y^{\\prime\\prime}\\to s^2$, $y^{\\prime}\\to s$, $y\\to1$.",
    "citations": [],
-   "id": "cdb73424-c62d-5b07-a63d-822411b0d553"
+   "id": "9b5d1c4c-a05a-5354-a8ce-63c55b82459e"
   },
   {
    "type": "equation",
    "latex": "a\\,s^2+b\\,s+c=0",
    "display": true,
    "citations": [],
-   "id": "2abad358-1c1a-5b4a-9402-d3da6cdc55ec"
+   "id": "6fc1f58f-cce0-513b-916a-a4e1d2e49991"
   },
   {
    "type": "list",
@@ -2612,32 +2633,32 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "351a1d7c-9a7d-5913-8e6b-800286913d68"
+   "id": "6e02076e-b911-50da-8efe-52db0c0b6ded"
   },
   {
    "type": "paragraph",
    "text": "**Step 2: the roots.** Factor if you can. If not, use the quadratic formula:",
    "citations": [],
-   "id": "f4d48a78-bb9f-515b-87b6-382ce779c7de"
+   "id": "cdf1a5a5-61c5-5cae-9e50-7fa797281eff"
   },
   {
    "type": "equation",
    "latex": "s=\\dfrac{-b\\pm\\sqrt{b^2-4ac}}{2a}",
    "display": true,
    "citations": [],
-   "id": "d04becee-2aeb-5e36-b754-c4505ef39016"
+   "id": "a7d35c77-8c7f-5cf4-b3a4-c635498549c0"
   },
   {
    "type": "paragraph",
    "text": "A negative number under the root gives complex roots. Example: $s^2+2s+5=0$ has $\\sqrt{4-20}=\\sqrt{-16}=j4$, so $s=-1\\pm j2$. Complex numbers are in [Topic A](#topic-a).",
    "citations": [],
-   "id": "0917fadc-2562-5e8a-91b9-7a57cf8ee520"
+   "id": "3e29ac43-28cf-5511-91a5-5702d0a5c6ec"
   },
   {
    "type": "paragraph",
    "text": "**Step 3: the roots pick the form.** Find your row:",
    "citations": [],
-   "id": "fad896c9-5d7d-5761-b5c5-9fa803bbc222"
+   "id": "335cccc0-367e-5856-946d-ccc34dad8a39"
   },
   {
    "type": "table",
@@ -2668,7 +2689,7 @@
     ]
    ],
    "citations": [],
-   "id": "06f3ccf5-cd4a-5e40-aef6-8231e31c0865"
+   "id": "050503eb-73d8-5db3-84a3-b8e20e811023"
   },
   {
    "type": "list",
@@ -2679,25 +2700,25 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "f1378527-73cd-5bcb-9b20-f33f28279c27"
+   "id": "22cd4e46-3435-5b5f-b650-23794e709ad2"
   },
   {
    "type": "paragraph",
    "text": "**Time saver:** the last two columns already give $y(0)$ and $y^{\\prime}(0)$. With conditions at $t=0$, write the two equations for $A$ and $B$ straight from the table.",
    "citations": [],
-   "id": "360d61d0-8cdb-5d35-8e8f-96ac41deaad1"
+   "id": "61fe2005-7291-514c-a64c-dc6be8ad310e"
   },
   {
    "type": "paragraph",
    "text": "Example: roots $-2$ and $-3$ → $y(0)=A+B$ and $y^{\\prime}(0)=-2A-3B$. For conditions at another time, like $y(1)$, differentiate $y(t)$ yourself (table below).",
    "citations": [],
-   "id": "a4a5f97f-8c46-5b79-b44c-a4ce23608e51"
+   "id": "eac2c5d0-50fa-590e-9643-48cd825407d8"
   },
   {
    "type": "paragraph",
    "text": "**Method:**",
    "citations": [],
-   "id": "2416dc66-485a-5117-ba58-173920c10f91"
+   "id": "647c8fbc-8759-59c8-bc53-783c5437c8a5"
   },
   {
    "type": "list",
@@ -2709,13 +2730,13 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "6158a53f-0b2d-54c7-aba5-816f84c04f83"
+   "id": "1356bb1a-267b-5e54-a2ce-f43e530b94f2"
   },
   {
    "type": "paragraph",
    "text": "**Calculus you need here** (to differentiate the forms yourself):",
    "citations": [],
-   "id": "470beb28-530d-59c3-9f28-6ac9cc55222d"
+   "id": "61b3a202-15ca-5ee6-91f7-d2b1e9961e33"
   },
   {
    "type": "table",
@@ -2747,20 +2768,20 @@
     ]
    ],
    "citations": [],
-   "id": "0c65dc5b-8bbc-5e38-8d7b-8ef50e0bed9a"
+   "id": "4174c94f-c58a-5011-a26e-22a1f67bb322"
   },
   {
    "type": "paragraph",
    "text": "```graph\ntitle \"Slide $k$ through 1: the same start, three kinds of response\"\nx 0 8 label=\"$t$\"\ny -0.6 1.2 label=\"$y$\"\nslider k 0 5 0.5 step=0.05 label=\"$k$\" animate\nlet d \"sqrt(abs(1-k))\"\nlet s1 \"-1+d\"\nlet s2 \"-1-d\"\ncurve \"if(k<0.999, (s2*exp(s1*x)-s1*exp(s2*x))/(s2-s1), if(k>1.001, exp(-x)*(cos(d*x)+sin(d*x)/d), (1+x)*exp(-x)))\" label=\"$y(t)$\" color=1\nhline \"0\"\nreadout \"$b^2-4ac=4-4k$\" \"4-4*k\"\ncaption \"$y^{\\prime\\prime}+2y^{\\prime}+ky=0$, starting at $y(0)=1$, $y^{\\prime}(0)=0$. $k<1$: two real roots, the curve settles with no wiggle. $k=1$: one repeated root, the border case. $k>1$: complex roots, it wiggles inside the shrinking envelope $e^{-t}$.\"\n```",
    "citations": [],
-   "id": "c55b1c97-b9af-5593-b630-901073bb6db7"
+   "id": "0f1d9764-b834-5bcb-ac91-01df554e5f9b"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why $e^{st}$ turns the ODE into a quadratic.** Plug in $y=e^{st}$, $y^{\\prime}=se^{st}$, $y^{\\prime\\prime}=s^2e^{st}$. Every term has $e^{st}$, so pull it out:\n\n$$\n(as^2+bs+c)\\,e^{st}=0\n$$\n\n$e^{st}$ is never zero, so the bracket must be zero. That bracket is the characteristic equation.\n\nFor complex roots, Euler’s formula $e^{(\\sigma\\pm j\\omega)t}=e^{\\sigma t}(\\cos\\omega t\\pm j\\sin\\omega t)$ turns the two exponentials into $\\cos$ and $\\sin$. That’s why the third row has no $j$ in it. The extra $t$ for a repeated root comes from reduction of order ([B7](#b7)).",
    "citations": [],
-   "id": "85e53d00-f11b-515f-9d97-4509f53f63f6"
+   "id": "f468a8df-832c-528c-b42d-f9824954f611"
   },
   {
    "type": "worked_example",
@@ -2786,7 +2807,7 @@
    ],
    "answer": "$y=e^{-t}(\\cos2t+\\sin2t)$. It wiggles at 2 rad/s, and the $e^{-t}$ shrinks the wiggle towards 0.",
    "citations": [],
-   "id": "000ce3be-fcac-5892-87ed-a85f37c7aeca"
+   "id": "374041a7-9c55-5c75-b314-d8b42c5a1b15"
   },
   {
    "type": "practice_problem",
@@ -2819,7 +2840,7 @@
    ],
    "answer": "$y=e^{-2t}+e^{-3t}$.",
    "citations": [],
-   "id": "bdfd2be8-6159-5536-8452-1698ab275f87"
+   "id": "a9bb880a-40b2-50ba-990f-9284db5c7666"
   },
   {
    "type": "practice_problem",
@@ -2848,7 +2869,7 @@
    ],
    "answer": "$y=(4+2t)\\,e^{-t/2}$.",
    "citations": [],
-   "id": "a8f8a82a-d9f2-5615-bcf3-7a86f423e809"
+   "id": "36dd3372-1a20-5233-8e99-6b10b8f1261f"
   },
   {
    "type": "practice_problem",
@@ -2877,7 +2898,7 @@
    ],
    "answer": "$y=2\\cos3t+\\sin3t$. With $\\sigma=0$ nothing shrinks it, so it swings forever. That’s the ideal LC circuit in [Topic D](#topic-d).",
    "citations": [],
-   "id": "ab5f03b2-6b43-5706-93d3-2e6550853282"
+   "id": "635022da-07ae-5bf0-8b4c-d901e782515a"
   },
   {
    "type": "practice_problem",
@@ -2906,7 +2927,7 @@
    ],
    "answer": "(a) $y^{\\prime\\prime}+6y^{\\prime}+25y=0$. (b) $y=e^{-3t}(A\\cos4t+B\\sin4t)$. (c) $y=2e^{-3t}\\sin4t$.",
    "citations": [],
-   "id": "b489d248-0f48-522c-8fad-4bd29e95b0ca"
+   "id": "521821dd-af0d-593e-9460-798a4e3b9057"
   },
   {
    "type": "heading",
@@ -2929,38 +2950,38 @@
      "chunk_id": "84f57b26-8cc8-4568-9372-eece88ff9a48"
     }
    ],
-   "id": "9c2aa686-1c16-569e-b6c1-0647fbb737de"
+   "id": "8b012814-03f0-5ac5-b99a-a677d8e1cde2"
   },
   {
    "type": "paragraph",
    "text": "[Week 6 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/357f26bd-d16c-4769-af0a-d1b2f535d62e#77a5aea3-a3f4-4738-a817-01c3f18cfdae)",
    "citations": [],
-   "id": "54c77c81-7e16-5ef3-a115-bd3e092a24d7"
+   "id": "970a00d8-d7f8-5537-93a5-146ec8b85712"
   },
   {
    "type": "paragraph",
    "text": "**What if the right side isn’t zero?** Like $y^{\\prime\\prime}+y=3$. The right side, $g(t)$, is called the **forcing** (in a circuit, it’s the source).",
    "citations": [],
-   "id": "0d63bb8b-baa3-50a6-a3cc-0c44d3f3066f"
+   "id": "3dd9c43f-6b49-5a19-9820-a1b3b46155dd"
   },
   {
    "type": "paragraph",
    "text": "The [B5](#b5) solutions all give $0$ when you plug them in, never $g(t)$. So you need one extra piece that gives $g(t)$.",
    "citations": [],
-   "id": "d3fcc621-8bfe-5e81-bb02-27e254bb342f"
+   "id": "841f2ddc-1616-59c6-bc84-ced6f8b3212f"
   },
   {
    "type": "paragraph",
    "text": "The equations look like:",
    "citations": [],
-   "id": "81a1383b-1b95-549b-bda1-899cf1ead3d9"
+   "id": "333aeca6-0a81-518d-86ba-63f0c30a20ec"
   },
   {
    "type": "equation",
    "latex": "a\\,y^{\\prime\\prime}+b\\,y^{\\prime}+c\\,y=g(t)",
    "display": true,
    "citations": [],
-   "id": "724a7596-aaa5-54c8-b2e4-60185ce85fbd"
+   "id": "663c3f96-4da5-5ca4-b94a-ce36f534a682"
   },
   {
    "type": "list",
@@ -2970,20 +2991,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "ceaa51f2-ec40-5e57-9314-909006e3051d"
+   "id": "0e5d6534-4777-5e67-9e0e-b00d74791876"
   },
   {
    "type": "paragraph",
    "text": "The answer always has two pieces:",
    "citations": [],
-   "id": "c1acc52c-4795-52be-8530-1145d2e4a358"
+   "id": "500418df-71e3-5ae1-b468-6db2ae7aad4f"
   },
   {
    "type": "equation",
    "latex": "y=y_c+y_p",
    "display": true,
    "citations": [],
-   "id": "566db24f-1222-5a54-bea0-7746026f11bc"
+   "id": "e0941d1c-534c-5a98-9a17-21c80d774e13"
   },
   {
    "type": "list",
@@ -2993,19 +3014,19 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "59fffd9b-5d23-5f0a-973c-cbd3bce0f83a"
+   "id": "7564150f-7c95-5b26-bb66-344836263a6d"
   },
   {
    "type": "paragraph",
    "text": "Why adding works: plug in $y_c+y_p$. The $y_c$ part gives $0$ and the $y_p$ part gives $g$, so the total is $0+g=g$.",
    "citations": [],
-   "id": "8ae15fd9-b627-51fa-a35c-bb7b7a916ebf"
+   "id": "bc857f06-1f69-58c3-8ede-6a88ffea1a0a"
   },
   {
    "type": "paragraph",
    "text": "Example: $y^{\\prime\\prime}+y=3$.",
    "citations": [],
-   "id": "1a41bae4-e1e1-5eb4-ad98-b56a61f11af5"
+   "id": "c80df94a-410e-5498-bcbd-6749f1e323ac"
   },
   {
    "type": "list",
@@ -3016,19 +3037,19 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "81571418-92ac-5cf5-a976-eb2c356bec18"
+   "id": "a0a142e4-df61-5f57-b068-a997dae03f4d"
   },
   {
    "type": "paragraph",
    "text": "**How do you find $y_p$? Copy the shape of $g(t)$.** Derivatives of $t^2$, $e^{2t}$ or $\\cos3t$ stay the same kind of function.",
    "citations": [],
-   "id": "6a767fa2-4e35-5590-a9d7-32ff3d40bc2a"
+   "id": "d666e8dc-ead6-51ee-aabb-b418bd020c3f"
   },
   {
    "type": "paragraph",
    "text": "So guess a $y_p$ that looks like $g$, with unknown numbers $A,B,\\dots$ in front. Plug it in to find the numbers.",
    "citations": [],
-   "id": "4168501d-beb5-5b5a-8fc4-136105bbaa44"
+   "id": "79feefe6-623f-5e80-b8d7-f2437ba8b35c"
   },
   {
    "type": "table",
@@ -3071,7 +3092,7 @@
      "chunk_id": "84f57b26-8cc8-4568-9372-eece88ff9a48"
     }
    ],
-   "id": "8828e8a1-291b-563e-9f17-bd4177e42ba5"
+   "id": "433fc07b-d6c7-5dd9-9bb1-62eada0d821c"
   },
   {
    "type": "list",
@@ -3081,20 +3102,33 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "5423f060-c138-535c-9deb-de7d43f9ecf7"
+   "id": "52f5d7c0-83b9-56b4-bd84-a4678626cb1f"
+  },
+  {
+   "type": "callout",
+   "tone": "tip",
+   "text": "**What the lecture actually worked:** Monday’s lecture (Oct 26) went over just two rows: a constant → $A$, and $\\sin rt$ or $\\cos rt$ → both. That’s exactly what the tutorial problem needs. For the other rows and the trap below, the professor only said Spiegel has “further rules”. So nail the constant + trig case first, then learn the rest.",
+   "citations": [
+    {
+     "source_id": "f8bccc80-ff70-4727-b896-a89d7b612824",
+     "version": 1,
+     "chunk_id": "84f57b26-8cc8-4568-9372-eece88ff9a48"
+    }
+   ],
+   "id": "5cf84d4a-c92f-51cd-8eb4-2e69fbc4a37b"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "**Trap: your guess is already in $y_c$.** Then plugging it in gives $0$, so it can never give $g$. **Fix: multiply the guess by $t$.** If that is still in $y_c$ (a repeated root), multiply by $t^2$ instead.\n\nExample: $y^{\\prime\\prime}-y^{\\prime}-2y=3e^{2t}$ has $y_c=c_1e^{2t}+c_2e^{-t}$. The table says $Ae^{2t}$, but that’s in $y_c$. So guess $Ate^{2t}$.",
    "citations": [],
-   "id": "2ea3bfed-950f-51bf-bb6b-03dab062c284"
+   "id": "22dca4bb-7207-52df-b552-453824de0a67"
   },
   {
    "type": "paragraph",
    "text": "**Method:**",
    "citations": [],
-   "id": "f5b81f6a-da4c-583e-b6f7-39c1b64dca44"
+   "id": "096d9735-d575-5d84-897a-17358cb58ea9"
   },
   {
    "type": "list",
@@ -3108,13 +3142,13 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "699c6ef3-77c6-5a9e-adf6-c3f1d1ea8ec4"
+   "id": "8ec0dde5-e690-5da4-8334-4cfb16a99a42"
   },
   {
    "type": "paragraph",
    "text": "**Calculus you need here:**",
    "citations": [],
-   "id": "5053baeb-02b8-5958-9bd3-c97b1f784fda"
+   "id": "a79ca945-b1f9-53b0-9b66-d0632f001819"
   },
   {
    "type": "table",
@@ -3151,18 +3185,25 @@
     ]
    ],
    "citations": [],
-   "id": "46bc9382-62d4-5091-b84d-8128a510124f"
+   "id": "b0395644-0f03-5076-9f42-945a4006d616"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why you can’t skip $y_c$.** $y_p$ has no constants, so on its own it can’t meet two conditions like $y(0)=0$ and $y^{\\prime}(0)=0$. $y_c$ brings the two free constants that the conditions pin down. And the trap above has the same cause: anything already in $y_c$ gives $0$ on the left, so it’s useless as a guess.",
    "citations": [],
-   "id": "b19a7b4a-63f3-59fb-b671-b7e34eedd094"
+   "id": "d8406b94-d989-5c64-9011-bc7d15ec077c"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Practise the worked example below until you can do it alone.** It’s Pre-tutorial 5, the Week 7 tutorial (Oct 26, 28), which the midterm covers. It’s also the lecture’s own example. Be able to do every step, the boundary values included.",
+   "citations": [],
+   "id": "5aea0fac-11f2-5e52-91a2-7bc3f6cb4e26"
   },
   {
    "type": "worked_example",
-   "title": "Example 7 · W6 · The tutorial problem, with two boundary values · Week 6 tutorial, lecture notes p. 3–4",
+   "title": "Example 7 · W6 · The tutorial problem, with two boundary values · Pre-tutorial 5 / Week 7 tutorial, lecture notes p. 3–4",
    "prompt": "Solve $\\ddot y+y=6\\cos^2t$ with $y(0)=0$ and $y(\\pi/2)=0$. The tutorial gives the forms $y_c=c_1\\sin t+c_2\\cos t$ and $y_p=A+B\\cos2t+D\\sin2t$. ($\\ddot y$ is the professor’s notation for $y^{\\prime\\prime}$.)",
    "steps": [
     {
@@ -3205,6 +3246,11 @@
    "answer": "$y=3-\\cos2t-4\\sin t-2\\cos t$.",
    "citations": [
     {
+     "source_id": "a79cd577-1cd7-4c6d-bb22-d033c02cf893",
+     "version": 1,
+     "chunk_id": "d9ab6ebe-e52f-41e0-ac3f-6e420a8c2024"
+    },
+    {
      "source_id": "2ebde3e8-c2a0-462c-be36-dfb00d2e7cc3",
      "version": 1,
      "chunk_id": "8ea1fd84-8ed9-4e24-b2a8-d1e31acc455a"
@@ -3220,25 +3266,25 @@
      "chunk_id": "1bb7e382-04e5-42ed-84e7-a194ca300ce4"
     }
    ],
-   "id": "b4f64a72-af87-5caa-a3d3-2fafa8ebbd60"
+   "id": "eede431f-8023-5e49-84a5-f49c3b4744ad"
   },
   {
    "type": "paragraph",
    "text": "```graph\ntitle \"Tutorial problem: pick the constants\"\nx 0 6.3 label=\"$t$\"\ny -8 8 label=\"$y$\"\nslider c1 -6 6 0 step=0.5 label=\"$c_1$\"\nslider c2 -6 6 0 step=0.5 label=\"$c_2$\"\ncurve \"3-cos(2*x)\" label=\"$y_p=3-\\cos2t$\" color=0 dash\ncurve \"3-cos(2*x)+c1*sin(x)+c2*cos(x)\" label=\"$y=y_p+c_1\\sin t+c_2\\cos t$\" color=1\npoint \"0\" \"0\" label=\"must pass $(0,0)$\" color=3\npoint \"pi/2\" \"0\" label=\"must pass $(\\pi/2,0)$\" color=3\nreadout \"$y(0)$\" \"2+c2\"\nreadout \"$y(\\pi/2)$\" \"4+c1\"\ncaption \"Every $c_1,c_2$ gives a solution of the ODE. Only $c_1=-4$, $c_2=-2$ goes through both points.\"\n```",
    "citations": [],
-   "id": "268ef848-4c9b-513f-809e-3223f82ec7da"
+   "id": "396c2594-f682-5020-96b6-4549f786fd36"
   },
   {
    "type": "paragraph",
    "text": "**What does the extra $t$ look like?** When $g$ matches a term of $y_c$, the answer doesn’t just copy the shape of $g$. It keeps growing, like $t\\cos2t$ (this is **resonance**). Slide $\\omega$ to 2 and watch:",
    "citations": [],
-   "id": "8e368562-6ca7-543c-a0ae-ade6d374c0e8"
+   "id": "52570889-b411-599f-a55e-1ef6f15134b3"
   },
   {
    "type": "paragraph",
    "text": "```graph\ntitle \"Forcing at the natural frequency\"\nx 0 12 label=\"$t$\"\ny -25 25 label=\"$y$\"\nslider w 1 3 1.5 step=0.05 label=\"$\\omega$\" animate\ncurve \"if(abs(w-2)<0.001, sin(2*x)-2*x*cos(2*x), 8/(4-w^2)*(sin(w*x)-w/2*sin(2*x)))\" label=\"$y(t)$, starting at rest\" color=1\ncurve \"2*x\" label=\"$\\pm2t$\" color=0 dash\ncurve \"-2*x\" color=0 dash\ncaption \"$y''+4y=8\\sin\\omega t$, starting at rest. Here $y_c$ has $\\sin2t$ and $\\cos2t$. With $\\omega$ far from 2, the swing stays small. At $\\omega=2$ the forcing is in $y_c$, $y_p$ needs the extra $t$, and the swing grows along $\\pm2t$.\"\n```",
    "citations": [],
-   "id": "ed1bf41c-c397-5cd1-9344-a39b3e35a124"
+   "id": "38c88905-e39b-5530-8c3f-53a78aef00a3"
   },
   {
    "type": "practice_problem",
@@ -3267,7 +3313,7 @@
    ],
    "answer": "$y=2-2\\cos2t$. A constant source gives a constant $y_p$, just like an RLC circuit switched onto a DC source ([Topic D](#topic-d)).",
    "citations": [],
-   "id": "7177a604-0cbb-53b4-9b1f-39b6a65a267b"
+   "id": "9e037a3d-8859-54ff-a2eb-04e69a0773c1"
   },
   {
    "type": "practice_problem",
@@ -3300,7 +3346,7 @@
    ],
    "answer": "$y=c_1e^{t}+c_2e^{-2t}-t-\\tfrac12$. With only $At$, you’d need $A=-1$ (from the $t$ terms) and $A=0$ (from the constants) at once, which is impossible.",
    "citations": [],
-   "id": "253398a1-f120-5900-9740-3bab82539c69"
+   "id": "0fa459ca-c875-5ebf-8828-c0883dfab805"
   },
   {
    "type": "practice_problem",
@@ -3333,7 +3379,7 @@
    ],
    "answer": "$y_p=te^{2t}$, so $y=c_1e^{2t}+c_2e^{-t}+te^{2t}$.",
    "citations": [],
-   "id": "6d4d81ba-1884-5736-a91b-761e1bc483aa"
+   "id": "b64a91ca-3056-50ab-88bb-468bd2f4c85a"
   },
   {
    "type": "practice_problem",
@@ -3366,7 +3412,7 @@
    ],
    "answer": "(a) $At^2+Bt+C$. (b) $Ae^{-t}$. (c) $At^2e^t$. (d) $A\\cos t+B\\sin t$.",
    "citations": [],
-   "id": "88936e83-eff3-5a73-8622-336409539ca4"
+   "id": "7d916043-8926-5278-891c-1c088d0b962b"
   },
   {
    "type": "practice_problem",
@@ -3395,7 +3441,7 @@
    ],
    "answer": "$A=0$, $B=2$: $y_p=2t\\sin3t$. The swing grows like $2t$, as in the graph above.",
    "citations": [],
-   "id": "619943c4-1b99-5b6d-9d30-1409e43cb94a"
+   "id": "fb8dd15e-4287-5bd1-a75e-a35a1f1a634e"
   },
   {
    "type": "heading",
@@ -3413,38 +3459,38 @@
      "chunk_id": "e5b9df43-539d-422c-a3db-7f94dba31ef0"
     }
    ],
-   "id": "9cf4cb1b-42a8-5b63-821d-80d6407fa95d"
+   "id": "f30934e3-fe2b-51a2-8fa8-5b39be89d3bf"
   },
   {
    "type": "paragraph",
    "text": "[Week 6 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/357f26bd-d16c-4769-af0a-d1b2f535d62e#400c9eda-6dcb-4cf4-9c21-265384342cb1)",
    "citations": [],
-   "id": "f6d1f722-d007-5b3c-8698-685902fd2a4f"
+   "id": "d7109586-1501-5ecb-8f8c-a0d1205527f4"
   },
   {
    "type": "paragraph",
    "text": "**What if the coefficients have $t$ in them?** Like $y^{\\prime\\prime}-ty^{\\prime}+y=0$. The $e^{st}$ guess from [B5](#b5) only works when the coefficients are plain numbers, so it fails here.",
    "citations": [],
-   "id": "f6deb8c3-e042-5f69-a7d6-9940a9b03e4f"
+   "id": "1e311ce1-c7c1-599a-8595-1207b228c9e0"
   },
   {
    "type": "paragraph",
    "text": "But if the question **gives you one solution**, $y_1$, then reduction of order finds the second one.",
    "citations": [],
-   "id": "ef9061c0-3075-54ac-aeff-2f65fb246f21"
+   "id": "f52c264b-9cf9-564f-87de-45a553b8c54d"
   },
   {
    "type": "paragraph",
    "text": "First get $y^{\\prime\\prime}$ alone (divide by whatever multiplies it):",
    "citations": [],
-   "id": "7c4af08c-71cf-5817-a169-c6a70a943cd4"
+   "id": "30bf59a3-7fd1-55c5-86fe-1c356f3f1e42"
   },
   {
    "type": "equation",
    "latex": "y^{\\prime\\prime}+p(t)\\,y^{\\prime}+q(t)\\,y=0",
    "display": true,
    "citations": [],
-   "id": "15862688-f3db-5c9d-85fd-5acb5a6cd080"
+   "id": "588ad8c4-f255-5e77-ae99-4d83c9245859"
   },
   {
    "type": "list",
@@ -3455,13 +3501,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "68374e04-1f89-5515-83e6-fd754fc874e7"
+   "id": "edb3b465-46f8-5402-9a7c-7ed2eacbb6ba"
   },
   {
    "type": "paragraph",
    "text": "Examples:",
    "citations": [],
-   "id": "9bc00a27-e5d8-5d9c-a801-a69fcf0f6346"
+   "id": "438ce202-68f8-5270-8968-26ce0ae9047e"
   },
   {
    "type": "list",
@@ -3471,38 +3517,38 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "c012efa2-27bb-5ec8-bea6-21a8d022a616"
+   "id": "215ac7a1-b98b-5421-b0bd-c06d36ee5fe5"
   },
   {
    "type": "paragraph",
    "text": "**The idea.** Guess the second solution as the one you know, times an unknown function $v(t)$:",
    "citations": [],
-   "id": "739954eb-8463-597a-9f2c-8097a40fa116"
+   "id": "df756296-5788-570b-bd56-60565b0adef7"
   },
   {
    "type": "equation",
    "latex": "y=y_1\\,v",
    "display": true,
    "citations": [],
-   "id": "3a42ff26-b9cd-5c3c-b037-314eb5987d26"
+   "id": "ee5fa300-b950-5c3b-adc6-3ff42a28b7cd"
   },
   {
    "type": "paragraph",
    "text": "Example: with $y_1=t$, try $y=tv$. When you plug it in, every term with a plain $v$ cancels, because $y_1$ already solves the ODE.",
    "citations": [],
-   "id": "77d14c66-8bf8-5462-b243-05a2bcf04301"
+   "id": "73f2bb5a-b64a-529e-b315-1dae125f96dc"
   },
   {
    "type": "paragraph",
    "text": "Only $v^{\\prime}$ and $v^{\\prime\\prime}$ are left. Call $z=v^{\\prime}$, and you have a **first-order** equation in $z$. The order went down by one: that’s the name.",
    "citations": [],
-   "id": "006600c3-55b8-54c9-9713-9f1221ece1cb"
+   "id": "934d9ff6-624b-574a-9442-3c7d7dd87be9"
   },
   {
    "type": "paragraph",
    "text": "**Method:**",
    "citations": [],
-   "id": "ada5d422-3842-5475-9919-3814e70645a6"
+   "id": "f40d6e80-32ad-51aa-bdce-8deda9509c9f"
   },
   {
    "type": "list",
@@ -3515,38 +3561,38 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "6ba3befd-ae3f-5153-94b7-b3109a68fff8"
+   "id": "241b1b3e-14d7-5b1b-a191-968c1a723fbc"
   },
   {
    "type": "paragraph",
    "text": "**Check with the formula.** All of those steps always end at:",
    "citations": [],
-   "id": "335fad39-f985-5e50-a3b3-8d4ba1a55a27"
+   "id": "4cadca24-6631-5538-ac67-202b6f303572"
   },
   {
    "type": "equation",
    "latex": "y_2=y_1\\int\\dfrac{e^{-\\int p\\,dt}}{y_1^{\\,2}}\\,dt",
    "display": true,
    "citations": [],
-   "id": "25d1a9d7-00d2-5855-8728-7a0cc197dd61"
+   "id": "e2c7525c-7325-525b-8add-f2a9c94d53ff"
   },
   {
    "type": "paragraph",
    "text": "Example: $t^2y^{\\prime\\prime}-ty^{\\prime}+y=0$ with $y_1=t$ ($t>0$). Divide by $t^2$: $p=-\\frac1t$, so $e^{-\\int p\\,dt}=e^{\\ln t}=t$, and $y_2=t\\int\\frac{t}{t^2}\\,dt=t\\ln t$.",
    "citations": [],
-   "id": "d02a4cc8-1897-5b26-82f9-a05e1500c942"
+   "id": "073fbe83-60c1-5cd7-87b6-e04065f525d9"
   },
   {
    "type": "paragraph",
    "text": "Use it to check your answer, or as a shortcut if the question lets you.",
    "citations": [],
-   "id": "60e019e1-c5e7-510a-a46b-c343437b5062"
+   "id": "c1a3ce5c-03c6-5313-9b0e-f30dc3597e9d"
   },
   {
    "type": "paragraph",
    "text": "**Calculus you need here:**",
    "citations": [],
-   "id": "2937875a-d360-5c92-93ce-b37013a7d0e5"
+   "id": "66b3d603-71bb-5056-a47e-6fecc5d62451"
   },
   {
    "type": "table",
@@ -3583,20 +3629,20 @@
     ]
    ],
    "citations": [],
-   "id": "5d0cf61e-206a-5c5a-9b8a-7b24f7b236cb"
+   "id": "6213be79-b145-5986-876a-82255a661bab"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why the plain-$v$ terms cancel.** After you substitute, gather everything that multiplies $v$ itself. You get $v\\,(y_1^{\\prime\\prime}+p\\,y_1^{\\prime}+q\\,y_1)$. The bracket is just $y_1$ plugged into the ODE, which is $0$ because $y_1$ is a solution.",
    "citations": [],
-   "id": "a2c9e2e8-422c-55db-a086-a9090567d46d"
+   "id": "af79d2a9-71f1-56d0-a5c3-5d4f40baf560"
   },
   {
    "type": "paragraph",
    "text": "The professor’s example, step by step:\n\n```steps\ntitle \"Lecture: reduce y″ − t y′ + y = 0, given y₁ = t\"\n$$ y''-ty'+y=0,\\qquad y_1=t $$\nCheck: $y_1=t$ gives $0-t+t=0$.\n$$ y=\\hl{tv} $$\nMultiply the known solution by an unknown $v$.\n$$ y'=\\hl{v+tv'},\\qquad y''=\\hl{2v'+tv''} $$\nProduct rule (calculus table).\n$$ (2v'+tv'')-t(v+tv')+tv=0 $$\nPlug all three into the ODE.\n$$ \\hl{tv''+(2-t^2)v'}=0 $$\nCollect terms. The $-tv$ and $+tv$ cancel.\n$$ t\\hl{z'}+(2-t^2)\\hl{z}=0 $$\nSet $z=v^{\\prime}$: now it’s first order in $z$.\n```",
    "citations": [],
-   "id": "330d4e87-cd70-59ce-b2a7-c99dd019bca2"
+   "id": "df3ca658-bce9-52c6-b434-67840fb4c0f0"
   },
   {
    "type": "worked_example",
@@ -3637,7 +3683,7 @@
      "chunk_id": "e5b9df43-539d-422c-a3db-7f94dba31ef0"
     }
    ],
-   "id": "acdbf283-15a0-52d0-870f-c5287b989386"
+   "id": "d69fec88-eb39-5891-b3a4-923190d7368a"
   },
   {
    "type": "practice_problem",
@@ -3670,7 +3716,7 @@
    ],
    "answer": "$y=(C_1+C_2t)e^{-2t}$. That’s the repeated-root row of [B5](#b5): the extra $t$ came from $v$.",
    "citations": [],
-   "id": "17fccd04-a8b1-5f7c-b1dc-b75e8afb163a"
+   "id": "e30b0f4c-ffbd-558b-8c46-f61e1979d2fe"
   },
   {
    "type": "practice_problem",
@@ -3707,7 +3753,7 @@
    ],
    "answer": "$y=C_1t^2+C_2t^2\\ln t$. Formula check: $p=-\\frac3t$, $e^{-\\int p\\,dt}=t^3$, $\\int\\frac{t^3}{t^4}dt=\\ln t$. ✓",
    "citations": [],
-   "id": "d213d519-453b-5d3e-a8f5-2c6d153e34e2"
+   "id": "765d86cf-643e-5894-b227-347279823867"
   },
   {
    "type": "heading",
@@ -3720,19 +3766,19 @@
      "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
     }
    ],
-   "id": "2e021c88-18c4-51a3-b42e-ffb758d93feb"
+   "id": "522b08dd-f598-5b90-8548-9f26a2dc2538"
   },
   {
    "type": "paragraph",
    "text": "[Week 3 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#8c746b9b-2fbf-48f4-8a2d-704a643bdcf7) [Week 5 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#b4f41ebe-f4f6-4d5d-816d-ceaa37811b8f)",
    "citations": [],
-   "id": "5f7f81be-c396-5f73-a441-779de66ff822"
+   "id": "dc137e85-6175-502e-8381-6e79f904cac9"
   },
   {
    "type": "paragraph",
    "text": "**Can you answer without solving?** Some questions ask “is there exactly one solution?” or “on what interval is one guaranteed?”. You don’t solve the ODE. You check a theorem instead:",
    "citations": [],
-   "id": "d1ea2b5d-dedd-5ff0-a31c-6bab1efc4a40"
+   "id": "c141b6cc-742c-52ae-a99c-b00318f190a7"
   },
   {
    "type": "list",
@@ -3742,13 +3788,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "8deead1a-24af-5928-9b5d-93a50f597088"
+   "id": "51fb8104-1701-565c-ae85-a5a3fc376251"
   },
   {
    "type": "paragraph",
    "text": "Both checks work the same way. Write the equation in a standard form, then look for the spots where something breaks:",
    "citations": [],
-   "id": "f2302f53-1faf-5674-b719-a06897b0039c"
+   "id": "d3456400-650a-512a-9b13-dd6696c49f5d"
   },
   {
    "type": "list",
@@ -3759,7 +3805,7 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "929c4986-aa70-58c9-beb0-867ede64e6f1"
+   "id": "5003612f-0bb5-5542-939e-cfc775d29bc1"
   },
   {
    "type": "heading",
@@ -3772,32 +3818,32 @@
      "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
     }
    ],
-   "id": "3456949b-2501-5779-96b7-44456e427d0f"
+   "id": "3e486690-0d58-5a6d-8f8b-b9bce556b054"
   },
   {
    "type": "paragraph",
    "text": "[Week 3 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#8c746b9b-2fbf-48f4-8a2d-704a643bdcf7)",
    "citations": [],
-   "id": "6f8a6eec-03e3-529f-a90b-e070b2e158b5"
+   "id": "87f91a0a-b4e6-5e71-a53c-d2d3e4076626"
   },
   {
    "type": "paragraph",
    "text": "**When:** you get $\\dfrac{dy}{dt}=F(t,y)$ and a starting point $(t_0,y_0)$. The question asks if exactly one solution goes through that point.",
    "citations": [],
-   "id": "84bb64e6-fc05-523a-a0ef-348610421212"
+   "id": "1fcbddc5-ad68-53cd-b56d-3973e93ff7da"
   },
   {
    "type": "paragraph",
    "text": "First get the derivative alone on the left:",
    "citations": [],
-   "id": "fc63b9cb-d27b-58b2-ad29-c1f98d461e0b"
+   "id": "c86404ff-c0ee-5a05-8816-b4780eb463fd"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{dy}{dt}=F(t,y)",
    "display": true,
    "citations": [],
-   "id": "cd7ee790-3684-5f41-945d-2d73de4730fa"
+   "id": "658e4ae3-cb77-5e95-93bc-b175ffbb4861"
   },
   {
    "type": "list",
@@ -3807,26 +3853,26 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "c4892820-12b0-50a1-905a-ef33a54d0dae"
+   "id": "7a5acd61-90f6-58a6-8e25-e0702189380f"
   },
   {
    "type": "paragraph",
    "text": "**The theorem** (Spiegel, used in the Week 3 lecture):",
    "citations": [],
-   "id": "6bbc89f4-4c9f-5fa5-b050-d6eb9949e041"
+   "id": "4ed6c2c5-ced3-5c8d-9eae-595bc09e3dce"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "If $F$ and $\\dfrac{\\partial F}{\\partial y}$ are both continuous (no blow-ups, no gaps) near $(t_0,y_0)$, then **exactly one** solution passes through $(t_0,y_0)$.",
    "citations": [],
-   "id": "e7ed9b93-b8bc-5584-9035-bdd4c9f9b166"
+   "id": "84535c32-9298-56f6-87bc-e8831452f47f"
   },
   {
    "type": "paragraph",
    "text": "So there are two outcomes:",
    "citations": [],
-   "id": "15e839a6-24bb-5a50-a3c3-cb313d90639c"
+   "id": "4b5085d9-40c2-5904-92c7-8faee37132d4"
   },
   {
    "type": "list",
@@ -3836,19 +3882,19 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "ca2cc2b6-2474-5454-ae56-5c69c193d4d6"
+   "id": "85a50bef-0304-57d9-a5ad-a3dfa1f06959"
   },
   {
    "type": "paragraph",
    "text": "Why $F_y$ matters: it says how fast the slope changes as you move up or down. If it blows up, solutions can split apart (see the graph below).",
    "citations": [],
-   "id": "55d985f3-5120-5da8-bae1-b6d50086f2ab"
+   "id": "58a90765-2030-58e4-9254-c218bc312d71"
   },
   {
    "type": "paragraph",
    "text": "Mini examples:",
    "citations": [],
-   "id": "1bba2b69-50cd-5f20-9622-99bdfc01e406"
+   "id": "722f6f41-7e5a-5f94-b907-0e0d82384088"
   },
   {
    "type": "list",
@@ -3858,13 +3904,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "de687d11-5c1b-5144-a3ef-34174bc35395"
+   "id": "6d891b7b-ce30-5759-9b93-8cad20157cd3"
   },
   {
    "type": "paragraph",
    "text": "**Method:**",
    "citations": [],
-   "id": "7fcb7f8e-79de-5668-abfc-fdaeb876ef51"
+   "id": "f8a53fd6-0914-5606-9fe8-b6fd479fb6ad"
   },
   {
    "type": "list",
@@ -3876,13 +3922,13 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "e9489224-eb54-57e9-8420-2db23b4830ee"
+   "id": "2d031c1f-c9f2-5563-88a2-0116fde15356"
   },
   {
    "type": "paragraph",
    "text": "**Calculus you need here:**",
    "citations": [],
-   "id": "834de2e9-9211-539e-b027-0089a7bedf15"
+   "id": "f2955dbb-07e3-50d3-a00c-ef0388c02c4f"
   },
   {
    "type": "table",
@@ -3914,20 +3960,20 @@
     ]
    ],
    "citations": [],
-   "id": "800ac38b-4046-5dc4-9bdd-f0eb13ed6f5e"
+   "id": "0fdbd45d-fb5b-5547-b28c-e2058415d94e"
   },
   {
    "type": "paragraph",
    "text": "```graph\ntitle \"$y^{\\prime}=\\sqrt{y}$: one solution through $(1,4)$, many through $(1,0)$\"\nx -1 5 label=\"$t$\"\ny -0.5 6 label=\"$y$\"\nfield \"sqrt(max(y,0))\" density=18\nhline \"0\" label=\"$y=0$ is a solution\" color=1\nfamily c 1 3 0.5 \"if(x>c,(x-c)^2/4,0)\" color=2 label=\"also solutions through $(1,0)$\"\ncurve \"((x+3)/2)^2\" from=-3 label=\"the only solution through $(1,4)$\" color=3\npoint \"1\" \"0\" color=1\npoint \"1\" \"4\" color=3\ncaption \"At $y=0$, $\\partial F/\\partial y=1/(2\\sqrt y)$ blows up, so the theorem gives no guarantee. And in fact many curves leave $(1,0)$: each sits at 0 for a while, then rises as $(t-c)^2/4$. Above the axis nothing breaks, and only one curve goes through each point.\"\n```",
    "citations": [],
-   "id": "c4c77ef7-b20f-5692-a2d6-37a985aaa4a0"
+   "id": "8681e687-86e7-5fd9-aaff-b15504a4cc40"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why a blown-up $\\partial F/\\partial y$ allows several solutions.** $\\partial F/\\partial y$ says how much the slope changes when you move a little up or down. If it stays finite, two solutions that start at the same point can never drift apart. For $\\sqrt y$ it is infinite at $y=0$, so a curve can sit on the axis and then “peel off” at any moment.",
    "citations": [],
-   "id": "4e1ef72d-7f7b-5082-a51b-835c05645e13"
+   "id": "37ad0e7f-49f6-5362-9e40-827b97655469"
   },
   {
    "type": "practice_problem",
@@ -3970,7 +4016,7 @@
      "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
     }
    ],
-   "id": "eff6ed08-048b-5396-8ab8-c23e6585b465"
+   "id": "62431789-9859-53ed-b4a0-c4e57b9afea7"
   },
   {
    "type": "practice_problem",
@@ -4005,7 +4051,7 @@
      "chunk_id": "0a73eb6e-87cd-4e4a-a689-639ee9ba3ff1"
     }
    ],
-   "id": "cb3c1c28-d896-5c4b-9b37-fc0c7dc289f1"
+   "id": "4ccf4056-4c74-5cad-8e48-fffdca3e61a2"
   },
   {
    "type": "practice_problem",
@@ -4034,7 +4080,7 @@
    ],
    "answer": "The strip $0<t<3$ (all $y$). The start $(1,2)$ is inside it, so exactly one solution passes through it.",
    "citations": [],
-   "id": "5b9973f6-0ab9-5008-b0ef-a0dca6747f0b"
+   "id": "dca46def-16f7-5735-bc07-d7aff60c5a0c"
   },
   {
    "type": "heading",
@@ -4047,19 +4093,19 @@
      "chunk_id": "82a3e61c-4405-4baa-b501-0ab5970211c2"
     }
    ],
-   "id": "c5bec616-a400-558a-99c7-4eef0afb43c5"
+   "id": "0407d472-6f64-5649-8b94-7bb29c86ee3c"
   },
   {
    "type": "paragraph",
    "text": "[Week 5 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#b4f41ebe-f4f6-4d5d-816d-ceaa37811b8f)",
    "citations": [],
-   "id": "5a56e085-9e37-5e35-b9dc-dfebe70914c5"
+   "id": "bfdca013-7ef6-502a-b770-08d2129795c0"
   },
   {
    "type": "paragraph",
    "text": "**When:** a second-order **linear** equation, usually with two starting values $y(t_0)$ and $y^{\\prime}(t_0)$. The question asks one of three things:",
    "citations": [],
-   "id": "2be556e6-b5f0-51e5-9e95-193776055d8a"
+   "id": "865ab11f-55e2-5464-af05-91d9b3b02f02"
   },
   {
    "type": "list",
@@ -4070,20 +4116,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "a2460636-b3dd-5bf6-8da9-796e42d87258"
+   "id": "6128429a-4a66-5b11-9486-08f68c7eb05b"
   },
   {
    "type": "paragraph",
    "text": "For all three, first divide by whatever multiplies $y^{\\prime\\prime}$, so $y^{\\prime\\prime}$ stands alone:",
    "citations": [],
-   "id": "5a5f78ed-5015-5c63-87cb-811e49fc31f3"
+   "id": "948611ba-1a41-5840-876e-622c835d54ac"
   },
   {
    "type": "equation",
    "latex": "y^{\\prime\\prime}+p(t)\\,y^{\\prime}+q(t)\\,y=g(t)",
    "display": true,
    "citations": [],
-   "id": "5cd8fc46-5817-559a-8141-f0be77693407"
+   "id": "8953d72f-6e2c-5b11-87b6-42fdf5ed351b"
   },
   {
    "type": "list",
@@ -4094,26 +4140,26 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "3608bb98-a3a6-5c93-8bba-b793ac468932"
+   "id": "90028405-2725-5a05-aa43-079f0b721403"
   },
   {
    "type": "paragraph",
    "text": "Example: $t\\,y^{\\prime\\prime}+y=0$ → divide by $t$ → $y^{\\prime\\prime}+\\dfrac1t\\,y=0$. So $p=0$, $q=\\dfrac1t$, $g=0$.",
    "citations": [],
-   "id": "8c87ded5-92c0-57db-8fcc-706f2a438a14"
+   "id": "c86d286d-a622-57cf-8f66-4300bab726d6"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**The theorem.** If $p$, $q$ and $g$ are continuous on an open interval $I$ that contains $t_0$, then for **any** starting values $y(t_0)$ and $y^{\\prime}(t_0)$ there is **exactly one** solution, and it works on the **whole** interval $I$.",
    "citations": [],
-   "id": "d857c560-eb2d-51ad-93eb-08c387b3b081"
+   "id": "548da66b-006d-54be-8a4c-8668c5dd949d"
   },
   {
    "type": "paragraph",
    "text": "**Interval.** A **trouble point** is a $t$ where $p$, $q$ or $g$ breaks. The biggest $I$ runs from the nearest trouble point left of $t_0$ to the nearest one on the right.",
    "citations": [],
-   "id": "528d6233-d399-5b73-bd6b-230184137746"
+   "id": "c7d48fda-5288-5324-b0a4-0b35b6dc5fb2"
   },
   {
    "type": "list",
@@ -4123,13 +4169,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "797b2c1d-d198-590f-b363-a2e4e22f3781"
+   "id": "53fde084-8411-509e-9edc-06fd4ece17f1"
   },
   {
    "type": "paragraph",
    "text": "**Method (interval):**",
    "citations": [],
-   "id": "8360976c-f8d9-5ce4-afee-5c427d7d46f0"
+   "id": "0209b8e9-b10b-55fc-ad7f-3895bbc46650"
   },
   {
    "type": "list",
@@ -4140,45 +4186,45 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "d48d56c8-52a8-5a50-af82-a2ad760ad941"
+   "id": "37cd87a9-d53e-5717-a2df-dacbf607a85a"
   },
   {
    "type": "paragraph",
    "text": "**Zero start.** Take a linear equation with right side $g=0$ and both starting values zero, $y(t_0)=0$ and $y^{\\prime}(t_0)=0$. The answer is:",
    "citations": [],
-   "id": "e2f58ab9-7263-54b8-bdb3-e5275f84d466"
+   "id": "61063821-80a3-5a23-b9cb-6d224944888f"
   },
   {
    "type": "equation",
    "latex": "y(t)\\equiv0",
    "display": true,
    "citations": [],
-   "id": "8f270cba-1e04-5993-a09e-232d663aa3a5"
+   "id": "4e1ead75-e524-5314-ac3b-fcd1c2dc8716"
   },
   {
    "type": "paragraph",
    "text": "Why: $y=0$ solves any such equation and fits both starting values. The theorem says there is only one solution, so $y=0$ is it.",
    "citations": [],
-   "id": "b8ad4e1c-deff-5c7b-b631-27a5e2323153"
+   "id": "12893ab6-d327-5ddf-b8e0-129cd1f05a51"
   },
   {
    "type": "paragraph",
    "text": "Example: $y^{\\prime\\prime}+3y^{\\prime}+2y=0$, $y(1)=0$, $y^{\\prime}(1)=0$ → $y\\equiv0$, no solving needed. But it needs $g=0$: in $y^{\\prime\\prime}+y=1$, $y=0$ gives $0=1$, so it is not a solution.",
    "citations": [],
-   "id": "41fd59e4-28ba-5da1-83c3-2e75c862559a"
+   "id": "98b2516b-0cde-5bfb-b679-98e01c523da4"
   },
   {
    "type": "paragraph",
    "text": "**Two solutions → the general solution?** Say $y_1$ and $y_2$ both solve the same linear equation with $g=0$. Compute their **Wronskian**:",
    "citations": [],
-   "id": "257da0f4-29a9-5e89-a70c-0389cbbb5f53"
+   "id": "4c0c6da8-7ba1-57f6-89c9-be5df2ee3e32"
   },
   {
    "type": "equation",
    "latex": "W=y_1\\,y_2^{\\prime}-y_1^{\\prime}\\,y_2",
    "display": true,
    "citations": [],
-   "id": "b154c03e-8d84-5a95-a4e5-cb307d411e9e"
+   "id": "1873408e-9ba1-51f9-ba81-11e058336d21"
   },
   {
    "type": "list",
@@ -4188,26 +4234,26 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "fc11e833-8521-51ec-b19e-02cd14cba92c"
+   "id": "f7731f9d-2352-5857-9dbd-fbecfac56077"
   },
   {
    "type": "paragraph",
    "text": "Example: $e^{t}$ and $e^{2t}$ give $W=e^t\\cdot2e^{2t}-e^t\\cdot e^{2t}=e^{3t}$. That is never zero → independent.",
    "citations": [],
-   "id": "46b695ec-475f-53cc-96cc-dafed0b9ca14"
+   "id": "39409a8b-c76a-547a-a88e-9f7791452047"
   },
   {
    "type": "paragraph",
    "text": "This is why the repeated-root case in [B5](#b5) uses $(c_1+c_2t)e^{st}$: $c_1e^{st}+c_2e^{st}$ is just $(c_1+c_2)e^{st}$, one constant.",
    "citations": [],
-   "id": "f9a3e5ca-a196-50e4-9023-3d4cf993f44c"
+   "id": "5aa185b2-81dc-52f5-8316-c613c613bd37"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why the Wronskian decides it.** Fitting $c_1y_1+c_2y_2$ to $y(t_0)$ and $y^{\\prime}(t_0)$ gives two equations:\n\n$$\nc_1y_1+c_2y_2=y(t_0),\\quad c_1y_1^{\\prime}+c_2y_2^{\\prime}=y^{\\prime}(t_0)\n$$\n\nA $2\\times2$ system like this has exactly one answer when its determinant, $y_1y_2^{\\prime}-y_1^{\\prime} y_2=W$, is not zero. So $W\\neq0$ means you can match any pair of starting values.",
    "citations": [],
-   "id": "32055d8b-bcd2-5847-8cc6-6210d3b92fb8"
+   "id": "9a061352-c00b-5a45-8bb5-2bfbaaf98b7e"
   },
   {
    "type": "practice_problem",
@@ -4232,7 +4278,7 @@
    ],
    "answer": "(a) $(1,\\infty)$. (b) $(0,1)$.",
    "citations": [],
-   "id": "8ebf8e77-bf1c-5d1c-a8b1-0cdaf50aa30c"
+   "id": "efcba473-144f-5e4b-8bd2-fcbc7e1fa33e"
   },
   {
    "type": "practice_problem",
@@ -4261,7 +4307,7 @@
    ],
    "answer": "(a) $W=0$: not enough (they are multiples). (b) $W=e^{-4t}\\neq0$: general solution $y=(c_1+c_2t)e^{-2t}$.",
    "citations": [],
-   "id": "09694614-c6a5-567a-ad77-2ca7089bb372"
+   "id": "53be8e70-3f2e-5a82-983b-d330100fce29"
   },
   {
    "type": "practice_problem",
@@ -4290,7 +4336,7 @@
    ],
    "answer": "$y(t)\\equiv0$ for all $t$.",
    "citations": [],
-   "id": "5f1a0cf2-bd86-595a-ae48-4948bd9b52a1"
+   "id": "fa4200c9-d5ac-5df8-860a-b721399e1144"
   },
   {
    "type": "heading",
@@ -4313,25 +4359,25 @@
      "chunk_id": "5e56f093-d77d-43f6-a0f5-37a7380750b6"
     }
    ],
-   "id": "14cefaeb-00b7-5722-b210-362b08ca794d"
+   "id": "64f89ab4-89f1-537b-a094-761a6cacf20f"
   },
   {
    "type": "paragraph",
    "text": "[Week 2 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#77c9c878-68d6-44e3-8f1e-2f68ba18701b) [Week 5 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#d5ad9ba9-0ec5-4b62-acf5-b1c7e17d6463)",
    "citations": [],
-   "id": "fb25c13a-c04a-5e49-90da-9b67f962a337"
+   "id": "4c1b6dae-9173-5672-b779-602be91f4c51"
   },
   {
    "type": "paragraph",
    "text": "**What does a circuit question want?** Always the same thing: a switch flips at $t=0$, and you need $v(t)$ or $i(t)$ after it.",
    "citations": [],
-   "id": "d74cf104-ab3e-5dbf-b13c-9ad1cbfe979a"
+   "id": "390c7eec-b250-5c31-b5d5-950c307ae3d3"
   },
   {
    "type": "paragraph",
    "text": "The circuit gives you two things:",
    "citations": [],
-   "id": "99814b02-2b19-59c1-bc43-eebaace7a5f7"
+   "id": "ee05076d-b90e-529f-9ccf-9c6501996e8d"
   },
   {
    "type": "list",
@@ -4341,19 +4387,19 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "5a273853-a7d7-595d-8a67-9ded7c32bc1c"
+   "id": "b982765a-f760-5e74-bac1-6cde5c37e7f7"
   },
   {
    "type": "paragraph",
    "text": "Then you solve that ODE with [Topic B](#topic-b), like any other ODE.",
    "citations": [],
-   "id": "45dccf26-443c-58a9-93a3-a0253e352d4c"
+   "id": "e89ffad5-e8dc-5002-822d-63c02f2fd2d4"
   },
   {
    "type": "paragraph",
    "text": "**The three rules you need, one per element:**",
    "citations": [],
-   "id": "7786157c-6dbd-5eb9-a8a6-57407f63172c"
+   "id": "75fda1c3-e3cb-5b26-a702-4c1e1bd03d5e"
   },
   {
    "type": "table",
@@ -4395,13 +4441,13 @@
      "chunk_id": "28eb60dd-4955-425e-b558-bb06c14edc54"
     }
    ],
-   "id": "72d32c42-28f8-5122-a2df-11b5eabf1ed2"
+   "id": "e5ba0e0c-47b1-5387-bb87-765eebe8fc01"
   },
   {
    "type": "paragraph",
    "text": "**After a long time** (called **DC steady state**): nothing changes any more, so every $\\frac{d}{dt}$ is 0.",
    "citations": [],
-   "id": "da7a6d78-fa42-5a7f-81f2-9e22de5c5bb7"
+   "id": "128081fb-a196-5b85-b703-f39f9a55f48e"
   },
   {
    "type": "list",
@@ -4411,44 +4457,44 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "b5793ce9-0e78-5b0f-90a2-83d54410f815"
+   "id": "7141de97-f096-5719-837c-c241748ee152"
   },
   {
    "type": "paragraph",
    "text": "Example: a $12\\,\\mathrm{V}$ source, a resistor and a capacitor in one loop, left alone for a long time. No current flows, so the resistor has 0 V and the capacitor holds all $12\\,\\mathrm{V}$.",
    "citations": [],
-   "id": "b328c46e-3df0-55e5-8ad4-a286e167e79e"
+   "id": "9cffc6be-6a4d-55c9-a701-3c09b3e38658"
   },
   {
    "type": "paragraph",
    "text": "**When the switch flips:** $0^-$ = just before, $0^+$ = just after. “Can’t jump” means:",
    "citations": [],
-   "id": "479b9773-4f80-5f0d-8a90-169a9bd63fab"
+   "id": "f8599ebb-1036-53e1-8ccc-c141cd529792"
   },
   {
    "type": "equation",
    "latex": "v_C(0^+)=v_C(0^-),\\qquad i_L(0^+)=i_L(0^-)",
    "display": true,
    "citations": [],
-   "id": "39952069-6fd6-5684-b510-99fca419460b"
+   "id": "31bd6f8c-c677-59ce-acfe-895ab2156e44"
   },
   {
    "type": "paragraph",
    "text": "Example: if the capacitor holds $12\\,\\mathrm{V}$ just before the switch flips, it still holds $12\\,\\mathrm{V}$ just after. Why: a jump would need an infinite current (see the Bonus at the end of this section).",
    "citations": [],
-   "id": "03ba956d-0f3e-5f75-b46d-697c008c3bce"
+   "id": "e3c7044f-5c7e-55d1-9e68-8f1268fd2fa8"
   },
   {
    "type": "paragraph",
    "text": "**So which quantity do you solve for?** The one that can’t jump ($v_C$ or $i_L$), because its starting value carries straight across the switch. Get the rest from it afterwards, e.g. $i_C=C\\frac{dv_C}{dt}$.",
    "citations": [],
-   "id": "fa0fd0e4-712e-5026-9877-726e7ee1ce8f"
+   "id": "51f0b0a5-d765-53c8-a817-1466d9d07bb9"
   },
   {
    "type": "paragraph",
    "text": "**What each element looks like at the three moments you need:**",
    "citations": [],
-   "id": "4c58fea3-1c68-511b-b79b-543dbea82113"
+   "id": "a821c1a0-df05-5b54-9349-e0f355e1b373"
   },
   {
    "type": "table",
@@ -4479,7 +4525,7 @@
     ]
    ],
    "citations": [],
-   "id": "8f870413-4ea6-5c96-a50d-9c699576d3ec"
+   "id": "51660e63-a466-5dfb-8f3e-de795f0df898"
   },
   {
    "type": "list",
@@ -4489,19 +4535,19 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "67783144-9393-58cf-b1e3-ab6417e9551b"
+   "id": "d0fd0123-8fab-5334-b15f-cc5edb27fa36"
   },
   {
    "type": "paragraph",
    "text": "```graph\ntitle \"A capacitor charging from $0\\,\\mathrm{V}$: its voltage doesn’t jump, its current does\"\nx -1 5 label=\"$t/\\tau$\"\ny -0.2 1.2 label=\"scaled so the biggest value is 1\"\ncurve \"if(x<0, 0, 1-exp(-x))\" label=\"$v_C$: starts at 0, no jump\" color=1\ncurve \"if(x<0, 0, exp(-x))\" label=\"$i_C$: 0 before, jumps at $t=0$\" color=2\nvline \"0\" label=\"switch closes\" color=0\ncaption \"This is Pre-tutorial 2 (a problem in D1). Before the switch closes, no current goes into the capacitor. Just after, $v_C$ is still 0, so the resistor beside it gets no current and all of the source current goes into the capacitor. $i_C$ jumps; $v_C$ doesn’t.\"\n```",
    "citations": [],
-   "id": "ad060955-9572-5199-8de0-b983bc9f189c"
+   "id": "823e712e-61a8-5216-adf4-6327c6f8b4ef"
   },
   {
    "type": "paragraph",
    "text": "**The switching recipe.** Every circuit problem, in five steps:",
    "citations": [],
-   "id": "85c406be-d52b-52c9-bb63-7e6c23ae1fc7"
+   "id": "20548ebd-329e-56a3-9456-6490be503f2a"
   },
   {
    "type": "list",
@@ -4514,28 +4560,28 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "de8086bb-e354-5a2f-8491-0625af09174d"
+   "id": "80a70b53-37ae-50d2-adda-f50aa5dd8621"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "**Before and after are two different circuits.** Draw both. Use the old one only for the starting value (step 1). Write the ODE (step 3) from the new one, with only the parts still connected.",
    "citations": [],
-   "id": "88b02a34-9830-5361-9f3e-5551d08a796f"
+   "id": "4a1bc046-781e-51cd-8950-85ea19b430ab"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "**The sign comes from the drawn arrow.** First find which way the current really flows, then compare with the arrow. If they point opposite ways, the value is **negative**. Example: $3\\,\\mathrm{A}$ really flows down, the $i_L$ arrow points up → $i_L(0)=-3\\,\\mathrm{A}$.",
    "citations": [],
-   "id": "8d911a65-d0d9-5ef9-a9f5-37fa5e3fe7ff"
+   "id": "9e93d3a3-a3dd-57b2-a418-ff43ac463ae4"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): why $v_C$ and $i_L$ can’t jump.** If $v_C$ jumped, its slope $\\frac{dv}{dt}$ would be infinite at that instant. Then $i=C\\frac{dv}{dt}$ would be an infinite current, and no real circuit can supply that. Same for an inductor: a jump in $i_L$ would need an infinite voltage $v=L\\frac{di}{dt}$. Another way to see it: the stored energy, $\\frac12Cv^2$ or $\\frac12Li^2$, can’t change in zero time.",
    "citations": [],
-   "id": "091a4091-86e3-5eff-b1de-42cdc1aa7701"
+   "id": "045b0af4-2b37-5f91-92c4-b681f057ba6f"
   },
   {
    "type": "heading",
@@ -4568,38 +4614,38 @@
      "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
     }
    ],
-   "id": "44177e4b-7c7a-5d58-8baa-e4f247d08aa8"
+   "id": "5d8cb776-add8-581f-8e22-fc2109688654"
   },
   {
    "type": "paragraph",
    "text": "[Week 1 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#ab5bf400-4411-4869-8d74-7790f8ee6f2c) [Week 2 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#77c9c878-68d6-44e3-8f1e-2f68ba18701b) [Week 3 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#a43fc96e-8dc5-4a1e-bfdf-bf1acf01f98b)",
    "citations": [],
-   "id": "ebc0ceec-68d2-57f1-99df-0cafbb68bafc"
+   "id": "e48b1c51-08e2-59e6-b8cd-2a48fffdf0b7"
   },
   {
    "type": "paragraph",
    "text": "**When is a circuit first order?** When, after the switch, only **one** capacitor or **one** inductor is left (after combining), plus resistors and DC sources.",
    "citations": [],
-   "id": "30ee5565-2adf-5530-b55d-ba3d4e1e7bbc"
+   "id": "60f2cce1-cd2f-57c6-b73e-2138c3cbca96"
   },
   {
    "type": "paragraph",
    "text": "Then the ODE always has the same shape, and one formula solves it.",
    "citations": [],
-   "id": "e48ddb5a-4760-5420-bfd4-5a9381870371"
+   "id": "19286fc5-b83c-591b-8b28-7c477dff931a"
   },
   {
    "type": "paragraph",
    "text": "Call $x$ the quantity that can’t jump: $v_C$ in an RC circuit, $i_L$ in an RL circuit. For $t>0$, KVL or KCL always gives:",
    "citations": [],
-   "id": "ad6627fe-a69a-5350-a23e-77b7b8f83cb6"
+   "id": "874bcce5-7f5d-5026-9026-9db3741c1adc"
   },
   {
    "type": "equation",
    "latex": "\\dfrac{dx}{dt}+\\dfrac{x}{\\tau}=\\dfrac{x_f}{\\tau}",
    "display": true,
    "citations": [],
-   "id": "ddf0f6c2-9ca8-5bba-a0bd-57f74beddb7f"
+   "id": "2b6ea27f-3b85-59ff-96b5-26973a3256c7"
   },
   {
    "type": "list",
@@ -4611,13 +4657,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "bbd7f4ef-6d45-59fd-af1d-0c7ec1d24046"
+   "id": "2f902210-a0e8-5673-a5ba-79f2f4b4b724"
   },
   {
    "type": "paragraph",
    "text": "Examples of reading the form:",
    "citations": [],
-   "id": "d58f822d-9f2a-5fc8-b581-709c6c5b4172"
+   "id": "619c8c73-f4d9-5c3d-b3fa-e185b85406d9"
   },
   {
    "type": "list",
@@ -4627,13 +4673,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "a7f63889-bee8-541f-8f89-961204cf05be"
+   "id": "72a5ed96-0910-5be4-ba36-058cffe125f1"
   },
   {
    "type": "paragraph",
    "text": "**Finding $R_{th}$**, in the $t>0$ circuit:",
    "citations": [],
-   "id": "442a2e96-ba24-50e8-b1ad-c45d44a0356e"
+   "id": "0c6098ef-9a87-59c9-99b7-c3ba3cbc2b16"
   },
   {
    "type": "list",
@@ -4643,38 +4689,38 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "cfdbe79d-549c-584c-819a-47d692d08a15"
+   "id": "9262bbec-ff1f-5274-8876-210f7a3a1efa"
   },
   {
    "type": "paragraph",
    "text": "Example: a voltage source in series with $6\\,\\Omega$ feeds a capacitor, and a $3\\,\\Omega$ sits across the capacitor. The source becomes a wire, so the capacitor sees $6\\parallel3=2\\,\\Omega$.",
    "citations": [],
-   "id": "c99c90a5-705e-5033-aaa3-a3a4de434123"
+   "id": "0cee9f85-2abe-5f8a-8165-fe7b1a6b2604"
   },
   {
    "type": "paragraph",
    "text": "Why the sources go off: they only set the right side of the ODE ($x_f$). The speed, $\\tau$, comes from the left side, which only has the resistors and the $C$ or $L$.",
    "citations": [],
-   "id": "b19d7de7-e59f-5fa6-a3da-19bacc849723"
+   "id": "fe61033e-41a1-5db3-9d11-9f53e47d48a6"
   },
   {
    "type": "paragraph",
    "text": "**The formula.** The ODE above is a [B2](#b2) equation with constants $a=\\frac1\\tau$ and $f=\\frac{x_f}{\\tau}$. Solve it once, with starting value $x(0)=x_0$, and you get the one formula you need:",
    "citations": [],
-   "id": "a08131ab-22ce-5d0f-9f34-fa970cc10727"
+   "id": "854dd983-db08-5b61-b2a0-19d10156a22c"
   },
   {
    "type": "equation",
    "latex": "x(t)=x_f+\\big(x_0-x_f\\big)\\,e^{-t/\\tau},\\qquad t\\ge0",
    "display": true,
    "citations": [],
-   "id": "a90f346b-a437-5c05-87dc-89e28a65168c"
+   "id": "af721dfe-c9c3-52e8-b831-2a5d17687b81"
   },
   {
    "type": "paragraph",
    "text": "Why it makes sense:",
    "citations": [],
-   "id": "a8952770-4867-57c2-9898-52408a98a466"
+   "id": "3f94af54-4b28-5563-b0c9-8c6dbaac0f43"
   },
   {
    "type": "list",
@@ -4684,13 +4730,13 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "19992d6c-5ff9-5bfc-a6c1-21c57635e100"
+   "id": "4f05589c-0aba-5233-a3c0-6f40e8d40945"
   },
   {
    "type": "paragraph",
    "text": "**Method.** You don’t even have to write the ODE: find three numbers and plug in.",
    "citations": [],
-   "id": "2bc97f84-4f32-5961-a8f9-329e5c36a61d"
+   "id": "0d05519c-ff51-569a-a101-f920e84611c3"
   },
   {
    "type": "list",
@@ -4703,13 +4749,13 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "52797a1f-fe1e-553d-9812-abfd40a6c98d"
+   "id": "e10ea426-4042-5014-970c-474073a62216"
   },
   {
    "type": "paragraph",
    "text": "Two names you’ll see:",
    "citations": [],
-   "id": "d6fb5621-94f5-5f25-b36e-34de7b7f3439"
+   "id": "4f06b8b2-f40c-5e6e-b653-7a333e798b92"
   },
   {
    "type": "list",
@@ -4719,7 +4765,7 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "7f06e0b9-e132-54e1-8977-121373347e24"
+   "id": "1708ffd0-c3a0-5304-a563-9e254032fe97"
   },
   {
    "type": "table",
@@ -4746,13 +4792,13 @@
     ]
    ],
    "citations": [],
-   "id": "7f0db2e4-6ffc-5d17-b073-0a03afd74371"
+   "id": "edc54c70-b068-50ac-8e68-ef6db58c4de3"
   },
   {
    "type": "paragraph",
    "text": "**How fast does it settle?** Count in time constants. After:",
    "citations": [],
-   "id": "72f43127-ecae-559b-8fb2-aff89cb3022b"
+   "id": "979d6354-13dc-5311-808e-1bc658b3a3f8"
   },
   {
    "type": "list",
@@ -4763,25 +4809,25 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "834da15b-06ef-5969-b010-d2ba9d4421e8"
+   "id": "16c6e195-f635-5d31-a433-40d72d7c6ab2"
   },
   {
    "type": "paragraph",
    "text": "Example: $\\tau=2\\,\\mathrm{ms}$ → the circuit has settled after about $5\\tau=10\\,\\mathrm{ms}$.",
    "citations": [],
-   "id": "d4286a2e-0824-5923-9a9a-b08cd5202aa5"
+   "id": "6478d324-522a-57dc-98a6-70986bcb75b7"
   },
   {
    "type": "paragraph",
    "text": "```graph\ntitle \"Drag the sliders: the curve always heads for $x_f$, and the tangent at $t=0$ reaches $x_f$ at $t=\\tau$\"\nx 0 8 label=\"$t$\"\ny -12 12 label=\"$x$\"\nslider x0 -10 10 10 step=1 label=\"$x_0$\"\nslider xf -10 10 2 step=1 label=\"$x_f$\"\nslider tau 0.2 3 1 step=0.1 label=\"$\\tau$\"\ncurve \"xf+(x0-xf)*exp(-x/tau)\" label=\"$x(t)=x_f+(x_0-x_f)e^{-t/\\tau}$\" color=1\ncurve \"x0+(xf-x0)*x/tau\" from=0 to=\"tau\" label=\"tangent at $t=0$\" color=0 dash\nhline \"xf\" label=\"$x_f$\" color=3\npoint \"tau\" \"xf+(x0-xf)*exp(-1)\" label=\"at $t=\\tau$: 37% of the gap left\" color=2\nreadout \"$x(5\\tau)$\" \"xf+(x0-xf)*exp(-5)\"\ncaption \"Set $x_f=0$ for a natural response. A bigger $\\tau$ (bigger $RC$ or $L/R$) means a slower circuit.\"\n```",
    "citations": [],
-   "id": "3514c451-187e-528c-a15a-ca3eb2527e2c"
+   "id": "6b2c8615-ba44-5c6e-b689-b9ccbe4d243a"
   },
   {
    "type": "paragraph",
    "text": "**Formulas you’ll also need:**",
    "citations": [],
-   "id": "c38b8204-ce47-5388-9022-d499d193ce13"
+   "id": "189d4aae-c175-595e-960f-69860e845749"
   },
   {
    "type": "table",
@@ -4808,14 +4854,14 @@
     ]
    ],
    "citations": [],
-   "id": "73310ccc-1b06-5173-a9d4-06a40bf64c24"
+   "id": "06f7cf75-e7ce-59cb-befa-473be81d2ffe"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): where the formula comes from (the lecture’s RC step response).** Take a current source $I_s$, a resistor $R$ and a capacitor $C$, all in parallel. KCL at the top node: capacitor current + resistor current = source current.\n\n$$\nC\\dfrac{dv}{dt}+\\dfrac{v}{R}=I_s\\quad\\Rightarrow\\quad\\dfrac{dv}{dt}+\\dfrac{v}{RC}=\\dfrac{I_s}{C}\n$$\n\nThat’s the standard form with $\\tau=RC$ and $x_f=RI_s$. Plug in: $v=RI_s+(V_0-RI_s)e^{-t/RC}$. You can solve it with [B2](#b2), or separate it ([B1](#b1)), as the lecture did for the RL circuit.",
    "citations": [],
-   "id": "244c4d2b-b0bc-5644-9670-5ba159d99dac"
+   "id": "b7722257-3164-533a-99f4-4dfa8af2d53a"
   },
   {
    "type": "worked_example",
@@ -4860,7 +4906,7 @@
      "chunk_id": "5fde1aef-5c8b-46fc-bd4b-bc30f820d122"
     }
    ],
-   "id": "e9ea8ca2-8b37-5482-976f-65837c38b71a"
+   "id": "a94a9ed1-7373-5f4a-ab50-433f65d2b8ab"
   },
   {
    "type": "practice_problem",
@@ -4899,7 +4945,7 @@
      "chunk_id": "7fb47787-7b88-4412-bdcd-84d1c876bd27"
     }
    ],
-   "id": "e304ddb7-0924-59ae-946f-09a0a45448df"
+   "id": "5d46ac2d-71f1-53d2-9fb8-4ac4adf26808"
   },
   {
    "type": "practice_problem",
@@ -4938,7 +4984,7 @@
      "chunk_id": "fa6e0545-adbd-4b78-a96a-a91ef31b58f7"
     }
    ],
-   "id": "3c37ab6f-09f2-5f13-b1ef-eeacf3704fc5"
+   "id": "4cc148af-8e7b-5090-a4a0-42dd69f0e444"
   },
   {
    "type": "practice_problem",
@@ -4981,7 +5027,7 @@
      "chunk_id": "74cdb060-d137-4ab5-a638-7a3a9203811f"
     }
    ],
-   "id": "caa7d731-14e9-53f0-8bc8-1e72467b04a5"
+   "id": "42639bac-b041-53c7-b770-9ee339db2a3f"
   },
   {
    "type": "practice_problem",
@@ -5024,7 +5070,7 @@
      "chunk_id": "899d24ef-e215-4d36-a1eb-8bacda10e034"
     }
    ],
-   "id": "a7ca3fa5-4269-5c4e-bd8e-1c1cc922acff"
+   "id": "db43ed5f-e021-53c1-9179-6936de3fcaf3"
   },
   {
    "type": "practice_problem",
@@ -5071,7 +5117,7 @@
      "chunk_id": "c19d2dd9-bad0-4da3-9be6-40a6f1637ee1"
     }
    ],
-   "id": "df6fb4c7-96f4-5176-bd5c-ec851045aa62"
+   "id": "cef196cd-8914-5e81-8eca-6ec9853dd83b"
   },
   {
    "type": "practice_problem",
@@ -5118,7 +5164,7 @@
      "chunk_id": "792a0b6a-dea1-44b0-90b3-938c95ac3b2a"
     }
    ],
-   "id": "947f755b-3760-52b3-a4e5-3734da708e3e"
+   "id": "c68ff057-1042-5e82-a799-dac77811f6ea"
   },
   {
    "type": "heading",
@@ -5131,51 +5177,51 @@
      "chunk_id": "447a0540-ae9e-4dc3-9fd0-6a03ab990c54"
     }
    ],
-   "id": "a2d5a4cc-24ed-5d4c-9a86-0c43a85eba37"
+   "id": "dcf5ab8c-85ad-50f0-a46e-ce58ea3b087f"
   },
   {
    "type": "paragraph",
    "text": "[Week 5 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#d5ad9ba9-0ec5-4b62-acf5-b1c7e17d6463)",
    "citations": [],
-   "id": "bde61054-d310-59c1-81d3-1741ff06d4df"
+   "id": "6273e750-1851-53be-a7d5-2b6b20ac425f"
   },
   {
    "type": "paragraph",
    "text": "**What if the circuit has an inductor *and* a capacitor?** Each one brings a derivative, so together they give a **second-order** ODE (one with $y^{\\prime\\prime}$ in it). Combine series/parallel $L$’s and $C$’s first, so you have one of each.",
    "citations": [],
-   "id": "b23b4fb2-12f6-5c1a-bf1a-ced94ffe8f58"
+   "id": "3d5ac8a2-03aa-56f6-8918-d3c933cff79f"
   },
   {
    "type": "paragraph",
    "text": "You already know how to solve it: [B5](#b5) when no source is left, [B6](#b6) when a source stays on. The new part is reading the equation and the two starting values off the circuit.",
    "citations": [],
-   "id": "09795a5c-94f6-5641-afda-d2be0b64afca"
+   "id": "d3c08b7e-a326-5009-a02e-81c3e5f595ba"
   },
   {
    "type": "paragraph",
    "text": "**The two circuits you will meet.** Learn both equations. Where they come from is in the Bonus box further down.",
    "citations": [],
-   "id": "a09b4b1f-eec9-5015-91ac-01dbf6b2fb61"
+   "id": "f942919a-e1fe-5cbc-8470-9fd20527b7cc"
   },
   {
    "type": "schematic",
    "source": "V1 0,3 -> 0,0 \"$V_s$\"\nR1 0,3 -> 3,3 \"$R$\" i=\"$i$\"\nL1 3,3 -> 6,3 \"$L$\"\nC1 6,3 -> 6,0 \"$C$\" v=\"$v_C$\"\nwire 6,0 -> 0,0\nground 0,0",
    "caption": "Series RLC: one loop. The same current $i$ flows through every element.",
    "citations": [],
-   "id": "ebfe9959-ad9a-59d1-9481-c3053d181354"
+   "id": "9fd8d78f-6510-5a09-a9a2-19bb3a77d1d8"
   },
   {
    "type": "paragraph",
    "text": "**Series:** solve for the capacitor voltage $v_C$.",
    "citations": [],
-   "id": "2b56410e-4712-56f5-b2fe-2d77b1bc0f17"
+   "id": "50346037-a215-50e1-b469-852b3fa83acd"
   },
   {
    "type": "equation",
    "latex": "v_C^{\\prime\\prime}+\\dfrac{R}{L}v_C^{\\prime}+\\dfrac{1}{LC}v_C=\\dfrac{V_s}{LC}",
    "display": true,
    "citations": [],
-   "id": "f9b17a76-e8f0-5579-96bb-07dcb9fa42b3"
+   "id": "2a6ec15f-7a08-5b86-9115-e176577f2490"
   },
   {
    "type": "list",
@@ -5186,33 +5232,33 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "a0d40d7e-9a34-5b32-b1bc-f377c92cfe7a"
+   "id": "438515c3-9c95-542f-a421-f09c9088951d"
   },
   {
    "type": "paragraph",
    "text": "Example: $R=4\\,\\Omega$, $L=1\\,\\mathrm{H}$, $C=0.25\\,\\mathrm{F}$ → $\\alpha=\\dfrac{4}{2}=2$ and $\\omega_0=\\dfrac{1}{\\sqrt{0.25}}=2$.",
    "citations": [],
-   "id": "aeea630d-8842-56e9-8f7c-4c6f107dc902"
+   "id": "85605d64-6dd3-5bb5-a973-cbd606665919"
   },
   {
    "type": "schematic",
    "source": "C1 0,3 -> 0,0 \"$C$\" v=\"$v$\" i=\"$i_C$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$L$\" i=\"$i_L$\"\nwire 3,3 -> 6,3\nR1 6,3 -> 6,0 \"$R$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\nground 0,0",
    "caption": "Parallel RLC: two nodes. The same voltage $v$ sits across every element. All three current arrows point down.",
    "citations": [],
-   "id": "0ae6a5e7-6948-504b-98e3-093ac045e764"
+   "id": "52589777-c7e5-5266-8fa9-485ce508252c"
   },
   {
    "type": "paragraph",
    "text": "**Parallel:** solve for the shared voltage $v$.",
    "citations": [],
-   "id": "f4c059f2-62fb-5c9a-a1f1-377644ee848c"
+   "id": "e6479927-94cd-5c03-9067-fbbf4ebcf3e7"
   },
   {
    "type": "equation",
    "latex": "v^{\\prime\\prime}+\\dfrac{1}{RC}v^{\\prime}+\\dfrac{1}{LC}v=0",
    "display": true,
    "citations": [],
-   "id": "f7765398-c241-591b-8803-99989959c7e4"
+   "id": "fa4f55bb-af0f-5497-96a3-620de1576054"
   },
   {
    "type": "list",
@@ -5222,39 +5268,39 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "8ac4e403-d872-50d6-84dc-7456f52c0f5e"
+   "id": "6f15eba5-e510-5617-a391-2f421861d3e0"
   },
   {
    "type": "paragraph",
    "text": "Example: $R=800\\,\\Omega$, $C=50\\,\\mathrm{nF}$ → $\\alpha=\\dfrac{1}{2(800)(50\\times10^{-9})}=12500\\,\\mathrm{s^{-1}}$.",
    "citations": [],
-   "id": "b2b5919a-8f52-5bce-bba6-39bdd6197def"
+   "id": "10220ac1-5713-5729-a5e4-eddf101f27a1"
   },
   {
    "type": "paragraph",
    "text": "Both equations have the same characteristic equation. That is why $\\alpha$ has the $2$ and $\\omega_0$ the square: the roots come out clean.",
    "citations": [],
-   "id": "14900bf0-48df-5b34-897e-2941359890f3"
+   "id": "4f0713fd-9d87-5048-a8de-c1e045a2735b"
   },
   {
    "type": "equation",
    "latex": "s^2+2\\alpha s+\\omega_0^2=0",
    "display": true,
    "citations": [],
-   "id": "b4846fc9-45d9-56c0-8cc6-e872e786ef92"
+   "id": "3c647823-4dcd-5a23-a272-3c6c02ac17e8"
   },
   {
    "type": "equation",
    "latex": "s=-\\alpha\\pm\\sqrt{\\alpha^2-\\omega_0^2}",
    "display": true,
    "citations": [],
-   "id": "94a68e0c-b1f0-5c9e-a814-f31fb6634434"
+   "id": "a3ad486a-a959-5e7c-ab97-b81c7aeafeeb"
   },
   {
    "type": "paragraph",
    "text": "**Which form? Compare $\\alpha$ with $\\omega_0$.** It is the root table of [B5](#b5), with circuit names:",
    "citations": [],
-   "id": "5b918f3b-950f-5edc-8b39-a9d773a4989e"
+   "id": "bc11ee7f-ad53-539f-8567-2de68eca8649"
   },
   {
    "type": "table",
@@ -5291,51 +5337,51 @@
     ]
    ],
    "citations": [],
-   "id": "a9a320af-b872-54d8-9df5-14b29c52b18c"
+   "id": "55ccca5a-1371-583b-956f-c0e1c5e92885"
   },
   {
    "type": "paragraph",
    "text": "In the underdamped row, the square root in the roots is of a negative number, so the roots are $-\\alpha\\pm j\\omega_d$. $\\omega_d$ is how fast the response swings:",
    "citations": [],
-   "id": "1027c09f-85ed-5918-ab8c-e4c85571d2f3"
+   "id": "1a35acb7-8d23-559f-b5e7-17c1543f9b9f"
   },
   {
    "type": "equation",
    "latex": "\\omega_d=\\sqrt{\\omega_0^2-\\alpha^2}",
    "display": true,
    "citations": [],
-   "id": "16eb1b8d-6c2e-5628-83e4-cd409436d040"
+   "id": "959677db-0d8f-5eee-8c40-7b82aa7048f6"
   },
   {
    "type": "paragraph",
    "text": "Example: $\\alpha=3$, $\\omega_0=5$ → $\\omega_d=\\sqrt{25-9}=4$, so $v=e^{-3t}(B_1\\cos4t+B_2\\sin4t)$. (In the B5 table, $\\sigma=-\\alpha$ and $\\omega=\\omega_d$.)",
    "citations": [],
-   "id": "12497eef-2889-5996-b4f1-83b90e79d6f6"
+   "id": "74034480-756e-5699-bae7-a48fb8a81198"
   },
   {
    "type": "paragraph",
    "text": "```graph\ntitle \"Slide R through the three cases (series RLC, $L=1\\,\\mathrm{H}$, $C=0.25\\,\\mathrm{F}$)\"\nx 0 6 label=\"$t$ (s)\"\ny -8 11 label=\"$v_C$ (V)\"\nslider R 0 10 1 step=0.1 label=\"$R$ ($\\Omega$)\" animate\nlet a \"R/2\"\nlet wd \"sqrt(abs(4-a^2))\"\nlet s1 \"-a+wd\"\nlet s2 \"-a-wd\"\ncurve \"if(abs(a-2)<0.001, 10*(1+2*t)*exp(-2*t), if(a<2, 10*exp(-a*t)*(cos(wd*t)+a/wd*sin(wd*t)), 10*(s2*exp(s1*t)-s1*exp(s2*t))/(s2-s1)))\" label=\"$v_C(t)$, from $10\\,\\mathrm{V}$ with $i=0$\" color=1\nhline \"0\"\nreadout \"$\\alpha=R/2L$\" \"a\"\nreadout \"$\\omega_0=1/\\sqrt{LC}$\" \"2\"\ncaption \"$\\omega_0=2$ never changes; only $\\alpha=R/2$ moves. $R<4$: underdamped, it swings below zero before settling. $R=4$: critically damped, the fastest way back with no overshoot. $R>4$: overdamped, a slow creep back. $R=0$: undamped, it swings forever.\"\n```",
    "citations": [],
-   "id": "2fb3d53b-7168-554e-83e0-118db18fb314"
+   "id": "5d83a801-d259-5f12-a9b5-e107be255336"
   },
   {
    "type": "paragraph",
    "text": "**A second-order ODE needs two starting values: $y(0)$ and $y^{\\prime}(0)$.** The value is easy: $v_C$ can’t jump, so $v_C(0^+)=v_C(0^-)$. The slope comes from the capacitor current:",
    "citations": [],
-   "id": "1e8ae0d5-753f-53a5-b2ec-2960698eb14f"
+   "id": "24b63c47-0fbd-5ca3-a59b-66434f21e6a6"
   },
   {
    "type": "equation",
    "latex": "v_C^{\\prime}(0^+)=\\dfrac{i_C(0^+)}{C}",
    "display": true,
    "citations": [],
-   "id": "187eab7f-0154-57d8-9a1b-6054c4567ccd"
+   "id": "0a0c8c39-2109-58d0-9a96-36d371a9ed8a"
   },
   {
    "type": "paragraph",
    "text": "Why: it is $i_C=C\\,\\dfrac{dv_C}{dt}$, divided by $C$. So the job is to find $i_C$ at $0^+$:",
    "citations": [],
-   "id": "39a3dc66-f3a4-5386-b9ee-25d9e0826ac8"
+   "id": "1dc29cbc-a045-5886-892d-1239ca878d25"
   },
   {
    "type": "list",
@@ -5346,20 +5392,20 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "a66ba200-b422-5fb9-bb6e-245cec7aa2f4"
+   "id": "c1a09bb0-c493-5448-a540-88718a96bb22"
   },
   {
    "type": "paragraph",
    "text": "**What if a source stays on after the switch?** (a **step response**) Then the answer does not die out to $0$. It settles to a **final value** $V_f$:",
    "citations": [],
-   "id": "eeba404d-7639-5b98-b938-16f4d3377054"
+   "id": "d69b58fc-c4a0-5b5d-a4f5-1902bd2a4c96"
   },
   {
    "type": "equation",
    "latex": "v_C(t)=V_f+(\\text{part that dies out})",
    "display": true,
    "citations": [],
-   "id": "1874016e-2897-5fb4-827d-9fb77f85309c"
+   "id": "760f3cf7-48d8-5ca8-8a75-d19baa1c6dff"
   },
   {
    "type": "list",
@@ -5369,26 +5415,26 @@
    ],
    "ordered": false,
    "citations": [],
-   "id": "c181ea2a-f1a9-5e9d-a92f-c1222d99ce5b"
+   "id": "61b089f3-9dfa-5b7f-817c-27ff5897d462"
   },
   {
    "type": "paragraph",
    "text": "Example: $v_C=100+(A_1+A_2t)e^{-50t}$ has $V_f=100\\,\\mathrm{V}$.",
    "citations": [],
-   "id": "e11938b3-924a-5c98-8ec8-15307a199ce5"
+   "id": "2c65471b-2496-5ee6-8e35-ee04626f9c99"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "**Fit the constants to the whole answer, final value included.** With $v_C(0)=200$: $\\;100+A_1=200$, so $A_1=100$, not $200$.",
    "citations": [],
-   "id": "34561790-d67a-508d-ba88-afc19d370953"
+   "id": "75c2c393-bf6f-53f0-98b6-4f045144db37"
   },
   {
    "type": "paragraph",
    "text": "**Method:**",
    "citations": [],
-   "id": "70c1c16d-0641-59c9-95c9-a52c33b95ac7"
+   "id": "89bfae68-e55b-503d-bc54-d19c70ddb204"
   },
   {
    "type": "list",
@@ -5401,21 +5447,21 @@
    ],
    "ordered": true,
    "citations": [],
-   "id": "f389e0de-e640-533d-9afb-79370b0c7ef8"
+   "id": "6237326e-6ea5-528d-abe2-c53b53ab3139"
   },
   {
    "type": "callout",
    "tone": "warning",
    "text": "**Units.** Turn $\\mathrm{mH}$, $\\mathrm{mF}$, $\\mu\\mathrm{F}$, $\\mathrm{nF}$ into H and F before computing $\\alpha$ and $\\omega_0$: $1\\,\\mathrm{mH}=10^{-3}\\,\\mathrm{H}$, $1\\,\\mu\\mathrm{F}=10^{-6}\\,\\mathrm{F}$, $1\\,\\mathrm{nF}=10^{-9}\\,\\mathrm{F}$. Example: $L=250\\,\\mathrm{mH}$, $C=10\\,\\mathrm{nF}$ → $\\omega_0=\\dfrac{1}{\\sqrt{0.25\\times10^{-8}}}=20000$.",
    "citations": [],
-   "id": "ec841f92-4eab-5779-b84b-486566bb1bc0"
+   "id": "488d4d8a-aac5-556d-8dae-41337956282c"
   },
   {
    "type": "callout",
    "tone": "info",
    "text": "**Bonus (skip-safe): where the series equation comes from.** KVL around the loop, then swap the current for $Cv_C^{\\prime}$:\n\n```steps\n$$ V_s=Ri+Li^{\\prime}+v_C $$\nKVL: the voltages on R, L and C add up to the source.\n$$ i=\\hl{Cv_C^{\\prime}} $$\nThe loop current is the capacitor current.\n$$ V_s=RC\\,v_C^{\\prime}+LC\\,v_C^{\\prime\\prime}+v_C $$\nPut that current (and its derivative) into the KVL line.\n$$ v_C^{\\prime\\prime}+\\hl{\\dfrac RL}v_C^{\\prime}+\\hl{\\dfrac1{LC}}v_C=\\hl{\\dfrac{V_s}{LC}} $$\nDivide by $LC$ so $v_C^{\\prime\\prime}$ stands alone.\n```\n\nParallel: KCL at the top node gives $Cv^{\\prime}+i_L+\\dfrac vR=0$. Differentiate once, use $i_L^{\\prime}=\\dfrac vL$, and divide by $C$.",
    "citations": [],
-   "id": "93872d4c-73d3-5aa6-b340-ae59d16e5319"
+   "id": "37e16409-6f74-550d-8df7-e94e06d8d154"
   },
   {
    "type": "worked_example",
@@ -5459,7 +5505,7 @@
      "chunk_id": "447a0540-ae9e-4dc3-9fd0-6a03ab990c54"
     }
    ],
-   "id": "a4d5995c-05b0-5bd9-9e92-0db0d14c1be3"
+   "id": "29fcaad6-864a-56ad-9c0b-0c8834da141f"
   },
   {
    "type": "practice_problem",
@@ -5494,7 +5540,7 @@
      "chunk_id": "96fd98f4-14b6-4d63-aa7c-5505132ac79b"
     }
    ],
-   "id": "253abf2e-8be8-5b98-b18b-5e0085979caa"
+   "id": "ef1e3879-1828-58d4-b7f5-00a3bb34b816"
   },
   {
    "type": "practice_problem",
@@ -5533,7 +5579,7 @@
      "chunk_id": "26153a6c-2ee9-43df-83be-ce262af53ec3"
     }
    ],
-   "id": "1acd7589-9b58-5616-833f-5b491684e588"
+   "id": "e30336e8-5b37-550e-8ce9-ed3dfdeb0abe"
   },
   {
    "type": "practice_problem",
@@ -5576,7 +5622,7 @@
      "chunk_id": "b37a6069-581f-40ac-8046-ae0851061af6"
     }
    ],
-   "id": "132667b2-4bbb-5969-828a-43d6a98a8945"
+   "id": "bb4cf34a-6c33-5740-8d8f-dd55e9dd7972"
   },
   {
    "type": "practice_problem",
@@ -5619,7 +5665,7 @@
      "chunk_id": "26153a6c-2ee9-43df-83be-ce262af53ec3"
     }
    ],
-   "id": "0ab0be90-281a-50f2-98c3-a016cc718c9d"
+   "id": "802edc57-d11e-5ced-94be-ae5c75da1096"
   },
   {
    "type": "practice_problem",
@@ -5662,7 +5708,7 @@
      "chunk_id": "b37a6069-581f-40ac-8046-ae0851061af6"
     }
    ],
-   "id": "1b196e3c-0ce5-5289-834c-7e0d5efa8b85"
+   "id": "d83a49dd-aff3-55e2-b83c-7857a69985cf"
   },
   {
    "type": "practice_problem",
@@ -5701,7 +5747,462 @@
      "chunk_id": "4a27e476-1d79-4ae6-a737-aedb523f00a2"
     }
    ],
-   "id": "9e8015cf-0a20-54ed-9f79-0dd529e7b6fd"
+   "id": "1a450ab9-c403-5d58-a36b-a36d10c254a5"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Topic E: Practice midterm",
+   "citations": [],
+   "id": "80a43e71-33dd-532f-99fb-bdf30778e76a"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The professor’s advice:** “Study all the examples in the lectures and posted materials, and those in the tutorials, and you will be fine. The examples will be a good guide to the problems on the Midterm.”",
+   "citations": [],
+   "id": "4463f711-8762-5bda-adb6-267a173f05e2"
+  },
+  {
+   "type": "paragraph",
+   "text": "So this set is built from those examples. Some are copied straight from a lecture or tutorial. The rest change the numbers or add a twist, so you practise the exact move the example teaches.",
+   "citations": [],
+   "id": "49729ae9-c0bb-5c7a-8e06-1348f9eb80b0"
+  },
+  {
+   "type": "paragraph",
+   "text": "**How to use it:**",
+   "citations": [],
+   "id": "3638a0cc-466b-5353-976c-a924bd3cf7c0"
+  },
+  {
+   "type": "list",
+   "items": [
+    "Close the rest of the note. Do a whole problem on paper before you open its solution.",
+    "Start every answer by naming the **type** and the clue. On the exam, that’s the step that picks the method.",
+    "Stuck or wrong? Each answer box links to the section to review."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "fa84477f-2369-5910-bb0d-f95e7e40a6d5"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Redo the worked examples too, solutions closed.** They’re the lecture and tutorial examples themselves:",
+   "citations": [],
+   "id": "0b03013a-ab04-540e-8d3d-522bd7ff51de"
+  },
+  {
+   "type": "list",
+   "items": [
+    "Example 1 (fourth roots) · Example 2 (separable) · Example 3 (integrating factor) · Example 4 (exact)",
+    "Example 5 (Pre-tutorial 4) · Example 7 (Pre-tutorial 5) · Example 8 (reduction of order) · Example 9 (RL circuit)"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "36895c5e-527b-533e-853a-05701327eca8"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E1 · W1 · Divide, convert, take roots · like lecture Examples 1.1 and 1.2",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "(a) Write $z=\\dfrac{10+j5}{2-j}$ in rectangular form. (b) Write $z$ in polar form. (c) Find all three cube roots of $8j$, in polar and in rectangular form.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** (a) division in rectangular form, so multiply top and bottom by the conjugate of the bottom, $2+j$.",
+     "latex": "z=\\dfrac{(10+j5)(2+j)}{(2-j)(2+j)}=\\dfrac{20+10j+10j+5j^2}{4+1}"
+    },
+    {
+     "explanation": "**Multiply out:** $j^2=-1$, so $5j^2=-5$.",
+     "latex": "z=\\dfrac{15+j20}{5}=3+j4"
+    },
+    {
+     "explanation": "(b) **Length:** $\\sqrt{3^2+4^2}$. **Angle:** $3+j4$ is in the 1st quadrant, so $\\tan^{-1}\\frac43$ is already right.",
+     "latex": "z=5\\,e^{j53.13^\\circ}"
+    },
+    {
+     "explanation": "(c) **Polar first:** $8j$ sits on the positive imaginary axis.",
+     "latex": "8j=8\\,e^{j90^\\circ}"
+    },
+    {
+     "explanation": "**Length and first angle:** take the cube root of the length, and divide the angle by 3.",
+     "latex": "8^{1/3}=2,\\qquad \\dfrac{90^\\circ}{3}=30^\\circ"
+    },
+    {
+     "explanation": "**Spacing:** three roots, so $360^\\circ/3=120^\\circ$ apart.",
+     "latex": "2e^{j30^\\circ},\\quad 2e^{j150^\\circ},\\quad 2e^{j270^\\circ}"
+    },
+    {
+     "explanation": "**Rectangular:** $2\\cos30^\\circ=\\sqrt3$, $2\\sin30^\\circ=1$, and so on.",
+     "latex": "\\sqrt3+j,\\quad -\\sqrt3+j,\\quad -j2"
+    }
+   ],
+   "answer": "(a) $3+j4$. (b) $5e^{j53.13^\\circ}$. (c) $2e^{j30^\\circ}=\\sqrt3+j$, $\\;2e^{j150^\\circ}=-\\sqrt3+j$, $\\;2e^{j270^\\circ}=-j2$. Review: [Topic A](#topic-a).",
+   "citations": [],
+   "id": "ec664fc4-168f-5610-bf4b-7c8de6198f27"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E2 · W2 · Classify, then use linearity",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "For each equation, give the order and say whether it is linear, homogeneous, constant-coefficient and autonomous.\n\n(a) $\\dfrac{d^2i}{dt^2}+\\dfrac{R}{L}\\dfrac{di}{dt}+\\dfrac{1}{LC}\\,i=0$ (the series RLC circuit of the Week 2 notes)\n\n(b) $y^{\\prime}=y^2+t$\n\n(c) $y^{\\prime\\prime}+y=6\\cos^2t$\n\n(d) $y=e^{-t}$ solves $y^{\\prime}+2y=e^{-t}$. Without solving, give a solution of $y^{\\prime}+2y=5e^{-t}$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** classification. (a) Highest derivative $i^{\\prime\\prime}$: 2nd order. $i$ appears to the power 1: linear. Right side $0$: homogeneous. $R,L,C$ are numbers: constant coefficients. No $t$ anywhere: autonomous.",
+     "latex": ""
+    },
+    {
+     "explanation": "(b) 1st order. $y^2$ is not power 1, so **nonlinear**. The $t$ on the right means it is not autonomous.",
+     "latex": ""
+    },
+    {
+     "explanation": "(c) 2nd order, linear, numbers in front. Right side is not $0$, so **not** homogeneous. $\\cos^2t$ has a $t$, so not autonomous.",
+     "latex": ""
+    },
+    {
+     "explanation": "(d) **Linearity:** multiply $y$ by 5 and the whole left side gets multiplied by 5. So $5e^{-t}$ gives $5e^{-t}$ on the right.",
+     "latex": "(5e^{-t})^{\\prime}+2(5e^{-t})=-5e^{-t}+10e^{-t}=5e^{-t}\\ \\checkmark"
+    }
+   ],
+   "answer": "(a) 2nd order, linear, homogeneous, constant-coefficient, autonomous. (b) 1st order, nonlinear, not autonomous. (c) 2nd order, linear, not homogeneous, constant-coefficient, not autonomous. (d) $y=5e^{-t}$. Review: [Topic B](#topic-b).",
+   "citations": [],
+   "id": "37d21d8a-975b-548c-8222-dfc569d87098"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E3 · W3–W4 · Name the type, then solve · like lecture Examples 3.3, 3.1 and 4.1",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Name the type of each equation, then solve it.\n\n(a) $\\dfrac{dy}{dt}=\\dfrac{2t+2ty^2}{y+t^2y}$, $\\;y(0)=1$\n\n(b) $\\dfrac{dy}{dt}+\\dfrac{6y}{3t+2}=4$, $\\;y(0)=0$\n\n(c) $(2t+y\\cos t)\\,dt+(\\sin t+2y)\\,dy=0$, $\\;y(0)=1$",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Type:** factor the top and the bottom. It becomes a $t$-part times a $y$-part, so separable.",
+     "latex": "\\dfrac{dy}{dt}=\\dfrac{2t(1+y^2)}{y(1+t^2)}"
+    },
+    {
+     "explanation": "**Separate:** every $y$ left, every $t$ right.",
+     "latex": "\\dfrac{y}{1+y^2}\\,dy=\\dfrac{2t}{1+t^2}\\,dt"
+    },
+    {
+     "explanation": "**Integrate:** each side is (derivative of the bottom) over (the bottom), up to a constant factor.",
+     "latex": "\\tfrac12\\ln(1+y^2)=\\ln(1+t^2)+c\\ \\Rightarrow\\ 1+y^2=C(1+t^2)^2"
+    },
+    {
+     "explanation": "**Condition** $y(0)=1$: $1+1=C$, so $C=2$. Take the $+$ root, since $y(0)=1>0$.",
+     "latex": "y=\\sqrt{2(1+t^2)^2-1}"
+    },
+    {
+     "explanation": "(b) **Type:** $y^{\\prime}+a(t)\\,y=f(t)$ with $a=\\dfrac{6}{3t+2}$: linear. **Integrating factor:** $\\int\\frac{6}{3t+2}dt=2\\ln(3t+2)$.",
+     "latex": "\\mu=e^{2\\ln(3t+2)}=(3t+2)^2"
+    },
+    {
+     "explanation": "**Rewrite and integrate:** the left side becomes $\\big[(3t+2)^2y\\big]^{\\prime}$. On the right, $\\int4(3t+2)^2dt=\\frac49(3t+2)^3$.",
+     "latex": "(3t+2)^2\\,y=\\tfrac49(3t+2)^3+C"
+    },
+    {
+     "explanation": "**Condition** $y(0)=0$: $0=\\frac49\\cdot8+C$, so $C=-\\frac{32}{9}$. Divide by $(3t+2)^2$.",
+     "latex": "y=\\tfrac49(3t+2)-\\dfrac{32}{9(3t+2)^2}"
+    },
+    {
+     "explanation": "(c) **Type:** $M\\,dt+N\\,dy=0$. **Test:** $M_y=\\cos t$ and $N_t=\\cos t$ match, so exact.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Integrate** $M$ in $t$: $U=t^2+y\\sin t+h(y)$. **Match:** $U_y=\\sin t+h^{\\prime}(y)$ must equal $N=\\sin t+2y$, so $h=y^2$.",
+     "latex": "U=t^2+y\\sin t+y^2"
+    },
+    {
+     "explanation": "**Condition** $y(0)=1$: $U(0,1)=0+0+1=1$.",
+     "latex": "t^2+y\\sin t+y^2=1"
+    }
+   ],
+   "answer": "(a) Separable: $y=\\sqrt{2(1+t^2)^2-1}$. (b) Linear: $y=\\frac49(3t+2)-\\dfrac{32}{9(3t+2)^2}$. (c) Exact: $t^2+y\\sin t+y^2=1$. Review: [B1](#b1), [B2](#b2), [B3](#b3).",
+   "citations": [],
+   "id": "b2edb0a2-cd8c-59e0-b562-dfba3ccde9f0"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E4 · W4 · Not exact: find the factor, then solve · like Pre-tutorial 4",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Consider $(3ty+y^2)\\,dt+(t^2+ty)\\,dy=0$ with $y(1)=1$. (a) Show it is not exact. (b) Find an integrating factor. (c) Solve.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** $M\\,dt+N\\,dy=0$ with $M=3ty+y^2$, $N=t^2+ty$. (a) **Test:** the cross derivatives don’t match.",
+     "latex": "M_y=3t+2y\\neq2t+y=N_t"
+    },
+    {
+     "explanation": "(b) **Ratios:** try Case 1. Factor the bottom: $N=t(t+y)$. The $(t+y)$ cancels and only $t$ is left.",
+     "latex": "\\dfrac{M_y-N_t}{N}=\\dfrac{t+y}{t(t+y)}=\\dfrac1t\\ \\Rightarrow\\ \\mu=e^{\\int\\frac1t\\,dt}=t"
+    },
+    {
+     "explanation": "**Multiply** by $t$, then test again: now they match.",
+     "latex": "\\begin{gathered}(3t^2y+ty^2)\\,dt+(t^3+t^2y)\\,dy=0, \\\\ M_y=3t^2+2ty=N_t\\end{gathered}"
+    },
+    {
+     "explanation": "(c) **Integrate** the new $M$ in $t$: $U=t^3y+\\tfrac12t^2y^2+h(y)$. **Match:** $U_y=t^3+t^2y$ is already the new $N$, so $h=0$.",
+     "latex": "U=t^3y+\\tfrac12t^2y^2"
+    },
+    {
+     "explanation": "**Condition** $y(1)=1$: $U(1,1)=1+\\tfrac12=\\tfrac32$. Multiply by 2.",
+     "latex": "2t^3y+t^2y^2=3"
+    }
+   ],
+   "answer": "(a) $M_y=3t+2y$, $N_t=2t+y$. (b) $\\mu=t$. (c) $2t^3y+t^2y^2=3$. If the ratio looked like it had both letters, factor before giving up: here $t+y$ cancels. Review: [B4](#b4).",
+   "citations": [],
+   "id": "564de45c-f1a9-5d01-9042-72422d10c50f"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E5 · W3 + W5 · Is the solution guaranteed?",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "(a) For $\\dfrac{dy}{dt}=3y^{2/3}$, does the theorem guarantee exactly one solution through (i) $(1,8)$, (ii) $(0,0)$? Then check that $y=0$ and $y=t^3$ both solve it. What does that say about $(0,0)$?\n\n(b) Without solving, find the largest interval on which $(t^2-9)\\,y^{\\prime\\prime}+t\\,y^{\\prime}+y=\\dfrac1t$, $\\;y(1)=0$, $y^{\\prime}(1)=2$, has exactly one solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Type:** first order, $y^{\\prime}=F(t,y)$, with $F=3y^{2/3}$. Check $F$ and $\\partial F/\\partial y$.",
+     "latex": "\\dfrac{\\partial F}{\\partial y}=2y^{-1/3}=\\dfrac{2}{y^{1/3}}"
+    },
+    {
+     "explanation": "**Find the bad set:** $F$ is fine everywhere, but $\\partial F/\\partial y$ breaks at $y=0$ (division by zero).",
+     "latex": ""
+    },
+    {
+     "explanation": "**Check the point:** (i) $y=8$ is away from $y=0$, so the theorem guarantees one solution. (ii) $y=0$ is in the bad set, so no guarantee.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Two solutions:** both pass through $(0,0)$, so at $(0,0)$ there really is more than one solution.",
+     "latex": "\\begin{gathered}y=0:\\ 0=0\\ \\checkmark \\\\ y=t^3:\\ 3t^2=3(t^3)^{2/3}=3t^2\\ \\checkmark\\end{gathered}"
+    },
+    {
+     "explanation": "(b) **Type:** second-order linear, so use the interval theorem. **Divide** by $t^2-9$.",
+     "latex": "p=\\dfrac{t}{t^2-9},\\quad q=\\dfrac{1}{t^2-9},\\quad g=\\dfrac{1}{t(t^2-9)}"
+    },
+    {
+     "explanation": "**Trouble points:** zeros of the bottoms, $t=-3,\\,0,\\,3$. **Pick the piece** that contains $t_0=1$.",
+     "latex": "0<t<3"
+    }
+   ],
+   "answer": "(a) (i) Yes. (ii) No guarantee, and in fact two solutions ($y=0$, $y=t^3$) pass through $(0,0)$. (b) $0<t<3$. Review: [C1](#c1), [C2](#c2).",
+   "citations": [],
+   "id": "d4dab1c7-dbc0-5d1f-8ae3-5846f661dd69"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E6 · W2 · RC step response, and a current that jumps · like Pre-tutorial 2",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Before $t=0$ the switch is open and the capacitor holds $v=2\\,\\mathrm{V}$. The switch closes at $t=0$. (a) Write the ODE for $v$ for $t\\ge0$. (b) Find $v(t)$. (c) Find $i_C$ just before and just after the switch closes.\n\n```schematic\nI1 0,0 -> 0,3 \"$3\\,\\mathrm{mA}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$2\\,\\mathrm{k\\Omega}$\"\nS1 3,3 -> 6,3 \"$t=0$\" action=close\nC1 6,3 -> 6,0 \"$5\\,\\mu\\mathrm{F}$\" v=\"$v$\" i=\"$i_C$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** after the switch, one capacitor with a resistor and a DC source: first-order RC step response.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) **KCL** at the top node for $t\\ge0$: the source current splits into $R$ and $C$.",
+     "latex": "C\\dfrac{dv}{dt}+\\dfrac{v}{R}=I_s\\ \\Rightarrow\\ \\dfrac{dv}{dt}+100\\,v=600"
+    },
+    {
+     "explanation": "(b) **Time constant:** $\\tau=RC=2000\\times5\\times10^{-6}$. **Final value:** $C$ is open, so all of $I_s$ goes through $R$.",
+     "latex": "\\tau=0.01\\,\\mathrm{s},\\qquad v_f=RI_s=6\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**Plug in:** $v=v_f+(v_0-v_f)e^{-t/\\tau}$ with $v_0=2\\,\\mathrm{V}$ (the capacitor voltage can’t jump).",
+     "latex": "v=6-4e^{-100t}\\ \\mathrm{V},\\quad t\\ge0"
+    },
+    {
+     "explanation": "(c) **Before:** the switch is open, so no current reaches $C$: $i_C(0^-)=0$. **Just after:** $v=2\\,\\mathrm{V}$ still, so $R$ takes $2/2000=1\\,\\mathrm{mA}$ and $C$ gets the rest.",
+     "latex": "i_C(0^+)=3-1=2\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "**Check** with $i_C=C\\,v^{\\prime}$ from (b).",
+     "latex": "i_C(0^+)=5\\times10^{-6}\\times400=2\\times10^{-3}\\,\\mathrm{A}\\ \\checkmark"
+    }
+   ],
+   "answer": "(a) $v^{\\prime}+100v=600$. (b) $v=6-4e^{-100t}\\,\\mathrm{V}$. (c) $0$ before, $2\\,\\mathrm{mA}$ after: the capacitor **current** jumps, its voltage doesn’t. Review: [D1](#d1).",
+   "citations": [],
+   "id": "17a8a07e-fe01-5d90-9e47-f61b16240232"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E7 · W5 · Complex roots, then a repeated root",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Solve (a) $y''+4y'+13y=0$, and (b) $y''+4y'+4y=0$, each with $y(0)=1$, $y'(0)=0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Type:** numbers in front, right side $0$. **Characteristic equation:** $s^2+4s+13=0$.",
+     "latex": "s=\\dfrac{-4\\pm\\sqrt{16-52}}{2}=-2\\pm j3"
+    },
+    {
+     "explanation": "**Form:** a complex pair $-2\\pm j3$ gives decay $e^{-2t}$ times a cosine and sine of $3t$.",
+     "latex": "y=e^{-2t}(A\\cos3t+B\\sin3t)"
+    },
+    {
+     "explanation": "**Conditions:** $y(0)=A=1$. The slope at $0$ is $-2A+3B=0$, so $B=\\frac23$.",
+     "latex": "y=e^{-2t}\\big(\\cos3t+\\tfrac23\\sin3t\\big)"
+    },
+    {
+     "explanation": "(b) **Characteristic equation:** $s^2+4s+4=(s+2)^2$, a repeated root $s=-2$. **Form:** add a $t$ to the second term.",
+     "latex": "y=(c_1+c_2t)e^{-2t}"
+    },
+    {
+     "explanation": "**Conditions:** $y(0)=c_1=1$. The slope at $0$ is $c_2-2c_1=0$, so $c_2=2$.",
+     "latex": "y=(1+2t)e^{-2t}"
+    }
+   ],
+   "answer": "(a) $y=e^{-2t}\\big(\\cos3t+\\tfrac23\\sin3t\\big)$. (b) $y=(1+2t)e^{-2t}$. Review: [B5](#b5).",
+   "citations": [],
+   "id": "a1ac560b-7613-51f5-a751-b03c3d108bd5"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E8 · W5 · Parallel RLC step response · lecture Example 5.2, plus a twist",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "The initial energy stored in the circuit is zero. At $t=0$ a DC current source of $24\\,\\mathrm{mA}$ is applied. (a) Find $i_L(t)$ for $t\\ge0$. (b) Twist: which $R$ would make the circuit critically damped? Find $i_L(t)$ for that $R$.\n\n```schematic\nI1 0,0 -> 0,3 \"$24\\,\\mathrm{mA}$\"\nS1 0,3 -> 3,3 \"$t=0$\" action=close\nC1 3,3 -> 3,0 \"$25\\,\\mathrm{nF}$\" i=\"$i_C$\"\nwire 3,3 -> 6,3\nL1 6,3 -> 6,0 \"$25\\,\\mathrm{mH}$\" i=\"$i_L$\"\nwire 6,3 -> 9,3\nR1 9,3 -> 9,0 \"$400\\,\\Omega$\" i=\"$i_R$\" v=\"$v$\"\nwire 9,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** $C$, $L$, $R$ in parallel with a DC source: parallel RLC step response. KCL gives the lecture’s equation.",
+     "latex": "i_L''+\\dfrac{1}{RC}\\,i_L'+\\dfrac{1}{LC}\\,i_L=\\dfrac{I}{LC}"
+    },
+    {
+     "explanation": "(a) **Equation:** compare $\\alpha=\\frac{1}{2RC}$ with $\\omega_0=\\frac{1}{\\sqrt{LC}}$. $\\alpha>\\omega_0$, so overdamped.",
+     "latex": "\\begin{gathered}\\alpha=\\dfrac{1}{2(400)(25\\times10^{-9})}=50000, \\\\ \\omega_0=\\dfrac{1}{\\sqrt{25\\times10^{-3}\\cdot25\\times10^{-9}}}=40000\\end{gathered}"
+    },
+    {
+     "explanation": "**Roots:** $s=-\\alpha\\pm\\sqrt{\\alpha^2-\\omega_0^2}=-50000\\pm30000$. **Final value:** in DC steady state $L$ is a short and takes all $24\\,\\mathrm{mA}$.",
+     "latex": "i_L=24+A_1e^{-20000t}+A_2e^{-80000t}\\ \\mathrm{mA}"
+    },
+    {
+     "explanation": "**Starting values:** zero energy means $i_L(0)=0$ and $v(0)=0$. Since $v=L\\,i_L^{\\prime}$, the starting slope is $0$ too.",
+     "latex": "A_1+A_2=-24,\\qquad -20000A_1-80000A_2=0"
+    },
+    {
+     "explanation": "**Constants:** the second equation gives $A_1=-4A_2$. Then $-3A_2=-24$.",
+     "latex": "A_2=8,\\qquad A_1=-32"
+    },
+    {
+     "explanation": "(b) **Critical damping** means $\\alpha=\\omega_0=40000$. Solve $\\frac{1}{2RC}=40000$ for $R$.",
+     "latex": "R=\\dfrac{1}{2(40000)(25\\times10^{-9})}=500\\,\\Omega"
+    },
+    {
+     "explanation": "**Form:** one repeated root $s=-40000$. Same final value.",
+     "latex": "i_L=24+(D_1+D_2t)e^{-40000t}\\ \\mathrm{mA}"
+    },
+    {
+     "explanation": "**Constants:** $i_L(0)=0$ gives $D_1=-24$. The slope at $0$ is $D_2-40000D_1=0$.",
+     "latex": "D_2=-960000\\ \\mathrm{mA/s}"
+    }
+   ],
+   "answer": "(a) $i_L=24-32e^{-20000t}+8e^{-80000t}\\ \\mathrm{mA}$ (the lecture’s answer). (b) $R=500\\,\\Omega$: $i_L=24-24(1+40000t)e^{-40000t}\\ \\mathrm{mA}$. Review: [D2](#d2).",
+   "citations": [
+    {
+     "source_id": "dc7c006a-0b3f-410f-a29d-0e84578a8e50",
+     "version": 1,
+     "chunk_id": "27d3a15c-1f5c-4b97-b735-a3f8200bd8e8"
+    },
+    {
+     "source_id": "dc7c006a-0b3f-410f-a29d-0e84578a8e50",
+     "version": 1,
+     "chunk_id": "9fecee35-708f-4871-ade6-dd5fa1c3d991"
+    }
+   ],
+   "id": "5839fe64-46a3-5fdb-9486-b61071a288c7"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E9 · W6 · The tutorial problem without the hints · Pre-tutorial 5",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "(a) Solve $y''+y=6\\cos^2t$, $\\;y(0)=0$, $\\;y(\\pi/2)=0$. This time the forms of $y_c$ and $y_p$ are **not** given.\n\n(b) For $y''-4y=e^{2t}+t$, write the form of $y_p$ and find it.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Type:** numbers in front, right side not $0$: undetermined coefficients. **Complementary:** $s^2+1=0$, $s=\\pm j$.",
+     "latex": "y_c=c_1\\sin t+c_2\\cos t"
+    },
+    {
+     "explanation": "No table row fits $\\cos^2t$, so rewrite it first.",
+     "latex": "6\\cos^2t=3+3\\cos2t"
+    },
+    {
+     "explanation": "**Guess:** a constant for the $3$, both $\\cos2t$ and $\\sin2t$ for the $3\\cos2t$. None of them is in $y_c$.",
+     "latex": "y_p=A+B\\cos2t+D\\sin2t"
+    },
+    {
+     "explanation": "**Substitute:** $y_p^{\\prime\\prime}=-4B\\cos2t-4D\\sin2t$. **Match:** constants, cosines, sines.",
+     "latex": "A=3,\\qquad -3B=3,\\qquad -3D=0"
+    },
+    {
+     "explanation": "**Add**, then use both **conditions** on the whole $y$: $y(0)=3-1+c_2=0$, $y(\\pi/2)=3+1+c_1=0$.",
+     "latex": "y=3-\\cos2t-4\\sin t-2\\cos t"
+    },
+    {
+     "explanation": "(b) **Complementary:** $s^2-4=0$, $s=\\pm2$, so $y_c=c_1e^{2t}+c_2e^{-2t}$. **Guess:** $Ae^{2t}$ is in $y_c$, so multiply it by $t$. Add $Bt+C$ for the $t$.",
+     "latex": "y_p=Ate^{2t}+Bt+C"
+    },
+    {
+     "explanation": "**Substitute:** $(te^{2t})^{\\prime\\prime}=(4+4t)e^{2t}$, so the $te^{2t}$ terms cancel against $-4Ate^{2t}$.",
+     "latex": "4Ae^{2t}-4Bt-4C=e^{2t}+t"
+    },
+    {
+     "explanation": "**Match:** $4A=1$, $-4B=1$, $-4C=0$.",
+     "latex": "y_p=\\tfrac14te^{2t}-\\tfrac14t"
+    }
+   ],
+   "answer": "(a) $y=3-\\cos2t-4\\sin t-2\\cos t$. (b) $y_p=\\frac14te^{2t}-\\frac14t$. Review: [B6](#b6).",
+   "citations": [
+    {
+     "source_id": "a79cd577-1cd7-4c6d-bb22-d033c02cf893",
+     "version": 1,
+     "chunk_id": "d9ab6ebe-e52f-41e0-ac3f-6e420a8c2024"
+    }
+   ],
+   "id": "0a3d91bb-f3f5-5094-802b-042de28f501e"
+  },
+  {
+   "type": "practice_problem",
+   "title": "E10 · W6 · Reduction of order · like lecture Example 6.1",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Given that $y_1=t$ solves $t^2y''+t\\,y'-y=0$ for $t>0$, find the general solution.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** second order with $t$ in front, and one solution given: reduction of order. **Substitute** $y=tv$.",
+     "latex": "y'=v+tv',\\qquad y''=2v'+tv''"
+    },
+    {
+     "explanation": "**Plug in** and **collect:** the $v$ terms cancel (they always do, because $t$ is a solution).",
+     "latex": "t^2(2v'+tv'')+t(v+tv')-tv=t^3v''+3t^2v'=0"
+    },
+    {
+     "explanation": "Set $z=v^{\\prime}$ and divide by $t^3$: a first-order equation in $z$. **Separate.**",
+     "latex": "\\dfrac{dz}{z}=-\\dfrac{3}{t}\\,dt\\ \\Rightarrow\\ z=\\dfrac{C}{t^3}"
+    },
+    {
+     "explanation": "**Integrate** $z$ to get $v$.",
+     "latex": "v=-\\dfrac{C}{2t^2}+C_2"
+    },
+    {
+     "explanation": "**Multiply back** by $t$, and rename the constant.",
+     "latex": "y=tv=C_2\\,t-\\dfrac{C}{2t}=c_1t+\\dfrac{c_2}{t}"
+    }
+   ],
+   "answer": "$y=c_1t+\\dfrac{c_2}{t}$. Check $y=\\frac1t$: $t^2\\cdot\\frac{2}{t^3}+t\\cdot\\left(-\\frac{1}{t^2}\\right)-\\frac1t=0$ ✓. Review: [B7](#b7).",
+   "citations": [],
+   "id": "8f447d64-b545-512d-87af-ff9c2cc2681d"
   }
  ]
 }

@@ -151,6 +151,14 @@ def create_app(settings: Settings | None = None):
             connection.execute("DELETE FROM study_schedule_exams WHERE id=?", (exam_id,))
         return {"deleted": True}
 
+    @app.get("/api/v1/study-plan")
+    def study_plan():
+        return schedule.read_plan(ws().db)
+
+    @app.put("/api/v1/study-plan")
+    def save_study_plan(data: schedule.StudyPlan):
+        return schedule.save_plan(ws().db, data.text)
+
     @app.get("/api/v1/courses")
     def courses(limit: Limit = 50, offset: Offset = 0):
         return ws().list_courses(limit, offset)

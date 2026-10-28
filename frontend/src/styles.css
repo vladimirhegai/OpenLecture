@@ -49,6 +49,15 @@
   .schedule-heading > .btn { white-space: nowrap; }
 }
 
+/* The study plan: one Markdown note shared by every course. */
+.plan-editor textarea { display: block; width: 100%; min-height: 60vh; padding: 14px 16px; border: 1px solid var(--line-strong); border-radius: var(--r-sm); background: var(--paper); font: 13px/1.6 var(--mono); resize: vertical; outline: none; }
+.plan-editor textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.plan-hint { color: var(--ink-3); font-size: 13px; margin: 8px 0 0; }
+.plan-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+.plan-empty p { color: var(--ink-2); margin: 0 0 14px; }
+.study-plan h2 { margin-bottom: 10px; }
+.study-plan a.note-tag { margin: 2px 0; }
+
 /* Open Lecture design tokens. Light is the default; dark has its own steps, not an inversion. */
 :root {
   color-scheme: light;

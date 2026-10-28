@@ -4,7 +4,13 @@ from midlib import link
 
 def build(D):
     D.H('Start here: what the midterm asks')
-    D.P('**Midterm:** Friday Oct 30 · 2 hours · 30 marks · Weeks 1–6 · Casio 991 only.')
+    D.P('**Midterm:** Friday Oct 30 · 2 hours · 30 marks · Casio 991 only.')
+    D.P(r'**What’s on it** (announced in class): everything up to and including Monday Oct 26’s lecture '
+        r'(the comments on undetermined coefficients), plus this week’s tutorials (Mon Oct 26 and Wed Oct 28). '
+        r'That is every section of this note.')
+    D.L([r'**Not on it: Laplace transforms.** Skip them for now.',
+         r'**This week’s tutorial problem** is Pre-tutorial 5: $y\prime\prime+y=6\cos^2t$ with $y(0)=0$, $y(\pi/2)=0$. '
+         r'It’s the worked example in ' + link('B6', 'b6') + r'. Practise it until you can do it without looking.'])
     D.P('Every solution in this note uses the same three moves. Use them on the exam too. '
         'Naming the type first is what tells you which method to use.')
     D.L([r'**Type:** say what kind of problem it is, and the clue that told you. '
@@ -26,6 +32,7 @@ def build(D):
         [r'a second-order ODE with $t$ in the coefficients, and one solution given', link('B7 · Reduction of order', 'b7'), '6'],
         ['“does a unique solution exist?”, an interval, or two solutions to compare', link('Topic C', 'topic-c'), '3, 5, 6'],
         [r'a circuit with a switch: find $v(t)$ or $i(t)$', link('Topic D', 'topic-d'), '1–3, 5'],
+        ['a mixed set of exam-style problems, to practise like the real thing', link('Topic E', 'topic-e'), '1–6'],
     ])
 
 

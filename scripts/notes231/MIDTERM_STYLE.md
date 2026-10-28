@@ -1,12 +1,16 @@
 # ELEC 231 midterm note: layout and rules
 
 One note, "ELEC 231 Midterm: Weeks 1–6 by Problem Type", built by `build_midterm.py` from section modules
-`mid_<part>.py` (each has `build(D)` and `verify()`). Parts, in order: head, a, b0–b7, c, d0–d2.
+`mid_<part>.py` (each has `build(D)` and `verify()`). Parts, in order: head, a, b0–b7, c, d0–d2, e.
+Topic E (`mid_e.py`) is the exception to the subtopic layout: a short mixed practice midterm (~10 multi-part problems,
+titles `E<n> · W<k> · …`), copied from or modelled on lecture/tutorial examples, each answer ending in a `Review:` link.
+Keep it short; the user asked not to be overwhelmed.
 Reference sections: `mid_b1.py` and `mid_b2.py`. Copy their shape.
 
 ## Who it is for
-A student who finds ELEC 231 their hardest course, preparing to **solve midterm problems** (Fri Oct 30, 2 h, 30 marks,
-Weeks 1–6). They learn visually and from examples. Teach what is needed to solve problems, not theory for its own sake.
+A student who finds ELEC 231 their hardest course, preparing to **solve midterm problems** (Fri Oct 30, 2 h, 30 marks).
+Scope (announced): up to and including the Mon Oct 26 lecture (comments on undetermined coefficients = N6) and the
+Oct 26/28 tutorials (Pre-tutorial 5 = T6, the $y''+y=6\cos^2t$ problem). **No Laplace transforms.** They learn visually and from examples. Teach what is needed to solve problems, not theory for its own sake.
 
 ## Structure
 - Topic = a job: A complex numbers · B find the general solution · C does exactly one solution exist · D circuits.

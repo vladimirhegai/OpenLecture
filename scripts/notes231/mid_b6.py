@@ -35,6 +35,9 @@ def build(D):
     ], cites=D.cite('N6', 1))
     D.L([r'**Why all lower powers:** derivatives of $At$ make a constant. The $B$ in $At+B$ is there to balance it.',
          r'**Why always both:** each derivative swaps $\cos$ and $\sin$, so both show up even if $g$ has only one.'])
+    D.CO('tip', r'**What the lecture actually worked:** Monday’s lecture (Oct 26) went over just two rows: a constant → $A$, and $\sin rt$ or $\cos rt$ → both. '
+         r'That’s exactly what the tutorial problem needs. For the other rows and the trap below, the professor only said Spiegel has “further rules”. '
+         r'So nail the constant + trig case first, then learn the rest.', cites=D.cite('N6', 1))
     D.CO('warning', r'**Trap: your guess is already in $y_c$.** Then plugging it in gives $0$, so it can never give $g$. '
          r'**Fix: multiply the guess by $t$.** If that is still in $y_c$ (a repeated root), multiply by $t^2$ instead.'
          '\n\n'
@@ -59,7 +62,9 @@ def build(D):
          r'$y_c$ brings the two free constants that the conditions pin down. '
          r'And the trap above has the same cause: anything already in $y_c$ gives $0$ on the left, so it’s useless as a guess.')
 
-    D.EX('W6 · The tutorial problem, with two boundary values · Week 6 tutorial, lecture notes p. 3–4',
+    D.CO('warning', r'**Practise the worked example below until you can do it alone.** It’s Pre-tutorial 5, the Week 7 tutorial (Oct 26, 28), which the midterm covers. '
+         r'It’s also the lecture’s own example. Be able to do every step, the boundary values included.')
+    D.EX('W6 · The tutorial problem, with two boundary values · Pre-tutorial 5 / Week 7 tutorial, lecture notes p. 3–4',
          r"Solve $\ddot y+y=6\cos^2t$ with $y(0)=0$ and $y(\pi/2)=0$. The tutorial gives the forms $y_c=c_1\sin t+c_2\cos t$ and $y_p=A+B\cos2t+D\sin2t$. "
          r'($\ddot y$ is the professor’s notation for $y\prime\prime$.)',
          [S(r'**Type:** plain-number coefficients, forcing $6\cos^2t$. **Complementary:** $s^2+1=0$ gives $s=\pm j$.', r'y_c=c_1\sin t+c_2\cos t'),
@@ -71,7 +76,7 @@ def build(D):
           S(r'**Add** $y_c$ **before** using the conditions: they belong to the whole $y$.', r'y=3-\cos2t+c_1\sin t+c_2\cos t'),
           S(r'**Condition** $y(0)=0$: $\sin0=0$, $\cos0=1$.', r'3-1+c_2=0\quad\Rightarrow\quad c_2=-2'),
           S(r'**Condition** $y(\pi/2)=0$: $\cos\pi=-1$, $\sin\frac\pi2=1$, $\cos\frac\pi2=0$.', r'3+1+c_1=0\quad\Rightarrow\quad c_1=-4')],
-         r'$y=3-\cos2t-4\sin t-2\cos t$.', cites=D.cite('T6', 1) + W6(3, 4))
+         r'$y=3-\cos2t-4\sin t-2\cos t$.', cites=D.cite('T5', 1) + D.cite('T6', 1) + W6(3, 4))
     D.GRAPH(r'''
     title "Tutorial problem: pick the constants"
     x 0 6.3 label="$t$"

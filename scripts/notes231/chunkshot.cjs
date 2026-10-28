@@ -10,6 +10,10 @@ const { chromium } = require(path.join(root, 'frontend/node_modules/playwright-c
   const page = await browser.newPage({ viewport: { width: 1300, height: 1400 }, deviceScaleFactor: 1 });
   await page.goto(`http://127.0.0.1:8000/courses/${course}/docs/${docId}`, { waitUntil: 'networkidle' });
   await page.waitForTimeout(2500);
+  if (process.env.OPEN) {  // OPEN=1: open every solution first, so the steps get screenshotted too
+    await page.evaluate(() => document.querySelectorAll('details').forEach((d) => (d.open = true)));
+    await page.waitForTimeout(1500);
+  }
   const info = await page.evaluate(() => {
     const s = document.querySelector('div.scroll');
     const r = s.getBoundingClientRect();

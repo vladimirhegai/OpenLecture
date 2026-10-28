@@ -19,7 +19,7 @@ export function normalizeMath(text: string) {
     .replace(/\\\(([\s\S]+?)\\\)/g, (_, body) => `$${body.trim()}$`);
 }
 
-const slug = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+export const slug = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 /** Navigate inside the app, the same way the sidebar does: remember this entry's scroll position (so Back returns
  * there), push a new history entry, and let App re-read the URL. Never a new tab. */

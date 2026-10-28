@@ -26,6 +26,18 @@ def test_schedule_seeds_exams_once_and_persists_slots(client, settings):
     assert next(slot for slot in slots if slot["period"] == "Morning")["text"] == "Updated"
 
 
+def test_study_plan_is_one_global_note(client, settings):
+    assert client.get("/api/v1/study-plan").json() == {"text": "", "updated_at": None}
+    saved = client.put("/api/v1/study-plan", json={"text": "## Tonight\n- [B1](/courses/x/docs/y#b1)"}).json()
+    assert saved["text"].startswith("## Tonight") and saved["updated_at"]
+    with TestClient(create_app(settings)) as reopened:
+        assert reopened.get("/api/v1/study-plan").json()["text"] == saved["text"]
+    client.put("/api/v1/study-plan", json={"text": "Updated"})
+    assert client.get("/api/v1/study-plan").json()["text"] == "Updated"
+    assert client.put("/api/v1/study-plan", json={"text": "x" * 100001}).status_code == 422
+    assert client.get("/api/v1/courses").json() == []
+
+
 def test_schedule_validates_inputs_and_manages_exams(client):
     assert client.put("/api/v1/study-schedule/days/2026-02-30/Morning", json={"text": "x"}).status_code == 422
     assert client.put("/api/v1/study-schedule/days/2026-10-25/Night", json={"text": "x"}).status_code == 422

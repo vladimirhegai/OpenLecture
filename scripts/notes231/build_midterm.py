@@ -15,7 +15,7 @@ import lib231
 from learning_notes import finish
 from lib231 import Doc
 
-PARTS = ['head', 'a', 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'c', 'd0', 'd1', 'd2']
+PARTS = ['head', 'a', 'b0', 'b1', 'b2', 'b3', 'b4', 'b5', 'b6', 'b7', 'c', 'd0', 'd1', 'd2', 'e']
 TITLE = 'ELEC 231 Midterm: Weeks 1–6 by Problem Type'
 KEYS = ['complex_numbers', 'separable_odes', 'linear_first_order', 'exact_equations', 'integrating_factors',
         'second_order_homogeneous', 'undetermined_coefficients', 'reduction_of_order',

@@ -29,13 +29,18 @@ Template: `p1_thevenin_mesh.py`. Fence grammar: `src/open_lecture/skills/math-to
   Supernode: `#= region` box.
 - **Source transformation:** each transformation is its own step, so the reader watches the circuit change.
 - **Thévenin (template p1_thevenin_mesh.py):** pull out the load (if any) → V_Th = V_oc by mesh + Ohm, read off
-  with a KVL walk (`#= path`) from + terminal to − terminal → R_Th with sources off (V → wire, I → open; the
-  removed sources fade red) or, with dependent sources, a test source (1 V or 1 A) → the Thévenin circuit as its
+  with a KVL walk (`#= path`) from + terminal to − terminal → R_Th (rule below) → the Thévenin circuit as its
   own drawing (V_Th in series with R_Th, terminals in the same place) → load back on, mesh + Ohm for the answer.
 - **Norton (template c2_p4_64.py):** short the terminals (draw the short as a wire, `#= text` "short") →
   I_N = i_sc by mesh + Ohm (the mesh current through the short; say which way it flows, a negative I_N flips the
-  arrow) → R_N with sources off or a test source → the Norton circuit as its own drawing (current source ∥ R_N,
+  arrow) → R_N (rule below) → the Norton circuit as its own drawing (current source ∥ R_N,
   arrow toward a, terminals in the same place). Title starts with "Norton".
+- **R_Th / R_N: pick by the sources (the user's rule, 2026-10-27):**
+  - independent sources only → sources off (V → wire, I → open; the removed sources fade red), combine resistors.
+  - dependent **and** independent → **never a test source.** Find V_oc first, then short a–b and find I_sc,
+    drawn flowing down through the short from the + terminal of V_oc to the − terminal (a → b);
+    R_Th = R_N = V_oc / I_sc. The dependent source stays on in both circuits.
+  - dependent sources only (V_oc = 0) → test source (1 A or 1 mA into a), R_Th = V_test / 1.
 - **The course's assessment sheet uses another edition's numbering.** "Textbook AP 4.16" (p. 148) is not the
   sheet's AP 4.16. Say which in SOURCE ('Textbook Assessment Problem 4.16' vs 'Assessment Problem 4.16').
 - Keep k, m, µ in the equations (2kI, (1m)(2k) = 2 V): m·k = 1.

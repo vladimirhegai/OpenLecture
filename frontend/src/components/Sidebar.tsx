@@ -5,6 +5,7 @@ import {
   X,
   ChevronsUpDown,
   FileText,
+  ListChecks,
   Monitor,
   Moon,
   NotebookPen,
@@ -211,6 +212,10 @@ export function Sidebar({
               <button className="nav-item" aria-current={route.kind === "home" ? "page" : undefined} onClick={() => onOpen({ kind: "home" })}>
                 <NotebookPen size={16} />
                 <span className="label">Overview</span>
+              </button>
+              <button className="nav-item" aria-current={route.kind === "plan" ? "page" : undefined} onClick={() => onOpen({ kind: "plan" })} title="Study plan: the same in every course">
+                <ListChecks size={16} />
+                <span className="label">Study plan</span>
               </button>
             </div>
 

@@ -12,6 +12,12 @@ type Handlers = {
   onAsk?: (block: Block) => void;
 };
 
+/** A heading, or a block taller than the note's scroll area, is scrolled to its top; anything else to the centre. */
+export function scrollsToTop(element: HTMLElement) {
+  const viewport = element.closest(".scroll")?.clientHeight ?? window.innerHeight;
+  return element.classList.contains("block-heading") || element.offsetHeight > viewport * 0.8;
+}
+
 function Reveal({ label, children, open }: { label: string; children: React.ReactNode; open?: boolean }) {
   return (
     <details className="reveal" open={open}>
@@ -347,7 +353,7 @@ export function Blocks({ blocks, courseId, onCite, onAsk, flash }: Handlers & { 
     });
     requestAnimationFrame(() => {
       const element = document.getElementById(`b-${flash}`);
-      element?.scrollIntoView({ block: element.classList.contains("block-heading") ? "start" : "center" });
+      element?.scrollIntoView({ block: scrollsToTop(element) ? "start" : "center" });
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [flash]);

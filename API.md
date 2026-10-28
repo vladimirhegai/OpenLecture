@@ -2,6 +2,8 @@
 
 Run `uv run open-lecture serve`; interactive documentation is at `http://127.0.0.1:8000/docs`, and machine-readable schemas at `/openapi.json`. The OpenAPI document is generated from the same Pydantic input types used by MCP. Responses are JSON; UUIDs are strings, timestamps UTC ISO 8601.
 
+Two workspace-wide resources sit outside courses: `/api/v1/study-schedule` (the study calendar) and `/api/v1/study-plan` (GET, PUT `{text}`: one Markdown note shown in every course; `updated_at` is null until it's first saved).
+
 All course resources live under `/api/v1/courses/{course_id}`. Passing another course's object ID returns 404. This is data isolation in a single-user workspace, not multi-user authorization.
 
 | Route relative to course | Methods | Behavior |

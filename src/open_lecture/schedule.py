@@ -1,6 +1,6 @@
 """The workspace's single built-in study planner, independent of ordinary courses."""
 
-from datetime import date
+from datetime import date, datetime, timezone
 from typing import Literal
 from uuid import uuid4
 
@@ -40,6 +40,28 @@ def save_slot(db, day: date, period: Period, text: str):
         else:
             connection.execute("DELETE FROM study_schedule_slots WHERE day=? AND period=?", (day.isoformat(), period))
     return {"day": day.isoformat(), "period": period, "text": text}
+
+
+class StudyPlan(Model):
+    text: str = Field(max_length=100000)
+
+
+def read_plan(db):
+    """The one study-plan note (Markdown), shown in every course; empty until written."""
+    with db.connect() as connection:
+        row = connection.execute("SELECT text, updated_at FROM study_plan WHERE id=1").fetchone()
+    return dict(row) if row else {"text": "", "updated_at": None}
+
+
+def save_plan(db, text: str):
+    result = {"text": text, "updated_at": datetime.now(timezone.utc).isoformat()}
+    with db.transaction() as connection:
+        connection.execute(
+            "INSERT INTO study_plan VALUES (1,:text,:updated_at) "
+            "ON CONFLICT(id) DO UPDATE SET text=excluded.text, updated_at=excluded.updated_at",
+            result,
+        )
+    return result
 
 
 def add_exam(db, exam: ScheduleExam):

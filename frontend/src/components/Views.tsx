@@ -38,15 +38,30 @@ import {
 } from "../api";
 import { useStored } from "../theme";
 import { toolVerb } from "../labels";
-import { Blocks } from "./Blocks";
-import { Markdown } from "./Markdown";
+import { Blocks, scrollsToTop } from "./Blocks";
+import { Markdown, slug } from "./Markdown";
 import { Popover, useToast } from "./ui";
 import { savedScroll, useScrollMemory } from "../scroll";
 
 export type Route =
   | { kind: "home" }
   | { kind: "doc"; id: string; revision?: number; block?: string }
-  | { kind: "source"; id: string; page?: number };
+  | { kind: "source"; id: string; page?: number }
+  | { kind: "plan" };
+
+/** The block a `#target` names: its id, or else a label such as `b6`, `problem-29` or `topic-1` that matches how a
+ * heading's or a problem's title starts. Hand-written links (the study plan) use labels, so they survive a note rebuild
+ * that changes the block ids. */
+function resolveBlock(blocks: Block[], target: string) {
+  if (blocks.some((block) => block.id === target)) return target;
+  const want = slug(decodeURIComponent(target));
+  const label = (block: Block) =>
+    block.type === "heading" ? block.text : block.type === "practice_problem" || block.type === "worked_example" ? block.title ?? "" : "";
+  return blocks.find((block) => {
+    const text = slug(label(block));
+    return text && (text === want || text.startsWith(want + "-"));
+  })?.id ?? target;
+}
 
 export type Ask = { text?: string; send?: boolean; block?: Block };
 
@@ -340,10 +355,12 @@ export function DocumentView({
       if (behavior === "smooth" && top !== undefined) scroller.current?.scrollTo({ top, behavior });
       return;
     }
-    const element = document.getElementById(`b-${route.block}`);
-    // A heading is the start of what the reader asked for, so it goes to the top; other blocks are centred.
-    element?.scrollIntoView({ block: element.classList.contains("block-heading") ? "start" : "center", behavior });
-    setFlash(route.block);
+    const target = resolveBlock(doc.blocks, route.block);
+    const element = document.getElementById(`b-${target}`);
+    // A heading is the start of what the reader asked for, so it goes to the top; other blocks are centred, unless they're
+    // taller than the screen (a long worked example), where centring would hide the title.
+    element?.scrollIntoView({ block: scrollsToTop(element) ? "start" : "center", behavior });
+    setFlash(target);
     const timer = setTimeout(() => setFlash(null), 1600);
     return () => clearTimeout(timer);
   }, [route.block, doc]);

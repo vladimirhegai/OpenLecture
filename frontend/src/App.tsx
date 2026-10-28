@@ -24,6 +24,7 @@ import { useStored, useTheme } from "./theme";
 import { newEntry, rememberScroll } from "./scroll";
 import { SCHEDULE_COURSE, SCHEDULE_ID } from "./schedule";
 import { StudySchedule } from "./components/StudySchedule";
+import { StudyPlan } from "./components/StudyPlan";
 
 /* URL shape matches the backend's document reference routes: /courses/:id/docs/:doc */
 function parseLocation(): { courseId: string | null; route: Route } {
@@ -38,6 +39,7 @@ function parseLocation(): { courseId: string | null; route: Route } {
   if (parts[2] === "sources" && parts[3]) {
     return { courseId: parts[1], route: { kind: "source", id: parts[3], page: Number(params.get("page")) || undefined } };
   }
+  if (parts[2] === "plan") return { courseId: parts[1], route: { kind: "plan" } };
   return { courseId: parts[1], route: { kind: "home" } };
 }
 
@@ -46,6 +48,7 @@ function toUrl(courseId: string, route: Route) {
   const base = `/courses/${courseId}`;
   if (route.kind === "doc") return `${base}/docs/${route.id}${route.revision ? `?revision=${route.revision}` : ""}${route.block ? `#${route.block}` : ""}`;
   if (route.kind === "source") return `${base}/sources/${route.id}${route.page ? `?page=${route.page}` : ""}`;
+  if (route.kind === "plan") return `${base}/plan`;
   return base;
 }
 
@@ -412,6 +415,7 @@ export default function App() {
         }}
       />
     );
+  else if (route.kind === "plan") main = <StudyPlan course={course} onOpen={open} />;
   else if (route.kind === "source")
     main = (
       <SourceView
