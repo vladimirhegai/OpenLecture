@@ -11,13 +11,17 @@ def steps(items):
 def markdown(b):
     t = b["type"]
     if t == "heading":
-        return "## " + b["text"]
+        return "#" * (b.get("level", 1) + 1) + " " + b["text"]
     if t == "paragraph":
         return b["text"]
+    if t == "callout":
+        return "> " + b["text"].replace("\n", "\n> ")
     if t == "list":
         return "\n".join((f"{i}. " if b["ordered"] else "- ") + item for i, item in enumerate(b["items"], 1))
     if t == "equation":
         return "$$" + b["latex"] + "$$"
+    if t == "solution":
+        return f"<details><summary>{b['title']}</summary>\n\n{b['text']}\n\n</details>"
     if t == "code":
         return f"```{b['language']}\n{b['text']}\n```"
     if t == "schematic":

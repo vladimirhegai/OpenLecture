@@ -11,7 +11,12 @@ import tokenize
 bad = 0
 for path in sys.argv[1:]:
     with open(path, encoding='utf-8') as fh:
+        raw_f = []  # Python 3.12+: is each open f-string raw (rf'...')? Its middle tokens carry no prefix.
         for tok in tokenize.generate_tokens(io.StringIO(fh.read()).readline):
+            if tok.type == getattr(tokenize, 'FSTRING_START', -1):
+                raw_f.append('r' in tok.string.lower())
+            elif tok.type == getattr(tokenize, 'FSTRING_END', -1):
+                raw_f.pop()
             if tok.type not in (tokenize.STRING, getattr(tokenize, 'FSTRING_MIDDLE', -1)):
                 continue
             text = tok.string
@@ -19,6 +24,8 @@ for path in sys.argv[1:]:
                 prefix = re.match(r'[a-zA-Z]*', text).group().lower()
                 if 'r' in prefix:
                     continue
+            elif raw_f and raw_f[-1]:
+                continue
             # a single backslash (not part of a \\ pair) that is not \n or a quote escape
             for m in re.finditer(r'(?<!\\)(?:\\\\)*\\([^\\\n\'"])', text):
                 if m.group(1) == 'n' and not re.match(r'[a-z]', text[m.end():m.end() + 1] or ' '):

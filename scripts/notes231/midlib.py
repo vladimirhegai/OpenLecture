@@ -45,6 +45,20 @@ def link(label, target):
     return f'[{label}](#{target})'
 
 
+def CARD(D, title, steps, answer=None):
+    """A closed example card with room to breathe: steps = [(text, latex), ...]. Each step is its own line
+    ('Step 1 · **Write** …'), its math centred below it; latex may be a tuple for several centred lines."""
+    parts = []
+    for i, (text, latex) in enumerate(steps, 1):
+        parts.append(f'Step {i} · {text}')
+        for line in (latex,) if isinstance(latex, str) else latex:
+            if line:
+                parts.append(f'$$\n{line}\n$$')
+    if answer:
+        parts.append(f'**Answer:**\n\n$$\n{answer}\n$$')
+    D.BOX(title, '\n\n'.join(parts))
+
+
 def P(D, title, prompt, steps, answer, diff='introductory', cites=()):
     """A practice problem numbered through the whole note: 'Problem n · <title>'. Title starts with the week tag."""
     D.pnum = getattr(D, 'pnum', 0) + 1

@@ -294,7 +294,7 @@ function Frame({ k, steps, svgs, frame, diff }: { k: number; steps: Step[]; svgs
 }
 
 /** The "Found so far" panel: every `#+` value from steps 1..k; the ones found in step k are highlighted. */
-function Values({ steps, k, fresh }: { steps: Step[]; k: number; fresh?: boolean }) {
+export function Values({ steps, k, fresh }: { steps: Pick<Step, "values">[]; k: number; fresh?: boolean }) {
   // A value repeated in a later step (same text) stays listed once, under the step that first found it.
   const seen = new Set<string>();
   const found = steps

@@ -22,70 +22,46 @@ def build(D):
         ['**Autonomous**', r'Is there no $t$ anywhere?', r'$y\prime=3y$', r'$y\prime=t-y$'],
     ], cites=W2(2, 3))
 
-    D.P('**Step 2: pick the method.** Look at the **order** first. 1st-order and 2nd-order equations use completely different methods.')
+    D.P('**Step 2: pick the method.** Look at the **order** first. 1st-order and 2nd-order equations use different methods.')
 
     # ---------------------------------------------------------------- 1st order
-    D.P(r'**1st order** (the highest derivative is $y\prime$). Check these in order and stop at the first one that fits:')
-    D.T(['Check', 'Method', 'Go to'], [
-        ['1. Can you split it into a $t$-part times a $y$-part?', 'separate the variables', link('B1', 'b1')],
-        ['2. Is it linear?', 'integrating factor', link('B2', 'b2')],
-        ['3. Neither? Write it as $M\\,dt+N\\,dy=0$. Is it exact?', 'exact equation', link('B3', 'b3')],
-        ['4. Not exact?', 'make it exact first', link('B4', 'b4')],
+    D.P(r'**1st order** (the top derivative is $y\prime$). Check in this order and stop at the first one that fits:')
+    D.T(['Check', 'Looks like', 'Go to'], [
+        [r'1. A $t$-part **times** a $y$-part?', r'$y\prime=g(t)\,h(y)$', link('B1', 'b1')],
+        [r'2. Linear: $y$, $y\prime$ only to the power 1?', r'$y\prime+p(t)\,y=f(t)$', link('B2', 'b2')],
+        [r'3. Neither: write it with $dt$, $dy$. Test passes?', r'$M\,dt+N\,dy=0$', link('B3', 'b3')],
+        [r'4. Test fails?', r'$M_y\neq N_t$', link('B4', 'b4')],
     ])
-
-    D.P(r'**1. Separable** → ' + link('B1', 'b1') + r'. The right side is a $t$-part **times** a $y$-part:')
-    D.EQ(r'\dfrac{dy}{dt}=g(t)\,h(y)')
-    D.L([r'**Example:** $y\prime=t^2y$. Here $g=t^2$ and $h=y$.',
-         r'**Method:** get all the $y$’s on one side and all the $t$’s on the other, then integrate both sides: $\dfrac{dy}{y}=t^2\,dt$.',
-         r'**Autonomous equations are always separable.** $y\prime=3y$ has no $t$ at all, so you can always write $\dfrac{dy}{3y}=dt$.'])
-
-    D.P(r'**2. Linear** → ' + link('B2', 'b2') + r'. You can’t split it, but $y$ and $y\prime$ only appear to the power 1:')
-    D.EQ(r'y\prime+a(t)\,y=f(t)')
-    D.L([r'**Example:** $y\prime+y=t$. Here $a=1$ and $f=t$.',
-         r'**Why not B1?** $y\prime=t-y$ is a $t$ **plus** a $y$, and a sum can’t be split into a product.',
-         r'**Method:** multiply everything by $\mu=e^{\int a\,dt}$ (here $e^t$). The left side becomes one derivative, $(e^ty)\prime$, so you can integrate.'])
-
-    D.P(r'**3. Exact** → ' + link('B3', 'b3') + r'. Not separable, not linear. Write it with $dt$ and $dy$:')
-    D.EQ(r'M\,dt+N\,dy=0')
-    D.L([r'**Example:** $(t-y)\,dt-(t+y)\,dy=0$. Here $M=t-y$ and $N=-(t+y)$.',
-         r'**Test:** take $\dfrac{\partial M}{\partial y}=-1$ and $\dfrac{\partial N}{\partial t}=-1$. They match, so it’s exact.',
-         r'**Method:** find one function $U(t,y)$ whose $t$-derivative is $M$ and whose $y$-derivative is $N$. The answer is $U=C$.'])
-
-    D.P(r'**4. Not exact** → ' + link('B4', 'b4') + '. Same form, but the test fails:')
-    D.L([r'**Example:** $y\,dt+(3+3t-y)\,dy=0$. Here $\dfrac{\partial M}{\partial y}=1$ but $\dfrac{\partial N}{\partial t}=3$. No match.',
-         r'**Method:** multiply the whole equation by a factor that fixes the mismatch (here $y^2$). Now it passes the test, so finish it like B3.'])
+    D.P('**One example each:**')
+    D.EQ(r'y\prime=t^2y\quad\Longrightarrow\quad\text{B1}\quad(g=t^2,\ h=y)')
+    D.EQ(r'y\prime+y=t\quad\Longrightarrow\quad\text{B2}\quad(\text{a sum: it won’t split})')
+    D.EQ(r'(t-y)\,dt-(t+y)\,dy=0\quad\Longrightarrow\quad\text{B3}\quad(M_y=-1=N_t)')
+    D.EQ(r'y\,dt+(3+3t-y)\,dy=0\quad\Longrightarrow\quad\text{B4}\quad(M_y=1\neq3=N_t)')
+    D.CO('tip', r'**No $t$ at all** (autonomous, like $y\prime=3y$)? Then it always separates: B1. For 2nd order, ignore this.')
 
     # ---------------------------------------------------------------- 2nd order
-    D.P(r'**2nd order** (the highest derivative is $y\prime\prime$). In Weeks 1–6 these are all **linear**, so you only ask two questions:')
-    D.L([r'Are the things in front of $y\prime\prime$, $y\prime$, $y$ just **numbers**?',
-         r'Is the **right side $0$**?'], ordered=True)
-    D.T(['In front of $y$', r'Right side $0$', r'Right side $g(t)$'], [
-        [r'**Numbers in front**', link('B5', 'b5') + ' characteristic equation', link('B6', 'b6') + ' undetermined coefficients'],
-        [r'**$t$ in front**', link('B7', 'b7') + ' reduction of order', 'not on the midterm'],
+    D.P(r'**2nd order** (the top derivative is $y\prime\prime$). In Weeks 1–6 these are all linear, so ask two questions: numbers in front? right side $0$?')
+    D.T(['In front of $y$', r'Right side $0$', r'Right side $f(t)$'], [
+        [r'**Numbers**', link('B5', 'b5') + ' quadratic', link('B6', 'b6') + r' $y_c+y_p$'],
+        [r'**$t$ in front**', link('B7', 'b7') + r' $y=y_1v$', 'not on the midterm'],
     ])
+    D.P('**One example each:**')
+    D.EQ(r'y\prime\prime+3y\prime+2y=0\quad\Longrightarrow\quad\text{B5}')
+    D.EQ(r'y\prime\prime+3y\prime+2y=4\quad\Longrightarrow\quad\text{B6}')
+    D.EQ(r'y\prime\prime-t\,y\prime+y=0,\ \ y_1=t\quad\Longrightarrow\quad\text{B7}')
 
-    D.P(r'**Numbers in front, right side 0** → ' + link('B5', 'b5') + '.')
-    D.EQ(r'a\,y\prime\prime+b\,y\prime+c\,y=0')
-    D.L([r'**Example:** $y\prime\prime+3y\prime+2y=0$.',
-         r'**Method:** guess $y=e^{st}$. That turns the ODE into $s^2+3s+2=0$, so $s=-1$ or $s=-2$, and $y=Ae^{-t}+Be^{-2t}$.',
-         r'**Why it works:** every derivative of $e^{st}$ is still $e^{st}$ times a number. So $e^{st}$ cancels and you’re left with a plain quadratic in $s$.'])
-
-    D.P(r'**Numbers in front, right side not 0** → ' + link('B6', 'b6') + '.')
-    D.EQ(r'a\,y\prime\prime+b\,y\prime+c\,y=g(t)')
-    D.L([r'**Example:** $y\prime\prime+3y\prime+2y=4$.',
-         r'**Method:** first solve the version with $0$ on the right (B5): $y_c=c_1e^{-t}+c_2e^{-2t}$. '
-         r'Then guess a $y_p$ that looks like $g(t)$. Here $g=4$ is a constant, so guess $y_p=A$: $2A=4$, $A=2$.',
-         r'**Answer:** add them. $y=c_1e^{-t}+c_2e^{-2t}+2$.',
-         r'**Why two pieces?** $y_c$ always gives $0$ on the left side. You need one extra piece, $y_p$, that gives the $4$.'])
-
-    D.P(r'**$t$ in front, right side 0** → ' + link('B7', 'b7') + '.')
-    D.EQ(r'y\prime\prime+p(t)\,y\prime+q(t)\,y=0')
-    D.L([r'**Example:** $y\prime\prime-t\,y\prime+y=0$, and the question gives you one solution, $y_1=t$.',
-         r'**Why not B5?** With $t$ in front, the $e^{st}$ guess no longer cancels. So you need that given $y_1$.',
-         r'**Method:** guess $y=y_1\,v=t\,v$. After substituting, you get $t\,v\prime\prime+(2-t^2)\,v\prime=0$. '
-         r'Set $z=v\prime$ and it’s a 1st-order equation (separable, B1).'])
-
-    D.CO('tip', r'**Where does “autonomous” matter?** Only for 1st order: no $t$ means separable. For 2nd order, ignore it.')
+    D.P(r'**The same letters everywhere.** Every B method uses these names, so there’s less to remember:')
+    D.T(['Letter', 'Means', 'In'], [
+        [r'$f(t)$', r'the right side: no $y$ in it', 'B2, B6, B7, C2'],
+        [r'$p(t)$', r'multiplies the term just under the top derivative', 'B2, B7, C2'],
+        [r'$q(t)$', r'multiplies $y$ (2nd order)', 'B7, C2'],
+        [r'$g(t)$, $h(y)$', r'a piece with only $t$ / only $y$', 'B1, B3, B4'],
+        [r'$\mu$', 'the multiply-everything factor', 'B2, B4'],
+        [r'$C$', 'the one constant (1st order)', 'B1–B4'],
+        [r'$c_1,\ c_2$', 'the two constants (2nd order)', 'B5–B7, D2'],
+        [r'$A,\ B,\ D$', 'unknown numbers in a guess', 'B6'],
+    ])
+    D.P(r'And every method starts with **Write** (put it in its form) and ends with **Plug in** (use the conditions).')
 
     D.P('**Step 3: fix the constants.** Every method gives a **general solution**: a formula with unknown constants in it.')
     D.L([r'1st order → one constant, $C$. One condition, like $y(1)=2$, pins it down.',
@@ -106,7 +82,7 @@ def build(D):
          r'But $t^3$ and $e^t$ are in front, not numbers. That’s the “$t$ in front” case → ' + link('B7', 'b7') + ' (once they give you one solution).'),
        S(r'(b) $y^2$ is not power 1, so nonlinear. But it splits: $\frac{1}{t^3}\cdot y^2$ is a $t$-part times a $y$-part → ' + link('B1', 'b1') + '.'),
        S(r'(c) 2nd order, linear, numbers in front. Right side is $10$, not $0$ → ' + link('B6', 'b6') + '.'),
-       S(r'(d) 1st order, linear ($a=5$, $f=50$) → ' + link('B2', 'b2') + r'. It has no $t$, so it’s also autonomous, and B1 works too: $\frac{di}{50-5i}=dt$.'),
+       S(r'(d) 1st order, linear ($p=5$, $f=50$) → ' + link('B2', 'b2') + r'. It has no $t$, so it’s also autonomous, and B1 works too: $\frac{di}{50-5i}=dt$.'),
        S(r'(e) Solve for $y\prime$: $y\prime=\frac{t-y}{t+y}$. $y$ is in a denominator, so nonlinear, and it won’t split. '
          r'Test $M=t-y$, $N=-(t+y)$: both partials are $-1$ → exact, ' + link('B3', 'b3') + '.')],
       r'(a) B7. (b) B1. (c) B6. (d) B2 (or B1). (e) B3.',

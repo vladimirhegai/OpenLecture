@@ -1,5 +1,10 @@
-r"""Test 2 - Question 4: functions of a continuous random variable and their distributions (Lectures 12-15, Tutorial 6)."""
-from math import erf, exp, log, sqrt, pi
+r"""Test 2 - Question 4: functions of a continuous random variable and their distributions (Lectures 12-15, Tutorial 6).
+
+Layout (REWRITE_PLAN.md): you'll see -> the move -> steps -> Case 1-5 (formula, short example, full example
+in a closed card, shortcut card) -> practice. Step words in every case and solution: Spot, Range, Invert,
+Accumulate, Differentiate (DAD = Range, Accumulate, Differentiate), Jump for a flat piece.
+"""
+from math import acos, erf, exp, log, pi, sqrt
 
 from lib226 import Doc, S, cite
 
@@ -11,358 +16,341 @@ def Phi(z):
     return 0.5 * (1 + erf(z / sqrt(2)))
 
 
-D.P('**Lectures 12–15 · Tutorial 6.** Functions of a continuous random variable: what kind of random variable '
-    '$Y=g(X)$ is, and how to find its CDF and PDF.',
+D.P(r'**Lectures 12–15 · Tutorial 6.** You know $X$. Find the CDF and PDF of a new random variable $Y=g(X)$.',
     cites=cite('L13', 5) + cite('L14', 5) + cite('L15', 5) + cite('T6', 1))
 
 # =====================================================================================================
-D.H('Topic 1: What kind of random variable is $Y=g(X)$?')
-D.P('You know the distribution of $X$. A new random variable is made from it: $Y=g(X)$ (power $=X^2$, a clipped voltage, a quantizer…).\n\n'
-    'Before computing anything, decide **what kind** $Y$ is: discrete, continuous or mixed. That decides the answer\'s shape.')
-D.REMIND(r'''**What you need from Questions 1–2**
+D.H('Question 4 in plain words')
+D.P(r'**You’ll see:** “$X$ is … Find the CDF and PDF of $Y=g(X)$.” For example:')
+D.EQ(r'X\sim U(-1,1),\qquad Y=X^3')
+D.P(r'**The move: always go through the CDF.** Three steps, every time:')
+D.EQ(r'\text{Range}\ \longrightarrow\ F_Y(y)=P\big(g(X)\le y\big)\ \longrightarrow\ f_Y(y)=\frac{d}{dy}F_Y(y)')
+D.L([r'**Range:** where can $Y$ land? Below that, $F_Y=0$. Above it, $F_Y=1$.',
+     r'**Accumulate:** rewrite “$g(X)\le y$” as a statement about $X$, then use $X$’s CDF.',
+     r'**Differentiate:** the PDF is the slope of the CDF.'])
+D.P(r'**Which case?** Look at the shape of $g$:')
+D.T(['$g$ looks like', 'Example', 'Go to'],
+    [[r'$X$ discrete, or $g$ a staircase', r'$X^2$ of a die', 'Case 1'],
+     ['only goes up', r'$X^3$, $e^X$', 'Case 2'],
+     ['only goes down', r'$-3X+2$, $-\ln X$', 'Case 3'],
+     ['turns around', r'$X^2$, $|X|$, $\cos X$', 'Case 4'],
+     ['goes flat somewhere', r'$\max\{X,0\}$', 'Case 5']])
 
-- **CDF:** $F_Y(y)=P(Y\le y)$, for every real $y$. It goes from $0$ to $1$ and never decreases.
-- **Jump** in a CDF at $c$ = $P(Y=c)$. No jumps → continuous; only jumps → discrete; both → **mixed**.
-- **Continuous $X$:** $P(X=x)=0$, so $<$ and $\le$ give the same probability.
-- **PDF from CDF:** $f_Y(y)=\dfrac{d}{dy}F_Y(y)$.
-- **CDFs you will plug in all the time:**
-  - $X\sim U(a,b)$: $F_X(x)=\dfrac{x-a}{b-a}$ for $a\le x\le b$ (area = width × height $\tfrac{1}{b-a}$).
-  - $X\sim$ Exp$(\lambda)$: $F_X(x)=1-e^{-\lambda x}$ for $x\ge0$, so $P(X>x)=e^{-\lambda x}$.
-  - $X\sim N(\mu,\sigma^2)$: $F_X(x)=\Phi\!\left(\frac{x-\mu}{\sigma}\right)$, and $\Phi(-z)=1-\Phi(z)$.''', cites=cite('L11', 1))
-D.T(['$X$', 'shape of $g$', '$Y$ is', 'Lecture example'],
-    [['discrete', 'anything', '**discrete**', '$Y=2X+1$'],
-     ['continuous', 'a staircase (few output values)', '**discrete**', '1-bit converter'],
-     ['continuous', 'no flat pieces', '**continuous**', '$Y=X^2$, $Y=X^3$'],
-     ['continuous', 'flat on some interval', '**mixed**', '$Y=\\max\\{X,0\\}$']], cites=cite('L14', 1))
-D.L([r'**Discrete $X$:** $Y$ can only take the values $g(x_1),g(x_2),\dots$, so it is discrete. Several $x$ may give the **same** $y$: add their probabilities.',
-     r'**Flat piece:** if $g(x)=c$ for all $x$ in $[a,b]$, then $P(Y=c)\ge P(a\le X\le b)>0$. That is a point with positive probability: a **jump** in $F_Y$.',
-     r'**No flat pieces** ($g^{\prime}(x)$ is not $0$ on a whole interval): $Y$ is continuous.'], cites=cite('L13', 5) + cite('L14', 4))
-D.EQ(r'p_Y(y)=P(g(X)=y)=\sum_{x:\;g(x)=y}p_X(x)', cites=cite('L13', 5))
-D.EX('Discrete in, discrete out',
-     r'The number of failed packet transmissions $X$ has $p_X(0)=0.4,\ p_X(1)=0.3,\ p_X(2)=0.2,\ p_X(3)=0.1$. '
-     r'The retransmission cost is $Y=2X+1$, and the "distance from one failure" is $W=|X-1|$. Find the PMFs of $Y$ and $W$.',
-     [S('**Values of $Y$:** $g(x)=2x+1$ sends $0,1,2,3$ to $1,3,5,7$. No two $x$ share a $y$, so the probabilities just move.',
-        r'p_Y(1)=0.4,\quad p_Y(3)=0.3,\quad p_Y(5)=0.2,\quad p_Y(7)=0.1'),
-      S(r'**Values of $W$:** $x=0\to1$, $x=1\to0$, $x=2\to1$, $x=3\to2$. Now $x=0$ and $x=2$ **both** give $W=1$.',
-        r'\{W=1\}=\{X=0\}\cup\{X=2\}'),
-      S('**Add** the probabilities of every $x$ that lands on the same $w$.',
-        r'p_W(0)=0.3,\quad p_W(1)=0.4+0.2=0.6,\quad p_W(2)=0.1'),
-      S('Check: each PMF adds to 1.', r'0.3+0.6+0.1=1\;\checkmark')],
-     r'$p_Y$: $0.4,0.3,0.2,0.1$ at $1,3,5,7$. $\;p_W(0)=0.3,\ p_W(1)=0.6,\ p_W(2)=0.1$.', cites=cite('L13', 5))
-D.EX('Clipping makes a mixed random variable',
-     r'$X\sim U(-1,1)$ and $Y=\max\{X,0\}$ (a half-wave rectifier). Find the CDF of $Y$. What kind of random variable is $Y$?',
-     [S('**Range:** negative $X$ become $0$, positive $X$ stay. So $Y$ lives in $[0,1]$.', r'R_Y=[0,1]'),
-      S('**CDF, $y<0$:** $Y\\ge0$ always, so $Y\\le y$ is impossible.', r'F_Y(y)=0'),
-      S(r'**CDF, $0\le y\le1$:** $\max\{X,0\}\le y$ exactly when $X\le y$ (the $0$ is already $\le y$).',
-        r'F_Y(y)=P(X\le y)=\int_{-1}^{y}\tfrac12\,dx=\frac{y+1}{2}'),
-      S('**CDF, $y>1$:** $Y\\le1$ always.', r'F_Y(y)=1'),
-      S(r'**Kind:** at $y=0$ the CDF jumps from $0$ to $\tfrac12$. The whole interval $-1<X\le0$ is squashed onto $Y=0$.',
-        r'P(Y=0)=P(X\le0)=\tfrac12'),
-      S('Between $0$ and $1$ it rises smoothly, so $Y$ has a continuous part too: **mixed**.',
-        r'F_Y(y)=\begin{cases}0,&y<0\\ \dfrac{y+1}{2},&0\le y\le1\\ 1,&y>1\end{cases}')],
-     r'$F_Y(y)=0$ for $y<0$, $\tfrac{y+1}{2}$ for $0\le y\le1$, $1$ for $y>1$. Mixed: $P(Y=0)=\tfrac12$ plus density $\tfrac12$ on $(0,1)$.',
-     cites=cite('L14', 2, 3))
-D.GRAPH(['title "The flat piece of $g$ …"', 'x -1.2 1.2 label="$x$" height=200', 'y -0.2 1.15 label="$y$"',
-         'curve "max(x,0)" from=-1 to=1 color=1 label="$g(x)=\\max(x,0)$"',
-         'region "(x>-1)*(x<0)*(y>-0.07)*(y<0.07)" color=4 label="all these $x$ give $Y=0$ (probability $\\tfrac12$)"'],
-        intro='A flat piece of $g$ collects a whole interval of $X$ onto one value of $Y$:')
-D.GRAPH(['title "… becomes a jump in $F_Y$"', 'x -0.6 1.5 label="$y$" height=200', 'y 0 1.12 label="$F_Y(y)$"',
-         'segment "-0.6" "0" "0" "0" color=2', 'curve "(x+1)/2" from=0 to=1 color=2', 'segment "1" "1" "1.5" "1" color=2',
-         'point "0" "0.5" color=2', 'segment "0" "0" "0" "0.5" color=2 dash', 'text "0.42" "0.25" "jump $\\tfrac12=P(Y=0)$"'])
-D.TRY('Squaring a discrete variable',
-      r'$X$ is equally likely to be $-2,-1,0,1,2$. Find the PMF of $Y=X^2$.',
-      [S(r'**Values:** $(-2)^2=4,\ (-1)^2=1,\ 0^2=0,\ 1^2=1,\ 2^2=4$.', r'R_Y=\{0,1,4\}'),
-       S('**Add** the probabilities that land on the same value.',
-         r'p_Y(0)=\tfrac15,\quad p_Y(1)=\tfrac15+\tfrac15=\tfrac25,\quad p_Y(4)=\tfrac25')],
-      r'$p_Y(0)=\tfrac15,\ p_Y(1)=\tfrac25,\ p_Y(4)=\tfrac25$', diff='introductory')
-D.TRY('A 3-level quantizer',
-      r'$X\sim U(-1,1)$ is fed to a quantizer: $Y=-1$ if $X<-0.5$, $Y=0$ if $-0.5\le X\le0.5$, $Y=1$ if $X>0.5$. '
-      r'What kind of random variable is $Y$? Find its distribution.',
-      [S('**Kind:** $g$ is a staircase with only three output values, so $Y$ is **discrete**.', r'R_Y=\{-1,0,1\}'),
-       S('**Each value** = probability of the $x$-interval that maps to it (uniform: length × $\\tfrac12$).',
-         r'P(Y=-1)=P(X<-0.5)=0.5\cdot\tfrac12=\tfrac14'),
-       S('Same for the other two.', r'P(Y=0)=1\cdot\tfrac12=\tfrac12,\qquad P(Y=1)=\tfrac14')],
-      r'Discrete: $P(Y=-1)=\tfrac14,\ P(Y=0)=\tfrac12,\ P(Y=1)=\tfrac14$.', cites=cite('L13', 6))
-D.TRY('A saturating amplifier',
-      r'$X\sim U(0,3)$ and the amplifier output saturates at 2: $Y=\min\{X,2\}$. Find $F_Y(y)$ and $P(Y=2)$.',
-      [S('**Range:** values above 2 are cut to 2.', r'R_Y=[0,2]'),
-       S(r'**CDF, $0\le y<2$:** $\min\{X,2\}\le y$ exactly when $X\le y$ (since $2>y$).', r'F_Y(y)=P(X\le y)=\frac{y}{3}'),
-       S('**CDF, $y\\ge2$:** $Y\\le2$ always.', r'F_Y(y)=1'),
-       S('**Jump at 2:** just below 2 the CDF is $\\tfrac23$, at 2 it is 1. The flat piece $X\\ge2$ is collected at $Y=2$.',
-         r'P(Y=2)=P(X\ge2)=\tfrac13'),
-       S('So $Y$ is **mixed**.', r'F_Y(y)=\begin{cases}0,&y<0\\ y/3,&0\le y<2\\ 1,&y\ge2\end{cases}')],
-      r'$F_Y=0$ ($y<0$), $\tfrac y3$ ($0\le y<2$), $1$ ($y\ge2$); $P(Y=2)=\tfrac13$, mixed.')
+D.P(r'**First, spot what type $Y$ is.** It tells you what the answer looks like:')
+D.L([r'**Discrete** (a PMF): $X$ discrete, or $g$ a staircase. Example: a 1-bit converter, $B=0$ or $1$.',
+     r'**Continuous** (a PDF): $X$ continuous and $g$ has no flat piece. Example: $X^3$.',
+     r'**Mixed** (a jump and a slope): $g$ is flat on some interval. Example: $\max\{X,0\}$.'], cites=cite('L14', 1))
 
 # =====================================================================================================
-D.H('Topic 2: Monotonic $g$: the CDF method')
-D.P('If $g$ only goes **up** (or only **down**), every $y$ comes from exactly one $x=g^{-1}(y)$.\n\n'
-    'Then the event "$Y\\le y$" is just an event about $X$, and you can read it off $F_X$.')
-D.REMIND(r'''**Calculus and algebra you need here**
+D.H('Case 1: discrete Y (add what lands on the same value)')
+D.P(r'**You’ll see:** $X$ takes a list of values (or $g$ is a staircase). Find the PMF of $Y$.')
+D.P(r'**The move:** push each value of $X$ through $g$. If several $x$ land on the same $y$, **add** their chances:')
+D.EQ(r'p_Y(y)=\sum_{x:\ g(x)=y}p_X(x)', cites=cite('L13', 5))
+D.P('**Short example:** $X$ equally likely $-2,-1,0,1,2$, and $Y=X^2$:')
+D.EQ(r'(\pm1)^2=1\quad\Longrightarrow\quad p_Y(1)=\frac15+\frac15=\frac25')
+D.CARD(r'Full example (like Lecture 13): a 3-level quantizer',
+       [(r'$X\sim U(-1,1)$. $Y=-1$ if $X<-0.5$, $Y=0$ if $-0.5\le X\le0.5$, $Y=1$ if $X>0.5$.', ''),
+        (r'**Spot:** $g$ is a staircase with three outputs, so $Y$ is **discrete**.', r'Y\in\{-1,\,0,\,1\}'),
+        (r'Each value gets the chance of its $x$-interval: length × height $\tfrac12$.',
+         (r'P(Y=-1)=P(X<-0.5)=0.5\cdot\frac12=\frac14', r'P(Y=0)=1\cdot\frac12=\frac12', r'P(Y=1)=\frac14')),
+        (r'**Check:** they add to 1.', r'\frac14+\frac12+\frac14=1')],
+       r'p_Y(-1)=\frac14,\quad p_Y(0)=\frac12,\quad p_Y(1)=\frac14', cites=cite('L13', 6))
 
-| function of $y$ | derivative |
-|---|---|
-| $y^n$ (incl. $\sqrt y=y^{1/2}$, $\sqrt[3]y=y^{1/3}$) | $n\,y^{n-1}$ (so $\tfrac{1}{2\sqrt y}$, $\tfrac{1}{3\sqrt[3]{y^2}}$) |
-| $\ln y$ | $\dfrac1y$ |
-| $e^{ay}$ | $a\,e^{ay}$ |
-| $\arccos y$ | $-\dfrac{1}{\sqrt{1-y^2}}$ |
-| **chain rule:** $F(h(y))$ | $F^{\prime}(h(y))\,h^{\prime}(y)=f(h(y))\,h^{\prime}(y)$ |
-
-- **An inequality flips** when you multiply/divide by a negative number: $-2x\le y\iff x\ge-\tfrac y2$.
-- It also flips when you apply a **decreasing** function: $e^{-x}\le y\iff -x\le\ln y\iff x\ge-\ln y$.''')
-D.EQ(r'g\text{ increasing:}\quad F_Y(y)=P(X\le g^{-1}(y))=F_X\!\left(g^{-1}(y)\right)', cites=cite('L14', 5))
-D.EQ(r'g\text{ decreasing:}\quad F_Y(y)=P(X\ge g^{-1}(y))=1-F_X\!\left(g^{-1}(y)\right)', cites=cite('L15', 1, 2))
-D.P('**The method** (every solution in this note follows it):')
-D.L(['**Range:** where can $Y$ be? Below the range $F_Y=0$, above it $F_Y=1$.',
-     '**Invert:** solve $y=g(x)$ for $x=g^{-1}(y)$. Increasing or decreasing?',
-     '**CDF:** rewrite $\\{g(X)\\le y\\}$ as an event about $X$ (flip the inequality if $g$ is decreasing), then use $F_X$.',
-     '**PDF:** differentiate, $f_Y(y)=F_Y^{\\prime}(y)$, inside the range; $0$ outside.'], ordered=True)
-D.CO('tip', r'''**Shortcut to check your PDF** (the chain rule applied to the two formulas above):
-
-$$
-f_Y(y)=f_X\!\left(g^{-1}(y)\right)\left|\frac{d}{dy}g^{-1}(y)\right|
-$$
-
-'''
-            r'The absolute value covers the decreasing case, where the derivative of $1-F_X(g^{-1}(y))$ gets a minus sign that cancels the negative slope. '
-            r'Show the CDF steps on the test; use this to check.')
-D.EX('Cubing a uniform',
-     r'$X\sim U(-1,1)$ and $Y=X^3$. Find the CDF and PDF of $Y$.',
-     [S('**Range:** $x^3$ maps $[-1,1]$ onto $[-1,1]$.', r'R_Y=[-1,1]'),
-      S('**Invert:** $y=x^3$ is increasing on all of $\\mathbb R$.', r'g^{-1}(y)=\sqrt[3]{y}'),
-      S(r'**CDF:** $X^3\le y\iff X\le\sqrt[3]y$. Plug into $F_X(x)=\tfrac{x+1}{2}$ for $-1\le x\le1$.',
-        r'F_Y(y)=F_X(\sqrt[3]y)=\frac{\sqrt[3]{y}+1}{2},\qquad -1\le y\le1'),
-      S('Outside the range.', r'F_Y(y)=\begin{cases}0,&y<-1\\ \dfrac{\sqrt[3]y+1}{2},&-1\le y\le1\\ 1,&y>1\end{cases}'),
-      S(r'**PDF:** $\frac{d}{dy}y^{1/3}=\frac13y^{-2/3}$. Not defined at $y=0$, which does not matter (one point).',
-        r'f_Y(y)=\frac{1}{6\sqrt[3]{y^2}},\qquad -1<y<1,\ y\ne0'),
-      S('Check with the shortcut: $f_X=\\tfrac12$ and $\\left|\\tfrac{d}{dy}y^{1/3}\\right|=\\tfrac{1}{3\\sqrt[3]{y^2}}$.',
-        r'\tfrac12\cdot\frac{1}{3\sqrt[3]{y^2}}=\frac{1}{6\sqrt[3]{y^2}}\;\checkmark')],
-     r'$F_Y(y)=\dfrac{\sqrt[3]y+1}{2}$ on $[-1,1]$; $f_Y(y)=\dfrac{1}{6\sqrt[3]{y^2}}$ for $-1<y<1$.', cites=cite('L14', 6, 7))
-D.GRAPH(['title "Cubing squeezes values toward 0, so the density piles up there"',
-         'x -1.15 1.15 label="$y$" height=230', 'y 0 2.6 label="density"',
-         'hline "0.5" color=1 label="$f_X=\\tfrac12$ (before cubing)"',
-         'curve "1/(6*abs(x)^(2/3))" from=-1 to=-0.004 color=2',
-         'curve "1/(6*abs(x)^(2/3))" from=0.004 to=1 color=2 label="$f_Y(y)$ for $Y=X^3$"'],
-        intro='Both densities have area 1. Numbers near 0 get much closer to 0 when cubed ($0.5^3=0.125$), so $Y$ crowds there:')
-D.EX('A linear function $Y=aX+b$',
-     r'$X$ is continuous with CDF $F_X$ and PDF $f_X$. Write the CDF and PDF of $Y=aX+b$ in terms of $F_X$ and $f_X$.',
-     [S(r'**$a>0$ (increasing):** divide by $a$, the inequality stays.',
-        r'F_Y(y)=P\!\left(X\le\tfrac{y-b}{a}\right)=F_X\!\left(\tfrac{y-b}{a}\right)'),
-      S(r'**$a<0$ (decreasing):** dividing by $a<0$ **flips** the inequality.',
-        r'F_Y(y)=P\!\left(X\ge\tfrac{y-b}{a}\right)=1-F_X\!\left(\tfrac{y-b}{a}\right)'),
-      S('**PDF:** differentiate; the chain rule brings out $\\tfrac1a$ (and a minus sign when $a<0$). Both cases together:',
-        r'f_Y(y)=\frac{1}{|a|}\,f_X\!\left(\frac{y-b}{a}\right)'),
-      S('**$a=0$:** $Y=b$ always. That is a constant, a discrete random variable with $P(Y=b)=1$.',
-        r'F_Y(y)=\begin{cases}0,&y<b\\1,&y\ge b\end{cases}')],
-     r'$a>0$: $F_Y=F_X(\tfrac{y-b}{a})$; $a<0$: $F_Y=1-F_X(\tfrac{y-b}{a})$; $f_Y(y)=\tfrac{1}{|a|}f_X(\tfrac{y-b}{a})$.',
-     cites=cite('L15', 2))
-D.TRY('Exponential of a uniform · Tutorial 6 Q3',
-      r'$X\sim U(0,1)$. Find the PDF of $Y=e^X$.',
-      [S('**Range:** $e^0=1$ to $e^1=e$.', r'R_Y=(1,e)'),
-       S('**Invert:** $e^x$ is increasing.', r'g^{-1}(y)=\ln y'),
-       S('**CDF:** $e^X\\le y\\iff X\\le\\ln y$, and $F_X(x)=x$ on $[0,1]$.',
-         r'F_Y(y)=\begin{cases}0,&y<1\\ \ln y,&1\le y\le e\\ 1,&y>e\end{cases}'),
-       S('**PDF:** differentiate $\\ln y$.', r'f_Y(y)=\begin{cases}\dfrac1y,&1<y<e\\ 0,&\text{otherwise}\end{cases}')],
-      r'$f_Y(y)=\dfrac1y$ for $1<y<e$, $0$ otherwise.', diff='introductory', cites=cite('T6', 1))
-D.TRY('Log of an exponential · Tutorial 6 Q2',
-      r'$X\sim$ Exp$(1)$. Find the PDF of $Y=\ln X$ (natural log).',
-      [S('**Range:** $X$ runs over $(0,\\infty)$, so $\\ln X$ runs over all real numbers.', r'R_Y=(-\infty,\infty)'),
-       S('**Invert:** $\\ln x$ is increasing.', r'g^{-1}(y)=e^y'),
-       S('**CDF:** $\\ln X\\le y\\iff X\\le e^y$. Use $F_X(x)=1-e^{-x}$.', r'F_Y(y)=1-e^{-e^{y}},\qquad -\infty<y<\infty'),
-       S('**PDF:** chain rule, the inner derivative of $-e^{y}$ is $-e^y$.',
-         r'f_Y(y)=e^{-e^{y}}\cdot e^{y}=e^{\,y-e^{y}},\qquad -\infty<y<\infty')],
+# =====================================================================================================
+D.H('Case 2: g only goes up')
+D.P(r'**You’ll see:** $Y=X^3$, $e^X$, $\ln X$, $\sqrt X$, $aX+b$ with $a>0$.')
+D.P(r'**The move:** an increasing $g$ keeps the $\le$. So $g(X)\le y$ is just $X\le g^{-1}(y)$:')
+D.EQ(r'F_Y(y)=F_X\big(g^{-1}(y)\big)', cites=cite('L14', 5))
+D.P('**Steps**')
+D.L([r'**Spot:** $g$ only goes up.',
+     r'**Range:** push the ends of $X$’s range through $g$.',
+     r'**Invert:** solve $y=g(x)$ for $x$. That’s $g^{-1}(y)$.',
+     r'**Accumulate:** $F_Y(y)=F_X(g^{-1}(y))$ inside the range, $0$ below, $1$ above.',
+     r'**Differentiate:** $f_Y(y)=F_Y^{\prime}(y)$.'], ordered=True)
+D.P(r'**Short example:** $X\sim U(0,1)$ (so $F_X(x)=x$), $Y=e^X$:')
+D.EQ(r'F_Y(y)=F_X(\ln y)=\ln y\quad\Longrightarrow\quad f_Y(y)=\frac1y,\qquad 1<y<e')
+D.CARD(r'Full example (Lecture 14): $\;X\sim U(-1,1)$, $\;Y=X^3$',
+       [(r'**Spot:** $x^3$ only goes up. $X$ is continuous, so $Y$ is continuous.', r'g(x)=x^3'),
+        (r'**Range:** $(-1)^3=-1$ and $1^3=1$.', r'-1\le Y\le1'),
+        (r'**Invert.**', r'y=x^3\quad\Longrightarrow\quad x=\sqrt[3]{y}'),
+        (r'**Accumulate:** $X$’s CDF is $F_X(x)=\dfrac{x+1}{2}$ on $[-1,1]$. Put $\sqrt[3]y$ in for $x$.',
+         r'F_Y(y)=\begin{cases}0,&y<-1\\ \dfrac{\sqrt[3]{y}+1}{2},&-1\le y\le1\\ 1,&y>1\end{cases}'),
+        (r'**Differentiate:** the derivative of $y^{1/3}$ is $\tfrac13y^{-2/3}$.', r'f_Y(y)=\frac12\cdot\frac13\,y^{-2/3}=\frac{1}{6\,y^{2/3}},\qquad -1<y<1')],
+       r'f_Y(y)=\frac{1}{6\,y^{2/3}}\ \ \text{on }(-1,1),\quad 0\ \text{otherwise}', cites=cite('L14', 6, 7))
+D.CARD(r'Shortcut (not from the lectures): $\;f_Y(y)=f_X\big(g^{-1}(y)\big)\cdot|\text{slope of }g^{-1}(y)|$',
+       [(r'Skips the CDF. Use it to go faster, or to check your answer. Works when $g$ only goes up **or** only goes down.', r'f_Y(y)=f_X\big(g^{-1}(y)\big)\cdot\Big|\frac{d}{dy}g^{-1}(y)\Big|'),
+        (r'Check on $Y=X^3$: $f_X=\tfrac12$, $g^{-1}(y)=y^{1/3}$, its derivative is $\tfrac13y^{-2/3}$.', r'f_Y(y)=\frac12\cdot\frac13\,y^{-2/3}=\frac{1}{6\,y^{2/3}}\quad\checkmark'),
+        (r'Check on $Y=e^X$, $X\sim U(0,1)$: $g^{-1}(y)=\ln y$, derivative $\tfrac1y$.', r'f_Y(y)=1\cdot\frac1y=\frac1y\quad\checkmark')], numbered=False)
+D.CARD(r'CDFs you’ll plug in (from Question 2)',
+       [(r'Uniform $U(a,b)$:', r'F_X(x)=\frac{x-a}{b-a},\qquad a\le x\le b'),
+        (r'Exponential $(\lambda)$:', (r'F_X(x)=1-e^{-\lambda x},\qquad x\ge0', r'P(X>x)=e^{-\lambda x}')),
+        (r'Gaussian $N(\mu,\sigma^2)$:', (r'F_X(x)=\Phi\Big(\frac{x-\mu}{\sigma}\Big)', r'\Phi(-z)=1-\Phi(z)')),
+        (r'Chain rule, for the **Differentiate** step:', r'\frac{d}{dy}F_X\big(h(y)\big)=f_X\big(h(y)\big)\,h^{\prime}(y)')], cites=cite('L11', 1), numbered=False)
+D.TRY('Case 2 · Log of an exponential · Tutorial 6 Q2',
+      r'$X\sim$ Exp$(1)$. Find the PDF of $Y=\ln X$.',
+      [S(r'**Spot:** $\ln x$ only goes up → Case 2.'),
+       S(r'**Range:** $X$ is anywhere in $(0,\infty)$, so $\ln X$ can be any real number.', r'-\infty<Y<\infty'),
+       S(r'**Invert.**', r'y=\ln x\quad\Longrightarrow\quad x=e^{y}'),
+       S(r'**Accumulate:** plug $e^y$ into $F_X(x)=1-e^{-x}$.', r'F_Y(y)=1-e^{-e^{y}}'),
+       S(r'**Differentiate:** chain rule; the inside $-e^{y}$ has derivative $-e^{y}$.', r'f_Y(y)=e^{y}\,e^{-e^{y}}')],
       r'$f_Y(y)=e^{y}\,e^{-e^{y}}$ for all real $y$.', cites=cite('T6', 1))
-D.TRY('Standardising a normal',
-      r'$X\sim N(\mu,\sigma^2)$. Show that $Z=\dfrac{X-\mu}{\sigma}$ is standard normal, $N(0,1)$.',
-      [S(r'**Type:** $Z=aX+b$ with $a=\tfrac1\sigma>0$ (increasing) and $b=-\tfrac\mu\sigma$. Inverse: $x=\mu+\sigma z$.', r'g^{-1}(z)=\mu+\sigma z'),
-       S('**CDF:** use $F_X(x)=\\Phi\\!\\left(\\tfrac{x-\\mu}{\\sigma}\\right)$.',
-         r'F_Z(z)=F_X(\mu+\sigma z)=\Phi\!\left(\frac{\mu+\sigma z-\mu}{\sigma}\right)=\Phi(z)'),
-       S(r'**PDF:** $f_Z(z)=\sigma f_X(\mu+\sigma z)$; the $\sigma$ cancels the $\tfrac1\sigma$ in front of $f_X$.',
-         r'f_Z(z)=\sigma\cdot\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(\sigma z)^2}{2\sigma^2}}=\frac{1}{\sqrt{2\pi}}e^{-z^2/2}')],
-      r'$F_Z(z)=\Phi(z)$ and $f_Z(z)=\tfrac{1}{\sqrt{2\pi}}e^{-z^2/2}$: $Z\sim N(0,1)$. This is why every normal question goes through the $\Phi$ table.',
-      cites=cite('L11', 1))
 
 # =====================================================================================================
-D.H('Topic 3: Non-monotonic $g$: the DAD method')
-D.P('When $g$ goes up **and** down (like $x^2$ or $\\cos x$), one $y$ comes from several $x$, so there is no single $g^{-1}$.\n\n'
-    'Work straight from the definition $F_Y(y)=P(g(X)\\le y)$. This **DAD** method works for **every** $g$, monotonic or not.')
-D.L(['**Distribution:** find the range of $Y=g(X)$ (use the range of $X$!).',
-     '**Accumulation:** for each case of $y$, find the set of $x$ where $g(x)\\le y$, then add up $X$\'s probability on it: $F_Y(y)=P(g(X)\\le y)$.',
-     '**Differentiation:** $f_Y(y)=\\dfrac{d}{dy}F_Y(y)$ wherever the derivative exists.'], ordered=True, cites=cite('L15', 5))
-D.P('**Finding the $x$-set:** draw $g$, draw a horizontal line at height $y$. '
-    'The $x$-set is wherever the curve is **below** the line. It can be one interval or several.')
-D.GRAPH(['title "The $x$-set $\\{x: g(x)\\le y\\}$ for a wiggly $g$"', 'x -2.2 2.4 label="$x$" height=280', 'y -3.3 3.3 label="$g(x)$"',
-         'slider h -2.6 2.6 1 step=0.05 label="$y$"',
-         'curve "x^3-3*x" from=-2.2 to=2.4 color=1 label="$g(x)$"',
-         'hline "h" color=2 label="height $y$"',
-         'region "(x^3-3*x<=h)*(y>-3.25)*(y<-2.85)" color=4 label="$x$-set: $g(x)\\le y$"'],
-        intro='Drag $y$. At $y=1$ the line cuts the curve at $x_2<x_3<x_4$, and the curve is below the line for $x\\le x_2$ and for $x_3\\le x\\le x_4$:')
-D.EQ(r'F_Y(y)=P(X\le x_2)+P(x_3\le X\le x_4)=F_X(x_2)+F_X(x_4)-F_X(x_3)', cites=cite('L15', 5))
-D.P('Each interval contributes "$F_X$ at its right end minus $F_X$ at its left end". Above the top of the hump the set becomes a single interval again.')
-D.EX('Squaring a uniform',
-     r'$X\sim U(-1,1)$ and $Y=X^2$. Find the CDF and PDF of $Y$.',
-     [S('**Distribution:** $x^2$ on $[-1,1]$ goes from $0$ (at $x=0$) to $1$ (at $x=\\pm1$).', r'R_Y=[0,1]'),
-      S('**Accumulation, $y<0$:** a square is never negative.', r'F_Y(y)=0'),
-      S(r'**Accumulation, $0\le y\le1$:** $x^2\le y\iff -\sqrt y\le x\le\sqrt y$. Uniform: length $2\sqrt y$ × height $\tfrac12$.',
-        r'F_Y(y)=P(-\sqrt y\le X\le\sqrt y)=\int_{-\sqrt y}^{\sqrt y}\tfrac12\,dx=\sqrt y'),
-      S('**Accumulation, $y>1$:** $X^2\\le1$ always.', r'F_Y(y)=1'),
-      S('**Differentiation.**', r'f_Y(y)=\frac{d}{dy}\sqrt y=\frac{1}{2\sqrt y},\qquad 0<y<1')],
-     r'$F_Y(y)=0$ ($y<0$), $\sqrt y$ ($0\le y\le1$), $1$ ($y>1$); $f_Y(y)=\dfrac{1}{2\sqrt y}$ on $(0,1)$.', cites=cite('L15', 3, 4))
+D.H('Case 3: g only goes down')
+D.P(r'**You’ll see:** $Y=-3X+2$ ($aX+b$ with $a<0$), $-\ln X$, $\tfrac1X$ for $X>0$, $e^{-X}$.')
+D.P(r'**The move:** a decreasing $g$ **flips** the $\le$. So $g(X)\le y$ becomes $X\ge g^{-1}(y)$:')
+D.EQ(r'F_Y(y)=1-F_X\big(g^{-1}(y)\big)', cites=cite('L15', 1, 2))
+D.P(r'Same steps as Case 2. Only the **Accumulate** step changes: $1-F_X(\dots)$.')
+D.P(r'**Short example:** $X\sim U(0,1)$, $Y=-\ln X$. $\;-\ln X\le y$ means $X\ge e^{-y}$:')
+D.EQ(r'F_Y(y)=1-F_X(e^{-y})=1-e^{-y}\quad\Longrightarrow\quad f_Y(y)=e^{-y},\qquad y>0')
+D.CARD(r'Full example (Lecture 15): $\;X\sim U(0,1)$, $\;Y=-3X+2$',
+       [(r'**Spot:** $-3x+2$ only goes down (the slope is $-3$).', ''),
+        (r'**Range:** $x=0$ gives $2$, $x=1$ gives $-1$.', r'-1\le Y\le2'),
+        (r'**Invert.**', r'y=-3x+2\quad\Longrightarrow\quad x=\frac{2-y}{3}'),
+        (r'**Accumulate:** dividing by $-3$ flips the $\le$. Then $F_X(x)=x$.',
+         (r'-3X+2\le y\iff X\ge\frac{2-y}{3}', r'F_Y(y)=1-\frac{2-y}{3}=\frac{y+1}{3},\qquad -1\le y\le2')),
+        (r'**Differentiate.**', r'f_Y(y)=\frac13,\qquad -1<y<2')],
+       r'f_Y(y)=\frac13\ \text{ on }(-1,2):\quad Y\sim U(-1,2)', cites=cite('L15', 2))
+D.CARD(r'$Y=aX+b$, all three cases (Lecture 15)',
+       [(r'$a>0$ (goes up, Case 2):', r'F_Y(y)=F_X\Big(\frac{y-b}{a}\Big)'),
+        (r'$a<0$ (goes down, Case 3):', r'F_Y(y)=1-F_X\Big(\frac{y-b}{a}\Big)'),
+        (r'$a=0$: $Y=b$ always, a single step at $b$.', r'F_Y(y)=\begin{cases}0,&y<b\\ 1,&y\ge b\end{cases}')], cites=cite('L15', 2), numbered=False)
+D.CARD(r'Shortcut: a line keeps the family',
+       [(r'Gaussian in, Gaussian out. The mean and variance follow the Question 3 rules.', r'X\sim N(\mu,\sigma^2)\quad\Longrightarrow\quad aX+b\sim N(a\mu+b,\ a^2\sigma^2)'),
+        (r'Uniform in, uniform out: push the two ends through.', r'X\sim U(0,1),\ Y=-3X+2\quad\Longrightarrow\quad Y\sim U(-1,2)')], numbered=False)
+D.CO('warning', r'**Flip the $\le$** whenever you divide by a negative number or undo a decreasing function: $-2x\le y\iff x\ge-\tfrac y2$. '
+     r'Forgetting the flip gives $F_X(\dots)$ instead of $1-F_X(\dots)$.')
+
+# =====================================================================================================
+D.H('Case 4: g turns around (DAD)')
+D.P(r'**You’ll see:** $Y=X^2$, $|X|$, $\cos X$, or a drawn curve with bumps.')
+D.P(r'**The move:** one $y$ can come from **several** $x$, so there’s no single inverse. Instead, find **every** $x$ with $g(x)\le y$, and add up $X$’s chance there:')
+D.EQ(r'F_Y(y)=P\big(X\text{ is in }\{x:\ g(x)\le y\}\big)', cites=cite('L15', 5))
+D.P('**Steps** (the lecture calls them DAD: Distribution, Accumulation, Differentiation)')
+D.L([r'**Range:** where can $Y$ land? Start from $X$’s range.',
+     r'**Accumulate:** draw $g$ and a flat line at height $y$. The $x$-set is wherever the curve is **below** the line. '
+     r'Keep only $x$ that $X$ can take. $F_Y(y)$ = $X$’s chance on that set.',
+     r'**Differentiate:** $f_Y(y)=F_Y^{\prime}(y)$.'], ordered=True)
+D.P(r'**Short example:** $X\sim U(-1,1)$, $Y=X^2$. $\;X^2\le y$ means $-\sqrt y\le X\le\sqrt y$: length $2\sqrt y$, height $\tfrac12$:')
+D.EQ(r'F_Y(y)=2\sqrt y\cdot\frac12=\sqrt y\quad\Longrightarrow\quad f_Y(y)=\frac{1}{2\sqrt y},\qquad 0<y<1')
 D.GRAPH(['title "$Y=X^2$, $X\\sim U(-1,1)$: drag $y$"', 'x -1.3 1.3 label="$x$" height=250', 'y -0.25 1.25 label="$x^2$"',
          'slider h 0 1.2 0.36 step=0.01 label="$y$"',
          'curve "x^2" from=-1 to=1 color=1 label="$g(x)=x^2$"', 'hline "h" color=2',
-         'region "(x*x<=h)*(x>=-1)*(x<=1)*(y>-0.2)*(y<-0.06)" color=4 label="$-\\sqrt y\\le x\\le\\sqrt y$"',
-         'readout "$\\sqrt y$" "sqrt(h)"', 'readout "$F_Y(y)$ = shaded length × $\\tfrac12$" "min(sqrt(h),1)"'])
-D.TRY('Absolute value · Tutorial 6 Q4',
-      r'$X\sim U(-1,1)$. (a) Find $P(|X|>\tfrac12)$. (b) Find the PDF of $Y=|X|$.',
-      [S(r'(a) $|X|>\tfrac12$ means $X<-\tfrac12$ or $X>\tfrac12$: total length $1$, height $\tfrac12$.', r'P(|X|>\tfrac12)=\tfrac12'),
-       S('(b) **Distribution:** $|x|$ on $[-1,1]$ goes from $0$ to $1$.', r'R_Y=[0,1]'),
-       S(r'**Accumulation, $0\le y\le1$:** $|X|\le y\iff -y\le X\le y$, length $2y$.',
-         r'F_Y(y)=2y\cdot\tfrac12=y,\qquad F_Y(y)=\begin{cases}0,&y<0\\ y,&0\le y\le1\\ 1,&y>1\end{cases}'),
-       S('**Differentiation.**', r'f_Y(y)=1,\qquad 0<y<1')],
-      r'(a) $\tfrac12$ (b) $f_Y(y)=1$ on $(0,1)$: $|X|\sim U(0,1)$.', diff='introductory', cites=cite('T6', 1))
-EY = 4 / 3
-D.TRY('Squaring a uniform on $[0,2]$ · Lecture 12',
-      r'$X\sim U[0,2]$, $Y=X^2$. (a) Find the CDF and PDF of $Y$. (b) Use $f_Y$ to compute $E[Y]$, and compare with $E[X^2]=\int x^2f_X(x)\,dx$.',
-      [S('(a) **Distribution:** $0\\le X\\le2$ gives $0\\le Y\\le4$.', r'R_Y=[0,4]'),
-       S(r'**Accumulation, $0\le y\le4$:** $x^2\le y\iff-\sqrt y\le x\le\sqrt y$, but $f_X=0$ for $x<0$, so only $[0,\sqrt y]$ counts.',
-         r'F_Y(y)=\int_0^{\sqrt y}\tfrac12\,dx=\frac{\sqrt y}{2}'),
-       S('Outside the range: $0$ below, $1$ above.', r'F_Y(y)=\begin{cases}0,&y<0\\ \sqrt y/2,&0\le y\le4\\ 1,&y>4\end{cases}'),
-       S('**Differentiation.**', r'f_Y(y)=\frac{1}{4\sqrt y},\qquad 0<y<4'),
-       S('(b) $y\\cdot\\frac{1}{4\\sqrt y}=\\frac{\\sqrt y}{4}$.', r'E[Y]=\int_0^4\frac{\sqrt y}{4}\,dy=\frac14\cdot\frac23\,y^{3/2}\Big|_0^4=\frac43'),
-       S('Directly from $X$, no $f_Y$ needed (the two must match).', r'E[X^2]=\int_0^2x^2\cdot\tfrac12\,dx=\frac{x^3}{6}\Big|_0^2=\frac43\;\checkmark')],
-      r'$F_Y=\tfrac{\sqrt y}{2}$, $f_Y=\dfrac{1}{4\sqrt y}$ on $(0,4)$; $E[Y]=\tfrac43=E[X^2]$.', cites=cite('L12', 3, 4))
-D.TRY('Cosine of a uniform angle · Lecture 15',
-      r'$X\sim U[-\pi,\pi]$ (a random phase). Find the CDF and PDF of $Y=\cos X$. Then write $F_Y$ for a **general** continuous $X$ on $[-\pi,\pi]$ in terms of $F_X$.',
-      [S('**Distribution:** cosine takes every value in $[-1,1]$.', r'R_Y=[-1,1]'),
-       S(r'**Accumulation, $-1\le y\le1$:** on $[-\pi,\pi]$, $\cos x$ is largest at $0$ and falls toward $\pm\pi$. '
-         r'So $\cos x\le y$ on the two outer pieces, past $\pm\arccos y$.',
-         r'\{\cos X\le y\}=\{X\le-\arccos y\}\cup\{X\ge\arccos y\}'),
-       S(r'Uniform: the two pieces have total length $2(\pi-\arccos y)$, height $\tfrac{1}{2\pi}$.',
-         r'F_Y(y)=\frac{2(\pi-\arccos y)}{2\pi}=1-\frac{\arccos y}{\pi}'),
-       S('Outside the range.', r'F_Y(y)=\begin{cases}0,&y<-1\\ 1-\dfrac{\arccos y}{\pi},&-1\le y\le1\\ 1,&y>1\end{cases}'),
-       S(r'**Differentiation:** $\frac{d}{dy}\arccos y=-\frac{1}{\sqrt{1-y^2}}$.', r'f_Y(y)=\frac{1}{\pi\sqrt{1-y^2}},\qquad -1<y<1'),
-       S(r'**General $X$:** same $x$-set, written with $F_X$.', r'F_Y(y)=F_X(-\arccos y)+1-F_X(\arccos y),\qquad -1\le y\le1')],
-      r'$F_Y(y)=1-\dfrac{\arccos y}{\pi}$, $f_Y(y)=\dfrac{1}{\pi\sqrt{1-y^2}}$ on $(-1,1)$. General: $F_X(-\arccos y)+1-F_X(\arccos y)$.',
-      diff='advanced', cites=cite('L15', 6))
+         'region "(x*x<=h)*(x>=-1)*(x<=1)*(y>-0.2)*(y<-0.06)" color=4 label="$x$-set: $-\\sqrt y\\le x\\le\\sqrt y$"',
+         'readout "$F_Y(y)$ = shaded length × $\\tfrac12$" "min(sqrt(h),1)"'],
+        intro='**Finding the $x$-set:** drag $y$. The shaded $x$-set is where the curve is below the line.')
+D.CARD(r'Full example (Lecture 15): $\;X\sim U(-1,1)$, $\;Y=X^2$, all three pieces',
+       [(r'**Range:** $X$ is in $[-1,1]$, so $X^2$ is in $[0,1]$.', r'0\le Y\le1'),
+        (r'**Accumulate**, $y<0$: a square is never negative.', r'F_Y(y)=0'),
+        (r'**Accumulate**, $0\le y\le1$: the $x$-set is $[-\sqrt y,\sqrt y]$, inside $[-1,1]$.',
+         r'F_Y(y)=\int_{-\sqrt y}^{\sqrt y}\frac12\,dx=\sqrt y'),
+        (r'**Accumulate**, $y>1$: $X^2\le1$ always.', r'F_Y(y)=1'),
+        (r'**Differentiate** the middle piece.', r'f_Y(y)=\frac{1}{2\sqrt y},\qquad 0<y<1')],
+       r'F_Y(y)=\sqrt y\ \text{ on }[0,1];\qquad f_Y(y)=\frac{1}{2\sqrt y}\ \text{ on }(0,1)', cites=cite('L15', 3, 4))
+D.CARD(r'Full example (Tutorial 6 Q4): $\;X\sim U(-1,1)$, $\;Y=|X|$',
+       [(r'**Range:** $|x|$ on $[-1,1]$ runs from $0$ to $1$.', r'0\le Y\le1'),
+        (r'**Accumulate:** $|X|\le y$ means $-y\le X\le y$. Length $2y$, height $\tfrac12$.', r'F_Y(y)=2y\cdot\frac12=y'),
+        (r'**Differentiate.**', r'f_Y(y)=1,\qquad 0<y<1'),
+        (r'Part (a) asked $P(|X|>\tfrac12)$: that’s $1-F_Y(\tfrac12)$.', r'P\big(|X|>\tfrac12\big)=1-\frac12=\frac12')],
+       r'f_Y(y)=1\ \text{ on }(0,1):\quad |X|\sim U(0,1)', cites=cite('T6', 1))
+D.CARD(r'Shortcut (not from the lectures): $\;Y=X^2$ and $\;Y=|X|$',
+       [(r'Both $\pm\sqrt y$ land on the same $y$, so add both:', r'Y=X^2:\qquad f_Y(y)=\frac{f_X(\sqrt y)+f_X(-\sqrt y)}{2\sqrt y},\quad y>0'),
+        (r'Both $\pm y$ land on the same $y$:', r'Y=|X|:\qquad f_Y(y)=f_X(y)+f_X(-y),\quad y>0'),
+        (r'Check on $X\sim U(-1,1)$ ($f_X=\tfrac12$):', r'\frac{\frac12+\frac12}{2\sqrt y}=\frac{1}{2\sqrt y}\quad\checkmark'),
+        (r'If $X$ can’t be negative, drop the $f_X(-\dots)$ term (it’s $0$).', '')], numbered=False)
+D.CO('warning', r'**Keep only $x$ that $X$ can take.** $X\sim U(-1,2)$, $Y=X^2$, $y=4$: the $x$-set $[-2,2]$ is cut down to $[-1,2]$.')
+D.TRY('Case 4 · Squaring a uniform on $[0,2]$ · Lecture 12',
+      r'$X\sim U[0,2]$ and $Y=X^2$. (a) Find the CDF and PDF of $Y$. (b) Find $E[Y]$ from $f_Y$, and check it against $E[X^2]$.',
+      [S(r'**Spot:** $x^2$ turns around at $0$ → Case 4 (here $X\ge0$, so only one side is used).'),
+       S(r'**Range:** $0\le X\le2$, so $0\le Y\le4$.', r'0\le Y\le4'),
+       S(r'**Accumulate:** $x^2\le y$ means $-\sqrt y\le x\le\sqrt y$, but $X$ is never negative. Only $[0,\sqrt y]$ counts.',
+         r'F_Y(y)=\sqrt y\cdot\frac12=\frac{\sqrt y}{2},\qquad 0\le y\le4'),
+       S(r'**Differentiate.**', r'f_Y(y)=\frac{1}{4\sqrt y},\qquad 0<y<4'),
+       S(r'(b) Both ways give the same mean.', r'\int_0^4 y\cdot\frac{1}{4\sqrt y}\,dy=\frac43=\int_0^2x^2\cdot\frac12\,dx')],
+      r'$F_Y=\tfrac{\sqrt y}{2}$ on $[0,4]$; $f_Y=\dfrac{1}{4\sqrt y}$ on $(0,4)$; $E[Y]=\tfrac43$ both ways.', cites=cite('L12', 3, 4))
+
+# =====================================================================================================
+D.H('Case 5: g goes flat (a jump: mixed Y)')
+D.P(r'**You’ll see:** clipping, a rectifier, a limiter, a timeout: $\max\{X,0\}$, $\min\{X,1\}$.')
+D.P(r'**The move:** a flat piece at height $c$ sends a whole interval of $X$ to $c$. That’s a **jump** in $F_Y$:')
+D.EQ(r'P(Y=c)=P\big(X\text{ is in the flat part}\big)', cites=cite('L14', 4))
+D.L([r'**Range:** as always.',
+     r'**Jump:** one per flat piece, sized $P(X$ in that piece$)$.',
+     r'**Accumulate** everywhere else, as in Cases 2–4.',
+     r'**Spot:** jumps plus a slope → **mixed**.'], ordered=True)
+D.P(r'**Short example:** $X\sim U(-1,1)$, $Y=\max\{X,0\}$. Every $X\le0$ lands on $0$:')
+D.EQ(r'P(Y=0)=P(X\le0)=\frac12')
+D.CARD(r'Full example (Lecture 14): $\;X\sim U(-1,1)$, $\;Y=\max\{X,0\}$ (a half-wave rectifier)',
+       [(r'**Range:** negative $X$ become $0$, positive $X$ stay.', r'0\le Y\le1'),
+        (r'**Jump** at $0$: the flat part is $X\le0$.', r'P(Y=0)=\frac12'),
+        (r'**Accumulate**, $0\le y\le1$: $\max\{X,0\}\le y$ just means $X\le y$.', r'F_Y(y)=P(X\le y)=\frac{y+1}{2}'),
+        (r'Put the pieces together.', r'F_Y(y)=\begin{cases}0,&y<0\\ \dfrac{y+1}{2},&0\le y\le1\\ 1,&y>1\end{cases}'),
+        (r'**Spot:** a jump of $\tfrac12$ at $0$, then a slope → **mixed**.', '')],
+       r'\text{mixed: }P(Y=0)=\frac12,\ \text{ plus density }\frac12\text{ on }(0,1)', cites=cite('L14', 2, 3))
+D.GRAPH(['title "$F_Y$ for $Y=\\max\\{X,0\\}$: the flat piece becomes a jump"', 'x -0.6 1.5 label="$y$" height=200',
+         'y 0 1.12 label="$F_Y(y)$"',
+         'segment "-0.6" "0" "0" "0" color=2', 'curve "(x+1)/2" from=0 to=1 color=2', 'segment "1" "1" "1.5" "1" color=2',
+         'point "0" "0.5" color=2', 'segment "0" "0" "0" "0.5" color=2 dash', 'text "0.42" "0.25" "jump $\\tfrac12=P(Y=0)$"'],
+        intro='**What does the jump look like?**')
 
 # =====================================================================================================
 D.H('Practice Questions')
-D.P('Test-style questions for Question 4, roughly easy → hard. Every solution follows **Range → CDF → PDF**. Solve on paper first.')
+D.CO('tip', r'''**Question 4 is always one of these.** Spot the shape of $g$, then run its steps:
 
-D.Q('A decreasing linear function',
-    r'$X\sim$ Exp$(\lambda)$. Find the CDF and PDF of $Y=-2X+3$.',
-    [S('**Range:** $X\\ge0$, so $Y=3-2X\\le3$.', r'R_Y=(-\infty,3]'),
-     S('**CDF, $y\\le3$:** $g$ is decreasing; dividing by $-2$ **flips** the inequality.',
-       r'-2X+3\le y\iff X\ge\frac{3-y}{2}'),
-     S('Use $P(X\\ge x)=e^{-\\lambda x}$ (here $x=\\tfrac{3-y}{2}\\ge0$).',
-       r'F_Y(y)=\begin{cases}e^{-\lambda(3-y)/2},&y\le3\\ 1,&y>3\end{cases}'),
-     S('**PDF:** chain rule, the inner derivative of $-\\lambda(3-y)/2$ is $\\tfrac\\lambda2$.',
-       r'f_Y(y)=\frac{\lambda}{2}\,e^{-\lambda(3-y)/2},\qquad y<3')],
-    r'$F_Y(y)=e^{-\lambda(3-y)/2}$ for $y\le3$ (1 above); $f_Y(y)=\tfrac\lambda2e^{-\lambda(3-y)/2}$ for $y<3$.', diff='introductory')
+1. **$X$ discrete / staircase:** add the chances that land on the same value.
+2. **Only up:** Range → Invert → $F_Y=F_X(g^{-1}(y))$ → Differentiate.
+3. **Only down:** same, but $F_Y=1-F_X(g^{-1}(y))$.
+4. **Turns around:** Range → the $x$-set where $g(x)\le y$ → Differentiate (DAD).
+5. **Goes flat:** a jump $P(X$ in the flat part$)$, then accumulate the rest.''')
+D.P('Test-style, easy → hard. Solve on paper first, then open the solution.')
 
-D.Q('Rounding down an exponential',
-    r'$X\sim$ Exp$(\lambda)$ is rounded down to an integer: $Y=\lfloor X\rfloor$. What kind of random variable is $Y$? Find its distribution.',
-    [S('**Kind:** $\\lfloor x\\rfloor$ is a staircase, so $Y$ is **discrete**.', r'R_Y=\{0,1,2,\dots\}'),
-     S('**PMF:** $Y=k$ exactly when $k\\le X<k+1$.', r'P(Y=k)=F_X(k+1)-F_X(k)=e^{-\lambda k}-e^{-\lambda(k+1)}'),
-     S('Factor it.', r'P(Y=k)=\left(e^{-\lambda}\right)^k\left(1-e^{-\lambda}\right),\qquad k=0,1,2,\dots'),
-     S('This is the geometric PMF (counting failures before the first success) with success probability $p=1-e^{-\\lambda}$.',
-       r'\sum_{k\ge0}(e^{-\lambda})^k(1-e^{-\lambda})=\frac{1-e^{-\lambda}}{1-e^{-\lambda}}=1\;\checkmark')],
-    r'Discrete: $P(Y=k)=e^{-\lambda k}(1-e^{-\lambda})$, $k=0,1,\dots$ (geometric with $p=1-e^{-\lambda}$).')
+D.Q('Case 1 · what type is $Y$ · Lecture 13 Examples 1–2',
+    r'$X$ = number of failed packet sends, with $P(X=0,1,2,3)=0.4,\ 0.3,\ 0.2,\ 0.1$. '
+    r'(a) Find the PMF of $Y=2X+1$. (b) Find the PMF of $Z=(X-1)^2$. '
+    r'(c) $V\sim U(0,1)$ goes into a 1-bit converter: $B=0$ if $V<0.5$, $B=1$ if $V\ge0.5$. What type is $B$? Find its PMF.',
+    [S(r'**Type:** $X$ discrete → Case 1. (a) Each $x$ gives a different $y$, so the chances just move.', r'p_Y(1)=0.4,\ \ p_Y(3)=0.3,\ \ p_Y(5)=0.2,\ \ p_Y(7)=0.1'),
+     S(r'(b) **Values:** $x=0,1,2,3$ give $Z=1,0,1,4$.', r'Z\in\{0,1,4\}'),
+     S(r'$x=0$ and $x=2$ both give $Z=1$: **add** them.', r'p_Z(0)=0.3,\quad p_Z(1)=0.4+0.2=0.6,\quad p_Z(4)=0.1'),
+     S(r'(c) **Spot:** a staircase $g$ → **discrete**. Each value gets the chance of its interval.', r'P(B=0)=P(V<0.5)=\frac12,\quad P(B=1)=\frac12')],
+    r'(a) $0.4,0.3,0.2,0.1$ at $1,3,5,7$ (b) $0.3,0.6,0.1$ at $0,1,4$ (c) discrete, $\tfrac12,\tfrac12$.',
+    diff='introductory', cites=cite('L13', 5, 6))
 
-D.Q('A reciprocal on $(1,2)$',
-    r'$X\sim U(1,2)$. Find the CDF and PDF of $Y=\dfrac1X$.',
-    [S('**Range:** $\\tfrac1x$ maps $(1,2)$ onto $(\\tfrac12,1)$.', r'R_Y=\left(\tfrac12,1\right)'),
-     S(r'**CDF:** $\tfrac1x$ is decreasing for $x>0$. Since $X>0$: $\tfrac1X\le y\iff X\ge\tfrac1y$.',
-       r'F_Y(y)=1-F_X\!\left(\tfrac1y\right)=1-\left(\tfrac1y-1\right)=2-\frac1y'),
-     S('Outside the range.', r'F_Y(y)=\begin{cases}0,&y<\frac12\\ 2-\dfrac1y,&\frac12\le y\le1\\ 1,&y>1\end{cases}'),
-     S('**PDF.** Check with the shortcut: $f_X(1/y)\\cdot|{-1/y^2}|=1\\cdot\\tfrac{1}{y^2}$ ✓', r'f_Y(y)=\frac{1}{y^2},\qquad \tfrac12<y<1')],
-    r'$F_Y(y)=2-\tfrac1y$ on $[\tfrac12,1]$; $f_Y(y)=\dfrac{1}{y^2}$ on $(\tfrac12,1)$.')
+D.Q('Case 2 · Exponential of a uniform · Tutorial 6 Q3',
+    r'$X\sim U(0,1)$. Find the CDF and PDF of $Y=e^X$.',
+    [S(r'**Type:** $e^x$ only goes up → Case 2.'),
+     S(r'**Range:** $e^0=1$ to $e^1=e$.', r'1\le Y\le e'),
+     S(r'**Invert.**', r'y=e^{x}\quad\Longrightarrow\quad x=\ln y'),
+     S(r'**Accumulate:** $F_X(x)=x$ on $[0,1]$.', r'F_Y(y)=\ln y,\qquad 1\le y\le e'),
+     S(r'**Differentiate.**', r'f_Y(y)=\frac1y,\qquad 1<y<e')],
+    r'$F_Y=\ln y$ on $[1,e]$ ($0$ below, $1$ above); $f_Y(y)=\dfrac1y$ for $1<y<e$.', diff='introductory', cites=cite('T6', 1))
 
-D.Q('A decaying exponential',
-    r'$X\sim$ Exp$(\lambda)$. Find the CDF and PDF of $Y=e^{-X}$. What happens when $\lambda=1$?',
-    [S('**Range:** $X\\in[0,\\infty)$, so $e^{-X}$ goes from $1$ down toward $0$.', r'R_Y=(0,1]'),
-     S('**CDF, $0<y\\le1$:** $e^{-x}$ is decreasing: take $\\ln$, then multiply by $-1$ (flip).',
-       r'e^{-X}\le y\iff -X\le\ln y\iff X\ge-\ln y'),
-     S('Use $P(X\\ge x)=e^{-\\lambda x}$ with $x=-\\ln y\\ge0$.', r'F_Y(y)=e^{\lambda\ln y}=y^{\lambda}'),
-     S('Outside the range.', r'F_Y(y)=\begin{cases}0,&y\le0\\ y^\lambda,&0<y\le1\\ 1,&y>1\end{cases}'),
-     S('**PDF.** With $\\lambda=1$: $f_Y=1$ on $(0,1)$, so $Y\\sim U(0,1)$.', r'f_Y(y)=\lambda\,y^{\lambda-1},\qquad 0<y<1')],
-    r'$F_Y(y)=y^\lambda$, $f_Y(y)=\lambda y^{\lambda-1}$ on $(0,1)$; for $\lambda=1$, $Y\sim U(0,1)$.')
+D.Q('Case 3 · decreasing $g$',
+    r'(a) $X\sim$ Exp$(\lambda)$. Find the CDF and PDF of $Y=-2X+3$. (b) $X\sim U(0,1)$. Find the CDF and PDF of $Y=-\ln X$.',
+    [S(r'(a) **Type:** slope $-2$, only goes down → Case 3. **Range:** $X\ge0$, so $Y=3-2X\le3$.', r'Y\le3'),
+     S(r'**Invert.**', r'y=-2x+3\quad\Longrightarrow\quad x=\frac{3-y}{2}'),
+     S(r'**Accumulate:** the $\le$ flips. Then $P(X\ge x)=e^{-\lambda x}$.', (r'-2X+3\le y\iff X\ge\frac{3-y}{2}', r'F_Y(y)=e^{-\lambda(3-y)/2},\qquad y\le3')),
+     S(r'**Differentiate** (chain rule: the inside has slope $\tfrac\lambda2$).', r'f_Y(y)=\frac{\lambda}{2}\,e^{-\lambda(3-y)/2},\qquad y<3'),
+     S(r'(b) **Type:** $-\ln x$ only goes down → Case 3. **Range:** $X\in(0,1)$, so $-\ln X\in(0,\infty)$.', r'Y>0'),
+     S(r'**Invert.**', r'y=-\ln x\quad\Longrightarrow\quad x=e^{-y}'),
+     S(r'**Accumulate:** the $\le$ flips, and $P(X\ge t)=1-t$.', r'F_Y(y)=1-e^{-y},\qquad y\ge0'),
+     S(r'**Differentiate.** That’s the Exp$(1)$ PDF.', r'f_Y(y)=e^{-y},\qquad y>0')],
+    r'(a) $F_Y=e^{-\lambda(3-y)/2}$ for $y\le3$, $f_Y=\tfrac\lambda2e^{-\lambda(3-y)/2}$ (b) $F_Y=1-e^{-y}$, $f_Y=e^{-y}$: $Y\sim$ Exp$(1)$.')
+
+g7 = 1 - Phi(1)
+D.Q('Case 2 · a Gaussian through a line · like Lecture 13 sensor',
+    r'A sensor reading is $X\sim N(2,9)$. It is calibrated to $Y=2X-3$. '
+    r'(a) Write $F_Y(y)$ using $\Phi$. (b) What are the mean and variance of $Y$? (c) Find $P(Y>7)$.',
+    [S(r'**Type:** slope $2>0$, only goes up → Case 2.'),
+     S(r'**Invert.**', r'y=2x-3\quad\Longrightarrow\quad x=\frac{y+3}{2}'),
+     S(r'(a) **Accumulate**, then standardise with $\mu=2$, $\sigma=3$.', r'F_Y(y)=\Phi\Big(\frac{\frac{y+3}{2}-2}{3}\Big)=\Phi\Big(\frac{y-1}{6}\Big)'),
+     S(r'(b) That’s the CDF of $N(1,36)$. The line shortcut agrees: $2\cdot2-3=1$, $2^2\cdot9=36$.', r'Y\sim N(1,\,36)'),
+     S(r'(c) Complement, then the table: $\Phi(1)=0.8413$.', r'P(Y>7)=1-\Phi\Big(\frac{7-1}{6}\Big)=1-\Phi(1)\approx' + f'{g7:.4f}')],
+    f'(a) $\\Phi\\left(\\tfrac{{y-1}}{{6}}\\right)$ (b) mean $1$, variance $36$ (c) $\\approx {g7:.4f}$', cites=cite('L13', 3))
+
+D.Q('Case 3 · $Y=aX+b$, in general · Lecture 15',
+    r'$X$ is continuous with CDF $F_X$. (a) Write $F_Y$ for $Y=aX+b$ when $a>0$, $a<0$ and $a=0$. '
+    r'(b) Use it for $X\sim U(0,1)$ and $Y=-3X+2$: find $F_Y$ and $f_Y$. What is $Y$?',
+    [S(r'(a) **$a>0$:** goes up (Case 2). Dividing by $a$ keeps the $\le$.', r'F_Y(y)=P\Big(X\le\frac{y-b}{a}\Big)=F_X\Big(\frac{y-b}{a}\Big)'),
+     S(r'**$a<0$:** goes down (Case 3). Dividing by $a$ **flips** it.', r'F_Y(y)=P\Big(X\ge\frac{y-b}{a}\Big)=1-F_X\Big(\frac{y-b}{a}\Big)'),
+     S(r'**$a=0$:** $Y=b$ always: one step from $0$ to $1$ at $b$.', r'F_Y(y)=\begin{cases}0,&y<b\\ 1,&y\ge b\end{cases}'),
+     S(r'(b) **Range:** $X\in[0,1]$ gives $Y\in[-1,2]$. **Accumulate** with $a=-3$, $F_X(x)=x$.',
+       r'F_Y(y)=1-\frac{2-y}{3}=\frac{y+1}{3},\qquad -1\le y\le2'),
+     S(r'**Differentiate.**', r'f_Y(y)=\frac13\ \text{ on }(-1,2)\quad\Rightarrow\quad Y\sim U(-1,2)')],
+    r'(a) $F_X(\tfrac{y-b}{a})$; $1-F_X(\tfrac{y-b}{a})$; a step at $b$ (b) $F_Y=\tfrac{y+1}{3}$ on $[-1,2]$, $Y\sim U(-1,2)$.',
+    cites=cite('L15', 2))
 
 m1 = exp(-1)
-D.Q('A timeout (mixed)',
-    r'A job takes $X\sim$ Exp$(1)$ seconds, but it is stopped after 1 second. The recorded time is $Y=\min\{X,1\}$. '
-    r'Find $F_Y(y)$, $P(Y=1)$, and describe the distribution of $Y$.',
-    [S('**Range:** times above 1 are recorded as 1.', r'R_Y=[0,1]'),
-     S(r'**CDF, $0\le y<1$:** $\min\{X,1\}\le y\iff X\le y$ (because $1>y$).', r'F_Y(y)=1-e^{-y}'),
-     S('**CDF, $y\\ge1$:** $Y\\le1$ always.', r'F_Y(y)=\begin{cases}0,&y<0\\ 1-e^{-y},&0\le y<1\\ 1,&y\ge1\end{cases}'),
-     S('**Jump at 1:** just below 1 the CDF is $1-e^{-1}$, at 1 it is 1.', r'P(Y=1)=P(X\ge1)=e^{-1}\approx ' + f'{m1:.4f}'),
-     S('**Mixed:** a density on $(0,1)$ plus a point mass at 1. Check: the total is 1.',
-       r'\int_0^1e^{-y}\,dy+e^{-1}=(1-e^{-1})+e^{-1}=1\;\checkmark')],
-    f'$F_Y=1-e^{{-y}}$ on $[0,1)$, $1$ for $y\\ge1$; $P(Y=1)=e^{{-1}}\\approx {m1:.4f}$; mixed (density $e^{{-y}}$ on $(0,1)$).')
+D.Q('Case 5 · flat pieces: timeout and limiter',
+    r'(a) A job takes $X\sim$ Exp$(1)$ seconds, but it is stopped after 1 second: $Y=\min\{X,1\}$. Find $F_Y$ and $P(Y=1)$. '
+    r'(b) $X\sim U(-2,2)$ goes through a limiter: $W=-1$ if $X<-1$, $W=X$ if $-1\le X\le1$, $W=1$ if $X>1$. Find $F_W$. What type is $W$?',
+    [S(r'(a) **Type:** flat at $1$ → Case 5. **Range:** times above 1 are recorded as 1.', r'0\le Y\le1'),
+     S(r'**Jump** at $1$: every $X\ge1$ lands there.', r'P(Y=1)=P(X\ge1)=e^{-1}\approx ' + f'{m1:.4f}'),
+     S(r'**Accumulate**, $0\le y<1$: $\min\{X,1\}\le y$ just means $X\le y$.', r'F_Y(y)=1-e^{-y}'),
+     S(r'(b) **Type:** flat at $-1$ and at $1$ → Case 5. **Jumps:** each flat part has length 1, height $\tfrac14$.',
+       (r'P(W=-1)=P(X<-1)=\frac14', r'P(W=1)=P(X>1)=\frac14')),
+     S(r'**Accumulate** in the middle: $W\le w$ means $X\le w$, and $F_X(x)=\tfrac{x+2}{4}$.',
+       r'F_W(w)=\begin{cases}0,&w<-1\\ \dfrac{w+2}{4},&-1\le w<1\\ 1,&w\ge1\end{cases}'),
+     S(r'**Spot:** jumps plus a slope → **mixed**.')],
+    f'(a) $F_Y=1-e^{{-y}}$ on $[0,1)$, $1$ for $y\\ge1$; $P(Y=1)=e^{{-1}}\\approx {m1:.4f}$ '
+    r'(b) $F_W=\tfrac{w+2}{4}$ on $[-1,1)$, jumps of $\tfrac14$ at $\pm1$: mixed.')
 
-D.Q('Absolute value of a $Cx^2$ variable · Tutorial 5 Q5',
+D.Q('Case 4 · $|X|$ of a $Cx^2$ variable · Tutorial 5 Q5',
     r'$f_X(x)=Cx^2$ for $|x|\le1$, $0$ otherwise. (a) Find $C$. (b) Find the PDF of $Y=|X|$. (c) Find $E[Y^2]$ and $\mathrm{Var}[3X-1]$.',
-    [S('(a) **Total area 1.**', r'\int_{-1}^{1}Cx^2\,dx=\frac{2C}{3}=1\;\Rightarrow\;C=\frac32'),
-     S('(b) **Range:** $|x|$ on $[-1,1]$.', r'R_Y=[0,1]'),
-     S(r'**CDF, $0\le y\le1$:** $|X|\le y\iff-y\le X\le y$.',
-       r'F_Y(y)=\int_{-y}^{y}\tfrac32x^2\,dx=\frac{x^3}{2}\Big|_{-y}^{y}=y^3'),
-     S('**PDF.**', r'f_Y(y)=3y^2,\qquad 0<y<1'),
-     S('(c) $E[Y^2]$ from $f_Y$.', r'E[Y^2]=\int_0^1y^2\cdot3y^2\,dy=\frac35'),
-     S(r'$E[X]=0$ (symmetric $f_X$) and $E[X^2]=E[Y^2]=\tfrac35$, so $\mathrm{Var}(X)=\tfrac35$. Then $\mathrm{Var}(aX+b)=a^2\mathrm{Var}(X)$.',
-       r'\mathrm{Var}[3X-1]=9\cdot\tfrac35=\frac{27}{5}')],
+    [S(r'(a) **Find $c$:** total area $=1$.', r'\int_{-1}^{1}Cx^2\,dx=\frac{2C}{3}=1\quad\Rightarrow\quad C=\frac32'),
+     S(r'(b) **Type:** $|x|$ turns around at $0$ → Case 4. **Range:** $0\le Y\le1$.', r'0\le Y\le1'),
+     S(r'**Accumulate:** $|X|\le y$ means $-y\le X\le y$.', r'F_Y(y)=\int_{-y}^{y}\frac32x^2\,dx=y^3'),
+     S(r'**Differentiate.** (Shortcut check: $f_X(y)+f_X(-y)=\tfrac32y^2+\tfrac32y^2=3y^2$ ✓.)', r'f_Y(y)=3y^2,\qquad 0<y<1'),
+     S(r'(c) $E[Y^2]$ from $f_Y$.', r'E[Y^2]=\int_0^1y^2\cdot3y^2\,dy=\frac35'),
+     S(r'$f_X$ is symmetric, so $E[X]=0$ and $\mathrm{Var}(X)=E[X^2]=E[Y^2]$. Then $\mathrm{Var}(aX+b)=a^2\mathrm{Var}(X)$.',
+       r'\mathrm{Var}[3X-1]=9\cdot\frac35=\frac{27}{5}')],
     r'(a) $C=\tfrac32$ (b) $f_Y(y)=3y^2$ on $(0,1)$ (c) $E[Y^2]=\tfrac35$, $\mathrm{Var}[3X-1]=\tfrac{27}{5}$.', cites=cite('T5', 1))
 
 p1 = 2 * Phi(1) - 1
-D.Q('Power of a Gaussian noise voltage',
-    r'A noise voltage is $X\sim N(0,1)$. Its power (into $1\,\Omega$) is $Y=X^2$. (a) Write $F_Y(y)$ in terms of $\Phi$. (b) Find $f_Y(y)$. (c) Find $P(Y\le1)$.',
-    [S('**Range:** a square is never negative.', r'R_Y=[0,\infty)'),
-     S(r'**CDF, $y\ge0$:** $X^2\le y\iff-\sqrt y\le X\le\sqrt y$. Then use $\Phi(-z)=1-\Phi(z)$.',
-       r'F_Y(y)=\Phi(\sqrt y)-\Phi(-\sqrt y)=2\Phi(\sqrt y)-1'),
-     S(r'**PDF:** $\Phi^{\prime}(z)=\tfrac{1}{\sqrt{2\pi}}e^{-z^2/2}$, chain rule with $\tfrac{d}{dy}\sqrt y=\tfrac{1}{2\sqrt y}$.',
+D.Q('Case 4 · power of a Gaussian noise voltage',
+    r'A noise voltage is $X\sim N(0,1)$. Its power is $Y=X^2$. (a) Write $F_Y(y)$ using $\Phi$. (b) Find $f_Y(y)$. (c) Find $P(Y\le1)$.',
+    [S(r'**Type:** $x^2$ turns around → Case 4. **Range:** $Y\ge0$.', r'Y\ge0'),
+     S(r'(a) **Accumulate:** $X^2\le y$ means $-\sqrt y\le X\le\sqrt y$. Then $\Phi(-z)=1-\Phi(z)$.',
+       r'F_Y(y)=\Phi(\sqrt y)-\Phi(-\sqrt y)=2\Phi(\sqrt y)-1,\qquad y\ge0'),
+     S(r'(b) **Differentiate:** $\Phi^{\prime}(z)=\tfrac{1}{\sqrt{2\pi}}e^{-z^2/2}$, times the inside derivative $\tfrac{1}{2\sqrt y}$.',
        r'f_Y(y)=2\cdot\frac{1}{\sqrt{2\pi}}e^{-y/2}\cdot\frac{1}{2\sqrt y}=\frac{e^{-y/2}}{\sqrt{2\pi y}},\qquad y>0'),
-     S('(c) Table: $\\Phi(1)=0.8413$.', r'P(Y\le1)=2\Phi(1)-1=2(0.8413)-1=' + f'{2 * 0.8413 - 1:.4f}')],
+     S(r'(c) Table: $\Phi(1)=0.8413$.', r'P(Y\le1)=2(0.8413)-1=' + f'{2 * 0.8413 - 1:.4f}')],
     r'$F_Y(y)=2\Phi(\sqrt y)-1$ for $y\ge0$; $f_Y(y)=\dfrac{e^{-y/2}}{\sqrt{2\pi y}}$ for $y>0$; $P(Y\le1)\approx' + f'{p1:.4f}$.',
-    cites=cite('L11', 2))
+    cites=cite('L12', 1))
 
-D.Q('Squaring a lopsided uniform',
+D.Q('Case 4 · squaring a lopsided uniform',
     r'$X\sim U(-1,2)$. Find the CDF and PDF of $Y=X^2$.',
-    [S('**Range:** smallest at $x=0$, largest at $x=2$.', r'R_Y=[0,4]'),
-     S(r'**CDF, $0\le y\le1$:** $-\sqrt y\le X\le\sqrt y$ lies inside $(-1,2)$. Length $2\sqrt y$, height $\tfrac13$.',
-       r'F_Y(y)=\frac{2\sqrt y}{3}'),
-     S(r'**CDF, $1<y\le4$:** now $-\sqrt y<-1$, where $X$ never goes. The set shrinks to $[-1,\sqrt y]$.',
-       r'F_Y(y)=P(-1\le X\le\sqrt y)=\frac{\sqrt y+1}{3}'),
-     S('Collect the cases (both formulas give $\\tfrac23$ at $y=1$, so no jump).',
-       r'F_Y(y)=\begin{cases}0,&y<0\\ \dfrac{2\sqrt y}{3},&0\le y\le1\\ \dfrac{\sqrt y+1}{3},&1<y\le4\\ 1,&y>4\end{cases}'),
-     S('**PDF:** differentiate each piece.', r'f_Y(y)=\begin{cases}\dfrac{1}{3\sqrt y},&0<y<1\\ \dfrac{1}{6\sqrt y},&1<y<4\\ 0,&\text{otherwise}\end{cases}')],
-    r'$f_Y=\dfrac{1}{3\sqrt y}$ on $(0,1)$ and $\dfrac{1}{6\sqrt y}$ on $(1,4)$. Two regimes: below $y=1$ both $\pm\sqrt y$ are possible, above only $+\sqrt y$.',
+    [S(r'**Type:** $x^2$ turns around → Case 4. **Range:** smallest at $x=0$, largest at $x=2$.', r'0\le Y\le4'),
+     S(r'**Accumulate**, $0\le y\le1$: both $\pm\sqrt y$ are inside $(-1,2)$. Length $2\sqrt y$, height $\tfrac13$.', r'F_Y(y)=\frac{2\sqrt y}{3}'),
+     S(r'**Accumulate**, $1<y\le4$: $-\sqrt y$ is below $-1$, where $X$ never goes. Only $[-1,\sqrt y]$ is left.', r'F_Y(y)=\frac{\sqrt y+1}{3}'),
+     S(r'**Differentiate** each piece.', r'f_Y(y)=\begin{cases}\dfrac{1}{3\sqrt y},&0<y<1\\ \dfrac{1}{6\sqrt y},&1<y<4\\ 0,&\text{otherwise}\end{cases}')],
+    r'Two pieces: $\dfrac{1}{3\sqrt y}$ on $(0,1)$, $\dfrac{1}{6\sqrt y}$ on $(1,4)$. Above $y=1$ only $+\sqrt y$ is possible.',
     diff='advanced')
 
-D.Q('The reciprocal, in general · Tutorial 6 Q1',
-    r'$X$ is a continuous random variable with CDF $F_X$ and PDF $f_X$. Write the CDF and PDF of $Y=\dfrac1X$ in terms of $F_X$ and $f_X$.',
-    [S(r'**Range:** any nonzero real number (ignore $X=0$, probability $0$). The sign of $X$ matters, so split by the sign of $y$.',
-       r'R_Y\subseteq(-\infty,0)\cup(0,\infty)'),
-     S(r'**CDF, $y>0$:** if $X<0$ then $\tfrac1X<0<y$ always. If $X>0$: $\tfrac1X\le y\iff X\ge\tfrac1y$.',
-       r'F_Y(y)=P(X<0)+P\!\left(X\ge\tfrac1y\right)=F_X(0)+1-F_X\!\left(\tfrac1y\right)'),
-     S(r'**CDF, $y=0$:** $\tfrac1X\le0\iff X<0$.', r'F_Y(0)=F_X(0)'),
-     S(r'**CDF, $y<0$:** only $X<0$ can work. Multiply $\tfrac1X\le y$ by $X<0$ (flip): $1\ge yX$; divide by $y<0$ (flip again): $X\ge\tfrac1y$.',
-       r'F_Y(y)=P\!\left(\tfrac1y\le X<0\right)=F_X(0)-F_X\!\left(\tfrac1y\right)'),
-     S(r'**PDF:** both nonzero cases contain $-F_X(1/y)$, and $\frac{d}{dy}\frac1y=-\frac{1}{y^2}$.',
-       r'f_Y(y)=-f_X\!\left(\tfrac1y\right)\cdot\left(-\frac{1}{y^2}\right)=\frac{1}{y^2}\,f_X\!\left(\frac1y\right),\qquad y\ne0')],
+# the one real root of x^3 - 3x = 3, by bisection
+lo, hi = 2.0, 2.2
+for _ in range(80):
+    mid = (lo + hi) / 2
+    lo, hi = (mid, hi) if mid ** 3 - 3 * mid < 3 else (lo, mid)
+x3 = lo
+D.Q('Case 4 · $F_Y$ from a picture · Lecture 15',
+    r'$X$ is continuous with CDF $F_X$, and $Y=g(X)$ with $g(x)=x^3-3x$ (graph below: it peaks at $(-1,2)$ and dips to $(1,-2)$). '
+    r'Write (a) $F_Y(3)$, (b) $F_Y(0)$, (c) $F_Y(-3)$ using $F_X$. (d) Find $F_Y(0)$ when $X\sim U(-2,2)$.',
+    [S(r'**Type:** $g$ turns around twice → Case 4. **Accumulate:** for each height, find where the curve is below the line.'),
+     S(r'(a) $y=3$ is above the bump: it cuts the curve **once**, at $x\approx' + f'{x3:.3f}' + r'$. Below the line = everything left of it.',
+       r'F_Y(3)=F_X(' + f'{x3:.3f}' + r')'),
+     S(r'(b) $y=0$ cuts **three** times: $x^3-3x=0$ at $-\sqrt3,\ 0,\ \sqrt3$. Below on $x\le-\sqrt3$ and on $0\le x\le\sqrt3$.',
+       r'F_Y(0)=F_X(-\sqrt3)+F_X(\sqrt3)-F_X(0)'),
+     S(r'(c) $y=-3$ is below the dip: one cut, at $x\approx-' + f'{x3:.3f}' + r'$.', r'F_Y(-3)=F_X(-' + f'{x3:.3f}' + r')'),
+     S(r'(d) Plug in $F_X(x)=\tfrac{x+2}{4}$.', r'\frac{2-\sqrt3}{4}+\frac{2+\sqrt3}{4}-\frac24=\frac12')],
+    f'(a) $F_X({x3:.3f})$ (b) $F_X(-\\sqrt3)+F_X(\\sqrt3)-F_X(0)$ (c) $F_X(-{x3:.3f})$ (d) $\\tfrac12$', diff='advanced', cites=cite('L15', 5))
+D.GRAPH(['title "$g(x)=x^3-3x$: drag the line to height $y$"', 'x -2.6 2.6 label="$x$" height=280', 'y -4 4 label="$g(x)$"',
+         'slider h -3.5 3.5 0 step=0.1 label="$y$"',
+         'curve "x^3-3*x" from=-2.2 to=2.2 color=1 label="$g(x)$"', 'hline "h" color=2'],
+        intro='For the question above: drag $y$ and count where the curve is below the line.')
+
+D.Q('Case 4 · $Y=\\cos X$ · Lecture 15',
+    r'$X$ is continuous and takes values in $[-\pi,\pi]$. (a) Write $F_Y(y)$ for $Y=\cos X$ using $F_X$, for $-1\le y\le1$. '
+    r'(b) Find $F_Y$ and $f_Y$ when $X\sim U(-\pi,\pi)$.',
+    [S(r'**Type:** $\cos x$ goes up then down → Case 4. **Range:** $-1\le\cos X\le1$.', r'-1\le Y\le1'),
+     S(r'(a) **Accumulate:** $\cos x$ is highest at $x=0$, so $\cos x\le y$ on the **two ends**: $x\le-\arccos y$ or $x\ge\arccos y$.',
+       r'F_Y(y)=F_X(-\arccos y)+1-F_X(\arccos y)'),
+     S(r'(b) Plug in $F_X(x)=\tfrac{x+\pi}{2\pi}$, writing $a=\arccos y$.', r'F_Y(y)=\frac{\pi-a}{2\pi}+1-\frac{a+\pi}{2\pi}=1-\frac{\arccos y}{\pi}'),
+     S(r'**Differentiate:** the derivative of $\arccos y$ is $-\dfrac{1}{\sqrt{1-y^2}}$.', r'f_Y(y)=\frac{1}{\pi\sqrt{1-y^2}},\qquad -1<y<1')],
+    r'(a) $F_X(-\arccos y)+1-F_X(\arccos y)$ (b) $F_Y=1-\dfrac{\arccos y}{\pi}$, $f_Y=\dfrac{1}{\pi\sqrt{1-y^2}}$ on $(-1,1)$.',
+    diff='advanced', cites=cite('L15', 6))
+
+D.Q('Case 3 + 4 · the reciprocal, in general · Tutorial 6 Q1',
+    r'$X$ is continuous with CDF $F_X$ and PDF $f_X$. Write the CDF and PDF of $Y=\dfrac1X$ using $F_X$ and $f_X$.',
+    [S(r'**Type:** $\tfrac1x$ goes down on each side of $0$, but jumps across it. So split by the sign, like Case 4. **Range:** any nonzero number.', r'Y\ne0'),
+     S(r'**Accumulate**, $y>0$: every negative $X$ works ($\tfrac1X<0<y$). A positive $X$ works when $X\ge\tfrac1y$ (flip, Case 3).',
+       r'F_Y(y)=F_X(0)+1-F_X\Big(\frac1y\Big)'),
+     S(r'**Accumulate**, $y=0$: only negative $X$ work.', r'F_Y(0)=F_X(0)'),
+     S(r'**Accumulate**, $y<0$: only negative $X$ can work, and then $\tfrac1X\le y$ means $\tfrac1y\le X<0$.',
+       r'F_Y(y)=F_X(0)-F_X\Big(\frac1y\Big)'),
+     S(r'**Differentiate:** both pieces have $-F_X(\tfrac1y)$, and the derivative of $\tfrac1y$ is $-\tfrac{1}{y^2}$.',
+       r'f_Y(y)=\frac{1}{y^2}\,f_X\Big(\frac1y\Big),\qquad y\ne0')],
     r'$F_Y(y)=F_X(0)+1-F_X(\tfrac1y)$ for $y>0$, $F_X(0)$ at $y=0$, $F_X(0)-F_X(\tfrac1y)$ for $y<0$; $f_Y(y)=\dfrac{1}{y^2}f_X(\tfrac1y)$.',
     diff='advanced', cites=cite('T6', 1))
-
-D.Q('Squared distance from 1',
-    r'$X\sim$ Exp$(1)$. Find the CDF and PDF of $Y=(X-1)^2$.',
-    [S('**Range:** smallest ($0$) at $x=1$; no upper limit.', r'R_Y=[0,\infty)'),
-     S(r'**$x$-set:** $(x-1)^2\le y\iff 1-\sqrt y\le x\le1+\sqrt y$. But $X\ge0$, so it matters whether $1-\sqrt y$ is negative.',
-       r'1-\sqrt y\ge0\iff y\le1'),
-     S(r'**CDF, $0\le y\le1$:** the whole interval is in $[0,\infty)$. Use $F_X(x)=1-e^{-x}$.',
-       r'F_Y(y)=F_X(1+\sqrt y)-F_X(1-\sqrt y)=e^{-(1-\sqrt y)}-e^{-(1+\sqrt y)}'),
-     S(r'**CDF, $y>1$:** the left end is cut at $0$.', r'F_Y(y)=F_X(1+\sqrt y)=1-e^{-(1+\sqrt y)}'),
-     S(r'**PDF:** $\tfrac{d}{dy}(1\pm\sqrt y)=\pm\tfrac{1}{2\sqrt y}$.',
-       r'f_Y(y)=\begin{cases}\dfrac{e^{-(1-\sqrt y)}+e^{-(1+\sqrt y)}}{2\sqrt y},&0<y<1\\ \dfrac{e^{-(1+\sqrt y)}}{2\sqrt y},&y>1\end{cases}')],
-    r'$F_Y=e^{-(1-\sqrt y)}-e^{-(1+\sqrt y)}$ on $[0,1]$, $1-e^{-(1+\sqrt y)}$ for $y>1$; differentiate for $f_Y$ (two pieces).',
-    diff='advanced')
 
 
 def verify():
@@ -382,79 +370,91 @@ def verify():
         assert abs(float(sp.integrate(f, (y, a, b))) - total) < 1e-9, (f, a, b)
 
     U = lambda a, b: rng.uniform(a, b, N)
-    # topic 1
+    # type 1
     X = U(-1, 1)
-    mc(np.maximum(X, 0), lambda t: 0 if t < 0 else min((t + 1) / 2, 1), [-0.1, 0, 0.3, 0.9])
     q = np.where(X < -0.5, -1, np.where(X > 0.5, 1, 0))
     assert abs(np.mean(q == 0) - 0.5) < 0.005 and abs(np.mean(q == 1) - 0.25) < 0.005
-    mc(np.minimum(U(0, 3), 2), lambda t: 0 if t < 0 else (t / 3 if t < 2 else 1), [0.5, 1.9, 2.0])
-    # topic 2
+    D5 = rng.integers(-2, 3, N) ** 2
+    assert abs(np.mean(D5 == 1) - 0.4) < 0.005 and abs(np.mean(D5 == 4) - 0.4) < 0.005
+    # type 2
     dens((sp.cbrt(y) + 1) / 2, 1 / (6 * y ** sp.Rational(2, 3)), 0, 1, sp.Rational(1, 2))
     mc(X ** 3, lambda t: (np.cbrt(t) + 1) / 2, [-0.8, -0.1, 0.05, 0.7])
     dens(sp.log(y), 1 / y, 1, sp.E)
     mc(np.exp(U(0, 1)), lambda t: log(t), [1.2, 2.0, 2.6])
     t = sp.Symbol('t', real=True)
-    Fln, fln = 1 - sp.exp(-sp.exp(t)), sp.exp(t - sp.exp(t))
+    Fln, fln = 1 - sp.exp(-sp.exp(t)), sp.exp(t) * sp.exp(-sp.exp(t))
     assert sp.simplify(sp.diff(Fln, t) - fln) == 0 and sp.integrate(fln, (t, -sp.oo, sp.oo)) == 1
     mc(np.log(rng.exponential(1, N)), lambda s: 1 - exp(-exp(s)), [-2, 0, 1])
-    mu, sg, z = sp.symbols('mu sigma z', positive=True)
-    fx = sp.exp(-(x - mu) ** 2 / (2 * sg ** 2)) / sp.sqrt(2 * sp.pi * sg ** 2)
-    assert sp.simplify(sg * fx.subs(x, mu + sg * z) - sp.exp(-z ** 2 / 2) / sp.sqrt(2 * sp.pi)) == 0
-    # topic 3
+    # type 3
     dens(sp.sqrt(y), 1 / (2 * sp.sqrt(y)), 0, 1)
     mc(X ** 2, lambda s: sqrt(s), [0.04, 0.36, 0.81])
     mc(np.abs(X), lambda s: s, [0.2, 0.5, 0.9])
     assert abs(np.mean(np.abs(X) > 0.5) - 0.5) < 0.005
     dens(sp.sqrt(y) / 2, 1 / (4 * sp.sqrt(y)), 0, 4)
-    assert sp.integrate(y / (4 * sp.sqrt(y)), (y, 0, 4)) == sp.Rational(4, 3) == sp.integrate(x ** 2 / 2, (x, 0, 2))
     mc(U(0, 2) ** 2, lambda s: sqrt(s) / 2, [0.5, 2, 3.5])
-    Fc = 1 - sp.acos(y) / sp.pi
-    assert sp.simplify(sp.diff(Fc, y) - 1 / (sp.pi * sp.sqrt(1 - y ** 2))) == 0
-    mc(np.cos(U(-pi, pi)), lambda s: 1 - np.arccos(s) / pi, [-0.9, -0.2, 0.3, 0.95])
-    # practice
+    assert sp.integrate(y / (4 * sp.sqrt(y)), (y, 0, 4)) == sp.Rational(4, 3) == sp.integrate(x ** 2 / 2, (x, 0, 2))
+    # type 4
+    mc(np.maximum(X, 0), lambda t: 0 if t < 0 else min((t + 1) / 2, 1), [-0.1, 0, 0.3, 0.9])
+    assert abs(np.mean(np.maximum(X, 0) == 0) - 0.5) < 0.005
+    # practice: what type
+    pX = {0: 0.4, 1: 0.3, 2: 0.2, 3: 0.1}
+    pZ = {}
+    for k, v in pX.items():
+        pZ[(k - 1) ** 2] = pZ.get((k - 1) ** 2, 0) + v
+    assert {k: round(v, 10) for k, v in pZ.items()} == {1: 0.6, 0: 0.3, 4: 0.1}
+    # practice: aX+b with a<0
+    mc(-3 * U(0, 1) + 2, lambda s: min(max((s + 1) / 3, 0), 1), [-0.5, 0.5, 1.5])
+    # practice: decreasing
     L = 1.5
     E = rng.exponential(1 / L, N)
     mc(-2 * E + 3, lambda s: exp(-L * (3 - s) / 2) if s <= 3 else 1, [-1, 1, 2.8])
     assert sp.simplify(sp.diff(sp.exp(-lam * (3 - t) / 2), t) - lam / 2 * sp.exp(-lam * (3 - t) / 2)) == 0
-    fl = np.floor(E)
-    for k in range(4):
-        assert abs(np.mean(fl == k) - exp(-L * k) * (1 - exp(-L))) < 0.005
-    dens(2 - 1 / y, 1 / y ** 2, sp.Rational(1, 2), 1)
-    mc(1 / U(1, 2), lambda s: 2 - 1 / s, [0.55, 0.7, 0.95])
-    assert sp.simplify(sp.diff(y ** lam, y) - lam * y ** (lam - 1)) == 0
-    mc(np.exp(-E), lambda s: s ** L, [0.1, 0.5, 0.9])
+    mc(-np.log(U(0, 1)), lambda s: 1 - exp(-s), [0.2, 1, 2.5])
+    # practice: Gaussian through a line
+    mc(2 * rng.normal(2, 3, N) - 3, lambda s: Phi((s - 1) / 6), [-5, 1, 7])
+    assert abs(g7 - 0.1587) < 1e-4
+    # practice: timeout and limiter
     E1 = rng.exponential(1, N)
     mc(np.minimum(E1, 1), lambda s: 1 - exp(-s) if s < 1 else 1, [0.3, 0.99, 1.0])
     assert abs(np.mean(np.minimum(E1, 1) == 1) - exp(-1)) < 0.005
+    W = np.clip(U(-2, 2), -1, 1)
+    mc(W, lambda s: 0 if s < -1 else ((s + 2) / 4 if s < 1 else 1), [-1.0, -0.5, 0.5, 0.999, 1.0])
+    assert abs(np.mean(W == -1) - 0.25) < 0.005 and abs(np.mean(W == 1) - 0.25) < 0.005
+    # practice: Cx^2
     C = sp.Symbol('C')
     assert sp.solve(sp.integrate(C * x ** 2, (x, -1, 1)) - 1, C) == [sp.Rational(3, 2)]
+    assert sp.integrate(sp.Rational(3, 2) * x ** 2, (x, -y, y)) == y ** 3
     dens(y ** 3, 3 * y ** 2, 0, 1)
     assert sp.integrate(y ** 2 * 3 * y ** 2, (y, 0, 1)) == sp.Rational(3, 5)
     Xc = np.cbrt(rng.uniform(-1, 1, N))  # F_X = (x^3+1)/2  ->  inverse-CDF sample
     mc(np.abs(Xc), lambda s: s ** 3, [0.3, 0.6, 0.9])
     assert abs(9 * np.var(Xc) - 27 / 5) < 0.03
+    # practice: cubic picture
+    assert abs(x3 ** 3 - 3 * x3 - 3) < 1e-12 and len([r for r in np.roots([1, 0, -3, -3]) if abs(r.imag) < 1e-9]) == 1
+    Xu = U(-2, 2)
+    g = Xu ** 3 - 3 * Xu
+    assert abs(np.mean(g <= 0) - 0.5) < 0.005
+    FU = lambda s: min(max((s + 2) / 4, 0), 1)
+    mc(g, lambda s: FU(x3) if s == 3 else FU(-x3), [3, -3])
+    # practice: Gaussian power
     G = rng.standard_normal(N)
     mc(G ** 2, lambda s: 2 * Phi(sqrt(s)) - 1, [0.2, 1, 3])
     fchi = sp.exp(-y / 2) / sp.sqrt(2 * sp.pi * y)
     Fchi = sp.erf(sp.sqrt(y) / sp.sqrt(2))  # = 2*Phi(sqrt y) - 1
     assert sp.simplify(sp.diff(Fchi, y) - fchi) == 0
     assert abs(2 * 0.8413 - 1 - p1) < 2e-4
-    X3 = U(-1, 2)
-    mc(X3 ** 2, lambda s: 2 * sqrt(s) / 3 if s <= 1 else (sqrt(s) + 1) / 3, [0.25, 0.9, 1.5, 3.9])
-    dens(2 * sp.sqrt(y) / 3, 1 / (3 * sp.sqrt(y)), 0, 1, sp.Rational(2, 3))
-    dens((sp.sqrt(y) + 1) / 3, 1 / (6 * sp.sqrt(y)), 1, 4, sp.Rational(1, 3))
+    # practice: lopsided uniform: X ~ U(-1,2), Y = X^2
+    mc(rng.uniform(-1, 2, N) ** 2, lambda s: 2 * s ** 0.5 / 3 if s <= 1 else (s ** 0.5 + 1) / 3, [0.25, 0.81, 1.44, 3.24])
+    # practice: cos X, X ~ U(-pi, pi)
+    mc(np.cos(U(-pi, pi)), lambda s: 1 - acos(s) / pi, [-0.9, 0, 0.5, 0.95])
+    yy = sp.Symbol('yy')
+    assert sp.simplify(sp.diff(1 - sp.acos(yy) / sp.pi, yy) - 1 / (sp.pi * sp.sqrt(1 - yy ** 2))) == 0
+    # practice: reciprocal
     Xn = rng.normal(0.5, 1, N)
     with np.errstate(divide='ignore'):
         R = 1 / Xn
     FXn = lambda s: Phi(s - 0.5)
     mc(R, lambda s: FXn(0) + 1 - FXn(1 / s) if s > 0 else (FXn(0) if s == 0 else FXn(0) - FXn(1 / s)), [-2, -0.5, 0, 0.5, 3])
-    F1 = sp.exp(-(1 - sp.sqrt(y))) - sp.exp(-(1 + sp.sqrt(y)))
-    F2 = 1 - sp.exp(-(1 + sp.sqrt(y)))
-    f1 = (sp.exp(-(1 - sp.sqrt(y))) + sp.exp(-(1 + sp.sqrt(y)))) / (2 * sp.sqrt(y))
-    f2 = sp.exp(-(1 + sp.sqrt(y))) / (2 * sp.sqrt(y))
-    assert sp.simplify(sp.diff(F1, y) - f1) == 0 and sp.simplify(sp.diff(F2, y) - f2) == 0
-    assert abs(float(sp.integrate(f1, (y, 0, 1)) + sp.integrate(f2, (y, 1, sp.oo))) - 1) < 1e-9
-    mc((E1 - 1) ** 2, lambda s: float(F1.subs(y, s)) if s <= 1 else float(F2.subs(y, s)), [0.1, 0.6, 2, 5])
     print('q4 verify ok')
 
 

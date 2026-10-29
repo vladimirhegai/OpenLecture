@@ -19,18 +19,26 @@ Oct 26/28 tutorials (Pre-tutorial 5 = T6, the $y''+y=6\cos^2t$ problem). **No La
 - Read linearly, a section only needs earlier sections. When it uses another section, link to it.
 - Directly under every topic/subtopic heading: `TAGS(D, (week, topic), ...)`, chips linking to the week notes.
 
-## Inside a subtopic, in this order
-1. **Why / when** (1–2 short sentences, bold lead). Example: "**What if you can't separate the variables?** …"
-2. **Standard form** as an equation block, then a bullet per part: `$a(t)$ = the coefficient of $y$: …`.
-3. **Mini examples** of reading the form (a short bullet list, not a worked example block).
-4. **The method**: the formula(s) as equation blocks, then numbered steps (`D.L([...], ordered=True)`, bold lead
-   word per step). A `D.STEPS` stepper when watching the equation change helps.
-5. **Calculus you need here**: a small table, only the rules this subtopic uses.
-6. Callouts, at most a few: `warning` = a trap that costs marks; `tip` = a shortcut; `info` titled
-   `**Bonus (skip-safe): why …**` = understanding the student may skip without losing marks.
-7. Graphs (`D.GRAPH`) wherever moving something shows the idea (sliders, draggable points).
-8. **Worked example**: only when the method has a step the problems don't make obvious. Prefer the lecture's own example.
-9. **Problems**, easy → hard, with `P(D, title, prompt, steps, answer, diff, cites)` (numbered through the note).
+## Inside a subtopic, in this order (rewritten 2026-10-29; reference: `mid_b5.py`)
+The student wants steps, cases, equations, an example and practice; theory only in closed boxes. Give it space:
+every equation its own centred `D.EQ`, one idea per line. Full plan: `REWRITE_PLAN.md`.
+1. **Use this when** + one real equation with numbers (`D.EQ`).
+2. **The move**: one line that turns the problem into something already known, with its equation.
+3. `D.WHY(title, text)`: closed "… (optional)" box for theory, proofs, where a formula comes from.
+4. **Steps**: `D.L([...], ordered=True)`, bold lead word per step. Shared words: start with **Write**, end with **Plug in**
+   (circuits: **Before → Carry across → After → Plug in / Pick → Check**).
+5. **Cases** as level-3 headings (`D.H('Case 1: …', level=3)`): formula → `**Short example:**` + one `D.EQ` →
+   full example as a closed card, `CARD(D, title, [(text, latex or tuple of lines), ...], answer)`.
+6. Formula/shortcut tables → one `CARD` per row with a short example (a bare formula table is "too condensed").
+7. At most 2 `warning` callouts (traps that cost marks). Graphs only where they show the cases, after them.
+8. `D.H('Practice: <code>', level=3)`, then problems easy → hard.
+
+**Shared letters (keep them):** $f(t)$ = right side; $p(t)$ multiplies the term just under the top derivative,
+$q(t)$ multiplies $y$ (2nd order); $g(t)$ / $h(y)$ = only-$t$ / only-$y$ piece (B1, B3's $U=\int M\,dt+h(y)$, B4's ratios);
+$\mu$ = integrating factor (B2, B4); $C$ = 1st-order constant; $c_1,c_2$ = 2nd-order constants (B5–B7, D2);
+$A,B,D$ = unknowns in a B6 guess.
+
+The server caps a note at 500 blocks: `build_midterm.fold_equations` merges a paragraph with the equations right under it.
 
 ## Problems
 - Title starts with the week tag, then a few words, then the source: `'W3 · Separate and use a starting value · Pre-tutorial 3(a)'`.
@@ -39,8 +47,8 @@ Oct 26/28 tutorials (Pre-tutorial 5 = T6, the $y''+y=6\cos^2t$ problem). **No La
   (`D.tb('8.53')`) > your own (only to fill a gap; no source tag). Cite with `cites=D.cite('W3', 4)`, `D.cite('T3', 1)`,
   `D.cite('T6', 1)`, `D.cite('W6', 3)`, `D.tb('7.1')`.
 - Difficulty: introductory → intermediate → advanced, in that order within the subtopic.
-- Every solution has the same shape: first step `**Type:** …` (what kind, and the clue), then the method's steps with their
-  bold lead words (`**Separate:**`, `**Integrate:**`, …), then `**Condition:** …`. Answer box: the final result plus one
+- Every solution has the same shape: first step `**Type:** …` (what kind, and the clue), then the section's own steps with the
+  same bold lead words, in the same order, every line of arithmetic shown, ending with `**Plug in:** …`. Answer box: the final result plus one
   short remark if useful.
 - Steps: one short sentence + the math. Never empty explanations (the server rejects them).
 - Every answer verified in `verify()` with sympy (`first`, `implicit`, `second`, `zero` from midlib).

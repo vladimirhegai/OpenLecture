@@ -36,6 +36,8 @@ def block(b):
     if t == "practice_problem":
         body = steps(b["steps"]) if b.get("steps") else b.get("solution", "")
         return f"**Problem: {b.get('title', '')}** ({b['difficulty']})\n\n{b['prompt']}\n\n<details><summary>Solution</summary>\n\n{body}\n\n**Answer:** {b.get('answer', '')}\n\n</details>"
+    if t == "solution":
+        return f"<details><summary>{b['title']}</summary>\n\n{b['text']}\n\n</details>"
     if t == "schematic":
         return f"```schematic\n{b['source']}\n```"
     if t == "code":

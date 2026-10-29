@@ -9,9 +9,13 @@ Four Open Lecture notes, one per question of In-Class Test 2 (Fri Oct 30 2026, 4
 | Test 2 - Question 3 | `q3.py` | expected value, variance, their properties (L11–13) |
 | Test 2 - Question 4 | `q4.py` | functions of continuous RVs and their distributions (L12–15) |
 
-Each note: topics only (no subtopics), each one explained with bullets, equation blocks, graphs and worked examples, with a few
-"Try it" problems. Purple `reminder` callouts recap Test 1 or calculus material only where the topic uses it.
-A final **Practice Questions** section holds about 10 test-style problems (easy → hard, source in the title).
+Each note (rewritten 2026-10-29, see `REWRITE_PLAN.md`): "Question N in plain words" (you'll see → the move → which-case
+table), then one level-1 heading per **Case**: you'll see → the move (centred formula) → numbered steps → **Short example**
+(one centred line) → **Full example** in a closed card (`D.CARD`) → shortcut/reference cards (`numbered=False`) → at most
+two warnings. Test-only content: no theory/Why? boxes, no concept-only graphs, no Test 1 counting (only nCk inside formulas). A final **Practice Questions** section opens with "Question N is always
+one of these" and holds ~10 test-style problems; every solution starts with **Type:**/**Spot:** (the case) and uses that
+case's step words (Spot, Find c, Accumulate, Differentiate, Rewrite, …; Q3: Mean → Square → Subtract → Root).
+Write primes as `^{\prime}` (the 226 builder doesn't convert `\prime`).
 
 From the repository root:
 

@@ -133,3 +133,41 @@ def test_api_and_document_validation(client):
     assert client.post(url, json=body).status_code == 422
     body["blocks"] = [{"type": "code", "language": "digital", "text": '{"kind":"unknown"}'}]
     assert client.post(url, json=body).status_code == 422
+
+
+def test_circuit_highlight_and_values_render():
+    source = json.dumps(
+        {
+            "kind": "circuit",
+            "nodes": [
+                {"id": "a", "gate": "INPUT", "x": 80, "y": 90, "value": 1},
+                {"id": "b", "gate": "INPUT", "x": 80, "y": 170, "value": 0},
+                {"id": "G", "gate": "NAND", "x": 300, "y": 130, "highlight": True, "value": 1},
+                {"id": "f", "gate": "OUTPUT", "x": 480, "y": 130, "value": 1},
+            ],
+            "wires": [
+                {"start": "a.out", "end": "G.0", "value": 1},
+                {"start": "b.out", "end": "G.1", "value": 0},
+                {"start": "G.out", "end": "f.0", "highlight": True},
+            ],
+        }
+    )
+    svg = digital.render_svg(source)
+    assert 'fill="#dbeafe"' in svg  # highlighted gate
+    assert 'stroke="#16a34a"' in svg and 'stroke="#94a3b8"' in svg  # wires at 1 and 0
+    assert svg.count('rx="4" fill="#16a34a"') == 3  # 1-chips on a, G, f
+    with pytest.raises(DomainError):
+        digital.parse(source.replace('"value": 0', '"value": 2'))
+
+
+def test_cmos_rows_hidden_halves_and_resistor_pullup():
+    nand = {"kind": "cmos", "pdn": {"series": [{"gate": "x1"}, {"gate": "x2"}]}}
+    plain = digital.render_svg(json.dumps(nand))
+    row = digital.render_svg(json.dumps({**nand, "inputs": {"x1": 1, "x2": 1}}))
+    assert 'stroke="#16a34a"' not in plain and "f = 0" in row and "PDN conducts" in row
+    assert "PUN conducts" in digital.render_svg(json.dumps({**nand, "inputs": {"x1": 0, "x2": 1}}))
+    assert "PUN: ?" in digital.render_svg(json.dumps({**nand, "show": "pdn"}))
+    nmos = digital.render_svg(json.dumps({**nand, "pullup": "resistor", "inputs": {"x1": 1, "x2": 1}}))
+    assert "Current flows" in nmos and "PUN" not in nmos
+    with pytest.raises(DomainError):
+        digital.parse(json.dumps({**nand, "inputs": {"x1": 2}}))

@@ -130,3 +130,39 @@ Overlays (`#=` lines, grid points; each takes `color=purple|pink|blue|green|oran
 The card is as tall as its longest step (every title and note shares one grid cell), so Next never moves the page.
 
 Write display math in notes on its own lines (`$$` / equation / `$$`): a one-line `$$…$$` renders inline-sized. Builder and checks: `scripts/practice221/` (`build_practice.py`, one module per problem, `stepshots.cjs <docId> <out> [--dark] [--mid]`).
+
+## ```logicsteps — a logic-gate circuit that changes step by step
+
+The digital-systems version of `circuitsteps`, for reading a gate circuit back to its function, building one from an expression, or converting AND–OR to NAND–NAND / OR–AND to NOR–NOR. Each step's drawing is a `digital` circuit (JSON, grammar in digital-figures.md). Gates and wires that are new or changed since the previous step turn blue automatically. A **Try inputs** button lets the reader flip each input and see every wire's bit (green = 1), as long as every gate is combinational.
+
+```
+```logicsteps
+title "Read the circuit left to right"
+== Start at the inputs
+{"kind":"circuit","nodes":[...],"wires":[...]}
+--
+Notes (Markdown) for this step.
+== The NOT gates
+label A "A = x̄₂"
+#+ $A=\bar x_2$
+--
+Each NOT flips its input...
+```
+```
+
+The first step needs a whole circuit. A later step either gives a whole circuit or edits the previous one:
+
+| Statement | Does |
+|---|---|
+| `label ID "text"` | Change a gate's label (write each gate's output expression as you find it). |
+| `gate ID NAND [inputs=2]` | Change a gate's type (AND → NAND, NOT → tied-input NAND). |
+| `node {"id":"N","gate":"NOT","x":260,"y":90}` | Add or replace a node. |
+| `drop ID` | Remove a node and its wires. |
+| `wire N.out G.0 [x,y x,y]` | Connect (replaces the wire already driving G.0); optional via points. |
+| `unwire G.0` | Disconnect an input. |
+| `hl ID ...` | Also highlight these nodes in this step. |
+| `#+ $C=\bar x_2x_3$` | Add to "Found so far" from this step on. |
+
+**Transistor networks.** A step's drawing can be a `{"kind":"cmos",...}` figure instead (digital-figures.md, CMOS). Give the whole JSON, or edit the previous one with `show pdn|pun|both|none` (hide a half behind a "?" box) and `inputs x1=1 x2=0` / `inputs none` (show that row: transistors on/off, the conducting path and an arrow to the rail that sets f). A changed pull-down, and the pull-up that is its dual, turn blue; `hl pdn` / `hl pun` highlights a half that didn't change. Try inputs flips the transistor inputs. Typical cards: build a gate (complement f → `show none`; PDN from f̄ → `show pdn`; dual PUN → `show both`; check one or two rows → `inputs ...`), or read one (whole drawing → `hl pdn` with the paths to ground → f → a row check). Keep "Found so far" entries short (`PDN $=x_1(x_2+x_3)$`): the panel is narrow.
+
+Keep every unchanged node at the same coordinates so nothing jumps between steps. Show a wrong intermediate on purpose when it teaches something (for example, swapping gates to NAND before flipping a one-letter term), and say how to check it with Try inputs. Labels are plain text: use Unicode (`x̄₂`, `x₁x̄₃`), not LaTeX. Builder: `scripts/notes271/lib.py` `D.LOGICSTEPS(title, [(step_title, drawing, values, notes[, highlight]), …])` writes whole circuits and renders each one to check it. Visual check: `node frontend/scripts/logicsteps-shots.mjs <base url> <docId> <out prefix> [dark]`.

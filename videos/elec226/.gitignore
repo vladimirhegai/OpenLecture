@@ -1,0 +1,4 @@
+# Generated: `node build/qN.mjs` rewrites qN/index.html, qN/compositions/ and qN/assets/katex/.
+build/node_modules/
+*/.hyperframes/
+*/renders/

@@ -43,7 +43,10 @@ def _send(url, body, method):
 
 
 def S(explanation, latex=''):
-    """One solution step: a plain-language sentence, then (optionally) the math."""
+    """One solution step: a plain-language sentence, then (optionally) the math. A tuple of latex lines is stacked,
+    one centred equation per line."""
+    if isinstance(latex, tuple):
+        latex = '\\begin{gathered}' + ' \\\\ '.join(latex) + '\\end{gathered}' if len(latex) > 1 else latex[0]
     return {"explanation": explanation, "latex": latex}
 
 
@@ -102,6 +105,14 @@ class Doc:
     def CO(self, tone, text, cites=()):
         assert tone in ('info', 'warning', 'tip'), tone
         self._add({"type": "callout", "tone": tone, "text": text, "citations": list(cites)}, 'c' + text[:60])
+
+    def BOX(self, title, text):
+        """A closed card (click the title to open), e.g. a shortcut with its short example."""
+        self._add({"type": "solution", "title": title, "text": text, "collapsed": True}, 'w' + title)
+
+    def WHY(self, title, text):
+        """A closed box for skip-safe theory: WHY('Why are we allowed to do this?', '...') -> '… (optional)'."""
+        self.BOX(f'{title} (optional)', text)
 
     def L(self, items, ordered=False, cites=()):
         self._add({"type": "list", "items": list(items), "ordered": ordered, "citations": list(cites)}, 'l' + items[0][:60])

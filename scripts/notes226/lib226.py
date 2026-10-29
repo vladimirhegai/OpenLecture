@@ -37,7 +37,10 @@ def cite(tag, *pages):
 
 
 def S(explanation, latex=''):
-    """One solution step: a short plain-language line, then (optionally) the math."""
+    """One solution step: a short plain-language line, then (optionally) the math. A tuple of latex lines is stacked,
+    one centred equation per line."""
+    if isinstance(latex, tuple):
+        latex = '\\begin{gathered}' + ' \\\\ '.join(latex) + '\\end{gathered}' if len(latex) > 1 else latex[0]
     return {"explanation": explanation, "latex": latex}
 
 
@@ -113,6 +116,29 @@ class Doc:
     def REMIND(self, text, cites=()):
         """Purple reminder box: what you need from Test 1 (or calculus) for this topic."""
         self.CO('reminder', text, cites)
+
+    def BOX(self, title, text, cites=()):
+        """A closed card (click the title to open)."""
+        self._add({"type": "solution", "title": title, "text": text, "collapsed": True, "citations": list(cites)},
+                  'w' + title)
+
+    def WHY(self, title, text):
+        """A closed box for skip-safe theory: WHY('Why does this work?', '...') -> '… (optional)'."""
+        self.BOX(f'{title} (optional)', text)
+
+    def CARD(self, title, steps_, answer=None, cites=(), numbered=True):
+        """A closed example card with room to breathe: steps_ = [(text, latex), ...]. Each step is its own line
+        ('Step 1 · **Range** …'), its math centred below it; latex may be a tuple for several centred lines.
+        numbered=False for a reference card (formulas, shortcuts) whose lines aren't steps."""
+        parts = []
+        for i, (text, latex) in enumerate(steps_, 1):
+            parts.append(f'Step {i} · {text}' if numbered else text)
+            for line in (latex,) if isinstance(latex, str) else latex:
+                if line:
+                    parts.append(f'$$\n{line}\n$$')
+        if answer:
+            parts.append(f'**Answer:**\n\n$$\n{answer}\n$$')
+        self.BOX(title, '\n\n'.join(parts), cites)
 
     def L(self, items, ordered=False, cites=()):
         self._add({"type": "list", "items": list(items), "ordered": ordered, "citations": list(cites)},

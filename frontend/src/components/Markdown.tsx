@@ -7,6 +7,7 @@ import remarkMath from "remark-math";
 import { Graph } from "./mathtools/Graph";
 import { Graph3D } from "./mathtools/Graph3D";
 import { CircuitSteps } from "./mathtools/CircuitSteps";
+import { LogicSteps } from "./mathtools/LogicSteps";
 import { Stepper } from "./mathtools/Stepper";
 import { Schematic } from "./Schematic";
 import { DigitalFigure } from "./DigitalFigure";
@@ -87,13 +88,14 @@ const link: Components["a"] = ({ href, children }) => {
 };
 
 const inlineComponents: Components = { p: ({ children }) => <>{children}</>, a: link };
-/** Fenced tools: ```schematic circuits, ```steps equation steppers, ```graph and ```graph3d interactive plots
+/** Fenced tools: ```schematic circuits, ```steps equation steppers, ```circuitsteps/```logicsteps step-through circuits, ```graph and ```graph3d interactive plots
  * (grammar in skills/math-tools.md). Other code blocks stay code. */
 const TOOLS: Record<string, (source: string) => React.ReactNode> = {
   "language-digital": (source) => <DigitalFigure source={source} />,
   "language-schematic": (source) => <Schematic source={source} />,
   "language-steps": (source) => <Stepper source={source} />,
   "language-circuitsteps": (source) => <CircuitSteps source={source} />,
+  "language-logicsteps": (source) => <LogicSteps source={source} />,
   "language-graph": (source) => <Graph source={source} />,
   "language-graph3d": (source) => <Graph3D source={source} />,
 };

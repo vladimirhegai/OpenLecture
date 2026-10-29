@@ -1,248 +1,106 @@
 # Test 2 - Question 3
 
-**Lectures 11–13.** Expected values, variances, and the properties of expectation and variance.
+**Lectures 11–13.** The mean (the long-run average) and the variance (the spread) of a random variable.
 
-## Topic 1: Expected value
+## Question 3 in plain words
 
-The **expected value** (mean) $E[X]=\mu_X$ is the **long-run average** of $X$ if you repeat the experiment many times.
+**You’ll see:** a PMF, a PDF, a CDF, a named family, or just “$E[X]=3$, $\operatorname{Var}(X)=9$”. Then “find $E[X]$, $\operatorname{Var}(X)$, $\sigma_X$”.
 
-Each value is weighted by how likely it is: a **probability-weighted average**.
+**The move: four steps, every time.**
 
-$$E[X]=\sum_{x\in R_X} x\,p_X(x)\quad\text{(discrete)}$$
+1. **Mean:** each value × its chance, then add (a sum for a PMF, an integral for a PDF).
+2. **Square:** the same, with $x^2$ in place of $x$. That’s $E[X^2]$.
+3. **Subtract:** $\operatorname{Var}(X)=E[X^2]-(E[X])^2$.
+4. **Root:** $\sigma_X=\sqrt{\operatorname{Var}(X)}$.
 
-$$E[X]=\int_{-\infty}^{\infty} x\,f_X(x)\,dx\quad\text{(continuous)}$$
+$$E[X]=\sum_x x\,p_X(x)\quad\text{or}\quad\int x\,f_X(x)\,dx,\qquad \operatorname{Var}(X)=E[X^2]-\big(E[X]\big)^2$$
 
-- **Why it works:** repeat $N$ times; value $x_k$ shows up about $N p_k$ times, so the average is $\approx\sum x_k p_k$.
-- **Continuous:** the sum becomes an integral, with $p_k$ replaced by $f_X(x)\,dx$.
-- $E[X]$ **need not be a possible value**: a die averages $3.5$.
-- **Mixed** $X$ (a point mass plus a density): add the two parts, $\sum x\,P(X=x)+\int x\,f(x)\,dx$.
+**Short example:** a die. $E[X]=3.5$, $E[X^2]=\tfrac{91}{6}$:
 
-**Expected value of a function** $g(X)$: no need to find the distribution of $Y=g(X)$ first. Just weight $g(x)$ instead of $x$:
+$$\operatorname{Var}(X)=\frac{91}{6}-3.5^2=\frac{35}{12}\approx2.92,\qquad \sigma_X\approx1.71$$
 
-$$E[g(X)]=\sum_{x} g(x)\,p_X(x)\qquad E[g(X)]=\int_{-\infty}^{\infty} g(x)\,f_X(x)\,dx$$
+**Which case?**
 
-> **Warning:** **$E[X^2]\ne(E[X])^2$** in general. Square inside the sum/integral, not after.
+| You’re given… | Go to |
+|---|---|
+| a PMF (a list of values and chances) | Case 1 |
+| a PDF $f_X(x)$ | Case 2 |
+| a CDF $F_X(x)$ | Case 3 |
+| “$X$ is Poisson / uniform / …” | Case 4 |
+| only $E[X]$ and $\operatorname{Var}(X)$ | Case 5 |
 
-> **Reminder:** **Calculus you need for $E[X]$**
-> 
-> - **Power rule:** $\displaystyle\int x^n\,dx=\frac{x^{n+1}}{n+1}$.
-> - **Exponential:** $\displaystyle\int e^{-\lambda x}\,dx=-\frac{1}{\lambda}e^{-\lambda x}$.
-> - **By parts:** $\displaystyle\int u\,dv=uv-\int v\,du$. For $\int x\,e^{-\lambda x}dx$ take $u=x$, $dv=e^{-\lambda x}dx$.
-> - **Shortcut (memorise):** $\displaystyle\int_0^{\infty}x^n e^{-\lambda x}\,dx=\frac{n!}{\lambda^{n+1}}$.
-> - **Symmetry:** an **odd** function ($g(-x)=-g(x)$, like $x$, $x^3$) on $[-a,a]$ integrates to $0$.
+> **Warning:** **$E[X^2]\ne(E[X])^2$.** Square **inside** the sum or integral, not after. A die: $E[X^2]=\tfrac{91}{6}\approx15.17$, but $3.5^2=12.25$.
 
-**Method:**
+## Case 1: from a PMF
 
-1. **Write** the PMF/PDF and where it is nonzero.
-2. **Multiply** by $x$ (or by $g(x)$).
-3. **Add/integrate** only over the nonzero range (outside it the integrand is $0$).
+**You’ll see:** a table of values and chances, or an experiment you turn into one.
 
-**Example: Example 1 · A die and a uniform**
+$$E[X]=\sum_x x\,p_X(x),\qquad E[X^2]=\sum_x x^2\,p_X(x)$$
 
-(a) A fair die is rolled; $X$ = the number. Find $E[X]$ and $E[X^2]$. (b) $X$ is uniform on $[0,2]$: $f_X(x)=\tfrac12$ on $[0,2]$. Find $E[X]$.
+**Short example** (Lecture 12): $X=4$ V or $6$ V, each half the time:
 
-1. (a) **Weight** each face by $\tfrac16$.
+$$E[X]=4(0.5)+6(0.5)=5,\qquad E[X^2]=16(0.5)+36(0.5)=26$$
 
-   $$E[X]=\frac16(1+2+3+4+5+6)=\frac{21}{6}=3.5$$
-2. $E[X^2]$: square **inside** the sum.
+$$\operatorname{Var}(X)=26-5^2=1\ \text{V}^2,\qquad \sigma_X=1\ \text{V}$$
 
-   $$E[X^2]=\frac16(1+4+9+16+25+36)=\frac{91}{6}\approx15.17$$
-3. Compare: $(E[X])^2=12.25\ne15.17$.
+<details><summary>Full example (Lecture 11): a fair die, $\;X$ = the number</summary>
 
-   $$E[X^2]\ne(E[X])^2$$
-4. (b) **Integrate** over $[0,2]$ only.
+Step 1 · **Mean:** each face has chance $\tfrac16$.
 
-   $$E[X]=\int_0^2 x\cdot\frac12\,dx=\frac12\left[\frac{x^2}{2}\right]_0^2=1$$
+$$
+E[X]=\frac16(1+2+3+4+5+6)=\frac{21}{6}=3.5
+$$
 
-**Answer:** (a) $E[X]=3.5$, $E[X^2]=\tfrac{91}{6}$ (b) $E[X]=1$, the middle of $[0,2]$.
+Step 2 · **Square:** square each value **inside** the sum.
 
-The mean is the **balance point** of the PDF. A long right tail pulls it to the right of the peak.
+$$
+E[X^2]=\frac16(1+4+9+16+25+36)=\frac{91}{6}
+$$
 
-```graph
-title "Exponential PDF: the mean $1/\lambda$ is not the peak"
-x 0 6 label="$x$" height=240
-y 0 2.1 label="$f_X(x)$"
-slider L 0.3 2 1 step=0.05 label="$\lambda$"
-curve "L*exp(-L*x)" from=0 to=6 label="$\lambda e^{-\lambda x}$"
-vline "1/L" label="$E[X]=1/\lambda$" color=2
-readout "$E[X]=1/\lambda$" "1/L"
-```
+Step 3 · **Subtract.**
 
-**Problem: Try it 1 · Second moment of a uniform** (introductory)
+$$
+\operatorname{Var}(X)=\frac{91}{6}-\Big(\frac72\Big)^2=\frac{182-147}{12}=\frac{35}{12}
+$$
 
-$X$ is uniform on $[0,2]$. Find $E[X^2]$.
+Step 4 · **Root.**
 
-<details><summary>Solution</summary>
+$$
+\sigma_X=\sqrt{35/12}\approx1.71
+$$
 
-1. **Use** $E[g(X)]=\int g(x)f_X(x)\,dx$ with $g(x)=x^2$.
+**Answer:**
 
-   $$E[X^2]=\int_0^2 x^2\cdot\frac12\,dx$$
-2. **Power rule.**
-
-   $$=\frac12\left[\frac{x^3}{3}\right]_0^2=\frac12\cdot\frac83=\frac43$$
-
-**Answer:** $E[X^2]=\tfrac43$ (not $(E[X])^2=1$).
+$$
+E[X]=3.5,\quad \operatorname{Var}(X)=\frac{35}{12},\quad \sigma_X\approx1.71
+$$
 
 </details>
 
-**Problem: Try it 2 · Mean time between customers** (intermediate)
+<details><summary>Any function: $\;E[g(X)]=\sum g(x)\,p_X(x)$</summary>
 
-The time $X$ between customer arrivals is exponential: $f_X(t)=\lambda e^{-\lambda t}$ for $t\ge0$. Find the mean $E[X]$.
+Put $g(x)$ in place of $x$. Example: a voltage $X=4$ or $6$ V (half each) across $R=2\ \Omega$: average power $E[X^2/R]$.
 
-<details><summary>Solution</summary>
-
-1. **Set up** over $[0,\infty)$.
-
-   $$E[X]=\int_0^{\infty}t\,\lambda e^{-\lambda t}\,dt$$
-2. **By parts:** $u=t$, $dv=\lambda e^{-\lambda t}dt$, so $du=dt$, $v=-e^{-\lambda t}$.
-
-   $$=\Big[-t\,e^{-\lambda t}\Big]_0^{\infty}+\int_0^{\infty}e^{-\lambda t}\,dt$$
-3. The boundary term is $0$ (exponential beats $t$).
-
-   $$=0+\Big[-\frac1\lambda e^{-\lambda t}\Big]_0^{\infty}=\frac1\lambda$$
-
-**Answer:** $E[X]=\dfrac1\lambda$. (Rate 3 per minute → mean gap $\tfrac13$ min.)
+$$
+E\Big[\frac{X^2}{2}\Big]=\frac{16}{2}(0.5)+\frac{36}{2}(0.5)=13\ \text{W}
+$$
 
 </details>
 
-**Problem: Try it 3 · Mean of a symmetric PDF** (intermediate)
+**Problem: Try it 1 · Case 1 · A binary random variable · Tutorial 5 Q1** (introductory)
 
-$X$ has PDF $f_X(t)=\tfrac{\lambda}{2}e^{-\lambda|t-\gamma|}$ for all $t$ (a Laplace density centred at $\gamma$). Find $E[X]$.
-
-<details><summary>Solution</summary>
-
-1. **Shift:** let $u=t-\gamma$, so $t=u+\gamma$.
-
-   $$E[X]=\int_{-\infty}^{\infty}(u+\gamma)\,\frac{\lambda}{2}e^{-\lambda|u|}\,du$$
-2. **Split.** $u\,e^{-\lambda|u|}$ is **odd**, so its integral is $0$; the rest is $\gamma$ times the total area $1$.
-
-   $$=\underbrace{\int u\,\frac{\lambda}{2}e^{-\lambda|u|}du}_{0}+\gamma\underbrace{\int\frac{\lambda}{2}e^{-\lambda|u|}du}_{1}$$
-3. So the mean is the centre of symmetry.
-
-   $$E[X]=\gamma$$
-
-**Answer:** $E[X]=\gamma$: a PDF symmetric about $c$ has mean $c$.
-
-</details>
-
-**Problem: Try it 4 · Mean of a mixed random variable** (intermediate)
-
-A received signal level $X$ is $0$ with probability $0.2$ (signal lost). Otherwise (probability $0.8$) it is uniform on $(0,10)$, so the continuous part has density $0.8\cdot\tfrac1{10}=0.08$ on $(0,10)$. Find $E[X]$.
+$X$ is $0$ with probability $p$ and $1$ with probability $1-p$. Find $E[X]$, $\operatorname{Var}(X)$ and $E[X^5]$.
 
 <details><summary>Solution</summary>
 
-1. **Discrete part:** the point mass at $0$.
-
-   $$0\cdot P(X=0)=0\cdot0.2=0$$
-2. **Continuous part:** integrate $x$ times the density $0.08$.
-
-   $$\int_0^{10}x\,(0.08)\,dx=0.08\cdot\frac{10^2}{2}=4$$
-3. **Add** the parts.
-
-   $$E[X]=0+4=4$$
-
-**Answer:** $E[X]=4$ (the 20% of zeros pull the average down from 5).
-
-</details>
-
-## Topic 2: Variance and standard deviation
-
-The mean gives the **centre**. Two variables can share a centre but spread very differently:
-
-- $X=9$ or $11$ (each $\tfrac12$): $E[X]=10$, stays close.
-- $Y=0$ or $20$ (each $\tfrac12$): $E[Y]=10$, far more spread out.
-- The average deviation $E[X-\mu_X]$ is always $0$ (the $+$ and $-$ cancel), so we **square** the deviation.
-
-$$\operatorname{Var}(X)=E\big[(X-\mu_X)^2\big]$$
-
-**Shortcut** (almost always faster):
-
-$$\operatorname{Var}(X)=E[X^2]-\big(E[X]\big)^2$$
-
-```steps
-title "Where the shortcut comes from"
-$$
-E\big[(X-\mu)^2\big]
-$$
-Start from the definition, with $\mu=E[X]$ a constant.
-$$
-E\big[\hl{X^2-2\mu X+\mu^2}\big]
-$$
-Expand the square.
-$$
-\hl{E[X^2]-2\mu\,E[X]+\mu^2}
-$$
-Linearity: constants come out of $E$.
-$$
-E[X^2]-2\mu\cdot\hl{\mu}+\mu^2
-$$
-Use $E[X]=\mu$.
-$$
-\hl{E[X^2]-\mu^2}
-$$
-Done: mean of the square minus square of the mean.
-```
-
-- **Units:** variance has **squared** units (V → V²).
-- **Standard deviation** $\sigma_X=\sqrt{\operatorname{Var}(X)}$ is back in the units of $X$: a typical distance from the mean.
-- $\operatorname{Var}(X)\ge0$, and $=0$ only when $X$ is a constant.
-- For a Gaussian $N(\mu,\sigma^2)$: mean $\mu$, standard deviation $\sigma$ (the width of the bell).
-
-Drag $d$: the mean never moves, but the variance grows like $d^2$. ($d=1$ is $X$ above, $d=10$ is $Y$.)
-
-```graph
-title "Same mean, different spread: $X=10\pm d$, each with probability $\tfrac12$"
-x -1 21 label="$x$" height=220
-y 0 0.65 label="$p_X(x)$"
-slider d 0 10 1 step=0.5 label="$d$"
-segment "10-d" "0" "10-d" "0.5" color=1
-point "10-d" "0.5" color=1
-segment "10+d" "0" "10+d" "0.5" color=1
-point "10+d" "0.5" color=1
-vline "10" label="$E[X]=10$" color=2
-readout "$E[X]$" "10"
-readout "$\mathrm{Var}(X)=d^2$" "d^2"
-readout "$\sigma_X=d$" "d"
-```
-
-**Method:**
-
-1. **Find** $E[X]$.
-2. **Find** $E[X^2]$ (square inside the sum/integral).
-3. **Subtract:** $\operatorname{Var}=E[X^2]-(E[X])^2$; then $\sigma=\sqrt{\operatorname{Var}}$.
-
-**Example: Example 2 · A two-level sensor voltage**
-
-A sensor reads $X=4\text{ V}$ or $X=6\text{ V}$, each with probability $0.5$. Find $E[X]$, $E[X^2]$, $\operatorname{Var}(X)$ and $\sigma_X$.
-
-1. **Mean.**
-
-   $$E[X]=4(0.5)+6(0.5)=5\text{ V}$$
-2. **Second moment.**
-
-   $$E[X^2]=16(0.5)+36(0.5)=26\text{ V}^2$$
-3. **Subtract.**
-
-   $$\operatorname{Var}(X)=26-5^2=1\text{ V}^2$$
-4. **Standard deviation** (back to volts).
-
-   $$\sigma_X=\sqrt1=1\text{ V}$$
-
-**Answer:** $E[X]=5$ V, $E[X^2]=26$ V², $\operatorname{Var}(X)=1$ V², $\sigma_X=1$ V.
-
-**Problem: Try it 5 · A binary random variable** (introductory)
-
-$X$ takes only the values $0$ and $1$, with $P(X=0)=p$ and $P(X=1)=1-p$. Find $E[X]$, $\operatorname{Var}(X)$ and $E[X^5]$.
-
-<details><summary>Solution</summary>
-
-1. **Mean.**
+1. **Spot:** a PMF with two values → Case 1.
+2. **Mean.**
 
    $$E[X]=0\cdot p+1\cdot(1-p)=1-p$$
-2. **Trick:** $0^n=0$ and $1^n=1$, so $X^n=X$ for every $n\ge1$.
+3. **Square:** $0^n=0$ and $1^n=1$, so $X^n=X$ for any power.
 
    $$E[X^2]=E[X^5]=E[X]=1-p$$
-3. **Subtract.**
+4. **Subtract.**
 
    $$\operatorname{Var}(X)=(1-p)-(1-p)^2=(1-p)\,p$$
 
@@ -250,141 +108,361 @@ $X$ takes only the values $0$ and $1$, with $P(X=0)=p$ and $P(X=1)=1-p$. Find $E
 
 </details>
 
-**Problem: Try it 6 · Variance from a staircase CDF** (intermediate)
+## Case 2: from a PDF
 
-$X$ has CDF
+**You’ll see:** a formula $f_X(x)$. Same four steps, with integrals over the range where $f_X\ne0$:
+
+$$E[X]=\int x\,f_X(x)\,dx,\qquad E[X^2]=\int x^2\,f_X(x)\,dx$$
+
+**Short example:** $X$ uniform on $[0,2]$, $f_X=\tfrac12$:
+
+$$E[X]=\int_0^2\frac x2\,dx=1,\qquad E[X^2]=\int_0^2\frac{x^2}{2}\,dx=\frac43$$
+
+$$\operatorname{Var}(X)=\frac43-1=\frac13$$
+
+<details><summary>Full example (Practice 03 Q2): exponential, $\;f_X(t)=\lambda e^{-\lambda t}$, $t\ge0$</summary>
+
+Step 1 · **Mean:** integrate over $t\ge0$. Use the shortcut card below with $n=1$.
 
 $$
-F_X(x)=\begin{cases}0,&x<-3\\ 3/8,&-3\le x<0\\ 3/4,&0\le x<6\\ 1,&x\ge6\end{cases}
+E[X]=\lambda\int_0^{\infty}t\,e^{-\lambda t}\,dt=\lambda\cdot\frac{1!}{\lambda^2}=\frac1\lambda
 $$
 
-Is $X$ discrete or continuous? Find $\operatorname{Var}(X)$ and $\sigma_X$.
+Step 2 · **Square:** the shortcut with $n=2$.
 
-<details><summary>Solution</summary>
+$$
+E[X^2]=\lambda\cdot\frac{2!}{\lambda^3}=\frac{2}{\lambda^2}
+$$
 
-1. **Staircase** → discrete. The **jumps** give the PMF.
+Step 3 · **Subtract.**
 
-   $$p_X(-3)=\frac38,\quad p_X(0)=\frac38,\quad p_X(6)=\frac14$$
-2. **Mean.**
+$$
+\operatorname{Var}(X)=\frac{2}{\lambda^2}-\frac{1}{\lambda^2}=\frac{1}{\lambda^2}
+$$
 
-   $$E[X]=-3\cdot\frac38+0+6\cdot\frac14=-\frac98+\frac{12}{8}=\frac38$$
-3. **Second moment.**
+Step 4 · **Root.** (3 customers per minute → mean gap $\tfrac13$ min.)
 
-   $$E[X^2]=9\cdot\frac38+0+36\cdot\frac14=\frac{27}{8}+\frac{72}{8}=\frac{99}{8}$$
-4. **Subtract**, then take the root.
+$$
+\sigma_X=\frac1\lambda
+$$
 
-   $$\operatorname{Var}(X)=\frac{99}{8}-\frac{9}{64}=\frac{783}{64}\approx12.234,\quad \sigma_X\approx3.498$$
+**Answer:**
 
-**Answer:** Discrete; $\operatorname{Var}(X)=\tfrac{783}{64}\approx12.234$, $\sigma_X\approx3.498$.
+$$
+E[X]=\frac1\lambda,\qquad \operatorname{Var}(X)=\frac{1}{\lambda^2}
+$$
 
 </details>
 
-**Problem: Try it 7 · A PDF with a constant: mean and variance** (intermediate)
+<details><summary>Shortcut: $\;\displaystyle\int_0^{\infty}x^n\,e^{-\lambda x}\,dx=\frac{n!}{\lambda^{n+1}}$</summary>
 
-$f_X(x)=Cx^2$ for $|x|\le1$, and $0$ otherwise. (a) Find $C$ and the CDF. (b) Find $E[X]$ and $\operatorname{Var}(X)$.
+Skips integrating by parts. $n=1$:
 
-<details><summary>Solution</summary>
+$$
+\int_0^\infty x\,e^{-2x}\,dx=\frac{1}{4}
+$$
 
-1. (a) **Total area = 1.**
+$n=2$:
 
-   $$\int_{-1}^{1}Cx^2\,dx=C\cdot\frac23=1\;\Rightarrow\;C=\frac32$$
-2. **CDF** on $[-1,1]$: integrate from $-1$.
-
-   $$F_X(x)=\int_{-1}^{x}\frac32t^2\,dt=\frac{x^3+1}{2}\quad(0\text{ left of }-1,\ 1\text{ right of }1)$$
-3. (b) **Mean:** $x\cdot x^2=x^3$ is odd on $[-1,1]$.
-
-   $$E[X]=\int_{-1}^{1}\frac32x^3\,dx=0$$
-4. **Second moment.**
-
-   $$E[X^2]=\int_{-1}^{1}\frac32x^4\,dx=\frac32\cdot\frac25=\frac35$$
-5. **Subtract.**
-
-   $$\operatorname{Var}(X)=\frac35-0^2=\frac35$$
-
-**Answer:** $C=\tfrac32$, $F_X(x)=\tfrac{x^3+1}{2}$ on $[-1,1]$; $E[X]=0$, $\operatorname{Var}(X)=\tfrac35$.
+$$
+\int_0^\infty x^2\,e^{-x}\,dx=\frac{2}{1}=2
+$$
 
 </details>
 
-## Topic 3: Properties of expectation and variance
+<details><summary>Shortcut: a symmetric PDF → the mean is the centre</summary>
 
-These rules turn most "find $E$ / Var of something" questions into one line.
+If $f_X$ looks the same on both sides of $c$, then $E[X]=c$. No integral.
 
-$$E[aX+b]=a\,E[X]+b\qquad E[aX+bY]=a\,E[X]+b\,E[Y]$$
-
-$$\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)\qquad \sigma_{aX+b}=|a|\,\sigma_X$$
-
-- **Shifting** by $b$ moves the centre but **not** the spread: $b$ disappears from Var.
-- **Scaling** by $a$ scales the spread by $|a|$, so Var by $a^2$. A minus sign never makes Var negative: $\operatorname{Var}(-X)=\operatorname{Var}(X)$.
-- $E[b]=b$ and $\operatorname{Var}(b)=0$ for a constant $b$.
-- **Turn the shortcut around:** $E[X^2]=\operatorname{Var}(X)+(E[X])^2$. Use it whenever you are given $E$ and Var.
-
-```steps
-title "Why $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$"
 $$
-\operatorname{Var}(aX+b)=E\big[(aX+b-E[aX+b])^2\big]
+f_X(t)=\tfrac12\lambda e^{-\lambda|t-\gamma|}\quad\Longrightarrow\quad E[X]=\gamma
 $$
-Definition, with $Y=aX+b$.
+
+Same reason: an odd function ($x$, $x^3$) integrated over $[-a,a]$ gives $0$.
+
 $$
-=E\big[(aX+b-\hl{aE[X]-b})^2\big]
+\int_{-1}^{1}x\cdot\frac32x^2\,dx=0
 $$
-Linearity of $E$.
+
+</details>
+
+<details><summary>Mixed $X$ (a jump and a density): add both parts</summary>
+
+Step 1 · Lecture 11 signal: $X=0$ with chance $0.2$, otherwise uniform on $(0,10)$, density $0.08$.
+
+Step 2 · **Mean**, jump part.
+
 $$
-=E\big[\hl{a^2}(X-E[X])^2\big]
+0\cdot0.2=0
 $$
-The $b$ cancels; pull out $a$ and square it.
+
+Step 3 · **Mean**, density part.
+
 $$
-=\hl{a^2\operatorname{Var}(X)}
+\int_0^{10}x\,(0.08)\,dx=0.08\cdot\frac{10^2}{2}=4
 $$
-$a^2$ is a constant, so it comes out of $E$.
-```
 
-**Moments:** $E[X^n]$ is the $n$th (raw) **moment**; $E[(X-\mu_X)^n]$ is the $n$th **central moment**. So $E[X]$ = 1st moment, $E[X^2]$ = 2nd moment, and Var = 2nd central moment.
+Step 4 · Add.
 
-**Means and variances to memorise** (no formula sheet). Each can be found with Topics 1–2:
+$$
+E[X]=0+4=4
+$$
 
-| Distribution | $E[X]$ | $\operatorname{Var}(X)$ | Where you saw it |
-|---|---|---|---|
-| Bernoulli$(p)$ | ${p}$ | ${p(1-p)}$ | Try it 5 (there $P(X=1)=1-p$) |
-| Binomial$(n,p)$ | ${np}$ | ${np(1-p)}$ | memorise |
-| Geometric, $k=1,2,\dots$ | ${\dfrac1p}$ | ${\dfrac{1-p}{p^2}}$ | memorise |
-| Geometric, $k=0,1,\dots$ | ${\dfrac{1-p}{p}}$ | ${\dfrac{1-p}{p^2}}$ | Practice 03 Q5 |
-| Poisson$(\lambda)$ | ${\lambda}$ | ${\lambda}$ | memorise |
-| Uniform$(a,b)$ | ${\dfrac{a+b}{2}}$ | ${\dfrac{(b-a)^2}{12}}$ | Question 2 |
-| Exponential$(\lambda)$ | ${\dfrac1\lambda}$ | ${\dfrac{1}{\lambda^2}}$ | Try it 2, Question 3 |
-| Gaussian $N(\mu,\sigma^2)$ | ${\mu}$ | ${\sigma^2}$ | Lecture 12 |
+</details>
 
-**Example: Example 3 · Sensor calibration**
+## Case 3: from a CDF
 
-A sensor output $X$ has $E[X]=3$ and $\operatorname{Var}(X)=9$. (a) Find the mean squared error $E[(2-X)^2]$. (b) The reading is calibrated as $Y=2X-3$. Find $\operatorname{Var}(Y)$.
+**You’ll see:** $F_X(x)$ instead of a PMF or PDF. Turn it into one, then Case 1 or 2:
 
-1. (a) **Expand**, then use linearity.
+- **Staircase CDF** (discrete): the **jump sizes** are the PMF → Case 1.
+- **Smooth CDF** (continuous): the **slope** is the PDF, $f_X=F_X^{\prime}$ → Case 2.
 
-   $$E[(2-X)^2]=E[4-4X+X^2]=4-4E[X]+E[X^2]$$
-2. **Turn the shortcut around** to get $E[X^2]$.
+**Shortcut for $X\ge0$** (the tail formula): skip the PDF.
 
-   $$E[X^2]=\operatorname{Var}(X)+(E[X])^2=9+9=18$$
-3. Substitute.
+$$E[X]=\int_0^{\infty}\big(1-F_X(t)\big)\,dt\qquad\qquad E[N]=\sum_{k=0}^{\infty}P(N>k)\ \ (\text{whole numbers})$$
 
-   $$E[(2-X)^2]=4-12+18=10$$
-4. (b) **Shift drops out, scale squares.**
+**Short example:** exponential, $1-F_X(t)=e^{-\lambda t}$:
 
-   $$\operatorname{Var}(2X-3)=2^2\cdot9=36$$
+$$E[X]=\int_0^{\infty}e^{-\lambda t}\,dt=\frac1\lambda$$
 
-**Answer:** (a) $10$ (b) $36$
+<details><summary>Full example: $\;F_X(x)=x^2$ on $[0,1]$. Find $E[X]$ two ways</summary>
 
-**Problem: Try it 8 · Given only the mean and variance** (introductory)
+Step 1 · **Way 1:** the slope is the PDF.
 
-A nonnegative random variable $X$ has $E[X]=3$ and $\operatorname{Var}(X)=1$. Find (a) $E[(3X-2)^2]$, (b) $\operatorname{Var}(2X+1)$.
+$$
+f_X(x)=2x,\qquad 0\le x\le1
+$$
+
+Step 2 · **Mean** from the PDF.
+
+$$
+E[X]=\int_0^1x\cdot2x\,dx=\frac23
+$$
+
+Step 3 · **Way 2:** the tail formula. $1-F=0$ after $x=1$.
+
+$$
+E[X]=\int_0^1(1-t^2)\,dt=1-\frac13=\frac23
+$$
+
+**Answer:**
+
+$$
+E[X]=\frac23\ \text{ both ways}
+$$
+
+</details>
+
+## Case 4: a named family (read it off)
+
+**You’ll see:** “$X$ is Binomial / Poisson / uniform / …”. Don’t integrate: each family’s mean and variance are known. Open a card:
+
+<details><summary>Bernoulli$(p)$: $\;E=p$, $\;\operatorname{Var}=p(1-p)$</summary>
+
+One yes/no try, $1$ with chance $p$. Example $p=0.3$:
+
+$$
+E[X]=0.3,\qquad \operatorname{Var}(X)=0.3\cdot0.7=0.21
+$$
+
+</details>
+
+<details><summary>Binomial$(n,p)$: $\;E=np$, $\;\operatorname{Var}=np(1-p)$</summary>
+
+$n$ tries, count successes. Example $n=10$, $p=0.3$:
+
+$$
+E[X]=3,\qquad \operatorname{Var}(X)=10(0.3)(0.7)=2.1
+$$
+
+</details>
+
+<details><summary>Geometric: $\;E=\dfrac1p$ (or $\dfrac{1-p}{p}$), $\;\operatorname{Var}=\dfrac{1-p}{p^2}$</summary>
+
+Counting tries until the first success ($k=1,2,\dots$):
+
+$$
+E[X]=\frac1p
+$$
+
+Counting failures before it ($k=0,1,\dots$), one less:
+
+$$
+E[N]=\frac1p-1=\frac{1-p}{p}
+$$
+
+Same variance both ways. Example $p=0.2$, tries:
+
+$$
+E[X]=5,\qquad \operatorname{Var}(X)=\frac{0.8}{0.04}=20
+$$
+
+</details>
+
+<details><summary>Poisson$(\lambda)$: $\;E=\lambda$, $\;\operatorname{Var}=\lambda$</summary>
+
+Mean and variance are the same number. Example $\lambda=3$:
+
+$$
+E[X]=3,\qquad \operatorname{Var}(X)=3
+$$
+
+</details>
+
+<details><summary>Uniform$(a,b)$: $\;E=\dfrac{a+b}{2}$, $\;\operatorname{Var}=\dfrac{(b-a)^2}{12}$</summary>
+
+The middle, and the length squared over 12. Example $U(2,8)$:
+
+$$
+E[X]=5,\qquad \operatorname{Var}(X)=\frac{36}{12}=3
+$$
+
+</details>
+
+<details><summary>Exponential$(\lambda)$: $\;E=\dfrac1\lambda$, $\;\operatorname{Var}=\dfrac{1}{\lambda^2}$</summary>
+
+Example $\lambda=0.25$ per minute:
+
+$$
+E[X]=4\text{ min},\qquad \operatorname{Var}(X)=16
+$$
+
+</details>
+
+<details><summary>Gaussian $N(\mu,\sigma^2)$: $\;E=\mu$, $\;\operatorname{Var}=\sigma^2$</summary>
+
+Already in the name. Example $N(12,4)$:
+
+$$
+E[X]=12,\qquad \sigma_X=2
+$$
+
+</details>
+
+**Need $E[X^2]$?** Turn the variance around:
+
+$$E[X^2]=\operatorname{Var}(X)+\big(E[X]\big)^2\qquad\text{Poisson}(3):\ E[X^2]=3+9=12$$
+
+**Problem: Try it 2 · Case 4 · Three families** (introductory)
+
+(a) $X\sim$ Binomial$(10,\,0.3)$: find $E[X]$ and $\operatorname{Var}(X)$. (b) $X\sim$ Uniform$(2,8)$: find $\operatorname{Var}(X)$ and $\sigma_X$. (c) $X\sim$ Poisson$(3)$: find $E[(X-1)^2]$.
 
 <details><summary>Solution</summary>
 
-1. **Second moment** from the shortcut.
+1. (a) **Spot:** Binomial → $np$ and $np(1-p)$.
+
+   $$E[X]=10(0.3)=3,\qquad \operatorname{Var}(X)=10(0.3)(0.7)=2.1$$
+2. (b) **Spot:** uniform → $\frac{(b-a)^2}{12}$. **Root.**
+
+   $$\operatorname{Var}(X)=\frac{6^2}{12}=3,\qquad \sigma_X=\sqrt3\approx1.732$$
+3. (c) **Spot:** Poisson. **Swap:** $E[X^2]=\lambda+\lambda^2=12$. **Expand** (Case 5).
+
+   $$E[(X-1)^2]=E[X^2]-2E[X]+1=12-6+1=7$$
+
+**Answer:** (a) $3$, $2.1$ (b) $3$, $\sqrt3\approx1.732$ (c) $7$
+
+</details>
+
+## Case 5: only E[X] and Var(X) given (the rules)
+
+**You’ll see:** “$E[X]=3$, $\operatorname{Var}(X)=9$. Find $E[(2-X)^2]$” or “find $\operatorname{Var}(2X-3)$”. No PMF or PDF needed.
+
+**The move:** two rules.
+
+$$E[aX+b]=a\,E[X]+b\qquad\qquad \operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$$
+
+1. **Expand** any square, like $(2-X)^2$, then take $E$ of each term.
+2. **Swap** in $E[X^2]=\operatorname{Var}(X)+(E[X])^2$ wherever $E[X^2]$ appears.
+3. **Plug in.** For Var: the $+b$ drops out, the $a$ gets squared.
+
+**Short example:** $\operatorname{Var}(X)=9$:
+
+$$\operatorname{Var}(2X-3)=2^2\cdot9=36,\qquad \operatorname{Var}(-X)=\operatorname{Var}(X),\qquad \sigma_{aX+b}=|a|\,\sigma_X$$
+
+<details><summary>Full example (Lecture 13): $\;E[X]=3$, $\;\operatorname{Var}(X)=9$. Find $E[(2-X)^2]$ and $\operatorname{Var}(2X-3)$</summary>
+
+Step 1 · **Expand**, then take $E$ of each term.
+
+$$
+E[(2-X)^2]=E[4-4X+X^2]=4-4E[X]+E[X^2]
+$$
+
+Step 2 · **Swap** for $E[X^2]$.
+
+$$
+E[X^2]=9+3^2=18
+$$
+
+Step 3 · **Plug in.**
+
+$$
+E[(2-X)^2]=4-12+18=10
+$$
+
+Step 4 · Var: the $-3$ drops out, the $2$ gets squared.
+
+$$
+\operatorname{Var}(2X-3)=2^2\cdot9=36
+$$
+
+**Answer:**
+
+$$
+E[(2-X)^2]=10,\qquad \operatorname{Var}(2X-3)=36
+$$
+
+</details>
+
+<details><summary>Moments: $\;E[X^n]$ (raw), $\;E[(X-\mu)^n]$ (central)</summary>
+
+The $n$th moment is $E[X^n]$: $E[X]$ is the 1st, $E[X^2]$ the 2nd.
+
+The variance is the 2nd **central** moment: distances from the mean.
+
+$$
+\operatorname{Var}(X)=E\big[(X-\mu_X)^2\big]
+$$
+
+</details>
+
+<details><summary>Chebyshev and Markov (Practice 03, not in the lectures)</summary>
+
+**Chebyshev:** far from the mean is unlikely when the variance is small.
+
+$$
+P\big(|Y-\mu_Y|\ge\varepsilon\big)\le\frac{\operatorname{Var}(Y)}{\varepsilon^2}
+$$
+
+Example: $\operatorname{Var}=1$, $\varepsilon=2$.
+
+$$
+P\big(|Y-\mu|\ge2\big)\le\frac14
+$$
+
+**Markov**, for $Y\ge0$:
+
+$$
+P(Y\ge a)\le\frac{E[Y]}{a}
+$$
+
+</details>
+
+**Problem: Try it 3 · Case 5 · Given only the mean and variance · Tutorial 5 Q2** (introductory)
+
+$X\ge0$ has $E[X]=3$ and $\operatorname{Var}(X)=1$. Find (a) $E[(3X-2)^2]$, (b) $\operatorname{Var}(2X+1)$.
+
+<details><summary>Solution</summary>
+
+1. **Spot:** only $E$ and Var → Case 5. **Swap** first.
 
    $$E[X^2]=1+3^2=10$$
-2. (a) **Expand** and use linearity.
+2. (a) **Expand**, then take $E$ of each term.
 
-   $$E[(3X-2)^2]=9E[X^2]-12E[X]+4=90-36+4=58$$
-3. (b) **Scale squares, shift drops.**
+   $$E[(3X-2)^2]=9E[X^2]-12E[X]+4$$
+3. **Plug in.**
+
+   $$9(10)-12(3)+4=58$$
+4. (b) The $+1$ drops out, the $2$ gets squared.
 
    $$\operatorname{Var}(2X+1)=4\cdot1=4$$
 
@@ -392,48 +470,19 @@ A nonnegative random variable $X$ has $E[X]=3$ and $\operatorname{Var}(X)=1$. Fi
 
 </details>
 
-**Problem: Try it 9 · A Gaussian with mean 12** (intermediate)
-
-$X$ is Gaussian with mean $12$ and variance $4$. (a) Find $c$ with $P(X\ge c)=0.5$. (b) Find $E[X^2]$.
-
-<details><summary>Solution</summary>
-
-1. (a) The bell is **symmetric** about its mean, so half the area is on each side of $12$.
-
-   $$c=\mu=12$$
-2. (b) **Turn the shortcut around.**
-
-   $$E[X^2]=\operatorname{Var}(X)+\mu^2=4+144=148$$
-
-**Answer:** (a) $c=12$ (b) $E[X^2]=148$
-
-</details>
-
-**Problem: Try it 10 · Variance of a transformed reading** (intermediate)
-
-For $f_X(x)=\tfrac32x^2$ on $|x|\le1$ (Try it 7: $\operatorname{Var}(X)=\tfrac35$), find $E[3X-1]$ and $\operatorname{Var}(3X-1)$. Also find $E[Y^2]$ for $Y=|X|$.
-
-<details><summary>Solution</summary>
-
-1. **Linearity** with $E[X]=0$.
-
-   $$E[3X-1]=3\cdot0-1=-1$$
-2. **Scale squares, shift drops.**
-
-   $$\operatorname{Var}(3X-1)=9\cdot\frac35=\frac{27}{5}$$
-3. $Y^2=|X|^2=X^2$, so no new integral is needed.
-
-   $$E[Y^2]=E[X^2]=\frac35$$
-
-**Answer:** $E[3X-1]=-1$, $\operatorname{Var}(3X-1)=\tfrac{27}{5}$, $E[|X|^2]=\tfrac35$.
-
-</details>
-
 ## Practice Questions
 
-Test-style questions for Question 3, roughly easy → hard. Solve on paper first, then open the solution.
+> **Tip:** **Question 3 is always these cases, in parts (a)–(c).** Run **Mean → Square → Subtract → Root**:
+> 
+> 1. **PMF:** $\sum x\,p$ and $\sum x^2p$.
+> 2. **PDF:** $\int x\,f$ and $\int x^2f$ (symmetric → mean = centre; $\int_0^\infty x^ne^{-\lambda x}=\frac{n!}{\lambda^{n+1}}$).
+> 3. **CDF:** jumps → PMF, slope → PDF; or the tail formula for $X\ge0$.
+> 4. **Named family:** read the card.
+> 5. **Only $E$ and Var:** Expand → Swap $E[X^2]=\text{Var}+\mu^2$ → Plug in; $\text{Var}(aX+b)=a^2\text{Var}(X)$.
 
-**Problem: Question 1 · A PMF table with an unknown** (introductory)
+Test-style, easy → hard. Solve on paper first, then open the solution.
+
+**Problem: Question 1 · Case 1 + 5 · PMF table** (introductory)
 
 $X$ has the PMF below.
 
@@ -445,202 +494,217 @@ Find (a) $c$, (b) $E[X]$ and $\operatorname{Var}(X)$, (c) $E[5-2X]$ and $\operat
 
 <details><summary>Solution</summary>
 
-1. (a) **Total = 1.**
+1. (a) **Find $c$:** the chances add to $1$.
 
-   $$0.1+c+0.3+0.2=1\;\Rightarrow\;c=0.4$$
-2. (b) **Mean.**
+   $$0.1+c+0.3+0.2=1\quad\Longrightarrow\quad c=0.4$$
+2. (b) **Type:** a PMF → Case 1. **Mean.**
 
-   $$E[X]=-0.1+0+0.3+0.4=0.6$$
-3. **Second moment.**
+   $$E[X]=-1(0.1)+0+1(0.3)+2(0.2)=0.6$$
+3. **Square.**
 
-   $$E[X^2]=0.1+0+0.3+0.8=1.2$$
+   $$E[X^2]=1(0.1)+0+1(0.3)+4(0.2)=1.2$$
 4. **Subtract.**
 
-   $$\operatorname{Var}(X)=1.2-0.36=0.84$$
-5. (c) **Linearity**, then **scale squares** (the minus sign disappears).
+   $$\operatorname{Var}(X)=1.2-0.6^2=0.84$$
+5. (c) **Rules** (Case 5): the $5$ drops out of Var, the $-2$ gets squared.
 
-   $$E[5-2X]=5-1.2=3.8,\quad \operatorname{Var}(5-2X)=4(0.84)=3.36$$
+   $$\begin{gathered}E[5-2X]=5-2(0.6)=3.8 \\ \operatorname{Var}(5-2X)=4(0.84)=3.36\end{gathered}$$
 
 **Answer:** $c=0.4$; $E[X]=0.6$, $\operatorname{Var}(X)=0.84$; $E[5-2X]=3.8$, $\operatorname{Var}(5-2X)=3.36$.
 
 </details>
 
-**Problem: Question 2 · Mean and variance of a uniform** (introductory)
+**Problem: Question 2 · Case 4 + 5 · Gaussian · Tutorial 5 Q4** (introductory)
 
-$X$ is uniform on $[a,b]$: $f_X(x)=\dfrac{1}{b-a}$ on $[a,b]$. Show that $E[X]=\dfrac{a+b}{2}$ and $\operatorname{Var}(X)=\dfrac{(b-a)^2}{12}$.
+$X$ is normal with mean $12$ and variance $4$. (a) Find $c$ so that $P(X\ge c)=0.5$. (b) Find $E[X^2]$.
 
 <details><summary>Solution</summary>
 
-1. **Mean.** Use $b^2-a^2=(b-a)(b+a)$.
+1. **Type:** named family (Gaussian) → Case 4: $E[X]=12$, $\operatorname{Var}(X)=4$.
+2. (a) The bell is symmetric around its mean, so half the area is above $12$.
 
-   $$E[X]=\frac{1}{b-a}\int_a^b x\,dx=\frac{b^2-a^2}{2(b-a)}=\frac{a+b}{2}$$
-2. **Second moment.** Use $b^3-a^3=(b-a)(b^2+ab+a^2)$.
+   $$c=\mu=12$$
+3. (b) **Swap** (Case 5).
 
-   $$E[X^2]=\frac{1}{b-a}\int_a^b x^2\,dx=\frac{b^3-a^3}{3(b-a)}=\frac{a^2+ab+b^2}{3}$$
-3. **Subtract** over a common denominator 12.
+   $$E[X^2]=\operatorname{Var}(X)+\mu^2=4+144=148$$
 
-   $$\begin{gathered}\operatorname{Var}(X)=\frac{4(a^2+ab+b^2)-3(a+b)^2}{12}\\ =\frac{a^2-2ab+b^2}{12}=\frac{(b-a)^2}{12}\end{gathered}$$
-
-**Answer:** $E[X]=\tfrac{a+b}{2}$ (the midpoint), $\operatorname{Var}(X)=\tfrac{(b-a)^2}{12}$.
+**Answer:** (a) $c=12$ (b) $E[X^2]=148$
 
 </details>
 
-**Problem: Question 3 · Variance of an exponential** (intermediate)
+**Problem: Question 3 · Case 5 · Prove the Var rule · Practice 03 Q4** (introductory)
 
-$X$ is exponential with parameter $\lambda$: $f_X(x)=\lambda e^{-\lambda x}$ for $x\ge0$. Using $E[X]=\tfrac1\lambda$, find $\operatorname{Var}(X)$ and $\sigma_X$.
+Show that $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$ for any constants $a,b$. Use $\operatorname{Var}(Y)=E\big[(Y-E[Y])^2\big]$.
 
 <details><summary>Solution</summary>
 
-1. **Second moment** with the shortcut $\int_0^\infty x^n e^{-\lambda x}dx=\frac{n!}{\lambda^{n+1}}$ ($n=2$).
+1. **Mean** of $Y=aX+b$, with the first rule.
 
-   $$E[X^2]=\lambda\int_0^{\infty}x^2e^{-\lambda x}\,dx=\lambda\cdot\frac{2}{\lambda^3}=\frac{2}{\lambda^2}$$
-2. **Subtract.**
+   $$E[Y]=a\,E[X]+b$$
+2. **Subtract** it from $Y$: the $b$ cancels.
 
-   $$\operatorname{Var}(X)=\frac{2}{\lambda^2}-\frac{1}{\lambda^2}=\frac{1}{\lambda^2}$$
-3. **Root:** for an exponential, $\sigma$ equals the mean.
+   $$Y-E[Y]=aX+b-a\,E[X]-b=a\,(X-E[X])$$
+3. **Square** and take $E$: the constant $a^2$ comes out.
 
-   $$\sigma_X=\frac1\lambda$$
+   $$\begin{gathered}\operatorname{Var}(Y)=E\big[a^2(X-E[X])^2\big] \\ =a^2\,E\big[(X-E[X])^2\big]=a^2\operatorname{Var}(X)\end{gathered}$$
 
-**Answer:** $\operatorname{Var}(X)=\tfrac{1}{\lambda^2}$, $\sigma_X=\tfrac1\lambda=E[X]$.
+**Answer:** Shown: $\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)$, so $\sigma_{aX+b}=|a|\sigma_X$.
 
 </details>
 
-**Problem: Question 4 · Average power from a random voltage** (intermediate)
+**Problem: Question 4 · Case 1 · Mars canisters · Practice 03 Q6** (intermediate)
 
-A voltage $V$ (in volts) has PDF $f_V(v)=\tfrac{v}{2}$ for $0\le v\le2$, and $0$ otherwise. It is applied across an $8\ \Omega$ resistor, so the power is $P=V^2/8$. Find $E[V]$, $\operatorname{Var}(V)$ and the average power $E[P]$.
-
-<details><summary>Solution</summary>
-
-1. **Mean.**
-
-   $$E[V]=\int_0^2 v\cdot\frac v2\,dv=\frac12\left[\frac{v^3}{3}\right]_0^2=\frac43\text{ V}$$
-2. **Second moment.**
-
-   $$E[V^2]=\int_0^2 v^2\cdot\frac v2\,dv=\frac12\left[\frac{v^4}{4}\right]_0^2=2\text{ V}^2$$
-3. **Subtract.**
-
-   $$\operatorname{Var}(V)=2-\frac{16}{9}=\frac29\text{ V}^2$$
-4. **Power** is a function of $V$: use $E[g(V)]$ and linearity.
-
-   $$E[P]=\frac18E[V^2]=\frac28=0.25\text{ W}$$
-
-**Answer:** $E[V]=\tfrac43$ V, $\operatorname{Var}(V)=\tfrac29$ V², $E[P]=0.25$ W. (Not $(E[V])^2/8\approx0.22$ W.)
-
-</details>
-
-**Problem: Question 5 · Average run of good pixels · Tutorial 6 Q7** (intermediate)
-
-Pixels arrive one after another; each is corrupted independently with probability $p=0.03$. $N$ = number of error-free pixels between two erroneous ones, so $P(N=k)=(1-p)^k p$, $k=0,1,2,\dots$ Find $E[N]$.
+A rover brings back 560 g of material in four canisters A, B, C, D holding $140$, $112$, $125$ and $183$ g. First, pick a **canister** at random (each $\tfrac14$); $x$ = grams in it. Then, pick **one gram** at random from all 560 g; $y$ = grams in the canister it came from. (a) Which should be larger, $E[x]$ or $E[y]$? Why? (b) Compute both.
 
 <details><summary>Solution</summary>
 
-1. **Set up** the sum, with $q=1-p$.
-
-   $$E[N]=\sum_{k=0}^{\infty}k\,q^k p=p\sum_{k=1}^{\infty}k\,q^k$$
-2. **Series fact:** differentiate $\sum q^k=\frac{1}{1-q}$ and multiply by $q$.
-
-   $$\sum_{k=1}^{\infty}k\,q^k=\frac{q}{(1-q)^2}=\frac{q}{p^2}$$
-3. **Combine.**
-
-   $$E[N]=p\cdot\frac{q}{p^2}=\frac{1-p}{p}$$
-4. **Plug in** $p=0.03$.
-
-   $$E[N]=\frac{0.97}{0.03}\approx32.33$$
-
-**Answer:** $E[N]=\dfrac{1-p}{p}\approx 32.33$ good pixels between errors.
-
-</details>
-
-**Problem: Question 6 · A sensor that saturates** (intermediate)
-
-A sensor reading $X$ saturates: with probability $0.3$ it reads exactly $X=5$; otherwise (probability $0.7$) it is uniform on $(0,5)$, so the continuous part has density $0.7\cdot\tfrac15=0.14$ on $(0,5)$. Find $E[X]$ and $\operatorname{Var}(X)$.
-
-<details><summary>Solution</summary>
-
-1. **Mean:** point mass + integral.
-
-   $$\begin{gathered}E[X]=5(0.3)+\int_0^5x(0.14)\,dx\\ =1.5+0.14\cdot\frac{25}{2}=1.5+1.75=3.25\end{gathered}$$
-2. **Second moment:** same split, with $x^2$.
-
-   $$E[X^2]=25(0.3)+\int_0^5x^2(0.14)\,dx=7.5+0.14\cdot\frac{125}{3}=\frac{40}{3}$$
-3. **Subtract.**
-
-   $$\operatorname{Var}(X)=\frac{40}{3}-3.25^2=\frac{133}{48}\approx2.771$$
-
-**Answer:** $E[X]=3.25$, $\operatorname{Var}(X)=\tfrac{133}{48}\approx2.771$.
-
-</details>
-
-**Problem: Question 7 · Mars canisters · Practice 03 Q6** (intermediate)
-
-A rover returns 560 g of material in four canisters A, B, C, D holding $140$, $112$, $125$ and $183$ g. First a **canister** is chosen at random (each $\tfrac14$); $x$ = grams in it. Then a **1-gram sample** is chosen at random from all 560 g; $y$ = grams in the canister it came from. (a) Which of $E[x]$, $E[y]$ should be larger, and why? (b) Compute both.
-
-<details><summary>Solution</summary>
-
-1. (a) For $y$, a canister is picked with probability **proportional to its mass**, so heavy canisters count more. Expect $E[y]>E[x]$.
+1. **Type:** two PMFs → Case 1. The difference is the chances.
+2. (a) A random gram lands in a big canister more often: each canister gets chance (its mass)/560. So expect $E[y]>E[x]$.
 
    $$P(y=m)=\frac{m}{560}$$
-2. (b) **$E[x]$:** equal weights.
+3. (b) **Mean** of $x$: equal chances.
 
    $$E[x]=\frac14(140+112+125+183)=140\text{ g}$$
-3. **$E[y]$:** weight each mass $m$ by $\frac{m}{560}$.
+4. **Mean** of $y$: each mass $m$ times its chance $\frac{m}{560}$.
 
-   $$E[y]=\frac{140^2+112^2+125^2+183^2}{560}=\frac{81258}{560}$$
-4. Evaluate.
+   $$E[y]=\frac{140^2+112^2+125^2+183^2}{560}=\frac{81258}{560}\approx145.10\text{ g}$$
 
-   $$E[y]\approx145.10\text{ g}>140\text{ g}$$
-
-**Answer:** $E[x]=140$ g, $E[y]\approx 145.10$ g. Sampling by gram favours the big canisters.
+**Answer:** $E[x]=140$ g, $E[y]\approx 145.10$ g. Picking by the gram favours the big canisters.
 
 </details>
 
-**Problem: Question 8 · Triangle PDF** (intermediate)
+**Problem: Question 5 · Case 2 + 5 · $E[g(X)]$ from a PDF · Tutorial 5 Q5** (intermediate)
 
-$X$ has the triangular PDF $f_X(x)=x$ on $[0,1]$, $f_X(x)=2-x$ on $[1,2]$, and $0$ otherwise. Find $E[X]$, $\operatorname{Var}(X)$, and $\operatorname{Var}(2X+3)$.
+$f_X(x)=Cx^2$ for $|x|\le1$, and $0$ otherwise. (a) Find $C$. (b) Find $E[X]$ and $\operatorname{Var}(X)$. (c) Let $Y=|X|$. Find $E[Y]$, $E[Y^2]$ and $\operatorname{Var}(3X-1)$.
 
 <details><summary>Solution</summary>
 
-1. **Mean:** the triangle is symmetric about $x=1$.
+1. (a) **Find $c$:** total area $=1$.
 
-   $$E[X]=1$$
-2. **Second moment:** split the integral at $x=1$.
+   $$\int_{-1}^{1}Cx^2\,dx=\frac{2C}{3}=1\quad\Longrightarrow\quad C=\frac32$$
+2. (b) **Type:** a PDF → Case 2. **Mean:** symmetric around $0$ (shortcut).
 
-   $$E[X^2]=\int_0^1x^3\,dx+\int_1^2x^2(2-x)\,dx$$
-3. Integrate each piece.
+   $$E[X]=0$$
+3. **Square.**
 
-   $$=\frac14+\left[\frac{2x^3}{3}-\frac{x^4}{4}\right]_1^2=\frac14+\frac{11}{12}=\frac76$$
+   $$E[X^2]=\int_{-1}^{1}\frac32x^4\,dx=\frac32\cdot\frac25=\frac35$$
 4. **Subtract.**
 
-   $$\operatorname{Var}(X)=\frac76-1=\frac16$$
-5. **Scale squares.**
+   $$\operatorname{Var}(X)=\frac35-0^2=\frac35$$
+5. (c) $E[g(X)]$ with $g(x)=|x|$. Both halves match, so double the right half.
 
-   $$\operatorname{Var}(2X+3)=4\cdot\frac16=\frac23$$
+   $$E[Y]=2\int_0^1 x\cdot\frac32x^2\,dx=3\cdot\frac14=\frac34$$
+6. $|X|^2=X^2$, so no new work.
 
-**Answer:** $E[X]=1$, $\operatorname{Var}(X)=\tfrac16$, $\operatorname{Var}(2X+3)=\tfrac23$.
+   $$E[Y^2]=E[X^2]=\frac35$$
+7. **Rules** (Case 5): the $-1$ drops out, the $3$ gets squared.
+
+   $$\operatorname{Var}(3X-1)=9\cdot\frac35=\frac{27}{5}$$
+
+**Answer:** (a) $C=\tfrac32$ (b) $E[X]=0$, $\operatorname{Var}(X)=\tfrac35$ (c) $E[Y]=\tfrac34$, $E[Y^2]=\tfrac35$, $\operatorname{Var}(3X-1)=\tfrac{27}5$
 
 </details>
 
-**Problem: Question 9 · The mean from the CDF · Tutorial 5 Q3 / Practice 03 Q1** (advanced)
+**Problem: Question 6 · Case 3 · Variance from a CDF · Practice 03 Q9** (intermediate)
 
-For a **nonnegative** continuous $X$ with CDF $F_X$, show that $E[X]=\displaystyle\int_0^{\infty}\big(1-F_X(t)\big)\,dt$ (assume $t\,(1-F_X(t))\to0$ as $t\to\infty$). Then use it to find the mean of an exponential.
+Find the variance and standard deviation of $X$, and say if $X$ is discrete or continuous:
+
+$$
+F(x)=\begin{cases}0,&x<-3\\ 3/8,&-3\le x<0\\ 3/4,&0\le x<6\\ 1,&x\ge6\end{cases}
+$$
 
 <details><summary>Solution</summary>
 
-1. **By parts** with $u=1-F_X(t)$ and $dv=dt$: then $du=-f_X(t)\,dt$ and $v=t$.
+1. **Type:** a CDF → Case 3. It’s a staircase, so discrete: the **jump sizes** are the PMF.
+
+   $$p(-3)=\frac38,\quad p(0)=\frac38,\quad p(6)=\frac14$$
+2. **Mean.**
+
+   $$E[X]=-3\cdot\frac38+0+6\cdot\frac14=-\frac98+\frac{12}8=\frac38$$
+3. **Square.**
+
+   $$E[X^2]=9\cdot\frac38+0+36\cdot\frac14=\frac{27}8+9=\frac{99}8$$
+4. **Subtract.**
+
+   $$\operatorname{Var}(X)=\frac{99}8-\frac9{64}=\frac{783}{64}\approx12.234$$
+5. **Root.**
+
+   $$\sigma_X\approx3.498$$
+
+**Answer:** Discrete; $\operatorname{Var}(X)=\tfrac{783}{64}\approx 12.234$, $\sigma_X\approx 3.498$
+
+</details>
+
+**Problem: Question 7 · Case 2 · Mean by symmetry, then Var · Practice 03 Q3** (intermediate)
+
+$X$ has PDF $f_X(t)=\tfrac12\lambda e^{-\lambda|t-\gamma|}$ for all $t$. (a) Find $E[X]$. (b) Find $\operatorname{Var}(X)$.
+
+<details><summary>Solution</summary>
+
+1. **Type:** a PDF → Case 2. (a) **Mean:** symmetric around $t=\gamma$ (same value at $\gamma\pm u$).
+
+   $$E[X]=\gamma$$
+2. (b) Use the definition $E[(X-\gamma)^2]$. Let $u=t-\gamma$; both halves match, so double the right half.
+
+   $$\operatorname{Var}(X)=2\int_0^{\infty}u^2\cdot\frac12\lambda e^{-\lambda u}\,du=\lambda\int_0^{\infty}u^2e^{-\lambda u}\,du$$
+3. **Shortcut** with $n=2$.
+
+   $$=\lambda\cdot\frac{2!}{\lambda^3}=\frac{2}{\lambda^2}$$
+
+**Answer:** (a) $E[X]=\gamma$ (b) $\operatorname{Var}(X)=\dfrac2{\lambda^2}$
+
+</details>
+
+**Problem: Question 8 · Case 4 · Geometric · Tutorial 6 Q7** (intermediate)
+
+Spirit sends an image pixel by pixel. Each pixel is wrong with probability $p=0.03$, independently. (a) Find the PMF of $N$, the number of good pixels before the next bad one. (b) Find $E[N]$. (c) A new rover needs a 99% chance that **at least 1000** pixels arrive correctly before a bad one. How small must $p$ be?
+
+<details><summary>Solution</summary>
+
+1. (a) **Spot:** $k$ good pixels, then a bad one → Geometric, counting failures ($k=0,1,\dots$).
+
+   $$P(N=k)=(1-p)^k\,p=(0.97)^k(0.03),\quad k=0,1,2,\dots$$
+2. (b) **Read it off** the Geometric card (failures version).
+
+   $$E[N]=\frac{1-p}{p}=\frac{0.97}{0.03}\approx32.33$$
+3. (c) “At least 1000 good first” means the first 1000 pixels are all good.
+
+   $$P(N\ge1000)=(1-p)^{1000}\ge0.99$$
+4. Solve for $p$.
+
+   $$p\le1-0.99^{1/1000}\approx1.01\times10^{-5}$$
+
+**Answer:** (a) $(0.97)^k(0.03)$ (b) $E[N]\approx 32.33$ (c) $p\le 1.01\times10^{-5}$
+
+</details>
+
+**Problem: Question 9 · Case 3 · The mean from the CDF · Practice 03 Q1 / Tutorial 5 Q3** (advanced)
+
+(a) $X\ge0$ is continuous with CDF $F_X$. Show that $E[X]=\displaystyle\int_0^{\infty}\big(1-F_X(t)\big)\,dt$ (assume $t\,(1-F_X(t))\to0$ as $t\to\infty$). Use it to find the mean of an exponential. (b) Use the whole-number version $E[N]=\sum_{k\ge0}P(N>k)$ to find the mean of a Geometric$(p)$ on $k=1,2,\dots$
+
+<details><summary>Solution</summary>
+
+1. (a) **By parts:** $u=1-F_X(t)$, $dv=dt$, so $du=-f_X(t)\,dt$ and $v=t$.
 
    $$\int_0^{\infty}(1-F_X(t))\,dt=\Big[t\,(1-F_X(t))\Big]_0^{\infty}+\int_0^{\infty}t\,f_X(t)\,dt$$
-2. The boundary term is $0$ at both ends (given at $\infty$; $t=0$ at the bottom).
+2. The bracket is $0$ at both ends.
 
    $$=0+E[X]$$
 3. **Exponential:** $1-F_X(t)=e^{-\lambda t}$.
 
    $$E[X]=\int_0^{\infty}e^{-\lambda t}\,dt=\frac1\lambda$$
+4. If $X$ can be negative (Tutorial 5 Q3), the same by-parts on $(-\infty,0]$ subtracts one more piece.
 
-**Answer:** Shown; for the exponential $E[X]=\tfrac1\lambda$ with no by-parts on $x e^{-\lambda x}$.
+   $$E[X]=\int_0^{\infty}(1-F_X)\,dt-\int_{-\infty}^{0}F_X\,dt$$
+5. (b) $N>k$ means the first $k$ tries failed. Geometric series.
+
+   $$E[N]=\sum_{k=0}^{\infty}(1-p)^k=\frac{1}{1-(1-p)}=\frac1p$$
+
+**Answer:** (a) Shown; exponential mean $\tfrac1\lambda$ (b) $E[N]=\tfrac1p$
 
 </details>
 
-**Problem: Question 10 · Find the constants, then the variance · Tutorial 6 Q6** (advanced)
+**Problem: Question 10 · Case 2 + 5 · Find the constants, then the variance · Tutorial 6 Q6** (advanced)
 
 $X$ has PDF
 
@@ -652,25 +716,42 @@ and $0$ otherwise, where $C>0$ and $K$ are constants. (a) Find $C$ and $K$ so th
 
 <details><summary>Solution</summary>
 
-1. **Shift:** let $u=x+K$, so $u\in[-1,1]$ and $X=U-K$ with $f_U(u)=\frac{C}{1+u^2}$.
+1. **Shift:** let $u=x+K$, so $u$ runs from $-1$ to $1$.
 
-   $$\int_{-1}^{1}\frac{C}{1+u^2}\,du=C\big[\arctan u\big]_{-1}^{1}=C\cdot\frac{\pi}{2}$$
-2. (a) **Total area = 1.**
+   $$f_U(u)=\frac{C}{1+u^2},\qquad X=U-K$$
+2. (a) **Find $c$:** total area $=1$.
 
-   $$C=\frac{2}{\pi}$$
-3. $f_U$ is **even**, so $E[U]=0$. Then use linearity.
+   $$C\big[\arctan u\big]_{-1}^{1}=C\cdot\frac{\pi}{2}=1\quad\Longrightarrow\quad C=\frac{2}{\pi}$$
+3. **Mean:** $f_U$ is symmetric around $0$, so $E[U]=0$. Then the rule $E[U-K]=E[U]-K$.
 
-   $$E[X]=E[U]-K=-K=5\;\Rightarrow\;K=-5$$
-4. (b) A shift does not change Var, and $E[U]=0$.
+   $$E[X]=-K=5\quad\Longrightarrow\quad K=-5$$
+4. (b) A shift doesn’t change Var (Case 5), and $E[U]=0$.
 
    $$\operatorname{Var}(X)=\operatorname{Var}(U)=E[U^2]$$
-5. Write $\frac{u^2}{1+u^2}=1-\frac{1}{1+u^2}$.
+5. **Square:** write $\frac{u^2}{1+u^2}=1-\frac{1}{1+u^2}$.
 
-   $$E[U^2]=\frac2\pi\int_{-1}^{1}\Big(1-\frac{1}{1+u^2}\Big)du=\frac2\pi\Big(2-\frac\pi2\Big)$$
-6. Simplify.
-
-   $$\operatorname{Var}(X)=\frac4\pi-1\approx0.2732$$
+   $$E[U^2]=\frac2\pi\int_{-1}^{1}\Big(1-\frac{1}{1+u^2}\Big)du=\frac2\pi\Big(2-\frac\pi2\Big)=\frac4\pi-1\approx0.2732$$
 
 **Answer:** (a) $C=\tfrac2\pi$, $K=-5$ (so $X\in[4,6]$) (b) $\operatorname{Var}(X)=\tfrac4\pi-1\approx0.2732$
+
+</details>
+
+**Problem: Question 11 · Case 5 · Chebyshev · Practice 03 Q11** (advanced)
+
+Chebyshev says $P(|Y-\mu_Y|\ge\varepsilon)\le\dfrac{\operatorname{Var}(Y)}{\varepsilon^2}$. $E[X]=5$, $\operatorname{Var}(X)=5$ and $Y=aX+b$. Find $a$ and $b$ so that $P(|Y-10|\ge0.1)\le0.01$.
+
+<details><summary>Solution</summary>
+
+1. **Type:** only $E$ and Var → Case 5 rules. Make the mean of $Y$ equal $10$.
+
+   $$E[Y]=5a+b=10$$
+2. **Plug in** $\operatorname{Var}(Y)=a^2\cdot5$, then make the Chebyshev bound at most $0.01$.
+
+   $$\frac{5a^2}{0.1^2}\le0.01\quad\Longrightarrow\quad a^2\le2\times10^{-5}$$
+3. Any such $a$ works, with $b$ from the first line.
+
+   $$|a|\le0.00447,\qquad b=10-5a$$
+
+**Answer:** Any $|a|\le 0.00447$ with $b=10-5a$ (e.g. $a=0.004$, $b=9.98$).
 
 </details>

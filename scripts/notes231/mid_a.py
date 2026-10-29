@@ -1,58 +1,68 @@
 """Topic A: complex numbers (Week 1)."""
 import sympy as sp
 
-from midlib import P, S, TAGS, link, zero
+from midlib import CARD, P, S, TAGS, link, zero
 
 
 def build(D):
     W1 = lambda *p: D.cite('W1', *p)
     D.H('Topic A: Complex numbers', cites=W1(1, 3, 4, 5))
     TAGS(D, (1, 1), (1, 2))
-    D.P('Complex numbers show up in two places on the midterm:')
-    D.L(['**On their own:** convert, divide, raise to a power, take roots.',
-         r'**Inside ' + link('B5', 'b5') + r':** when a characteristic equation has no real roots, you need things like $\sqrt{-36}=j6$.'])
+    D.P(r'**Use this when** you have to convert, multiply, divide, raise to a power, or take roots of a complex number. '
+        r'(They also show up inside ' + link('B5', 'b5') + r' Case 3: $\sqrt{-36}=j6$.)')
+    D.P(r'**The move: every complex number has two forms.** Pick the one that makes the job easy.')
+    D.EQ(r'z=a+jb\quad=\quad c\angle\theta\quad(=c\,e^{j\theta})')
+    D.L([r'$a+jb$ (**rectangular**): $a$ = how far right, $b$ = how far up. Easy for **adding**.',
+         r'$c\angle\theta$ (**polar**): $c$ = the length, $\theta$ = the angle from the positive real axis. Easy for **multiplying, dividing, powers, roots**.',
+         r'$j=\sqrt{-1}$, so $j^2=-1$. (This course writes $j$, not $i$.)'])
+    D.P('**Short example:**')
+    D.EQ(r'3+j4=5\angle53.13^\circ')
+    D.WHY('Why does multiplying add the angles?',
+          r'Write both as exponentials and use $e^Ae^B=e^{A+B}$:'
+          '\n\n$$\n' r'c_1e^{j\theta_1}\cdot c_2e^{j\theta_2}=c_1c_2\,e^{j(\theta_1+\theta_2)}' '\n$$\n\n'
+          r'The two forms are linked by Euler’s identity, $e^{j\theta}=\cos\theta+j\sin\theta$. '
+          r'The lecture uses it for trig identities: expand $e^{jA}e^{jB}=e^{j(A+B)}$, and the real parts give $\cos(A+B)=\cos A\cos B-\sin A\sin B$.')
 
-    D.P('**One number, two ways to write it.** Think of a complex number as an arrow from the origin. '
-        'You can say where its tip is (how far right, how far up), or how long it is and which way it points:')
-    D.EQ(r'z=a+jb=c\,e^{j\theta}=c\angle\theta')
-    D.L([r'$a=\mathrm{Re}\{z\}$ = the **real part**: how far right',
-         r'$b=\mathrm{Im}\{z\}$ = the **imaginary part**: how far up',
-         r'$c=|z|$ = the **magnitude**: how long the arrow is',
-         r'$\theta=\angle z$ = the **angle**: measured from the positive real axis, counter-clockwise',
-         r'$j=\sqrt{-1}$, so $j^2=-1$ (this course writes $j$, not $i$)'])
-    D.P(r'Example: $3+j4$ is 3 right and 4 up. Its length is $c=\sqrt{9+16}=5$ and its angle is $\theta=\tan^{-1}(4/3)=53.13^\circ$, '
-        r'so $3+j4=5\angle53.13^\circ$.')
-    D.P('Why two forms? Adding is easy in $a+jb$. Multiplying, dividing and powers are easy in $c\\angle\\theta$.')
+    D.H('Case 1: convert between the forms', level=3)
+    D.P(r'**Polar → rectangular** (the arrow is the long side of a right triangle):')
+    D.EQ(r'a=c\cos\theta,\qquad b=c\sin\theta')
+    D.EQ(r'2\angle30^\circ=2\cos30^\circ+j\,2\sin30^\circ=\sqrt3+j')
+    D.P(r'**Rectangular → polar** (Pythagoras, then $\tan^{-1}$):')
+    D.EQ(r'c=\sqrt{a^2+b^2},\qquad \theta=\tan^{-1}\!\left(\dfrac{b}{a}\right)')
+    D.EQ(r'3+j4:\quad c=\sqrt{9+16}=5,\quad \theta=\tan^{-1}\tfrac43=53.13^\circ')
+    D.CO('warning', r'**The quadrant trap.** The calculator’s $\tan^{-1}$ only gives arrows pointing right. If $a<0$ (pointing left), **add $180^\circ$**. '
+         r'Example: $-1+j$. The calculator says $-45^\circ$, but the real angle is $-45^\circ+180^\circ=135^\circ$.')
 
-    D.P('**Polar → rectangular.** The arrow is the long side of a right triangle, so use cos and sin:')
-    D.EQ(r'a=c\cos\theta,\quad b=c\sin\theta')
-    D.P(r'Example: $2\angle30^\circ=2\cos30^\circ+j\,2\sin30^\circ=\sqrt3+j$.')
-    D.P('**Rectangular → polar.** Pythagoras gives the length, $\\tan^{-1}$ gives the angle:')
-    D.EQ(r'c=\sqrt{a^2+b^2},\quad \theta=\tan^{-1}\!\left(\dfrac{b}{a}\right)')
-    D.P(r'Example: the $3+j4=5\angle53.13^\circ$ above. But watch the quadrant:')
-    D.CO('warning', r'**The quadrant trap.** The calculator’s $\tan^{-1}$ only gives angles between $-90^\circ$ and $90^\circ$, i.e. arrows pointing right. '
-         r'If $a<0$, your arrow points left, so **add $180^\circ$** to what the calculator says. '
-         r'Example: $-1+j$ points up-left. The calculator gives $\tan^{-1}(1/{-1})=-45^\circ$, but the real angle is $-45^\circ+180^\circ=135^\circ$.')
+    D.H('Case 2: multiply, divide, powers', level=3)
+    D.P(r'Go **polar**. Lengths multiply/divide, angles add/subtract:')
+    D.EQ(r'2\angle30^\circ\times3\angle40^\circ=6\angle70^\circ')
+    D.EQ(r'\dfrac{6\angle70^\circ}{3\angle40^\circ}=2\angle30^\circ')
+    D.P(r'**Power** (de Moivre): length to the power, angle times the power:')
+    D.EQ(r'(2\angle30^\circ)^3=8\angle90^\circ')
+    D.P(r'**Dividing in rectangular?** Multiply top and bottom by the **conjugate** of the bottom ($a+jb\to a-jb$). The bottom becomes $a^2+b^2$, a plain number:')
+    D.EQ(r'\dfrac{1}{1+j}=\dfrac{1-j}{(1+j)(1-j)}=\dfrac{1-j}{2}')
+    D.P(r'Adding or subtracting? Stay rectangular: $(1+j2)+(3-j5)=4-j3$.')
+    CARD(D, r'Powers of $j$: $\;j^2=-1,\ \ j^3=-j,\ \ j^4=1,\ \ \dfrac1j=-j$',
+         [(r'They repeat every four.', r'j^3=j^2\cdot j=-j,\qquad j^4=(j^2)^2=1'),
+          (r'Dividing by $j$: multiply top and bottom by $j$.', r'\dfrac1j=\dfrac{j}{j\cdot j}=\dfrac{j}{-1}=-j')])
 
-    D.P('**Arithmetic: pick the form that makes the job easy.**')
-    D.L([r'**Add or subtract → rectangular.** Add the real parts, add the imaginary parts: $(1+j2)+(3-j5)=4-j3$.',
-         r'**Multiply → polar.** Multiply the lengths, add the angles: $2\angle30^\circ\times3\angle40^\circ=6\angle70^\circ$.',
-         r'**Divide → polar.** Divide the lengths, subtract the angles: $\dfrac{6\angle70^\circ}{3\angle40^\circ}=2\angle30^\circ$.',
-         r'**Power → polar** (de Moivre). Length to the power, angle times the power: $(2\angle30^\circ)^3=8\angle90^\circ$.',
-         r'**Divide → rectangular** (if both are given that way). Multiply top and bottom by the **conjugate** of the bottom, $(a+jb)^*=a-jb$: '
-         r'$\dfrac{1}{1+j}=\dfrac{1-j}{(1+j)(1-j)}=\dfrac{1-j}{2}$.'])
-    D.P(r'Why the conjugate works: $(a+jb)(a-jb)=a^2+b^2$ is a plain real number, so the bottom stops being complex.')
-    D.P(r'Powers of $j$ repeat every four: $j^2=-1$, $j^3=j^2\cdot j=-j$, $j^4=(j^2)^2=1$. '
-        r'And $\dfrac1j=\dfrac{j}{j\cdot j}=-j$.')
-
-    D.P(r'**Roots: a $k$-th root question always has $k$ answers.** Write $z$ in polar form, then use:')
-    D.EQ(r'z^{1/k}=c^{1/k}\angle\dfrac{\theta+360^\circ\ell}{k},\quad \ell=0,1,\dots,k-1')
-    D.L([r'All $k$ roots have the **same length**, $c^{1/k}$.',
-         r'The first one is at angle $\theta/k$.',
-         r'Each next one is $360^\circ/k$ further round the circle.'])
-    D.P(r'Example: the square roots of $4\angle60^\circ$ have length $\sqrt4=2$ and angles $30^\circ$ and $30^\circ+180^\circ=210^\circ$. '
-        r'So they are $2\angle30^\circ$ and $2\angle210^\circ$.')
-    D.P(r'Why $k$ answers: $\theta$ and $\theta+360^\circ$ are the same arrow, but after you divide by $k$ they point different ways.')
+    D.H('Case 3: roots (k answers)', level=3)
+    D.P(r'A $k$-th root has **$k$ answers**, all the same length, evenly spaced round a circle. Go polar, then:')
+    D.EQ(r'z^{1/k}=c^{1/k}\angle\dfrac{\theta+360^\circ\ell}{k},\qquad \ell=0,1,\dots,k-1')
+    D.L([r'**Length:** $c^{1/k}$ for all of them.',
+         r'**First angle:** $\theta/k$.',
+         r'**Spacing:** add $360^\circ/k$ each time.'])
+    D.P('**Short example:** the square roots of $4\\angle60^\\circ$:')
+    D.EQ(r'\sqrt4=2,\quad \dfrac{60^\circ}{2}=30^\circ,\quad +\dfrac{360^\circ}{2}=180^\circ\quad\Longrightarrow\quad 2\angle30^\circ,\ \ 2\angle210^\circ')
+    CARD(D, r'Full example (lecture 1.2): the fourth roots of $\;z=81e^{j60^\circ}$',
+         [(r'Already polar: $c=81$, $\theta=60^\circ$, $k=4$.', r'z=81\angle60^\circ'),
+          (r'**Length:** $81^{1/4}$.', r'81^{1/4}=3'),
+          (r'**First angle.**', r'\dfrac{60^\circ}{4}=15^\circ'),
+          (r'**Spacing:** keep adding $360^\circ/4$.', r'\dfrac{360^\circ}{4}=90^\circ'),
+          (r'List all four.', r'3\angle15^\circ,\quad 3\angle105^\circ,\quad 3\angle195^\circ,\quad 3\angle285^\circ')],
+         None)
+    D.WHY('Why $k$ answers?',
+          r'$\theta$ and $\theta+360^\circ$ are the same arrow. But after you divide by $k$, they point different ways. Each extra $360^\circ$ gives a new root, until you come back round after $k$ of them.')
     D.GRAPH(r'''
     title "Drag $z$, change $k$: the $k$ roots sit evenly on one circle"
     x -3 3 label="Re"
@@ -75,22 +85,10 @@ def build(D):
     readout "$\angle z$" "deg(th)" unit="°"
     readout "root magnitude" "r"
     caption "Start: $z=2.5\angle90^\circ$, $k=3$. The roots have length $2.5^{1/3}$. The first is at $90^\circ/3=30^\circ$, the others $120^\circ$ apart."
-    ''')
-    D.CO('info', r'**Bonus (skip-safe): why multiplying adds angles.** Write both numbers as exponentials and use $e^Ae^B=e^{A+B}$: '
-         r'$z_1z_2=c_1e^{j\theta_1}\,c_2e^{j\theta_2}=c_1c_2\,e^{j(\theta_1+\theta_2)}$. '
-         r'The two forms are linked by Euler’s identity, $e^{j\theta}=\cos\theta+j\sin\theta$. '
-         r'The lecture uses it to get trig identities for free: expand $e^{jA}e^{jB}=e^{j(A+B)}$, and the real parts give $\cos(A+B)=\cos A\cos B-\sin A\sin B$.')
-    D.CO('tip', r'**Casio 991 check:** complex mode does $+,-,\times,\div$ and can show the answer as $r\angle\theta$. '
-         r'Use it to check your answer, but write the steps: the marks are for the working.')
+    ''', intro='**What do the roots look like?**')
+    D.CO('tip', r'**Casio 991 check:** complex mode does $+,-,\times,\div$ and can show $r\angle\theta$. Use it to check, but write the steps: the marks are for the working.')
 
-    D.EX('W1 · All four fourth roots · lecture Example 1.2',
-         r'Find the fourth roots of $z=81e^{j60^\circ}$.',
-         [S(r'**Type:** roots ($k=4$). The number is already polar: $c=81$, $\theta=60^\circ$.'),
-          S(r'**Length and first angle:** $81^{1/4}=3$, and $60^\circ/4=15^\circ$.'),
-          S(r'**Spacing:** $360^\circ/4=90^\circ$, so keep adding $90^\circ$.',
-            r'z^{1/4}=3\angle(15^\circ+90^\circ\ell),\quad \ell=0,1,2,3')],
-         r'$3\angle15^\circ,\ 3\angle105^\circ,\ 3\angle195^\circ,\ 3\angle285^\circ$.', cites=W1(5))
-
+    D.H('Practice: A', level=3)
     P(D, 'W1 · Convert, watching the quadrant',
       r'Write (a) $-3+j4$ and (b) $-3-j4$ in polar form.',
       [S(r'**Type:** rectangular → polar. Both have $a<0$ (they point left), so the $180^\circ$ fix applies.'),

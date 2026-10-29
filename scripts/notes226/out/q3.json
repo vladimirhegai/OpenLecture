@@ -10,7 +10,7 @@
  "blocks": [
   {
    "type": "paragraph",
-   "text": "**Lectures 11–13.** Expected values, variances, and the properties of expectation and variance.",
+   "text": "**Lectures 11–13.** The mean (the long-run average) and the variance (the spread) of a random variable.",
    "citations": [
     {
      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
@@ -28,94 +28,111 @@
      "chunk_id": "72ec1f08-5a0f-478f-8963-c20f6396f281"
     }
    ],
-   "id": "c7266b54-3f93-5296-bc72-5ec6d5e36be2"
+   "id": "f69d5e27-386f-5fd6-8c74-0b1551d2eeb5"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 1: Expected value",
+   "text": "Question 3 in plain words",
    "citations": [],
-   "id": "196eedf3-d948-5933-981b-93e19317f10a"
+   "id": "67bb37ac-4b4a-5adc-8afb-f8fda00ab96b"
   },
   {
    "type": "paragraph",
-   "text": "The **expected value** (mean) $E[X]=\\mu_X$ is the **long-run average** of $X$ if you repeat the experiment many times.",
+   "text": "**You’ll see:** a PMF, a PDF, a CDF, a named family, or just “$E[X]=3$, $\\operatorname{Var}(X)=9$”. Then “find $E[X]$, $\\operatorname{Var}(X)$, $\\sigma_X$”.",
    "citations": [],
-   "id": "332f3fdb-d003-5bf4-8a83-111cecf07ca1"
+   "id": "4dcb1aba-286a-5276-af93-5751557d51a0"
   },
   {
    "type": "paragraph",
-   "text": "Each value is weighted by how likely it is: a **probability-weighted average**.",
+   "text": "**The move: four steps, every time.**",
    "citations": [],
-   "id": "b14f98a7-69f3-5333-9ef3-e8a17ac00994"
-  },
-  {
-   "type": "equation",
-   "latex": "E[X]=\\sum_{x\\in R_X} x\\,p_X(x)\\quad\\text{(discrete)}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
-     "version": 1,
-     "chunk_id": "2cc1ee41-e6c3-4fd5-a41c-67fb0c8d5b40"
-    }
-   ],
-   "id": "c987a08e-75fe-5741-81cd-6a0281c27d11"
-  },
-  {
-   "type": "equation",
-   "latex": "E[X]=\\int_{-\\infty}^{\\infty} x\\,f_X(x)\\,dx\\quad\\text{(continuous)}",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
-     "version": 1,
-     "chunk_id": "2cc1ee41-e6c3-4fd5-a41c-67fb0c8d5b40"
-    }
-   ],
-   "id": "8446d2ac-d841-5f16-bfde-729bdaa907c9"
+   "id": "6e955308-2437-5159-a97c-8a0a2181a574"
   },
   {
    "type": "list",
    "items": [
-    "**Why it works:** repeat $N$ times; value $x_k$ shows up about $N p_k$ times, so the average is $\\approx\\sum x_k p_k$.",
-    "**Continuous:** the sum becomes an integral, with $p_k$ replaced by $f_X(x)\\,dx$.",
-    "$E[X]$ **need not be a possible value**: a die averages $3.5$.",
-    "**Mixed** $X$ (a point mass plus a density): add the two parts, $\\sum x\\,P(X=x)+\\int x\\,f(x)\\,dx$."
+    "**Mean:** each value × its chance, then add (a sum for a PMF, an integral for a PDF).",
+    "**Square:** the same, with $x^2$ in place of $x$. That’s $E[X^2]$.",
+    "**Subtract:** $\\operatorname{Var}(X)=E[X^2]-(E[X])^2$.",
+    "**Root:** $\\sigma_X=\\sqrt{\\operatorname{Var}(X)}$."
    ],
-   "ordered": false,
-   "citations": [
-    {
-     "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
-     "version": 1,
-     "chunk_id": "c94dcea8-d0e5-417e-9460-f7920a68553e"
-    }
-   ],
-   "id": "2a694c55-ccfb-5e55-89ff-c92f7849636a"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Expected value of a function** $g(X)$: no need to find the distribution of $Y=g(X)$ first. Just weight $g(x)$ instead of $x$:",
+   "ordered": true,
    "citations": [],
-   "id": "91d1e033-f294-5ffd-adf5-8464fed5014e"
+   "id": "bbdcd443-41cc-5af5-a98f-f149f8d68800"
   },
   {
    "type": "equation",
-   "latex": "E[g(X)]=\\sum_{x} g(x)\\,p_X(x)\\qquad E[g(X)]=\\int_{-\\infty}^{\\infty} g(x)\\,f_X(x)\\,dx",
+   "latex": "E[X]=\\sum_x x\\,p_X(x)\\quad\\text{or}\\quad\\int x\\,f_X(x)\\,dx,\\qquad \\operatorname{Var}(X)=E[X^2]-\\big(E[X]\\big)^2",
    "display": true,
    "citations": [
     {
      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
      "version": 1,
      "chunk_id": "87da869b-2cf9-4dd0-8397-b436da482e58"
+    },
+    {
+     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+     "version": 1,
+     "chunk_id": "6039489c-426b-46ac-8fd2-e52106e4a341"
     }
    ],
-   "id": "8fd39069-5459-58e0-bf61-d0827c8f8a7a"
+   "id": "8dbde452-9d42-5da3-a258-3911a1df82d0"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Short example:** a die. $E[X]=3.5$, $E[X^2]=\\tfrac{91}{6}$:",
+   "citations": [],
+   "id": "316e4bc6-a8a1-5284-9911-ea2ea6e34d57"
+  },
+  {
+   "type": "equation",
+   "latex": "\\operatorname{Var}(X)=\\frac{91}{6}-3.5^2=\\frac{35}{12}\\approx2.92,\\qquad \\sigma_X\\approx1.71",
+   "display": true,
+   "citations": [],
+   "id": "40aa87b7-3687-5695-8815-dc26f60e735a"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Which case?**",
+   "citations": [],
+   "id": "c5bad7d1-0057-5be0-90d1-a285e07858e3"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "You’re given…",
+    "Go to"
+   ],
+   "rows": [
+    [
+     "a PMF (a list of values and chances)",
+     "Case 1"
+    ],
+    [
+     "a PDF $f_X(x)$",
+     "Case 2"
+    ],
+    [
+     "a CDF $F_X(x)$",
+     "Case 3"
+    ],
+    [
+     "“$X$ is Poisson / uniform / …”",
+     "Case 4"
+    ],
+    [
+     "only $E[X]$ and $\\operatorname{Var}(X)$",
+     "Case 5"
+    ]
+   ],
+   "citations": [],
+   "id": "ac9d47ee-2eb7-5af6-873e-d0f37fcdde78"
   },
   {
    "type": "callout",
    "tone": "warning",
-   "text": "**$E[X^2]\\ne(E[X])^2$** in general. Square inside the sum/integral, not after.",
+   "text": "**$E[X^2]\\ne(E[X])^2$.** Square **inside** the sum or integral, not after. A die: $E[X^2]=\\tfrac{91}{6}\\approx15.17$, but $3.5^2=12.25$.",
    "citations": [
     {
      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
@@ -123,55 +140,59 @@
      "chunk_id": "87da869b-2cf9-4dd0-8397-b436da482e58"
     }
    ],
-   "id": "7b1be2a3-c8ca-5a77-b173-19d3a360232f"
+   "id": "71495aeb-f826-570d-aa56-ec18f58ba75b"
   },
   {
-   "type": "callout",
-   "tone": "reminder",
-   "text": "**Calculus you need for $E[X]$**\n\n- **Power rule:** $\\displaystyle\\int x^n\\,dx=\\frac{x^{n+1}}{n+1}$.\n- **Exponential:** $\\displaystyle\\int e^{-\\lambda x}\\,dx=-\\frac{1}{\\lambda}e^{-\\lambda x}$.\n- **By parts:** $\\displaystyle\\int u\\,dv=uv-\\int v\\,du$. For $\\int x\\,e^{-\\lambda x}dx$ take $u=x$, $dv=e^{-\\lambda x}dx$.\n- **Shortcut (memorise):** $\\displaystyle\\int_0^{\\infty}x^n e^{-\\lambda x}\\,dx=\\frac{n!}{\\lambda^{n+1}}$.\n- **Symmetry:** an **odd** function ($g(-x)=-g(x)$, like $x$, $x^3$) on $[-a,a]$ integrates to $0$.",
+   "type": "heading",
+   "level": 1,
+   "text": "Case 1: from a PMF",
    "citations": [],
-   "id": "73f0f1f7-3757-57c0-bf66-a67ae6fed10e"
+   "id": "8e382778-1940-50d0-a5ec-ebdfe63e2264"
   },
   {
    "type": "paragraph",
-   "text": "**Method:**",
+   "text": "**You’ll see:** a table of values and chances, or an experiment you turn into one.",
    "citations": [],
-   "id": "3cca6006-5fe2-51a1-99eb-c9e231d974a3"
+   "id": "8b1f2d10-f731-5335-8ade-f255cddce5d5"
   },
   {
-   "type": "list",
-   "items": [
-    "**Write** the PMF/PDF and where it is nonzero.",
-    "**Multiply** by $x$ (or by $g(x)$).",
-    "**Add/integrate** only over the nonzero range (outside it the integrand is $0$)."
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "2abeb093-dc51-5d71-b4f2-aae7b09298a8"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 1 · A die and a uniform",
-   "prompt": "(a) A fair die is rolled; $X$ = the number. Find $E[X]$ and $E[X^2]$. (b) $X$ is uniform on $[0,2]$: $f_X(x)=\\tfrac12$ on $[0,2]$. Find $E[X]$.",
-   "steps": [
+   "type": "equation",
+   "latex": "E[X]=\\sum_x x\\,p_X(x),\\qquad E[X^2]=\\sum_x x^2\\,p_X(x)",
+   "display": true,
+   "citations": [
     {
-     "explanation": "(a) **Weight** each face by $\\tfrac16$.",
-     "latex": "E[X]=\\frac16(1+2+3+4+5+6)=\\frac{21}{6}=3.5"
-    },
-    {
-     "explanation": "$E[X^2]$: square **inside** the sum.",
-     "latex": "E[X^2]=\\frac16(1+4+9+16+25+36)=\\frac{91}{6}\\approx15.17"
-    },
-    {
-     "explanation": "Compare: $(E[X])^2=12.25\\ne15.17$.",
-     "latex": "E[X^2]\\ne(E[X])^2"
-    },
-    {
-     "explanation": "(b) **Integrate** over $[0,2]$ only.",
-     "latex": "E[X]=\\int_0^2 x\\cdot\\frac12\\,dx=\\frac12\\left[\\frac{x^2}{2}\\right]_0^2=1"
+     "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+     "version": 1,
+     "chunk_id": "2cc1ee41-e6c3-4fd5-a41c-67fb0c8d5b40"
     }
    ],
-   "answer": "(a) $E[X]=3.5$, $E[X^2]=\\tfrac{91}{6}$ (b) $E[X]=1$, the middle of $[0,2]$.",
+   "id": "dba01e39-7f4d-52f9-9142-543efa3bc48d"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Short example** (Lecture 12): $X=4$ V or $6$ V, each half the time:",
+   "citations": [],
+   "id": "55b6f8ce-5e76-54bd-b190-cd540d071a29"
+  },
+  {
+   "type": "equation",
+   "latex": "E[X]=4(0.5)+6(0.5)=5,\\qquad E[X^2]=16(0.5)+36(0.5)=26",
+   "display": true,
+   "citations": [],
+   "id": "74d1f464-507d-523a-97b6-de9e600979c0"
+  },
+  {
+   "type": "equation",
+   "latex": "\\operatorname{Var}(X)=26-5^2=1\\ \\text{V}^2,\\qquad \\sigma_X=1\\ \\text{V}",
+   "display": true,
+   "citations": [],
+   "id": "ab908ce8-0379-5d4d-824c-f20fb9562a94"
+  },
+  {
+   "type": "solution",
+   "title": "Full example (Lecture 11): a fair die, $\\;X$ = the number",
+   "text": "Step 1 · **Mean:** each face has chance $\\tfrac16$.\n\n$$\nE[X]=\\frac16(1+2+3+4+5+6)=\\frac{21}{6}=3.5\n$$\n\nStep 2 · **Square:** square each value **inside** the sum.\n\n$$\nE[X^2]=\\frac16(1+4+9+16+25+36)=\\frac{91}{6}\n$$\n\nStep 3 · **Subtract.**\n\n$$\n\\operatorname{Var}(X)=\\frac{91}{6}-\\Big(\\frac72\\Big)^2=\\frac{182-147}{12}=\\frac{35}{12}\n$$\n\nStep 4 · **Root.**\n\n$$\n\\sigma_X=\\sqrt{35/12}\\approx1.71\n$$\n\n**Answer:**\n\n$$\nE[X]=3.5,\\quad \\operatorname{Var}(X)=\\frac{35}{12},\\quad \\sigma_X\\approx1.71\n$$",
+   "collapsed": true,
    "citations": [
     {
      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
@@ -184,289 +205,40 @@
      "chunk_id": "87da869b-2cf9-4dd0-8397-b436da482e58"
     }
    ],
-   "id": "cb04df4c-c597-5dc5-98da-4950f2cc1793"
+   "id": "a78f853b-39b0-5a31-8d63-d0a8f6851458"
   },
   {
-   "type": "paragraph",
-   "text": "The mean is the **balance point** of the PDF. A long right tail pulls it to the right of the peak.\n\n```graph\ntitle \"Exponential PDF: the mean $1/\\lambda$ is not the peak\"\nx 0 6 label=\"$x$\" height=240\ny 0 2.1 label=\"$f_X(x)$\"\nslider L 0.3 2 1 step=0.05 label=\"$\\lambda$\"\ncurve \"L*exp(-L*x)\" from=0 to=6 label=\"$\\lambda e^{-\\lambda x}$\"\nvline \"1/L\" label=\"$E[X]=1/\\lambda$\" color=2\nreadout \"$E[X]=1/\\lambda$\" \"1/L\"\n```",
-   "citations": [],
-   "id": "a26eb506-2e1e-5fcb-8ea4-8baa81c355c8"
+   "type": "solution",
+   "title": "Any function: $\\;E[g(X)]=\\sum g(x)\\,p_X(x)$",
+   "text": "Put $g(x)$ in place of $x$. Example: a voltage $X=4$ or $6$ V (half each) across $R=2\\ \\Omega$: average power $E[X^2/R]$.\n\n$$\nE\\Big[\\frac{X^2}{2}\\Big]=\\frac{16}{2}(0.5)+\\frac{36}{2}(0.5)=13\\ \\text{W}\n$$",
+   "collapsed": true,
+   "citations": [
+    {
+     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+     "version": 1,
+     "chunk_id": "87da869b-2cf9-4dd0-8397-b436da482e58"
+    }
+   ],
+   "id": "9db95870-8706-5216-855d-1860c0a603f2"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 1 · Second moment of a uniform",
+   "title": "Try it 1 · Case 1 · A binary random variable · Tutorial 5 Q1",
    "difficulty": "introductory",
    "origin": "source",
-   "prompt": "$X$ is uniform on $[0,2]$. Find $E[X^2]$.",
+   "prompt": "$X$ is $0$ with probability $p$ and $1$ with probability $1-p$. Find $E[X]$, $\\operatorname{Var}(X)$ and $E[X^5]$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Use** $E[g(X)]=\\int g(x)f_X(x)\\,dx$ with $g(x)=x^2$.",
-     "latex": "E[X^2]=\\int_0^2 x^2\\cdot\\frac12\\,dx"
+     "explanation": "**Spot:** a PMF with two values → Case 1.",
+     "latex": ""
     },
-    {
-     "explanation": "**Power rule.**",
-     "latex": "=\\frac12\\left[\\frac{x^3}{3}\\right]_0^2=\\frac12\\cdot\\frac83=\\frac43"
-    }
-   ],
-   "answer": "$E[X^2]=\\tfrac43$ (not $(E[X])^2=1$).",
-   "citations": [
-    {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
-     "version": 1,
-     "chunk_id": "1fa5f1c7-2d1d-4842-a1f9-1949b30bc7b2"
-    }
-   ],
-   "id": "9522fc3a-43ae-505c-896f-c57d6e5beddd"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 2 · Mean time between customers",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "The time $X$ between customer arrivals is exponential: $f_X(t)=\\lambda e^{-\\lambda t}$ for $t\\ge0$. Find the mean $E[X]$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Set up** over $[0,\\infty)$.",
-     "latex": "E[X]=\\int_0^{\\infty}t\\,\\lambda e^{-\\lambda t}\\,dt"
-    },
-    {
-     "explanation": "**By parts:** $u=t$, $dv=\\lambda e^{-\\lambda t}dt$, so $du=dt$, $v=-e^{-\\lambda t}$.",
-     "latex": "=\\Big[-t\\,e^{-\\lambda t}\\Big]_0^{\\infty}+\\int_0^{\\infty}e^{-\\lambda t}\\,dt"
-    },
-    {
-     "explanation": "The boundary term is $0$ (exponential beats $t$).",
-     "latex": "=0+\\Big[-\\frac1\\lambda e^{-\\lambda t}\\Big]_0^{\\infty}=\\frac1\\lambda"
-    }
-   ],
-   "answer": "$E[X]=\\dfrac1\\lambda$. (Rate 3 per minute → mean gap $\\tfrac13$ min.)",
-   "citations": [
-    {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
-    }
-   ],
-   "id": "bbc1462a-91e1-5f94-9e3c-1fd4ab053f8d"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 3 · Mean of a symmetric PDF",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "$X$ has PDF $f_X(t)=\\tfrac{\\lambda}{2}e^{-\\lambda|t-\\gamma|}$ for all $t$ (a Laplace density centred at $\\gamma$). Find $E[X]$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Shift:** let $u=t-\\gamma$, so $t=u+\\gamma$.",
-     "latex": "E[X]=\\int_{-\\infty}^{\\infty}(u+\\gamma)\\,\\frac{\\lambda}{2}e^{-\\lambda|u|}\\,du"
-    },
-    {
-     "explanation": "**Split.** $u\\,e^{-\\lambda|u|}$ is **odd**, so its integral is $0$; the rest is $\\gamma$ times the total area $1$.",
-     "latex": "=\\underbrace{\\int u\\,\\frac{\\lambda}{2}e^{-\\lambda|u|}du}_{0}+\\gamma\\underbrace{\\int\\frac{\\lambda}{2}e^{-\\lambda|u|}du}_{1}"
-    },
-    {
-     "explanation": "So the mean is the centre of symmetry.",
-     "latex": "E[X]=\\gamma"
-    }
-   ],
-   "answer": "$E[X]=\\gamma$: a PDF symmetric about $c$ has mean $c$.",
-   "citations": [
-    {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
-    }
-   ],
-   "id": "db82c0c0-257f-5ea7-932b-bb048e5b054c"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 4 · Mean of a mixed random variable",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "A received signal level $X$ is $0$ with probability $0.2$ (signal lost). Otherwise (probability $0.8$) it is uniform on $(0,10)$, so the continuous part has density $0.8\\cdot\\tfrac1{10}=0.08$ on $(0,10)$. Find $E[X]$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Discrete part:** the point mass at $0$.",
-     "latex": "0\\cdot P(X=0)=0\\cdot0.2=0"
-    },
-    {
-     "explanation": "**Continuous part:** integrate $x$ times the density $0.08$.",
-     "latex": "\\int_0^{10}x\\,(0.08)\\,dx=0.08\\cdot\\frac{10^2}{2}=4"
-    },
-    {
-     "explanation": "**Add** the parts.",
-     "latex": "E[X]=0+4=4"
-    }
-   ],
-   "answer": "$E[X]=4$ (the 20% of zeros pull the average down from 5).",
-   "citations": [
-    {
-     "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
-     "version": 1,
-     "chunk_id": "2765690d-ffea-4bba-8998-f9b1095c0dc0"
-    }
-   ],
-   "id": "a9bff649-6281-5791-9a86-57efabd27e94"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Topic 2: Variance and standard deviation",
-   "citations": [],
-   "id": "ad90db04-cda1-51f4-9f44-ea0beec62a9a"
-  },
-  {
-   "type": "paragraph",
-   "text": "The mean gives the **centre**. Two variables can share a centre but spread very differently:",
-   "citations": [],
-   "id": "8142bb62-d818-5105-943c-0c12f0ca679d"
-  },
-  {
-   "type": "list",
-   "items": [
-    "$X=9$ or $11$ (each $\\tfrac12$): $E[X]=10$, stays close.",
-    "$Y=0$ or $20$ (each $\\tfrac12$): $E[Y]=10$, far more spread out.",
-    "The average deviation $E[X-\\mu_X]$ is always $0$ (the $+$ and $-$ cancel), so we **square** the deviation."
-   ],
-   "ordered": false,
-   "citations": [
-    {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
-     "version": 1,
-     "chunk_id": "0eb0a16e-6d2c-40a6-83e1-031a1f0dae55"
-    }
-   ],
-   "id": "be840fd8-7381-5fa7-bc13-7113bfce954f"
-  },
-  {
-   "type": "equation",
-   "latex": "\\operatorname{Var}(X)=E\\big[(X-\\mu_X)^2\\big]",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
-     "version": 1,
-     "chunk_id": "6039489c-426b-46ac-8fd2-e52106e4a341"
-    }
-   ],
-   "id": "9ceaa3fd-216f-51fa-a409-e8a6f75eb96f"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Shortcut** (almost always faster):",
-   "citations": [],
-   "id": "6c1b0724-bdd9-5b1a-9e26-e3c5f7778c27"
-  },
-  {
-   "type": "equation",
-   "latex": "\\operatorname{Var}(X)=E[X^2]-\\big(E[X]\\big)^2",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
-     "version": 1,
-     "chunk_id": "6039489c-426b-46ac-8fd2-e52106e4a341"
-    }
-   ],
-   "id": "47b81ed9-3a58-5163-8f74-57215aee0fde"
-  },
-  {
-   "type": "paragraph",
-   "text": "```steps\ntitle \"Where the shortcut comes from\"\n$$\nE\\big[(X-\\mu)^2\\big]\n$$\nStart from the definition, with $\\mu=E[X]$ a constant.\n$$\nE\\big[\\hl{X^2-2\\mu X+\\mu^2}\\big]\n$$\nExpand the square.\n$$\n\\hl{E[X^2]-2\\mu\\,E[X]+\\mu^2}\n$$\nLinearity: constants come out of $E$.\n$$\nE[X^2]-2\\mu\\cdot\\hl{\\mu}+\\mu^2\n$$\nUse $E[X]=\\mu$.\n$$\n\\hl{E[X^2]-\\mu^2}\n$$\nDone: mean of the square minus square of the mean.\n```",
-   "citations": [],
-   "id": "979b3da0-9d6a-5142-b54e-fcb3c8fe831b"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Units:** variance has **squared** units (V → V²).",
-    "**Standard deviation** $\\sigma_X=\\sqrt{\\operatorname{Var}(X)}$ is back in the units of $X$: a typical distance from the mean.",
-    "$\\operatorname{Var}(X)\\ge0$, and $=0$ only when $X$ is a constant.",
-    "For a Gaussian $N(\\mu,\\sigma^2)$: mean $\\mu$, standard deviation $\\sigma$ (the width of the bell)."
-   ],
-   "ordered": false,
-   "citations": [
-    {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
-     "version": 1,
-     "chunk_id": "27f2e489-3e85-4171-b6d6-358170b19bc4"
-    }
-   ],
-   "id": "18b23beb-8135-581b-9f88-84b74532b9fa"
-  },
-  {
-   "type": "paragraph",
-   "text": "Drag $d$: the mean never moves, but the variance grows like $d^2$. ($d=1$ is $X$ above, $d=10$ is $Y$.)\n\n```graph\ntitle \"Same mean, different spread: $X=10\\pm d$, each with probability $\\tfrac12$\"\nx -1 21 label=\"$x$\" height=220\ny 0 0.65 label=\"$p_X(x)$\"\nslider d 0 10 1 step=0.5 label=\"$d$\"\nsegment \"10-d\" \"0\" \"10-d\" \"0.5\" color=1\npoint \"10-d\" \"0.5\" color=1\nsegment \"10+d\" \"0\" \"10+d\" \"0.5\" color=1\npoint \"10+d\" \"0.5\" color=1\nvline \"10\" label=\"$E[X]=10$\" color=2\nreadout \"$E[X]$\" \"10\"\nreadout \"$\\mathrm{Var}(X)=d^2$\" \"d^2\"\nreadout \"$\\sigma_X=d$\" \"d\"\n```",
-   "citations": [],
-   "id": "1160e827-4206-5345-a1fb-7fa20774b60f"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Method:**",
-   "citations": [],
-   "id": "d582323e-4acd-573a-9338-c045384c788a"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Find** $E[X]$.",
-    "**Find** $E[X^2]$ (square inside the sum/integral).",
-    "**Subtract:** $\\operatorname{Var}=E[X^2]-(E[X])^2$; then $\\sigma=\\sqrt{\\operatorname{Var}}$."
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "b322d238-f7ad-5512-afa6-6b618bedb839"
-  },
-  {
-   "type": "worked_example",
-   "title": "Example 2 · A two-level sensor voltage",
-   "prompt": "A sensor reads $X=4\\text{ V}$ or $X=6\\text{ V}$, each with probability $0.5$. Find $E[X]$, $E[X^2]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
-   "steps": [
-    {
-     "explanation": "**Mean.**",
-     "latex": "E[X]=4(0.5)+6(0.5)=5\\text{ V}"
-    },
-    {
-     "explanation": "**Second moment.**",
-     "latex": "E[X^2]=16(0.5)+36(0.5)=26\\text{ V}^2"
-    },
-    {
-     "explanation": "**Subtract.**",
-     "latex": "\\operatorname{Var}(X)=26-5^2=1\\text{ V}^2"
-    },
-    {
-     "explanation": "**Standard deviation** (back to volts).",
-     "latex": "\\sigma_X=\\sqrt1=1\\text{ V}"
-    }
-   ],
-   "answer": "$E[X]=5$ V, $E[X^2]=26$ V², $\\operatorname{Var}(X)=1$ V², $\\sigma_X=1$ V.",
-   "citations": [
-    {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
-     "version": 1,
-     "chunk_id": "7e0019b1-d1d3-4c15-8850-3e91dc4e8719"
-    }
-   ],
-   "id": "9cc8283d-7489-54f4-8b05-a2cad96ff483"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 5 · A binary random variable",
-   "difficulty": "introductory",
-   "origin": "source",
-   "prompt": "$X$ takes only the values $0$ and $1$, with $P(X=0)=p$ and $P(X=1)=1-p$. Find $E[X]$, $\\operatorname{Var}(X)$ and $E[X^5]$.",
-   "solution": "",
-   "steps": [
     {
      "explanation": "**Mean.**",
      "latex": "E[X]=0\\cdot p+1\\cdot(1-p)=1-p"
     },
     {
-     "explanation": "**Trick:** $0^n=0$ and $1^n=1$, so $X^n=X$ for every $n\\ge1$.",
+     "explanation": "**Square:** $0^n=0$ and $1^n=1$, so $X^n=X$ for any power.",
      "latex": "E[X^2]=E[X^5]=E[X]=1-p"
     },
     {
@@ -482,221 +254,233 @@
      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
     }
    ],
-   "id": "ab73e516-0e84-5bad-be76-0c7e7d1e722f"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 6 · Variance from a staircase CDF",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "$X$ has CDF\n\n$$\nF_X(x)=\\begin{cases}0,&x<-3\\\\ 3/8,&-3\\le x<0\\\\ 3/4,&0\\le x<6\\\\ 1,&x\\ge6\\end{cases}\n$$\n\nIs $X$ discrete or continuous? Find $\\operatorname{Var}(X)$ and $\\sigma_X$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Staircase** → discrete. The **jumps** give the PMF.",
-     "latex": "p_X(-3)=\\frac38,\\quad p_X(0)=\\frac38,\\quad p_X(6)=\\frac14"
-    },
-    {
-     "explanation": "**Mean.**",
-     "latex": "E[X]=-3\\cdot\\frac38+0+6\\cdot\\frac14=-\\frac98+\\frac{12}{8}=\\frac38"
-    },
-    {
-     "explanation": "**Second moment.**",
-     "latex": "E[X^2]=9\\cdot\\frac38+0+36\\cdot\\frac14=\\frac{27}{8}+\\frac{72}{8}=\\frac{99}{8}"
-    },
-    {
-     "explanation": "**Subtract**, then take the root.",
-     "latex": "\\operatorname{Var}(X)=\\frac{99}{8}-\\frac{9}{64}=\\frac{783}{64}\\approx12.234,\\quad \\sigma_X\\approx3.498"
-    }
-   ],
-   "answer": "Discrete; $\\operatorname{Var}(X)=\\tfrac{783}{64}\\approx12.234$, $\\sigma_X\\approx3.498$.",
-   "citations": [
-    {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
-    }
-   ],
-   "id": "074851c6-4c6d-5212-b4ef-902d45399cc1"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 7 · A PDF with a constant: mean and variance",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "$f_X(x)=Cx^2$ for $|x|\\le1$, and $0$ otherwise. (a) Find $C$ and the CDF. (b) Find $E[X]$ and $\\operatorname{Var}(X)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) **Total area = 1.**",
-     "latex": "\\int_{-1}^{1}Cx^2\\,dx=C\\cdot\\frac23=1\\;\\Rightarrow\\;C=\\frac32"
-    },
-    {
-     "explanation": "**CDF** on $[-1,1]$: integrate from $-1$.",
-     "latex": "F_X(x)=\\int_{-1}^{x}\\frac32t^2\\,dt=\\frac{x^3+1}{2}\\quad(0\\text{ left of }-1,\\ 1\\text{ right of }1)"
-    },
-    {
-     "explanation": "(b) **Mean:** $x\\cdot x^2=x^3$ is odd on $[-1,1]$.",
-     "latex": "E[X]=\\int_{-1}^{1}\\frac32x^3\\,dx=0"
-    },
-    {
-     "explanation": "**Second moment.**",
-     "latex": "E[X^2]=\\int_{-1}^{1}\\frac32x^4\\,dx=\\frac32\\cdot\\frac25=\\frac35"
-    },
-    {
-     "explanation": "**Subtract.**",
-     "latex": "\\operatorname{Var}(X)=\\frac35-0^2=\\frac35"
-    }
-   ],
-   "answer": "$C=\\tfrac32$, $F_X(x)=\\tfrac{x^3+1}{2}$ on $[-1,1]$; $E[X]=0$, $\\operatorname{Var}(X)=\\tfrac35$.",
-   "citations": [
-    {
-     "source_id": "a2bcf96c-29bc-4570-bbde-f69160346624",
-     "version": 1,
-     "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
-    }
-   ],
-   "id": "9cbe99f7-539c-563f-a4da-3d0760e6e340"
+   "id": "b8df6b26-396a-58cd-b902-c6832d450c11"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Topic 3: Properties of expectation and variance",
+   "text": "Case 2: from a PDF",
    "citations": [],
-   "id": "4066bbd0-7496-51dc-af43-67dd393961cc"
+   "id": "c542c45b-7da4-5184-87a6-0d3893723361"
   },
   {
    "type": "paragraph",
-   "text": "These rules turn most \"find $E$ / Var of something\" questions into one line.",
+   "text": "**You’ll see:** a formula $f_X(x)$. Same four steps, with integrals over the range where $f_X\\ne0$:",
    "citations": [],
-   "id": "bd71e3ae-1e43-58c6-97ac-1e95970a1718"
+   "id": "44eb84e3-0f5b-5927-b64d-2b9ce58925e0"
   },
   {
    "type": "equation",
-   "latex": "E[aX+b]=a\\,E[X]+b\\qquad E[aX+bY]=a\\,E[X]+b\\,E[Y]",
+   "latex": "E[X]=\\int x\\,f_X(x)\\,dx,\\qquad E[X^2]=\\int x^2\\,f_X(x)\\,dx",
    "display": true,
    "citations": [
     {
      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
      "version": 1,
-     "chunk_id": "0eb0a16e-6d2c-40a6-83e1-031a1f0dae55"
+     "chunk_id": "87da869b-2cf9-4dd0-8397-b436da482e58"
     }
    ],
-   "id": "d32ed5d4-55f3-5536-a459-33b855043863"
+   "id": "199fbb21-e2f1-5eb2-aa10-3ae7618819d7"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Short example:** $X$ uniform on $[0,2]$, $f_X=\\tfrac12$:",
+   "citations": [],
+   "id": "310c8634-4643-5908-b290-a81bcb24e55f"
   },
   {
    "type": "equation",
-   "latex": "\\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)\\qquad \\sigma_{aX+b}=|a|\\,\\sigma_X",
+   "latex": "E[X]=\\int_0^2\\frac x2\\,dx=1,\\qquad E[X^2]=\\int_0^2\\frac{x^2}{2}\\,dx=\\frac43",
    "display": true,
+   "citations": [],
+   "id": "b1fbb5c9-c540-5088-b135-7e12ec666e67"
+  },
+  {
+   "type": "equation",
+   "latex": "\\operatorname{Var}(X)=\\frac43-1=\\frac13",
+   "display": true,
+   "citations": [],
+   "id": "d5d0586a-df94-5d5a-9a92-f97f219db7ed"
+  },
+  {
+   "type": "solution",
+   "title": "Full example (Practice 03 Q2): exponential, $\\;f_X(t)=\\lambda e^{-\\lambda t}$, $t\\ge0$",
+   "text": "Step 1 · **Mean:** integrate over $t\\ge0$. Use the shortcut card below with $n=1$.\n\n$$\nE[X]=\\lambda\\int_0^{\\infty}t\\,e^{-\\lambda t}\\,dt=\\lambda\\cdot\\frac{1!}{\\lambda^2}=\\frac1\\lambda\n$$\n\nStep 2 · **Square:** the shortcut with $n=2$.\n\n$$\nE[X^2]=\\lambda\\cdot\\frac{2!}{\\lambda^3}=\\frac{2}{\\lambda^2}\n$$\n\nStep 3 · **Subtract.**\n\n$$\n\\operatorname{Var}(X)=\\frac{2}{\\lambda^2}-\\frac{1}{\\lambda^2}=\\frac{1}{\\lambda^2}\n$$\n\nStep 4 · **Root.** (3 customers per minute → mean gap $\\tfrac13$ min.)\n\n$$\n\\sigma_X=\\frac1\\lambda\n$$\n\n**Answer:**\n\n$$\nE[X]=\\frac1\\lambda,\\qquad \\operatorname{Var}(X)=\\frac{1}{\\lambda^2}\n$$",
+   "collapsed": true,
    "citations": [
     {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
      "version": 1,
-     "chunk_id": "35a0186d-c0e5-48d4-89d2-9f5548bcda6b"
+     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
     }
    ],
-   "id": "a7a82878-46a5-52d5-a2e8-0f415e8b6113"
+   "id": "8f4f9f39-3bd9-5bc9-8975-c7ed84f55840"
+  },
+  {
+   "type": "solution",
+   "title": "Shortcut: $\\;\\displaystyle\\int_0^{\\infty}x^n\\,e^{-\\lambda x}\\,dx=\\frac{n!}{\\lambda^{n+1}}$",
+   "text": "Skips integrating by parts. $n=1$:\n\n$$\n\\int_0^\\infty x\\,e^{-2x}\\,dx=\\frac{1}{4}\n$$\n\n$n=2$:\n\n$$\n\\int_0^\\infty x^2\\,e^{-x}\\,dx=\\frac{2}{1}=2\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "078f6fea-7cda-5114-8ff2-6ad4e14f3bb2"
+  },
+  {
+   "type": "solution",
+   "title": "Shortcut: a symmetric PDF → the mean is the centre",
+   "text": "If $f_X$ looks the same on both sides of $c$, then $E[X]=c$. No integral.\n\n$$\nf_X(t)=\\tfrac12\\lambda e^{-\\lambda|t-\\gamma|}\\quad\\Longrightarrow\\quad E[X]=\\gamma\n$$\n\nSame reason: an odd function ($x$, $x^3$) integrated over $[-a,a]$ gives $0$.\n\n$$\n\\int_{-1}^{1}x\\cdot\\frac32x^2\\,dx=0\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "a1f560d8-f64f-50df-83fc-2d033b6fbb05"
+  },
+  {
+   "type": "solution",
+   "title": "Mixed $X$ (a jump and a density): add both parts",
+   "text": "Step 1 · Lecture 11 signal: $X=0$ with chance $0.2$, otherwise uniform on $(0,10)$, density $0.08$.\n\nStep 2 · **Mean**, jump part.\n\n$$\n0\\cdot0.2=0\n$$\n\nStep 3 · **Mean**, density part.\n\n$$\n\\int_0^{10}x\\,(0.08)\\,dx=0.08\\cdot\\frac{10^2}{2}=4\n$$\n\nStep 4 · Add.\n\n$$\nE[X]=0+4=4\n$$",
+   "collapsed": true,
+   "citations": [
+    {
+     "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+     "version": 1,
+     "chunk_id": "1ed7f8a1-4153-4f99-9ae5-6347e57802a0"
+    }
+   ],
+   "id": "e57cde23-cc80-5468-b9df-2b878ad7f2dd"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Case 3: from a CDF",
+   "citations": [],
+   "id": "428506d6-0705-55dd-ae19-0dd31e25db52"
+  },
+  {
+   "type": "paragraph",
+   "text": "**You’ll see:** $F_X(x)$ instead of a PMF or PDF. Turn it into one, then Case 1 or 2:",
+   "citations": [],
+   "id": "fc2dea29-f24c-5f59-9761-cd8a1fc5785d"
   },
   {
    "type": "list",
    "items": [
-    "**Shifting** by $b$ moves the centre but **not** the spread: $b$ disappears from Var.",
-    "**Scaling** by $a$ scales the spread by $|a|$, so Var by $a^2$. A minus sign never makes Var negative: $\\operatorname{Var}(-X)=\\operatorname{Var}(X)$.",
-    "$E[b]=b$ and $\\operatorname{Var}(b)=0$ for a constant $b$.",
-    "**Turn the shortcut around:** $E[X^2]=\\operatorname{Var}(X)+(E[X])^2$. Use it whenever you are given $E$ and Var."
+    "**Staircase CDF** (discrete): the **jump sizes** are the PMF → Case 1.",
+    "**Smooth CDF** (continuous): the **slope** is the PDF, $f_X=F_X^{\\prime}$ → Case 2."
    ],
    "ordered": false,
    "citations": [
     {
-     "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
      "version": 1,
-     "chunk_id": "72ec1f08-5a0f-478f-8963-c20f6396f281"
+     "chunk_id": "ffe2be55-a527-440d-89e9-8fa816005537"
     }
    ],
-   "id": "cac32a8b-aba1-568a-bb21-dd08f14a5ac2"
+   "id": "7a0b000d-4baf-5ede-bef3-767e8db639cb"
   },
   {
    "type": "paragraph",
-   "text": "```steps\ntitle \"Why $\\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)$\"\n$$\n\\operatorname{Var}(aX+b)=E\\big[(aX+b-E[aX+b])^2\\big]\n$$\nDefinition, with $Y=aX+b$.\n$$\n=E\\big[(aX+b-\\hl{aE[X]-b})^2\\big]\n$$\nLinearity of $E$.\n$$\n=E\\big[\\hl{a^2}(X-E[X])^2\\big]\n$$\nThe $b$ cancels; pull out $a$ and square it.\n$$\n=\\hl{a^2\\operatorname{Var}(X)}\n$$\n$a^2$ is a constant, so it comes out of $E$.\n```",
+   "text": "**Shortcut for $X\\ge0$** (the tail formula): skip the PDF.",
    "citations": [],
-   "id": "4f9003e4-0fc9-5400-baab-d0186b8ff8f8"
+   "id": "bd74051c-0194-59be-b455-472419932297"
   },
   {
-   "type": "paragraph",
-   "text": "**Moments:** $E[X^n]$ is the $n$th (raw) **moment**; $E[(X-\\mu_X)^n]$ is the $n$th **central moment**. So $E[X]$ = 1st moment, $E[X^2]$ = 2nd moment, and Var = 2nd central moment.",
+   "type": "equation",
+   "latex": "E[X]=\\int_0^{\\infty}\\big(1-F_X(t)\\big)\\,dt\\qquad\\qquad E[N]=\\sum_{k=0}^{\\infty}P(N>k)\\ \\ (\\text{whole numbers})",
+   "display": true,
    "citations": [
     {
-     "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
      "version": 1,
-     "chunk_id": "061ca83b-a397-4cdf-b0d0-e3f23afbc005"
+     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
     }
    ],
-   "id": "5ef17055-5501-515e-a0cb-1ef1ab3fe773"
+   "id": "fafac794-8079-56db-8e6f-3154a39bd200"
   },
   {
    "type": "paragraph",
-   "text": "**Means and variances to memorise** (no formula sheet). Each can be found with Topics 1–2:",
+   "text": "**Short example:** exponential, $1-F_X(t)=e^{-\\lambda t}$:",
    "citations": [],
-   "id": "4dffa483-d1ff-5193-95a0-a467a55c7bda"
+   "id": "902ce548-8f38-5a2b-9e82-13dfd8ee222c"
   },
   {
-   "type": "table",
-   "columns": [
-    "Distribution",
-    "$E[X]$",
-    "$\\operatorname{Var}(X)$",
-    "Where you saw it"
-   ],
-   "rows": [
-    [
-     "Bernoulli$(p)$",
-     "${p}$",
-     "${p(1-p)}$",
-     "Try it 5 (there $P(X=1)=1-p$)"
-    ],
-    [
-     "Binomial$(n,p)$",
-     "${np}$",
-     "${np(1-p)}$",
-     "memorise"
-    ],
-    [
-     "Geometric, $k=1,2,\\dots$",
-     "${\\dfrac1p}$",
-     "${\\dfrac{1-p}{p^2}}$",
-     "memorise"
-    ],
-    [
-     "Geometric, $k=0,1,\\dots$",
-     "${\\dfrac{1-p}{p}}$",
-     "${\\dfrac{1-p}{p^2}}$",
-     "Practice 03 Q5"
-    ],
-    [
-     "Poisson$(\\lambda)$",
-     "${\\lambda}$",
-     "${\\lambda}$",
-     "memorise"
-    ],
-    [
-     "Uniform$(a,b)$",
-     "${\\dfrac{a+b}{2}}$",
-     "${\\dfrac{(b-a)^2}{12}}$",
-     "Question 2"
-    ],
-    [
-     "Exponential$(\\lambda)$",
-     "${\\dfrac1\\lambda}$",
-     "${\\dfrac{1}{\\lambda^2}}$",
-     "Try it 2, Question 3"
-    ],
-    [
-     "Gaussian $N(\\mu,\\sigma^2)$",
-     "${\\mu}$",
-     "${\\sigma^2}$",
-     "Lecture 12"
-    ]
-   ],
+   "type": "equation",
+   "latex": "E[X]=\\int_0^{\\infty}e^{-\\lambda t}\\,dt=\\frac1\\lambda",
+   "display": true,
+   "citations": [],
+   "id": "1d022af7-88d0-50b8-b9bb-66cc2bf1054f"
+  },
+  {
+   "type": "solution",
+   "title": "Full example: $\\;F_X(x)=x^2$ on $[0,1]$. Find $E[X]$ two ways",
+   "text": "Step 1 · **Way 1:** the slope is the PDF.\n\n$$\nf_X(x)=2x,\\qquad 0\\le x\\le1\n$$\n\nStep 2 · **Mean** from the PDF.\n\n$$\nE[X]=\\int_0^1x\\cdot2x\\,dx=\\frac23\n$$\n\nStep 3 · **Way 2:** the tail formula. $1-F=0$ after $x=1$.\n\n$$\nE[X]=\\int_0^1(1-t^2)\\,dt=1-\\frac13=\\frac23\n$$\n\n**Answer:**\n\n$$\nE[X]=\\frac23\\ \\text{ both ways}\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "3b1ef2fc-e7a0-5e7d-a820-900abc20e951"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Case 4: a named family (read it off)",
+   "citations": [],
+   "id": "15592a8c-9791-5a65-97e4-81ceef7aad44"
+  },
+  {
+   "type": "paragraph",
+   "text": "**You’ll see:** “$X$ is Binomial / Poisson / uniform / …”. Don’t integrate: each family’s mean and variance are known. Open a card:",
+   "citations": [],
+   "id": "e0f3432e-2520-5207-9606-095391ed8e32"
+  },
+  {
+   "type": "solution",
+   "title": "Bernoulli$(p)$: $\\;E=p$, $\\;\\operatorname{Var}=p(1-p)$",
+   "text": "One yes/no try, $1$ with chance $p$. Example $p=0.3$:\n\n$$\nE[X]=0.3,\\qquad \\operatorname{Var}(X)=0.3\\cdot0.7=0.21\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "fb2d87c8-e766-5194-8707-5ef6e291e0d9"
+  },
+  {
+   "type": "solution",
+   "title": "Binomial$(n,p)$: $\\;E=np$, $\\;\\operatorname{Var}=np(1-p)$",
+   "text": "$n$ tries, count successes. Example $n=10$, $p=0.3$:\n\n$$\nE[X]=3,\\qquad \\operatorname{Var}(X)=10(0.3)(0.7)=2.1\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "34b2244d-145d-55eb-8c04-44d68be626d1"
+  },
+  {
+   "type": "solution",
+   "title": "Geometric: $\\;E=\\dfrac1p$ (or $\\dfrac{1-p}{p}$), $\\;\\operatorname{Var}=\\dfrac{1-p}{p^2}$",
+   "text": "Counting tries until the first success ($k=1,2,\\dots$):\n\n$$\nE[X]=\\frac1p\n$$\n\nCounting failures before it ($k=0,1,\\dots$), one less:\n\n$$\nE[N]=\\frac1p-1=\\frac{1-p}{p}\n$$\n\nSame variance both ways. Example $p=0.2$, tries:\n\n$$\nE[X]=5,\\qquad \\operatorname{Var}(X)=\\frac{0.8}{0.04}=20\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "9cfc7932-3e91-5091-a4ec-1e18872ad802"
+  },
+  {
+   "type": "solution",
+   "title": "Poisson$(\\lambda)$: $\\;E=\\lambda$, $\\;\\operatorname{Var}=\\lambda$",
+   "text": "Mean and variance are the same number. Example $\\lambda=3$:\n\n$$\nE[X]=3,\\qquad \\operatorname{Var}(X)=3\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "d0dcb61c-33a7-501c-a2a8-a9f21a8a21d8"
+  },
+  {
+   "type": "solution",
+   "title": "Uniform$(a,b)$: $\\;E=\\dfrac{a+b}{2}$, $\\;\\operatorname{Var}=\\dfrac{(b-a)^2}{12}$",
+   "text": "The middle, and the length squared over 12. Example $U(2,8)$:\n\n$$\nE[X]=5,\\qquad \\operatorname{Var}(X)=\\frac{36}{12}=3\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "8bb1c0f4-f28d-5fb1-b4b9-5bfda2ebd391"
+  },
+  {
+   "type": "solution",
+   "title": "Exponential$(\\lambda)$: $\\;E=\\dfrac1\\lambda$, $\\;\\operatorname{Var}=\\dfrac{1}{\\lambda^2}$",
+   "text": "Example $\\lambda=0.25$ per minute:\n\n$$\nE[X]=4\\text{ min},\\qquad \\operatorname{Var}(X)=16\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "de2fcf83-5d48-57e3-a9f5-14cc14a97a6f"
+  },
+  {
+   "type": "solution",
+   "title": "Gaussian $N(\\mu,\\sigma^2)$: $\\;E=\\mu$, $\\;\\operatorname{Var}=\\sigma^2$",
+   "text": "Already in the name. Example $N(12,4)$:\n\n$$\nE[X]=12,\\qquad \\sigma_X=2\n$$",
+   "collapsed": true,
    "citations": [
     {
      "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
@@ -704,31 +488,112 @@
      "chunk_id": "27f2e489-3e85-4171-b6d6-358170b19bc4"
     }
    ],
-   "id": "541e3638-9624-5362-9e58-e0edb2316688"
+   "id": "bd805ebb-fa20-5a89-a5f6-557260b40c48"
   },
   {
-   "type": "worked_example",
-   "title": "Example 3 · Sensor calibration",
-   "prompt": "A sensor output $X$ has $E[X]=3$ and $\\operatorname{Var}(X)=9$. (a) Find the mean squared error $E[(2-X)^2]$. (b) The reading is calibrated as $Y=2X-3$. Find $\\operatorname{Var}(Y)$.",
+   "type": "paragraph",
+   "text": "**Need $E[X^2]$?** Turn the variance around:",
+   "citations": [],
+   "id": "51fbd3ca-04f3-5546-94d1-436dac6abb20"
+  },
+  {
+   "type": "equation",
+   "latex": "E[X^2]=\\operatorname{Var}(X)+\\big(E[X]\\big)^2\\qquad\\text{Poisson}(3):\\ E[X^2]=3+9=12",
+   "display": true,
+   "citations": [],
+   "id": "ade77ebe-579d-5ace-99ea-70534394973c"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · Case 4 · Three families",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "(a) $X\\sim$ Binomial$(10,\\,0.3)$: find $E[X]$ and $\\operatorname{Var}(X)$. (b) $X\\sim$ Uniform$(2,8)$: find $\\operatorname{Var}(X)$ and $\\sigma_X$. (c) $X\\sim$ Poisson$(3)$: find $E[(X-1)^2]$.",
+   "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Expand**, then use linearity.",
-     "latex": "E[(2-X)^2]=E[4-4X+X^2]=4-4E[X]+E[X^2]"
+     "explanation": "(a) **Spot:** Binomial → $np$ and $np(1-p)$.",
+     "latex": "E[X]=10(0.3)=3,\\qquad \\operatorname{Var}(X)=10(0.3)(0.7)=2.1"
     },
     {
-     "explanation": "**Turn the shortcut around** to get $E[X^2]$.",
-     "latex": "E[X^2]=\\operatorname{Var}(X)+(E[X])^2=9+9=18"
+     "explanation": "(b) **Spot:** uniform → $\\frac{(b-a)^2}{12}$. **Root.**",
+     "latex": "\\operatorname{Var}(X)=\\frac{6^2}{12}=3,\\qquad \\sigma_X=\\sqrt3\\approx1.732"
     },
     {
-     "explanation": "Substitute.",
-     "latex": "E[(2-X)^2]=4-12+18=10"
-    },
-    {
-     "explanation": "(b) **Shift drops out, scale squares.**",
-     "latex": "\\operatorname{Var}(2X-3)=2^2\\cdot9=36"
+     "explanation": "(c) **Spot:** Poisson. **Swap:** $E[X^2]=\\lambda+\\lambda^2=12$. **Expand** (Case 5).",
+     "latex": "E[(X-1)^2]=E[X^2]-2E[X]+1=12-6+1=7"
     }
    ],
-   "answer": "(a) $10$ (b) $36$",
+   "answer": "(a) $3$, $2.1$ (b) $3$, $\\sqrt3\\approx1.732$ (c) $7$",
+   "citations": [],
+   "id": "eefdf36b-7083-5e1a-9f3e-0e5d82a39d4f"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Case 5: only E[X] and Var(X) given (the rules)",
+   "citations": [],
+   "id": "e6f62ef5-2228-569f-a66f-5ce2c735317d"
+  },
+  {
+   "type": "paragraph",
+   "text": "**You’ll see:** “$E[X]=3$, $\\operatorname{Var}(X)=9$. Find $E[(2-X)^2]$” or “find $\\operatorname{Var}(2X-3)$”. No PMF or PDF needed.",
+   "citations": [],
+   "id": "1b166991-0968-5081-afb3-b70b39fd63be"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The move:** two rules.",
+   "citations": [],
+   "id": "03cecc6b-5a8a-5ae2-aa96-87be94df75ab"
+  },
+  {
+   "type": "equation",
+   "latex": "E[aX+b]=a\\,E[X]+b\\qquad\\qquad \\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)",
+   "display": true,
+   "citations": [
+    {
+     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+     "version": 1,
+     "chunk_id": "0eb0a16e-6d2c-40a6-83e1-031a1f0dae55"
+    },
+    {
+     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
+     "version": 1,
+     "chunk_id": "35a0186d-c0e5-48d4-89d2-9f5548bcda6b"
+    }
+   ],
+   "id": "f6187731-a076-5910-8ecb-2c6942982bc4"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Expand** any square, like $(2-X)^2$, then take $E$ of each term.",
+    "**Swap** in $E[X^2]=\\operatorname{Var}(X)+(E[X])^2$ wherever $E[X^2]$ appears.",
+    "**Plug in.** For Var: the $+b$ drops out, the $a$ gets squared."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "9f70fdfa-487c-5577-836b-ac4edb077e9b"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Short example:** $\\operatorname{Var}(X)=9$:",
+   "citations": [],
+   "id": "7c960904-f8e2-5cf4-8a79-2a1659ad50ba"
+  },
+  {
+   "type": "equation",
+   "latex": "\\operatorname{Var}(2X-3)=2^2\\cdot9=36,\\qquad \\operatorname{Var}(-X)=\\operatorname{Var}(X),\\qquad \\sigma_{aX+b}=|a|\\,\\sigma_X",
+   "display": true,
+   "citations": [],
+   "id": "7ea53976-7212-5df4-82ac-db602a9be15e"
+  },
+  {
+   "type": "solution",
+   "title": "Full example (Lecture 13): $\\;E[X]=3$, $\\;\\operatorname{Var}(X)=9$. Find $E[(2-X)^2]$ and $\\operatorname{Var}(2X-3)$",
+   "text": "Step 1 · **Expand**, then take $E$ of each term.\n\n$$\nE[(2-X)^2]=E[4-4X+X^2]=4-4E[X]+E[X^2]\n$$\n\nStep 2 · **Swap** for $E[X^2]$.\n\n$$\nE[X^2]=9+3^2=18\n$$\n\nStep 3 · **Plug in.**\n\n$$\nE[(2-X)^2]=4-12+18=10\n$$\n\nStep 4 · Var: the $-3$ drops out, the $2$ gets squared.\n\n$$\n\\operatorname{Var}(2X-3)=2^2\\cdot9=36\n$$\n\n**Answer:**\n\n$$\nE[(2-X)^2]=10,\\qquad \\operatorname{Var}(2X-3)=36\n$$",
+   "collapsed": true,
    "citations": [
     {
      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
@@ -736,26 +601,58 @@
      "chunk_id": "e3a36a46-a9a1-41da-89bc-cdc1cc104ae6"
     }
    ],
-   "id": "05cacca8-6586-5400-abd4-aa8eb3eb3d6a"
+   "id": "b3fecb93-ee44-5177-9b00-b66fb7b318fc"
+  },
+  {
+   "type": "solution",
+   "title": "Moments: $\\;E[X^n]$ (raw), $\\;E[(X-\\mu)^n]$ (central)",
+   "text": "The $n$th moment is $E[X^n]$: $E[X]$ is the 1st, $E[X^2]$ the 2nd.\n\nThe variance is the 2nd **central** moment: distances from the mean.\n\n$$\n\\operatorname{Var}(X)=E\\big[(X-\\mu_X)^2\\big]\n$$",
+   "collapsed": true,
+   "citations": [
+    {
+     "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+     "version": 1,
+     "chunk_id": "061ca83b-a397-4cdf-b0d0-e3f23afbc005"
+    }
+   ],
+   "id": "5f92dc98-b24e-5a29-a044-f7b1e88f4831"
+  },
+  {
+   "type": "solution",
+   "title": "Chebyshev and Markov (Practice 03, not in the lectures)",
+   "text": "**Chebyshev:** far from the mean is unlikely when the variance is small.\n\n$$\nP\\big(|Y-\\mu_Y|\\ge\\varepsilon\\big)\\le\\frac{\\operatorname{Var}(Y)}{\\varepsilon^2}\n$$\n\nExample: $\\operatorname{Var}=1$, $\\varepsilon=2$.\n\n$$\nP\\big(|Y-\\mu|\\ge2\\big)\\le\\frac14\n$$\n\n**Markov**, for $Y\\ge0$:\n\n$$\nP(Y\\ge a)\\le\\frac{E[Y]}{a}\n$$",
+   "collapsed": true,
+   "citations": [
+    {
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+     "version": 1,
+     "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
+    }
+   ],
+   "id": "653ddb3e-8a47-55b1-aaad-847981d6f5e0"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 8 · Given only the mean and variance",
+   "title": "Try it 3 · Case 5 · Given only the mean and variance · Tutorial 5 Q2",
    "difficulty": "introductory",
    "origin": "source",
-   "prompt": "A nonnegative random variable $X$ has $E[X]=3$ and $\\operatorname{Var}(X)=1$. Find (a) $E[(3X-2)^2]$, (b) $\\operatorname{Var}(2X+1)$.",
+   "prompt": "$X\\ge0$ has $E[X]=3$ and $\\operatorname{Var}(X)=1$. Find (a) $E[(3X-2)^2]$, (b) $\\operatorname{Var}(2X+1)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Second moment** from the shortcut.",
+     "explanation": "**Spot:** only $E$ and Var → Case 5. **Swap** first.",
      "latex": "E[X^2]=1+3^2=10"
     },
     {
-     "explanation": "(a) **Expand** and use linearity.",
-     "latex": "E[(3X-2)^2]=9E[X^2]-12E[X]+4=90-36+4=58"
+     "explanation": "(a) **Expand**, then take $E$ of each term.",
+     "latex": "E[(3X-2)^2]=9E[X^2]-12E[X]+4"
     },
     {
-     "explanation": "(b) **Scale squares, shift drops.**",
+     "explanation": "**Plug in.**",
+     "latex": "9(10)-12(3)+4=58"
+    },
+    {
+     "explanation": "(b) The $+1$ drops out, the $2$ gets squared.",
      "latex": "\\operatorname{Var}(2X+1)=4\\cdot1=4"
     }
    ],
@@ -767,22 +664,79 @@
      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
     }
    ],
-   "id": "c920a648-da6d-5af2-b128-dd72697e89ef"
+   "id": "2539b92a-ec7e-5f85-bfde-371af4f55d7e"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Practice Questions",
+   "citations": [],
+   "id": "6159325f-14e7-530d-b892-d217876e6e9b"
+  },
+  {
+   "type": "callout",
+   "tone": "tip",
+   "text": "**Question 3 is always these cases, in parts (a)–(c).** Run **Mean → Square → Subtract → Root**:\n\n1. **PMF:** $\\sum x\\,p$ and $\\sum x^2p$.\n2. **PDF:** $\\int x\\,f$ and $\\int x^2f$ (symmetric → mean = centre; $\\int_0^\\infty x^ne^{-\\lambda x}=\\frac{n!}{\\lambda^{n+1}}$).\n3. **CDF:** jumps → PMF, slope → PDF; or the tail formula for $X\\ge0$.\n4. **Named family:** read the card.\n5. **Only $E$ and Var:** Expand → Swap $E[X^2]=\\text{Var}+\\mu^2$ → Plug in; $\\text{Var}(aX+b)=a^2\\text{Var}(X)$.",
+   "citations": [],
+   "id": "1d7e7466-ab79-5f21-83cd-30497b7ab5c1"
+  },
+  {
+   "type": "paragraph",
+   "text": "Test-style, easy → hard. Solve on paper first, then open the solution.",
+   "citations": [],
+   "id": "3edb2d48-9c97-5e14-b69b-ca7faa307b11"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 9 · A Gaussian with mean 12",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "$X$ is Gaussian with mean $12$ and variance $4$. (a) Find $c$ with $P(X\\ge c)=0.5$. (b) Find $E[X^2]$.",
+   "title": "Question 1 · Case 1 + 5 · PMF table",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "$X$ has the PMF below.\n\n| $x$ | $-1$ | $0$ | $1$ | $2$ |\n|---|---|---|---|---|\n| $p_X(x)$ | $0.1$ | $c$ | $0.3$ | $0.2$ |\n\nFind (a) $c$, (b) $E[X]$ and $\\operatorname{Var}(X)$, (c) $E[5-2X]$ and $\\operatorname{Var}(5-2X)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) The bell is **symmetric** about its mean, so half the area is on each side of $12$.",
+     "explanation": "(a) **Find $c$:** the chances add to $1$.",
+     "latex": "0.1+c+0.3+0.2=1\\quad\\Longrightarrow\\quad c=0.4"
+    },
+    {
+     "explanation": "(b) **Type:** a PMF → Case 1. **Mean.**",
+     "latex": "E[X]=-1(0.1)+0+1(0.3)+2(0.2)=0.6"
+    },
+    {
+     "explanation": "**Square.**",
+     "latex": "E[X^2]=1(0.1)+0+1(0.3)+4(0.2)=1.2"
+    },
+    {
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(X)=1.2-0.6^2=0.84"
+    },
+    {
+     "explanation": "(c) **Rules** (Case 5): the $5$ drops out of Var, the $-2$ gets squared.",
+     "latex": "\\begin{gathered}E[5-2X]=5-2(0.6)=3.8 \\\\ \\operatorname{Var}(5-2X)=4(0.84)=3.36\\end{gathered}"
+    }
+   ],
+   "answer": "$c=0.4$; $E[X]=0.6$, $\\operatorname{Var}(X)=0.84$; $E[5-2X]=3.8$, $\\operatorname{Var}(5-2X)=3.36$.",
+   "citations": [],
+   "id": "fde67a21-5c49-5b5d-a66d-12e598bbe8da"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 2 · Case 4 + 5 · Gaussian · Tutorial 5 Q4",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "$X$ is normal with mean $12$ and variance $4$. (a) Find $c$ so that $P(X\\ge c)=0.5$. (b) Find $E[X^2]$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** named family (Gaussian) → Case 4: $E[X]=12$, $\\operatorname{Var}(X)=4$.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) The bell is symmetric around its mean, so half the area is above $12$.",
      "latex": "c=\\mu=12"
     },
     {
-     "explanation": "(b) **Turn the shortcut around.**",
+     "explanation": "(b) **Swap** (Case 5).",
      "latex": "E[X^2]=\\operatorname{Var}(X)+\\mu^2=4+144=148"
     }
    ],
@@ -794,30 +748,117 @@
      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
     }
    ],
-   "id": "55f145cc-9f74-5e86-a5fd-1183805aff59"
+   "id": "bcbedd9b-88e4-5ec7-86c3-b10f6c8abc78"
   },
   {
    "type": "practice_problem",
-   "title": "Try it 10 · Variance of a transformed reading",
-   "difficulty": "intermediate",
+   "title": "Question 3 · Case 5 · Prove the Var rule · Practice 03 Q4",
+   "difficulty": "introductory",
    "origin": "source",
-   "prompt": "For $f_X(x)=\\tfrac32x^2$ on $|x|\\le1$ (Try it 7: $\\operatorname{Var}(X)=\\tfrac35$), find $E[3X-1]$ and $\\operatorname{Var}(3X-1)$. Also find $E[Y^2]$ for $Y=|X|$.",
+   "prompt": "Show that $\\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)$ for any constants $a,b$. Use $\\operatorname{Var}(Y)=E\\big[(Y-E[Y])^2\\big]$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Linearity** with $E[X]=0$.",
-     "latex": "E[3X-1]=3\\cdot0-1=-1"
+     "explanation": "**Mean** of $Y=aX+b$, with the first rule.",
+     "latex": "E[Y]=a\\,E[X]+b"
     },
     {
-     "explanation": "**Scale squares, shift drops.**",
-     "latex": "\\operatorname{Var}(3X-1)=9\\cdot\\frac35=\\frac{27}{5}"
+     "explanation": "**Subtract** it from $Y$: the $b$ cancels.",
+     "latex": "Y-E[Y]=aX+b-a\\,E[X]-b=a\\,(X-E[X])"
     },
     {
-     "explanation": "$Y^2=|X|^2=X^2$, so no new integral is needed.",
-     "latex": "E[Y^2]=E[X^2]=\\frac35"
+     "explanation": "**Square** and take $E$: the constant $a^2$ comes out.",
+     "latex": "\\begin{gathered}\\operatorname{Var}(Y)=E\\big[a^2(X-E[X])^2\\big] \\\\ =a^2\\,E\\big[(X-E[X])^2\\big]=a^2\\operatorname{Var}(X)\\end{gathered}"
     }
    ],
-   "answer": "$E[3X-1]=-1$, $\\operatorname{Var}(3X-1)=\\tfrac{27}{5}$, $E[|X|^2]=\\tfrac35$.",
+   "answer": "Shown: $\\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)$, so $\\sigma_{aX+b}=|a|\\sigma_X$.",
+   "citations": [
+    {
+     "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
+     "version": 1,
+     "chunk_id": "72ec1f08-5a0f-478f-8963-c20f6396f281"
+    },
+    {
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+     "version": 1,
+     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
+    }
+   ],
+   "id": "75c39e1f-f2b6-524d-9dd1-1119b6dd5918"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 4 · Case 1 · Mars canisters · Practice 03 Q6",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "A rover brings back 560 g of material in four canisters A, B, C, D holding $140$, $112$, $125$ and $183$ g. First, pick a **canister** at random (each $\\tfrac14$); $x$ = grams in it. Then, pick **one gram** at random from all 560 g; $y$ = grams in the canister it came from. (a) Which should be larger, $E[x]$ or $E[y]$? Why? (b) Compute both.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** two PMFs → Case 1. The difference is the chances.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) A random gram lands in a big canister more often: each canister gets chance (its mass)/560. So expect $E[y]>E[x]$.",
+     "latex": "P(y=m)=\\frac{m}{560}"
+    },
+    {
+     "explanation": "(b) **Mean** of $x$: equal chances.",
+     "latex": "E[x]=\\frac14(140+112+125+183)=140\\text{ g}"
+    },
+    {
+     "explanation": "**Mean** of $y$: each mass $m$ times its chance $\\frac{m}{560}$.",
+     "latex": "E[y]=\\frac{140^2+112^2+125^2+183^2}{560}=\\frac{81258}{560}\\approx145.10\\text{ g}"
+    }
+   ],
+   "answer": "$E[x]=140$ g, $E[y]\\approx 145.10$ g. Picking by the gram favours the big canisters.",
+   "citations": [
+    {
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+     "version": 1,
+     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
+    }
+   ],
+   "id": "71b1dc0e-73d1-5837-8eb5-f2dc0b1653be"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 5 · Case 2 + 5 · $E[g(X)]$ from a PDF · Tutorial 5 Q5",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_X(x)=Cx^2$ for $|x|\\le1$, and $0$ otherwise. (a) Find $C$. (b) Find $E[X]$ and $\\operatorname{Var}(X)$. (c) Let $Y=|X|$. Find $E[Y]$, $E[Y^2]$ and $\\operatorname{Var}(3X-1)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Find $c$:** total area $=1$.",
+     "latex": "\\int_{-1}^{1}Cx^2\\,dx=\\frac{2C}{3}=1\\quad\\Longrightarrow\\quad C=\\frac32"
+    },
+    {
+     "explanation": "(b) **Type:** a PDF → Case 2. **Mean:** symmetric around $0$ (shortcut).",
+     "latex": "E[X]=0"
+    },
+    {
+     "explanation": "**Square.**",
+     "latex": "E[X^2]=\\int_{-1}^{1}\\frac32x^4\\,dx=\\frac32\\cdot\\frac25=\\frac35"
+    },
+    {
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(X)=\\frac35-0^2=\\frac35"
+    },
+    {
+     "explanation": "(c) $E[g(X)]$ with $g(x)=|x|$. Both halves match, so double the right half.",
+     "latex": "E[Y]=2\\int_0^1 x\\cdot\\frac32x^2\\,dx=3\\cdot\\frac14=\\frac34"
+    },
+    {
+     "explanation": "$|X|^2=X^2$, so no new work.",
+     "latex": "E[Y^2]=E[X^2]=\\frac35"
+    },
+    {
+     "explanation": "**Rules** (Case 5): the $-1$ drops out, the $3$ gets squared.",
+     "latex": "\\operatorname{Var}(3X-1)=9\\cdot\\frac35=\\frac{27}{5}"
+    }
+   ],
+   "answer": "(a) $C=\\tfrac32$ (b) $E[X]=0$, $\\operatorname{Var}(X)=\\tfrac35$ (c) $E[Y]=\\tfrac34$, $E[Y^2]=\\tfrac35$, $\\operatorname{Var}(3X-1)=\\tfrac{27}5$",
    "citations": [
     {
      "source_id": "a2bcf96c-29bc-4570-bbde-f69160346624",
@@ -825,159 +866,104 @@
      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
     }
    ],
-   "id": "5f67f625-9a3b-5d51-b289-3d27e7c35843"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Practice Questions",
-   "citations": [],
-   "id": "afdbf9dd-d14b-5056-b83c-21fd44d0c2a7"
-  },
-  {
-   "type": "paragraph",
-   "text": "Test-style questions for Question 3, roughly easy → hard. Solve on paper first, then open the solution.",
-   "citations": [],
-   "id": "8adb0f73-5801-54d7-ba6e-0bc0d5d8202e"
+   "id": "fc61f4a0-4f92-5338-9fa0-2ac86813ba52"
   },
   {
    "type": "practice_problem",
-   "title": "Question 1 · A PMF table with an unknown",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "$X$ has the PMF below.\n\n| $x$ | $-1$ | $0$ | $1$ | $2$ |\n|---|---|---|---|---|\n| $p_X(x)$ | $0.1$ | $c$ | $0.3$ | $0.2$ |\n\nFind (a) $c$, (b) $E[X]$ and $\\operatorname{Var}(X)$, (c) $E[5-2X]$ and $\\operatorname{Var}(5-2X)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) **Total = 1.**",
-     "latex": "0.1+c+0.3+0.2=1\\;\\Rightarrow\\;c=0.4"
-    },
-    {
-     "explanation": "(b) **Mean.**",
-     "latex": "E[X]=-0.1+0+0.3+0.4=0.6"
-    },
-    {
-     "explanation": "**Second moment.**",
-     "latex": "E[X^2]=0.1+0+0.3+0.8=1.2"
-    },
-    {
-     "explanation": "**Subtract.**",
-     "latex": "\\operatorname{Var}(X)=1.2-0.36=0.84"
-    },
-    {
-     "explanation": "(c) **Linearity**, then **scale squares** (the minus sign disappears).",
-     "latex": "E[5-2X]=5-1.2=3.8,\\quad \\operatorname{Var}(5-2X)=4(0.84)=3.36"
-    }
-   ],
-   "answer": "$c=0.4$; $E[X]=0.6$, $\\operatorname{Var}(X)=0.84$; $E[5-2X]=3.8$, $\\operatorname{Var}(5-2X)=3.36$.",
-   "citations": [],
-   "id": "cf74a577-553d-5066-8376-bd302bac0b4a"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 2 · Mean and variance of a uniform",
-   "difficulty": "introductory",
-   "origin": "original",
-   "prompt": "$X$ is uniform on $[a,b]$: $f_X(x)=\\dfrac{1}{b-a}$ on $[a,b]$. Show that $E[X]=\\dfrac{a+b}{2}$ and $\\operatorname{Var}(X)=\\dfrac{(b-a)^2}{12}$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Mean.** Use $b^2-a^2=(b-a)(b+a)$.",
-     "latex": "E[X]=\\frac{1}{b-a}\\int_a^b x\\,dx=\\frac{b^2-a^2}{2(b-a)}=\\frac{a+b}{2}"
-    },
-    {
-     "explanation": "**Second moment.** Use $b^3-a^3=(b-a)(b^2+ab+a^2)$.",
-     "latex": "E[X^2]=\\frac{1}{b-a}\\int_a^b x^2\\,dx=\\frac{b^3-a^3}{3(b-a)}=\\frac{a^2+ab+b^2}{3}"
-    },
-    {
-     "explanation": "**Subtract** over a common denominator 12.",
-     "latex": "\\begin{gathered}\\operatorname{Var}(X)=\\frac{4(a^2+ab+b^2)-3(a+b)^2}{12}\\\\ =\\frac{a^2-2ab+b^2}{12}=\\frac{(b-a)^2}{12}\\end{gathered}"
-    }
-   ],
-   "answer": "$E[X]=\\tfrac{a+b}{2}$ (the midpoint), $\\operatorname{Var}(X)=\\tfrac{(b-a)^2}{12}$.",
-   "citations": [],
-   "id": "38179ad8-d414-5d9b-bc47-e9474c8cb05e"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 3 · Variance of an exponential",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "$X$ is exponential with parameter $\\lambda$: $f_X(x)=\\lambda e^{-\\lambda x}$ for $x\\ge0$. Using $E[X]=\\tfrac1\\lambda$, find $\\operatorname{Var}(X)$ and $\\sigma_X$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Second moment** with the shortcut $\\int_0^\\infty x^n e^{-\\lambda x}dx=\\frac{n!}{\\lambda^{n+1}}$ ($n=2$).",
-     "latex": "E[X^2]=\\lambda\\int_0^{\\infty}x^2e^{-\\lambda x}\\,dx=\\lambda\\cdot\\frac{2}{\\lambda^3}=\\frac{2}{\\lambda^2}"
-    },
-    {
-     "explanation": "**Subtract.**",
-     "latex": "\\operatorname{Var}(X)=\\frac{2}{\\lambda^2}-\\frac{1}{\\lambda^2}=\\frac{1}{\\lambda^2}"
-    },
-    {
-     "explanation": "**Root:** for an exponential, $\\sigma$ equals the mean.",
-     "latex": "\\sigma_X=\\frac1\\lambda"
-    }
-   ],
-   "answer": "$\\operatorname{Var}(X)=\\tfrac{1}{\\lambda^2}$, $\\sigma_X=\\tfrac1\\lambda=E[X]$.",
-   "citations": [],
-   "id": "b6785d8d-0af9-5555-b786-5141b9b4c834"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 4 · Average power from a random voltage",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "A voltage $V$ (in volts) has PDF $f_V(v)=\\tfrac{v}{2}$ for $0\\le v\\le2$, and $0$ otherwise. It is applied across an $8\\ \\Omega$ resistor, so the power is $P=V^2/8$. Find $E[V]$, $\\operatorname{Var}(V)$ and the average power $E[P]$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Mean.**",
-     "latex": "E[V]=\\int_0^2 v\\cdot\\frac v2\\,dv=\\frac12\\left[\\frac{v^3}{3}\\right]_0^2=\\frac43\\text{ V}"
-    },
-    {
-     "explanation": "**Second moment.**",
-     "latex": "E[V^2]=\\int_0^2 v^2\\cdot\\frac v2\\,dv=\\frac12\\left[\\frac{v^4}{4}\\right]_0^2=2\\text{ V}^2"
-    },
-    {
-     "explanation": "**Subtract.**",
-     "latex": "\\operatorname{Var}(V)=2-\\frac{16}{9}=\\frac29\\text{ V}^2"
-    },
-    {
-     "explanation": "**Power** is a function of $V$: use $E[g(V)]$ and linearity.",
-     "latex": "E[P]=\\frac18E[V^2]=\\frac28=0.25\\text{ W}"
-    }
-   ],
-   "answer": "$E[V]=\\tfrac43$ V, $\\operatorname{Var}(V)=\\tfrac29$ V², $E[P]=0.25$ W. (Not $(E[V])^2/8\\approx0.22$ W.)",
-   "citations": [],
-   "id": "5131feef-a52e-5db7-85e3-d4852237e620"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 5 · Average run of good pixels · Tutorial 6 Q7",
+   "title": "Question 6 · Case 3 · Variance from a CDF · Practice 03 Q9",
    "difficulty": "intermediate",
    "origin": "source",
-   "prompt": "Pixels arrive one after another; each is corrupted independently with probability $p=0.03$. $N$ = number of error-free pixels between two erroneous ones, so $P(N=k)=(1-p)^k p$, $k=0,1,2,\\dots$ Find $E[N]$.",
+   "prompt": "Find the variance and standard deviation of $X$, and say if $X$ is discrete or continuous:\n\n$$\nF(x)=\\begin{cases}0,&x<-3\\\\ 3/8,&-3\\le x<0\\\\ 3/4,&0\\le x<6\\\\ 1,&x\\ge6\\end{cases}\n$$",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Set up** the sum, with $q=1-p$.",
-     "latex": "E[N]=\\sum_{k=0}^{\\infty}k\\,q^k p=p\\sum_{k=1}^{\\infty}k\\,q^k"
+     "explanation": "**Type:** a CDF → Case 3. It’s a staircase, so discrete: the **jump sizes** are the PMF.",
+     "latex": "p(-3)=\\frac38,\\quad p(0)=\\frac38,\\quad p(6)=\\frac14"
     },
     {
-     "explanation": "**Series fact:** differentiate $\\sum q^k=\\frac{1}{1-q}$ and multiply by $q$.",
-     "latex": "\\sum_{k=1}^{\\infty}k\\,q^k=\\frac{q}{(1-q)^2}=\\frac{q}{p^2}"
+     "explanation": "**Mean.**",
+     "latex": "E[X]=-3\\cdot\\frac38+0+6\\cdot\\frac14=-\\frac98+\\frac{12}8=\\frac38"
     },
     {
-     "explanation": "**Combine.**",
-     "latex": "E[N]=p\\cdot\\frac{q}{p^2}=\\frac{1-p}{p}"
+     "explanation": "**Square.**",
+     "latex": "E[X^2]=9\\cdot\\frac38+0+36\\cdot\\frac14=\\frac{27}8+9=\\frac{99}8"
     },
     {
-     "explanation": "**Plug in** $p=0.03$.",
-     "latex": "E[N]=\\frac{0.97}{0.03}\\approx32.33"
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(X)=\\frac{99}8-\\frac9{64}=\\frac{783}{64}\\approx12.234"
+    },
+    {
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X\\approx3.498"
     }
    ],
-   "answer": "$E[N]=\\dfrac{1-p}{p}\\approx 32.33$ good pixels between errors.",
+   "answer": "Discrete; $\\operatorname{Var}(X)=\\tfrac{783}{64}\\approx 12.234$, $\\sigma_X\\approx 3.498$",
+   "citations": [
+    {
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+     "version": 1,
+     "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
+    }
+   ],
+   "id": "5208516d-0a66-5e5e-be3c-e28664d27106"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 7 · Case 2 · Mean by symmetry, then Var · Practice 03 Q3",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$X$ has PDF $f_X(t)=\\tfrac12\\lambda e^{-\\lambda|t-\\gamma|}$ for all $t$. (a) Find $E[X]$. (b) Find $\\operatorname{Var}(X)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** a PDF → Case 2. (a) **Mean:** symmetric around $t=\\gamma$ (same value at $\\gamma\\pm u$).",
+     "latex": "E[X]=\\gamma"
+    },
+    {
+     "explanation": "(b) Use the definition $E[(X-\\gamma)^2]$. Let $u=t-\\gamma$; both halves match, so double the right half.",
+     "latex": "\\operatorname{Var}(X)=2\\int_0^{\\infty}u^2\\cdot\\frac12\\lambda e^{-\\lambda u}\\,du=\\lambda\\int_0^{\\infty}u^2e^{-\\lambda u}\\,du"
+    },
+    {
+     "explanation": "**Shortcut** with $n=2$.",
+     "latex": "=\\lambda\\cdot\\frac{2!}{\\lambda^3}=\\frac{2}{\\lambda^2}"
+    }
+   ],
+   "answer": "(a) $E[X]=\\gamma$ (b) $\\operatorname{Var}(X)=\\dfrac2{\\lambda^2}$",
+   "citations": [
+    {
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+     "version": 1,
+     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
+    }
+   ],
+   "id": "5696373d-43a1-5e32-9416-663d1bfccf4c"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 8 · Case 4 · Geometric · Tutorial 6 Q7",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "Spirit sends an image pixel by pixel. Each pixel is wrong with probability $p=0.03$, independently. (a) Find the PMF of $N$, the number of good pixels before the next bad one. (b) Find $E[N]$. (c) A new rover needs a 99% chance that **at least 1000** pixels arrive correctly before a bad one. How small must $p$ be?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Spot:** $k$ good pixels, then a bad one → Geometric, counting failures ($k=0,1,\\dots$).",
+     "latex": "P(N=k)=(1-p)^k\\,p=(0.97)^k(0.03),\\quad k=0,1,2,\\dots"
+    },
+    {
+     "explanation": "(b) **Read it off** the Geometric card (failures version).",
+     "latex": "E[N]=\\frac{1-p}{p}=\\frac{0.97}{0.03}\\approx32.33"
+    },
+    {
+     "explanation": "(c) “At least 1000 good first” means the first 1000 pixels are all good.",
+     "latex": "P(N\\ge1000)=(1-p)^{1000}\\ge0.99"
+    },
+    {
+     "explanation": "Solve for $p$.",
+     "latex": "p\\le1-0.99^{1/1000}\\approx1.01\\times10^{-5}"
+    }
+   ],
+   "answer": "(a) $(0.97)^k(0.03)$ (b) $E[N]\\approx 32.33$ (c) $p\\le 1.01\\times10^{-5}$",
    "citations": [
     {
      "source_id": "8b50801c-193d-4e1e-92f4-d54dc3a7332b",
@@ -985,123 +971,38 @@
      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
     }
    ],
-   "id": "162315e5-9081-5386-a539-a40f629a468c"
+   "id": "95142336-6b55-5d62-8973-6e49484dd66a"
   },
   {
    "type": "practice_problem",
-   "title": "Question 6 · A sensor that saturates",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "A sensor reading $X$ saturates: with probability $0.3$ it reads exactly $X=5$; otherwise (probability $0.7$) it is uniform on $(0,5)$, so the continuous part has density $0.7\\cdot\\tfrac15=0.14$ on $(0,5)$. Find $E[X]$ and $\\operatorname{Var}(X)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Mean:** point mass + integral.",
-     "latex": "\\begin{gathered}E[X]=5(0.3)+\\int_0^5x(0.14)\\,dx\\\\ =1.5+0.14\\cdot\\frac{25}{2}=1.5+1.75=3.25\\end{gathered}"
-    },
-    {
-     "explanation": "**Second moment:** same split, with $x^2$.",
-     "latex": "E[X^2]=25(0.3)+\\int_0^5x^2(0.14)\\,dx=7.5+0.14\\cdot\\frac{125}{3}=\\frac{40}{3}"
-    },
-    {
-     "explanation": "**Subtract.**",
-     "latex": "\\operatorname{Var}(X)=\\frac{40}{3}-3.25^2=\\frac{133}{48}\\approx2.771"
-    }
-   ],
-   "answer": "$E[X]=3.25$, $\\operatorname{Var}(X)=\\tfrac{133}{48}\\approx2.771$.",
-   "citations": [],
-   "id": "c02b5ac8-5cf5-5978-94b6-13e834e275c6"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 7 · Mars canisters · Practice 03 Q6",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "A rover returns 560 g of material in four canisters A, B, C, D holding $140$, $112$, $125$ and $183$ g. First a **canister** is chosen at random (each $\\tfrac14$); $x$ = grams in it. Then a **1-gram sample** is chosen at random from all 560 g; $y$ = grams in the canister it came from. (a) Which of $E[x]$, $E[y]$ should be larger, and why? (b) Compute both.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) For $y$, a canister is picked with probability **proportional to its mass**, so heavy canisters count more. Expect $E[y]>E[x]$.",
-     "latex": "P(y=m)=\\frac{m}{560}"
-    },
-    {
-     "explanation": "(b) **$E[x]$:** equal weights.",
-     "latex": "E[x]=\\frac14(140+112+125+183)=140\\text{ g}"
-    },
-    {
-     "explanation": "**$E[y]$:** weight each mass $m$ by $\\frac{m}{560}$.",
-     "latex": "E[y]=\\frac{140^2+112^2+125^2+183^2}{560}=\\frac{81258}{560}"
-    },
-    {
-     "explanation": "Evaluate.",
-     "latex": "E[y]\\approx145.10\\text{ g}>140\\text{ g}"
-    }
-   ],
-   "answer": "$E[x]=140$ g, $E[y]\\approx 145.10$ g. Sampling by gram favours the big canisters.",
-   "citations": [
-    {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
-    }
-   ],
-   "id": "d80f2af9-2b87-554b-ac4e-37ac1ff431fd"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 8 · Triangle PDF",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "$X$ has the triangular PDF $f_X(x)=x$ on $[0,1]$, $f_X(x)=2-x$ on $[1,2]$, and $0$ otherwise. Find $E[X]$, $\\operatorname{Var}(X)$, and $\\operatorname{Var}(2X+3)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Mean:** the triangle is symmetric about $x=1$.",
-     "latex": "E[X]=1"
-    },
-    {
-     "explanation": "**Second moment:** split the integral at $x=1$.",
-     "latex": "E[X^2]=\\int_0^1x^3\\,dx+\\int_1^2x^2(2-x)\\,dx"
-    },
-    {
-     "explanation": "Integrate each piece.",
-     "latex": "=\\frac14+\\left[\\frac{2x^3}{3}-\\frac{x^4}{4}\\right]_1^2=\\frac14+\\frac{11}{12}=\\frac76"
-    },
-    {
-     "explanation": "**Subtract.**",
-     "latex": "\\operatorname{Var}(X)=\\frac76-1=\\frac16"
-    },
-    {
-     "explanation": "**Scale squares.**",
-     "latex": "\\operatorname{Var}(2X+3)=4\\cdot\\frac16=\\frac23"
-    }
-   ],
-   "answer": "$E[X]=1$, $\\operatorname{Var}(X)=\\tfrac16$, $\\operatorname{Var}(2X+3)=\\tfrac23$.",
-   "citations": [],
-   "id": "ea6582b0-ad9e-549c-92c0-2b0e7b33695e"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 9 · The mean from the CDF · Tutorial 5 Q3 / Practice 03 Q1",
+   "title": "Question 9 · Case 3 · The mean from the CDF · Practice 03 Q1 / Tutorial 5 Q3",
    "difficulty": "advanced",
    "origin": "source",
-   "prompt": "For a **nonnegative** continuous $X$ with CDF $F_X$, show that $E[X]=\\displaystyle\\int_0^{\\infty}\\big(1-F_X(t)\\big)\\,dt$ (assume $t\\,(1-F_X(t))\\to0$ as $t\\to\\infty$). Then use it to find the mean of an exponential.",
+   "prompt": "(a) $X\\ge0$ is continuous with CDF $F_X$. Show that $E[X]=\\displaystyle\\int_0^{\\infty}\\big(1-F_X(t)\\big)\\,dt$ (assume $t\\,(1-F_X(t))\\to0$ as $t\\to\\infty$). Use it to find the mean of an exponential. (b) Use the whole-number version $E[N]=\\sum_{k\\ge0}P(N>k)$ to find the mean of a Geometric$(p)$ on $k=1,2,\\dots$",
    "solution": "",
    "steps": [
     {
-     "explanation": "**By parts** with $u=1-F_X(t)$ and $dv=dt$: then $du=-f_X(t)\\,dt$ and $v=t$.",
+     "explanation": "(a) **By parts:** $u=1-F_X(t)$, $dv=dt$, so $du=-f_X(t)\\,dt$ and $v=t$.",
      "latex": "\\int_0^{\\infty}(1-F_X(t))\\,dt=\\Big[t\\,(1-F_X(t))\\Big]_0^{\\infty}+\\int_0^{\\infty}t\\,f_X(t)\\,dt"
     },
     {
-     "explanation": "The boundary term is $0$ at both ends (given at $\\infty$; $t=0$ at the bottom).",
+     "explanation": "The bracket is $0$ at both ends.",
      "latex": "=0+E[X]"
     },
     {
      "explanation": "**Exponential:** $1-F_X(t)=e^{-\\lambda t}$.",
      "latex": "E[X]=\\int_0^{\\infty}e^{-\\lambda t}\\,dt=\\frac1\\lambda"
+    },
+    {
+     "explanation": "If $X$ can be negative (Tutorial 5 Q3), the same by-parts on $(-\\infty,0]$ subtracts one more piece.",
+     "latex": "E[X]=\\int_0^{\\infty}(1-F_X)\\,dt-\\int_{-\\infty}^{0}F_X\\,dt"
+    },
+    {
+     "explanation": "(b) $N>k$ means the first $k$ tries failed. Geometric series.",
+     "latex": "E[N]=\\sum_{k=0}^{\\infty}(1-p)^k=\\frac{1}{1-(1-p)}=\\frac1p"
     }
    ],
-   "answer": "Shown; for the exponential $E[X]=\\tfrac1\\lambda$ with no by-parts on $x e^{-\\lambda x}$.",
+   "answer": "(a) Shown; exponential mean $\\tfrac1\\lambda$ (b) $E[N]=\\tfrac1p$",
    "citations": [
     {
      "source_id": "a2bcf96c-29bc-4570-bbde-f69160346624",
@@ -1114,39 +1015,35 @@
      "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
     }
    ],
-   "id": "45657fd3-5e33-59a1-86aa-03824b021c0b"
+   "id": "ba9a9ce1-4dce-53d2-9dcb-0a844d5541d6"
   },
   {
    "type": "practice_problem",
-   "title": "Question 10 · Find the constants, then the variance · Tutorial 6 Q6",
+   "title": "Question 10 · Case 2 + 5 · Find the constants, then the variance · Tutorial 6 Q6",
    "difficulty": "advanced",
    "origin": "source",
    "prompt": "$X$ has PDF\n\n$$\nf_X(x)=\\frac{C}{1+(x+K)^2},\\qquad -K-1\\le x\\le -K+1,\n$$\n\nand $0$ otherwise, where $C>0$ and $K$ are constants. (a) Find $C$ and $K$ so that $E[X]=5$. (b) Find $\\operatorname{Var}(X)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Shift:** let $u=x+K$, so $u\\in[-1,1]$ and $X=U-K$ with $f_U(u)=\\frac{C}{1+u^2}$.",
-     "latex": "\\int_{-1}^{1}\\frac{C}{1+u^2}\\,du=C\\big[\\arctan u\\big]_{-1}^{1}=C\\cdot\\frac{\\pi}{2}"
+     "explanation": "**Shift:** let $u=x+K$, so $u$ runs from $-1$ to $1$.",
+     "latex": "f_U(u)=\\frac{C}{1+u^2},\\qquad X=U-K"
     },
     {
-     "explanation": "(a) **Total area = 1.**",
-     "latex": "C=\\frac{2}{\\pi}"
+     "explanation": "(a) **Find $c$:** total area $=1$.",
+     "latex": "C\\big[\\arctan u\\big]_{-1}^{1}=C\\cdot\\frac{\\pi}{2}=1\\quad\\Longrightarrow\\quad C=\\frac{2}{\\pi}"
     },
     {
-     "explanation": "$f_U$ is **even**, so $E[U]=0$. Then use linearity.",
-     "latex": "E[X]=E[U]-K=-K=5\\;\\Rightarrow\\;K=-5"
+     "explanation": "**Mean:** $f_U$ is symmetric around $0$, so $E[U]=0$. Then the rule $E[U-K]=E[U]-K$.",
+     "latex": "E[X]=-K=5\\quad\\Longrightarrow\\quad K=-5"
     },
     {
-     "explanation": "(b) A shift does not change Var, and $E[U]=0$.",
+     "explanation": "(b) A shift doesn’t change Var (Case 5), and $E[U]=0$.",
      "latex": "\\operatorname{Var}(X)=\\operatorname{Var}(U)=E[U^2]"
     },
     {
-     "explanation": "Write $\\frac{u^2}{1+u^2}=1-\\frac{1}{1+u^2}$.",
-     "latex": "E[U^2]=\\frac2\\pi\\int_{-1}^{1}\\Big(1-\\frac{1}{1+u^2}\\Big)du=\\frac2\\pi\\Big(2-\\frac\\pi2\\Big)"
-    },
-    {
-     "explanation": "Simplify.",
-     "latex": "\\operatorname{Var}(X)=\\frac4\\pi-1\\approx0.2732"
+     "explanation": "**Square:** write $\\frac{u^2}{1+u^2}=1-\\frac{1}{1+u^2}$.",
+     "latex": "E[U^2]=\\frac2\\pi\\int_{-1}^{1}\\Big(1-\\frac{1}{1+u^2}\\Big)du=\\frac2\\pi\\Big(2-\\frac\\pi2\\Big)=\\frac4\\pi-1\\approx0.2732"
     }
    ],
    "answer": "(a) $C=\\tfrac2\\pi$, $K=-5$ (so $X\\in[4,6]$) (b) $\\operatorname{Var}(X)=\\tfrac4\\pi-1\\approx0.2732$",
@@ -1157,7 +1054,38 @@
      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
     }
    ],
-   "id": "7a3d2fa9-b1ee-5b54-a70f-4f1d52b98df9"
+   "id": "88284c80-b91f-5bb1-83d7-7a5f4b169b6d"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 11 · Case 5 · Chebyshev · Practice 03 Q11",
+   "difficulty": "advanced",
+   "origin": "source",
+   "prompt": "Chebyshev says $P(|Y-\\mu_Y|\\ge\\varepsilon)\\le\\dfrac{\\operatorname{Var}(Y)}{\\varepsilon^2}$. $E[X]=5$, $\\operatorname{Var}(X)=5$ and $Y=aX+b$. Find $a$ and $b$ so that $P(|Y-10|\\ge0.1)\\le0.01$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Type:** only $E$ and Var → Case 5 rules. Make the mean of $Y$ equal $10$.",
+     "latex": "E[Y]=5a+b=10"
+    },
+    {
+     "explanation": "**Plug in** $\\operatorname{Var}(Y)=a^2\\cdot5$, then make the Chebyshev bound at most $0.01$.",
+     "latex": "\\frac{5a^2}{0.1^2}\\le0.01\\quad\\Longrightarrow\\quad a^2\\le2\\times10^{-5}"
+    },
+    {
+     "explanation": "Any such $a$ works, with $b$ from the first line.",
+     "latex": "|a|\\le0.00447,\\qquad b=10-5a"
+    }
+   ],
+   "answer": "Any $|a|\\le 0.00447$ with $b=10-5a$ (e.g. $a=0.004$, $b=9.98$).",
+   "citations": [
+    {
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+     "version": 1,
+     "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
+    }
+   ],
+   "id": "da50c2b1-1351-5f70-829b-b47cda4ec671"
   }
  ]
 }

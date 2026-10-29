@@ -7,13 +7,13 @@
 **What’s on it** (announced in class): everything up to and including Monday Oct 26’s lecture (the comments on undetermined coefficients), plus this week’s tutorials (Mon Oct 26 and Wed Oct 28). That is every section of this note.
 
 - **Not on it: Laplace transforms.** Skip them for now.
-- **This week’s tutorial problem** is Pre-tutorial 5: $y^{\prime\prime}+y=6\cos^2t$ with $y(0)=0$, $y(\pi/2)=0$. It’s the worked example in [B6](#b6). Practise it until you can do it without looking.
+- **This week’s tutorial problem** is Pre-tutorial 5: $y^{\prime\prime}+y=6\cos^2t$ with $y(0)=0$, $y(\pi/2)=0$. It’s the “know this cold” card in [B6](#b6). Practise it until you can do it without looking.
 
-Every solution in this note uses the same three moves. Use them on the exam too. Naming the type first is what tells you which method to use.
+Every solution in this note has the same shape. Use it on the exam too. Naming the type first is what tells you which steps to run.
 
 1. **Type:** say what kind of problem it is, and the clue that told you. Example: “$y^{\prime}=t^2y$ is separable: the right side is a $t$-part times a $y$-part.”
-2. **Method:** do the numbered steps from that section.
-3. **Conditions:** plug in the given values to find the constants. Example: $y=Ce^{2t}$ with $y(0)=5$ gives $C=5$. (In a circuit, the values come from the circuit just before the switch moves.)
+2. **Steps:** run that section’s numbered steps, using its words. Every method starts with **Write** (put it in its form).
+3. **Plug in:** use the given values to find the constants. Example: $y=Ce^{2t}$ with $y(0)=5$ gives $C=5$. (In a circuit, the values come from the circuit just before the switch moves.)
 
 **Where do I go?** Find what your question gives you in the left column, then click the link. The browser’s Back button brings you back here.
 
@@ -22,10 +22,10 @@ Every solution in this note uses the same three moves. Use them on the exam too.
 | a complex number to convert, multiply, divide, raise to a power or take roots of | [Topic A](#topic-a) | 1 |
 | an ODE to classify, or a function to check as a solution | [Topic B](#topic-b) | 2 |
 | a first-order ODE where you can split the $y$’s from the $t$’s | [B1 · Separable](#b1) | 3 |
-| $y^{\prime}+a(t)\,y=f(t)$ | [B2 · Integrating factor](#b2) | 3 |
+| $y^{\prime}+p(t)\,y=f(t)$ | [B2 · Integrating factor](#b2) | 3 |
 | $M\,dt+N\,dy=0$ | [B3 · Exact](#b3), [B4 · Make it exact](#b4) | 4 |
 | $ay^{\prime\prime}+by^{\prime}+cy=0$ (numbers $a,b,c$) | [B5 · Characteristic equation](#b5) | 4–5 |
-| $ay^{\prime\prime}+by^{\prime}+cy=g(t)$ | [B6 · Undetermined coefficients](#b6) | 6 |
+| $ay^{\prime\prime}+by^{\prime}+cy=f(t)$ | [B6 · Undetermined coefficients](#b6) | 6 |
 | a second-order ODE with $t$ in the coefficients, and one solution given | [B7 · Reduction of order](#b7) | 6 |
 | “does a unique solution exist?”, an interval, or two solutions to compare | [Topic C](#topic-c) | 3, 5, 6 |
 | a circuit with a switch: find $v(t)$ or $i(t)$ | [Topic D](#topic-d) | 1–3, 5 |
@@ -35,62 +35,161 @@ Every solution in this note uses the same three moves. Use them on the exam too.
 
 [Week 1 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#079a564f-840a-46b1-9f12-5d8d123edad9) [Week 1 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#fef2e73f-cd85-498c-9b6a-1ff1e058d7d3)
 
-Complex numbers show up in two places on the midterm:
+**Use this when** you have to convert, multiply, divide, raise to a power, or take roots of a complex number. (They also show up inside [B5](#b5) Case 3: $\sqrt{-36}=j6$.)
 
-- **On their own:** convert, divide, raise to a power, take roots.
-- **Inside [B5](#b5):** when a characteristic equation has no real roots, you need things like $\sqrt{-36}=j6$.
+**The move: every complex number has two forms.** Pick the one that makes the job easy.
 
-**One number, two ways to write it.** Think of a complex number as an arrow from the origin. You can say where its tip is (how far right, how far up), or how long it is and which way it points:
+$$
+z=a+jb\quad=\quad c\angle\theta\quad(=c\,e^{j\theta})
+$$
 
-$$z=a+jb=c\,e^{j\theta}=c\angle\theta$$
+- $a+jb$ (**rectangular**): $a$ = how far right, $b$ = how far up. Easy for **adding**.
+- $c\angle\theta$ (**polar**): $c$ = the length, $\theta$ = the angle from the positive real axis. Easy for **multiplying, dividing, powers, roots**.
+- $j=\sqrt{-1}$, so $j^2=-1$. (This course writes $j$, not $i$.)
 
-- $a=\mathrm{Re}\{z\}$ = the **real part**: how far right
-- $b=\mathrm{Im}\{z\}$ = the **imaginary part**: how far up
-- $c=|z|$ = the **magnitude**: how long the arrow is
-- $\theta=\angle z$ = the **angle**: measured from the positive real axis, counter-clockwise
-- $j=\sqrt{-1}$, so $j^2=-1$ (this course writes $j$, not $i$)
+**Short example:**
 
-Example: $3+j4$ is 3 right and 4 up. Its length is $c=\sqrt{9+16}=5$ and its angle is $\theta=\tan^{-1}(4/3)=53.13^\circ$, so $3+j4=5\angle53.13^\circ$.
+$$
+3+j4=5\angle53.13^\circ
+$$
 
-Why two forms? Adding is easy in $a+jb$. Multiplying, dividing and powers are easy in $c\angle\theta$.
+<details><summary>Why does multiplying add the angles? (optional)</summary>
 
-**Polar → rectangular.** The arrow is the long side of a right triangle, so use cos and sin:
+Write both as exponentials and use $e^Ae^B=e^{A+B}$:
 
-$$a=c\cos\theta,\quad b=c\sin\theta$$
+$$
+c_1e^{j\theta_1}\cdot c_2e^{j\theta_2}=c_1c_2\,e^{j(\theta_1+\theta_2)}
+$$
 
-Example: $2\angle30^\circ=2\cos30^\circ+j\,2\sin30^\circ=\sqrt3+j$.
+The two forms are linked by Euler’s identity, $e^{j\theta}=\cos\theta+j\sin\theta$. The lecture uses it for trig identities: expand $e^{jA}e^{jB}=e^{j(A+B)}$, and the real parts give $\cos(A+B)=\cos A\cos B-\sin A\sin B$.
 
-**Rectangular → polar.** Pythagoras gives the length, $\tan^{-1}$ gives the angle:
+</details>
 
-$$c=\sqrt{a^2+b^2},\quad \theta=\tan^{-1}\!\left(\dfrac{b}{a}\right)$$
+#### Case 1: convert between the forms
 
-Example: the $3+j4=5\angle53.13^\circ$ above. But watch the quadrant:
+**Polar → rectangular** (the arrow is the long side of a right triangle):
 
-> **Warning:** **The quadrant trap.** The calculator’s $\tan^{-1}$ only gives angles between $-90^\circ$ and $90^\circ$, i.e. arrows pointing right. If $a<0$, your arrow points left, so **add $180^\circ$** to what the calculator says. Example: $-1+j$ points up-left. The calculator gives $\tan^{-1}(1/{-1})=-45^\circ$, but the real angle is $-45^\circ+180^\circ=135^\circ$.
+$$
+a=c\cos\theta,\qquad b=c\sin\theta
+$$
 
-**Arithmetic: pick the form that makes the job easy.**
+$$
+2\angle30^\circ=2\cos30^\circ+j\,2\sin30^\circ=\sqrt3+j
+$$
 
-- **Add or subtract → rectangular.** Add the real parts, add the imaginary parts: $(1+j2)+(3-j5)=4-j3$.
-- **Multiply → polar.** Multiply the lengths, add the angles: $2\angle30^\circ\times3\angle40^\circ=6\angle70^\circ$.
-- **Divide → polar.** Divide the lengths, subtract the angles: $\dfrac{6\angle70^\circ}{3\angle40^\circ}=2\angle30^\circ$.
-- **Power → polar** (de Moivre). Length to the power, angle times the power: $(2\angle30^\circ)^3=8\angle90^\circ$.
-- **Divide → rectangular** (if both are given that way). Multiply top and bottom by the **conjugate** of the bottom, $(a+jb)^*=a-jb$: $\dfrac{1}{1+j}=\dfrac{1-j}{(1+j)(1-j)}=\dfrac{1-j}{2}$.
+**Rectangular → polar** (Pythagoras, then $\tan^{-1}$):
 
-Why the conjugate works: $(a+jb)(a-jb)=a^2+b^2$ is a plain real number, so the bottom stops being complex.
+$$
+\begin{gathered}c=\sqrt{a^2+b^2}, \\ \theta=\tan^{-1}\!\left(\dfrac{b}{a}\right)\end{gathered}
+$$
 
-Powers of $j$ repeat every four: $j^2=-1$, $j^3=j^2\cdot j=-j$, $j^4=(j^2)^2=1$. And $\dfrac1j=\dfrac{j}{j\cdot j}=-j$.
+$$
+3+j4:\quad c=\sqrt{9+16}=5,\quad \theta=\tan^{-1}\tfrac43=53.13^\circ
+$$
 
-**Roots: a $k$-th root question always has $k$ answers.** Write $z$ in polar form, then use:
+> **Warning:** **The quadrant trap.** The calculator’s $\tan^{-1}$ only gives arrows pointing right. If $a<0$ (pointing left), **add $180^\circ$**. Example: $-1+j$. The calculator says $-45^\circ$, but the real angle is $-45^\circ+180^\circ=135^\circ$.
 
-$$z^{1/k}=c^{1/k}\angle\dfrac{\theta+360^\circ\ell}{k},\quad \ell=0,1,\dots,k-1$$
+#### Case 2: multiply, divide, powers
 
-- All $k$ roots have the **same length**, $c^{1/k}$.
-- The first one is at angle $\theta/k$.
-- Each next one is $360^\circ/k$ further round the circle.
+Go **polar**. Lengths multiply/divide, angles add/subtract:
 
-Example: the square roots of $4\angle60^\circ$ have length $\sqrt4=2$ and angles $30^\circ$ and $30^\circ+180^\circ=210^\circ$. So they are $2\angle30^\circ$ and $2\angle210^\circ$.
+$$
+2\angle30^\circ\times3\angle40^\circ=6\angle70^\circ
+$$
 
-Why $k$ answers: $\theta$ and $\theta+360^\circ$ are the same arrow, but after you divide by $k$ they point different ways.
+$$
+\dfrac{6\angle70^\circ}{3\angle40^\circ}=2\angle30^\circ
+$$
+
+**Power** (de Moivre): length to the power, angle times the power:
+
+$$
+(2\angle30^\circ)^3=8\angle90^\circ
+$$
+
+**Dividing in rectangular?** Multiply top and bottom by the **conjugate** of the bottom ($a+jb\to a-jb$). The bottom becomes $a^2+b^2$, a plain number:
+
+$$
+\dfrac{1}{1+j}=\dfrac{1-j}{(1+j)(1-j)}=\dfrac{1-j}{2}
+$$
+
+Adding or subtracting? Stay rectangular: $(1+j2)+(3-j5)=4-j3$.
+
+<details><summary>Powers of $j$: $\;j^2=-1,\ \ j^3=-j,\ \ j^4=1,\ \ \dfrac1j=-j$</summary>
+
+Step 1 · They repeat every four.
+
+$$
+j^3=j^2\cdot j=-j,\qquad j^4=(j^2)^2=1
+$$
+
+Step 2 · Dividing by $j$: multiply top and bottom by $j$.
+
+$$
+\dfrac1j=\dfrac{j}{j\cdot j}=\dfrac{j}{-1}=-j
+$$
+
+</details>
+
+#### Case 3: roots (k answers)
+
+A $k$-th root has **$k$ answers**, all the same length, evenly spaced round a circle. Go polar, then:
+
+$$
+\begin{gathered}z^{1/k}=c^{1/k}\angle\dfrac{\theta+360^\circ\ell}{k}, \\ \ell=0,1,\dots,k-1\end{gathered}
+$$
+
+- **Length:** $c^{1/k}$ for all of them.
+- **First angle:** $\theta/k$.
+- **Spacing:** add $360^\circ/k$ each time.
+
+**Short example:** the square roots of $4\angle60^\circ$:
+
+$$
+\sqrt4=2,\quad \dfrac{60^\circ}{2}=30^\circ,\quad +\dfrac{360^\circ}{2}=180^\circ\quad\Longrightarrow\quad 2\angle30^\circ,\ \ 2\angle210^\circ
+$$
+
+<details><summary>Full example (lecture 1.2): the fourth roots of $\;z=81e^{j60^\circ}$</summary>
+
+Step 1 · Already polar: $c=81$, $\theta=60^\circ$, $k=4$.
+
+$$
+z=81\angle60^\circ
+$$
+
+Step 2 · **Length:** $81^{1/4}$.
+
+$$
+81^{1/4}=3
+$$
+
+Step 3 · **First angle.**
+
+$$
+\dfrac{60^\circ}{4}=15^\circ
+$$
+
+Step 4 · **Spacing:** keep adding $360^\circ/4$.
+
+$$
+\dfrac{360^\circ}{4}=90^\circ
+$$
+
+Step 5 · List all four.
+
+$$
+3\angle15^\circ,\quad 3\angle105^\circ,\quad 3\angle195^\circ,\quad 3\angle285^\circ
+$$
+
+</details>
+
+<details><summary>Why $k$ answers? (optional)</summary>
+
+$\theta$ and $\theta+360^\circ$ are the same arrow. But after you divide by $k$, they point different ways. Each extra $360^\circ$ gives a new root, until you come back round after $k$ of them.
+
+</details>
+
+**What do the roots look like?**
 
 ```graph
 title "Drag $z$, change $k$: the $k$ roots sit evenly on one circle"
@@ -116,21 +215,9 @@ readout "root magnitude" "r"
 caption "Start: $z=2.5\angle90^\circ$, $k=3$. The roots have length $2.5^{1/3}$. The first is at $90^\circ/3=30^\circ$, the others $120^\circ$ apart."
 ```
 
-> **Info:** **Bonus (skip-safe): why multiplying adds angles.** Write both numbers as exponentials and use $e^Ae^B=e^{A+B}$: $z_1z_2=c_1e^{j\theta_1}\,c_2e^{j\theta_2}=c_1c_2\,e^{j(\theta_1+\theta_2)}$. The two forms are linked by Euler’s identity, $e^{j\theta}=\cos\theta+j\sin\theta$. The lecture uses it to get trig identities for free: expand $e^{jA}e^{jB}=e^{j(A+B)}$, and the real parts give $\cos(A+B)=\cos A\cos B-\sin A\sin B$.
+> **Tip:** **Casio 991 check:** complex mode does $+,-,\times,\div$ and can show $r\angle\theta$. Use it to check, but write the steps: the marks are for the working.
 
-> **Tip:** **Casio 991 check:** complex mode does $+,-,\times,\div$ and can show the answer as $r\angle\theta$. Use it to check your answer, but write the steps: the marks are for the working.
-
-**Example: Example 1 · W1 · All four fourth roots · lecture Example 1.2**
-
-Find the fourth roots of $z=81e^{j60^\circ}$.
-
-1. **Type:** roots ($k=4$). The number is already polar: $c=81$, $\theta=60^\circ$.
-2. **Length and first angle:** $81^{1/4}=3$, and $60^\circ/4=15^\circ$.
-3. **Spacing:** $360^\circ/4=90^\circ$, so keep adding $90^\circ$.
-
-   $$z^{1/4}=3\angle(15^\circ+90^\circ\ell),\quad \ell=0,1,2,3$$
-
-**Answer:** $3\angle15^\circ,\ 3\angle105^\circ,\ 3\angle195^\circ,\ 3\angle285^\circ$.
+#### Practice: A
 
 **Problem: Problem 1 · W1 · Convert, watching the quadrant** (introductory)
 
@@ -248,82 +335,72 @@ There are seven methods, B1–B7. Which one you use depends only on **what the e
 | **Constant coefficients** | Are the things in front of $y$, $y^{\prime}$, $y^{\prime\prime}$ just numbers? | $y^{\prime\prime}+3y^{\prime}+2y=0$ | $ty^{\prime\prime}+y=0$ |
 | **Autonomous** | Is there no $t$ anywhere? | $y^{\prime}=3y$ | $y^{\prime}=t-y$ |
 
-**Step 2: pick the method.** Look at the **order** first. 1st-order and 2nd-order equations use completely different methods.
+**Step 2: pick the method.** Look at the **order** first. 1st-order and 2nd-order equations use different methods.
 
-**1st order** (the highest derivative is $y^{\prime}$). Check these in order and stop at the first one that fits:
+**1st order** (the top derivative is $y^{\prime}$). Check in this order and stop at the first one that fits:
 
-| Check | Method | Go to |
+| Check | Looks like | Go to |
 |---|---|---|
-| 1. Can you split it into a $t$-part times a $y$-part? | separate the variables | [B1](#b1) |
-| 2. Is it linear? | integrating factor | [B2](#b2) |
-| 3. Neither? Write it as $M\,dt+N\,dy=0$. Is it exact? | exact equation | [B3](#b3) |
-| 4. Not exact? | make it exact first | [B4](#b4) |
+| 1. A $t$-part **times** a $y$-part? | $y^{\prime}=g(t)\,h(y)$ | [B1](#b1) |
+| 2. Linear: $y$, $y^{\prime}$ only to the power 1? | $y^{\prime}+p(t)\,y=f(t)$ | [B2](#b2) |
+| 3. Neither: write it with $dt$, $dy$. Test passes? | $M\,dt+N\,dy=0$ | [B3](#b3) |
+| 4. Test fails? | $M_y\neq N_t$ | [B4](#b4) |
 
-**1. Separable** → [B1](#b1). The right side is a $t$-part **times** a $y$-part:
+**One example each:**
 
-$$\dfrac{dy}{dt}=g(t)\,h(y)$$
+$$
+y^{\prime}=t^2y\quad\Longrightarrow\quad\text{B1}\quad(g=t^2,\ h=y)
+$$
 
-- **Example:** $y^{\prime}=t^2y$. Here $g=t^2$ and $h=y$.
-- **Method:** get all the $y$’s on one side and all the $t$’s on the other, then integrate both sides: $\dfrac{dy}{y}=t^2\,dt$.
-- **Autonomous equations are always separable.** $y^{\prime}=3y$ has no $t$ at all, so you can always write $\dfrac{dy}{3y}=dt$.
+$$
+y^{\prime}+y=t\quad\Longrightarrow\quad\text{B2}\quad(\text{a sum: it won’t split})
+$$
 
-**2. Linear** → [B2](#b2). You can’t split it, but $y$ and $y^{\prime}$ only appear to the power 1:
+$$
+(t-y)\,dt-(t+y)\,dy=0\quad\Longrightarrow\quad\text{B3}\quad(M_y=-1=N_t)
+$$
 
-$$y^{\prime}+a(t)\,y=f(t)$$
+$$
+y\,dt+(3+3t-y)\,dy=0\quad\Longrightarrow\quad\text{B4}\quad(M_y=1\neq3=N_t)
+$$
 
-- **Example:** $y^{\prime}+y=t$. Here $a=1$ and $f=t$.
-- **Why not B1?** $y^{\prime}=t-y$ is a $t$ **plus** a $y$, and a sum can’t be split into a product.
-- **Method:** multiply everything by $\mu=e^{\int a\,dt}$ (here $e^t$). The left side becomes one derivative, $(e^ty)^{\prime}$, so you can integrate.
+> **Tip:** **No $t$ at all** (autonomous, like $y^{\prime}=3y$)? Then it always separates: B1. For 2nd order, ignore this.
 
-**3. Exact** → [B3](#b3). Not separable, not linear. Write it with $dt$ and $dy$:
+**2nd order** (the top derivative is $y^{\prime\prime}$). In Weeks 1–6 these are all linear, so ask two questions: numbers in front? right side $0$?
 
-$$M\,dt+N\,dy=0$$
-
-- **Example:** $(t-y)\,dt-(t+y)\,dy=0$. Here $M=t-y$ and $N=-(t+y)$.
-- **Test:** take $\dfrac{\partial M}{\partial y}=-1$ and $\dfrac{\partial N}{\partial t}=-1$. They match, so it’s exact.
-- **Method:** find one function $U(t,y)$ whose $t$-derivative is $M$ and whose $y$-derivative is $N$. The answer is $U=C$.
-
-**4. Not exact** → [B4](#b4). Same form, but the test fails:
-
-- **Example:** $y\,dt+(3+3t-y)\,dy=0$. Here $\dfrac{\partial M}{\partial y}=1$ but $\dfrac{\partial N}{\partial t}=3$. No match.
-- **Method:** multiply the whole equation by a factor that fixes the mismatch (here $y^2$). Now it passes the test, so finish it like B3.
-
-**2nd order** (the highest derivative is $y^{\prime\prime}$). In Weeks 1–6 these are all **linear**, so you only ask two questions:
-
-1. Are the things in front of $y^{\prime\prime}$, $y^{\prime}$, $y$ just **numbers**?
-2. Is the **right side $0$**?
-
-| In front of $y$ | Right side $0$ | Right side $g(t)$ |
+| In front of $y$ | Right side $0$ | Right side $f(t)$ |
 |---|---|---|
-| **Numbers in front** | [B5](#b5) characteristic equation | [B6](#b6) undetermined coefficients |
-| **$t$ in front** | [B7](#b7) reduction of order | not on the midterm |
+| **Numbers** | [B5](#b5) quadratic | [B6](#b6) $y_c+y_p$ |
+| **$t$ in front** | [B7](#b7) $y=y_1v$ | not on the midterm |
 
-**Numbers in front, right side 0** → [B5](#b5).
+**One example each:**
 
-$$a\,y^{\prime\prime}+b\,y^{\prime}+c\,y=0$$
+$$
+y^{\prime\prime}+3y^{\prime}+2y=0\quad\Longrightarrow\quad\text{B5}
+$$
 
-- **Example:** $y^{\prime\prime}+3y^{\prime}+2y=0$.
-- **Method:** guess $y=e^{st}$. That turns the ODE into $s^2+3s+2=0$, so $s=-1$ or $s=-2$, and $y=Ae^{-t}+Be^{-2t}$.
-- **Why it works:** every derivative of $e^{st}$ is still $e^{st}$ times a number. So $e^{st}$ cancels and you’re left with a plain quadratic in $s$.
+$$
+y^{\prime\prime}+3y^{\prime}+2y=4\quad\Longrightarrow\quad\text{B6}
+$$
 
-**Numbers in front, right side not 0** → [B6](#b6).
+$$
+y^{\prime\prime}-t\,y^{\prime}+y=0,\ \ y_1=t\quad\Longrightarrow\quad\text{B7}
+$$
 
-$$a\,y^{\prime\prime}+b\,y^{\prime}+c\,y=g(t)$$
+**The same letters everywhere.** Every B method uses these names, so there’s less to remember:
 
-- **Example:** $y^{\prime\prime}+3y^{\prime}+2y=4$.
-- **Method:** first solve the version with $0$ on the right (B5): $y_c=c_1e^{-t}+c_2e^{-2t}$. Then guess a $y_p$ that looks like $g(t)$. Here $g=4$ is a constant, so guess $y_p=A$: $2A=4$, $A=2$.
-- **Answer:** add them. $y=c_1e^{-t}+c_2e^{-2t}+2$.
-- **Why two pieces?** $y_c$ always gives $0$ on the left side. You need one extra piece, $y_p$, that gives the $4$.
+| Letter | Means | In |
+|---|---|---|
+| $f(t)$ | the right side: no $y$ in it | B2, B6, B7, C2 |
+| $p(t)$ | multiplies the term just under the top derivative | B2, B7, C2 |
+| $q(t)$ | multiplies $y$ (2nd order) | B7, C2 |
+| $g(t)$, $h(y)$ | a piece with only $t$ / only $y$ | B1, B3, B4 |
+| $\mu$ | the multiply-everything factor | B2, B4 |
+| $C$ | the one constant (1st order) | B1–B4 |
+| $c_1,\ c_2$ | the two constants (2nd order) | B5–B7, D2 |
+| $A,\ B,\ D$ | unknown numbers in a guess | B6 |
 
-**$t$ in front, right side 0** → [B7](#b7).
-
-$$y^{\prime\prime}+p(t)\,y^{\prime}+q(t)\,y=0$$
-
-- **Example:** $y^{\prime\prime}-t\,y^{\prime}+y=0$, and the question gives you one solution, $y_1=t$.
-- **Why not B5?** With $t$ in front, the $e^{st}$ guess no longer cancels. So you need that given $y_1$.
-- **Method:** guess $y=y_1\,v=t\,v$. After substituting, you get $t\,v^{\prime\prime}+(2-t^2)\,v^{\prime}=0$. Set $z=v^{\prime}$ and it’s a 1st-order equation (separable, B1).
-
-> **Tip:** **Where does “autonomous” matter?** Only for 1st order: no $t$ means separable. For 2nd order, ignore it.
+And every method starts with **Write** (put it in its form) and ends with **Plug in** (use the conditions).
 
 **Step 3: fix the constants.** Every method gives a **general solution**: a formula with unknown constants in it.
 
@@ -354,7 +431,7 @@ For each equation, give its order, and say whether it is linear, homogeneous, co
 1. (a) Highest derivative is $y^{\prime\prime}$, so 2nd order. Every $y$ is to the power 1, so linear. Right side is $0$, so homogeneous. But $t^3$ and $e^t$ are in front, not numbers. That’s the “$t$ in front” case → [B7](#b7) (once they give you one solution).
 2. (b) $y^2$ is not power 1, so nonlinear. But it splits: $\frac{1}{t^3}\cdot y^2$ is a $t$-part times a $y$-part → [B1](#b1).
 3. (c) 2nd order, linear, numbers in front. Right side is $10$, not $0$ → [B6](#b6).
-4. (d) 1st order, linear ($a=5$, $f=50$) → [B2](#b2). It has no $t$, so it’s also autonomous, and B1 works too: $\frac{di}{50-5i}=dt$.
+4. (d) 1st order, linear ($p=5$, $f=50$) → [B2](#b2). It has no $t$, so it’s also autonomous, and B1 works too: $\frac{di}{50-5i}=dt$.
 5. (e) Solve for $y^{\prime}$: $y^{\prime}=\frac{t-y}{t+y}$. $y$ is in a denominator, so nonlinear, and it won’t split. Test $M=t-y$, $N=-(t+y)$: both partials are $-1$ → exact, [B3](#b3).
 
 **Answer:** (a) B7. (b) B1. (c) B6. (d) B2 (or B1). (e) B3.
@@ -383,94 +460,236 @@ Which of $y=t^2$, $\;y=t^2+1$, $\;y=5t^2$ solve $ty^{\prime}-2y=0$? Which one al
 
 </details>
 
-### B1 · Separable equations
+### B1 · Separable: a t-part times a y-part
 
 [Week 3 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#c40cdedd-01db-45b4-9498-4c4929ba8f49)
 
-**Start here: can you pull the $y$’s and the $t$’s apart?** If every $y$ can go on one side and every $t$ on the other, you just integrate each side. That kind of equation is called **separable**.
+**Use this when** the right side splits into a $t$-part **times** a $y$-part, and you want $y(t)$:
 
-It looks like this:
+$$
+\dfrac{dy}{dt}=2t\,y
+$$
 
-$$\dfrac{dy}{dt}=g(t)\,h(y)$$
+Every separable equation has this shape:
 
-- $g(t)$ = a piece with only $t$ in it
-- $h(y)$ = a piece with only $y$ in it
+$$
+\dfrac{dy}{dt}=g(t)\cdot h(y)
+$$
 
-Reading the form:
+- $g(t)$ = a piece with **only $t$** in it
+- $h(y)$ = a piece with **only $y$** in it
 
-- $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$ → separable: $g=\dfrac{1}{t^3}$, $h=y^2$.
-- $\dfrac{dy}{dt}=3y$ → separable: $g=3$, $h=y$. No $t$ at all is fine.
-- $\dfrac{dy}{dt}=t+y$ → **not** separable. A sum won’t split into a product, so go to [B2](#b2).
-- $t^{-3}\,dt+y\,dy=0$ → already separated: only $t$ sits with $dt$, only $y$ sits with $dy$.
+**Short examples:**
 
-Why it works: once it reads $\dfrac{dy}{h(y)}=g(t)\,dt$, each side has only one letter, so you can integrate each side on its own.
+$$
+\dfrac{dy}{dt}=\dfrac{y^2}{t^3}\quad\Longrightarrow\quad g=\dfrac{1}{t^3},\quad h=y^2
+$$
 
-**The method:**
+$$
+\dfrac{dy}{dt}=3y\quad\Longrightarrow\quad g=3,\quad h=y
+$$
 
-$$\int\dfrac{dy}{h(y)}=\int g(t)\,dt+C$$
+No $t$ at all (like $3y$) is fine: $g$ is just a number.
 
-1. **Separate:** divide by $h(y)$ and multiply by $dt$, so you get $\dfrac{dy}{h(y)}=g(t)\,dt$.
-2. **Integrate** both sides. Write just one constant $C$, on the $t$ side.
-3. **Condition:** plug in the given point to find $C$.
-4. **Solve for $y$** if you can. If you can’t, an implicit answer like $y^2+3=6(t^2+1)$ is a full answer.
+**Not separable:** $\dfrac{dy}{dt}=t+y$. That’s a **sum**, and a sum won’t split into a product. Go to [B2](#b2).
 
-```steps
-title "The method on dy/dt = 2ty, y(0) = 3"
-$$ \dfrac{dy}{dt}=2t\,y $$
-Separable: $g=2t$, $h=y$.
-$$ \hl{\dfrac{dy}{y}}=\hl{2t\,dt} $$
-**Separate:** divide by $y$, multiply by $dt$.
-$$ \ln|y|=t^2+\hl{C} $$
-**Integrate** each side. One constant, on the $t$ side.
-$$ \ln3=0+C\;\Rightarrow\;\hl{C=\ln3} $$
-**Condition** $y(0)=3$.
-$$ |y|=e^{t^2+\ln3}=\hl{3e^{t^2}} $$
-**Solve for $y$:** raise $e$ to both sides, and use $e^{a+b}=e^a\,e^b$.
-$$ \hl{y}=3e^{t^2} $$
-$y(0)=3$ is positive, so take the $+$ sign.
-```
+**The move: put every $y$ with $dy$ and every $t$ with $dt$, then integrate both sides.**
 
-**Calculus you need here:**
+$$
+\dfrac{dy}{dt}=2t\,y\quad\longrightarrow\quad \dfrac{dy}{y}=2t\,dt
+$$
 
-| Integral | Result | Note |
-|---|---|---|
-| $\int t^n\,dt$ | $\dfrac{t^{n+1}}{n+1}$ | any $n\neq-1$, e.g. $\int t^{-3}dt=-\dfrac{1}{2t^2}$ |
-| $\int \dfrac1y\,dy$ | $\ln|y|$ | the $n=-1$ case |
-| $\int \dfrac{f^{\prime}(t)}{f(t)}\,dt$ | $\ln|f(t)|$ | top = derivative of bottom, e.g. $\int\dfrac{t}{t^2+1}dt=\dfrac12\ln(t^2+1)$ |
-| $\int e^{at}\,dt$ | $\dfrac{1}{a}e^{at}$ | e.g. $\int e^{2t}dt=\dfrac12e^{2t}$ |
-| undo $\ln$ | $e^{\ln A}=A$ | $e^{C}$ is just a new constant |
-| combine logs | $k\ln A+\ln B=\ln(A^kB)$ | e.g. $3\ln A+\ln B=\ln(A^3B)$ |
+In general:
 
-> **Warning:** **Dividing by $h(y)$ can lose a solution.** If $h(y_0)=0$ for some number $y_0$, the flat line $y=y_0$ is a solution too. You can’t divide by zero, so the separated answer skips it.
-> 
-> Example: in $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$, $h=y^2$ is zero at $y=0$. And $y=0$ works ($0=0$), so list it next to your answer.
+$$
+\int\dfrac{dy}{h(y)}=\int g(t)\,dt+C
+$$
 
-> **Info:** **Bonus (skip-safe): why can you move $dy$ and $dt$ around like fractions?** Divide by $h$: $\dfrac{1}{h(y)}\dfrac{dy}{dt}=g(t)$. Now integrate both sides with respect to $t$. The chain rule says $\int\dfrac{1}{h(y)}\dfrac{dy}{dt}\,dt=\int\dfrac{1}{h(y)}\,dy$. Moving “$dt$” across is a shortcut for exactly this.
+<details><summary>Why can you move $dy$ and $dt$ around like a fraction? (optional)</summary>
 
-**Example: Example 2 · W3 · Separate after factoring · lecture Example 3.3**
+Divide by $h$:
 
-Solve $\dfrac{dy}{dt}=\dfrac{3t+ty^2}{y+t^2y}$, $\;y(1)=3$.
+$$
+\dfrac{1}{h(y)}\,\dfrac{dy}{dt}=g(t)
+$$
 
-1. **Type:** pull $t$ out of the top and $y$ out of the bottom. Now it’s a $t$-piece times a $y$-piece, so it’s separable.
+Now integrate both sides with respect to $t$. The chain rule says
 
-   $$\dfrac{dy}{dt}=\dfrac{t(3+y^2)}{y(1+t^2)}$$
-2. **Separate:** everything with $y$ goes with $dy$, everything with $t$ goes with $dt$.
+$$
+\int\dfrac{1}{h(y)}\dfrac{dy}{dt}\,dt=\int\dfrac{1}{h(y)}\,dy
+$$
 
-   $$\dfrac{y}{3+y^2}\,dy=\dfrac{t}{1+t^2}\,dt$$
-3. **Integrate:** on each side the top is half the derivative of the bottom, so each side gives $\tfrac12\ln(\text{bottom})$.
+Moving “$dt$” across is a shortcut for exactly this.
 
-   $$\tfrac12\ln(3+y^2)=\tfrac12\ln(1+t^2)+c$$
-4. **Undo the $\ln$:** multiply by 2, then raise $e$ to both sides. $e^{2c}$ is just a new constant, $C_1$.
+</details>
 
-   $$3+y^2=C_1(1+t^2)$$
-5. **Condition** $y(1)=3$: $\;3+9=C_1(2)$.
+**Steps**
 
-   $$C_1=6$$
-6. **Solve for $y$.** Take the $+$ root, because $y(1)=3$ is positive.
+1. **Write** it as $\dfrac{dy}{dt}=g(t)\,h(y)$. Factor first if you have to.
+2. **Separate:** divide by $h(y)$, multiply by $dt$. You get $\dfrac{dy}{h(y)}=g(t)\,dt$.
+3. **Integrate** both sides. Write **one** constant $C$, on the $t$ side.
+4. **Solve for $y$** if you can. If you can’t, the answer with $y$ mixed in (like $t^2+y^2=5$) is a full answer.
+5. **Plug in** the condition, like $y(0)=3$, to find $C$.
 
-   $$y^2=6t^2+3$$
+**Short example:**
 
-**Answer:** $y^2+3=6(t^2+1)$, so $y=\sqrt{6t^2+3}$.
+$$
+\dfrac{dy}{y}=2t\,dt\quad\Longrightarrow\quad \ln|y|=t^2+C\quad\Longrightarrow\quad y=Ce^{t^2}
+$$
+
+<details><summary>Full example: $\;\dfrac{dy}{dt}=2t\,y$, $\;y(0)=3$</summary>
+
+Step 1 · **Write:** it’s $g(t)=2t$ times $h(y)=y$.
+
+$$
+\dfrac{dy}{dt}=2t\cdot y
+$$
+
+Step 2 · **Separate:** divide by $y$, multiply by $dt$.
+
+$$
+\dfrac{dy}{y}=2t\,dt
+$$
+
+Step 3 · **Integrate** each side. One constant, on the $t$ side.
+
+$$
+\ln|y|=t^2+C
+$$
+
+Step 4 · **Solve for $y$:** raise $e$ to both sides. $e^{t^2+C}=e^{C}e^{t^2}$, and $e^{C}$ is just a new constant: call it $C$ again.
+
+$$
+y=C\,e^{t^2}
+$$
+
+Step 5 · **Plug in** $y(0)=3$: $e^{0}=1$.
+
+$$
+3=C
+$$
+
+**Answer:**
+
+$$
+y=3e^{t^2}
+$$
+
+</details>
+
+<details><summary>Full example (lecture 3.3): $\;\dfrac{dy}{dt}=\dfrac{3t+ty^2}{y+t^2y}$, $\;y(1)=3$</summary>
+
+Step 1 · **Write:** pull $t$ out of the top and $y$ out of the bottom. Now it’s a $t$-part times a $y$-part.
+
+$$
+\dfrac{dy}{dt}=\dfrac{t}{1+t^2}\cdot\dfrac{3+y^2}{y}
+$$
+
+Step 2 · **Separate:** everything with $y$ goes with $dy$, everything with $t$ goes with $dt$.
+
+$$
+\dfrac{y}{3+y^2}\,dy=\dfrac{t}{1+t^2}\,dt
+$$
+
+Step 3 · **Integrate:** on each side the top is half the derivative of the bottom (integral card “top = derivative of bottom”).
+
+$$
+\tfrac12\ln(3+y^2)=\tfrac12\ln(1+t^2)+C
+$$
+
+Step 4 · **Solve for $y$:** multiply by $2$, raise $e$ to both sides. $e^{2C}$ is a new constant: call it $C$.
+
+$$
+3+y^2=C\,(1+t^2)
+$$
+
+Step 5 · **Plug in** $y(1)=3$.
+
+$$
+3+9=C\cdot2
+$$
+
+$$
+C=6
+$$
+
+Step 6 · Put $C=6$ back and take the $+$ root, because $y(1)=3$ is positive.
+
+$$
+y^2=6t^2+3
+$$
+
+**Answer:**
+
+$$
+y=\sqrt{6t^2+3}
+$$
+
+</details>
+
+**Integrals that show up.** Open a card for an example:
+
+<details><summary>Power rule: $\;\displaystyle\int t^n\,dt=\dfrac{t^{n+1}}{n+1}$ (any $n\neq-1$)</summary>
+
+Step 1 · Add one to the power, divide by the new power. Works for negative powers too.
+
+$$
+\int t^{-3}\,dt=\dfrac{t^{-2}}{-2}=-\dfrac{1}{2t^2}
+$$
+
+</details>
+
+<details><summary>One over: $\;\displaystyle\int\dfrac{1}{y}\,dy=\ln|y|$</summary>
+
+Step 1 · This is the $n=-1$ case the power rule skips.
+
+$$
+\int\dfrac{dy}{y}=\ln|y|
+$$
+
+Step 2 · Undo the $\ln$ with $e$: $e^{\ln A}=A$. A constant $e^{C}$ is just a new constant.
+
+$$
+\ln|y|=t^2+C\quad\Longrightarrow\quad y=Ce^{t^2}
+$$
+
+</details>
+
+<details><summary>Top = derivative of bottom: $\;\displaystyle\int\dfrac{f^{\prime}(t)}{f(t)}\,dt=\ln|f(t)|$</summary>
+
+Step 1 · The derivative of $t^2+1$ is $2t$. The top is only $t$, so you get half.
+
+$$
+\int\dfrac{t}{t^2+1}\,dt=\tfrac12\ln(t^2+1)
+$$
+
+</details>
+
+<details><summary>Exponential: $\;\displaystyle\int e^{at}\,dt=\dfrac1a\,e^{at}$</summary>
+
+Step 1 · Divide by the number in front of $t$.
+
+$$
+\int e^{2t}\,dt=\tfrac12e^{2t}
+$$
+
+</details>
+
+<details><summary>Combine logs: $\;k\ln A+\ln B=\ln(A^kB)$</summary>
+
+Step 1 · Pull the number up as a power, then multiply inside one $\ln$.
+
+$$
+3\ln A+\ln B=\ln(A^3B)
+$$
+
+</details>
+
+> **Warning:** **Dividing by $h(y)$ can lose a solution.** If $h$ is $0$ at some number, that flat line is a solution too. Example: in $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$, $h=y^2$ is $0$ at $y=0$, and $y=0$ works ($0=0$). List it next to your answer.
+
+> **Warning:** **Only one $C$.** Put it on the $t$ side right when you integrate. Two constants ($C_1$ left, $C_2$ right) are really one.
+
+#### Practice: B1
 
 **Problem: Problem 8 · W3 · Separate and use a starting value · Pre-tutorial 3(a)** (introductory)
 
@@ -478,17 +697,20 @@ Solve $\dfrac{dy}{dt}=-\dfrac{t}{y}$, $\;y=2$ when $t=1$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** $-\dfrac{t}{y}=(-t)\cdot\dfrac1y$, a $t$-piece times a $y$-piece. Separable.
+1. **Type:** $-\dfrac{t}{y}=(-t)\cdot\dfrac1y$, a $t$-part times a $y$-part → B1.
 2. **Separate:** multiply both sides by $y\,dt$.
 
    $$y\,dy=-t\,dt$$
 3. **Integrate** each side.
 
    $$\dfrac{y^2}{2}=-\dfrac{t^2}{2}+C$$
-4. **Condition:** $\frac{4}{2}=-\frac12+C$, so $C=\frac52$. Then multiply by 2.
+4. **Plug in** $t=1$, $y=2$.
+
+   $$2=-\tfrac12+C\quad\Rightarrow\quad C=\tfrac52$$
+5. Put $C$ back and multiply by $2$.
 
    $$t^2+y^2=5$$
-5. **Solve for $y$.** Keep the $+$ root, since $y(1)=2$ is positive.
+6. **Solve for $y$.** Keep the $+$ root, since $y(1)=2$ is positive.
 
    $$y=\sqrt{5-t^2}$$
 
@@ -502,18 +724,21 @@ Find the general solution of $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** $\dfrac{y^2}{t^3}=\dfrac{1}{t^3}\cdot y^2$, so separable with $g=t^{-3}$, $h=y^2$.
+1. **Type:** $\dfrac{y^2}{t^3}=\dfrac{1}{t^3}\cdot y^2$ → B1, with $g=t^{-3}$, $h=y^2$.
 2. **Separate:** divide by $y^2$, multiply by $dt$.
 
    $$y^{-2}\,dy=t^{-3}\,dt$$
 3. **Integrate** with the power rule ($n=-2$ on the left, $n=-3$ on the right).
 
    $$-y^{-1}=-\tfrac12t^{-2}+C$$
-4. **Solve for $y$:** multiply by $-1$ (and call $-C$ just $C$ again), then flip both sides.
+4. **Solve for $y$:** multiply by $-1$ (call $-C$ just $C$ again).
 
-   $$\dfrac1y=\dfrac{1}{2t^2}+C\quad\Rightarrow\quad y=\dfrac{2t^2}{1+2Ct^2}$$
+   $$\dfrac1y=\dfrac{1}{2t^2}+C=\dfrac{1+2Ct^2}{2t^2}$$
+5. Flip both sides.
 
-**Answer:** $y=\dfrac{2t^2}{1+2Ct^2}$, plus $y=0$. We divided by $y^2$, which skips $y=0$ (see the warning above).
+   $$y=\dfrac{2t^2}{1+2Ct^2}$$
+
+**Answer:** $y=\dfrac{2t^2}{1+2Ct^2}$, plus $y=0$. We divided by $y^2$, which skips $y=0$ (see the warning).
 
 </details>
 
@@ -523,19 +748,19 @@ Solve $\dfrac{dy}{dt}=2t\,e^{-y}$, $\;y(0)=0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** $2t\cdot e^{-y}$ is a $t$-piece times a $y$-piece. Separable.
+1. **Type:** $2t\cdot e^{-y}$ is a $t$-part times a $y$-part → B1.
 2. **Separate:** dividing by $e^{-y}$ is the same as multiplying by $e^{y}$.
 
    $$e^{y}\,dy=2t\,dt$$
 3. **Integrate** each side.
 
    $$e^{y}=t^2+C$$
-4. **Condition:** $e^0=0+C$, so $C=1$.
+4. **Solve for $y$:** take $\ln$ of both sides.
 
-   $$e^{y}=t^2+1$$
-5. **Solve for $y$:** take $\ln$ of both sides.
+   $$y=\ln(t^2+C)$$
+5. **Plug in** $y(0)=0$: $\ln C=0$.
 
-   $$y=\ln(t^2+1)$$
+   $$C=1$$
 
 **Answer:** $y=\ln(t^2+1)$.
 
@@ -547,21 +772,21 @@ Solve $3t(y^2+1)\,dt+y(t^2+2)\,dy=0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** each term is a $t$-piece times a $y$-piece. Separable.
-2. **Separate:** divide every term by $(y^2+1)(t^2+2)$. Now only $t$ sits with $dt$ and only $y$ with $dy$.
+1. **Type:** each term is a $t$-part times a $y$-part → B1.
+2. **Separate:** divide every term by $(y^2+1)(t^2+2)$. Now only $t$ sits with $dt$, only $y$ with $dy$.
 
    $$\dfrac{3t}{t^2+2}\,dt+\dfrac{y}{y^2+1}\,dy=0$$
 3. **Integrate:** both are “top = derivative of bottom”, times $\frac32$ and $\frac12$.
 
-   $$\tfrac32\ln(t^2+2)+\tfrac12\ln(y^2+1)=c$$
-4. Multiply by 2, then combine the logs: $3\ln A+\ln B=\ln(A^3B)$.
+   $$\tfrac32\ln(t^2+2)+\tfrac12\ln(y^2+1)=C$$
+4. Multiply by $2$, then combine the logs (card above).
 
-   $$\ln\!\big[(t^2+2)^3(y^2+1)\big]=2c$$
-5. **Undo the $\ln$:** raise $e$ to both sides. $e^{2c}$ is a new constant $C$.
+   $$\ln\!\big[(t^2+2)^3(y^2+1)\big]=2C$$
+5. Raise $e$ to both sides. $e^{2C}$ is a new constant: call it $C$.
 
    $$(t^2+2)^3(y^2+1)=C$$
 
-**Answer:** $(t^2+2)^3(y^2+1)=C$, with $C>0$. This implicit form is a full answer.
+**Answer:** $(t^2+2)^3(y^2+1)=C$, with $C>0$. You can’t easily get $y$ alone, so this is a full answer.
 
 </details>
 
@@ -571,133 +796,264 @@ Solve $y\,dt+(t^3y^2+t^3)\,dy=0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** the $dy$ term has a common factor: $t^3y^2+t^3=t^3(y^2+1)$. So each term is a $t$-piece times a $y$-piece. Separable.
+1. **Type:** the $dy$ term has a common factor, $t^3y^2+t^3=t^3(y^2+1)$. Now each term is a $t$-part times a $y$-part → B1.
 2. **Separate:** divide every term by $t^3y$.
 
    $$t^{-3}\,dt+\dfrac{y^2+1}{y}\,dy=0$$
-3. Split the fraction so each part is easy to integrate: $\dfrac{y^2+1}{y}=y+\dfrac1y$.
+3. Split the fraction so each part is easy: $\dfrac{y^2+1}{y}=y+\dfrac1y$.
 
    $$\int t^{-3}\,dt+\int\left(y+\dfrac1y\right)dy=C$$
 4. **Integrate** each part.
 
    $$-\dfrac{1}{2t^2}+\dfrac{y^2}{2}+\ln|y|=C$$
-5. Multiply by 2 to clear the fractions (call $2C$ the new constant $C_1$).
+5. Multiply by $2$ to clear the fractions ($2C$ is a new $C$).
 
-   $$y^2+2\ln|y|-t^{-2}=C_1$$
+   $$y^2+2\ln|y|-t^{-2}=C$$
 
-**Answer:** $y^2+2\ln|y|-t^{-2}=C_1$ (implicit), plus $y=0$, which we skipped by dividing by $y$.
+**Answer:** $y^2+2\ln|y|-t^{-2}=C$, plus $y=0$, which we skipped by dividing by $y$.
 
 </details>
 
-### B2 · Linear equations: the integrating factor
+### B2 · Linear first order: the integrating factor
 
 [Week 3 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#a43fc96e-8dc5-4a1e-bfdf-bf1acf01f98b)
 
-**What if you can’t separate the variables?** Take $y^{\prime}=t-y$. The right side is a sum, so it won’t split into a $t$-piece times a $y$-piece, and [B1](#b1) fails.
+**Use this when** it won’t separate, but $y$ and $y^{\prime}$ only appear to the power 1:
 
-But it is **linear**: $y$ and $y^{\prime}$ show up only to the first power (no $y^2$, no $\sin y$). Every linear equation can be solved with an **integrating factor**.
+$$
+y^{\prime}+2y=4
+$$
 
-First get it into this shape:
+Every linear first-order equation can be written like this:
 
-$$\dfrac{dy}{dt}+a(t)\,y=f(t)$$
+$$
+y^{\prime}+p(t)\,y=f(t)
+$$
 
-- $a(t)$ = whatever multiplies $y$, **sign included**
-- $f(t)$ = everything else, the part with no $y$ in it (called the forcing)
+- $p(t)$ = what multiplies $y$, **sign included**, once $y^{\prime}$ stands alone
+- $f(t)$ = the right side: everything with no $y$ in it
 
-Reading the form:
+**Short examples:**
 
-- $y^{\prime}=t-y$ → move $y$ left: $y^{\prime}+y=t$. So $a=1$, $f=t$.
-- $ty^{\prime}+2y=t^2$ → divide by $t$: $y^{\prime}+\frac2t\,y=t$. So $a=\frac2t$, $f=t$.
-- $y^{\prime}=(8t+3)y$ → move it left: $y^{\prime}-(8t+3)y=0$. So $a=-(8t+3)$, $f=0$.
+$$
+y^{\prime}=t-y\quad\Longrightarrow\quad y^{\prime}+y=t\quad\Longrightarrow\quad p=1,\quad f=t
+$$
 
-> **Warning:** **Get $y^{\prime}$ alone first.** The number in front of $y^{\prime}$ must be 1 before you read $a(t)$. Example: in $ty^{\prime}+2y=t^2$, divide by $t$ first. Then $a(t)=\frac2t$, not $2$.
+$$
+ty^{\prime}+2y=t^2\quad\Longrightarrow\quad y^{\prime}+\tfrac2t\,y=t\quad\Longrightarrow\quad p=\tfrac2t,\quad f=t
+$$
 
-**The trick.** Multiply the whole equation by a function $\mu(t)$, called the **integrating factor**:
+In the second one you **divide by $t$ first**, so $y^{\prime}$ stands alone.
 
-$$\mu(t)=e^{\int a(t)\,dt}$$
+**The move: multiply everything by $\mu$.** Then the left side becomes one derivative, and you just integrate.
 
-Example: $y^{\prime}+2y=4$ has $a=2$, so $\mu=e^{\int2\,dt}=e^{2t}$.
+$$
+\mu=e^{\int p\,dt}
+$$
 
-Why: after you multiply by this $\mu$, the left side is exactly one derivative, $(\mu y)^{\prime}$ (the product rule backwards). So the equation becomes:
+After multiplying, the equation always turns into:
 
-$$\dfrac{d}{dt}\big(\mu\,y\big)=\mu\,f$$
+$$
+(\mu\,y)^{\prime}=\mu\,f
+$$
 
-A single derivative is easy to undo. Integrate both sides:
+<details><summary>Why does multiplying by $\mu$ work? (optional)</summary>
 
-$$\mu\,y=\int\mu\,f\,dt+C$$
+The product rule says
 
-**The method:**
+$$
+(\mu y)^{\prime}=\mu\,y^{\prime}+\mu^{\prime}\,y
+$$
 
-1. **Standard form:** get $y^{\prime}$ alone, then read $a(t)$ and $f(t)$.
-2. **Integrating factor:** $\mu=e^{\int a\,dt}$. No $+C$ in this integral: any one $\mu$ works.
-3. **Rewrite:** the equation becomes $(\mu y)^{\prime}=\mu f$.
-4. **Integrate:** $\mu y=\int\mu f\,dt+C$. This is where the $+C$ goes. Don’t forget it.
-5. **Divide by $\mu$** to get $y$, then use the condition to find $C$.
+With $\mu=e^{\int p\,dt}$, the chain rule gives $\mu^{\prime}=p\,\mu$. So
 
-```steps
-title "The method on y′ + 2y = 4"
-$$ y'+2y=4 $$
-Standard form already: $a=2$, $f=4$.
-$$ \mu=e^{\int2\,dt}=\hl{e^{2t}} $$
-Integrating factor.
-$$ \hl{e^{2t}}y'+\hl{2e^{2t}}y=\hl{4e^{2t}} $$
-Multiply every term by $\mu$.
-$$ \hl{\big(e^{2t}y\big)^{\prime}}=4e^{2t} $$
-The left side is one derivative (product rule backwards).
-$$ e^{2t}y=2e^{2t}+\hl{C} $$
-Integrate both sides: $\int4e^{2t}dt=2e^{2t}$.
-$$ y=2+Ce^{-2t} $$
-Divide by $e^{2t}$.
-```
+$$
+(\mu y)^{\prime}=\mu\,y^{\prime}+p\,\mu\,y=\mu\,(y^{\prime}+p\,y)
+$$
 
-**Calculus you need here:**
+That’s $\mu$ times the left side of your equation. So multiplying by $\mu$ turns $y^{\prime}+py$ into one derivative.
 
-| Expression | Result | Note |
-|---|---|---|
-| $e^{\int k\,dt}$ | $e^{kt}$ | constant $a(t)=k$ |
-| $e^{\int\frac{k}{t}dt}$ | $e^{k\ln t}=t^k$ | for $t>0$, e.g. $a=\frac2t$ gives $\mu=t^2$; $a=-\frac1t$ gives $\mu=\frac1t$ |
-| $\int(2t+5)^5\,dt$ | $\dfrac{(2t+5)^6}{12}$ | substitution $u=2t+5$, $du=2\,dt$ |
-| $\int t\,e^{t}\,dt$ | $(t-1)\,e^{t}$ | integration by parts; check by differentiating |
-| $\int t\,e^{t^2}dt$ | $\tfrac12e^{t^2}$ | substitution $u=t^2$ |
+</details>
 
-> **Tip:** **Shortcut when $a=k$ and $f=F$ are both constants:** $\;y=\dfrac{F}{k}+Ce^{-kt}$. Example: $y^{\prime}+2y=4$ gives $y=2+Ce^{-2t}$, same as the stepper. Every RC and RL circuit equation has this shape (see [D1](#d1)).
+**Steps**
 
-> **Info:** **Bonus (skip-safe): why does the integrating factor work?** The product rule says $(\mu y)^{\prime}=\mu y^{\prime}+\mu^{\prime} y$. With $\mu=e^{\int a\,dt}$, the chain rule gives $\mu^{\prime}=a\,\mu$. So
-> 
-> $$
-> (\mu y)^{\prime}=\mu y^{\prime}+a\mu y=\mu\,(y^{\prime}+ay)
-> $$
-> 
-> That’s $\mu$ times the left side of your equation. So multiplying by $\mu$ is exactly what turns $y^{\prime}+ay$ into one derivative.
+1. **Write** it as $y^{\prime}+p(t)\,y=f(t)$. Divide first if something multiplies $y^{\prime}$. Read $p$ and $f$.
+2. **Find $\mu$** $=e^{\int p\,dt}$. No $+C$ here: any one $\mu$ works.
+3. **Multiply** everything by $\mu$. The left side becomes $(\mu y)^{\prime}$, so you get $(\mu y)^{\prime}=\mu f$.
+4. **Integrate** both sides: $\mu y=\int\mu f\,dt+C$. **This** is where the $+C$ goes.
+5. **Divide** by $\mu$ to get $y$.
+6. **Plug in** the condition to find $C$.
 
-> **Info:** **Both separable and linear?** Some equations are both. Then either method works, and separating is usually faster.
-> 
-> **When $f=0$:** $y^{\prime}=(8t+3)y$ separates as $\dfrac{dy}{y}=(8t+3)\,dt$.
-> 
-> **When $a$ and $f$ are both constants:** $y^{\prime}+2y=4$ separates as $\dfrac{dy}{4-2y}=dt$.
+**Short example:**
 
-**Example: Example 3 · W3 · A coefficient that varies with t · lecture Example 3.1**
+$$
+y^{\prime}+2y=4\quad\Longrightarrow\quad \mu=e^{2t}\quad\Longrightarrow\quad (e^{2t}y)^{\prime}=4e^{2t}
+$$
 
-Solve $\dfrac{dy}{dt}+\dfrac{10\,y}{2t+5}=10$, $\;y(0)=0$.
+<details><summary>Full example: $\;y^{\prime}+2y=4$, $\;y(0)=0$</summary>
 
-1. **Type:** linear, and $y^{\prime}$ is already alone. So $a(t)=\dfrac{10}{2t+5}$ and $f(t)=10$.
-2. **Integrating factor:** $\int\frac{10}{2t+5}dt=5\ln(2t+5)$. Then $e^{5\ln(2t+5)}=(2t+5)^5$, same rule as $e^{k\ln t}=t^k$.
+Step 1 · **Write:** $y^{\prime}$ is already alone.
 
-   $$\mu=(2t+5)^5$$
-3. **Rewrite:** the left side is now one derivative, $(\mu y)^{\prime}=\mu f$.
+$$
+p=2,\qquad f=4
+$$
 
-   $$\dfrac{d}{dt}\big[(2t+5)^5y\big]=10(2t+5)^5$$
-4. **Integrate** the right side with $u=2t+5$, $du=2\,dt$: $\;10\int u^5\frac{du}{2}=\frac56u^6$.
+Step 2 · **Find $\mu$.**
 
-   $$(2t+5)^5y=\tfrac56(2t+5)^6+C$$
-5. **Condition** $y(0)=0$: $\;0=\frac56\cdot5^6+C$.
+$$
+\mu=e^{\int2\,dt}=e^{2t}
+$$
 
-   $$C=-\dfrac{5^7}{6}$$
-6. **Divide** by $(2t+5)^5$.
+Step 3 · **Multiply** every term by $e^{2t}$. The left side is now one derivative (the product rule backwards).
 
-   $$y=\tfrac56(2t+5)-\dfrac{5^7}{6(2t+5)^5}$$
+$$
+e^{2t}y^{\prime}+2e^{2t}y=4e^{2t}
+$$
 
-**Answer:** $y=\dfrac56(2t+5)-\dfrac{5^7}{6(2t+5)^5}$.
+$$
+(e^{2t}y)^{\prime}=4e^{2t}
+$$
+
+Step 4 · **Integrate** both sides: $\int4e^{2t}\,dt=2e^{2t}$.
+
+$$
+e^{2t}y=2e^{2t}+C
+$$
+
+Step 5 · **Divide** by $e^{2t}$.
+
+$$
+y=2+Ce^{-2t}
+$$
+
+Step 6 · **Plug in** $y(0)=0$.
+
+$$
+0=2+C\quad\Rightarrow\quad C=-2
+$$
+
+**Answer:**
+
+$$
+y=2-2e^{-2t}
+$$
+
+</details>
+
+<details><summary>Full example (lecture 3.1): $\;y^{\prime}+\dfrac{10\,y}{2t+5}=10$, $\;y(0)=0$</summary>
+
+Step 1 · **Write:** $y^{\prime}$ is already alone.
+
+$$
+p=\dfrac{10}{2t+5},\qquad f=10
+$$
+
+Step 2 · **Find $\mu$:** $\int\frac{10}{2t+5}dt=5\ln(2t+5)$, and $e^{5\ln(2t+5)}=(2t+5)^5$ (card “$e$ and $\ln$ cancel”).
+
+$$
+\mu=(2t+5)^5
+$$
+
+Step 3 · **Multiply:** the left side becomes $(\mu y)^{\prime}$.
+
+$$
+\big[(2t+5)^5y\big]^{\prime}=10(2t+5)^5
+$$
+
+Step 4 · **Integrate** with $u=2t+5$, $du=2\,dt$: $\;10\int u^5\,\frac{du}{2}=\frac56u^6$.
+
+$$
+(2t+5)^5y=\tfrac56(2t+5)^6+C
+$$
+
+Step 5 · **Divide** by $(2t+5)^5$.
+
+$$
+y=\tfrac56(2t+5)+\dfrac{C}{(2t+5)^5}
+$$
+
+Step 6 · **Plug in** $y(0)=0$.
+
+$$
+0=\tfrac56\cdot5+\dfrac{C}{5^5}
+$$
+
+$$
+C=-\dfrac{5^7}{6}
+$$
+
+**Answer:**
+
+$$
+y=\tfrac56(2t+5)-\dfrac{5^7}{6(2t+5)^5}
+$$
+
+</details>
+
+**Calculus that shows up.** Open a card for an example:
+
+<details><summary>$e$ and $\ln$ cancel: $\;e^{\int\frac{k}{t}dt}=e^{k\ln t}=t^k$</summary>
+
+Step 1 · $p=\frac2t$:
+
+$$
+\mu=e^{2\ln t}=t^2
+$$
+
+Step 2 · $p=-\frac1t$:
+
+$$
+\mu=e^{-\ln t}=\dfrac1t
+$$
+
+</details>
+
+<details><summary>Constant $p$: $\;e^{\int k\,dt}=e^{kt}$</summary>
+
+Step 1 · $p=5$:
+
+$$
+\mu=e^{5t}
+$$
+
+</details>
+
+<details><summary>By parts: $\;\displaystyle\int t\,e^{t}\,dt=(t-1)\,e^{t}$</summary>
+
+Step 1 · Check it by differentiating with the product rule:
+
+$$
+\big[(t-1)e^{t}\big]^{\prime}=e^{t}+(t-1)e^{t}=t\,e^{t}
+$$
+
+</details>
+
+<details><summary>Substitution: $\;\displaystyle\int t\,e^{t^2}dt=\tfrac12e^{t^2}$</summary>
+
+Step 1 · Let $u=t^2$, so $du=2t\,dt$ and $t\,dt=\frac12du$.
+
+$$
+\int t\,e^{t^2}dt=\tfrac12\int e^{u}\,du=\tfrac12e^{t^2}
+$$
+
+</details>
+
+> **Tip:** **Shortcut when $p=k$ and $f=F$ are both plain numbers:** $\;y=\dfrac{F}{k}+Ce^{-kt}$. Example: $y^{\prime}+2y=4$ gives $y=2+Ce^{-2t}$. Every RC and RL circuit has this shape ([D1](#d1)).
+
+> **Warning:** **Get $y^{\prime}$ alone first.** In $ty^{\prime}+2y=t^2$, divide by $t$ first. Then $p=\frac2t$, not $2$.
+
+> **Warning:** **Multiply the right side by $\mu$ too.** It’s $\int\mu f\,dt$, not $\int f\,dt$.
+
+<details><summary>Both separable and linear? (optional)</summary>
+
+Some equations are both. Then either method works, and separating is usually faster.
+
+- $f=0$: $\;y^{\prime}=(8t+3)y$ separates as $\dfrac{dy}{y}=(8t+3)\,dt$.
+- $p$ and $f$ both numbers: $\;y^{\prime}+2y=4$ separates as $\dfrac{dy}{4-2y}=dt$.
+
+</details>
+
+#### Practice: B2
 
 **Problem: Problem 13 · W3 · The lecture’s RL equation · lecture §1.1** (introductory)
 
@@ -705,18 +1061,27 @@ Solve $\dfrac{di}{dt}+5i=50$, $\;i(0)=0$ (the series RL circuit of the Week 3 le
 
 <details><summary>Solution</summary>
 
-1. **Type:** linear, with constant $a=5$ and $f=50$.
-2. **Integrating factor:** $\mu=e^{5t}$. **Rewrite** the left side as one derivative.
+1. **Type:** linear → B2. Here the unknown is $i$ instead of $y$.
+2. **Write:** $i^{\prime}$ is already alone.
 
-   $$\mu=e^{5t},\qquad \big(e^{5t}i\big)^{\prime}=50e^{5t}$$
-3. **Integrate:** $\int50e^{5t}dt=10e^{5t}$.
+   $$p=5,\qquad f=50$$
+3. **Find $\mu$.**
+
+   $$\mu=e^{5t}$$
+4. **Multiply:** the left side becomes one derivative.
+
+   $$(e^{5t}i)^{\prime}=50e^{5t}$$
+5. **Integrate:** $\int50e^{5t}\,dt=10e^{5t}$.
 
    $$e^{5t}i=10e^{5t}+C$$
-4. **Condition:** $0=10+C$, so $C=-10$. Then divide by $e^{5t}$.
+6. **Divide** by $e^{5t}$.
 
-   $$i=10-10e^{-5t}$$
+   $$i=10+Ce^{-5t}$$
+7. **Plug in** $i(0)=0$.
 
-**Answer:** $i(t)=10(1-e^{-5t})\,\mathrm{A}$. It starts at 0 and climbs toward 10 A. The shortcut gives the 10 straight away: $F/k=50/5$.
+   $$0=10+C\quad\Rightarrow\quad C=-10$$
+
+**Answer:** $i(t)=10(1-e^{-5t})\,\mathrm{A}$. It climbs from 0 to 10 A. The shortcut gives the 10 straight away: $F/k=50/5$.
 
 </details>
 
@@ -726,17 +1091,23 @@ Find the general solution of $\dfrac{dy}{dt}=8ty+3y$ with an integrating factor,
 
 <details><summary>Solution</summary>
 
-1. **Type:** linear. Move the $y$ terms left: $y^{\prime}-(8t+3)y=0$. So $a=-(8t+3)$ and $f=0$.
-2. **Integrating factor:** $\int-(8t+3)\,dt=-4t^2-3t$.
+1. **Type:** linear → B2.
+2. **Write:** move the $y$ terms left.
+
+   $$\begin{gathered}y^{\prime}-(8t+3)\,y=0 \\ p=-(8t+3),\qquad f=0\end{gathered}$$
+3. **Find $\mu$:** $\int-(8t+3)\,dt=-4t^2-3t$.
 
    $$\mu=e^{-4t^2-3t}$$
-3. **Rewrite and integrate:** $f=0$, so the right side is 0 and integrates to just $C$.
+4. **Multiply:** $f=0$, so the right side is $0$.
 
-   $$\big(\mu y\big)^{\prime}=0\quad\Rightarrow\quad e^{-4t^2-3t}y=C$$
-4. **Divide** by $\mu$.
+   $$(\mu y)^{\prime}=0$$
+5. **Integrate:** the integral of $0$ is just $C$.
+
+   $$e^{-4t^2-3t}\,y=C$$
+6. **Divide** by $\mu$.
 
    $$y=Ce^{4t^2+3t}$$
-5. **Check by separating:** $\dfrac{dy}{y}=(8t+3)\,dt$ gives $\ln|y|=4t^2+3t+c$. Raise $e$ to both sides: $y=Ce^{4t^2+3t}$, the same answer.
+7. **Check by separating** (B1): $\dfrac{dy}{y}=(8t+3)\,dt$ gives $\ln|y|=4t^2+3t+C$, so $y=Ce^{4t^2+3t}$. Same answer.
 
 **Answer:** $y=Ce^{4t^2+3t}$.
 
@@ -748,19 +1119,25 @@ Solve $y^{\prime}+y=t$, $\;y(0)=0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** linear, $a=1$, $f=t$. It doesn’t separate: $y^{\prime}=t-y$ is a sum.
-2. **Integrating factor:** $\mu=e^{t}$. **Rewrite** the left side as one derivative.
+1. **Type:** linear → B2. It won’t separate: $y^{\prime}=t-y$ is a sum.
+2. **Write:** $y^{\prime}$ is already alone.
 
-   $$\mu=e^{t},\qquad\big(e^{t}y\big)^{\prime}=te^{t}$$
-3. **Integrate** with the calculus table: $\int te^tdt=(t-1)e^t$.
+   $$p=1,\qquad f=t$$
+3. **Find $\mu$.**
+
+   $$\mu=e^{t}$$
+4. **Multiply.**
+
+   $$(e^{t}y)^{\prime}=t\,e^{t}$$
+5. **Integrate** with the by-parts card: $\int te^t\,dt=(t-1)e^t$.
 
    $$e^{t}y=(t-1)e^{t}+C$$
-4. **Divide** by $e^t$.
+6. **Divide** by $e^t$.
 
    $$y=t-1+Ce^{-t}$$
-5. **Condition:** $0=-1+C$, so $C=1$.
+7. **Plug in** $y(0)=0$.
 
-   $$y=t-1+e^{-t}$$
+   $$0=-1+C\quad\Rightarrow\quad C=1$$
 
 **Answer:** $y=t-1+e^{-t}$.
 
@@ -772,18 +1149,25 @@ Solve $t\,y^{\prime}+2y=t^2$, $\;y(1)=0$, for $t>0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** linear. Divide by $t$ so $y^{\prime}$ is alone.
+1. **Type:** linear → B2.
+2. **Write:** divide by $t$ so $y^{\prime}$ stands alone.
 
-   $$y'+\dfrac{2}{t}\,y=t$$
-2. **Integrating factor:** $e^{\int\frac2t dt}=e^{2\ln t}=t^2$. **Rewrite:** $(t^2y)^{\prime}=t^2\cdot t$.
+   $$\begin{gathered}y^{\prime}+\dfrac{2}{t}\,y=t \\ p=\dfrac2t,\qquad f=t\end{gathered}$$
+3. **Find $\mu$:** $e$ and $\ln$ cancel.
 
-   $$\big(t^2y\big)^{\prime}=t^3$$
-3. **Integrate** each side.
+   $$\mu=e^{\int\frac2t dt}=e^{2\ln t}=t^2$$
+4. **Multiply:** $\mu f=t^2\cdot t$.
+
+   $$(t^2y)^{\prime}=t^3$$
+5. **Integrate.**
 
    $$t^2y=\dfrac{t^4}{4}+C$$
-4. **Condition:** $0=\frac14+C$, so $C=-\frac14$. Then divide by $t^2$.
+6. **Divide** by $t^2$.
 
-   $$y=\dfrac{t^2}{4}-\dfrac{1}{4t^2}$$
+   $$y=\dfrac{t^2}{4}+\dfrac{C}{t^2}$$
+7. **Plug in** $y(1)=0$.
+
+   $$0=\tfrac14+C\quad\Rightarrow\quad C=-\tfrac14$$
 
 **Answer:** $y=\dfrac{t^2}{4}-\dfrac{1}{4t^2}$.
 
@@ -795,19 +1179,25 @@ Solve $y^{\prime}+2t\,y=t$, $\;y(0)=1$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** linear, $a=2t$, $f=t$.
-2. **Integrating factor:** $\int2t\,dt=t^2$, so $\mu=e^{t^2}$. **Rewrite** the left side as one derivative.
+1. **Type:** linear → B2.
+2. **Write:** $y^{\prime}$ is already alone.
 
-   $$\mu=e^{t^2},\qquad\big(e^{t^2}y\big)^{\prime}=te^{t^2}$$
-3. **Integrate** with $u=t^2$: $\int te^{t^2}dt=\frac12e^{t^2}$.
+   $$p=2t,\qquad f=t$$
+3. **Find $\mu$:** $\int2t\,dt=t^2$.
+
+   $$\mu=e^{t^2}$$
+4. **Multiply.**
+
+   $$(e^{t^2}y)^{\prime}=t\,e^{t^2}$$
+5. **Integrate** with the substitution card: $\int te^{t^2}dt=\frac12e^{t^2}$.
 
    $$e^{t^2}y=\tfrac12e^{t^2}+C$$
-4. **Divide** by $e^{t^2}$.
+6. **Divide** by $e^{t^2}$.
 
    $$y=\tfrac12+Ce^{-t^2}$$
-5. **Condition:** $1=\frac12+C$, so $C=\frac12$.
+7. **Plug in** $y(0)=1$.
 
-   $$y=\tfrac12+\tfrac12e^{-t^2}$$
+   $$1=\tfrac12+C\quad\Rightarrow\quad C=\tfrac12$$
 
 **Answer:** $y=\dfrac12\big(1+e^{-t^2}\big)$. It also separates, $y^{\prime}=t(1-2y)$, so you could check it with [B1](#b1).
 
@@ -817,97 +1207,219 @@ Solve $y^{\prime}+2t\,y=t$, $\;y(0)=1$.
 
 [Week 4 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#c9f71086-78d7-4bc3-a405-e0c6375fb6ca) [Week 4 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#954310f2-d355-42ff-bd75-4e6b1d00f02d)
 
-**What if it’s neither separable nor linear?** Take $y^{\prime}=\dfrac{t-y}{t+y}$. It won’t split into ($t$-part)×($y$-part), and $y$ sits in the bottom, so [B1](#b1) and [B2](#b2) both fail.
+**Use this when** it’s neither separable nor linear, and it’s written with $dt$ and $dy$:
 
-Some of these equations are **exact**. Then the answer is one formula in $t$ and $y$ set equal to a constant, $U(t,y)=C$, and you find $U$ by integrating.
+$$
+(2ty+3t^2)\,dt+t^2\,dy=0
+$$
 
-**First, write it in $dt$, $dy$ form,** with everything on the left:
+Every exact equation is written like this, with everything on the left:
 
-$$M(t,y)\,dt+N(t,y)\,dy=0$$
+$$
+M\,dt+N\,dy=0
+$$
 
 - $M$ = everything multiplying $dt$, **sign included**
 - $N$ = everything multiplying $dy$, **sign included**
 
-Examples:
+**Short examples:**
 
-- $3t\,dt+4y\,dy=0$ → already in form. $M=3t$, $N=4y$.
-- $y^{\prime}=\dfrac{t-y}{t+y}$ → cross-multiply: $(t+y)\,dy=(t-y)\,dt$. Move it all left: $(t-y)\,dt-(t+y)\,dy=0$. So $M=t-y$, $N=-(t+y)$.
-- $2ty\,y^{\prime}=t^2-y^2$ → $2ty\,dy=(t^2-y^2)\,dt$ → $(t^2-y^2)\,dt-2ty\,dy=0$. So $M=t^2-y^2$, $N=-2ty$.
+$$
+(2ty+3t^2)\,dt+t^2\,dy=0\quad\Longrightarrow\quad M=2ty+3t^2,\quad N=t^2
+$$
 
-> **Warning:** Moving the $dy$ term to the other side of the $=$ flips its sign. In $y^{\prime}=\frac{t-y}{t+y}$, $N$ is $-(t+y)$, not $t+y$. One wrong sign and the test below fails.
+Given $y^{\prime}$ as a fraction? Cross-multiply, then move everything left:
 
-**Is it exact? Do the cross test.** Differentiate $M$ in $y$, and $N$ in $t$. If you get the same thing, it’s **exact**:
+$$
+y^{\prime}=\dfrac{t-y}{t+y}\quad\Longrightarrow\quad (t-y)\,dt-(t+y)\,dy=0
+$$
 
-$$\dfrac{\partial M}{\partial y}=\dfrac{\partial N}{\partial t}$$
+$$
+M=t-y,\qquad N=-(t+y)
+$$
 
-- $M_y$ = derivative of $M$ in $y$, treating $t$ like a number
-- $N_t$ = derivative of $N$ in $t$, treating $y$ like a number
+**The move: find one function $U(t,y)$** whose $t$-derivative is $M$ and whose $y$-derivative is $N$. The answer is:
 
-Example: $(2ty+3t^2)\,dt+t^2\,dy=0$ has $M_y=2t$ and $N_t=2t$. Same, so it’s exact.
+$$
+U(t,y)=C
+$$
 
-**If it’s exact, find $U$.** $U$ is the function whose two partial derivatives are $M$ and $N$:
+But first check it’s exact, with the **cross test**:
 
-$$\dfrac{\partial U}{\partial t}=M,\quad \dfrac{\partial U}{\partial y}=N$$
+$$
+M_y=N_t
+$$
 
-and the general solution is
+- $M_y$ = differentiate $M$ in $y$, treating $t$ like a number
+- $N_t$ = differentiate $N$ in $t$, treating $y$ like a number
+- Not equal? Not exact: go to [B4](#b4).
 
-$$U(t,y)=C$$
+<details><summary>Why the cross test, and why $U=C$? (optional)</summary>
 
-Example: for the equation above, $U=t^2y+t^3$. Check: $U_t=2ty+3t^2=M$ and $U_y=t^2=N$. So the answer is $t^2y+t^3=C$.
+If $U$ exists, then $M=U_t$ and $N=U_y$. So $M_y$ is $U$ differentiated in $t$, then $y$. And $N_t$ is $U$ differentiated in $y$, then $t$. The order doesn’t change the result, so the two must match.
 
-Why $U=C$: $M\,dt+N\,dy$ is the small change in $U$. The equation sets that change to 0, so $U$ stays at one constant value.
+$M\,dt+N\,dy$ is the small change in $U$. The equation sets that change to $0$, so $U$ stays at one constant value: $U=C$. Each solution is a contour line of the surface $z=U(t,y)$, like on a map.
 
-**Method:**
+</details>
 
-1. **Rewrite:** everything on the left, $M\,dt+N\,dy=0$. Read $M$ and $N$ with their signs.
-2. **Test:** is $M_y=N_t$? If not, it isn’t exact: go to [B4](#b4).
-3. **Integrate $M$ in $t$**, treating $y$ like a number: $U=\int M\,dt+f(y)$. The “$+C$” becomes $f(y)$, because anything with only $y$ in it vanishes when you differentiate in $t$.
-4. **Match $N$:** differentiate this $U$ in $y$ and set it equal to $N$. The $t$ terms cancel, leaving $f^{\prime}(y)$. Integrate it.
-5. **Answer:** write $U(t,y)=C$. If you’re given a starting value, plug it in to find $C$.
+**Steps**
 
-**Calculus you need here: partial derivatives.** Differentiate in one letter and treat the other like a plain number:
+1. **Write** it as $M\,dt+N\,dy=0$, everything on the left. Read $M$ and $N$ with their signs.
+2. **Test:** is $M_y=N_t$? If not, go to [B4](#b4).
+3. **Integrate $M$ in $t$**, treating $y$ like a number. Instead of $+C$, add $h(y)$: a piece with only $y$.
+4. **Match $N$:** differentiate $U$ in $y$ and set it equal to $N$. Everything cancels except $h^{\prime}(y)$. Integrate it.
+5. **Answer:** $U(t,y)=C$.
+6. **Plug in** the condition to find $C$.
 
-| Expression | Result | Why |
-|---|---|---|
-| $\dfrac{\partial}{\partial t}(t^2y)$ | $2ty$ | $y$ acts like a number |
-| $\dfrac{\partial}{\partial y}(t^2y)$ | $t^2$ | $t^2$ acts like a number |
-| $\dfrac{\partial}{\partial y}(t-y)$ | $-1$ | $t$ is a constant, so it gives 0 |
-| $\int(2ty+3t^2)\,dt$ | $t^2y+t^3+f(y)$ | $y$ acts like a number; the constant is $f(y)$ |
+$$U=\int M\,dt+h(y)$$
 
-> **Info:** **Bonus (skip-safe): why the cross test works.** If $U$ exists, then $M=U_t$ and $N=U_y$. So $M_y$ is $U$ differentiated in $t$ then $y$, and $N_t$ is $U$ differentiated in $y$ then $t$. The order doesn’t change the result, so the two must match. The picture: each solution is a **level curve** $U(t,y)=C$ of the surface $z=U(t,y)$, like a contour line on a map.
+Why $h(y)$ and not $C$: anything with only $y$ in it disappears when you differentiate in $t$. So it could be hiding there.
 
-Slide $C$: the plane at height $C$ cuts the surface along one solution curve (an ellipse). The same curve is drawn on the floor.
+**Short example:**
 
-```graph3d
-title "Solutions of $3t\,dt+4y\,dy=0$ are level curves of $3t^2+4y^2$"
-x -3 3 label="$t$"
-y -3 3 label="$y$"
-z 0 30 label="$U$"
-view az=-55 el=28
-slider C 1 24 12 step=1 label="$C$"
-surface "3*x^2+4*y^2" label="$U=3t^2+4y^2$"
-plane "C" label="height $C$"
-```
+$$
+M=2ty+3t^2\quad\Longrightarrow\quad U=t^2y+t^3+h(y)
+$$
 
-**Example: Example 4 · W4 · Test, integrate, match · lecture Example 4.1**
+<details><summary>Full example (lecture 4.1): $\;(2ty+3t^2)\,dt+t^2\,dy=0$</summary>
 
-Solve $(2ty+3t^2)\,dt+t^2\,dy=0$.
+Step 1 · **Write:** already in form.
 
-1. **Type:** already in $M\,dt+N\,dy=0$ form. $M=2ty+3t^2$, $N=t^2$.
-2. **Test:** for $M_y$ treat $t$ as a number; for $N_t$ treat $y$ as a number. They match.
+$$
+M=2ty+3t^2,\qquad N=t^2
+$$
 
-   $$M_y=2t=N_t\quad\checkmark$$
-3. **Integrate $M$ in $t$** ($y$ is a number). The constant is $f(y)$.
+Step 2 · **Test:** for $M_y$ treat $t$ as a number. For $N_t$ treat $y$ as a number.
 
-   $$U=t^2y+t^3+f(y)$$
-4. **Match $N$:** $U_y$ must equal $N=t^2$.
+$$
+M_y=2t,\qquad N_t=2t\quad\checkmark
+$$
 
-   $$t^2+f^{\prime}(y)=t^2\quad\Rightarrow\quad f^{\prime}(y)=0$$
-5. **Answer:** $f$ is just a number, so it merges into $C$.
+Step 3 · **Integrate $M$ in $t$** ($y$ is a number). Add $h(y)$.
 
-   $$t^2y+t^3=C$$
+$$
+U=t^2y+t^3+h(y)
+$$
 
-**Answer:** $t^2y+t^3=C$ (solved for $y$: $y=\dfrac{C-t^3}{t^2}$).
+Step 4 · **Match $N$:** differentiate $U$ in $y$, set it equal to $N=t^2$.
+
+$$
+U_y=t^2+h^{\prime}(y)=t^2
+$$
+
+$$
+h^{\prime}(y)=0\quad\Rightarrow\quad h=\text{a number}
+$$
+
+Step 5 · **Answer:** the number in $h$ merges into $C$.
+
+$$
+t^2y+t^3=C
+$$
+
+**Answer:**
+
+$$
+t^2y+t^3=C\qquad\Big(y=\dfrac{C-t^3}{t^2}\Big)
+$$
+
+</details>
+
+<details><summary>Full example (lecture (b)): $\;y^{\prime}=\dfrac{t-y}{t+y}$, $\;y(0)=1$</summary>
+
+Step 1 · **Write:** cross-multiply, $(t+y)\,dy=(t-y)\,dt$, then move everything left. Moving $dy$ across flips its sign.
+
+$$
+(t-y)\,dt-(t+y)\,dy=0
+$$
+
+$$
+M=t-y,\qquad N=-t-y
+$$
+
+Step 2 · **Test.**
+
+$$
+M_y=-1,\qquad N_t=-1\quad\checkmark
+$$
+
+Step 3 · **Integrate $M$ in $t$.**
+
+$$
+U=\tfrac12t^2-ty+h(y)
+$$
+
+Step 4 · **Match $N$.**
+
+$$
+U_y=-t+h^{\prime}(y)=-t-y
+$$
+
+$$
+h^{\prime}=-y\quad\Rightarrow\quad h=-\tfrac12y^2
+$$
+
+Step 5 · **Answer:** set $U=C$, then multiply by $2$ ($2C$ is a new $C$).
+
+$$
+t^2-2ty-y^2=C
+$$
+
+Step 6 · **Plug in** $t=0$, $y=1$.
+
+$$
+0-0-1=C\quad\Rightarrow\quad C=-1
+$$
+
+**Answer:**
+
+$$
+t^2-2ty-y^2=-1
+$$
+
+</details>
+
+**Partial derivatives.** Differentiate in one letter, treat the other like a plain number. Open a card:
+
+<details><summary>In $t$: $\;\dfrac{\partial}{\partial t}(t^2y)=2ty$</summary>
+
+Step 1 · $y$ acts like a number, like $5$: the derivative of $5t^2$ is $10t$.
+
+$$
+\dfrac{\partial}{\partial t}(t^2y)=2t\cdot y
+$$
+
+</details>
+
+<details><summary>In $y$: $\;\dfrac{\partial}{\partial y}(t^2y)=t^2$</summary>
+
+Step 1 · $t^2$ acts like a number: the derivative of $5y$ is $5$.
+
+$$
+\dfrac{\partial}{\partial y}(t^2y)=t^2
+$$
+
+Step 2 · A term with no $y$ at all gives $0$.
+
+$$
+\dfrac{\partial}{\partial y}(t-y)=0-1=-1
+$$
+
+</details>
+
+<details><summary>Integrate in $t$: $\;\displaystyle\int(2ty+3t^2)\,dt=t^2y+t^3+h(y)$</summary>
+
+Step 1 · $y$ acts like a number. The “constant” is $h(y)$.
+
+$$
+\int 2ty\,dt=y\,t^2,\qquad \int3t^2\,dt=t^3
+$$
+
+</details>
+
+> **Warning:** **Moving the $dy$ term across the $=$ flips its sign.** In $y^{\prime}=\frac{t-y}{t+y}$, $N$ is $-(t+y)$, not $t+y$. One wrong sign and the test fails.
+
+#### Practice: B3
 
 **Problem: Problem 18 · W4 · Test, then solve · lecture exercise (a)** (introductory)
 
@@ -915,21 +1427,24 @@ Test $3t\,dt+4y\,dy=0$ for exactness, and if so, solve.
 
 <details><summary>Solution</summary>
 
-1. **Type:** already in form. $M=3t$, $N=4y$.
-2. **Test:** $M$ has no $y$ and $N$ has no $t$, so both derivatives are 0.
+1. **Type:** $M\,dt+N\,dy=0$ → test for B3.
+2. **Write:** already in form.
 
-   $$M_y=0=N_t\quad\checkmark$$
-3. **Integrate $M$ in $t$.**
+   $$M=3t,\qquad N=4y$$
+3. **Test:** $M$ has no $y$ and $N$ has no $t$, so both are $0$.
 
-   $$U=\tfrac32t^2+f(y)$$
-4. **Match $N$:** $U_y=f^{\prime}(y)$ must equal $4y$, so $f=2y^2$.
+   $$M_y=0,\qquad N_t=0\quad\checkmark$$
+4. **Integrate $M$ in $t$.**
 
-   $$U=\tfrac32t^2+2y^2$$
-5. **Answer:** set $U=C$. Multiply by 2 to clear the fraction ($2C$ is still just a constant: call it $C$).
+   $$U=\tfrac32t^2+h(y)$$
+5. **Match $N$:** $U_y=h^{\prime}(y)$ must equal $4y$.
+
+   $$h^{\prime}=4y\quad\Rightarrow\quad h=2y^2$$
+6. **Answer:** $U=C$. Multiply by $2$ ($2C$ is a new $C$).
 
    $$3t^2+4y^2=C$$
 
-**Answer:** Exact. $3t^2+4y^2=C$: ellipses, the curves in the graph above. (It’s also separable: $4y\,dy=-3t\,dt$.)
+**Answer:** Exact. $3t^2+4y^2=C$: ellipses. (It’s also separable: $4y\,dy=-3t\,dt$.)
 
 </details>
 
@@ -939,213 +1454,300 @@ Is $y^{\prime}=\dfrac{t}{t+y}$ exact?
 
 <details><summary>Solution</summary>
 
-1. **Type:** a slope formula. Cross-multiply, $(t+y)\,dy=t\,dt$, then move everything left.
+1. **Type:** a slope fraction → write it with $dt$, $dy$ and test.
+2. **Write:** cross-multiply, $(t+y)\,dy=t\,dt$, then move everything left.
 
-   $$t\,dt-(t+y)\,dy=0$$
-2. **Read** $M=t$ and $N=-(t+y)$. The minus came from moving the $dy$ term left.
-3. **Test:** $M$ has no $y$, so $M_y=0$. But $N_t=-1$.
+   $$\begin{gathered}t\,dt-(t+y)\,dy=0 \\ M=t,\qquad N=-(t+y)\end{gathered}$$
+3. **Test:** $M$ has no $y$.
 
    $$M_y=0,\qquad N_t=-1$$
-4. **Answer:** $0\neq-1$, so it’s **not exact**. Next you’d try [B4](#b4), but neither ratio there works: the first still has both letters, the second has no $y$. The lecture stops at “not exact”.
+4. $0\neq-1$, so it’s **not exact**. You’d try [B4](#b4) next, but neither ratio has just one letter. The lecture stops at “not exact”.
 
-   $$\frac{M_y-N_t}{N}=-\frac{1}{t+y},\quad \frac{N_t-M_y}{M}=-\frac1t$$
+   $$\begin{gathered}\dfrac{M_y-N_t}{N}=-\dfrac{1}{t+y}, \\ \dfrac{N_t-M_y}{M}=-\dfrac1t\end{gathered}$$
 
 **Answer:** Not exact: $M_y=0\neq-1=N_t$.
 
 </details>
 
-**Problem: Problem 20 · W4 · Cross-multiply, then use a condition · lecture exercise (b)** (intermediate)
-
-Solve $y^{\prime}=\dfrac{t-y}{t+y}$, $\;y(0)=1$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** a slope formula. Cross-multiply, $(t+y)\,dy=(t-y)\,dt$, and move everything left.
-
-   $$(t-y)\,dt-(t+y)\,dy=0$$
-2. **Test:** $M=t-y$, $N=-t-y$.
-
-   $$M_y=-1=N_t\quad\checkmark$$
-3. **Integrate $M$ in $t$.**
-
-   $$U=\tfrac12t^2-ty+f(y)$$
-4. **Match $N$:** $U_y=-t+f^{\prime}(y)$ must equal $-t-y$. So $f^{\prime}=-y$ and $f=-\frac12y^2$.
-
-   $$\tfrac12t^2-ty-\tfrac12y^2=C$$
-5. Multiply by 2 to clear the fractions (call $2C$ just $C$ again).
-
-   $$t^2-2ty-y^2=C$$
-6. **Condition** $y(0)=1$: plug in $t=0$, $y=1$: $\;0-0-1=C$.
-
-   $$C=-1$$
-
-**Answer:** $t^2-2ty-y^2=-1$.
-
-</details>
-
-**Problem: Problem 21 · W4 · The sign trap · lecture exercise (c)** (intermediate)
+**Problem: Problem 20 · W4 · The sign trap · lecture exercise (c)** (intermediate)
 
 Solve $2ty\,y^{\prime}=t^2-y^2$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** write $y^{\prime}=\frac{dy}{dt}$ and multiply by $dt$: $2ty\,dy=(t^2-y^2)\,dt$. Moving $2ty\,dy$ left makes it **negative**.
+1. **Type:** not separable, not linear ($y^2$) → write with $dt$, $dy$ and test for B3.
+2. **Write:** $2ty\,dy=(t^2-y^2)\,dt$. Moving $2ty\,dy$ left makes it **negative**.
 
-   $$(t^2-y^2)\,dt-2ty\,dy=0$$
-2. **Test:** $M=t^2-y^2$, $N=-2ty$.
+   $$\begin{gathered}(t^2-y^2)\,dt-2ty\,dy=0 \\ M=t^2-y^2,\qquad N=-2ty\end{gathered}$$
+3. **Test.**
 
-   $$M_y=-2y=N_t\quad\checkmark$$
-3. **Integrate $M$ in $t$.**
+   $$M_y=-2y,\qquad N_t=-2y\quad\checkmark$$
+4. **Integrate $M$ in $t$.**
 
-   $$U=\tfrac13t^3-ty^2+f(y)$$
-4. **Match $N$:** $U_y=-2ty+f^{\prime}(y)$ must equal $-2ty$, so $f^{\prime}=0$.
+   $$U=\tfrac13t^3-ty^2+h(y)$$
+5. **Match $N$:** $U_y=-2ty+h^{\prime}$ must equal $-2ty$.
 
-   $$\tfrac13t^3-ty^2=C$$
-5. Multiply by 3 to clear the fraction (call $3C$ just $C$ again).
+   $$h^{\prime}=0$$
+6. **Answer:** $U=C$. Multiply by $3$ ($3C$ is a new $C$).
 
    $$t^3-3ty^2=C$$
 
-**Answer:** $t^3-3ty^2=C$. If you keep $+2ty\,dy$ (wrong sign), the test gives $-2y\neq2y$ and fails.
+**Answer:** $t^3-3ty^2=C$. Keep $+2ty\,dy$ (wrong sign) and the test gives $-2y\neq2y$.
 
 </details>
 
-### B4 · Not exact: make it exact with an integrating factor
+### B4 · Not exact: make it exact with μ
 
 [Week 4 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/ce2fa611-8b68-46a9-b6ca-653ae9c59aee#ebb7e8ad-4fda-4034-97dc-a9c048d71335)
 
-**What if the exactness test fails?** Take $y\,dt+(3+3t-y)\,dy=0$: $M_y=1$ but $N_t=3$, so [B3](#b3) can’t start.
+**Use this when** it’s written with $dt$ and $dy$, but the [B3](#b3) test **fails**:
 
-The fix: multiply the whole equation by a function $\mu$, called an **integrating factor**, picked so the new equation passes the test. Then solve it with the [B3](#b3) steps. Same idea as in [B2](#b2): multiply by the right thing and the equation becomes easy.
+$$
+y\,dt+(3+3t-y)\,dy=0\qquad M_y=1\neq3=N_t
+$$
 
-**How to find $\mu$.** Start with the mismatch between the two cross derivatives:
+**The move: multiply everything by a factor $\mu$** that makes it pass the test. Then finish it like [B3](#b3).
 
-$$M_y-N_t$$
+Same idea as $\mu$ in [B2](#b2): multiply by the right thing and the equation becomes easy.
 
-In the example: $M_y-N_t=1-3=-2$. Now divide it, and see which case you’re in.
+To find $\mu$, start from the mismatch $M_y-N_t$ and try two ratios. One of them should have **only one letter** left.
 
-**Case 1: divide by $N$, and only $t$ is left.** (The lecture calls this Theorem 1.)
+#### Case 1: only t left
 
-$$\dfrac{M_y-N_t}{N}=f(t)\quad\Rightarrow\quad \mu=e^{\int f(t)\,dt}$$
+Divide the mismatch by $N$. If only $t$ is left, call it $g(t)$:
 
-Example: $(t^2+y)\,dt-t\,dy=0$ gives $\frac{1-(-1)}{-t}=-\frac2t$. Only $t$, so $\mu=e^{\int-\frac2t\,dt}=\frac{1}{t^2}$.
+$$
+\dfrac{M_y-N_t}{N}=g(t)\quad\Longrightarrow\quad \mu=e^{\int g\,dt}
+$$
 
-**Case 2: flip the subtraction, divide by $M$, and only $y$ is left.** (Theorem 2.)
+**Short example:** $(t^2+y)\,dt-t\,dy=0$:
 
-$$\dfrac{N_t-M_y}{M}=g(y)\quad\Rightarrow\quad \mu=e^{\int g(y)\,dy}$$
+$$
+\dfrac{1-(-1)}{-t}=-\dfrac2t\quad\Longrightarrow\quad \mu=e^{-2\ln t}=\dfrac{1}{t^2}
+$$
 
-Example: $y\,dt+(3+3t-y)\,dy=0$ gives $\frac{3-1}{y}=\frac2y$. Only $y$, so $\mu=e^{\int\frac2y\,dy}=y^2$.
+#### Case 2: only y left
 
-Why only one letter: $\mu$ will be a function of one letter, so the ratio you integrate to get it can only contain that letter. If neither ratio has just one letter, these two cases don’t help.
+Flip the subtraction and divide by $M$. If only $y$ is left, call it $h(y)$:
 
-**Method:**
+$$
+\dfrac{N_t-M_y}{M}=h(y)\quad\Longrightarrow\quad \mu=e^{\int h\,dy}
+$$
 
-1. **Test:** check that $M_y\neq N_t$. (If they’re equal, it’s already exact: go to [B3](#b3).)
-2. **Ratios:** compute both. Keep the one that has only one letter in it.
-3. **Integrating factor:** $\mu=e^{\int f\,dt}$ or $\mu=e^{\int g\,dy}$. No $+C$ needed: any one $\mu$ works.
-4. **Multiply the whole equation** by $\mu$: both $M$ and $N$.
-5. **Re-test:** it must pass now (if not, recheck your algebra). Then solve with the [B3](#b3) steps.
+**Short example:** $y\,dt+(3+3t-y)\,dy=0$:
 
-**Calculus you need here** ($e$ and $\ln$ cancel: $e^{k\ln y}=y^k$):
+$$
+\dfrac{3-1}{y}=\dfrac2y\quad\Longrightarrow\quad \mu=e^{2\ln y}=y^2
+$$
 
-| Expression | Result | Example |
-|---|---|---|
-| $e^{\int\frac{k}{y}dy}$ | $e^{k\ln|y|}=|y|^k$ | $g=\frac2y$ gives $\mu=y^2$; $g=-\frac1y$ gives $\mu=\frac1y$ |
-| $e^{\int\frac{k}{t}dt}$ | $t^k$ | $f=-\frac2t$ gives $\mu=t^{-2}=\frac{1}{t^2}$ |
-| $e^{\int k\,dt}$ | $e^{kt}$ | the ratio is a constant $k$ |
+(The lecture calls these Theorem 1 and Theorem 2.)
 
-> **Info:** **Bonus (skip-safe): where Case 1 comes from.** Multiply by $\mu(t)$ and ask the new equation to pass the test, $(\mu M)_y=(\mu N)_t$. On the left, $\mu$ has no $y$, so it just comes out: $\mu M_y$. On the right, the product rule gives $\mu^{\prime} N+\mu N_t$. Rearrange:
-> 
-> $$
-> \dfrac{\mu^{\prime}}{\mu}=\dfrac{M_y-N_t}{N}
-> $$
-> 
-> The left side only has $t$ in it, so the right side must too. Then $\ln\mu=\int f\,dt$. Case 2 is the same argument with $\mu(y)$.
+<details><summary>Where does Case 1 come from? (optional)</summary>
 
-**Example: Example 5 · W4 · Repair, then finish · lecture exercise (e) and Pre-tutorial 4**
+Multiply by $\mu(t)$ and ask the new equation to pass the test, $(\mu M)_y=(\mu N)_t$. On the left, $\mu$ has no $y$, so it just comes out. On the right, use the product rule:
 
-Solve $y\,dt+(3+3t-y)\,dy=0$.
+$$
+\mu\,M_y=\mu^{\prime} N+\mu\,N_t\quad\Longrightarrow\quad \dfrac{\mu^{\prime}}{\mu}=\dfrac{M_y-N_t}{N}
+$$
 
-1. **Type:** $M\,dt+N\,dy=0$ form, with $M=y$, $N=3+3t-y$.
-2. **Test:** the two cross derivatives don’t match, so it’s not exact.
-
-   $$M_y=1\neq3=N_t$$
-3. **Ratios:** Case 1 gives $\frac{1-3}{3+3t-y}$, which has both letters. Case 2 leaves only $y$.
-
-   $$\dfrac{N_t-M_y}{M}=\dfrac{3-1}{y}=\dfrac2y$$
-4. **Integrating factor:** $e^{\int\frac2y dy}=e^{2\ln|y|}$.
-
-   $$\mu=y^2$$
-5. **Multiply the whole equation** by $y^2$.
-
-   $$y^3\,dt+(3y^2+3ty^2-y^3)\,dy=0$$
-6. **Re-test:** it passes now.
-
-   $$M_y=3y^2=N_t\quad\checkmark$$
-7. **Integrate $M$ in $t$** ($y$ is a number).
-
-   $$U=ty^3+f(y)$$
-8. **Match $N$:** $U_y=3ty^2+f^{\prime}(y)$ must equal $3y^2+3ty^2-y^3$. So $f^{\prime}=3y^2-y^3$.
-
-   $$f(y)=y^3-\tfrac14y^4$$
-9. **Answer:** set $U=C$.
-
-   $$ty^3+y^3-\tfrac14y^4=C$$
-
-**Answer:** $ty^3+y^3-\dfrac{y^4}{4}=C$.
-
-**Problem: Problem 22 · W4 · A factor in t only** (introductory)
-
-Solve $(t^2+y)\,dt-t\,dy=0$ for $t>0$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** $M=t^2+y$, $N=-t$. **Test:** $M_y=1$, $N_t=-1$: not exact.
-2. **Ratios:** Case 1 leaves only $t$.
-
-   $$\dfrac{M_y-N_t}{N}=\dfrac{1-(-1)}{-t}=-\dfrac2t$$
-3. **Integrating factor:** $e^{\int-\frac2t dt}=e^{-2\ln t}=t^{-2}$.
-
-   $$\mu=\dfrac{1}{t^2}$$
-4. **Multiply the whole equation** by $\frac{1}{t^2}$.
-
-   $$\Big(1+\dfrac{y}{t^2}\Big)dt-\dfrac1t\,dy=0$$
-5. **Re-test:** it passes now.
-
-   $$M_y=\dfrac{1}{t^2}=N_t\quad\checkmark$$
-6. **Integrate $M$ in $t$:** $\int1\,dt=t$, and $\int\frac{y}{t^2}dt=-\frac yt$ ($y$ is a number).
-
-   $$U=t-\dfrac{y}{t}+f(y)$$
-7. **Match $N$:** $U_y=-\frac1t+f^{\prime}$ must equal $-\frac1t$, so $f^{\prime}=0$.
-
-   $$t-\dfrac yt=C$$
-
-**Answer:** $t-\dfrac{y}{t}=C$, so $y=t^2-Ct$. Check with [B2](#b2): the equation is also linear, $y^{\prime}-\frac{y}{t}=t$, and gives the same family.
+The left side only has $t$, so the right side must too. Then $\ln\mu=\int g\,dt$. Case 2 is the same with $\mu(y)$.
 
 </details>
 
-**Problem: Problem 23 · W4 · A factor in y only** (intermediate)
+#### Steps and examples
+
+1. **Write** it as $M\,dt+N\,dy=0$. Read $M$ and $N$ with their signs.
+2. **Test:** $M_y\neq N_t$. (Equal? It’s already exact: [B3](#b3).)
+3. **Find $\mu$:** try Case 1, then Case 2. Keep the ratio with only one letter. No $+C$ in this integral.
+4. **Multiply** the whole equation by $\mu$: both $M$ and $N$.
+5. **Re-test:** it must pass now. If not, recheck your algebra.
+6. **Finish like B3:** integrate $M$ in $t$, match $N$, answer $U=C$, plug in.
+
+<details><summary>Full example (Pre-tutorial 4): $\;y\,dt+(3+3t-y)\,dy=0$</summary>
+
+Step 1 · **Write.**
+
+$$
+M=y,\qquad N=3+3t-y
+$$
+
+Step 2 · **Test:** they don’t match.
+
+$$
+M_y=1,\qquad N_t=3
+$$
+
+Step 3 · **Find $\mu$:** Case 1 gives $\frac{1-3}{3+3t-y}$, both letters. Case 2 leaves only $y$.
+
+$$
+\dfrac{N_t-M_y}{M}=\dfrac{3-1}{y}=\dfrac2y
+$$
+
+Step 4 · $e$ and $\ln$ cancel: $e^{2\ln y}=y^2$.
+
+$$
+\mu=e^{\int\frac2y\,dy}=y^2
+$$
+
+Step 5 · **Multiply** the whole equation by $y^2$.
+
+$$
+y^3\,dt+(3y^2+3ty^2-y^3)\,dy=0
+$$
+
+Step 6 · **Re-test:** now $M=y^3$ and $N=3y^2+3ty^2-y^3$.
+
+$$
+M_y=3y^2,\qquad N_t=3y^2\quad\checkmark
+$$
+
+Step 7 · **Integrate $M$ in $t$** ($y$ is a number).
+
+$$
+U=ty^3+h(y)
+$$
+
+Step 8 · **Match $N$.**
+
+$$
+U_y=3ty^2+h^{\prime}(y)=3y^2+3ty^2-y^3
+$$
+
+$$
+h^{\prime}=3y^2-y^3\quad\Rightarrow\quad h=y^3-\tfrac14y^4
+$$
+
+Step 9 · **Answer:** $U=C$.
+
+$$
+ty^3+y^3-\tfrac14y^4=C
+$$
+
+**Answer:**
+
+$$
+ty^3+y^3-\dfrac{y^4}{4}=C
+$$
+
+</details>
+
+<details><summary>Full example (Case 1): $\;(t^2+y)\,dt-t\,dy=0$, $\;t>0$</summary>
+
+Step 1 · **Write.**
+
+$$
+M=t^2+y,\qquad N=-t
+$$
+
+Step 2 · **Test.**
+
+$$
+M_y=1,\qquad N_t=-1
+$$
+
+Step 3 · **Find $\mu$:** Case 1 leaves only $t$.
+
+$$
+\dfrac{M_y-N_t}{N}=\dfrac{1-(-1)}{-t}=-\dfrac2t
+$$
+
+$$
+\mu=e^{-2\ln t}=\dfrac{1}{t^2}
+$$
+
+Step 4 · **Multiply** by $\frac{1}{t^2}$.
+
+$$
+\Big(1+\dfrac{y}{t^2}\Big)dt-\dfrac1t\,dy=0
+$$
+
+Step 5 · **Re-test.**
+
+$$
+M_y=\dfrac{1}{t^2},\qquad N_t=\dfrac{1}{t^2}\quad\checkmark
+$$
+
+Step 6 · **Integrate $M$ in $t$:** $\int1\,dt=t$ and $\int\frac{y}{t^2}dt=-\frac yt$.
+
+$$
+U=t-\dfrac{y}{t}+h(y)
+$$
+
+Step 7 · **Match $N$:** $U_y=-\frac1t+h^{\prime}$ must equal $-\frac1t$.
+
+$$
+h^{\prime}=0
+$$
+
+Step 8 · **Answer.**
+
+$$
+t-\dfrac yt=C
+$$
+
+**Answer:**
+
+$$
+t-\dfrac yt=C\qquad(y=t^2-Ct)
+$$
+
+</details>
+
+<details><summary>$e$ and $\ln$ cancel: $\;e^{\int\frac{k}{y}dy}=y^k$, $\;e^{\int\frac{k}{t}dt}=t^k$</summary>
+
+Step 1 · $h=\frac2y$:
+
+$$
+\mu=e^{2\ln y}=y^2
+$$
+
+Step 2 · $h=-\frac1y$:
+
+$$
+\mu=e^{-\ln y}=\dfrac1y
+$$
+
+Step 3 · $g=-\frac2t$:
+
+$$
+\mu=e^{-2\ln t}=\dfrac{1}{t^2}
+$$
+
+</details>
+
+> **Warning:** **The two ratios are different.** Case 1: $M_y-N_t$ over $N$. Case 2: $N_t-M_y$ (flipped) over $M$. Mix them up and the sign of $\mu$’s power flips.
+
+#### Practice: B4
+
+**Problem: Problem 21 · W4 · A factor in y only** (introductory)
 
 Solve $y\,dt+(2t+y^3)\,dy=0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** $M=y$, $N=2t+y^3$. **Test:** $M_y=1$, $N_t=2$: not exact.
-2. **Ratios:** Case 1 gives $\frac{-1}{2t+y^3}$ (both letters). Case 2 leaves only $y$:
+1. **Type:** $dt$, $dy$ form → test for B3.
+2. **Write.**
 
-   $$\dfrac{N_t-M_y}{M}=\dfrac{2-1}{y}=\dfrac1y$$
-3. **Integrating factor:** $e^{\int\frac1y dy}=e^{\ln|y|}$.
+   $$M=y,\qquad N=2t+y^3$$
+3. **Test:** not exact → B4.
 
-   $$\mu=y$$
-4. **Multiply the whole equation** by $y$.
+   $$M_y=1,\qquad N_t=2$$
+4. **Find $\mu$:** Case 1 gives $\frac{-1}{2t+y^3}$, both letters. Case 2 leaves only $y$.
+
+   $$\begin{gathered}\dfrac{N_t-M_y}{M}=\dfrac{2-1}{y}=\dfrac1y \\ \mu=e^{\ln y}=y\end{gathered}$$
+5. **Multiply** by $y$.
 
    $$y^2\,dt+(2ty+y^4)\,dy=0$$
-5. **Re-test:** it passes now.
+6. **Re-test.**
 
-   $$M_y=2y=N_t\quad\checkmark$$
-6. **Integrate $M$ in $t$.**
+   $$M_y=2y,\qquad N_t=2y\quad\checkmark$$
+7. **Integrate $M$ in $t$.**
 
-   $$U=ty^2+f(y)$$
-7. **Match $N$:** $U_y=2ty+f^{\prime}$ must equal $2ty+y^4$. So $f^{\prime}=y^4$ and $f=\frac{y^5}{5}$.
+   $$U=ty^2+h(y)$$
+8. **Match $N$:** $U_y=2ty+h^{\prime}$ must equal $2ty+y^4$.
+
+   $$h^{\prime}=y^4\quad\Rightarrow\quad h=\dfrac{y^5}{5}$$
+9. **Answer.**
 
    $$ty^2+\dfrac{y^5}{5}=C$$
 
@@ -1153,7 +1755,7 @@ Solve $y\,dt+(2t+y^3)\,dy=0$.
 
 </details>
 
-**Problem: Problem 24 · W4 · Which case applies?** (advanced)
+**Problem: Problem 22 · W4 · Which case applies?** (advanced)
 
 Find an integrating factor for each equation, then solve it.
 
@@ -1163,25 +1765,31 @@ Find an integrating factor for each equation, then solve it.
 
 <details><summary>Solution</summary>
 
-1. (a) **Test:** $M_y=2$, $N_t=1$, not exact. **Ratios:** Case 1 gives $\frac{2-1}{t}=\frac1t$, only $t$.
+1. (a) **Write** and **test:** $M=2y+3t$, $N=t$.
 
-   $$\mu=e^{\int\frac1t dt}=t$$
-2. (a) **Multiply** by $t$: you get exactly the B3 worked example.
+   $$M_y=2,\qquad N_t=1$$
+2. (a) **Find $\mu$:** Case 1 leaves only $t$.
+
+   $$\begin{gathered}\dfrac{M_y-N_t}{N}=\dfrac{2-1}{t}=\dfrac1t \\ \mu=e^{\ln t}=t\end{gathered}$$
+3. (a) **Multiply** by $t$: it’s exactly the B3 lecture example.
 
    $$(2ty+3t^2)\,dt+t^2\,dy=0$$
-3. (a) **Answer:** the solution from B3.
+4. (a) **Answer:** from B3.
 
    $$t^2y+t^3=C$$
-4. (b) **Test:** $M_y=2y$, $N_t=y$, not exact. **Ratios:** Case 1 gives $\frac{y}{ty+1}$ (both letters). Case 2:
+5. (b) **Write** and **test:** $M=y^2$, $N=ty+1$.
 
-   $$\dfrac{N_t-M_y}{M}=\dfrac{y-2y}{y^2}=-\dfrac1y$$
-5. (b) **Integrating factor:** $e^{\int-\frac1y dy}=e^{-\ln|y|}$.
+   $$M_y=2y,\qquad N_t=y$$
+6. (b) **Find $\mu$:** Case 1 gives $\frac{y}{ty+1}$, both letters. Case 2:
 
-   $$\mu=\dfrac1y$$
-6. (b) **Multiply** by $\frac1y$ and re-test: $M_y=1=N_t$, it passes.
+   $$\begin{gathered}\dfrac{N_t-M_y}{M}=\dfrac{y-2y}{y^2}=-\dfrac1y \\ \mu=e^{-\ln y}=\dfrac1y\end{gathered}$$
+7. (b) **Multiply** by $\frac1y$ and **re-test.**
 
-   $$y\,dt+\Big(t+\dfrac1y\Big)dy=0$$
-7. (b) **Integrate and match:** $U=ty+f(y)$. $U_y=t+f^{\prime}$ must equal $t+\frac1y$, so $f^{\prime}=\frac1y$ and $f=\ln|y|$.
+   $$\begin{gathered}y\,dt+\Big(t+\dfrac1y\Big)dy=0 \\ M_y=1,\qquad N_t=1\quad\checkmark\end{gathered}$$
+8. (b) **Integrate $M$** and **match $N$:** $U=ty+h(y)$, and $U_y=t+h^{\prime}$ must equal $t+\frac1y$.
+
+   $$h^{\prime}=\dfrac1y\quad\Rightarrow\quad h=\ln|y|$$
+9. (b) **Answer.**
 
    $$ty+\ln|y|=C$$
 
@@ -1189,70 +1797,484 @@ Find an integrating factor for each equation, then solve it.
 
 </details>
 
-### B5 · Second order, constant coefficients: the characteristic equation
+### B5 · Second order, numbers in front, right side 0
 
 [Week 5 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#92fa557c-ab2a-49cb-a238-b9f4e76fa0b8)
 
-**What if the equation has a $y^{\prime\prime}$ in it?** Like $y^{\prime\prime}+3y^{\prime}+2y=0$. If every coefficient is a plain number, there’s a shortcut: guess $y=e^{st}$.
+**Use this when** the equation looks like this, and you want $y(t)$:
 
-Why that guess works: each derivative of $e^{st}$ is $e^{st}$ again, times one more $s$. So the whole ODE turns into a quadratic in $s$, and you already know how to solve those.
+$$
+y^{\prime\prime}+3y^{\prime}+2y=0
+$$
 
-The equations this works on look like:
+That is: a $y^{\prime\prime}$, plain numbers in front of $y^{\prime\prime}$, $y^{\prime}$ and $y$, and $0$ on the right.
 
-$$a\,y^{\prime\prime}+b\,y^{\prime}+c\,y=0$$
+- Right side not $0$, like $y^{\prime\prime}+y=3$? → [B6](#b6).
+- $t$ in front, like $ty^{\prime\prime}+y=0$? → [B7](#b7).
 
-- $a,b,c$ = plain numbers, no $t$ in them ($a\neq0$). Example: $y^{\prime\prime}+3y^{\prime}+2y=0$ has $a=1$, $b=3$, $c=2$.
-- right side $=0$ (called **homogeneous**). If it isn’t $0$, like $y^{\prime\prime}+y=3$, you also need [B6](#b6).
-- If a coefficient has $t$ in it, like $y^{\prime\prime}-ty^{\prime}+y=0$, this shortcut fails: see [B7](#b7).
+**The move: turn the ODE into a quadratic.**
 
-**Step 1: the characteristic equation.** Swap each derivative for a power of $s$: $y^{\prime\prime}\to s^2$, $y^{\prime}\to s$, $y\to1$.
+Swap $y^{\prime\prime}\to s^2$, $y^{\prime}\to s$, $y\to1$. Keep the numbers in front.
 
-$$a\,s^2+b\,s+c=0$$
+$$
+y^{\prime\prime}+3y^{\prime}+2y=0\quad\longrightarrow\quad s^2+3s+2=0
+$$
 
-- $y^{\prime\prime}+3y^{\prime}+2y=0$ → $s^2+3s+2=0$
-- $4y^{\prime\prime}+4y^{\prime}+y=0$ → $4s^2+4s+1=0$
-- $y^{\prime\prime}+9y=0$ → $s^2+9=0$ (no $y^{\prime}$ term, so no $s$ term)
+Two more:
 
-**Step 2: the roots.** Factor if you can. If not, use the quadratic formula:
+$$
+4y^{\prime\prime}+4y^{\prime}+y=0\quad\longrightarrow\quad 4s^2+4s+1=0
+$$
 
-$$s=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+$$
+y^{\prime\prime}+9y=0\quad\longrightarrow\quad s^2+9=0
+$$
 
-A negative number under the root gives complex roots. Example: $s^2+2s+5=0$ has $\sqrt{4-20}=\sqrt{-16}=j4$, so $s=-1\pm j2$. Complex numbers are in [Topic A](#topic-a).
+No $y^{\prime}$ means no $s$ term. This quadratic is called the **characteristic equation**.
 
-**Step 3: the roots pick the form.** Find your row:
+<details><summary>Why are we allowed to do this? (optional)</summary>
 
-| Roots | General solution $y(t)$ | $y(0)$ | $y^{\prime}(0)$ |
-|---|---|---|---|
-| two different real: $s_1\neq s_2$ | $Ae^{s_1t}+Be^{s_2t}$ | $A+B$ | $s_1A+s_2B$ |
-| one repeated real: $s$ | $(A+Bt)\,e^{st}$ | $A$ | $sA+B$ |
-| complex pair: $\sigma\pm j\omega$ | $e^{\sigma t}(A\cos\omega t+B\sin\omega t)$ | $A$ | $\sigma A+\omega B$ |
+Guess $y=e^{st}$. Each derivative pulls out one more $s$:
 
-- **Two different roots:** $s=-1,\,-2$ → $y=Ae^{-t}+Be^{-2t}$. One exponential per root.
-- **Repeated root:** $s=-\frac12$ twice → $y=(A+Bt)\,e^{-t/2}$. $Ae^{st}+Be^{st}$ is really one term, so you need a different second solution: $te^{st}$.
-- **Complex pair:** $s=-1\pm j2$ → $y=e^{-t}(A\cos2t+B\sin2t)$. $\sigma$ = the real part (how fast it shrinks), $\omega$ = the $j$ part (how fast it wiggles).
+$$
+y^{\prime}=s\,e^{st},\qquad y^{\prime\prime}=s^2e^{st}
+$$
 
-**Time saver:** the last two columns already give $y(0)$ and $y^{\prime}(0)$. With conditions at $t=0$, write the two equations for $A$ and $B$ straight from the table.
+Plug them into $y^{\prime\prime}+3y^{\prime}+2y=0$:
 
-Example: roots $-2$ and $-3$ → $y(0)=A+B$ and $y^{\prime}(0)=-2A-3B$. For conditions at another time, like $y(1)$, differentiate $y(t)$ yourself (table below).
+$$
+s^2e^{st}+3s\,e^{st}+2e^{st}=0
+$$
 
-**Method:**
+Pull out the $e^{st}$:
 
-1. **Characteristic equation:** swap $y^{\prime\prime}\to s^2$, $y^{\prime}\to s$, $y\to1$.
-2. **Roots:** factor, or use the quadratic formula.
-3. **Form:** pick the row of the table that matches your roots.
-4. **Conditions:** $y(0)$ and $y^{\prime}(0)$ give two equations. Solve them for $A$ and $B$.
+$$
+(s^2+3s+2)\,e^{st}=0
+$$
 
-**Calculus you need here** (to differentiate the forms yourself):
+$e^{st}$ is never $0$, so the bracket must be $0$. That bracket is the quadratic.
 
-| Function | Derivative | Rule |
+So every root $s$ gives a solution $e^{st}$. Two roots give two solutions, and the general solution is $c_1$ times one plus $c_2$ times the other.
+
+</details>
+
+**Steps**
+
+1. **Write** the quadratic: $as^2+bs+c=0$.
+2. **Solve** it. Factor if you can. If not, use the quadratic formula (below).
+3. **Pick** the case from what the roots look like. It tells you the form of $y$.
+4. **Differentiate** $y$ to get $y^{\prime}$ (only if they give you $y^{\prime}(0)$).
+5. **Plug in** $t=0$: $y(0)$ and $y^{\prime}(0)$ give two equations. Solve them for $c_1$ and $c_2$.
+
+The quadratic formula:
+
+$$
+s=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}
+$$
+
+The number under the root, $b^2-4ac$, tells you the case:
+
+| $b^2-4ac$ | Roots | Go to |
 |---|---|---|
-| $e^{st}$ | $s\,e^{st}$ | chain rule |
-| $t\,e^{st}$ | $(1+st)\,e^{st}$ | product rule |
-| $e^{\sigma t}\cos\omega t$ | $e^{\sigma t}(\sigma\cos\omega t-\omega\sin\omega t)$ | product rule |
-| $e^{\sigma t}\sin\omega t$ | $e^{\sigma t}(\sigma\sin\omega t+\omega\cos\omega t)$ | product rule |
+| $>0$ | two different real numbers | Case 1 |
+| $=0$ | one number, twice | Case 2 |
+| $<0$ | a complex pair ($\pm j$) | Case 3 |
+
+#### Case 1: two different real roots
+
+The quadratic gives two different numbers, $s_1$ and $s_2$.
+
+Each one gives an exponential:
+
+$$
+y=c_1e^{s_1t}+c_2e^{s_2t}
+$$
+
+**Short example:**
+
+$$
+s=-1,\ -2\quad\Longrightarrow\quad y=c_1e^{-t}+c_2e^{-2t}
+$$
+
+<details><summary>Full example: $\;y^{\prime\prime}+3y^{\prime}+2y=0$, $\;y(0)=1$, $\;y^{\prime}(0)=0$</summary>
+
+Step 1 · **Write** the quadratic.
+
+$$
+s^2+3s+2=0
+$$
+
+Step 2 · **Solve:** it factors. Two numbers that multiply to $2$ and add to $3$: $1$ and $2$.
+
+$$
+(s+1)(s+2)=0
+$$
+
+$$
+s_1=-1,\qquad s_2=-2
+$$
+
+Step 3 · **Pick:** two different real roots, so Case 1.
+
+$$
+y=c_1e^{-t}+c_2e^{-2t}
+$$
+
+Step 4 · **Differentiate:** the derivative of $e^{kt}$ is $k\,e^{kt}$.
+
+$$
+y^{\prime}=-c_1e^{-t}-2c_2e^{-2t}
+$$
+
+Step 5 · **Plug in** $t=0$. Every $e^{0}=1$.
+
+$$
+y(0)=c_1+c_2=1
+$$
+
+$$
+y^{\prime}(0)=-c_1-2c_2=0
+$$
+
+Step 6 · **Solve for $c_1$ and $c_2$:** add the two equations. The $c_1$’s cancel.
+
+$$
+-c_2=1\quad\Rightarrow\quad c_2=-1
+$$
+
+$$
+c_1=1-c_2=2
+$$
+
+**Answer:**
+
+$$
+y=2e^{-t}-e^{-2t}
+$$
+
+</details>
+
+#### Case 2: one repeated root
+
+The quadratic gives the same number $s$ twice.
+
+$c_1e^{st}+c_2e^{st}$ would really be just one term. So the second piece gets an extra $t$:
+
+$$
+y=(c_1+c_2t)\,e^{st}
+$$
+
+**Short example:**
+
+$$
+s=-2\ \text{(twice)}\quad\Longrightarrow\quad y=(c_1+c_2t)\,e^{-2t}
+$$
+
+<details><summary>Full example: $\;y^{\prime\prime}+4y^{\prime}+4y=0$, $\;y(0)=1$, $\;y^{\prime}(0)=1$</summary>
+
+Step 1 · **Write** the quadratic.
+
+$$
+s^2+4s+4=0
+$$
+
+Step 2 · **Solve:** it’s a perfect square. (Check: $b^2-4ac=16-16=0$, so Case 2.)
+
+$$
+(s+2)^2=0
+$$
+
+$$
+s=-2\ \text{(twice)}
+$$
+
+Step 3 · **Pick:** repeated root, so Case 2.
+
+$$
+y=(c_1+c_2t)\,e^{-2t}
+$$
+
+Step 4 · **Differentiate** with the product rule: (front)$^{\prime}$ times $e^{-2t}$, plus front times $(e^{-2t})^{\prime}$.
+
+$$
+y^{\prime}=c_2\,e^{-2t}-2(c_1+c_2t)\,e^{-2t}
+$$
+
+Step 5 · **Plug in** $t=0$. The $c_2t$ becomes $0$, and $e^{0}=1$.
+
+$$
+y(0)=c_1=1
+$$
+
+$$
+y^{\prime}(0)=c_2-2c_1=1
+$$
+
+Step 6 · **Solve for $c_1$ and $c_2$:** put $c_1=1$ into the second equation.
+
+$$
+c_2-2=1\quad\Rightarrow\quad c_2=3
+$$
+
+**Answer:**
+
+$$
+y=(1+3t)\,e^{-2t}
+$$
+
+</details>
+
+<details><summary>Why the extra $t$? (optional)</summary>
+
+$c_1e^{st}$ and $c_2e^{st}$ are the same function, so together they only give one constant. You need a second, different solution.
+
+When the root is repeated, $te^{st}$ also solves the ODE. Check with $y=te^{-2t}$ in $y^{\prime\prime}+4y^{\prime}+4y$: you get $0$.
+
+It comes from reduction of order: see the first practice problem in [B7](#b7).
+
+</details>
+
+#### Case 3: complex roots
+
+The number under the square root is negative. That’s fine.
+
+Pull out a $j$, where $j=\sqrt{-1}$:
+
+$$
+\sqrt{-16}=\sqrt{16}\cdot\sqrt{-1}=4j
+$$
+
+So the two roots come out as a pair: the same real part, and $\pm$ a $j$ part.
+
+$$
+s=\sigma\pm j\omega
+$$
+
+- $\sigma$ (“sigma”) = the **real part**: the number without $j$.
+- $\omega$ (“omega”) = the **$j$ part**: the number next to $j$, without the $\pm$.
+
+For example:
+
+$$
+s=-1\pm j2\quad\Longrightarrow\quad \sigma=-1,\quad \omega=2
+$$
+
+The answer has **no $j$ in it**. The real part goes in the exponential. The $j$ part goes inside $\cos$ and $\sin$:
+
+$$
+y=e^{\sigma t}\,(c_1\cos\omega t+c_2\sin\omega t)
+$$
+
+**Short example:**
+
+$$
+s=-1\pm j2\quad\Longrightarrow\quad y=e^{-t}(c_1\cos2t+c_2\sin2t)
+$$
+
+<details><summary>Full example: $\;y^{\prime\prime}+2y^{\prime}+5y=0$, $\;y(0)=1$, $\;y^{\prime}(0)=1$</summary>
+
+Step 1 · **Write** the quadratic.
+
+$$
+s^2+2s+5=0
+$$
+
+Step 2 · **Solve:** it doesn’t factor, so use the formula with $a=1$, $b=2$, $c=5$. Start with the part under the root. It’s negative, so Case 3.
+
+$$
+b^2-4ac=4-20=-16
+$$
+
+$$
+\sqrt{-16}=j4
+$$
+
+$$
+s=\dfrac{-2\pm j4}{2}=-1\pm j2
+$$
+
+Step 3 · **Pick:** Case 3 with real part $\sigma=-1$ and $j$ part $\omega=2$.
+
+$$
+y=e^{-t}(c_1\cos2t+c_2\sin2t)
+$$
+
+Step 4 · **Differentiate** with the product rule: $(e^{-t})^{\prime}$ times the bracket, plus $e^{-t}$ times (the bracket)$^{\prime}$.
+
+$$
+\begin{aligned}y^{\prime}&=-e^{-t}(c_1\cos2t+c_2\sin2t)\\&\quad+e^{-t}(-2c_1\sin2t+2c_2\cos2t)\end{aligned}
+$$
+
+Step 5 · **Plug in** $t=0$: $e^{0}=1$, $\cos0=1$, $\sin0=0$.
+
+$$
+y(0)=c_1=1
+$$
+
+$$
+y^{\prime}(0)=-c_1+2c_2=1
+$$
+
+Step 6 · **Solve for $c_1$ and $c_2$:** put $c_1=1$ into the second equation.
+
+$$
+2c_2=2\quad\Rightarrow\quad c_2=1
+$$
+
+**Answer:**
+
+$$
+y=e^{-t}(\cos2t+\sin2t)
+$$
+
+</details>
+
+**No $y^{\prime}$ term?** Like $y^{\prime\prime}+9y=0$:
+
+$$
+s^2+9=0\quad\Longrightarrow\quad s^2=-9\quad\Longrightarrow\quad s=\pm j3
+$$
+
+So $\sigma=0$ and $\omega=3$. Since $e^{0t}=1$, the exponential disappears:
+
+$$
+y=c_1\cos3t+c_2\sin3t
+$$
+
+<details><summary>Why $\cos$ and $\sin$, and where did the $j$ go? (optional)</summary>
+
+The two roots give $e^{(\sigma+j\omega)t}$ and $e^{(\sigma-j\omega)t}$. Euler’s formula splits each one:
+
+$$
+e^{(\sigma\pm j\omega)t}=e^{\sigma t}\,(\cos\omega t\pm j\sin\omega t)
+$$
+
+Adding and subtracting the two solutions cancels the $j$’s. What’s left is $e^{\sigma t}\cos\omega t$ and $e^{\sigma t}\sin\omega t$.
+
+Both are real solutions, so the general solution is $c_1$ times one plus $c_2$ times the other.
+
+</details>
+
+#### Traps and a quick check
+
+> **Warning:** **Differentiate first, then plug in $t=0$.** In Cases 2 and 3 the product rule gives an extra term. Skip it and you get the wrong $c_2$. Example: in Case 2 above, $y^{\prime}(0)=c_2-2c_1$, not just $c_2$.
+
+> **Warning:** **$\sigma$ keeps its sign.** $s=-1\pm j2$ gives $e^{-t}$, not $e^{t}$. Only $\omega$ drops the sign.
+
+**Shortcut to check $c_1$ and $c_2$.** At $t=0$, each case always gives the same two equations. Open a card for a short example.
+
+(Only for conditions at $t=0$. At another time, like $y(1)$, differentiate yourself.)
+
+<details><summary>Case 1: $\;y(0)=c_1+c_2,\quad y^{\prime}(0)=s_1c_1+s_2c_2$</summary>
+
+Step 1 · Roots $-2$ and $-3$, with $y(0)=2$ and $y^{\prime}(0)=-5$. Case 1:
+
+$$
+y=c_1e^{-2t}+c_2e^{-3t}
+$$
+
+Step 2 · $y(0)$: just add the constants.
+
+$$
+c_1+c_2=2
+$$
+
+Step 3 · $y^{\prime}(0)$: each root times its constant.
+
+$$
+-2c_1-3c_2=-5
+$$
+
+Step 4 · Multiply the first by $2$ and add: $-c_2=-1$.
+
+$$
+c_2=1
+$$
+
+$$
+c_1=1
+$$
+
+Step 5 · Where it comes from: differentiate, then every $e^{0}=1$.
+
+$$
+y^{\prime}=s_1c_1e^{s_1t}+s_2c_2e^{s_2t}\quad\Rightarrow\quad y^{\prime}(0)=s_1c_1+s_2c_2
+$$
+
+</details>
+
+<details><summary>Case 2: $\;y(0)=c_1,\quad y^{\prime}(0)=sc_1+c_2$</summary>
+
+Step 1 · Root $-\tfrac12$ twice, with $y(0)=4$ and $y^{\prime}(0)=0$. Case 2:
+
+$$
+y=(c_1+c_2t)\,e^{-t/2}
+$$
+
+Step 2 · $y(0)$: the $c_2t$ is $0$ at $t=0$.
+
+$$
+c_1=4
+$$
+
+Step 3 · $y^{\prime}(0)$: the root times $c_1$, plus $c_2$.
+
+$$
+-\tfrac12c_1+c_2=0
+$$
+
+Step 4 · Put in $c_1=4$: $-2+c_2=0$.
+
+$$
+c_2=2
+$$
+
+Step 5 · Where it comes from: the product rule, then $t=0$.
+
+$$
+y^{\prime}=c_2e^{st}+s(c_1+c_2t)e^{st}\quad\Rightarrow\quad y^{\prime}(0)=c_2+sc_1
+$$
+
+</details>
+
+<details><summary>Case 3: $\;y(0)=c_1,\quad y^{\prime}(0)=\sigma c_1+\omega c_2$</summary>
+
+Step 1 · Roots $-3\pm j4$, so $\sigma=-3$ and $\omega=4$, with $y(0)=0$ and $y^{\prime}(0)=8$. Case 3:
+
+$$
+y=e^{-3t}(c_1\cos4t+c_2\sin4t)
+$$
+
+Step 2 · $y(0)$: $\cos0=1$ and $\sin0=0$.
+
+$$
+c_1=0
+$$
+
+Step 3 · $y^{\prime}(0)$: $\sigma$ times $c_1$, plus $\omega$ times $c_2$.
+
+$$
+-3c_1+4c_2=8
+$$
+
+Step 4 · Put in $c_1=0$: $4c_2=8$.
+
+$$
+c_2=2
+$$
+
+Step 5 · Where it comes from: the product rule, then $t=0$. The $\sin0=0$ wipes out two of the terms.
+
+$$
+y^{\prime}(0)=\sigma c_1+\omega c_2
+$$
+
+</details>
+
+**What do the three cases look like?**
 
 ```graph
-title "Slide $k$ through 1: the same start, three kinds of response"
+title "Slide $k$ through 1: the same start, all three cases"
 x 0 8 label="$t$"
 y -0.6 1.2 label="$y$"
 slider k 0 5 0.5 step=0.05 label="$k$" animate
@@ -1262,534 +2284,861 @@ let s2 "-1-d"
 curve "if(k<0.999, (s2*exp(s1*x)-s1*exp(s2*x))/(s2-s1), if(k>1.001, exp(-x)*(cos(d*x)+sin(d*x)/d), (1+x)*exp(-x)))" label="$y(t)$" color=1
 hline "0"
 readout "$b^2-4ac=4-4k$" "4-4*k"
-caption "$y^{\prime\prime}+2y^{\prime}+ky=0$, starting at $y(0)=1$, $y^{\prime}(0)=0$. $k<1$: two real roots, the curve settles with no wiggle. $k=1$: one repeated root, the border case. $k>1$: complex roots, it wiggles inside the shrinking envelope $e^{-t}$."
+caption "$y^{\prime\prime}+2y^{\prime}+ky=0$, starting at $y(0)=1$, $y^{\prime}(0)=0$. $k<1$: Case 1, it settles with no wiggle. $k=1$: Case 2, the border. $k>1$: Case 3, it wiggles while $e^{-t}$ shrinks it. Same three cases as an RLC circuit in D2."
 ```
 
-> **Info:** **Bonus (skip-safe): why $e^{st}$ turns the ODE into a quadratic.** Plug in $y=e^{st}$, $y^{\prime}=se^{st}$, $y^{\prime\prime}=s^2e^{st}$. Every term has $e^{st}$, so pull it out:
-> 
-> $$
-> (as^2+bs+c)\,e^{st}=0
-> $$
-> 
-> $e^{st}$ is never zero, so the bracket must be zero. That bracket is the characteristic equation.
-> 
-> For complex roots, Euler’s formula $e^{(\sigma\pm j\omega)t}=e^{\sigma t}(\cos\omega t\pm j\sin\omega t)$ turns the two exponentials into $\cos$ and $\sin$. That’s why the third row has no $j$ in it. The extra $t$ for a repeated root comes from reduction of order ([B7](#b7)).
+#### Practice: B5
 
-**Example: Example 6 · W5 · Complex roots, real answer**
+**Problem: Problem 23 · W5 · Two different real roots** (introductory)
 
-Solve $y''+2y'+5y=0$, $\;y(0)=1$, $y'(0)=1$.
-
-1. **Type:** second order, plain-number coefficients, right side 0.
-2. **Characteristic equation** and roots. $\sqrt{4-20}=\sqrt{-16}=j4$.
-
-   $$s^2+2s+5=0\quad\Rightarrow\quad s=\dfrac{-2\pm j4}{2}=-1\pm j2$$
-3. **Form:** complex row, with $\sigma=-1$ and $\omega=2$.
-
-   $$y=e^{-t}(A\cos2t+B\sin2t)$$
-4. **Conditions** straight from the table: $y(0)=A$ and $y^{\prime}(0)=\sigma A+\omega B$.
-
-   $$A=1,\qquad -A+2B=1\ \Rightarrow\ B=1$$
-
-**Answer:** $y=e^{-t}(\cos2t+\sin2t)$. It wiggles at 2 rad/s, and the $e^{-t}$ shrinks the wiggle towards 0.
-
-**Problem: Problem 25 · W5 · Two different real roots** (introductory)
-
-Solve $y''+5y'+6y=0$, $\;y(0)=2$, $y'(0)=-5$.
+Solve $y^{\prime\prime}+5y^{\prime}+6y=0$, $\;y(0)=2$, $y^{\prime}(0)=-5$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** plain-number coefficients, right side 0.
-2. **Characteristic equation:** it factors.
+1. **Type:** second order, numbers in front, right side $0$ → B5.
+2. **Write** the quadratic.
 
-   $$s^2+5s+6=(s+2)(s+3)=0\quad\Rightarrow\quad s=-2,\,-3$$
-3. **Form:** two different real roots.
+   $$s^2+5s+6=0$$
+3. **Solve:** two numbers that multiply to $6$ and add to $5$: $2$ and $3$.
 
-   $$y=Ae^{-2t}+Be^{-3t}$$
-4. **Conditions** from the table: $y(0)=A+B$, $y^{\prime}(0)=-2A-3B$.
+   $$(s+2)(s+3)=0\quad\Rightarrow\quad s=-2,\,-3$$
+4. **Pick:** two different real roots → Case 1.
 
-   $$A+B=2,\qquad -2A-3B=-5$$
-5. Multiply the first equation by 2 and add the second: $-B=-1$.
+   $$y=c_1e^{-2t}+c_2e^{-3t}$$
+5. **Differentiate.**
 
-   $$B=1,\qquad A=1$$
+   $$y^{\prime}=-2c_1e^{-2t}-3c_2e^{-3t}$$
+6. **Plug in** $t=0$.
+
+   $$c_1+c_2=2,\qquad -2c_1-3c_2=-5$$
+7. Multiply the first equation by $2$ and add the second: $-c_2=-1$.
+
+   $$c_2=1,\qquad c_1=1$$
 
 **Answer:** $y=e^{-2t}+e^{-3t}$.
 
 </details>
 
-**Problem: Problem 26 · W5 · A repeated root** (introductory)
+**Problem: Problem 24 · W5 · A repeated root** (introductory)
 
-Solve $4y''+4y'+y=0$, $\;y(0)=4$, $y'(0)=0$.
+Solve $4y^{\prime\prime}+4y^{\prime}+y=0$, $\;y(0)=4$, $y^{\prime}(0)=0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** plain-number coefficients, right side 0.
-2. **Characteristic equation:** it’s a perfect square.
+1. **Type:** second order, numbers in front, right side $0$ → B5.
+2. **Write** the quadratic.
 
-   $$4s^2+4s+1=(2s+1)^2=0\quad\Rightarrow\quad s=-\tfrac12\ \text{(twice)}$$
-3. **Form:** repeated root, so add the extra $t$.
+   $$4s^2+4s+1=0$$
+3. **Solve:** $b^2-4ac=16-16=0$, so one root. The formula gives $s=\frac{-4}{8}$.
 
-   $$y=(A+Bt)\,e^{-t/2}$$
-4. **Conditions:** $y(0)=A$, $y^{\prime}(0)=sA+B$ with $s=-\frac12$.
+   $$s=-\tfrac12\ \text{(twice)}$$
+4. **Pick:** repeated root → Case 2.
 
-   $$A=4,\qquad -2+B=0\ \Rightarrow\ B=2$$
+   $$y=(c_1+c_2t)\,e^{-t/2}$$
+5. **Differentiate** with the product rule.
+
+   $$y^{\prime}=c_2e^{-t/2}-\tfrac12(c_1+c_2t)\,e^{-t/2}$$
+6. **Plug in** $t=0$.
+
+   $$c_1=4,\qquad c_2-\tfrac12c_1=0$$
+7. Put $c_1=4$ into the second equation.
+
+   $$c_2=2$$
 
 **Answer:** $y=(4+2t)\,e^{-t/2}$.
 
 </details>
 
-**Problem: Problem 27 · W5 · No damping term** (intermediate)
+**Problem: Problem 25 · W5 · No damping term** (intermediate)
 
-Solve $y''+9y=0$, $\;y(0)=2$, $y'(0)=3$.
+Solve $y^{\prime\prime}+9y=0$, $\;y(0)=2$, $y^{\prime}(0)=3$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** plain-number coefficients, right side 0. There’s no $y^{\prime}$ term, so $b=0$.
-2. **Characteristic equation:** $s^2+9=0$, so $s^2=-9$.
+1. **Type:** second order, numbers in front, right side $0$ → B5.
+2. **Write** the quadratic. No $y^{\prime}$, so no $s$ term.
 
-   $$s=\pm j3\qquad(\sigma=0,\ \omega=3)$$
-3. **Form:** complex row. $e^{0t}=1$, so the exponential drops out.
+   $$s^2+9=0$$
+3. **Solve:** $s^2=-9$, and $\sqrt{-9}=j3$.
 
-   $$y=A\cos3t+B\sin3t$$
-4. **Conditions:** $y(0)=A$, $y^{\prime}(0)=\omega B=3B$.
+   $$s=\pm j3$$
+4. **Pick:** Case 3 with $\sigma=0$, $\omega=3$. $e^{0t}=1$, so no exponential.
 
-   $$A=2,\qquad B=1$$
+   $$y=c_1\cos3t+c_2\sin3t$$
+5. **Differentiate.**
 
-**Answer:** $y=2\cos3t+\sin3t$. With $\sigma=0$ nothing shrinks it, so it swings forever. That’s the ideal LC circuit in [Topic D](#topic-d).
+   $$y^{\prime}=-3c_1\sin3t+3c_2\cos3t$$
+6. **Plug in** $t=0$: $\cos0=1$, $\sin0=0$.
+
+   $$c_1=2,\qquad 3c_2=3\ \Rightarrow\ c_2=1$$
+
+**Answer:** $y=2\cos3t+\sin3t$. Nothing shrinks it, so it swings forever: that’s the ideal LC circuit in [D2](#d2).
 
 </details>
 
-**Problem: Problem 28 · W5 · Work backwards from the roots** (advanced)
+**Problem: Problem 26 · W5 · Work backwards from the roots** (advanced)
 
-A constant-coefficient equation $y^{\prime\prime}+by^{\prime}+cy=0$ has characteristic roots $-3\pm j4$. 
+A constant-coefficient equation $y^{\prime\prime}+by^{\prime}+cy=0$ has roots $-3\pm j4$. 
 
 (a) Find $b$ and $c$. (b) Write the general solution. (c) Find the solution with $y(0)=0$, $y^{\prime}(0)=8$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** backwards. You have the roots, so build the quadratic as $(s-s_1)(s-s_2)=0$.
-2. (a) Multiply out $(s+3-j4)(s+3+j4)=(s+3)^2-(j4)^2=(s+3)^2+16$.
+1. **Type:** backwards. Roots $s_1$, $s_2$ come from the quadratic $(s-s_1)(s-s_2)=0$.
+2. (a) Multiply out. The brackets are $(s+3)-j4$ and $(s+3)+j4$: a difference of squares. And $(j4)^2=16j^2=-16$.
 
-   $$s^2+6s+25=0\quad\Rightarrow\quad b=6,\ c=25$$
-3. (b) **Form:** complex row with $\sigma=-3$, $\omega=4$.
+   $$(s+3)^2-(j4)^2=s^2+6s+9+16=s^2+6s+25$$
+3. So $b=6$ and $c=25$.
 
-   $$y=e^{-3t}(A\cos4t+B\sin4t)$$
-4. (c) **Conditions:** $y(0)=A=0$, and $y^{\prime}(0)=\sigma A+\omega B=4B=8$.
+   $$y^{\prime\prime}+6y^{\prime}+25y=0$$
+4. (b) **Pick:** Case 3 with $\sigma=-3$, $\omega=4$.
 
-   $$A=0,\qquad B=2$$
+   $$y=e^{-3t}(c_1\cos4t+c_2\sin4t)$$
+5. (c) **Differentiate** with the product rule.
 
-**Answer:** (a) $y^{\prime\prime}+6y^{\prime}+25y=0$. (b) $y=e^{-3t}(A\cos4t+B\sin4t)$. (c) $y=2e^{-3t}\sin4t$.
+   $$y^{\prime}=-3e^{-3t}(c_1\cos4t+c_2\sin4t)+e^{-3t}(-4c_1\sin4t+4c_2\cos4t)$$
+6. **Plug in** $t=0$.
+
+   $$c_1=0,\qquad -3c_1+4c_2=8\ \Rightarrow\ c_2=2$$
+
+**Answer:** (a) $b=6$, $c=25$. (b) $y=e^{-3t}(c_1\cos4t+c_2\sin4t)$. (c) $y=2e^{-3t}\sin4t$.
 
 </details>
 
-### B6 · Undetermined coefficients
+### B6 · Second order, numbers in front, right side f(t)
 
 [Week 6 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/357f26bd-d16c-4769-af0a-d1b2f535d62e#77a5aea3-a3f4-4738-a817-01c3f18cfdae)
 
-**What if the right side isn’t zero?** Like $y^{\prime\prime}+y=3$. The right side, $g(t)$, is called the **forcing** (in a circuit, it’s the source).
+**Use this when** it looks like [B5](#b5), but the right side is **not** $0$:
 
-The [B5](#b5) solutions all give $0$ when you plug them in, never $g(t)$. So you need one extra piece that gives $g(t)$.
+$$
+y^{\prime\prime}+y=3
+$$
 
-The equations look like:
+Every one of these looks like:
 
-$$a\,y^{\prime\prime}+b\,y^{\prime}+c\,y=g(t)$$
+$$
+a\,y^{\prime\prime}+b\,y^{\prime}+c\,y=f(t)
+$$
 
-- left side = the same as in [B5](#b5): plain numbers $a,b,c$
-- $g(t)$ = everything with no $y$ in it, moved to the right. Example: $y^{\prime\prime}+4y-8=0$ → $g=8$.
+- $a,b,c$ = plain numbers, same as [B5](#b5)
+- $f(t)$ = the right side, everything with no $y$ in it (in a circuit: the source)
 
-The answer always has two pieces:
+**The move: the answer comes in two pieces.**
 
-$$y=y_c+y_p$$
+$$
+y=y_c+y_p
+$$
 
-- $y_c$ = the **complementary solution**: set the right side to $0$ and solve with [B5](#b5). It carries the two constants $c_1,c_2$.
-- $y_p$ = a **particular solution**: any one function that gives exactly $g(t)$ when you plug it in. No constants.
+- $y_c$ = the [B5](#b5) answer, with the right side set to $0$. It carries $c_1$ and $c_2$.
+- $y_p$ = one guess that gives exactly $f(t)$. Copy the **shape** of $f(t)$, with unknown numbers $A,B,D$ in front.
 
-Why adding works: plug in $y_c+y_p$. The $y_c$ part gives $0$ and the $y_p$ part gives $g$, so the total is $0+g=g$.
+**Short example:** $y^{\prime\prime}+y=3$:
 
-Example: $y^{\prime\prime}+y=3$.
+$$
+y_c=c_1\sin t+c_2\cos t,\qquad y_p=3
+$$
 
-- $y_c$: $s^2+1=0$, $s=\pm j$, so $y_c=c_1\sin t+c_2\cos t$.
-- $y_p$: try a constant. $y_p=3$ gives $0+3=3$ ✓.
-- Add: $y=3+c_1\sin t+c_2\cos t$.
+$$
+y=3+c_1\sin t+c_2\cos t
+$$
 
-**How do you find $y_p$? Copy the shape of $g(t)$.** Derivatives of $t^2$, $e^{2t}$ or $\cos3t$ stay the same kind of function.
+<details><summary>Why add two pieces? (optional)</summary>
 
-So guess a $y_p$ that looks like $g$, with unknown numbers $A,B,\dots$ in front. Plug it in to find the numbers.
+Plug $y_c+y_p$ into the left side. The $y_c$ part gives $0$ (that’s how B5 built it). The $y_p$ part gives $f$. Total: $0+f=f$.
 
-| Term in $g(t)$ | Guess for $y_p$ | Example |
-|---|---|---|
-| constant, or polynomial of degree $n$ | $A_nt^n+\dots+A_1t+A_0$ (**all** lower powers) | $2t$ → $At+B$ |
-| $e^{at}$ | $Ae^{at}$ | $3e^{2t}$ → $Ae^{2t}$ |
-| $\sin rt$ or $\cos rt$ | $A\cos rt+B\sin rt$ (**always both**) | $5\sin2t$ → $A\cos2t+B\sin2t$ |
-| $e^{at}\cos rt$ or $e^{at}\sin rt$ | $e^{at}(A\cos rt+B\sin rt)$ | $e^{-t}\cos t$ → $e^{-t}(A\cos t+B\sin t)$ |
-| a sum of these | the sum of their guesses | $t+e^{t}$ → $At+B+Ce^{t}$ |
+And $y_p$ has no free constants, so on its own it can’t meet two conditions like $y(0)$ and $y^{\prime}(0)$. $y_c$ brings the $c_1,c_2$ that the conditions pin down.
 
-- **Why all lower powers:** derivatives of $At$ make a constant. The $B$ in $At+B$ is there to balance it.
-- **Why always both:** each derivative swaps $\cos$ and $\sin$, so both show up even if $g$ has only one.
+</details>
 
-> **Tip:** **What the lecture actually worked:** Monday’s lecture (Oct 26) went over just two rows: a constant → $A$, and $\sin rt$ or $\cos rt$ → both. That’s exactly what the tutorial problem needs. For the other rows and the trap below, the professor only said Spiegel has “further rules”. So nail the constant + trig case first, then learn the rest.
+**Steps**
 
-> **Warning:** **Trap: your guess is already in $y_c$.** Then plugging it in gives $0$, so it can never give $g$. **Fix: multiply the guess by $t$.** If that is still in $y_c$ (a repeated root), multiply by $t^2$ instead.
-> 
-> Example: $y^{\prime\prime}-y^{\prime}-2y=3e^{2t}$ has $y_c=c_1e^{2t}+c_2e^{-t}$. The table says $Ae^{2t}$, but that’s in $y_c$. So guess $Ate^{2t}$.
-
-**Method:**
-
-1. **Complementary:** set the right side to $0$ and solve ([B5](#b5)). That gives $y_c$.
-2. **Guess:** pick $y_p$’s shape from the table. If any term of it is already in $y_c$, multiply by $t$.
-3. **Substitute:** plug $y_p$ into the left side.
-4. **Match:** the constants must match, then each $\cos$, each $\sin$, each power of $t$. Solve for $A,B,\dots$
+1. **Write** it with every $y$ term on the left and $f(t)$ on the right.
+2. **Solve $y_c$:** set the right side to $0$ and do [B5](#b5) (quadratic → case → form with $c_1,c_2$).
+3. **Guess $y_p$** from the cases below. If any term of it is already in $y_c$, multiply it by $t$.
+4. **Plug $y_p$ into the ODE and match:** constants with constants, each $\cos$, each $\sin$, each power of $t$. Solve for $A,B,\dots$
 5. **Add:** $y=y_c+y_p$.
-6. **Conditions:** use them on the **whole** $y$, never on $y_c$ or $y_p$ alone.
+6. **Plug in** the conditions on the **whole** $y$, never on $y_c$ alone.
 
-**Calculus you need here:**
+> **Tip:** **What the lecture worked (Mon Oct 26):** Cases 1 and 3 below (a constant, and $\sin$/$\cos$). That’s exactly what the tutorial problem needs. Nail those first.
 
-| Expression | Result | Note |
-|---|---|---|
-| $\cos^2t$ | $\tfrac12+\tfrac12\cos2t$ | get rid of squares before guessing |
-| $\sin^2t$ | $\tfrac12-\tfrac12\cos2t$ |  |
-| $(A\cos rt+B\sin rt)^{\prime\prime}$ | $-r^2(A\cos rt+B\sin rt)$ | two derivatives = times $-r^2$ |
-| $(te^{at})^{\prime}$ | $(1+at)\,e^{at}$ | product rule |
-| $(t\,f)^{\prime\prime}$ | $t\,f^{\prime\prime}+2f^{\prime}$ | product rule twice, for a $\times t$ guess |
+#### Case 1: f is a constant or a polynomial
 
-> **Info:** **Bonus (skip-safe): why you can’t skip $y_c$.** $y_p$ has no constants, so on its own it can’t meet two conditions like $y(0)=0$ and $y^{\prime}(0)=0$. $y_c$ brings the two free constants that the conditions pin down. And the trap above has the same cause: anything already in $y_c$ gives $0$ on the left, so it’s useless as a guess.
+Guess a polynomial of the **same degree**, with **every lower power** too:
 
-> **Warning:** **Practise the worked example below until you can do it alone.** It’s Pre-tutorial 5, the Week 7 tutorial (Oct 26, 28), which the midterm covers. It’s also the lecture’s own example. Be able to do every step, the boundary values included.
+$$
+\begin{gathered}8\ \to\ A, \\ 2t\ \to\ At+B, \\ t^2\ \to\ At^2+Bt+D\end{gathered}
+$$
 
-**Example: Example 7 · W6 · The tutorial problem, with two boundary values · Pre-tutorial 5 / Week 7 tutorial, lecture notes p. 3–4**
+<details><summary>Full example: $\;y^{\prime\prime}+y^{\prime}-2y=2t$ (general solution)</summary>
 
-Solve $\ddot y+y=6\cos^2t$ with $y(0)=0$ and $y(\pi/2)=0$. The tutorial gives the forms $y_c=c_1\sin t+c_2\cos t$ and $y_p=A+B\cos2t+D\sin2t$. ($\ddot y$ is the professor’s notation for $y^{\prime\prime}$.)
+Step 1 · **Solve $y_c$:** set the right side to $0$. The quadratic factors.
 
-1. **Type:** plain-number coefficients, forcing $6\cos^2t$. **Complementary:** $s^2+1=0$ gives $s=\pm j$.
+$$
+s^2+s-2=(s+2)(s-1)=0
+$$
 
-   $$y_c=c_1\sin t+c_2\cos t$$
-2. The table has no row for $\cos^2t$. Use the identity to turn it into a constant plus $\cos2t$.
+$$
+y_c=c_1e^{t}+c_2e^{-2t}
+$$
 
-   $$6\cos^2t=3+3\cos2t$$
-3. **Guess:** the constant → $A$; the $\cos2t$ → both $\cos2t$ and $\sin2t$. None of them is in $y_c$.
+Step 2 · **Guess $y_p$:** degree 1, so $At+B$. You need the $B$ even though $f$ has no constant.
 
-   $$y_p=A+B\cos2t+D\sin2t$$
-4. Differentiate twice: each $\cos2t$ and $\sin2t$ gets multiplied by $-4$.
+$$
+y_p=At+B
+$$
 
-   $$y_p''=-4B\cos2t-4D\sin2t$$
-5. **Substitute** into $y_p^{\prime\prime}+y_p$ and collect.
+$$
+y_p^{\prime}=A,\qquad y_p^{\prime\prime}=0
+$$
 
-   $$A-3B\cos2t-3D\sin2t=3+3\cos2t$$
-6. **Match** the constants, the cosines and the sines.
+Step 3 · **Plug in** to $y^{\prime\prime}+y^{\prime}-2y$.
 
-   $$A=3,\qquad B=-1,\qquad D=0$$
-7. **Add** $y_c$ **before** using the conditions: they belong to the whole $y$.
+$$
+0+A-2(At+B)=2t
+$$
 
-   $$y=3-\cos2t+c_1\sin t+c_2\cos t$$
-8. **Condition** $y(0)=0$: $\sin0=0$, $\cos0=1$.
+Step 4 · **Match** the $t$ terms, then the constants.
 
-   $$3-1+c_2=0\quad\Rightarrow\quad c_2=-2$$
-9. **Condition** $y(\pi/2)=0$: $\cos\pi=-1$, $\sin\frac\pi2=1$, $\cos\frac\pi2=0$.
+$$
+-2A=2
+$$
 
-   $$3+1+c_1=0\quad\Rightarrow\quad c_1=-4$$
+$$
+A-2B=0
+$$
 
-**Answer:** $y=3-\cos2t-4\sin t-2\cos t$.
+Step 5 · Solve.
 
-```graph
-title "Tutorial problem: pick the constants"
-x 0 6.3 label="$t$"
-y -8 8 label="$y$"
-slider c1 -6 6 0 step=0.5 label="$c_1$"
-slider c2 -6 6 0 step=0.5 label="$c_2$"
-curve "3-cos(2*x)" label="$y_p=3-\cos2t$" color=0 dash
-curve "3-cos(2*x)+c1*sin(x)+c2*cos(x)" label="$y=y_p+c_1\sin t+c_2\cos t$" color=1
-point "0" "0" label="must pass $(0,0)$" color=3
-point "pi/2" "0" label="must pass $(\pi/2,0)$" color=3
-readout "$y(0)$" "2+c2"
-readout "$y(\pi/2)$" "4+c1"
-caption "Every $c_1,c_2$ gives a solution of the ODE. Only $c_1=-4$, $c_2=-2$ goes through both points."
-```
+$$
+A=-1,\qquad B=-\tfrac12
+$$
 
-**What does the extra $t$ look like?** When $g$ matches a term of $y_c$, the answer doesn’t just copy the shape of $g$. It keeps growing, like $t\cos2t$ (this is **resonance**). Slide $\omega$ to 2 and watch:
+Step 6 · **Add.**
 
-```graph
-title "Forcing at the natural frequency"
-x 0 12 label="$t$"
-y -25 25 label="$y$"
-slider w 1 3 1.5 step=0.05 label="$\omega$" animate
-curve "if(abs(w-2)<0.001, sin(2*x)-2*x*cos(2*x), 8/(4-w^2)*(sin(w*x)-w/2*sin(2*x)))" label="$y(t)$, starting at rest" color=1
-curve "2*x" label="$\pm2t$" color=0 dash
-curve "-2*x" color=0 dash
-caption "$y''+4y=8\sin\omega t$, starting at rest. Here $y_c$ has $\sin2t$ and $\cos2t$. With $\omega$ far from 2, the swing stays small. At $\omega=2$ the forcing is in $y_c$, $y_p$ needs the extra $t$, and the swing grows along $\pm2t$."
-```
+$$
+y=c_1e^{t}+c_2e^{-2t}-t-\tfrac12
+$$
 
-**Problem: Problem 29 · W6 · A constant forcing, from rest** (introductory)
+**Answer:**
 
-Solve $y''+4y=8$, $\;y(0)=0$, $y'(0)=0$.
+$$
+y=c_1e^{t}+c_2e^{-2t}-t-\tfrac12
+$$
+
+</details>
+
+#### Case 2: f is an exponential
+
+Guess the same exponential:
+
+$$
+3e^{2t}\ \to\ Ae^{2t}
+$$
+
+<details><summary>Full example: $\;y^{\prime\prime}+3y^{\prime}+2y=6e^{t}$ (general solution)</summary>
+
+Step 1 · **Solve $y_c$:** $s^2+3s+2=(s+1)(s+2)$.
+
+$$
+y_c=c_1e^{-t}+c_2e^{-2t}
+$$
+
+Step 2 · **Guess $y_p$:** $e^{t}$ is not in $y_c$. Every derivative of $Ae^{t}$ is $Ae^{t}$.
+
+$$
+y_p=Ae^{t},\qquad y_p^{\prime}=y_p^{\prime\prime}=Ae^{t}
+$$
+
+Step 3 · **Plug in and match:** divide by $e^{t}$.
+
+$$
+A+3A+2A=6\quad\Rightarrow\quad A=1
+$$
+
+Step 4 · **Add.**
+
+$$
+y=c_1e^{-t}+c_2e^{-2t}+e^{t}
+$$
+
+**Answer:**
+
+$$
+y=c_1e^{-t}+c_2e^{-2t}+e^{t}
+$$
+
+</details>
+
+#### Case 3: f is a sin or a cos
+
+Guess **both** $\cos$ and $\sin$, even if $f$ has only one:
+
+$$
+5\sin2t\ \to\ A\cos2t+B\sin2t
+$$
+
+Why both: each derivative swaps $\cos$ and $\sin$, so both show up anyway. Handy fact: two derivatives multiply by $-r^2$:
+
+$$
+(A\cos rt+B\sin rt)^{\prime\prime}=-r^2(A\cos rt+B\sin rt)
+$$
+
+<details><summary>Full example: $\;y^{\prime\prime}+3y^{\prime}+2y=10\sin t$ (general solution)</summary>
+
+Step 1 · **Solve $y_c$:** same quadratic as Case 2.
+
+$$
+y_c=c_1e^{-t}+c_2e^{-2t}
+$$
+
+Step 2 · **Guess $y_p$:** both $\cos t$ and $\sin t$.
+
+$$
+y_p=A\cos t+B\sin t
+$$
+
+$$
+y_p^{\prime}=-A\sin t+B\cos t
+$$
+
+$$
+y_p^{\prime\prime}=-A\cos t-B\sin t
+$$
+
+Step 3 · **Plug in** to $y^{\prime\prime}+3y^{\prime}+2y$ and collect the $\cos t$ and $\sin t$ terms.
+
+$$
+(A+3B)\cos t+(B-3A)\sin t=10\sin t
+$$
+
+Step 4 · **Match:** the right side has no $\cos t$, so its coefficient is $0$.
+
+$$
+A+3B=0
+$$
+
+$$
+B-3A=10
+$$
+
+Step 5 · Solve: $A=-3B$, so $B+9B=10$.
+
+$$
+B=1,\qquad A=-3
+$$
+
+Step 6 · **Add.**
+
+$$
+y=c_1e^{-t}+c_2e^{-2t}-3\cos t+\sin t
+$$
+
+**Answer:**
+
+$$
+y=c_1e^{-t}+c_2e^{-2t}-3\cos t+\sin t
+$$
+
+</details>
+
+**A sum of these?** Guess the sum of their guesses:
+
+$$
+t+e^{t}\ \to\ At+B+De^{t}
+$$
+
+**A $\cos^2t$ or $\sin^2t$?** Turn it into a constant plus $\cos2t$ first:
+
+$$
+\begin{gathered}\cos^2t=\tfrac12+\tfrac12\cos2t, \\ \sin^2t=\tfrac12-\tfrac12\cos2t\end{gathered}
+$$
+
+#### Case 4: the guess is already in y_c
+
+Then plugging it in gives $0$, never $f$. **Multiply the guess by $t$.** Still in $y_c$ (a repeated root)? Multiply by $t^2$.
+
+$$
+y_c=c_1e^{2t}+c_2e^{-t},\quad f=3e^{2t}\quad\Longrightarrow\quad y_p=Ate^{2t}
+$$
+
+<details><summary>Full example: $\;y^{\prime\prime}-y^{\prime}-2y=3e^{2t}$ (general solution)</summary>
+
+Step 1 · **Solve $y_c$:** $s^2-s-2=(s-2)(s+1)$.
+
+$$
+y_c=c_1e^{2t}+c_2e^{-t}
+$$
+
+Step 2 · **Guess $y_p$:** Case 2 says $Ae^{2t}$, but that’s in $y_c$. Multiply by $t$.
+
+$$
+y_p=Ate^{2t}
+$$
+
+Step 3 · Differentiate with the product rule, twice.
+
+$$
+y_p^{\prime}=A(1+2t)e^{2t}
+$$
+
+$$
+y_p^{\prime\prime}=A(4+4t)e^{2t}
+$$
+
+Step 4 · **Plug in** and divide by $e^{2t}$. The $t$ terms cancel.
+
+$$
+A\big[(4+4t)-(1+2t)-2t\big]=3A=3
+$$
+
+Step 5 · **Match.**
+
+$$
+A=1
+$$
+
+Step 6 · **Add.**
+
+$$
+y=c_1e^{2t}+c_2e^{-t}+te^{2t}
+$$
+
+**Answer:**
+
+$$
+y=c_1e^{2t}+c_2e^{-t}+te^{2t}
+$$
+
+</details>
+
+> **Warning:** **Always find $y_c$ before you guess.** That’s the only way to spot Case 4.
+
+#### The tutorial problem (know this cold)
+
+Pre-tutorial 5, the Week 7 tutorial (Oct 26, 28), and the lecture’s own example. Be able to do every step, the two conditions included. ($\ddot y$ is the professor’s way of writing $y^{\prime\prime}$.)
+
+$$
+\ddot y+y=6\cos^2t,\qquad y(0)=0,\quad y(\pi/2)=0
+$$
+
+<details><summary>Full solution: $\;\ddot y+y=6\cos^2t$, $\;y(0)=0$, $\;y(\pi/2)=0$</summary>
+
+Step 1 · **Solve $y_c$:** $s^2+1=0$ gives $s=\pm j$ (B5 Case 3, $\sigma=0$, $\omega=1$).
+
+$$
+y_c=c_1\sin t+c_2\cos t
+$$
+
+Step 2 · No case for $\cos^2t$, so use the identity: a constant plus $\cos2t$.
+
+$$
+6\cos^2t=3+3\cos2t
+$$
+
+Step 3 · **Guess $y_p$:** the constant → $A$ (Case 1). The $\cos2t$ → both $\cos2t$ and $\sin2t$ (Case 3). None is in $y_c$.
+
+$$
+y_p=A+B\cos2t+D\sin2t
+$$
+
+Step 4 · Differentiate twice: each $\cos2t$, $\sin2t$ gets multiplied by $-4$.
+
+$$
+y_p^{\prime\prime}=-4B\cos2t-4D\sin2t
+$$
+
+Step 5 · **Plug in** to $y_p^{\prime\prime}+y_p$ and collect.
+
+$$
+A-3B\cos2t-3D\sin2t=3+3\cos2t
+$$
+
+Step 6 · **Match** the constants, the $\cos2t$’s and the $\sin2t$’s.
+
+$$
+A=3,\qquad B=-1,\qquad D=0
+$$
+
+Step 7 · **Add** $y_c$ **before** the conditions: they belong to the whole $y$.
+
+$$
+y=3-\cos2t+c_1\sin t+c_2\cos t
+$$
+
+Step 8 · **Plug in** $y(0)=0$: $\sin0=0$, $\cos0=1$.
+
+$$
+3-1+c_2=0\quad\Rightarrow\quad c_2=-2
+$$
+
+Step 9 · **Plug in** $y(\pi/2)=0$: $\cos\pi=-1$, $\sin\frac\pi2=1$, $\cos\frac\pi2=0$.
+
+$$
+3+1+c_1=0\quad\Rightarrow\quad c_1=-4
+$$
+
+**Answer:**
+
+$$
+y=3-\cos2t-4\sin t-2\cos t
+$$
+
+</details>
+
+The tutorial hands you the forms of $y_c$ and $y_p$. On the exam they might not: the [Topic E](#topic-e) version has no hints.
+
+#### Practice: B6
+
+**Problem: Problem 27 · W6 · A constant right side, from rest** (introductory)
+
+Solve $y^{\prime\prime}+4y=8$, $\;y(0)=0$, $y^{\prime}(0)=0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** plain-number coefficients, constant forcing. **Complementary:** $s^2+4=0$, $s=\pm j2$.
+1. **Type:** numbers in front, right side $8$ → B6.
+2. **Solve $y_c$:** $s^2+4=0$, $s=\pm j2$ (B5 Case 3).
 
    $$y_c=c_1\cos2t+c_2\sin2t$$
-2. **Guess:** a constant, $y_p=A$ (not in $y_c$). **Substitute:** $0+4A=8$.
+3. **Guess $y_p$:** a constant (Case 1). Not in $y_c$.
 
-   $$y_p=2$$
-3. **Add.**
+   $$y_p=A$$
+4. **Plug in and match:** $y_p^{\prime\prime}=0$.
+
+   $$0+4A=8\quad\Rightarrow\quad A=2$$
+5. **Add.**
 
    $$y=2+c_1\cos2t+c_2\sin2t$$
-4. **Conditions:** $y(0)=2+c_1=0$, and $y^{\prime}(0)=2c_2=0$.
+6. **Differentiate** for $y^{\prime}(0)$.
 
-   $$c_1=-2,\qquad c_2=0$$
+   $$y^{\prime}=-2c_1\sin2t+2c_2\cos2t$$
+7. **Plug in** $t=0$.
 
-**Answer:** $y=2-2\cos2t$. A constant source gives a constant $y_p$, just like an RLC circuit switched onto a DC source ([Topic D](#topic-d)).
+   $$\begin{gathered}y(0)=2+c_1=0\quad\Rightarrow\quad c_1=-2 \\ y^{\prime}(0)=2c_2=0\quad\Rightarrow\quad c_2=0\end{gathered}$$
 
-</details>
-
-**Problem: Problem 30 · W6 · A polynomial guess needs every lower power** (introductory)
-
-Find the general solution of $y''+y'-2y=2t$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** forcing $2t$. **Complementary:** $s^2+s-2=(s+2)(s-1)$.
-
-   $$y_c=c_1e^{t}+c_2e^{-2t}$$
-2. **Guess:** degree 1, so $At+B$. You need the $B$ even though $g$ has no constant.
-
-   $$y_p=At+B,\quad y_p'=A,\quad y_p''=0$$
-3. **Substitute.**
-
-   $$A-2(At+B)=2t$$
-4. **Match** the $t$ terms, then the constants.
-
-   $$-2A=2,\qquad A-2B=0$$
-5. Solve.
-
-   $$A=-1,\qquad B=-\tfrac12$$
-
-**Answer:** $y=c_1e^{t}+c_2e^{-2t}-t-\tfrac12$. With only $At$, you’d need $A=-1$ (from the $t$ terms) and $A=0$ (from the constants) at once, which is impossible.
+**Answer:** $y=2-2\cos2t$. A constant source gives a constant $y_p$, like an RLC circuit switched onto DC ([D2](#d2)).
 
 </details>
 
-**Problem: Problem 31 · W6 · The guess is already in the complementary solution** (intermediate)
+**Problem: Problem 28 · W6 · Choose the form; do not solve** (intermediate)
 
-Find the general solution of $y''-y'-2y=3e^{2t}$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** exponential forcing. **Complementary:** $s^2-s-2=(s-2)(s+1)$.
-
-   $$y_c=c_1e^{2t}+c_2e^{-t}$$
-2. **Guess:** the table says $Ae^{2t}$, but that’s in $y_c$ (it would give $0=3e^{2t}$). Multiply by $t$.
-
-   $$y_p=Ate^{2t}$$
-3. Product rule, twice.
-
-   $$y_p'=A(1+2t)e^{2t},\qquad y_p''=A(4+4t)e^{2t}$$
-4. **Substitute** and divide by $e^{2t}$. The $t$ terms cancel.
-
-   $$A\big[(4+4t)-(1+2t)-2t\big]=3A=3$$
-5. Solve.
-
-   $$A=1$$
-
-**Answer:** $y_p=te^{2t}$, so $y=c_1e^{2t}+c_2e^{-t}+te^{2t}$.
-
-</details>
-
-**Problem: Problem 32 · W6 · Choose the form; do not solve** (intermediate)
-
-For $y''-2y'+y=g(t)$, write the guess for $y_p$ when $g$ is (a) $t^2$, (b) $e^{-t}$, (c) $e^t$, (d) $\cos t$.
+For $y^{\prime\prime}-2y^{\prime}+y=f(t)$, write the guess for $y_p$ when $f$ is (a) $t^2$, (b) $e^{-t}$, (c) $e^t$, (d) $\cos t$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** guessing only. Find the **complementary** first: $s^2-2s+1=(s-1)^2$, a repeated root.
+1. **Solve $y_c$ first** (you need it for Case 4): $s^2-2s+1=(s-1)^2$, a repeated root.
 
-   $$y_c=(c_1+c_2t)e^t$$
-2. (a) Degree 2, so all lower powers too.
+   $$y_c=(c_1+c_2t)\,e^{t}$$
+2. (a) Case 1, degree 2: every lower power too.
 
-   $$At^2+Bt+C$$
-3. (b) $e^{-t}$ is not in $y_c$.
+   $$At^2+Bt+D$$
+3. (b) Case 2. $e^{-t}$ is not in $y_c$.
 
    $$Ae^{-t}$$
-4. (c) $Ae^t$ is in $y_c$, and so is $Ate^t$. Multiply by $t^2$.
+4. (c) Case 4. $Ae^t$ is in $y_c$, and so is $Ate^t$. Multiply by $t^2$.
 
-   $$At^2e^t$$
-5. (d) Cosine needs both cosine and sine.
+   $$At^2e^{t}$$
+5. (d) Case 3: both $\cos$ and $\sin$.
 
    $$A\cos t+B\sin t$$
 
-**Answer:** (a) $At^2+Bt+C$. (b) $Ae^{-t}$. (c) $At^2e^t$. (d) $A\cos t+B\sin t$.
+**Answer:** (a) $At^2+Bt+D$. (b) $Ae^{-t}$. (c) $At^2e^{t}$. (d) $A\cos t+B\sin t$.
 
 </details>
 
-**Problem: Problem 33 · W6 · A trig guess that is already in the complementary solution** (advanced)
+**Problem: Problem 29 · W6 · A trig guess that is already in y_c** (advanced)
 
-Find a particular solution of $y''+9y=12\cos3t$. Use $(tf)^{\prime\prime}=tf^{\prime\prime}+2f^{\prime}$ from the calculus table.
+Find a particular solution of $y^{\prime\prime}+9y=12\cos3t$. Use $(t\,u)^{\prime\prime}=t\,u^{\prime\prime}+2u^{\prime}$ (product rule twice).
 
 <details><summary>Solution</summary>
 
-1. **Type:** trig forcing. **Complementary:** $y_c=c_1\cos3t+c_2\sin3t$ already has $\cos3t$, so multiply the guess by $t$.
+1. **Solve $y_c$:** $s=\pm j3$.
 
-   $$y_p=t\,f,\qquad f=A\cos3t+B\sin3t$$
-2. **Substitute:** $f^{\prime\prime}=-9f$, so the $t$ terms cancel in $y_p^{\prime\prime}+9y_p$.
+   $$y_c=c_1\cos3t+c_2\sin3t$$
+2. **Guess $y_p$:** Case 3 says $A\cos3t+B\sin3t$, but that’s in $y_c$. Case 4: multiply by $t$.
 
-   $$y_p''+9y_p=t(f''+9f)+2f'=2f'$$
-3. Differentiate $f$.
+   $$\begin{gathered}y_p=t\,u \\ u=A\cos3t+B\sin3t\end{gathered}$$
+3. **Plug in:** $u^{\prime\prime}=-9u$, so the $t$ terms cancel.
 
-   $$2f'=-6A\sin3t+6B\cos3t$$
-4. **Match** with $12\cos3t$.
+   $$y_p^{\prime\prime}+9y_p=t(u^{\prime\prime}+9u)+2u^{\prime}=2u^{\prime}$$
+4. Differentiate $u$.
+
+   $$2u^{\prime}=-6A\sin3t+6B\cos3t$$
+5. **Match** with $12\cos3t$.
 
    $$6B=12,\qquad -6A=0$$
 
-**Answer:** $A=0$, $B=2$: $y_p=2t\sin3t$. The swing grows like $2t$, as in the graph above.
+**Answer:** $A=0$, $B=2$: $\;y_p=2t\sin3t$. It keeps growing like $2t$: that’s **resonance**.
 
 </details>
 
-### B7 · Reduction of order
+### B7 · Reduction of order: t in front, one solution given
 
 [Week 6 · Topic 1](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/357f26bd-d16c-4769-af0a-d1b2f535d62e#400c9eda-6dcb-4cf4-9c21-265384342cb1)
 
-**What if the coefficients have $t$ in them?** Like $y^{\prime\prime}-ty^{\prime}+y=0$. The $e^{st}$ guess from [B5](#b5) only works when the coefficients are plain numbers, so it fails here.
+**Use this when** it’s second order with $t$ in front (so [B5](#b5) fails), and they **give you one solution** $y_1$:
 
-But if the question **gives you one solution**, $y_1$, then reduction of order finds the second one.
+$$
+y^{\prime\prime}-t\,y^{\prime}+y=0,\qquad y_1=t
+$$
 
-First get $y^{\prime\prime}$ alone (divide by whatever multiplies it):
+Write it with $y^{\prime\prime}$ alone (divide by whatever multiplies it):
 
-$$y^{\prime\prime}+p(t)\,y^{\prime}+q(t)\,y=0$$
+$$
+y^{\prime\prime}+p(t)\,y^{\prime}+q(t)\,y=0
+$$
 
 - $p(t)$ = what multiplies $y^{\prime}$, sign included
 - $q(t)$ = what multiplies $y$
-- $y_1(t)$ = the solution you’re given. Check it first: plug it in, you should get $0$.
+- $y_1$ = the solution you’re given. Check it: plug it in, you should get $0$.
 
-Examples:
+**Short example:**
 
-- $y^{\prime\prime}-ty^{\prime}+y=0$ with $y_1=t$: $p=-t$, $q=1$. Check: $0-t\cdot1+t=0$ ✓.
-- $t^2y^{\prime\prime}-3ty^{\prime}+4y=0$ with $y_1=t^2$: divide by $t^2$, so $p=-\frac3t$, $q=\frac4{t^2}$. Check: $2t^2-6t^2+4t^2=0$ ✓.
+$$
+t^2y^{\prime\prime}-3ty^{\prime}+4y=0\quad\Longrightarrow\quad y^{\prime\prime}-\dfrac3t\,y^{\prime}+\dfrac4{t^2}\,y=0
+$$
 
-**The idea.** Guess the second solution as the one you know, times an unknown function $v(t)$:
+$$
+p=-\dfrac3t,\qquad q=\dfrac{4}{t^2}
+$$
 
-$$y=y_1\,v$$
+**The move: guess $y=y_1\,v$.** The known solution times an unknown function $v(t)$.
 
-Example: with $y_1=t$, try $y=tv$. When you plug it in, every term with a plain $v$ cancels, because $y_1$ already solves the ODE.
+$$
+y=y_1\,v
+$$
 
-Only $v^{\prime}$ and $v^{\prime\prime}$ are left. Call $z=v^{\prime}$, and you have a **first-order** equation in $z$. The order went down by one: that’s the name.
+When you plug it in, every term with a plain $v$ **cancels**. Only $v^{\prime}$ and $v^{\prime\prime}$ are left. Call $z=v^{\prime}$ and it’s a **first-order** equation ([B1](#b1) or [B2](#b2)).
 
-**Method:**
+<details><summary>Why do the plain-$v$ terms cancel? (optional)</summary>
 
-1. **Substitute** $y=y_1v$, with $y^{\prime}=y_1^{\prime} v+y_1v^{\prime}$ and $y^{\prime\prime}=y_1^{\prime\prime} v+2y_1^{\prime} v^{\prime}+y_1v^{\prime\prime}$.
-2. **Collect** terms. The plain-$v$ terms cancel.
-3. **Set $z=v^{\prime}$** and solve the first-order equation for $z$. It’s usually separable ([B1](#b1)) or linear ([B2](#b2)).
-4. **Integrate:** $v=\int z\,dt$, plus a constant.
-5. **Multiply back:** $y=y_1v$. The constant from step 4 gives back $C\,y_1$, the solution you started with.
+After you substitute, gather everything that multiplies $v$ itself. You get
 
-**Check with the formula.** All of those steps always end at:
+$$
+v\,(y_1^{\prime\prime}+p\,y_1^{\prime}+q\,y_1)
+$$
 
-$$y_2=y_1\int\dfrac{e^{-\int p\,dt}}{y_1^{\,2}}\,dt$$
-
-Example: $t^2y^{\prime\prime}-ty^{\prime}+y=0$ with $y_1=t$ ($t>0$). Divide by $t^2$: $p=-\frac1t$, so $e^{-\int p\,dt}=e^{\ln t}=t$, and $y_2=t\int\frac{t}{t^2}\,dt=t\ln t$.
-
-Use it to check your answer, or as a shortcut if the question lets you.
-
-**Calculus you need here:**
-
-| Expression | Result | Note |
-|---|---|---|
-| $(y_1v)^{\prime}$ | $y_1^{\prime} v+y_1v^{\prime}$ | product rule |
-| $(y_1v)^{\prime\prime}$ | $y_1^{\prime\prime} v+2y_1^{\prime} v^{\prime}+y_1v^{\prime\prime}$ | product rule twice; the two $y_1^{\prime} v^{\prime}$ terms add up |
-| $\int\frac1z\,dz$ | $\ln|z|$ | for the separable $z$ equation |
-| $e^{-2\ln t}$ | $\dfrac{1}{t^2}$ | $e^{k\ln t}=t^k$ |
-| $\int\dfrac{e^{t^2/2}}{t^2}\,dt$ | no formula | leave it as an integral; that counts as a full answer |
-
-> **Info:** **Bonus (skip-safe): why the plain-$v$ terms cancel.** After you substitute, gather everything that multiplies $v$ itself. You get $v\,(y_1^{\prime\prime}+p\,y_1^{\prime}+q\,y_1)$. The bracket is just $y_1$ plugged into the ODE, which is $0$ because $y_1$ is a solution.
-
-The professor’s example, step by step:
-
-```steps
-title "Lecture: reduce y″ − t y′ + y = 0, given y₁ = t"
-$$ y''-ty'+y=0,\qquad y_1=t $$
-Check: $y_1=t$ gives $0-t+t=0$.
-$$ y=\hl{tv} $$
-Multiply the known solution by an unknown $v$.
-$$ y'=\hl{v+tv'},\qquad y''=\hl{2v'+tv''} $$
-Product rule (calculus table).
-$$ (2v'+tv'')-t(v+tv')+tv=0 $$
-Plug all three into the ODE.
-$$ \hl{tv''+(2-t^2)v'}=0 $$
-Collect terms. The $-tv$ and $+tv$ cancel.
-$$ t\hl{z'}+(2-t^2)\hl{z}=0 $$
-Set $z=v^{\prime}$: now it’s first order in $z$.
-```
-
-**Example: Example 8 · W6 · Finish the lecture example · handwritten notes p. 1–2**
-
-Solve $tz'+(2-t^2)z=0$ (from the stepper above), then find the general solution of $y''-ty'+y=0$ for $t\neq0$.
-
-1. **Type:** the $z$ equation is separable. Divide by $tz$ and move the $t$ terms to the right.
-
-   $$\dfrac{dz}{z}=\dfrac{t^2-2}{t}\,dt=\left(t-\dfrac2t\right)dt$$
-2. **Integrate** both sides: $\int\frac1z\,dz=\ln|z|$.
-
-   $$\ln|z|=\dfrac{t^2}2-2\ln|t|+C$$
-3. Exponentiate. $e^{-2\ln|t|}=1/t^2$.
-
-   $$z=C_1\,\dfrac{e^{t^2/2}}{t^2}$$
-4. **Integrate** again, $v=\int z\,dt$. This integral has no formula, so leave it as is.
-
-   $$v=C_1\int\dfrac{e^{t^2/2}}{t^2}\,dt+C_2$$
-5. **Multiply back** by $y_1=t$.
-
-   $$y=tv$$
-
-**Answer:** $y=C_2\,t+C_1\,t\displaystyle\int\frac{e^{t^2/2}}{t^2}\,dt$. Formula check: $p=-t$, so $e^{-\int p\,dt}=e^{t^2/2}$ and $y_1^2=t^2$. ✓
-
-**Problem: Problem 34 · W5 + W6 · Where the repeated-root t comes from** (introductory)
-
-$y''+4y'+4y=0$ has the repeated characteristic root $s=-2$, so $y_1=e^{-2t}$. Use reduction of order to find the general solution.
-
-<details><summary>Solution</summary>
-
-1. **Type:** one solution given, so reduction of order. **Substitute** $y=e^{-2t}v$.
-
-   $$y'=e^{-2t}(v'-2v)$$
-2. Differentiate again.
-
-   $$y''=e^{-2t}(v''-4v'+4v)$$
-3. **Collect:** plug in and divide by $e^{-2t}$. This time the $v^{\prime}$ terms cancel too.
-
-   $$(v''-4v'+4v)+4(v'-2v)+4v=v''=0$$
-4. **Integrate** twice.
-
-   $$v=C_1+C_2t$$
-5. **Multiply back.**
-
-   $$y=(C_1+C_2t)\,e^{-2t}$$
-
-**Answer:** $y=(C_1+C_2t)e^{-2t}$. That’s the repeated-root row of [B5](#b5): the extra $t$ came from $v$.
+The bracket is just $y_1$ plugged into the ODE, which is $0$ because $y_1$ is a solution.
 
 </details>
 
-**Problem: Problem 35 · W6 · A second solution with a logarithm** (intermediate)
+**Steps**
 
-For $t>0$, $y_1=t^2$ solves $t^2y''-3ty'+4y=0$. Find the general solution.
+1. **Write** it with $y^{\prime\prime}$ alone. Read $p$, $q$. Check $y_1$.
+2. **Substitute** $y=y_1v$. Use the product rule for $y^{\prime}$ and $y^{\prime\prime}$ (below).
+3. **Plug in and collect.** The plain-$v$ terms cancel.
+4. **Solve for $z$:** set $z=v^{\prime}$. It’s first order: separate it ([B1](#b1)).
+5. **Integrate:** $v=\int z\,dt+c_2$.
+6. **Multiply back:** $y=y_1v$. The $c_2$ gives back $c_2\,y_1$, the solution you started with.
+7. **Plug in** the conditions, if they give any.
+
+The product rule for $y=y_1v$:
+
+$$
+y^{\prime}=y_1^{\prime}\,v+y_1\,v^{\prime}
+$$
+
+$$
+y^{\prime\prime}=y_1^{\prime\prime}\,v+2y_1^{\prime}\,v^{\prime}+y_1\,v^{\prime\prime}
+$$
+
+**Short example:** with $y_1=t$:
+
+$$
+y=tv\quad\Longrightarrow\quad y^{\prime}=v+tv^{\prime},\quad y^{\prime\prime}=2v^{\prime}+tv^{\prime\prime}
+$$
+
+**The professor’s example**, step by step (press the arrows):
+
+```steps
+title "Lecture: reduce y″ − t y′ + y = 0, given y₁ = t"
+$$ y^{\prime\prime}-ty^{\prime}+y=0,\qquad y_1=t $$
+**Write.** Check: $y_1=t$ gives $0-t+t=0$.
+$$ y=\hl{tv} $$
+**Substitute:** the known solution times an unknown $v$.
+$$ y^{\prime}=\hl{v+tv^{\prime}},\qquad y^{\prime\prime}=\hl{2v^{\prime}+tv^{\prime\prime}} $$
+Product rule.
+$$ (2v^{\prime}+tv^{\prime\prime})-t(v+tv^{\prime})+tv=0 $$
+**Plug in** all three.
+$$ \hl{tv^{\prime\prime}+(2-t^2)v^{\prime}}=0 $$
+**Collect.** The $-tv$ and $+tv$ cancel.
+$$ t\hl{z^{\prime}}+(2-t^2)\hl{z}=0 $$
+Set $z=v^{\prime}$: now it’s first order in $z$.
+```
+
+<details><summary>Finish the lecture example: solve $\;tz^{\prime}+(2-t^2)z=0$, then find $y$</summary>
+
+Step 1 · **Solve for $z$:** it separates. Divide by $tz$ and move the $t$ terms right.
+
+$$
+\dfrac{dz}{z}=\dfrac{t^2-2}{t}\,dt=\left(t-\dfrac2t\right)dt
+$$
+
+Step 2 · Integrate both sides.
+
+$$
+\ln|z|=\dfrac{t^2}2-2\ln|t|+C
+$$
+
+Step 3 · Raise $e$ to both sides. $e^{-2\ln|t|}=\frac1{t^2}$, and $e^{C}$ is a new constant $c_1$.
+
+$$
+z=c_1\,\dfrac{e^{t^2/2}}{t^2}
+$$
+
+Step 4 · **Integrate** $v=\int z\,dt$. This integral has no formula, so leave it as is.
+
+$$
+v=c_1\int\dfrac{e^{t^2/2}}{t^2}\,dt+c_2
+$$
+
+Step 5 · **Multiply back** by $y_1=t$.
+
+$$
+y=tv
+$$
+
+**Answer:**
+
+$$
+y=c_2\,t+c_1\,t\displaystyle\int\frac{e^{t^2/2}}{t^2}\,dt
+$$
+
+</details>
+
+<details><summary>Full example: $\;t^2y^{\prime\prime}-3ty^{\prime}+4y=0$, $\;y_1=t^2$, $\;t>0$</summary>
+
+Step 1 · **Write:** divide by $t^2$. Check $y_1$: $2t^2-6t^2+4t^2=0$ ✓.
+
+$$
+y^{\prime\prime}-\dfrac3t\,y^{\prime}+\dfrac4{t^2}\,y=0
+$$
+
+Step 2 · **Substitute** $y=t^2v$ (product rule).
+
+$$
+y^{\prime}=2tv+t^2v^{\prime}
+$$
+
+$$
+y^{\prime\prime}=2v+4tv^{\prime}+t^2v^{\prime\prime}
+$$
+
+Step 3 · **Plug in and collect** (into the original, times $t^2$). The plain-$v$ terms cancel: $2-6+4=0$.
+
+$$
+t^4v^{\prime\prime}+t^3v^{\prime}=0
+$$
+
+Step 4 · **Solve for $z$:** divide by $t^4$, set $z=v^{\prime}$, separate.
+
+$$
+z^{\prime}+\dfrac zt=0
+$$
+
+$$
+\dfrac{dz}{z}=-\dfrac{dt}{t}\quad\Rightarrow\quad z=\dfrac{c_1}{t}
+$$
+
+Step 5 · **Integrate:** $\int\frac1t\,dt=\ln t$ for $t>0$.
+
+$$
+v=c_1\ln t+c_2
+$$
+
+Step 6 · **Multiply back** by $t^2$.
+
+$$
+y=c_1t^2\ln t+c_2t^2
+$$
+
+**Answer:**
+
+$$
+y=c_1t^2\ln t+c_2t^2
+$$
+
+</details>
+
+<details><summary>Check your answer: $\;y_2=y_1\displaystyle\int\dfrac{e^{-\int p\,dt}}{y_1^{\,2}}\,dt$</summary>
+
+Step 1 · All the steps above always end at this formula. Use it to check, or as a shortcut if the question lets you. Same $p$ as in [B2](#b2).
+
+$$
+y_2=y_1\int\dfrac{e^{-\int p\,dt}}{y_1^{\,2}}\,dt
+$$
+
+Step 2 · Example: $t^2y^{\prime\prime}-3ty^{\prime}+4y=0$, $y_1=t^2$. Here $p=-\frac3t$.
+
+$$
+e^{-\int p\,dt}=e^{3\ln t}=t^3
+$$
+
+Step 3 · Plug in.
+
+$$
+y_2=t^2\int\dfrac{t^3}{t^4}\,dt=t^2\ln t\quad\checkmark
+$$
+
+</details>
+
+> **Warning:** **Divide first.** $p$ is what multiplies $y^{\prime}$ **after** $y^{\prime\prime}$ stands alone. In $t^2y^{\prime\prime}-3ty^{\prime}+4y=0$, $p=-\frac3t$, not $-3t$.
+
+> **Tip:** **An integral with no formula**, like $\int\frac{e^{t^2/2}}{t^2}dt$, can stay as an integral. That counts as a full answer.
+
+#### Practice: B7
+
+**Problem: Problem 30 · W5 + W6 · Where the repeated-root t comes from** (introductory)
+
+$y^{\prime\prime}+4y^{\prime}+4y=0$ has the repeated root $s=-2$, so $y_1=e^{-2t}$. Use reduction of order to find the general solution.
 
 <details><summary>Solution</summary>
 
-1. **Type:** $t$ in the coefficients, one solution given. **Substitute** $y=t^2v$.
+1. **Type:** one solution given → B7.
+2. **Substitute** $y=e^{-2t}v$ (product rule).
 
-   $$y'=2tv+t^2v',\qquad y''=2v+4tv'+t^2v''$$
-2. **Collect:** the plain-$v$ terms cancel ($2-6+4=0$).
+   $$\begin{gathered}y^{\prime}=e^{-2t}(v^{\prime}-2v) \\ y^{\prime\prime}=e^{-2t}(v^{\prime\prime}-4v^{\prime}+4v)\end{gathered}$$
+3. **Plug in and collect**, then divide by $e^{-2t}$. This time the $v^{\prime}$ terms cancel too.
 
-   $$t^4v''+t^3v'=0$$
-3. Divide by $t^4$ and **set $z=v^{\prime}$**.
+   $$(v^{\prime\prime}-4v^{\prime}+4v)+4(v^{\prime}-2v)+4v=v^{\prime\prime}=0$$
+4. **Solve for $z$:** $z=v^{\prime}$, and $z^{\prime}=0$.
 
-   $$z'+\dfrac zt=0$$
-4. Separate: $\int\frac{dz}{z}=-\int\frac{dt}{t}$, so $\ln|z|=-\ln t+C$.
+   $$z=c_2$$
+5. **Integrate.**
 
-   $$z=\dfrac{C_2}t$$
-5. **Integrate:** $\int\frac1t\,dt=\ln t$ for $t>0$.
+   $$v=c_1+c_2t$$
+6. **Multiply back.**
 
-   $$v=C_1+C_2\ln t$$
-6. **Multiply back** by $t^2$.
+   $$y=(c_1+c_2t)\,e^{-2t}$$
 
-   $$y=C_1t^2+C_2t^2\ln t$$
+**Answer:** $y=(c_1+c_2t)e^{-2t}$. That’s [B5](#b5) Case 2: the extra $t$ came from $v$.
 
-**Answer:** $y=C_1t^2+C_2t^2\ln t$. Formula check: $p=-\frac3t$, $e^{-\int p\,dt}=t^3$, $\int\frac{t^3}{t^4}dt=\ln t$. ✓
+</details>
+
+**Problem: Problem 31 · W6 · A second solution with a logarithm** (intermediate)
+
+For $t>0$, $y_1=t$ solves $t^2y^{\prime\prime}-ty^{\prime}+y=0$. Find the general solution.
+
+<details><summary>Solution</summary>
+
+1. **Type:** $t$ in front, one solution given → B7.
+2. **Substitute** $y=tv$ (product rule).
+
+   $$\begin{gathered}y^{\prime}=v+tv^{\prime} \\ y^{\prime\prime}=2v^{\prime}+tv^{\prime\prime}\end{gathered}$$
+3. **Plug in and collect.** The plain-$v$ terms cancel: $-tv+tv=0$.
+
+   $$\begin{gathered}t^2(2v^{\prime}+tv^{\prime\prime})-t(v+tv^{\prime})+tv=0 \\ t^3v^{\prime\prime}+t^2v^{\prime}=0\end{gathered}$$
+4. **Solve for $z$:** divide by $t^3$, set $z=v^{\prime}$, separate.
+
+   $$\begin{gathered}z^{\prime}+\dfrac zt=0 \\ z=\dfrac{c_1}{t}\end{gathered}$$
+5. **Integrate.**
+
+   $$v=c_1\ln t+c_2$$
+6. **Multiply back** by $t$.
+
+   $$y=c_1t\ln t+c_2t$$
+
+**Answer:** $y=c_1t\ln t+c_2t$. Formula check: $p=-\frac1t$, $e^{-\int p\,dt}=t$, $y_2=t\int\frac{t}{t^2}dt=t\ln t$ ✓.
 
 </details>
 
@@ -1797,61 +3146,74 @@ For $t>0$, $y_1=t^2$ solves $t^2y''-3ty'+4y=0$. Find the general solution.
 
 [Week 3 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#8c746b9b-2fbf-48f4-8a2d-704a643bdcf7) [Week 5 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#b4f41ebe-f4f6-4d5d-816d-ceaa37811b8f)
 
-**Can you answer without solving?** Some questions ask “is there exactly one solution?” or “on what interval is one guaranteed?”. You don’t solve the ODE. You check a theorem instead:
+**Use this when** the question asks “is there exactly one solution?” or “on what interval is one guaranteed?”.
 
-- **First order,** like $y^{\prime}=\dfrac ty$ → [C1](#c1).
-- **Second-order linear,** like $t\,y^{\prime\prime}+y=0$ → [C2](#c2).
+**The move: don’t solve anything.** Write the equation in its form, then look for where something **breaks**:
 
-Both checks work the same way. Write the equation in a standard form, then look for the spots where something breaks:
+$$
+\begin{gathered}\dfrac{t}{y}\ \text{breaks at}\ y=0, \\ \ln t\ \text{breaks at}\ t\le0, \\ \sqrt{y}\ \text{breaks at}\ y<0\end{gathered}
+$$
 
-- **Division by zero:** $\dfrac ty$ breaks at $y=0$.
-- **$\ln$ of zero or a negative:** $\ln t$ breaks at $t\le0$.
-- **Square root of a negative:** $\sqrt y$ breaks at $y<0$.
+- First order, like $y^{\prime}=\dfrac ty$ → [C1](#c1).
+- Second-order linear, like $t\,y^{\prime\prime}+y=0$ → [C2](#c2).
 
-### C1 · First order: is there exactly one solution through this point?
+### C1 · First order: exactly one solution through this point?
 
 [Week 3 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#8c746b9b-2fbf-48f4-8a2d-704a643bdcf7)
 
-**When:** you get $\dfrac{dy}{dt}=F(t,y)$ and a starting point $(t_0,y_0)$. The question asks if exactly one solution goes through that point.
+**Use this when** you get $y^{\prime}=F(t,y)$ and a starting point $(t_0,y_0)$:
 
-First get the derivative alone on the left:
+$$
+\dfrac{dy}{dt}=\dfrac{t}{y},\qquad y(2)=1
+$$
 
-$$\dfrac{dy}{dt}=F(t,y)$$
+**The rule:** check $F$ and its $y$-derivative $F_y$ near the point.
 
-- $F(t,y)$ = everything on the right side
-- $\dfrac{\partial F}{\partial y}$ (or $F_y$) = the **partial derivative** in $y$: differentiate in $y$ and treat $t$ like a number. Example: $F=y^2+t$ gives $F_y=2y$ (the $t$ is a constant, so it disappears).
+- **Both fine** (no blow-ups) → yes, **exactly one** solution through the point.
+- **One breaks** → the theorem says **nothing**. That means “don’t know”, not “no”.
 
-**The theorem** (Spiegel, used in the Week 3 lecture):
+<details><summary>The theorem, and why $F_y$ matters (optional)</summary>
 
-> **Info:** If $F$ and $\dfrac{\partial F}{\partial y}$ are both continuous (no blow-ups, no gaps) near $(t_0,y_0)$, then **exactly one** solution passes through $(t_0,y_0)$.
+**Theorem** (Spiegel, Week 3 lecture): if $F$ and $\dfrac{\partial F}{\partial y}$ are both continuous near $(t_0,y_0)$, then exactly one solution passes through $(t_0,y_0)$.
 
-So there are two outcomes:
+$F_y$ says how fast the slope changes as you move up or down. If it stays finite, two solutions that start at the same point can never drift apart. For $\sqrt y$ it is infinite at $y=0$, so a curve can sit on the axis and then “peel off” at any moment (graph below).
 
-- **Both are fine** → yes, exactly one solution (at least for $t$ near $t_0$).
-- **One breaks** → the theorem says **nothing**. There could be no solution, one, or many. A fail means “don’t know”, not “no”.
+</details>
 
-Why $F_y$ matters: it says how fast the slope changes as you move up or down. If it blows up, solutions can split apart (see the graph below).
+**Steps**
 
-Mini examples:
+1. **Write** it as $y^{\prime}=F(t,y)$: get $y^{\prime}$ alone.
+2. **Differentiate** $F$ in $y$, treating $t$ like a number. That’s $F_y$.
+3. **Find where it breaks:** where $F$ or $F_y$ has a $0$ in a denominator, $\ln$ of $\le0$, or $\sqrt{\ }$ of $<0$.
+4. **Check the point:** away from those spots → exactly one solution. On them → no conclusion.
 
-- $y^{\prime}=t^2+3ty$: $F_y=3t$. Both are fine everywhere → exactly one solution through **every** point.
-- $y^{\prime}=\dfrac{t}{y}$: $F_y=-\dfrac{t}{y^2}$. Both break on the line $y=0$ → guaranteed only at points with $y_0\neq0$.
+**Short examples:**
 
-**Method:**
+$$
+F=t^2+3ty\quad\Longrightarrow\quad F_y=3t\quad\text{(never breaks: every point is fine)}
+$$
 
-1. **Write $F$:** get $\dfrac{dy}{dt}$ alone.
-2. **Differentiate:** find $\dfrac{\partial F}{\partial y}$, treating $t$ as a number.
-3. **Find the bad set:** where does $F$ or $\dfrac{\partial F}{\partial y}$ break? Look for a 0 in a denominator, $\ln$ of $\le0$, $\sqrt{\ }$ of $<0$. Example: $y^{-1/2}=\dfrac{1}{\sqrt y}$ breaks at $y=0$.
-4. **Check the point:** is $(t_0,y_0)$ away from the bad set? Yes → exactly one solution. No → no conclusion.
+$$
+F=\dfrac ty\quad\Longrightarrow\quad F_y=-\dfrac{t}{y^2}\quad\text{(breaks at }y=0)
+$$
 
-**Calculus you need here:**
+<details><summary>Differentiate in $y$: $\;\dfrac{\partial}{\partial y}\Big(\dfrac{2t-(\ln t)\,y}{t-3}\Big)=-\dfrac{\ln t}{t-3}$</summary>
 
-| $F$ | $\dfrac{\partial F}{\partial y}$ | Note |
-|---|---|---|
-| $t^2+3ty$ | $3t$ | $t$ is a number here, so $t^2$ disappears |
-| $\dfrac{t}{y}=t\,y^{-1}$ | $-t\,y^{-2}$ | power rule in $y$ |
-| $\sqrt{y}=y^{1/2}$ | $\dfrac{1}{2\sqrt y}$ | breaks at $y=0$ |
-| $\dfrac{2t-(\ln t)\,y}{t-3}$ | $-\dfrac{\ln t}{t-3}$ | only the $y$ term survives |
+Step 1 · Treat $t$ like a number. Split the fraction: the $2t$ part has no $y$, so it gives $0$.
+
+$$
+\dfrac{2t}{t-3}-\dfrac{\ln t}{t-3}\,y\quad\Longrightarrow\quad F_y=-\dfrac{\ln t}{t-3}
+$$
+
+Step 2 · Power rule in $y$:
+
+$$
+\dfrac{\partial}{\partial y}\big(t\,y^{-1}\big)=-t\,y^{-2},\qquad \dfrac{\partial}{\partial y}\sqrt y=\dfrac{1}{2\sqrt y}
+$$
+
+</details>
+
+**What does “no guarantee” look like?**
 
 ```graph
 title "$y^{\prime}=\sqrt{y}$: one solution through $(1,4)$, many through $(1,0)$"
@@ -1863,61 +3225,71 @@ family c 1 3 0.5 "if(x>c,(x-c)^2/4,0)" color=2 label="also solutions through $(1
 curve "((x+3)/2)^2" from=-3 label="the only solution through $(1,4)$" color=3
 point "1" "0" color=1
 point "1" "4" color=3
-caption "At $y=0$, $\partial F/\partial y=1/(2\sqrt y)$ blows up, so the theorem gives no guarantee. And in fact many curves leave $(1,0)$: each sits at 0 for a while, then rises as $(t-c)^2/4$. Above the axis nothing breaks, and only one curve goes through each point."
+caption "At $y=0$, $F_y=1/(2\sqrt y)$ blows up, so no guarantee. And in fact many curves leave $(1,0)$. Above the axis nothing breaks, and only one curve goes through each point."
 ```
 
-> **Info:** **Bonus (skip-safe): why a blown-up $\partial F/\partial y$ allows several solutions.** $\partial F/\partial y$ says how much the slope changes when you move a little up or down. If it stays finite, two solutions that start at the same point can never drift apart. For $\sqrt y$ it is infinite at $y=0$, so a curve can sit on the axis and then “peel off” at any moment.
+#### Practice: C1
 
-**Problem: Problem 36 · W3 · Same equation, two starting points** (introductory)
+**Problem: Problem 32 · W3 · Same equation, two starting points** (introductory)
 
 For $\dfrac{dy}{dt}=\sqrt{y}$: (a) does the theorem guarantee a unique solution through $(1,4)$? (b) through $(1,0)$? For (b), check that $y=0$ and $y=\dfrac{(t-1)^2}{4}$ (for $t\ge1$) both pass through $(1,0)$ and solve the ODE.
 
 <details><summary>Solution</summary>
 
-1. **Type:** existence and uniqueness, first order. $F=\sqrt y$.
-2. **Differentiate** in $y$.
+1. **Type:** exactly one solution? First order → C1.
+2. **Write.**
 
-   $$\dfrac{\partial F}{\partial y}=\dfrac{1}{2\sqrt y}$$
-3. **Bad set:** $F$ needs $y\ge0$, and $F_y$ breaks at $y=0$. So the bad set is $y\le0$.
-4. **Check (a):** $(1,4)$ has $y_0=4>0$, so both are fine around it → unique.
-5. **Check (b):** $(1,0)$ sits on $y=0$, in the bad set → the theorem tells you nothing.
-6. **Two solutions:** for $y=\frac{(t-1)^2}{4}$, $y^{\prime}=\frac{t-1}{2}$ and $\sqrt y=\frac{t-1}{2}$ when $t\ge1$ ✓. For $y=0$, $0=\sqrt0$ ✓. Both equal 0 at $t=1$.
+   $$F=\sqrt y$$
+3. **Differentiate** in $y$.
 
-**Answer:** (a) Yes, exactly one solution through $(1,4)$. (b) The theorem gives no guarantee, and in fact at least two solutions pass through $(1,0)$.
+   $$F_y=\dfrac{1}{2\sqrt y}$$
+4. **Find where it breaks:** $F$ needs $y\ge0$, and $F_y$ blows up at $y=0$.
+
+   $$y\le0$$
+5. **Check the points:** (a) $(1,4)$ has $y_0=4>0$ → unique. (b) $(1,0)$ is on $y=0$ → no guarantee.
+6. **Two solutions through $(1,0)$:** for $y=\frac{(t-1)^2}{4}$, $y^{\prime}=\frac{t-1}{2}=\sqrt y$ when $t\ge1$ ✓. For $y=0$: $0=\sqrt0$ ✓.
+
+**Answer:** (a) Yes, exactly one solution through $(1,4)$. (b) No guarantee, and in fact at least two solutions pass through $(1,0)$.
 
 </details>
 
-**Problem: Problem 37 · W3 · Which points are guaranteed?** (introductory)
+**Problem: Problem 33 · W3 · Which points are guaranteed?** (introductory)
 
 For $\dfrac{dy}{dt}=\dfrac{t}{y}$, decide whether the theorem guarantees a unique solution through (a) $(2,1)$, (b) $(0,3)$, (c) $(2,0)$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** existence and uniqueness, first order. $F=\dfrac ty$.
-2. **Differentiate** in $y$ (power rule).
+1. **Type:** C1.
+2. **Write.**
 
-   $$\dfrac{\partial F}{\partial y}=-\dfrac{t}{y^2}$$
-3. **Bad set:** both divide by $y$, so the line $y=0$.
-4. **Check the points:** (a) $y_0=1$ and (b) $y_0=3$ are off the line. (c) $y_0=0$ is on it.
+   $$F=\dfrac ty$$
+3. **Differentiate** in $y$ (power rule).
+
+   $$F_y=-\dfrac{t}{y^2}$$
+4. **Find where it breaks:** both divide by $y$.
+
+   $$y=0$$
+5. **Check the points:** (a) $y_0=1$ and (b) $y_0=3$ are off the line. (c) $y_0=0$ is on it.
 
 **Answer:** (a) Yes. (b) Yes. (c) No guarantee: $F$ itself is undefined at $(2,0)$.
 
 </details>
 
-**Problem: Problem 38 · W3 · A strip, not a point** (intermediate)
+**Problem: Problem 34 · W3 · A strip, not a point** (intermediate)
 
 For $(t-3)\,y^{\prime}+(\ln t)\,y=2t$, $\;y(1)=2$, find the region containing the starting point where the theorem applies. Do not solve.
 
 <details><summary>Solution</summary>
 
-1. **Type:** existence and uniqueness. **Write $F$:** get $y^{\prime}$ alone.
+1. **Type:** C1.
+2. **Write:** get $y^{\prime}$ alone.
 
    $$F=\dfrac{2t-(\ln t)\,y}{t-3}$$
-2. **Differentiate** in $y$. Only the $y$ term survives.
+3. **Differentiate** in $y$. Only the $y$ term survives.
 
-   $$\dfrac{\partial F}{\partial y}=-\dfrac{\ln t}{t-3}$$
-3. **Bad set:** $\ln t$ needs $t>0$, and the denominator needs $t\neq3$. Nothing limits $y$.
-4. **Check the point:** $t_0=1$ lies between $0$ and $3$.
+   $$F_y=-\dfrac{\ln t}{t-3}$$
+4. **Find where it breaks:** $\ln t$ needs $t>0$, and the denominator needs $t\neq3$. Nothing limits $y$.
+5. **Check the point:** $t_0=1$ lies between $0$ and $3$.
 
    $$0<t<3,\quad\text{any }y$$
 
@@ -1925,90 +3297,116 @@ For $(t-3)\,y^{\prime}+(\ln t)\,y=2t$, $\;y(1)=2$, find the region containing th
 
 </details>
 
-### C2 · Second order linear: interval, zero start, independent solutions
+### C2 · Second order linear: interval, zero start, two solutions
 
 [Week 5 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#b4f41ebe-f4f6-4d5d-816d-ceaa37811b8f)
 
-**When:** a second-order **linear** equation, usually with two starting values $y(t_0)$ and $y^{\prime}(t_0)$. The question asks one of three things:
+**Use this when** it’s a second-order **linear** equation. First **write** it with $y^{\prime\prime}$ alone (same letters as [B7](#b7)):
 
-- **Interval:** on what interval is exactly one solution guaranteed?
-- **Zero start:** what is the solution if both starting values are 0?
-- **Two solutions:** do two given solutions give the general solution?
+$$
+y^{\prime\prime}+p(t)\,y^{\prime}+q(t)\,y=f(t)
+$$
 
-For all three, first divide by whatever multiplies $y^{\prime\prime}$, so $y^{\prime\prime}$ stands alone:
+**Short example:**
 
-$$y^{\prime\prime}+p(t)\,y^{\prime}+q(t)\,y=g(t)$$
+$$
+t\,y^{\prime\prime}+y=0\quad\Longrightarrow\quad y^{\prime\prime}+\dfrac1t\,y=0\quad\Longrightarrow\quad p=0,\ q=\dfrac1t,\ f=0
+$$
 
-- $p(t)$ = what multiplies $y^{\prime}$ (after dividing)
-- $q(t)$ = what multiplies $y$ (after dividing)
-- $g(t)$ = the right side, called the forcing (after dividing)
+**The rule:** if $p$, $q$, $f$ don’t break on an interval around $t_0$, there’s **exactly one** solution there, for any starting values.
 
-Example: $t\,y^{\prime\prime}+y=0$ → divide by $t$ → $y^{\prime\prime}+\dfrac1t\,y=0$. So $p=0$, $q=\dfrac1t$, $g=0$.
+<details><summary>The theorem, word for word (optional)</summary>
 
-> **Info:** **The theorem.** If $p$, $q$ and $g$ are continuous on an open interval $I$ that contains $t_0$, then for **any** starting values $y(t_0)$ and $y^{\prime}(t_0)$ there is **exactly one** solution, and it works on the **whole** interval $I$.
+If $p$, $q$ and $f$ are continuous on an open interval $I$ that contains $t_0$, then for **any** starting values $y(t_0)$ and $y^{\prime}(t_0)$ there is **exactly one** solution, and it works on the **whole** interval $I$.
 
-**Interval.** A **trouble point** is a $t$ where $p$, $q$ or $g$ breaks. The biggest $I$ runs from the nearest trouble point left of $t_0$ to the nearest one on the right.
+</details>
 
-- $t\,y^{\prime\prime}+y=0$: $q=\dfrac1t$ breaks at $t=0$. For $t_0=5$, $I=(0,\infty)$. For $t_0=-2$, $I=(-\infty,0)$.
-- $y^{\prime\prime}+3y^{\prime}+2y=\cos t$: nothing breaks, so $I$ is the whole real line. Same for any constant-coefficient equation whose $g$ never breaks.
+The question is always one of three cases:
 
-**Method (interval):**
+#### Case 1: what interval?
 
-1. **Divide** by what multiplies $y^{\prime\prime}$. Read off $p,q,g$.
-2. **Trouble points:** where $p$, $q$ or $g$ breaks (0 in a denominator, $\ln$ of $\le0$, …).
-3. **Pick the piece** of the $t$-axis between trouble points that contains $t_0$. Use open ends (round brackets).
+1. **Write** it with $y^{\prime\prime}$ alone. Read $p$, $q$, $f$.
+2. **Find where they break** (trouble points): a $0$ in a denominator, $\ln$ of $\le0$, …
+3. **Pick the piece** of the $t$-axis between trouble points that contains $t_0$. Round brackets.
 
-**Zero start.** Take a linear equation with right side $g=0$ and both starting values zero, $y(t_0)=0$ and $y^{\prime}(t_0)=0$. The answer is:
+**Short examples:**
 
-$$y(t)\equiv0$$
+$$
+t\,y^{\prime\prime}+y=0:\quad q=\dfrac1t\ \text{breaks at}\ 0\quad\Longrightarrow\quad t_0=5:\ (0,\infty)
+$$
 
-Why: $y=0$ solves any such equation and fits both starting values. The theorem says there is only one solution, so $y=0$ is it.
+$$
+y^{\prime\prime}+3y^{\prime}+2y=\cos t:\quad\text{nothing breaks}\quad\Longrightarrow\quad(-\infty,\infty)
+$$
 
-Example: $y^{\prime\prime}+3y^{\prime}+2y=0$, $y(1)=0$, $y^{\prime}(1)=0$ → $y\equiv0$, no solving needed. But it needs $g=0$: in $y^{\prime\prime}+y=1$, $y=0$ gives $0=1$, so it is not a solution.
+#### Case 2: right side 0 and both starting values 0
 
-**Two solutions → the general solution?** Say $y_1$ and $y_2$ both solve the same linear equation with $g=0$. Compute their **Wronskian**:
+Then the answer is zero, no solving:
 
-$$W=y_1\,y_2^{\prime}-y_1^{\prime}\,y_2$$
+$$
+f=0,\quad y(t_0)=0,\quad y^{\prime}(t_0)=0\quad\Longrightarrow\quad y(t)\equiv0
+$$
 
-- $W\neq0$ → $y_1,y_2$ are **independent** (neither is a multiple of the other), and $y=c_1y_1+c_2y_2$ is the general solution.
-- $W=0$ → one is a multiple of the other. Then $c_1y_1+c_2y_2$ really has only one constant, so it is **not** enough.
+Why: $y=0$ solves it and fits both starting values, and there’s only one solution. It needs $f=0$: in $y^{\prime\prime}+y=1$, $y=0$ gives $0=1$.
 
-Example: $e^{t}$ and $e^{2t}$ give $W=e^t\cdot2e^{2t}-e^t\cdot e^{2t}=e^{3t}$. That is never zero → independent.
+#### Case 3: do y₁ and y₂ give the general solution?
 
-This is why the repeated-root case in [B5](#b5) uses $(c_1+c_2t)e^{st}$: $c_1e^{st}+c_2e^{st}$ is just $(c_1+c_2)e^{st}$, one constant.
+Compute the **Wronskian**:
 
-> **Info:** **Bonus (skip-safe): why the Wronskian decides it.** Fitting $c_1y_1+c_2y_2$ to $y(t_0)$ and $y^{\prime}(t_0)$ gives two equations:
-> 
-> $$
-> c_1y_1+c_2y_2=y(t_0),\quad c_1y_1^{\prime}+c_2y_2^{\prime}=y^{\prime}(t_0)
-> $$
-> 
-> A $2\times2$ system like this has exactly one answer when its determinant, $y_1y_2^{\prime}-y_1^{\prime} y_2=W$, is not zero. So $W\neq0$ means you can match any pair of starting values.
+$$
+W=y_1\,y_2^{\prime}-y_1^{\prime}\,y_2
+$$
 
-**Problem: Problem 39 · W5 · Find the interval; do not solve** (intermediate)
+- $W\neq0$ → independent: $y=c_1y_1+c_2y_2$ **is** the general solution.
+- $W=0$ → one is a multiple of the other: **not** enough.
+
+**Short example:**
+
+$$
+e^{t},\ e^{2t}:\quad W=e^{t}\cdot2e^{2t}-e^{t}\cdot e^{2t}=e^{3t}\neq0
+$$
+
+That’s why the repeated root in [B5](#b5) uses $(c_1+c_2t)e^{st}$: $c_1e^{st}+c_2e^{st}$ is really one constant.
+
+<details><summary>Why the Wronskian decides it (optional)</summary>
+
+Fitting $c_1y_1+c_2y_2$ to $y(t_0)$ and $y^{\prime}(t_0)$ gives two equations:
+
+$$
+c_1y_1+c_2y_2=y(t_0),\qquad c_1y_1^{\prime}+c_2y_2^{\prime}=y^{\prime}(t_0)
+$$
+
+A $2\times2$ system has exactly one answer when its determinant, $y_1y_2^{\prime}-y_1^{\prime} y_2=W$, is not zero.
+
+</details>
+
+#### Practice: C2
+
+**Problem: Problem 35 · W5 · Find the interval; do not solve** (intermediate)
 
 For $(t-1)\,y^{\prime\prime}+y^{\prime}+y=\ln t$, find the largest interval on which the theorem guarantees exactly one solution for (a) $t_0=2$, (b) $t_0=\tfrac12$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** existence and uniqueness, second-order linear. **Divide** by $t-1$.
+1. **Type:** C2, Case 1.
+2. **Write:** divide by $t-1$.
 
-   $$p=\dfrac1{t-1},\quad q=\dfrac1{t-1},\quad g=\dfrac{\ln t}{t-1}$$
-2. **Trouble points:** $\ln t$ needs $t>0$, and the denominator needs $t\neq1$. So the pieces are $(0,1)$ and $(1,\infty)$.
-3. **Pick the piece:** $t_0=2$ is in $(1,\infty)$. $t_0=\tfrac12$ is in $(0,1)$.
+   $$p=\dfrac1{t-1},\quad q=\dfrac1{t-1},\quad f=\dfrac{\ln t}{t-1}$$
+3. **Find where they break:** $\ln t$ needs $t>0$, the denominator needs $t\neq1$. Pieces: $(0,1)$ and $(1,\infty)$.
+4. **Pick the piece:** $t_0=2$ is in $(1,\infty)$. $t_0=\tfrac12$ is in $(0,1)$.
 
 **Answer:** (a) $(1,\infty)$. (b) $(0,1)$.
 
 </details>
 
-**Problem: Problem 40 · W5 · Which pair gives the general solution?** (intermediate)
+**Problem: Problem 36 · W5 · Which pair gives the general solution?** (intermediate)
 
 Both pairs solve $y^{\prime\prime}+4y^{\prime}+4y=0$: (a) $e^{-2t}$ and $3e^{-2t}$; (b) $e^{-2t}$ and $te^{-2t}$. Compute each Wronskian and decide which pair gives the general solution.
 
 <details><summary>Solution</summary>
 
-1. **Type:** independence, so compute $W=y_1y_2^{\prime}-y_1^{\prime} y_2$.
-2. **Pair (a):** $y_2^{\prime}=-6e^{-2t}$, $y_1^{\prime}=-2e^{-2t}$.
+1. **Type:** C2, Case 3: compute $W=y_1y_2^{\prime}-y_1^{\prime} y_2$.
+2. **Pair (a):** $y_1^{\prime}=-2e^{-2t}$, $y_2^{\prime}=-6e^{-2t}$.
 
    $$W=e^{-2t}(-6e^{-2t})-(-2e^{-2t})(3e^{-2t})=0$$
 3. **Pair (b):** product rule, $(te^{-2t})^{\prime}=(1-2t)e^{-2t}$.
@@ -2020,16 +3418,16 @@ Both pairs solve $y^{\prime\prime}+4y^{\prime}+4y=0$: (a) $e^{-2t}$ and $3e^{-2t
 
 </details>
 
-**Problem: Problem 41 · W5 + W6 · The answer without solving** (advanced)
+**Problem: Problem 37 · W5 + W6 · The answer without solving** (advanced)
 
 Solve $y^{\prime\prime}+t\,y^{\prime}+e^{t}\,y=0$, $\;y(0)=0$, $\;y^{\prime}(0)=0$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** the $t$ and $e^t$ coefficients look impossible with our methods. But it is linear, $g=0$, and both starting values are 0: a **zero start**.
-2. **Interval:** $p=t$, $q=e^t$, $g=0$ never break, so exactly one solution exists on the whole real line.
+1. **Type:** $t$ and $e^t$ in front look impossible. But it’s linear, $f=0$, and both starting values are $0$: C2, Case 2.
+2. **Write:** $p=t$, $q=e^t$, $f=0$. None of them ever breaks, so exactly one solution exists everywhere.
 3. **Try $y=0$:** $0+0+0=0$ ✓, and $y(0)=0$, $y^{\prime}(0)=0$ ✓.
-4. **Conclude:** there is only one solution, and $y=0$ works, so it is **the** solution.
+4. There’s only one solution, and $y=0$ works, so it is **the** solution.
 
 **Answer:** $y(t)\equiv0$ for all $t$.
 
@@ -2039,48 +3437,83 @@ Solve $y^{\prime\prime}+t\,y^{\prime}+e^{t}\,y=0$, $\;y(0)=0$, $\;y^{\prime}(0)=
 
 [Week 2 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#77c9c878-68d6-44e3-8f1e-2f68ba18701b) [Week 5 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#d5ad9ba9-0ec5-4b62-acf5-b1c7e17d6463)
 
-**What does a circuit question want?** Always the same thing: a switch flips at $t=0$, and you need $v(t)$ or $i(t)$ after it.
+**Use this when** a switch flips at $t=0$ and you need $v(t)$ or $i(t)$ after it.
 
-The circuit gives you two things:
+**The move: solve for the thing that can’t jump**, $v_C$ (capacitor voltage) or $i_L$ (inductor current).
 
-- **the ODE**: write KVL or KCL for the circuit **after** the switch;
-- **the starting value**: read it off the circuit **before** the switch.
+- Its **starting value** comes from the circuit **before** the switch.
+- Its **ODE** comes from the circuit **after** the switch (KVL or KCL).
+- Then solve the ODE with [Topic B](#topic-b). Get anything else ($i_C$, $v_R$, …) from it at the end.
 
-Then you solve that ODE with [Topic B](#topic-b), like any other ODE.
+**The three rules, one per element:**
 
-**The three rules you need, one per element:**
-
-| Element | Law | After a long time (DC) | When the switch flips |
+| Element | Law | After a long time | At the switch |
 |---|---|---|---|
-| Capacitor $C$ | $i=C\dfrac{dv}{dt}$ | a **gap** (open circuit) | $v_C$ **can’t jump** |
-| Inductor $L$ | $v=L\dfrac{di}{dt}$ | a **wire** (short circuit) | $i_L$ **can’t jump** |
-| Resistor $R$ | $v=iR$ | — | its $v$ and $i$ **can** jump |
+| Capacitor $C$ | $i=C\dfrac{dv}{dt}$ | a **gap** | $v_C$ **can’t jump** |
+| Inductor $L$ | $v=L\dfrac{di}{dt}$ | a **wire** | $i_L$ **can’t jump** |
+| Resistor $R$ | $v=iR$ | — | can jump |
 
-**After a long time** (called **DC steady state**): nothing changes any more, so every $\frac{d}{dt}$ is 0.
+<details><summary>After a long time: $\;C$ = gap, $\;L$ = wire</summary>
 
-- **Capacitor:** $i=C\cdot0=0$. No current gets through, so it acts like a gap.
-- **Inductor:** $v=L\cdot0=0$. No voltage across it, so it acts like a plain wire.
+Step 1 · Nothing changes any more, so every $\frac{d}{dt}$ is $0$.
 
-Example: a $12\,\mathrm{V}$ source, a resistor and a capacitor in one loop, left alone for a long time. No current flows, so the resistor has 0 V and the capacitor holds all $12\,\mathrm{V}$.
+$$
+i_C=C\cdot0=0\quad\text{(gap)}
+$$
 
-**When the switch flips:** $0^-$ = just before, $0^+$ = just after. “Can’t jump” means:
+$$
+v_L=L\cdot0=0\quad\text{(wire)}
+$$
 
-$$v_C(0^+)=v_C(0^-),\qquad i_L(0^+)=i_L(0^-)$$
+Step 2 · Example: $12\,\mathrm{V}$ source, a resistor and a capacitor in one loop, left alone. No current flows, so the resistor has $0\,\mathrm{V}$:
 
-Example: if the capacitor holds $12\,\mathrm{V}$ just before the switch flips, it still holds $12\,\mathrm{V}$ just after. Why: a jump would need an infinite current (see the Bonus at the end of this section).
+$$
+v_C=12\,\mathrm{V}
+$$
 
-**So which quantity do you solve for?** The one that can’t jump ($v_C$ or $i_L$), because its starting value carries straight across the switch. Get the rest from it afterwards, e.g. $i_C=C\frac{dv_C}{dt}$.
+</details>
 
-**What each element looks like at the three moments you need:**
+<details><summary>At the switch: $\;v_C(0^+)=v_C(0^-)$, $\;i_L(0^+)=i_L(0^-)$</summary>
 
-|  | $t=0^-$ (old DC state) | $t=0^+$ (just after) | $t\to\infty$ (new DC state) |
-|---|---|---|---|
-| Capacitor | gap, holding $V_0$ | a **voltage source** $V_0$ | gap again |
-| Inductor | wire, carrying $I_0$ | a **current source** $I_0$ | wire again |
-| Resistor | Ohm’s law | Ohm’s law (may jump) | Ohm’s law |
+Step 1 · $0^-$ = just before, $0^+$ = just after. The value carries straight across.
 
-- **Capacitor at $0^+$:** it still holds its old voltage $V_0$, so for that instant it acts like a battery. Example: charged to $12\,\mathrm{V}$ → a $12\,\mathrm{V}$ source.
-- **Inductor at $0^+$:** it keeps pushing its old current $I_0$, so it acts like a current source. Example: carrying $4\,\mathrm{A}$ → a $4\,\mathrm{A}$ source.
+$$
+v_C(0^-)=12\,\mathrm{V}\quad\Longrightarrow\quad v_C(0^+)=12\,\mathrm{V}
+$$
+
+Step 2 · So for that instant a capacitor acts like a **battery** of its old voltage, and an inductor like a **current source** of its old current.
+
+$$
+C\ \to\ \text{voltage source }V_0,\qquad L\ \to\ \text{current source }I_0
+$$
+
+</details>
+
+<details><summary>Why can’t $v_C$ and $i_L$ jump? (optional)</summary>
+
+If $v_C$ jumped, its slope $\frac{dv}{dt}$ would be infinite at that instant. Then $i=C\frac{dv}{dt}$ would be an infinite current, and no real circuit can supply that.
+
+Same for an inductor: a jump in $i_L$ would need an infinite voltage $v=L\frac{di}{dt}$. Another way: the stored energy, $\frac12Cv^2$ or $\frac12Li^2$, can’t change in zero time.
+
+</details>
+
+**Steps** (every circuit problem, D1 and D2):
+
+1. **Before** ($t<0$): the old circuit, sitting for a long time. $C$ = gap, $L$ = wire. Find $v_C(0^-)$ or $i_L(0^-)$.
+2. **Carry across** to $t=0^+$: $v_C(0^+)=v_C(0^-)$, $i_L(0^+)=i_L(0^-)$. Need another value at $0^+$? Redraw the **new** circuit with $C$ as a battery (or $L$ as a current source) and use KVL/KCL.
+3. **After** ($t>0$): in the new circuit, find what you need: the final value and $\tau$ ([D1](#d1)), or $\alpha$ and $\omega_0$ ([D2](#d2)).
+4. **Plug in** to the formula ([D1](#d1)), or **pick** the case and **plug in** the starting values ([D2](#d2)).
+5. **Check** $t\to\infty$: $C$ = gap, $L$ = wire again. Your answer must head there.
+
+**Short example:** a $V_s$, $R$, $C$ loop. KVL after the switch, with $i=C\frac{dv_C}{dt}$:
+
+$$
+V_s=Ri+v_C\quad\Longrightarrow\quad RC\,\dfrac{dv_C}{dt}+v_C=V_s
+$$
+
+One $C$ or one $L$ → first order → [D1](#d1). An $L$ **and** a $C$ → second order → [D2](#d2).
+
+**What does “can’t jump” look like?**
 
 ```graph
 title "A capacitor charging from $0\,\mathrm{V}$: its voltage doesn’t jump, its current does"
@@ -2089,124 +3522,94 @@ y -0.2 1.2 label="scaled so the biggest value is 1"
 curve "if(x<0, 0, 1-exp(-x))" label="$v_C$: starts at 0, no jump" color=1
 curve "if(x<0, 0, exp(-x))" label="$i_C$: 0 before, jumps at $t=0$" color=2
 vline "0" label="switch closes" color=0
-caption "This is Pre-tutorial 2 (a problem in D1). Before the switch closes, no current goes into the capacitor. Just after, $v_C$ is still 0, so the resistor beside it gets no current and all of the source current goes into the capacitor. $i_C$ jumps; $v_C$ doesn’t."
+caption "Pre-tutorial 2 (a problem in D1). Just after the switch, $v_C$ is still 0, so all of the source current goes into the capacitor. $i_C$ jumps; $v_C$ doesn’t."
 ```
 
-**The switching recipe.** Every circuit problem, in five steps:
+> **Warning:** **Before and after are two different circuits.** Draw both. The old one is only for the starting value. Write the ODE from the new one, with only the parts still connected.
 
-1. **Before ($t<0$):** the switch sat in its old spot for a long time, so use the DC rules: $C$ = gap, $L$ = wire. Find $v_C(0^-)$ or $i_L(0^-)$. Example: a capacitor that sat across a $12\,\mathrm{V}$ source → $v_C(0^-)=12\,\mathrm{V}$.
-2. **Just after ($t=0^+$):** carry the value across: $v_C(0^+)=v_C(0^-)$, $i_L(0^+)=i_L(0^-)$. Need something else at $0^+$, like a resistor current? Draw the **new** circuit with $C$ as a voltage source $v_C(0^+)$ (or $L$ as a current source $i_L(0^+)$), then use KVL/KCL.
-3. **After ($t>0$):** in the new circuit, write KVL around a loop or KCL at a node. Swap $i_C$ for $C\frac{dv}{dt}$ and $v_L$ for $L\frac{di}{dt}$. That’s the ODE. Example: a loop of $V_s$, $R$, $C$: $\;V_s=Ri+v_C$ with $i=C\frac{dv_C}{dt}$, so $RC\frac{dv_C}{dt}+v_C=V_s$.
-4. **Solve:** one $L$ or one $C$ → first order → the [D1](#d1) formula (it’s a [B2](#b2) equation). An $L$ and a $C$ → second order → [D2](#d2) (solved with [B5](#b5) or [B6](#b6)). Your values from step 2 are the starting conditions.
-5. **Check ($t\to\infty$):** use the DC rules again ($C$ = gap, $L$ = wire). Your answer must head to this final value. Example: in the $V_s$, $R$, $C$ loop, no current flows in the end, so $v_C\to V_s$.
+> **Warning:** **The sign comes from the drawn arrow.** Find which way the current really flows, then compare with the arrow. Opposite? The value is **negative**. Example: $3\,\mathrm{A}$ really flows down, the $i_L$ arrow points up → $i_L(0)=-3\,\mathrm{A}$.
 
-> **Warning:** **Before and after are two different circuits.** Draw both. Use the old one only for the starting value (step 1). Write the ODE (step 3) from the new one, with only the parts still connected.
-
-> **Warning:** **The sign comes from the drawn arrow.** First find which way the current really flows, then compare with the arrow. If they point opposite ways, the value is **negative**. Example: $3\,\mathrm{A}$ really flows down, the $i_L$ arrow points up → $i_L(0)=-3\,\mathrm{A}$.
-
-> **Info:** **Bonus (skip-safe): why $v_C$ and $i_L$ can’t jump.** If $v_C$ jumped, its slope $\frac{dv}{dt}$ would be infinite at that instant. Then $i=C\frac{dv}{dt}$ would be an infinite current, and no real circuit can supply that. Same for an inductor: a jump in $i_L$ would need an infinite voltage $v=L\frac{di}{dt}$. Another way to see it: the stored energy, $\frac12Cv^2$ or $\frac12Li^2$, can’t change in zero time.
-
-### D1 · First-order RC and RL circuits
+### D1 · One C or one L: first order
 
 [Week 1 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/1cbac07a-cd02-48c2-8c30-c9829c4e06b2#ab5bf400-4411-4869-8d74-7790f8ee6f2c) [Week 2 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/08d203f6-a2b5-41b9-adfd-a14e22fb03d8#77c9c878-68d6-44e3-8f1e-2f68ba18701b) [Week 3 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/3d1ae4a9-687d-4654-873d-be3439faea2f#a43fc96e-8dc5-4a1e-bfdf-bf1acf01f98b)
 
-**When is a circuit first order?** When, after the switch, only **one** capacitor or **one** inductor is left (after combining), plus resistors and DC sources.
+**Use this when**, after the switch, only **one** capacitor or **one** inductor is left (after combining), plus resistors and DC sources.
 
-Then the ODE always has the same shape, and one formula solves it.
+Call $x$ the thing that can’t jump: $v_C$ in an RC circuit, $i_L$ in an RL circuit.
 
-Call $x$ the quantity that can’t jump: $v_C$ in an RC circuit, $i_L$ in an RL circuit. For $t>0$, KVL or KCL always gives:
+**The move: you don’t need to solve the ODE.** Find three numbers and plug them in:
 
-$$\dfrac{dx}{dt}+\dfrac{x}{\tau}=\dfrac{x_f}{\tau}$$
+$$
+x(t)=x_f+\big(x_0-x_f\big)\,e^{-t/\tau}
+$$
 
-- $x$ = $v_C$ (RC circuit) or $i_L$ (RL circuit)
-- $\tau$ = the **time constant**, in seconds: $\;\tau=R_{th}C\;$ or $\;\tau=\dfrac{L}{R_{th}}$
-- $x_f$ = the **final value** $x(\infty)$: where $x$ ends up long after the switch ($x_f=0$ if no source is left)
-- $R_{th}$ = the resistance the $C$ or $L$ “sees” (how to find it is just below)
+- $x_0$ = the **starting value** (from the old circuit)
+- $x_f$ = the **final value**, long after the switch (from the new circuit). $0$ if no source is left.
+- $\tau$ = the **time constant** in seconds: $\;\tau=R_{th}C\;$ or $\;\tau=\dfrac{L}{R_{th}}$
 
-Examples of reading the form:
+$R_{th}$ = the resistance the $C$ or $L$ “sees” in the new circuit: turn the sources off (a voltage source → a wire, a current source → a gap), then combine the resistors.
 
-- $\dfrac{di}{dt}+5i=50$ → $\frac1\tau=5$, so $\tau=0.2\,\mathrm{s}$. And $\frac{x_f}{\tau}=50$, so $x_f=50\times0.2=10\,\mathrm{A}$.
-- $\dfrac{dv}{dt}+50v=0$ → $\tau=\frac1{50}\,\mathrm{s}=20\,\mathrm{ms}$, and $x_f=0$ (no source).
+**Short example:**
 
-**Finding $R_{th}$**, in the $t>0$ circuit:
+$$
+x_0=0,\quad x_f=10,\quad \tau=0.2\quad\Longrightarrow\quad x(t)=10-10e^{-5t}
+$$
 
-1. **Turn the sources off:** a voltage source becomes a wire, a current source becomes a gap.
-2. **Combine** the resistors between the two ends of the $C$ or $L$.
+<details><summary>Where does the formula come from? (optional)</summary>
 
-Example: a voltage source in series with $6\,\Omega$ feeds a capacitor, and a $3\,\Omega$ sits across the capacitor. The source becomes a wire, so the capacitor sees $6\parallel3=2\,\Omega$.
+KVL or KCL after the switch always gives this [B2](#b2) equation, with $p=\frac1\tau$ and $f=\frac{x_f}{\tau}$:
 
-Why the sources go off: they only set the right side of the ODE ($x_f$). The speed, $\tau$, comes from the left side, which only has the resistors and the $C$ or $L$.
+$$
+\dfrac{dx}{dt}+\dfrac{x}{\tau}=\dfrac{x_f}{\tau}
+$$
 
-**The formula.** The ODE above is a [B2](#b2) equation with constants $a=\frac1\tau$ and $f=\frac{x_f}{\tau}$. Solve it once, with starting value $x(0)=x_0$, and you get the one formula you need:
+Solve it once with $x(0)=x_0$ and you get the formula. Check: at $t=0$, $e^0=1$, so $x=x_0$ ✓. As $t\to\infty$, $e^{-t/\tau}\to0$, so $x\to x_f$ ✓.
 
-$$x(t)=x_f+\big(x_0-x_f\big)\,e^{-t/\tau},\qquad t\ge0$$
+Example (the lecture’s RC step response): $I_s$, $R$, $C$ in parallel. KCL: $C\frac{dv}{dt}+\frac vR=I_s$, so $\tau=RC$ and $x_f=RI_s$.
 
-Why it makes sense:
+Why the sources go off for $R_{th}$: they only set $x_f$ (the right side). The speed $\tau$ comes from the left side: just the resistors and the $C$ or $L$.
 
-- at $t=0$: $e^0=1$, so $x=x_f+x_0-x_f=x_0$, the starting value ✓
-- as $t\to\infty$: $e^{-t/\tau}\to0$, so $x\to x_f$, the final value ✓
+</details>
 
-**Method.** You don’t even have to write the ODE: find three numbers and plug in.
+**Steps**
 
-1. **$x_0$:** from the $t<0$ circuit ($C$ = gap, $L$ = wire). It carries over to $0^+$.
-2. **$x_f$:** from the $t\to\infty$ circuit, with the switch in its **new** spot ($C$ = gap, $L$ = wire again).
-3. **$\tau$:** find $R_{th}$ in the $t>0$ circuit. Then $\tau=R_{th}C$ or $\tau=L/R_{th}$.
+1. **Before:** old circuit, long time ($C$ = gap, $L$ = wire). Find $x(0^-)$.
+2. **Carry across:** $x_0=x(0^+)=x(0^-)$.
+3. **After:** new circuit. Final value $x_f$ (long time again). Time constant: $R_{th}$, then $\tau=R_{th}C$ or $L/R_{th}$.
 4. **Plug in:** $x(t)=x_f+(x_0-x_f)e^{-t/\tau}$.
-5. **Anything else** comes from $x(t)$: Ohm’s law, KCL, $i_C=C\frac{dv_C}{dt}$, $v_L=L\frac{di_L}{dt}$.
+5. **Check:** $x(0)=x_0$ and $x(\infty)=x_f$. Anything else comes from $x(t)$: $i_C=C\frac{dv_C}{dt}$, $v_L=L\frac{di_L}{dt}$, Ohm’s law.
 
-Two names you’ll see:
+#### Case 1: natural response (no source left)
 
-- **Natural response:** no source after $t=0$. The stored energy drains away through the resistors, so $x_f=0$.
-- **Step response:** a DC source is still connected after $t=0$. It pushes $x$ to a new value $x_f$.
+The stored energy drains away through the resistors, so $x_f=0$:
 
-|  | Natural response | Step response |
-|---|---|---|
-| Final value | $x_f=0$ | $x_f$ from the new DC circuit |
-| Answer | $x_0\,e^{-t/\tau}$ | $x_f+(x_0-x_f)\,e^{-t/\tau}$ |
-| Example | $i=4e^{-500t}$ | $i=10\big(1-e^{-5t}\big)$ |
+$$
+x(t)=x_0\,e^{-t/\tau}
+$$
 
-**How fast does it settle?** Count in time constants. After:
+**Short example:** $i_L$ starts at $4\,\mathrm{A}$, $L=8\,\mathrm{mH}$, $R=4\,\Omega$:
 
-- $1\tau$: 37% of the gap $x_0-x_f$ is left (63% done), since $e^{-1}\approx0.37$
-- $2\tau$: 13.5% left
-- $5\tau$: under 1% left; call it done
+$$
+\tau=\dfrac{8\times10^{-3}}{4}=2\,\mathrm{ms}\quad\Longrightarrow\quad i(t)=4e^{-500t}\,\mathrm{A}
+$$
 
-Example: $\tau=2\,\mathrm{ms}$ → the circuit has settled after about $5\tau=10\,\mathrm{ms}$.
+#### Case 2: step response (a source stays on)
 
-```graph
-title "Drag the sliders: the curve always heads for $x_f$, and the tangent at $t=0$ reaches $x_f$ at $t=\tau$"
-x 0 8 label="$t$"
-y -12 12 label="$x$"
-slider x0 -10 10 10 step=1 label="$x_0$"
-slider xf -10 10 2 step=1 label="$x_f$"
-slider tau 0.2 3 1 step=0.1 label="$\tau$"
-curve "xf+(x0-xf)*exp(-x/tau)" label="$x(t)=x_f+(x_0-x_f)e^{-t/\tau}$" color=1
-curve "x0+(xf-x0)*x/tau" from=0 to="tau" label="tangent at $t=0$" color=0 dash
-hline "xf" label="$x_f$" color=3
-point "tau" "xf+(x0-xf)*exp(-1)" label="at $t=\tau$: 37% of the gap left" color=2
-readout "$x(5\tau)$" "xf+(x0-xf)*exp(-5)"
-caption "Set $x_f=0$ for a natural response. A bigger $\tau$ (bigger $RC$ or $L/R$) means a slower circuit."
-```
+The source pushes $x$ to a new value $x_f$:
 
-**Formulas you’ll also need:**
+$$
+x(t)=x_f+\big(x_0-x_f\big)\,e^{-t/\tau}
+$$
 
-| Quantity | Formula | Note |
-|---|---|---|
-| derivative of the exponential | $\dfrac{d}{dt}e^{-t/\tau}=-\dfrac1\tau e^{-t/\tau}$ | for $i_C=C\frac{dv}{dt}$ and $v_L=L\frac{di}{dt}$ |
-| energy stored | $w_C=\tfrac12Cv^2,\quad w_L=\tfrac12Li^2$ | in joules |
-| parallel resistors | $R_1\parallel R_2=\dfrac{R_1R_2}{R_1+R_2}$ | for $R_{th}$ |
+**Short example:** $i$ starts at $0$, ends at $10\,\mathrm{A}$, $\tau=0.2\,\mathrm{s}$:
 
-> **Info:** **Bonus (skip-safe): where the formula comes from (the lecture’s RC step response).** Take a current source $I_s$, a resistor $R$ and a capacitor $C$, all in parallel. KCL at the top node: capacitor current + resistor current = source current.
-> 
-> $$
-> C\dfrac{dv}{dt}+\dfrac{v}{R}=I_s\quad\Rightarrow\quad\dfrac{dv}{dt}+\dfrac{v}{RC}=\dfrac{I_s}{C}
-> $$
-> 
-> That’s the standard form with $\tau=RC$ and $x_f=RI_s$. Plug in: $v=RI_s+(V_0-RI_s)e^{-t/RC}$. You can solve it with [B2](#b2), or separate it ([B1](#b1)), as the lecture did for the RL circuit.
+$$
+i(t)=10+(0-10)e^{-5t}=10\big(1-e^{-5t}\big)\,\mathrm{A}
+$$
 
-**Example: Example 9 · W3 · Circuit → ODE → answer · lecture §1.1**
+#### Examples and handy facts
 
-The switch closes at $t=0$. The inductor carries no current before that. Find $i(t)$ for $t\ge0$.
+**Lecture example (§1.1).** The switch closes at $t=0$. The inductor carries no current before that. Find $i(t)$ for $t\ge0$.
 
 ```schematic
 V1 0,3 -> 0,0 "$100\,\mathrm{V}$"
@@ -2217,22 +3620,118 @@ wire 6,0 -> 0,0
 ground 0,0
 ```
 
-1. **Type:** one inductor and one DC source → first-order RL **step** response. Solve for $i$, the inductor current.
-2. **Before:** the switch is open, so no current flows: $i(0^-)=0$. It can’t jump, so $i(0^+)=0$ too.
-3. **After:** KVL around the loop: source voltage = resistor voltage + inductor voltage.
+<details><summary>Full solution: the lecture’s RL step response</summary>
 
-   $$2\dfrac{di}{dt}+10i=100$$
-4. **Standard form:** divide by $L=2$. Then $\frac1\tau=5$, so $\tau=0.2\,\mathrm{s}$ (check: $L/R=2/10$ ✓).
+Step 1 · **Before:** the switch is open, so no current flows.
 
-   $$\dfrac{di}{dt}+5i=50$$
-5. **Final value:** long after, the inductor is a wire, so $i_f=100/10=10\,\mathrm{A}$.
-6. **Plug in** $x_0=0$, $x_f=10$, $\tau=0.2$.
+$$
+i(0^-)=0
+$$
 
-   $$i(t)=10+(0-10)e^{-5t}$$
+Step 2 · **Carry across:** an inductor current can’t jump.
 
-**Answer:** $i(t)=10\big(1-e^{-5t}\big)\,\mathrm{A}$. Same answer as the integrating-factor problem in [B2](#b2).
+$$
+x_0=i(0^+)=0
+$$
 
-**Problem: Problem 42 · W1 · RL natural response · Pre-tutorial 1** (introductory)
+Step 3 · **After** (final value): long after, $L$ is a wire, so only the $10\,\Omega$ limits the current.
+
+$$
+x_f=\dfrac{100}{10}=10\,\mathrm{A}
+$$
+
+Step 4 · **After** (time constant): the source is off, so $L$ sees just the $10\,\Omega$.
+
+$$
+\tau=\dfrac{L}{R}=\dfrac{2}{10}=0.2\,\mathrm{s}
+$$
+
+Step 5 · **Plug in.**
+
+$$
+i(t)=10+(0-10)e^{-t/0.2}=10-10e^{-5t}
+$$
+
+Step 6 · **Check** with the ODE (KVL: $100=10i+2\frac{di}{dt}$). Divide by $2$: it’s $i^{\prime}+5i=50$, the [B2](#b2) practice problem. Same answer.
+
+$$
+\dfrac{di}{dt}+5i=50
+$$
+
+**Answer:**
+
+$$
+i(t)=10\big(1-e^{-5t}\big)\,\mathrm{A}
+$$
+
+</details>
+
+**Handy facts.** Open a card for an example:
+
+<details><summary>How fast it settles: after $1\tau$ 37% of the gap is left, after $5\tau$ it’s done</summary>
+
+Step 1 · $e^{-1}\approx0.37$, $e^{-2}\approx0.135$, $e^{-5}<0.01$.
+
+$$
+x(\tau)=x_f+0.37\,(x_0-x_f)
+$$
+
+Step 2 · Example: $\tau=2\,\mathrm{ms}$.
+
+$$
+5\tau=10\,\mathrm{ms}\quad\text{(settled)}
+$$
+
+</details>
+
+<details><summary>Derivative: $\;\dfrac{d}{dt}e^{-t/\tau}=-\dfrac1\tau\,e^{-t/\tau}$</summary>
+
+Step 1 · For $i_C=C\frac{dv}{dt}$ or $v_L=L\frac{di}{dt}$. Example: $i=10-10e^{-5t}$, $L=2\,\mathrm{H}$:
+
+$$
+v_L=2\cdot50e^{-5t}=100e^{-5t}\,\mathrm{V}
+$$
+
+</details>
+
+<details><summary>Energy stored: $\;w_C=\tfrac12Cv^2$, $\;w_L=\tfrac12Li^2$</summary>
+
+Step 1 · In joules. The sign of $i$ doesn’t matter (it’s squared). Example: $L=8\,\mathrm{mH}$, $i=12.5\,\mathrm{A}$:
+
+$$
+w=\tfrac12(8\times10^{-3})(12.5)^2=0.625\,\mathrm{J}
+$$
+
+</details>
+
+<details><summary>Parallel resistors: $\;R_1\parallel R_2=\dfrac{R_1R_2}{R_1+R_2}$</summary>
+
+Step 1 · For $R_{th}$. Example:
+
+$$
+6\parallel3=\dfrac{18}{9}=2\,\Omega
+$$
+
+</details>
+
+**What does the formula look like?**
+
+```graph
+title "Drag the sliders: the curve always heads for $x_f$"
+x 0 8 label="$t$"
+y -12 12 label="$x$"
+slider x0 -10 10 10 step=1 label="$x_0$"
+slider xf -10 10 2 step=1 label="$x_f$"
+slider tau 0.2 3 1 step=0.1 label="$\tau$"
+curve "xf+(x0-xf)*exp(-x/tau)" label="$x(t)=x_f+(x_0-x_f)e^{-t/\tau}$" color=1
+hline "xf" label="$x_f$" color=3
+point "tau" "xf+(x0-xf)*exp(-1)" label="at $t=\tau$: 37% of the gap left" color=2
+caption "Set $x_f=0$ for a natural response. A bigger $\tau$ (bigger $RC$ or $L/R$) means a slower circuit."
+```
+
+#### Practice: D1
+
+**Problem: Problem 38 · W1 · RL natural response · Pre-tutorial 1** (introductory)
 
 The switch has been closed for a long time and opens at $t=0$. Use $L=8\,\mathrm{mH}$, $R=4\,\Omega$ and $I_s=4\,\mathrm{A}$. Find $i(t)$ for $t\ge0$ (with numbers) and sketch it.
 
@@ -2266,7 +3765,7 @@ ground 0,0
 
 </details>
 
-**Problem: Problem 43 · W2 · Can the capacitor current jump? · Pre-tutorial 2** (introductory)
+**Problem: Problem 39 · W2 · Can the capacitor current jump? · Pre-tutorial 2** (introductory)
 
 The capacitor starts uncharged ($V_0=0$). The switch closes at $t=0$. Use $I_s=2\,\mathrm{A}$ and $R=1\,\mathrm{k\Omega}$. Find the capacitor current just before ($t=0^-$, switch open) and just after ($t=0^+$, switch closed). Does the capacitor current jump, even though the capacitor voltage can’t?
 
@@ -2286,17 +3785,17 @@ ground 0,0
 2. **Before:** the switch is open, so the capacitor isn’t connected to anything.
 
    $$i_C(0^-)=0$$
-3. **Just after:** $v(0^+)=v(0^-)=0$, since it can’t jump. The resistor sits across the capacitor, so its current is $v/R=0$.
+3. **Carry across:** $v(0^+)=v(0^-)=0$, since it can’t jump. The resistor sits across the capacitor, so its current is $v/R=0$.
 4. **KCL** at the top node: the resistor takes nothing, so all of the source current goes into the capacitor.
 
    $$i_C(0^+)=I_s-\dfrac{v(0^+)}{R}=2-0=2\,\mathrm{A}$$
-5. **Afterwards:** $v$ rises toward $RI_s=2000\,\mathrm{V}$ and $i_C$ dies down to 0.
+5. **Check:** $v$ rises toward $RI_s=2000\,\mathrm{V}$ and $i_C$ dies down to 0.
 
 **Answer:** $i_C(0^-)=0$, $i_C(0^+)=2\,\mathrm{A}$. So yes, the capacitor **current** jumps. The capacitor **voltage** doesn’t: it stays at 0.
 
 </details>
 
-**Problem: Problem 44 · W2–W3 · Read the circuit from its response · textbook P7.42** (intermediate)
+**Problem: Problem 40 · W2–W3 · Read the circuit from its response · textbook P7.42** (intermediate)
 
 The switch closes at $t=0$. For $t\ge0$ you measure:
 
@@ -2316,14 +3815,14 @@ ground 0,0
 <details><summary>Solution</summary>
 
 1. **Type:** RL step response, read backwards. Match each piece to $x_f+(x_0-x_f)e^{-t/\tau}$.
-2. **Starting value:** put $t=0$ into $i(t)$: $I_0=10-10=0$.
-3. **Just after:** $i=0$, so the resistor has 0 V across it. The whole source voltage sits on $L$.
+2. **Carry across:** put $t=0$ into $i(t)$: $I_0=10-10=0$.
+3. **Carry across:** $i=0$, so the resistor has 0 V across it. The whole source voltage sits on $L$.
 
    $$V_s=v(0^+)=200\,\mathrm{V}$$
-4. **Final value:** long after, $L$ is a wire, so $i_f=V_s/R$. From $i(t)$, $i_f=10$.
+4. **After** (final value): long after, $L$ is a wire, so $i_f=V_s/R$. From $i(t)$, $i_f=10$.
 
    $$10=\dfrac{200}{R}\quad\Rightarrow\quad R=20\,\Omega$$
-5. **Time constant:** the exponent is $-500t$, so $\frac1\tau=500$ and $\tau=2\,\mathrm{ms}$. Use $\tau=L/R$.
+5. **After** (time constant): the exponent is $-500t$, so $\frac1\tau=500$ and $\tau=2\,\mathrm{ms}$. Use $\tau=L/R$.
 
    $$L=20\times0.002=40\,\mathrm{mH}$$
 6. **Check:** $L\frac{di}{dt}=0.04\times5000e^{-500t}=200e^{-500t}$, which matches $v(t)$ ✓.
@@ -2332,7 +3831,7 @@ ground 0,0
 
 </details>
 
-**Problem: Problem 45 · W2 · RC natural response with a divider first · textbook P7.22** (intermediate)
+**Problem: Problem 41 · W2 · RC natural response with a divider first · textbook P7.22** (intermediate)
 
 The switch has been closed for a long time and opens at $t=0$. Find (a) $v(0)$, (b) $\tau$ for $t>0$, (c) $v(t)$, (d) the energy stored in the capacitor at $t=0$.
 
@@ -2372,7 +3871,7 @@ ground 0,0
 
 </details>
 
-**Problem: Problem 46 · W1–W2 · The sign of the reference arrow · textbook P7.1** (intermediate)
+**Problem: Problem 42 · W1–W2 · The sign of the reference arrow · textbook P7.1** (intermediate)
 
 The switch has been closed for a long time and opens at $t=0$. Watch the direction of $i$: it points **up** through the inductor. Find (a) the starting value of $i$, (b) the energy stored in the inductor at $t=0$, (c) the time constant for $t>0$, (d) $i(t)$ for $t\ge0$, with numbers.
 
@@ -2413,7 +3912,7 @@ ground 0,0
 
 </details>
 
-**Problem: Problem 47 · W2 · Step response that needs a Thévenin equivalent · textbook P7.52(a)** (advanced)
+**Problem: Problem 43 · W2 · Step response that needs a Thévenin equivalent · textbook P7.52(a)** (advanced)
 
 The switch has been at $a$ for a long time. At $t=0$ it moves to $b$ and stays there. Find the starting and final capacitor voltage, the time constant for $t\ge0$, and $v_C(t)$ for $t\ge0$. (The $200\,\mathrm{V}$ source has its $-$ on top. The two $t=0$ switches are one two-position switch: at $t=0$ the contact at $a$ opens and the contact at $b$ closes.)
 
@@ -2457,15 +3956,29 @@ ground 0,0
 
 </details>
 
-### D2 · RLC circuits (second order)
+### D2 · An L and a C: RLC circuits (second order)
 
 [Week 5 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#d5ad9ba9-0ec5-4b62-acf5-b1c7e17d6463)
 
-**What if the circuit has an inductor *and* a capacitor?** Each one brings a derivative, so together they give a **second-order** ODE (one with $y^{\prime\prime}$ in it). Combine series/parallel $L$’s and $C$’s first, so you have one of each.
+**Use this when**, after the switch, there’s an inductor **and** a capacitor (combine series/parallel ones first, so you have one of each).
 
-You already know how to solve it: [B5](#b5) when no source is left, [B6](#b6) when a source stays on. The new part is reading the equation and the two starting values off the circuit.
+**The move: it’s [B5](#b5) with circuit names.** Same quadratic, same three cases. Write the quadratic as:
 
-**The two circuits you will meet.** Learn both equations. Where they come from is in the Bonus box further down.
+$$
+s^2+2\alpha s+\omega_0^2=0
+$$
+
+- $\alpha$ (“alpha”) = the **damping**: how fast it dies out
+- $\omega_0$ (“omega-zero”) = the **natural frequency**: how fast it would swing with no $R$
+- Both come straight from $R$, $L$, $C$ (below), so you never have to derive the ODE on the exam.
+
+A source still on after the switch? Then add the final value $V_f$ on top, like $y_p$ in [B6](#b6):
+
+$$
+v(t)=V_f+(\text{the B5 form})
+$$
+
+#### Series or parallel: α and ω₀
 
 ```schematic
 V1 0,3 -> 0,0 "$V_s$"
@@ -2476,15 +3989,17 @@ wire 6,0 -> 0,0
 ground 0,0
 ```
 
-**Series:** solve for the capacitor voltage $v_C$.
+**Series** (solve for $v_C$):
 
-$$v_C^{\prime\prime}+\dfrac{R}{L}v_C^{\prime}+\dfrac{1}{LC}v_C=\dfrac{V_s}{LC}$$
+$$
+\begin{gathered}\alpha=\dfrac{R}{2L}, \\ \omega_0=\dfrac{1}{\sqrt{LC}}\end{gathered}
+$$
 
-- $\alpha=\dfrac{R}{2L}$ = the **damping**: how fast the response dies out (half the $v_C^{\prime}$ number)
-- $\omega_0=\dfrac{1}{\sqrt{LC}}$ = the **natural frequency**: how fast it would swing with no $R$ (square root of the $v_C$ number)
-- right side $\dfrac{V_s}{LC}$ = the source. It is $0$ when no source is left.
+**Short example:** $R=4\,\Omega$, $L=1\,\mathrm{H}$, $C=0.25\,\mathrm{F}$:
 
-Example: $R=4\,\Omega$, $L=1\,\mathrm{H}$, $C=0.25\,\mathrm{F}$ → $\alpha=\dfrac{4}{2}=2$ and $\omega_0=\dfrac{1}{\sqrt{0.25}}=2$.
+$$
+\begin{gathered}\alpha=\dfrac{4}{2}=2, \\ \omega_0=\dfrac{1}{\sqrt{0.25}}=2\end{gathered}
+$$
 
 ```schematic
 C1 0,3 -> 0,0 "$C$" v="$v$" i="$i_C$"
@@ -2496,35 +4011,75 @@ wire 6,0 -> 0,0
 ground 0,0
 ```
 
-**Parallel:** solve for the shared voltage $v$.
+**Parallel** (solve for the shared $v$). Only $\alpha$ changes:
 
-$$v^{\prime\prime}+\dfrac{1}{RC}v^{\prime}+\dfrac{1}{LC}v=0$$
+$$
+\begin{gathered}\alpha=\dfrac{1}{2RC}, \\ \omega_0=\dfrac{1}{\sqrt{LC}}\end{gathered}
+$$
 
-- $\alpha=\dfrac{1}{2RC}$, **not** $\dfrac{R}{2L}$. Here a bigger $R$ means *less* damping: a big resistor in parallel takes almost no current, so it barely drains energy.
-- $\omega_0=\dfrac{1}{\sqrt{LC}}$, the same as in series.
+**Short example:** $R=800\,\Omega$, $C=50\,\mathrm{nF}$:
 
-Example: $R=800\,\Omega$, $C=50\,\mathrm{nF}$ → $\alpha=\dfrac{1}{2(800)(50\times10^{-9})}=12500\,\mathrm{s^{-1}}$.
+$$
+\alpha=\dfrac{1}{2(800)(50\times10^{-9})}=12500\,\mathrm{s^{-1}}
+$$
 
-Both equations have the same characteristic equation. That is why $\alpha$ has the $2$ and $\omega_0$ the square: the roots come out clean.
+<details><summary>Where do the equations come from? (optional)</summary>
 
-$$s^2+2\alpha s+\omega_0^2=0$$
+**Series:** KVL around the loop, $V_s=Ri+Li^{\prime}+v_C$, with $i=Cv_C^{\prime}$. Divide by $LC$:
 
-$$s=-\alpha\pm\sqrt{\alpha^2-\omega_0^2}$$
+$$
+v_C^{\prime\prime}+\dfrac RL\,v_C^{\prime}+\dfrac1{LC}\,v_C=\dfrac{V_s}{LC}
+$$
 
-**Which form? Compare $\alpha$ with $\omega_0$.** It is the root table of [B5](#b5), with circuit names:
+Match with $s^2+2\alpha s+\omega_0^2$: $2\alpha=\frac RL$ and $\omega_0^2=\frac1{LC}$.
 
-| Compare | Roots | Name | Form of the response |
+**Parallel:** KCL at the top node, $Cv^{\prime}+i_L+\frac vR=0$. Differentiate once, use $i_L^{\prime}=\frac vL$, divide by $C$:
+
+$$
+v^{\prime\prime}+\dfrac{1}{RC}\,v^{\prime}+\dfrac{1}{LC}\,v=0
+$$
+
+So $2\alpha=\frac{1}{RC}$. A big parallel $R$ takes almost no current, so it barely drains energy: less damping.
+
+</details>
+
+#### The three cases (same as B5)
+
+Compare $\alpha$ with $\omega_0$. The roots are:
+
+$$
+s=-\alpha\pm\sqrt{\alpha^2-\omega_0^2}
+$$
+
+| Compare | Name | B5 case | Form |
 |---|---|---|---|
-| $\alpha>\omega_0$ | two real | **overdamped** | $A_1e^{s_1t}+A_2e^{s_2t}$ |
-| $\alpha=\omega_0$ | one repeated | **critically damped** | $(A_1+A_2t)e^{-\alpha t}$ |
-| $\alpha<\omega_0$ | $-\alpha\pm j\omega_d$ | **underdamped** | $e^{-\alpha t}(B_1\cos\omega_dt+B_2\sin\omega_dt)$ |
-| $\alpha=0$ (no $R$) | $\pm j\omega_0$ | **undamped** (LC) | $B_1\cos\omega_0t+B_2\sin\omega_0t$ |
+| $\alpha>\omega_0$ | **overdamped** | Case 1 | $c_1e^{s_1t}+c_2e^{s_2t}$ |
+| $\alpha=\omega_0$ | **critically damped** | Case 2 | $(c_1+c_2t)e^{-\alpha t}$ |
+| $\alpha<\omega_0$ | **underdamped** | Case 3 | $e^{-\alpha t}(c_1\cos\omega_dt+c_2\sin\omega_dt)$ |
 
-In the underdamped row, the square root in the roots is of a negative number, so the roots are $-\alpha\pm j\omega_d$. $\omega_d$ is how fast the response swings:
+Underdamped swings at $\omega_d$ (the B5 $\omega$; and $\sigma=-\alpha$):
 
-$$\omega_d=\sqrt{\omega_0^2-\alpha^2}$$
+$$
+\omega_d=\sqrt{\omega_0^2-\alpha^2}
+$$
 
-Example: $\alpha=3$, $\omega_0=5$ → $\omega_d=\sqrt{25-9}=4$, so $v=e^{-3t}(B_1\cos4t+B_2\sin4t)$. (In the B5 table, $\sigma=-\alpha$ and $\omega=\omega_d$.)
+**Short examples:**
+
+$$
+\alpha=5,\ \omega_0=3\quad\Longrightarrow\quad s=-5\pm4=-1,\,-9\quad\text{(overdamped)}
+$$
+
+$$
+\alpha=50,\ \omega_0=50\quad\Longrightarrow\quad (c_1+c_2t)e^{-50t}\quad\text{(critical)}
+$$
+
+$$
+\alpha=3,\ \omega_0=5\quad\Longrightarrow\quad \omega_d=4,\ \ e^{-3t}(c_1\cos4t+c_2\sin4t)
+$$
+
+No $R$ at all ($\alpha=0$, an ideal LC): $\;c_1\cos\omega_0t+c_2\sin\omega_0t$, swinging forever.
+
+**What do the three cases look like?**
 
 ```graph
 title "Slide R through the three cases (series RLC, $L=1\,\mathrm{H}$, $C=0.25\,\mathrm{F}$)"
@@ -2539,58 +4094,81 @@ curve "if(abs(a-2)<0.001, 10*(1+2*t)*exp(-2*t), if(a<2, 10*exp(-a*t)*(cos(wd*t)+
 hline "0"
 readout "$\alpha=R/2L$" "a"
 readout "$\omega_0=1/\sqrt{LC}$" "2"
-caption "$\omega_0=2$ never changes; only $\alpha=R/2$ moves. $R<4$: underdamped, it swings below zero before settling. $R=4$: critically damped, the fastest way back with no overshoot. $R>4$: overdamped, a slow creep back. $R=0$: undamped, it swings forever."
+caption "$\omega_0=2$ never changes; only $\alpha=R/2$ moves. $R<4$: underdamped, it swings below zero before settling. $R=4$: critically damped, fastest with no overshoot. $R>4$: overdamped, a slow creep back."
 ```
 
-**A second-order ODE needs two starting values: $y(0)$ and $y^{\prime}(0)$.** The value is easy: $v_C$ can’t jump, so $v_C(0^+)=v_C(0^-)$. The slope comes from the capacitor current:
+#### Steps: the two starting values
 
-$$v_C^{\prime}(0^+)=\dfrac{i_C(0^+)}{C}$$
+Second order needs **two** starting values: $v(0)$ and the slope $v^{\prime}(0)$. The value carries across. The slope comes from the capacitor current:
 
-Why: it is $i_C=C\,\dfrac{dv_C}{dt}$, divided by $C$. So the job is to find $i_C$ at $0^+$:
+$$
+v_C^{\prime}(0^+)=\dfrac{i_C(0^+)}{C}
+$$
 
-- **Series:** $i_C$ is the loop current $i$, which is also $i_L$, so it carries over from $0^-$. Sign: $+$ if the $i$ arrow enters the $+$ end of $C$, $-$ if it leaves it. Example: $i(0^-)=0$ → $v_C^{\prime}(0^+)=0$.
-- **Parallel:** KCL at the top node at $0^+$ (all arrows down): $i_C=-(i_L+i_R)$, with $i_R=\dfrac{v(0^+)}{R}$. Example: $v=10\,\mathrm{V}$, $R=5\,\Omega$, $i_L=1\,\mathrm{A}$, $C=0.5\,\mathrm{F}$ → $i_C=-(1+2)=-3\,\mathrm{A}$, so $v^{\prime}(0^+)=-6\,\mathrm{V/s}$.
-- **Series, solving for $i$ instead:** $i(0^+)=i_L(0^-)$, and the slope is $i^{\prime}(0^+)=\dfrac{v_L(0^+)}{L}$, with $v_L$ from KVL around the loop. Example: $v_C=70\,\mathrm{V}$, $i=0$, $L=0.1\,\mathrm{H}$ → $v_L=70$, $i^{\prime}(0^+)=700\,\mathrm{A/s}$.
+1. **Before:** old circuit, long time ($C$ = gap, $L$ = wire). Find $v_C(0^-)$ and $i_L(0^-)$.
+2. **Carry across:** $v_C(0^+)=v_C(0^-)$, $i_L(0^+)=i_L(0^-)$. Then find $i_C(0^+)$ and the slope (cards below).
+3. **After:** series or parallel? Compute $\alpha$, $\omega_0$. Final value $V_f$: $0$ if no source is left, else the new DC state.
+4. **Pick** the case (compare $\alpha$, $\omega_0$) and write $v=V_f+$ the form.
+5. **Plug in** $t=0$: the value gives $c_1$, the slope (product rule) gives $c_2$. Use the **whole** answer, $V_f$ included.
+6. **Check:** $t\to\infty$ gives $V_f$.
 
-**What if a source stays on after the switch?** (a **step response**) Then the answer does not die out to $0$. It settles to a **final value** $V_f$:
+<details><summary>Slope in a series circuit: $\;i_C=$ the loop current $=i_L$</summary>
 
-$$v_C(t)=V_f+(\text{part that dies out})$$
+Step 1 · The loop current is the inductor current, so it carries across. Sign: $+$ if the arrow enters the $+$ end of $C$.
 
-- $V_f$ = the new DC steady state ($C$ open, $L$ short). It is the constant $y_p$ of [B6](#b6).
-- the part that dies out = the form from the table above.
+$$
+v_C^{\prime}(0^+)=\dfrac{i_L(0^+)}{C}
+$$
 
-Example: $v_C=100+(A_1+A_2t)e^{-50t}$ has $V_f=100\,\mathrm{V}$.
+Step 2 · Example: $i(0^-)=0$.
 
-> **Warning:** **Fit the constants to the whole answer, final value included.** With $v_C(0)=200$: $\;100+A_1=200$, so $A_1=100$, not $200$.
+$$
+v_C^{\prime}(0^+)=0
+$$
 
-**Method:**
+</details>
 
-1. **Before:** the old circuit in DC steady state ($C$ open, $L$ short). Find $v_C(0^-)$ and $i_L(0^-)$.
-2. **Starting values:** both carry over to $0^+$. Then find the slope from $i_C$ (see above).
-3. **Equation:** series or parallel? Compute $\alpha$ and $\omega_0$, compare them, and pick the form from the table.
-4. **Final value:** $0$ if no source is left. Otherwise, the new DC steady state.
-5. **Constants:** use the starting value and slope on the whole answer. Use the product rule for the slope.
+<details><summary>Slope in a parallel circuit: KCL, $\;i_C=-(i_L+i_R)$</summary>
 
-> **Warning:** **Units.** Turn $\mathrm{mH}$, $\mathrm{mF}$, $\mu\mathrm{F}$, $\mathrm{nF}$ into H and F before computing $\alpha$ and $\omega_0$: $1\,\mathrm{mH}=10^{-3}\,\mathrm{H}$, $1\,\mu\mathrm{F}=10^{-6}\,\mathrm{F}$, $1\,\mathrm{nF}=10^{-9}\,\mathrm{F}$. Example: $L=250\,\mathrm{mH}$, $C=10\,\mathrm{nF}$ → $\omega_0=\dfrac{1}{\sqrt{0.25\times10^{-8}}}=20000$.
+Step 1 · All three arrows point down, so the currents add to $0$. $i_R=\frac{v(0^+)}{R}$.
 
-> **Info:** **Bonus (skip-safe): where the series equation comes from.** KVL around the loop, then swap the current for $Cv_C^{\prime}$:
-> 
-> ```steps
-> $$ V_s=Ri+Li^{\prime}+v_C $$
-> KVL: the voltages on R, L and C add up to the source.
-> $$ i=\hl{Cv_C^{\prime}} $$
-> The loop current is the capacitor current.
-> $$ V_s=RC\,v_C^{\prime}+LC\,v_C^{\prime\prime}+v_C $$
-> Put that current (and its derivative) into the KVL line.
-> $$ v_C^{\prime\prime}+\hl{\dfrac RL}v_C^{\prime}+\hl{\dfrac1{LC}}v_C=\hl{\dfrac{V_s}{LC}} $$
-> Divide by $LC$ so $v_C^{\prime\prime}$ stands alone.
-> ```
-> 
-> Parallel: KCL at the top node gives $Cv^{\prime}+i_L+\dfrac vR=0$. Differentiate once, use $i_L^{\prime}=\dfrac vL$, and divide by $C$.
+$$
+i_C(0^+)=-\big(i_L(0^+)+i_R(0^+)\big)
+$$
 
-**Example: Example 10 · W5 · A series step response · textbook P8.53**
+Step 2 · Example: $v=10\,\mathrm{V}$, $R=5\,\Omega$, $i_L=1\,\mathrm{A}$, $C=0.5\,\mathrm{F}$.
 
-The circuit has been running for a long time with $V_s=200\,\mathrm{V}$. At $t=0$ the source drops to $100\,\mathrm{V}$. Find $v_C(t)$ for $t\ge0$.
+$$
+i_C=-(1+2)=-3\,\mathrm{A}
+$$
+
+$$
+v^{\prime}(0^+)=\dfrac{-3}{0.5}=-6\,\mathrm{V/s}
+$$
+
+</details>
+
+<details><summary>Solving for $i$ in a series circuit: $\;i^{\prime}(0^+)=\dfrac{v_L(0^+)}{L}$</summary>
+
+Step 1 · $i(0^+)=i_L(0^-)$. For the slope, KVL around the new loop gives $v_L$.
+
+$$
+v_L(0^+)=v_C(0^+)-R\,i(0^+)
+$$
+
+Step 2 · Example: $v_C=70\,\mathrm{V}$, $i=0$, $L=0.1\,\mathrm{H}$.
+
+$$
+i^{\prime}(0^+)=\dfrac{70}{0.1}=700\,\mathrm{A/s}
+$$
+
+</details>
+
+> **Warning:** **Fit the constants to the whole answer, $V_f$ included.** $v_C=100+(c_1+c_2t)e^{-50t}$ with $v_C(0)=200$: $\;100+c_1=200$, so $c_1=100$, not $200$.
+
+> **Warning:** **Units first.** $1\,\mathrm{mH}=10^{-3}\,\mathrm{H}$, $1\,\mu\mathrm{F}=10^{-6}\,\mathrm{F}$, $1\,\mathrm{nF}=10^{-9}\,\mathrm{F}$. Example: $L=250\,\mathrm{mH}$, $C=10\,\mathrm{nF}$ → $\omega_0=\dfrac{1}{\sqrt{0.25\times10^{-8}}}=20000$.
+
+**Textbook example (P8.53).** The circuit has been running for a long time with $V_s=200\,\mathrm{V}$. At $t=0$ the source drops to $100\,\mathrm{V}$. Find $v_C(t)$ for $t\ge0$.
 
 ```schematic
 V1 0,3 -> 0,0 "$200\to100\,\mathrm{V}$"
@@ -2601,29 +4179,69 @@ wire 6,0 -> 0,0
 ground 0,0
 ```
 
-1. **Type:** one $L$ and one $C$ in one loop, and a source that stays on: a series RLC step response.
-2. **Before:** long time, so DC steady state. $C$ is open, so $i=0$. With no current, $R$ and $L$ drop nothing, so $C$ holds the whole 200 V.
+<details><summary>Full solution: a series step response</summary>
 
-   $$v_C(0^-)=200\,\mathrm{V},\quad i(0^-)=0$$
-3. **Starting values:** $v_C$ and $i$ can’t jump. The slope is $i/C$, and $i=0$.
+Step 1 · **Before:** long time, so $C$ is a gap and $i=0$. With no current, $R$ and $L$ drop nothing, so $C$ holds the whole $200\,\mathrm{V}$.
 
-   $$v_C(0^+)=200,\quad v_C'(0^+)=\dfrac{0}{0.01}=0$$
-4. **Equation:** $\alpha=\frac{R}{2L}=\frac{4}{2(0.04)}=50$ and $\omega_0=\frac{1}{\sqrt{LC}}=\frac{1}{\sqrt{0.04\times0.01}}=50$. They are equal, so it is critically damped.
+$$
+v_C(0^-)=200\,\mathrm{V},\qquad i(0^-)=0
+$$
 
-   $$v_C''+100v_C'+2500v_C=250000$$
-5. **Final value:** long after the switch, $C$ is open again and holds the new source, so $v_C\to100\,\mathrm{V}$. Answer = final value + the repeated-root form.
+Step 2 · **Carry across:** neither can jump. The slope is $i/C$, and $i=0$.
 
-   $$v_C=100+(A_1+A_2t)e^{-50t}$$
-6. **Constants:** put in $t=0$. The value $v_C(0)=200$ gives $A_1$.
+$$
+v_C(0^+)=200
+$$
 
-   $$100+A_1=200\ \Rightarrow\ A_1=100$$
-7. The slope at $0$ (product rule) is $A_2-50A_1$, and it must be $0$.
+$$
+v_C^{\prime}(0^+)=\dfrac{0}{0.01}=0
+$$
 
-   $$A_2-50A_1=0\ \Rightarrow\ A_2=5000$$
+Step 3 · **After:** series, so $\alpha=\frac{R}{2L}$. Long after, $C$ is a gap again and holds the new source.
 
-**Answer:** $v_C=100+(100+5000t)e^{-50t}\,\mathrm{V}$, $t\ge0$ ($t$ in seconds). It starts at 200 V with zero slope and settles at 100 V without overshooting.
+$$
+\alpha=\dfrac{4}{2(0.04)}=50,\qquad \omega_0=\dfrac{1}{\sqrt{0.04\times0.01}}=50
+$$
 
-**Problem: Problem 48 · W5 · No resistor: an ideal LC circuit · textbook P8.14** (introductory)
+$$
+V_f=100\,\mathrm{V}
+$$
+
+Step 4 · **Pick:** $\alpha=\omega_0$, critically damped (B5 Case 2). Add $V_f$.
+
+$$
+v_C=100+(c_1+c_2t)\,e^{-50t}
+$$
+
+Step 5 · Differentiate (product rule).
+
+$$
+v_C^{\prime}=c_2e^{-50t}-50(c_1+c_2t)e^{-50t}
+$$
+
+Step 6 · **Plug in** $t=0$.
+
+$$
+100+c_1=200\quad\Rightarrow\quad c_1=100
+$$
+
+$$
+c_2-50c_1=0\quad\Rightarrow\quad c_2=5000
+$$
+
+Step 7 · **Check:** $t\to\infty$ gives $100\,\mathrm{V}$ ✓.
+
+**Answer:**
+
+$$
+v_C=100+(100+5000t)\,e^{-50t}\,\mathrm{V}
+$$
+
+</details>
+
+#### Practice: D2
+
+**Problem: Problem 44 · W5 · No resistor: an ideal LC circuit · textbook P8.14** (introductory)
 
 A $250\,\mathrm{mF}$ capacitor and a $0.4\,\mathrm{H}$ inductor are in parallel. At the start, $v(0)=0$ and $i_L(0)=-3\,\mathrm{A}$ (arrow pointing down). Find (a) $v(t)$, (b) its frequency in rad/s, (c) its maximum amplitude.
 
@@ -2640,21 +4258,21 @@ ground 0,0
 1. **Type:** parallel with no $R$, so $\alpha=0$: undamped. $\frac{1}{LC}=\frac{1}{0.25\times0.4}=10$.
 
    $$v''+\dfrac{1}{LC}v=v''+10v=0$$
-2. **Form:** $\omega_0=\sqrt{10}$. The cosine coefficient is $v(0)=0$, so only the sine is left.
+2. **Pick:** $\omega_0=\sqrt{10}$. The cosine coefficient is $v(0)=0$, so only the sine is left.
 
-   $$v=B\sin(\sqrt{10}\,t)$$
-3. **Starting slope:** KCL at the top node: $i_C+i_L=0$, so $i_C(0^+)=+3\,\mathrm{A}$ (down). Divide by $C$.
+   $$v=c_2\sin(\sqrt{10}\,t)$$
+3. **Carry across** (slope): KCL at the top node: $i_C+i_L=0$, so $i_C(0^+)=+3\,\mathrm{A}$ (down). Divide by $C$.
 
    $$v'(0^+)=\dfrac{3}{0.25}=12\,\mathrm{V/s}$$
-4. **Constant:** the slope of $B\sin(\sqrt{10}\,t)$ at $0$ is $\sqrt{10}\,B$. Set it equal to 12.
+4. **Plug in:** the slope of $c_2\sin(\sqrt{10}\,t)$ at $0$ is $\sqrt{10}\,c_2$. Set it equal to 12.
 
-   $$B=\dfrac{12}{\sqrt{10}}\approx3.795$$
+   $$c_2=\dfrac{12}{\sqrt{10}}\approx3.795$$
 
 **Answer:** (a) $v=\dfrac{12}{\sqrt{10}}\sin(\sqrt{10}\,t)\,\mathrm{V}$. (b) $\omega_0=\sqrt{10}\approx3.162\,\mathrm{rad/s}$. (c) $3.795\,\mathrm{V}$. With no $R$, nothing uses up the energy, so it never dies out.
 
 </details>
 
-**Problem: Problem 49 · W5 · Read the circuit back from its response · textbook P8.3** (introductory)
+**Problem: Problem 45 · W5 · Read the circuit back from its response · textbook P8.3** (introductory)
 
 In a parallel RLC circuit, $C=50\,\mathrm{nF}$ and the voltage is $v=-5e^{-5000t}+20e^{-20000t}\,\mathrm{V}$ for $t\ge0$. Find $\alpha$, $\omega_0$, $L$ and $R$.
 
@@ -2688,7 +4306,7 @@ ground 0,0
 
 </details>
 
-**Problem: Problem 50 · W5 · Switch to a series loop · textbook P8.44** (intermediate)
+**Problem: Problem 46 · W5 · Switch to a series loop · textbook P8.44** (intermediate)
 
 The switch has been at $a$ for a long time. At $t=0$ it moves to $b$. Find $i(t)$ for $t\ge0$.
 
@@ -2712,24 +4330,24 @@ label 9,3 "$b$" above
 2. **Before:** at $a$, $C$ is open (steady state), so no current flows in the $50\,\Omega$ and $C$ charges to the full 70 V. $L$ isn’t connected, so its current is 0.
 
    $$v_C(0^-)=70\,\mathrm{V},\quad i(0^-)=0$$
-3. **Starting slope:** KVL around the new loop is $v_C=Ri+L\,i^{\prime}$. At $0^+$, $v_C=70$ and $i=0$.
+3. **Carry across** (slope): KVL around the new loop is $v_C=Ri+L\,i^{\prime}$. At $0^+$, $v_C=70$ and $i=0$.
 
    $$i'(0^+)=\dfrac{70-200(0)}{0.1}=700\,\mathrm{A/s}$$
-4. **Equation:** $\alpha=\dfrac{R}{2L}=\dfrac{200}{2(0.1)}=1000$ and $\omega_0^2=\dfrac{1}{LC}=\dfrac{1}{0.1\times200\times10^{-9}}=5\times10^7$. $\alpha^2=10^6$ is smaller, so underdamped.
+4. **After:** $\alpha=\dfrac{R}{2L}=\dfrac{200}{2(0.1)}=1000$ and $\omega_0^2=\dfrac{1}{LC}=\dfrac{1}{0.1\times200\times10^{-9}}=5\times10^7$. $\alpha^2=10^6$ is smaller, so underdamped.
 
    $$\omega_d=\sqrt{5\times10^7-10^6}=7000\,\mathrm{rad/s}$$
-5. **Form:** the cosine coefficient is $i(0)=0$, so only the sine is left.
+5. **Pick:** the cosine coefficient is $i(0)=0$, so only the sine is left.
 
-   $$i=B\,e^{-1000t}\sin7000t$$
-6. **Constant:** the slope of this at $t=0$ is $7000B$. Set it equal to 700.
+   $$i=c_2\,e^{-1000t}\sin7000t$$
+6. **Plug in:** the slope of this at $t=0$ is $7000c_2$. Set it equal to 700.
 
-   $$B=0.1$$
+   $$c_2=0.1$$
 
 **Answer:** $i=0.1\,e^{-1000t}\sin7000t\ \mathrm{A}$ $=100\,e^{-1000t}\sin7000t\ \mathrm{mA}$, $t\ge0$.
 
 </details>
 
-**Problem: Problem 51 · W5 · The slope comes from KCL · textbook P8.7** (intermediate)
+**Problem: Problem 47 · W5 · The slope comes from KCL · textbook P8.7** (intermediate)
 
 $R=\tfrac{12500}{3}\,\Omega$, $L=250\,\mathrm{mH}$ and $C=10\,\mathrm{nF}$ are in parallel. At the start, $v(0)=90\,\mathrm{V}$ and $i_L(0)=-30\,\mathrm{mA}$ (arrows as drawn). Find $v(t)$ for $t\ge0$.
 
@@ -2746,27 +4364,27 @@ ground 0,0
 <details><summary>Solution</summary>
 
 1. **Type:** parallel RLC, no source: a natural response.
-2. **Starting slope:** first the resistor current, $i_R=\dfrac{90}{12500/3}=21.6\,\mathrm{mA}$. KCL at the top node (all arrows down): $i_C+i_L+i_R=0$, so $i_C=-(-30)-21.6$.
+2. **Carry across** (slope): first the resistor current, $i_R=\dfrac{90}{12500/3}=21.6\,\mathrm{mA}$. KCL at the top node (all arrows down): $i_C+i_L+i_R=0$, so $i_C=-(-30)-21.6$.
 
    $$i_C(0^+)=30-21.6=8.4\,\mathrm{mA}$$
 3. Divide by $C$ to get the slope.
 
    $$v'(0^+)=\dfrac{8.4\times10^{-3}}{10^{-8}}=8.4\times10^5\,\mathrm{V/s}$$
-4. **Equation:** $\alpha=\dfrac{1}{2RC}=12000$ and $\omega_0=\dfrac{1}{\sqrt{LC}}=20000$. $\alpha<\omega_0$, so underdamped.
+4. **After:** $\alpha=\dfrac{1}{2RC}=12000$ and $\omega_0=\dfrac{1}{\sqrt{LC}}=20000$. $\alpha<\omega_0$, so underdamped.
 
    $$\omega_d=\sqrt{20000^2-12000^2}=16000$$
-5. **Form:** the cosine coefficient is $v(0)=90$.
+5. **Pick:** the cosine coefficient is $v(0)=90$.
 
-   $$v=e^{-12000t}(90\cos16000t+B_2\sin16000t)$$
-6. **Constant:** the slope at $0$ is $-\alpha(90)+\omega_dB_2$ (the $y^{\prime}(0)$ column of the B5 table). Set it equal to $8.4\times10^5$.
+   $$v=e^{-12000t}(90\cos16000t+c_2\sin16000t)$$
+6. **Plug in:** the slope at $0$ is $-\alpha(90)+\omega_dc_2$ (the $y^{\prime}(0)$ column of the B5 table). Set it equal to $8.4\times10^5$.
 
-   $$-12000(90)+16000B_2=840000\ \Rightarrow\ B_2=120$$
+   $$-12000(90)+16000c_2=840000\ \Rightarrow\ c_2=120$$
 
 **Answer:** $v=e^{-12000t}(90\cos16000t+120\sin16000t)\,\mathrm{V}$, $t\ge0$.
 
 </details>
 
-**Problem: Problem 52 · W5 · Choose R for critical damping · textbook P8.42** (advanced)
+**Problem: Problem 48 · W5 · Choose R for critical damping · textbook P8.42** (advanced)
 
 $R$ is set so the circuit is critically damped. When the switch closes, $v_C=90\,\mathrm{V}$ and the inductor current is $i=24\,\mathrm{mA}$. Find (a) $R$, (b) $i$ and $\dfrac{di}{dt}$ just after closing, (c) $i(t)$ and $v_C(t)$ for $t\ge0$.
 
@@ -2788,12 +4406,12 @@ ground 0,0
 3. **(b)** $i$ is the inductor current, so it can’t jump: $i(0^+)=24\,\mathrm{mA}$. For the slope, use KVL around the loop, $v_C=Ri+L\,i^{\prime}$, at $0^+$.
 
    $$i'(0^+)=\dfrac{90-2500(0.024)}{0.25}=120\,\mathrm{A/s}$$
-4. **(c) Form:** critically damped, so one repeated root $s=-\alpha=-5000$.
+4. **(c) Pick:** critically damped, so one repeated root $s=-\alpha=-5000$.
 
-   $$i=(A_1+A_2t)e^{-5000t}$$
-5. **Constants:** $A_1=i(0)=0.024$. The slope at $0$ is $A_2-5000A_1$; set it equal to 120.
+   $$i=(c_1+c_2t)e^{-5000t}$$
+5. **Plug in:** $c_1=i(0)=0.024$. The slope at $0$ is $c_2-5000c_1$; set it equal to 120.
 
-   $$A_2=240$$
+   $$c_2=240$$
 6. For $v_C$, use the same KVL: $v_C=Ri+L\,i^{\prime}$. (Check: $i=-C\,v_C^{\prime}$, with a minus because $i$ leaves the $+$ of $C$.)
 
    $$v_C=(90+3\times10^5\,t)e^{-5000t}$$
@@ -2802,7 +4420,7 @@ ground 0,0
 
 </details>
 
-**Problem: Problem 53 · W5 + W6 · The answer is zero · textbook P8.24** (advanced)
+**Problem: Problem 49 · W5 + W6 · The answer is zero · textbook P8.24** (advanced)
 
 The switch has been open for a long time and the capacitor is uncharged. At $t=0$ the switch closes. Find $v_o(t)$ for $t\ge0$.
 
@@ -2822,13 +4440,13 @@ ground 0,0
 2. **Before:** steady state, so $L$ is a short and takes the whole source current. $C$ isn’t connected and has no charge.
 
    $$i_L(0^-)=\dfrac{12}{400}=30\,\mathrm{mA},\quad v_o(0^-)=0$$
-3. **Starting slope:** at $0^+$, $v_o=0$, so the $400\,\Omega$ still carries $30\,\mathrm{mA}$. $L$ still takes all 30 mA (it can’t jump). KCL at the top node leaves nothing for $C$.
+3. **Carry across** (slope): at $0^+$, $v_o=0$, so the $400\,\Omega$ still carries $30\,\mathrm{mA}$. $L$ still takes all 30 mA (it can’t jump). KCL at the top node leaves nothing for $C$.
 
    $$i_C(0^+)=30-30=0\ \Rightarrow\ v_o^{\prime}(0^+)=0$$
-4. **Equation:** KCL at the top node is $\dfrac{v_o-12}{400}+i_L+Cv_o^{\prime}=0$. Differentiate once: the constant 12 disappears, so the right side is $0$.
+4. **After:** KCL at the top node is $\dfrac{v_o-12}{400}+i_L+Cv_o^{\prime}=0$. Differentiate once: the constant 12 disappears, so the right side is $0$.
 
    $$Cv_o''+\dfrac{v_o'}{400}+\dfrac{v_o}{L}=0$$
-5. **Condition:** right side $0$, $v_o(0)=0$ and $v_o^{\prime}(0)=0$. The only solution that fits is $v_o=0$ (the zero-start rule in [Topic C](#topic-c)).
+5. **Plug in:** right side $0$, $v_o(0)=0$ and $v_o^{\prime}(0)=0$. The only solution that fits is $v_o=0$ (the zero-start rule in [Topic C](#topic-c)).
 
 **Answer:** $v_o(t)=0$ for all $t\ge0$. The inductor already carries the whole source current, so nothing ever flows into the capacitor.
 
@@ -2838,18 +4456,29 @@ ground 0,0
 
 **The professor’s advice:** “Study all the examples in the lectures and posted materials, and those in the tutorials, and you will be fine. The examples will be a good guide to the problems on the Midterm.”
 
-So this set is built from those examples. Some are copied straight from a lecture or tutorial. The rest change the numbers or add a twist, so you practise the exact move the example teaches.
+So this set is built from those examples, some copied, some with new numbers or a twist. **Every solution uses exactly the steps of its section**, word for word, so you practise the way you learned it.
 
 **How to use it:**
 
 1. Close the rest of the note. Do a whole problem on paper before you open its solution.
-2. Start every answer by naming the **type** and the clue. On the exam, that’s the step that picks the method.
-3. Stuck or wrong? Each answer box links to the section to review.
+2. Start every answer with the **type** (which section) and the clue that told you.
+3. Stuck or wrong? Each answer ends with the section to review.
 
-**Redo the worked examples too, solutions closed.** They’re the lecture and tutorial examples themselves:
+**The midterm question is always one of these.** Spot the clue, run the steps:
 
-- Example 1 (fourth roots) · Example 2 (separable) · Example 3 (integrating factor) · Example 4 (exact)
-- Example 5 (Pre-tutorial 4) · Example 7 (Pre-tutorial 5) · Example 8 (reduction of order) · Example 9 (RL circuit)
+| You see… | Go to | First move |
+|---|---|---|
+| a complex number to divide, convert, power, root | [A](#topic-a) | go polar |
+| $y^{\prime}=$ ($t$-part)($y$-part) | [B1](#b1) | separate |
+| $y^{\prime}+p(t)\,y=f(t)$ | [B2](#b2) | $\mu=e^{\int p\,dt}$ |
+| $M\,dt+N\,dy=0$ | [B3](#b3) / [B4](#b4) | test $M_y=N_t$ |
+| $ay^{\prime\prime}+by^{\prime}+cy=0$ | [B5](#b5) | the quadratic |
+| $ay^{\prime\prime}+by^{\prime}+cy=f(t)$ | [B6](#b6) | $y_c$, then guess $y_p$ |
+| $t$ in front, $y_1$ given | [B7](#b7) | $y=y_1v$ |
+| “exactly one solution?”, “interval?” | [C](#topic-c) | find where it breaks |
+| a circuit with a switch | [D](#topic-d) | Before → Carry across → After |
+
+**Redo the full-example cards too, solutions closed:** B1 (lecture 3.3), B2 (lecture 3.1), B3 (lecture 4.1), B4 (Pre-tutorial 4), B6 (the tutorial problem), B7 (the lecture example), D1 (the lecture RL circuit), D2 (P8.53).
 
 **Problem: E1 · W1 · Divide, convert, take roots · like lecture Examples 1.1 and 1.2** (introductory)
 
@@ -2857,29 +4486,32 @@ So this set is built from those examples. Some are copied straight from a lectur
 
 <details><summary>Solution</summary>
 
-1. **Type:** (a) division in rectangular form, so multiply top and bottom by the conjugate of the bottom, $2+j$.
+1. (a) **Type:** dividing in rectangular → Topic A, Case 2. Multiply top and bottom by the conjugate of the bottom, $2+j$.
 
-   $$z=\dfrac{(10+j5)(2+j)}{(2-j)(2+j)}=\dfrac{20+10j+10j+5j^2}{4+1}$$
-2. **Multiply out:** $j^2=-1$, so $5j^2=-5$.
+   $$z=\dfrac{(10+j5)(2+j)}{(2-j)(2+j)}$$
+2. Multiply out. $j^2=-1$, so $5j^2=-5$. The bottom is $2^2+1^2$.
 
-   $$z=\dfrac{15+j20}{5}=3+j4$$
-3. (b) **Length:** $\sqrt{3^2+4^2}$. **Angle:** $3+j4$ is in the 1st quadrant, so $\tan^{-1}\frac43$ is already right.
+   $$\begin{gathered}(10+j5)(2+j)=20+j10+j10+5j^2=15+j20 \\ (2-j)(2+j)=5\end{gathered}$$
+3. Divide each part by $5$.
 
-   $$z=5\,e^{j53.13^\circ}$$
-4. (c) **Polar first:** $8j$ sits on the positive imaginary axis.
+   $$z=3+j4$$
+4. (b) **Type:** Case 1, rectangular → polar. $a=3>0$, so no $180^\circ$ fix.
 
-   $$8j=8\,e^{j90^\circ}$$
-5. **Length and first angle:** take the cube root of the length, and divide the angle by 3.
+   $$\begin{gathered}c=\sqrt{3^2+4^2}=5 \\ \theta=\tan^{-1}\tfrac43=53.13^\circ\end{gathered}$$
+5. (c) **Type:** Case 3, roots with $k=3$. Go polar first: $8j$ points straight up.
 
-   $$8^{1/3}=2,\qquad \dfrac{90^\circ}{3}=30^\circ$$
-6. **Spacing:** three roots, so $360^\circ/3=120^\circ$ apart.
+   $$8j=8\angle90^\circ$$
+6. **Length:** the cube root of $8$.
 
-   $$2e^{j30^\circ},\quad 2e^{j150^\circ},\quad 2e^{j270^\circ}$$
-7. **Rectangular:** $2\cos30^\circ=\sqrt3$, $2\sin30^\circ=1$, and so on.
+   $$8^{1/3}=2$$
+7. **First angle**, then **spacing** $360^\circ/3$.
 
-   $$\sqrt3+j,\quad -\sqrt3+j,\quad -j2$$
+   $$\begin{gathered}\dfrac{90^\circ}{3}=30^\circ \\ 30^\circ,\quad 150^\circ,\quad 270^\circ\end{gathered}$$
+8. Convert each to rectangular (Case 1): $a=2\cos\theta$, $b=2\sin\theta$.
 
-**Answer:** (a) $3+j4$. (b) $5e^{j53.13^\circ}$. (c) $2e^{j30^\circ}=\sqrt3+j$, $\;2e^{j150^\circ}=-\sqrt3+j$, $\;2e^{j270^\circ}=-j2$. Review: [Topic A](#topic-a).
+   $$\begin{gathered}2\angle30^\circ=\sqrt3+j \\ 2\angle150^\circ=-\sqrt3+j \\ 2\angle270^\circ=-j2\end{gathered}$$
+
+**Answer:** (a) $3+j4$. (b) $5\angle53.13^\circ$. (c) $2\angle30^\circ=\sqrt3+j$, $\;2\angle150^\circ=-\sqrt3+j$, $\;2\angle270^\circ=-j2$. Review: [Topic A](#topic-a).
 
 </details>
 
@@ -2897,10 +4529,11 @@ For each equation, give the order and say whether it is linear, homogeneous, con
 
 <details><summary>Solution</summary>
 
-1. **Type:** classification. (a) Highest derivative $i^{\prime\prime}$: 2nd order. $i$ appears to the power 1: linear. Right side $0$: homogeneous. $R,L,C$ are numbers: constant coefficients. No $t$ anywhere: autonomous.
-2. (b) 1st order. $y^2$ is not power 1, so **nonlinear**. The $t$ on the right means it is not autonomous.
-3. (c) 2nd order, linear, numbers in front. Right side is not $0$, so **not** homogeneous. $\cos^2t$ has a $t$, so not autonomous.
-4. (d) **Linearity:** multiply $y$ by 5 and the whole left side gets multiplied by 5. So $5e^{-t}$ gives $5e^{-t}$ on the right.
+1. **Type:** classification → the five questions at the start of Topic B.
+2. (a) **Order:** $i^{\prime\prime}$, so 2nd. **Linear:** $i$ only to the power 1. **Homogeneous:** right side $0$. **Constant coefficients:** $\frac RL$, $\frac1{LC}$ are numbers. **Autonomous:** no $t$ anywhere.
+3. (b) **Order** 1. $y^2$ is not power 1, so **nonlinear**. The $t$ means **not** autonomous.
+4. (c) **Order** 2, linear, numbers in front. Right side $\neq0$: **not** homogeneous. $\cos^2t$ has $t$: not autonomous.
+5. (d) **Linearity:** multiply $y$ by $5$ and the whole left side is multiplied by $5$. Check:
 
    $$(5e^{-t})^{\prime}+2(5e^{-t})=-5e^{-t}+10e^{-t}=5e^{-t}\ \checkmark$$
 
@@ -2920,36 +4553,56 @@ Name the type of each equation, then solve it.
 
 <details><summary>Solution</summary>
 
-1. (a) **Type:** factor the top and the bottom. It becomes a $t$-part times a $y$-part, so separable.
+1. (a) **Type:** factor top and bottom → a $t$-part times a $y$-part → B1. **Write:**
 
-   $$\dfrac{dy}{dt}=\dfrac{2t(1+y^2)}{y(1+t^2)}$$
-2. **Separate:** every $y$ left, every $t$ right.
+   $$\dfrac{dy}{dt}=\dfrac{2t}{1+t^2}\cdot\dfrac{1+y^2}{y}$$
+2. **Separate.**
 
    $$\dfrac{y}{1+y^2}\,dy=\dfrac{2t}{1+t^2}\,dt$$
-3. **Integrate:** each side is (derivative of the bottom) over (the bottom), up to a constant factor.
+3. **Integrate:** both are “top = derivative of bottom” (the left one is half).
 
-   $$\tfrac12\ln(1+y^2)=\ln(1+t^2)+c\ \Rightarrow\ 1+y^2=C(1+t^2)^2$$
-4. **Condition** $y(0)=1$: $1+1=C$, so $C=2$. Take the $+$ root, since $y(0)=1>0$.
+   $$\tfrac12\ln(1+y^2)=\ln(1+t^2)+C$$
+4. **Solve for $y$:** multiply by $2$, raise $e$ to both sides ($e^{2C}$ is a new $C$).
 
-   $$y=\sqrt{2(1+t^2)^2-1}$$
-5. (b) **Type:** $y^{\prime}+a(t)\,y=f(t)$ with $a=\dfrac{6}{3t+2}$: linear. **Integrating factor:** $\int\frac{6}{3t+2}dt=2\ln(3t+2)$.
+   $$1+y^2=C\,(1+t^2)^2$$
+5. **Plug in** $y(0)=1$, then take the $+$ root ($y(0)>0$).
 
-   $$\mu=e^{2\ln(3t+2)}=(3t+2)^2$$
-6. **Rewrite and integrate:** the left side becomes $\big[(3t+2)^2y\big]^{\prime}$. On the right, $\int4(3t+2)^2dt=\frac49(3t+2)^3$.
+   $$\begin{gathered}1+1=C\cdot1\quad\Rightarrow\quad C=2 \\ y=\sqrt{2(1+t^2)^2-1}\end{gathered}$$
+6. (b) **Type:** linear → B2. **Write:** $y^{\prime}$ is alone.
 
-   $$(3t+2)^2\,y=\tfrac49(3t+2)^3+C$$
-7. **Condition** $y(0)=0$: $0=\frac49\cdot8+C$, so $C=-\frac{32}{9}$. Divide by $(3t+2)^2$.
+   $$p=\dfrac{6}{3t+2},\qquad f=4$$
+7. **Find $\mu$:** $\int\frac{6}{3t+2}dt=2\ln(3t+2)$, and $e$, $\ln$ cancel.
 
-   $$y=\tfrac49(3t+2)-\dfrac{32}{9(3t+2)^2}$$
-8. (c) **Type:** $M\,dt+N\,dy=0$. **Test:** $M_y=\cos t$ and $N_t=\cos t$ match, so exact.
-9. **Integrate** $M$ in $t$: $U=t^2+y\sin t+h(y)$. **Match:** $U_y=\sin t+h^{\prime}(y)$ must equal $N=\sin t+2y$, so $h=y^2$.
+   $$\mu=(3t+2)^2$$
+8. **Multiply.**
 
-   $$U=t^2+y\sin t+y^2$$
-10. **Condition** $y(0)=1$: $U(0,1)=0+0+1=1$.
+   $$\big[(3t+2)^2y\big]^{\prime}=4(3t+2)^2$$
+9. **Integrate** with $u=3t+2$, $du=3\,dt$.
+
+   $$(3t+2)^2y=\tfrac49(3t+2)^3+C$$
+10. **Divide** by $(3t+2)^2$.
+
+   $$y=\tfrac49(3t+2)+\dfrac{C}{(3t+2)^2}$$
+11. **Plug in** $y(0)=0$.
+
+   $$0=\tfrac89+\dfrac C4\quad\Rightarrow\quad C=-\tfrac{32}{9}$$
+12. (c) **Type:** $dt$, $dy$ form → B3. **Write.**
+
+   $$M=2t+y\cos t,\qquad N=\sin t+2y$$
+13. **Test.**
+
+   $$M_y=\cos t,\qquad N_t=\cos t\quad\checkmark$$
+14. **Integrate $M$ in $t$** ($y$ is a number).
+
+   $$U=t^2+y\sin t+h(y)$$
+15. **Match $N$.**
+
+   $$U_y=\sin t+h^{\prime}=\sin t+2y\quad\Rightarrow\quad h=y^2$$
+16. **Answer**, then **plug in** $t=0$, $y=1$: $0+0+1=C$.
 
    $$t^2+y\sin t+y^2=1$$
 
-**Answer:** (a) Separable: $y=\sqrt{2(1+t^2)^2-1}$. (b) Linear: $y=\frac49(3t+2)-\dfrac{32}{9(3t+2)^2}$. (c) Exact: $t^2+y\sin t+y^2=1$. Review: [B1](#b1), [B2](#b2), [B3](#b3).
+**Answer:** (a) B1: $y=\sqrt{2(1+t^2)^2-1}$. (b) B2: $y=\frac49(3t+2)-\dfrac{32}{9(3t+2)^2}$. (c) B3: $t^2+y\sin t+y^2=1$. Review: [B1](#b1), [B2](#b2), [B3](#b3).
 
 </details>
 
@@ -2959,23 +4612,32 @@ Consider $(3ty+y^2)\,dt+(t^2+ty)\,dy=0$ with $y(1)=1$. (a) Show it is not exact.
 
 <details><summary>Solution</summary>
 
-1. **Type:** $M\,dt+N\,dy=0$ with $M=3ty+y^2$, $N=t^2+ty$. (a) **Test:** the cross derivatives don’t match.
+1. **Type:** $dt$, $dy$ form → test (B3). **Write.**
 
-   $$M_y=3t+2y\neq2t+y=N_t$$
-2. (b) **Ratios:** try Case 1. Factor the bottom: $N=t(t+y)$. The $(t+y)$ cancels and only $t$ is left.
+   $$M=3ty+y^2,\qquad N=t^2+ty$$
+2. (a) **Test:** they don’t match → B4.
 
-   $$\dfrac{M_y-N_t}{N}=\dfrac{t+y}{t(t+y)}=\dfrac1t\ \Rightarrow\ \mu=e^{\int\frac1t\,dt}=t$$
-3. **Multiply** by $t$, then test again: now they match.
+   $$M_y=3t+2y,\qquad N_t=2t+y$$
+3. (b) **Find $\mu$:** try Case 1. Factor the bottom, $N=t(t+y)$: the $(t+y)$ cancels, only $t$ is left.
 
-   $$\begin{gathered}(3t^2y+ty^2)\,dt+(t^3+t^2y)\,dy=0, \\ M_y=3t^2+2ty=N_t\end{gathered}$$
-4. (c) **Integrate** the new $M$ in $t$: $U=t^3y+\tfrac12t^2y^2+h(y)$. **Match:** $U_y=t^3+t^2y$ is already the new $N$, so $h=0$.
+   $$\begin{gathered}\dfrac{M_y-N_t}{N}=\dfrac{t+y}{t(t+y)}=\dfrac1t \\ \mu=e^{\int\frac1t\,dt}=t\end{gathered}$$
+4. **Multiply** by $t$.
 
-   $$U=t^3y+\tfrac12t^2y^2$$
-5. **Condition** $y(1)=1$: $U(1,1)=1+\tfrac12=\tfrac32$. Multiply by 2.
+   $$(3t^2y+ty^2)\,dt+(t^3+t^2y)\,dy=0$$
+5. **Re-test.**
+
+   $$M_y=3t^2+2ty,\qquad N_t=3t^2+2ty\quad\checkmark$$
+6. (c) **Integrate $M$ in $t$.**
+
+   $$U=t^3y+\tfrac12t^2y^2+h(y)$$
+7. **Match $N$:** $U_y=t^3+t^2y+h^{\prime}$ must equal $t^3+t^2y$.
+
+   $$h^{\prime}=0$$
+8. **Answer**, then **plug in** $t=1$, $y=1$: $1+\tfrac12=C$. Multiply by $2$.
 
    $$2t^3y+t^2y^2=3$$
 
-**Answer:** (a) $M_y=3t+2y$, $N_t=2t+y$. (b) $\mu=t$. (c) $2t^3y+t^2y^2=3$. If the ratio looked like it had both letters, factor before giving up: here $t+y$ cancels. Review: [B4](#b4).
+**Answer:** (a) $M_y=3t+2y\neq2t+y=N_t$. (b) $\mu=t$. (c) $2t^3y+t^2y^2=3$. If a ratio seems to have both letters, factor before giving up. Review: [B4](#b4).
 
 </details>
 
@@ -2987,22 +4649,28 @@ Consider $(3ty+y^2)\,dt+(t^2+ty)\,dy=0$ with $y(1)=1$. (a) Show it is not exact.
 
 <details><summary>Solution</summary>
 
-1. (a) **Type:** first order, $y^{\prime}=F(t,y)$, with $F=3y^{2/3}$. Check $F$ and $\partial F/\partial y$.
+1. (a) **Type:** exactly one solution, first order → C1. **Write.**
 
-   $$\dfrac{\partial F}{\partial y}=2y^{-1/3}=\dfrac{2}{y^{1/3}}$$
-2. **Find the bad set:** $F$ is fine everywhere, but $\partial F/\partial y$ breaks at $y=0$ (division by zero).
-3. **Check the point:** (i) $y=8$ is away from $y=0$, so the theorem guarantees one solution. (ii) $y=0$ is in the bad set, so no guarantee.
-4. **Two solutions:** both pass through $(0,0)$, so at $(0,0)$ there really is more than one solution.
+   $$F=3y^{2/3}$$
+2. **Differentiate** in $y$.
 
-   $$\begin{gathered}y=0:\ 0=0\ \checkmark \\ y=t^3:\ 3t^2=3(t^3)^{2/3}=3t^2\ \checkmark\end{gathered}$$
-5. (b) **Type:** second-order linear, so use the interval theorem. **Divide** by $t^2-9$.
+   $$F_y=2y^{-1/3}=\dfrac{2}{y^{1/3}}$$
+3. **Find where it breaks:** $F$ is fine everywhere. $F_y$ divides by $y^{1/3}$.
 
-   $$p=\dfrac{t}{t^2-9},\quad q=\dfrac{1}{t^2-9},\quad g=\dfrac{1}{t(t^2-9)}$$
-6. **Trouble points:** zeros of the bottoms, $t=-3,\,0,\,3$. **Pick the piece** that contains $t_0=1$.
+   $$y=0$$
+4. **Check the points:** (i) $y_0=8$ is off the line → exactly one. (ii) $y_0=0$ is on it → no guarantee.
+5. Both pass through $(0,0)$ and solve it, so there really are two solutions there.
 
-   $$0<t<3$$
+   $$\begin{gathered}y=0:\ 0=0\ \checkmark \\ y=t^3:\ 3t^2=3(t^3)^{2/3}\ \checkmark\end{gathered}$$
+6. (b) **Type:** interval, second-order linear → C2, Case 1. **Write:** divide by $t^2-9$.
 
-**Answer:** (a) (i) Yes. (ii) No guarantee, and in fact two solutions ($y=0$, $y=t^3$) pass through $(0,0)$. (b) $0<t<3$. Review: [C1](#c1), [C2](#c2).
+   $$p=\dfrac{t}{t^2-9},\quad q=\dfrac{1}{t^2-9},\quad f=\dfrac{1}{t(t^2-9)}$$
+7. **Find where they break:** the bottoms are $0$ at $t=-3,\,0,\,3$.
+8. **Pick the piece** containing $t_0=1$.
+
+   $$(0,\,3)$$
+
+**Answer:** (a) (i) Yes. (ii) No guarantee, and in fact two solutions ($y=0$, $y=t^3$) pass through $(0,0)$. (b) $(0,3)$. Review: [C1](#c1), [C2](#c2).
 
 </details>
 
@@ -3022,22 +4690,34 @@ ground 0,0
 
 <details><summary>Solution</summary>
 
-1. **Type:** after the switch, one capacitor with a resistor and a DC source: first-order RC step response.
-2. (a) **KCL** at the top node for $t\ge0$: the source current splits into $R$ and $C$.
+1. **Type:** one capacitor and a DC source after the switch → D1, step response. Solve for $v$ (it can’t jump).
+2. (a) **After:** KCL at the top node: the source current splits into $R$ and $C$. Divide by $C=5\times10^{-6}$.
 
-   $$C\dfrac{dv}{dt}+\dfrac{v}{R}=I_s\ \Rightarrow\ \dfrac{dv}{dt}+100\,v=600$$
-3. (b) **Time constant:** $\tau=RC=2000\times5\times10^{-6}$. **Final value:** $C$ is open, so all of $I_s$ goes through $R$.
+   $$\begin{gathered}C\dfrac{dv}{dt}+\dfrac{v}{R}=I_s \\ \dfrac{dv}{dt}+100\,v=600\end{gathered}$$
+3. (b) **Before:** given.
 
-   $$\tau=0.01\,\mathrm{s},\qquad v_f=RI_s=6\,\mathrm{V}$$
-4. **Plug in:** $v=v_f+(v_0-v_f)e^{-t/\tau}$ with $v_0=2\,\mathrm{V}$ (the capacitor voltage can’t jump).
+   $$v(0^-)=2\,\mathrm{V}$$
+4. **Carry across:** a capacitor voltage can’t jump.
 
-   $$v=6-4e^{-100t}\ \mathrm{V},\quad t\ge0$$
-5. (c) **Before:** the switch is open, so no current reaches $C$: $i_C(0^-)=0$. **Just after:** $v=2\,\mathrm{V}$ still, so $R$ takes $2/2000=1\,\mathrm{mA}$ and $C$ gets the rest.
+   $$x_0=v(0^+)=2\,\mathrm{V}$$
+5. **After** (final value): long after, $C$ is a gap, so all of $I_s$ goes through $R$.
+
+   $$x_f=RI_s=2000\times0.003=6\,\mathrm{V}$$
+6. **After** (time constant): the current source is off (a gap), so $C$ sees just $R$.
+
+   $$\tau=RC=2000\times5\times10^{-6}=0.01\,\mathrm{s}$$
+7. **Plug in.**
+
+   $$v=6+(2-6)e^{-t/0.01}=6-4e^{-100t}\ \mathrm{V}$$
+8. (c) **Before:** the switch is open, so no current reaches $C$.
+
+   $$i_C(0^-)=0$$
+9. **Carry across:** $v=2\,\mathrm{V}$ still, so $R$ takes $\frac{2}{2000}=1\,\mathrm{mA}$. KCL: $C$ gets the rest.
 
    $$i_C(0^+)=3-1=2\,\mathrm{mA}$$
-6. **Check** with $i_C=C\,v^{\prime}$ from (b).
+10. **Check** with $i_C=C\,v^{\prime}$ from (b): $v^{\prime}(0)=400$.
 
-   $$i_C(0^+)=5\times10^{-6}\times400=2\times10^{-3}\,\mathrm{A}\ \checkmark$$
+   $$i_C(0^+)=5\times10^{-6}\times400=2\,\mathrm{mA}\ \checkmark$$
 
 **Answer:** (a) $v^{\prime}+100v=600$. (b) $v=6-4e^{-100t}\,\mathrm{V}$. (c) $0$ before, $2\,\mathrm{mA}$ after: the capacitor **current** jumps, its voltage doesn’t. Review: [D1](#d1).
 
@@ -3045,25 +4725,37 @@ ground 0,0
 
 **Problem: E7 · W5 · Complex roots, then a repeated root** (introductory)
 
-Solve (a) $y''+4y'+13y=0$, and (b) $y''+4y'+4y=0$, each with $y(0)=1$, $y'(0)=0$.
+Solve (a) $y^{\prime\prime}+4y^{\prime}+13y=0$, and (b) $y^{\prime\prime}+4y^{\prime}+4y=0$, each with $y(0)=1$, $y^{\prime}(0)=0$.
 
 <details><summary>Solution</summary>
 
-1. (a) **Type:** numbers in front, right side $0$. **Characteristic equation:** $s^2+4s+13=0$.
+1. (a) **Type:** numbers in front, right side $0$ → B5. **Write** the quadratic.
 
-   $$s=\dfrac{-4\pm\sqrt{16-52}}{2}=-2\pm j3$$
-2. **Form:** a complex pair $-2\pm j3$ gives decay $e^{-2t}$ times a cosine and sine of $3t$.
+   $$s^2+4s+13=0$$
+2. **Solve** with the formula. Under the root: $16-52=-36<0$, so Case 3.
 
-   $$y=e^{-2t}(A\cos3t+B\sin3t)$$
-3. **Conditions:** $y(0)=A=1$. The slope at $0$ is $-2A+3B=0$, so $B=\frac23$.
+   $$s=\dfrac{-4\pm\sqrt{-36}}{2}=\dfrac{-4\pm j6}{2}=-2\pm j3$$
+3. **Pick:** Case 3, $\sigma=-2$, $\omega=3$.
 
-   $$y=e^{-2t}\big(\cos3t+\tfrac23\sin3t\big)$$
-4. (b) **Characteristic equation:** $s^2+4s+4=(s+2)^2$, a repeated root $s=-2$. **Form:** add a $t$ to the second term.
+   $$y=e^{-2t}(c_1\cos3t+c_2\sin3t)$$
+4. **Differentiate** (product rule).
 
-   $$y=(c_1+c_2t)e^{-2t}$$
-5. **Conditions:** $y(0)=c_1=1$. The slope at $0$ is $c_2-2c_1=0$, so $c_2=2$.
+   $$y^{\prime}=-2e^{-2t}(c_1\cos3t+c_2\sin3t)+e^{-2t}(-3c_1\sin3t+3c_2\cos3t)$$
+5. **Plug in** $t=0$.
 
-   $$y=(1+2t)e^{-2t}$$
+   $$\begin{gathered}y(0)=c_1=1 \\ y^{\prime}(0)=-2c_1+3c_2=0\quad\Rightarrow\quad c_2=\tfrac23\end{gathered}$$
+6. (b) **Type:** B5. **Write** and **solve:** a perfect square.
+
+   $$s^2+4s+4=(s+2)^2=0\quad\Rightarrow\quad s=-2\ \text{(twice)}$$
+7. **Pick:** Case 2.
+
+   $$y=(c_1+c_2t)\,e^{-2t}$$
+8. **Differentiate** (product rule).
+
+   $$y^{\prime}=c_2e^{-2t}-2(c_1+c_2t)\,e^{-2t}$$
+9. **Plug in** $t=0$.
+
+   $$\begin{gathered}y(0)=c_1=1 \\ y^{\prime}(0)=c_2-2c_1=0\quad\Rightarrow\quad c_2=2\end{gathered}$$
 
 **Answer:** (a) $y=e^{-2t}\big(\cos3t+\tfrac23\sin3t\big)$. (b) $y=(1+2t)e^{-2t}$. Review: [B5](#b5).
 
@@ -3087,30 +4779,38 @@ ground 0,0
 
 <details><summary>Solution</summary>
 
-1. **Type:** $C$, $L$, $R$ in parallel with a DC source: parallel RLC step response. KCL gives the lecture’s equation.
+1. **Type:** an $L$ and a $C$, all in parallel, with a DC source → D2, parallel step response. Solve for $i_L$ (it can’t jump).
+2. (a) **Before:** zero energy, so nothing is charged and no current flows.
 
-   $$i_L''+\dfrac{1}{RC}\,i_L'+\dfrac{1}{LC}\,i_L=\dfrac{I}{LC}$$
-2. (a) **Equation:** compare $\alpha=\frac{1}{2RC}$ with $\omega_0=\frac{1}{\sqrt{LC}}$. $\alpha>\omega_0$, so overdamped.
+   $$i_L(0^-)=0,\qquad v_C(0^-)=0$$
+3. **Carry across:** both carry over. Slope: $L$ sits across $C$, so $v_L=v_C(0^+)=0$, and $i_L^{\prime}=\frac{v_L}{L}$.
 
-   $$\begin{gathered}\alpha=\dfrac{1}{2(400)(25\times10^{-9})}=50000, \\ \omega_0=\dfrac{1}{\sqrt{25\times10^{-3}\cdot25\times10^{-9}}}=40000\end{gathered}$$
-3. **Roots:** $s=-\alpha\pm\sqrt{\alpha^2-\omega_0^2}=-50000\pm30000$. **Final value:** in DC steady state $L$ is a short and takes all $24\,\mathrm{mA}$.
+   $$i_L(0^+)=0,\qquad i_L^{\prime}(0^+)=\dfrac{0}{L}=0$$
+4. **After:** parallel, so $\alpha=\frac{1}{2RC}$. Use H and F.
 
-   $$i_L=24+A_1e^{-20000t}+A_2e^{-80000t}\ \mathrm{mA}$$
-4. **Starting values:** zero energy means $i_L(0)=0$ and $v(0)=0$. Since $v=L\,i_L^{\prime}$, the starting slope is $0$ too.
+   $$\begin{gathered}\alpha=\dfrac{1}{2(400)(25\times10^{-9})}=50000, \\ \omega_0=\dfrac{1}{\sqrt{(0.025)(25\times10^{-9})}}=40000\end{gathered}$$
+5. **After** (final value): long after, $L$ is a wire and takes all of the source.
 
-   $$A_1+A_2=-24,\qquad -20000A_1-80000A_2=0$$
-5. **Constants:** the second equation gives $A_1=-4A_2$. Then $-3A_2=-24$.
+   $$I_f=24\,\mathrm{mA}$$
+6. **Pick:** $\alpha>\omega_0$, overdamped (B5 Case 1). Roots:
 
-   $$A_2=8,\qquad A_1=-32$$
-6. (b) **Critical damping** means $\alpha=\omega_0=40000$. Solve $\frac{1}{2RC}=40000$ for $R$.
+   $$\begin{gathered}s=-50000\pm\sqrt{50000^2-40000^2}=-50000\pm30000 \\ i_L=24+c_1e^{-20000t}+c_2e^{-80000t}\ \mathrm{mA}\end{gathered}$$
+7. **Plug in** $t=0$: the value, then the slope (each root times its constant).
+
+   $$\begin{gathered}24+c_1+c_2=0 \\ -20000c_1-80000c_2=0\end{gathered}$$
+8. The second gives $c_1=-4c_2$. Put it in the first: $-3c_2=-24$.
+
+   $$c_2=8,\qquad c_1=-32$$
+9. (b) **Critical damping** means $\alpha=\omega_0=40000$. Solve $\frac{1}{2RC}=40000$.
 
    $$R=\dfrac{1}{2(40000)(25\times10^{-9})}=500\,\Omega$$
-7. **Form:** one repeated root $s=-40000$. Same final value.
+10. **Pick:** Case 2, root $-40000$ twice. Same final value.
 
-   $$i_L=24+(D_1+D_2t)e^{-40000t}\ \mathrm{mA}$$
-8. **Constants:** $i_L(0)=0$ gives $D_1=-24$. The slope at $0$ is $D_2-40000D_1=0$.
+   $$i_L=24+(c_1+c_2t)\,e^{-40000t}\ \mathrm{mA}$$
+11. **Plug in** $t=0$: value, then slope ($c_2-40000c_1$ from the product rule).
 
-   $$D_2=-960000\ \mathrm{mA/s}$$
+   $$\begin{gathered}24+c_1=0\quad\Rightarrow\quad c_1=-24 \\ c_2-40000c_1=0\quad\Rightarrow\quad c_2=-960000\end{gathered}$$
+12. **Check:** $t\to\infty$ gives $24\,\mathrm{mA}$ in both ✓.
 
 **Answer:** (a) $i_L=24-32e^{-20000t}+8e^{-80000t}\ \mathrm{mA}$ (the lecture’s answer). (b) $R=500\,\Omega$: $i_L=24-24(1+40000t)e^{-40000t}\ \mathrm{mA}$. Review: [D2](#d2).
 
@@ -3118,36 +4818,54 @@ ground 0,0
 
 **Problem: E9 · W6 · The tutorial problem without the hints · Pre-tutorial 5** (intermediate)
 
-(a) Solve $y''+y=6\cos^2t$, $\;y(0)=0$, $\;y(\pi/2)=0$. This time the forms of $y_c$ and $y_p$ are **not** given.
+(a) Solve $y^{\prime\prime}+y=6\cos^2t$, $\;y(0)=0$, $\;y(\pi/2)=0$. This time the forms of $y_c$ and $y_p$ are **not** given.
 
-(b) For $y''-4y=e^{2t}+t$, write the form of $y_p$ and find it.
+(b) For $y^{\prime\prime}-4y=e^{2t}+t$, write the form of $y_p$ and find it.
 
 <details><summary>Solution</summary>
 
-1. (a) **Type:** numbers in front, right side not $0$: undetermined coefficients. **Complementary:** $s^2+1=0$, $s=\pm j$.
+1. (a) **Type:** numbers in front, right side not $0$ → B6. **Solve $y_c$:** $s^2+1=0$, $s=\pm j$ (B5 Case 3, $\sigma=0$, $\omega=1$).
 
    $$y_c=c_1\sin t+c_2\cos t$$
-2. No table row fits $\cos^2t$, so rewrite it first.
+2. No case fits $\cos^2t$, so use the identity first.
 
    $$6\cos^2t=3+3\cos2t$$
-3. **Guess:** a constant for the $3$, both $\cos2t$ and $\sin2t$ for the $3\cos2t$. None of them is in $y_c$.
+3. **Guess $y_p$:** constant → $A$ (Case 1); $\cos2t$ → both (Case 3). None is in $y_c$.
 
    $$y_p=A+B\cos2t+D\sin2t$$
-4. **Substitute:** $y_p^{\prime\prime}=-4B\cos2t-4D\sin2t$. **Match:** constants, cosines, sines.
+4. Differentiate twice: each $\cos2t$, $\sin2t$ is multiplied by $-4$.
 
-   $$A=3,\qquad -3B=3,\qquad -3D=0$$
-5. **Add**, then use both **conditions** on the whole $y$: $y(0)=3-1+c_2=0$, $y(\pi/2)=3+1+c_1=0$.
+   $$y_p^{\prime\prime}=-4B\cos2t-4D\sin2t$$
+5. **Plug in** to $y_p^{\prime\prime}+y_p$ and collect.
 
-   $$y=3-\cos2t-4\sin t-2\cos t$$
-6. (b) **Complementary:** $s^2-4=0$, $s=\pm2$, so $y_c=c_1e^{2t}+c_2e^{-2t}$. **Guess:** $Ae^{2t}$ is in $y_c$, so multiply it by $t$. Add $Bt+C$ for the $t$.
+   $$A-3B\cos2t-3D\sin2t=3+3\cos2t$$
+6. **Match** constants, $\cos2t$, $\sin2t$.
 
-   $$y_p=Ate^{2t}+Bt+C$$
-7. **Substitute:** $(te^{2t})^{\prime\prime}=(4+4t)e^{2t}$, so the $te^{2t}$ terms cancel against $-4Ate^{2t}$.
+   $$A=3,\qquad B=-1,\qquad D=0$$
+7. **Add.**
 
-   $$4Ae^{2t}-4Bt-4C=e^{2t}+t$$
-8. **Match:** $4A=1$, $-4B=1$, $-4C=0$.
+   $$y=3-\cos2t+c_1\sin t+c_2\cos t$$
+8. **Plug in** $y(0)=0$: $\sin0=0$, $\cos0=1$.
 
-   $$y_p=\tfrac14te^{2t}-\tfrac14t$$
+   $$3-1+c_2=0\quad\Rightarrow\quad c_2=-2$$
+9. **Plug in** $y(\pi/2)=0$: $\cos\pi=-1$, $\sin\frac\pi2=1$, $\cos\frac\pi2=0$.
+
+   $$3+1+c_1=0\quad\Rightarrow\quad c_1=-4$$
+10. (b) **Solve $y_c$:** $s^2-4=0$, $s=\pm2$ (B5 Case 1).
+
+   $$y_c=c_1e^{2t}+c_2e^{-2t}$$
+11. **Guess $y_p$:** $e^{2t}$ is in $y_c$ → Case 4, times $t$. The $t$ → Case 1, $Bt+D$.
+
+   $$y_p=Ate^{2t}+Bt+D$$
+12. Differentiate twice (product rule on $te^{2t}$).
+
+   $$y_p^{\prime\prime}=A(4+4t)e^{2t}$$
+13. **Plug in** to $y_p^{\prime\prime}-4y_p$. The $te^{2t}$ terms cancel.
+
+   $$4Ae^{2t}-4Bt-4D=e^{2t}+t$$
+14. **Match** $e^{2t}$, $t$, constants.
+
+   $$A=\tfrac14,\qquad B=-\tfrac14,\qquad D=0$$
 
 **Answer:** (a) $y=3-\cos2t-4\sin t-2\cos t$. (b) $y_p=\frac14te^{2t}-\frac14t$. Review: [B6](#b6).
 
@@ -3155,26 +4873,27 @@ ground 0,0
 
 **Problem: E10 · W6 · Reduction of order · like lecture Example 6.1** (intermediate)
 
-Given that $y_1=t$ solves $t^2y''+t\,y'-y=0$ for $t>0$, find the general solution.
+Given that $y_1=t$ solves $t^2y^{\prime\prime}+t\,y^{\prime}-y=0$ for $t>0$, find the general solution.
 
 <details><summary>Solution</summary>
 
-1. **Type:** second order with $t$ in front, and one solution given: reduction of order. **Substitute** $y=tv$.
+1. **Type:** $t$ in front, one solution given → B7. **Write** (check $y_1$): $0+t-t=0$ ✓.
+2. **Substitute** $y=tv$ (product rule).
 
-   $$y'=v+tv',\qquad y''=2v'+tv''$$
-2. **Plug in** and **collect:** the $v$ terms cancel (they always do, because $t$ is a solution).
+   $$\begin{gathered}y^{\prime}=v+tv^{\prime} \\ y^{\prime\prime}=2v^{\prime}+tv^{\prime\prime}\end{gathered}$$
+3. **Plug in and collect.** The plain-$v$ terms cancel ($tv-tv$).
 
-   $$t^2(2v'+tv'')+t(v+tv')-tv=t^3v''+3t^2v'=0$$
-3. Set $z=v^{\prime}$ and divide by $t^3$: a first-order equation in $z$. **Separate.**
+   $$\begin{gathered}t^2(2v^{\prime}+tv^{\prime\prime})+t(v+tv^{\prime})-tv=0 \\ t^3v^{\prime\prime}+3t^2v^{\prime}=0\end{gathered}$$
+4. **Solve for $z$:** set $z=v^{\prime}$, divide by $t^3$, separate (B1).
 
-   $$\dfrac{dz}{z}=-\dfrac{3}{t}\,dt\ \Rightarrow\ z=\dfrac{C}{t^3}$$
-4. **Integrate** $z$ to get $v$.
+   $$\begin{gathered}\dfrac{dz}{z}=-\dfrac3t\,dt \\ z=\dfrac{c_1}{t^3}\end{gathered}$$
+5. **Integrate** (power rule).
 
-   $$v=-\dfrac{C}{2t^2}+C_2$$
-5. **Multiply back** by $t$, and rename the constant.
+   $$v=-\dfrac{c_1}{2t^2}+c_2$$
+6. **Multiply back** by $t$. $-\frac{c_1}{2}$ is just another constant: call it $c_1$.
 
-   $$y=tv=C_2\,t-\dfrac{C}{2t}=c_1t+\dfrac{c_2}{t}$$
+   $$y=c_2\,t+\dfrac{c_1}{t}$$
 
-**Answer:** $y=c_1t+\dfrac{c_2}{t}$. Check $y=\frac1t$: $t^2\cdot\frac{2}{t^3}+t\cdot\left(-\frac{1}{t^2}\right)-\frac1t=0$ ✓. Review: [B7](#b7).
+**Answer:** $y=c_1\dfrac1t+c_2t$. Check $y=\frac1t$: $t^2\cdot\frac{2}{t^3}+t\cdot\left(-\frac{1}{t^2}\right)-\frac1t=0$ ✓. Review: [B7](#b7).
 
 </details>

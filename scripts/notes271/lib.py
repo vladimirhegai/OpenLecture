@@ -22,7 +22,10 @@ SOURCES = {
     "C": "Chapter3_Implementation_technology Lecture 1.pdf",
     "P1": "ELEC271-PS1_TA.pdf",
     "P1B": "Problem_1b_updated.pdf",
+    "P1S": "Problem_set_1_solutions2.pdf",
     "P2": "Problem_set_2.pdf",
+    "P2S": "Problem_set_2_solutions.pdf",
+    "PQ": "Practice questions chapter 2.pdf",
     "P3": "Problem_set_3_.pdf",
     "P4": "Problem_set_4_.pdf",
     "P5": "Problem_set_5_.pdf",
@@ -61,6 +64,8 @@ class Doc:
         self.title = f"ELEC 271 · {number:02} · {title}"
         self.topics = topics
         self.blocks = []
+        self.slug = f"{number:02}"  # file names: out/<slug>.json, notes/ELEC-271-<slug>.md
+        self.document_type = "study_notes"
 
     def add(self, kind, cites=(), **kw):
         self.blocks.append(
@@ -85,9 +90,7 @@ class Doc:
         self.add("table", cites, columns=columns, rows=[[str(c) for c in r] for r in rows])
 
     def F(self, spec, caption, cites=()):
-        source = json.dumps(spec, ensure_ascii=False, separators=(",", ":"))
-        digital.render_svg(source)  # validate and exercise the renderer for every authored figure
-        self.P(f"```digital\n{source}\n```\n\n*{caption}*", cites)
+        self.P(figure(spec, caption), cites)
 
     def X(self, title, prompt, steps, answer, cites=()):
         self.add("worked_example", cites, title=title, prompt=prompt, steps=steps, answer=answer)
@@ -107,6 +110,9 @@ class Doc:
     def CODE(self, source, cites=()):
         self.add("code", cites, language="vhdl", text=source.strip())
 
+    def LOGICSTEPS(self, title, steps, cites=()):
+        self.P(logicsteps(title, steps), cites)
+
     def STEPS(self, title, steps, cites=()):
         lines = ["```steps", f'title "{title}"']
         for latex, text in steps:
@@ -114,21 +120,22 @@ class Doc:
         self.P("\n".join(lines + ["```"]), cites)
 
     def save(self):
+        slug = self.slug
         payload = dict(
             title=self.title,
-            document_type="study_notes",
+            document_type=self.document_type,
             topic_keys=self.topics,
             folder_id="a0ce20ce-b87b-408f-8488-44130e5ce4ea",
             blocks=self.blocks,
             actor="agent",
-            idempotency_key=f"elec271-{self.number:02}-v1",
+            idempotency_key=f"elec271-{slug}-v1",
         )
         DocumentCreate.model_validate(payload)
         for b in self.blocks:
             for text in string_values(b):
                 assert not any(ord(c) < 32 and c != "\n" for c in text), "control character in note"
                 assert text.count("$") % 2 == 0, "unbalanced math delimiters"
-        (OUT / f"{self.number:02}.json").write_text(
+        (OUT / f"{slug}.json").write_text(
             json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
         )
         # Human-readable copy includes source filenames and pages, as well as clickable app citations.
@@ -150,7 +157,7 @@ class Doc:
                         refs.append(f"{filename}, p. {page}")
             if refs:
                 chunks.append("*Sources: " + "; ".join(refs) + "*")
-        Path(f"notes/ELEC-271-{self.number:02}.md").write_text("\n\n".join(chunks) + "\n", encoding="utf-8")
+        Path(f"notes/ELEC-271-{slug}.md").write_text("\n\n".join(chunks) + "\n", encoding="utf-8")
         print(self.title, len(self.blocks), "blocks")
         if "--publish" in sys.argv:
             self.publish(payload)
@@ -201,7 +208,26 @@ class Doc:
             r = api.post("/documents", json=payload)
             r.raise_for_status()
             result = r.json()
-        (OUT / f"{self.number:02}-published.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
+        (OUT / f"{self.slug}-published.json").write_text(json.dumps(result, indent=2), encoding="utf-8")
+
+
+def figure(spec, caption):
+    """A ```digital fence with its caption; the spec is validated by rendering it."""
+    source = json.dumps(spec, ensure_ascii=False, separators=(",", ":"))
+    digital.render_svg(source)  # validate and exercise the renderer for every authored figure
+    return f"```digital\n{source}\n```\n\n*{caption}*"
+
+
+def logicsteps(title, steps):
+    """A ```logicsteps card: steps are (title, drawing, found_values, notes[, highlight]); changes highlight
+    themselves, and `highlight` (node ids, or "pdn"/"pun" for a transistor drawing) adds to them."""
+    lines = ["```logicsteps", f'title "{title}"']
+    for step_title, spec, values, notes, *focus in steps:
+        source = json.dumps(spec, ensure_ascii=False, separators=(",", ":"))
+        digital.render_svg(source)
+        hl = [f"hl {' '.join(focus[0])}"] if focus else []
+        lines += [f"== {step_title}", source, *hl, *(f"#+ {v}" for v in values), "--", notes]
+    return "\n".join(lines + ["```"])
 
 
 def string_values(value):

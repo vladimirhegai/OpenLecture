@@ -1,7 +1,7 @@
 """D2: series and parallel RLC circuits (Week 5)."""
 import sympy as sp
 
-from midlib import P, S, TAGS, link, second, t, zero
+from midlib import CARD, P, S, TAGS, link, second, t, zero
 
 
 def sch(src):
@@ -100,44 +100,52 @@ ground 0,0
 
 
 def build(D):
-    D.H('D2 · RLC circuits (second order)', level=2, cites=D.tb('8.53'))
+    D.H('D2 · An L and a C: RLC circuits (second order)', level=2, cites=D.tb('8.53'))
     TAGS(D, (5, 3))
-    D.P(r'**What if the circuit has an inductor *and* a capacitor?** Each one brings a derivative, so together they give a '
-        r'**second-order** ODE (one with $y\prime\prime$ in it). Combine series/parallel $L$’s and $C$’s first, so you have one of each.')
-    D.P(r'You already know how to solve it: ' + link('B5', 'b5') + ' when no source is left, ' + link('B6', 'b6') + ' when a source stays on. '
-        'The new part is reading the equation and the two starting values off the circuit.')
-
-    D.P(r'**The two circuits you will meet.** Learn both equations. Where they come from is in the Bonus box further down.')
-    D.SCH(SERIES.strip(), 'Series RLC: one loop. The same current $i$ flows through every element.')
-    D.P(r'**Series:** solve for the capacitor voltage $v_C$.')
-    D.EQ(r'v_C\prime\prime+\dfrac{R}{L}v_C\prime+\dfrac{1}{LC}v_C=\dfrac{V_s}{LC}')
-    D.L([r'$\alpha=\dfrac{R}{2L}$ = the **damping**: how fast the response dies out (half the $v_C\prime$ number)',
-         r'$\omega_0=\dfrac{1}{\sqrt{LC}}$ = the **natural frequency**: how fast it would swing with no $R$ (square root of the $v_C$ number)',
-         r'right side $\dfrac{V_s}{LC}$ = the source. It is $0$ when no source is left.'])
-    D.P(r'Example: $R=4\,\Omega$, $L=1\,\mathrm{H}$, $C=0.25\,\mathrm{F}$ → $\alpha=\dfrac{4}{2}=2$ and $\omega_0=\dfrac{1}{\sqrt{0.25}}=2$.')
-    D.SCH(PARALLEL.strip(), 'Parallel RLC: two nodes. The same voltage $v$ sits across every element. All three current arrows point down.')
-    D.P(r'**Parallel:** solve for the shared voltage $v$.')
-    D.EQ(r'v\prime\prime+\dfrac{1}{RC}v\prime+\dfrac{1}{LC}v=0')
-    D.L([r'$\alpha=\dfrac{1}{2RC}$, **not** $\dfrac{R}{2L}$. Here a bigger $R$ means *less* damping: a big resistor in parallel takes almost no current, so it barely drains energy.',
-         r'$\omega_0=\dfrac{1}{\sqrt{LC}}$, the same as in series.'])
-    D.P(r'Example: $R=800\,\Omega$, $C=50\,\mathrm{nF}$ → $\alpha=\dfrac{1}{2(800)(50\times10^{-9})}=12500\,\mathrm{s^{-1}}$.')
-
-    D.P(r'Both equations have the same characteristic equation. That is why $\alpha$ has the $2$ and $\omega_0$ the square: the roots come out clean.')
+    D.P(r'**Use this when**, after the switch, there’s an inductor **and** a capacitor (combine series/parallel ones first, so you have one of each).')
+    D.P(r'**The move: it’s ' + link('B5', 'b5') + r' with circuit names.** Same quadratic, same three cases. Write the quadratic as:')
     D.EQ(r's^2+2\alpha s+\omega_0^2=0')
-    D.EQ(r's=-\alpha\pm\sqrt{\alpha^2-\omega_0^2}')
+    D.L([r'$\alpha$ (“alpha”) = the **damping**: how fast it dies out',
+         r'$\omega_0$ (“omega-zero”) = the **natural frequency**: how fast it would swing with no $R$',
+         r'Both come straight from $R$, $L$, $C$ (below), so you never have to derive the ODE on the exam.'])
+    D.P(r'A source still on after the switch? Then add the final value $V_f$ on top, like $y_p$ in ' + link('B6', 'b6') + ':')
+    D.EQ(r'v(t)=V_f+(\text{the B5 form})')
 
-    D.P(r'**Which form? Compare $\alpha$ with $\omega_0$.** It is the root table of ' + link('B5', 'b5') + ', with circuit names:')
-    D.T(['Compare', 'Roots', 'Name', 'Form of the response'], [
-        [r'$\alpha>\omega_0$', 'two real', '**overdamped**', r'$A_1e^{s_1t}+A_2e^{s_2t}$'],
-        [r'$\alpha=\omega_0$', 'one repeated', '**critically damped**', r'$(A_1+A_2t)e^{-\alpha t}$'],
-        [r'$\alpha<\omega_0$', r'$-\alpha\pm j\omega_d$', '**underdamped**', r'$e^{-\alpha t}(B_1\cos\omega_dt+B_2\sin\omega_dt)$'],
-        [r'$\alpha=0$ (no $R$)', r'$\pm j\omega_0$', '**undamped** (LC)', r'$B_1\cos\omega_0t+B_2\sin\omega_0t$'],
+    D.H('Series or parallel: α and ω₀', level=3)
+    D.SCH(SERIES.strip(), 'Series RLC: one loop. The same current $i$ flows through every element.')
+    D.P(r'**Series** (solve for $v_C$):')
+    D.EQ(r'\alpha=\dfrac{R}{2L},\qquad \omega_0=\dfrac{1}{\sqrt{LC}}')
+    D.P(r'**Short example:** $R=4\,\Omega$, $L=1\,\mathrm{H}$, $C=0.25\,\mathrm{F}$:')
+    D.EQ(r'\alpha=\dfrac{4}{2}=2,\qquad \omega_0=\dfrac{1}{\sqrt{0.25}}=2')
+    D.SCH(PARALLEL.strip(), 'Parallel RLC: two nodes. The same voltage $v$ sits across every element. All three current arrows point down.')
+    D.P(r'**Parallel** (solve for the shared $v$). Only $\alpha$ changes:')
+    D.EQ(r'\alpha=\dfrac{1}{2RC},\qquad \omega_0=\dfrac{1}{\sqrt{LC}}')
+    D.P(r'**Short example:** $R=800\,\Omega$, $C=50\,\mathrm{nF}$:')
+    D.EQ(r'\alpha=\dfrac{1}{2(800)(50\times10^{-9})}=12500\,\mathrm{s^{-1}}')
+    D.WHY('Where do the equations come from?',
+          r'**Series:** KVL around the loop, $V_s=Ri+Li\prime+v_C$, with $i=Cv_C\prime$. Divide by $LC$:'
+          '\n\n$$\n' r'v_C\prime\prime+\dfrac RL\,v_C\prime+\dfrac1{LC}\,v_C=\dfrac{V_s}{LC}' '\n$$\n\n'
+          r'Match with $s^2+2\alpha s+\omega_0^2$: $2\alpha=\frac RL$ and $\omega_0^2=\frac1{LC}$.'
+          '\n\n'
+          r'**Parallel:** KCL at the top node, $Cv\prime+i_L+\frac vR=0$. Differentiate once, use $i_L\prime=\frac vL$, divide by $C$:'
+          '\n\n$$\n' r'v\prime\prime+\dfrac{1}{RC}\,v\prime+\dfrac{1}{LC}\,v=0' '\n$$\n\n'
+          r'So $2\alpha=\frac{1}{RC}$. A big parallel $R$ takes almost no current, so it barely drains energy: less damping.')
+
+    D.H('The three cases (same as B5)', level=3)
+    D.P(r'Compare $\alpha$ with $\omega_0$. The roots are:')
+    D.EQ(r's=-\alpha\pm\sqrt{\alpha^2-\omega_0^2}')
+    D.T(['Compare', 'Name', 'B5 case', 'Form'], [
+        [r'$\alpha>\omega_0$', '**overdamped**', 'Case 1', r'$c_1e^{s_1t}+c_2e^{s_2t}$'],
+        [r'$\alpha=\omega_0$', '**critically damped**', 'Case 2', r'$(c_1+c_2t)e^{-\alpha t}$'],
+        [r'$\alpha<\omega_0$', '**underdamped**', 'Case 3', r'$e^{-\alpha t}(c_1\cos\omega_dt+c_2\sin\omega_dt)$'],
     ])
-    D.P(r'In the underdamped row, the square root in the roots is of a negative number, so the roots are $-\alpha\pm j\omega_d$. '
-        r'$\omega_d$ is how fast the response swings:')
+    D.P(r'Underdamped swings at $\omega_d$ (the B5 $\omega$; and $\sigma=-\alpha$):')
     D.EQ(r'\omega_d=\sqrt{\omega_0^2-\alpha^2}')
-    D.P(r'Example: $\alpha=3$, $\omega_0=5$ → $\omega_d=\sqrt{25-9}=4$, so $v=e^{-3t}(B_1\cos4t+B_2\sin4t)$. '
-        r'(In the B5 table, $\sigma=-\alpha$ and $\omega=\omega_d$.)')
+    D.P(r'**Short examples:**')
+    D.EQ(r'\alpha=5,\ \omega_0=3\quad\Longrightarrow\quad s=-5\pm4=-1,\,-9\quad\text{(overdamped)}')
+    D.EQ(r'\alpha=50,\ \omega_0=50\quad\Longrightarrow\quad (c_1+c_2t)e^{-50t}\quad\text{(critical)}')
+    D.EQ(r'\alpha=3,\ \omega_0=5\quad\Longrightarrow\quad \omega_d=4,\ \ e^{-3t}(c_1\cos4t+c_2\sin4t)')
+    D.P(r'No $R$ at all ($\alpha=0$, an ideal LC): $\;c_1\cos\omega_0t+c_2\sin\omega_0t$, swinging forever.')
     D.GRAPH(r'''
     title "Slide R through the three cases (series RLC, $L=1\,\mathrm{H}$, $C=0.25\,\mathrm{F}$)"
     x 0 6 label="$t$ (s)"
@@ -151,70 +159,51 @@ def build(D):
     hline "0"
     readout "$\alpha=R/2L$" "a"
     readout "$\omega_0=1/\sqrt{LC}$" "2"
-    caption "$\omega_0=2$ never changes; only $\alpha=R/2$ moves. $R<4$: underdamped, it swings below zero before settling. $R=4$: critically damped, the fastest way back with no overshoot. $R>4$: overdamped, a slow creep back. $R=0$: undamped, it swings forever."
-    ''')
+    caption "$\omega_0=2$ never changes; only $\alpha=R/2$ moves. $R<4$: underdamped, it swings below zero before settling. $R=4$: critically damped, fastest with no overshoot. $R>4$: overdamped, a slow creep back."
+    ''', intro='**What do the three cases look like?**')
 
-    D.P(r'**A second-order ODE needs two starting values: $y(0)$ and $y\prime(0)$.** The value is easy: $v_C$ can’t jump, so $v_C(0^+)=v_C(0^-)$. '
-        r'The slope comes from the capacitor current:')
+    D.H('Steps: the two starting values', level=3)
+    D.P(r'Second order needs **two** starting values: $v(0)$ and the slope $v\prime(0)$. The value carries across. The slope comes from the capacitor current:')
     D.EQ(r'v_C\prime(0^+)=\dfrac{i_C(0^+)}{C}')
-    D.P(r'Why: it is $i_C=C\,\dfrac{dv_C}{dt}$, divided by $C$. So the job is to find $i_C$ at $0^+$:')
-    D.L([r'**Series:** $i_C$ is the loop current $i$, which is also $i_L$, so it carries over from $0^-$. '
-         r'Sign: $+$ if the $i$ arrow enters the $+$ end of $C$, $-$ if it leaves it. Example: $i(0^-)=0$ → $v_C\prime(0^+)=0$.',
-         r'**Parallel:** KCL at the top node at $0^+$ (all arrows down): $i_C=-(i_L+i_R)$, with $i_R=\dfrac{v(0^+)}{R}$. '
-         r'Example: $v=10\,\mathrm{V}$, $R=5\,\Omega$, $i_L=1\,\mathrm{A}$, $C=0.5\,\mathrm{F}$ → $i_C=-(1+2)=-3\,\mathrm{A}$, so $v\prime(0^+)=-6\,\mathrm{V/s}$.',
-         r'**Series, solving for $i$ instead:** $i(0^+)=i_L(0^-)$, and the slope is $i\prime(0^+)=\dfrac{v_L(0^+)}{L}$, with $v_L$ from KVL around the loop. '
-         r'Example: $v_C=70\,\mathrm{V}$, $i=0$, $L=0.1\,\mathrm{H}$ → $v_L=70$, $i\prime(0^+)=700\,\mathrm{A/s}$.'])
-
-    D.P(r'**What if a source stays on after the switch?** (a **step response**) Then the answer does not die out to $0$. It settles to a **final value** $V_f$:')
-    D.EQ(r'v_C(t)=V_f+(\text{part that dies out})')
-    D.L([r'$V_f$ = the new DC steady state ($C$ open, $L$ short). It is the constant $y_p$ of ' + link('B6', 'b6') + '.',
-         r'the part that dies out = the form from the table above.'])
-    D.P(r'Example: $v_C=100+(A_1+A_2t)e^{-50t}$ has $V_f=100\,\mathrm{V}$.')
-    D.CO('warning', r'**Fit the constants to the whole answer, final value included.** With $v_C(0)=200$: $\;100+A_1=200$, so $A_1=100$, not $200$.')
-
-    D.P('**Method:**')
-    D.L([r'**Before:** the old circuit in DC steady state ($C$ open, $L$ short). Find $v_C(0^-)$ and $i_L(0^-)$.',
-         r'**Starting values:** both carry over to $0^+$. Then find the slope from $i_C$ (see above).',
-         r'**Equation:** series or parallel? Compute $\alpha$ and $\omega_0$, compare them, and pick the form from the table.',
-         r'**Final value:** $0$ if no source is left. Otherwise, the new DC steady state.',
-         r'**Constants:** use the starting value and slope on the whole answer. Use the product rule for the slope.'],
-        ordered=True)
-    D.CO('warning', r'**Units.** Turn $\mathrm{mH}$, $\mathrm{mF}$, $\mu\mathrm{F}$, $\mathrm{nF}$ into H and F before computing $\alpha$ and $\omega_0$: '
-         r'$1\,\mathrm{mH}=10^{-3}\,\mathrm{H}$, $1\,\mu\mathrm{F}=10^{-6}\,\mathrm{F}$, $1\,\mathrm{nF}=10^{-9}\,\mathrm{F}$. '
+    D.L([r'**Before:** old circuit, long time ($C$ = gap, $L$ = wire). Find $v_C(0^-)$ and $i_L(0^-)$.',
+         r'**Carry across:** $v_C(0^+)=v_C(0^-)$, $i_L(0^+)=i_L(0^-)$. Then find $i_C(0^+)$ and the slope (cards below).',
+         r'**After:** series or parallel? Compute $\alpha$, $\omega_0$. Final value $V_f$: $0$ if no source is left, else the new DC state.',
+         r'**Pick** the case (compare $\alpha$, $\omega_0$) and write $v=V_f+$ the form.',
+         r'**Plug in** $t=0$: the value gives $c_1$, the slope (product rule) gives $c_2$. Use the **whole** answer, $V_f$ included.',
+         r'**Check:** $t\to\infty$ gives $V_f$.'], ordered=True)
+    CARD(D, r'Slope in a series circuit: $\;i_C=$ the loop current $=i_L$',
+         [(r'The loop current is the inductor current, so it carries across. Sign: $+$ if the arrow enters the $+$ end of $C$.', r'v_C\prime(0^+)=\dfrac{i_L(0^+)}{C}'),
+          (r'Example: $i(0^-)=0$.', r'v_C\prime(0^+)=0')])
+    CARD(D, r'Slope in a parallel circuit: KCL, $\;i_C=-(i_L+i_R)$',
+         [(r'All three arrows point down, so the currents add to $0$. $i_R=\frac{v(0^+)}{R}$.', r'i_C(0^+)=-\big(i_L(0^+)+i_R(0^+)\big)'),
+          (r'Example: $v=10\,\mathrm{V}$, $R=5\,\Omega$, $i_L=1\,\mathrm{A}$, $C=0.5\,\mathrm{F}$.', (r'i_C=-(1+2)=-3\,\mathrm{A}', r'v\prime(0^+)=\dfrac{-3}{0.5}=-6\,\mathrm{V/s}'))])
+    CARD(D, r'Solving for $i$ in a series circuit: $\;i\prime(0^+)=\dfrac{v_L(0^+)}{L}$',
+         [(r'$i(0^+)=i_L(0^-)$. For the slope, KVL around the new loop gives $v_L$.', r'v_L(0^+)=v_C(0^+)-R\,i(0^+)'),
+          (r'Example: $v_C=70\,\mathrm{V}$, $i=0$, $L=0.1\,\mathrm{H}$.', r'i\prime(0^+)=\dfrac{70}{0.1}=700\,\mathrm{A/s}')])
+    D.CO('warning', r'**Fit the constants to the whole answer, $V_f$ included.** $v_C=100+(c_1+c_2t)e^{-50t}$ with $v_C(0)=200$: $\;100+c_1=200$, so $c_1=100$, not $200$.')
+    D.CO('warning', r'**Units first.** $1\,\mathrm{mH}=10^{-3}\,\mathrm{H}$, $1\,\mu\mathrm{F}=10^{-6}\,\mathrm{F}$, $1\,\mathrm{nF}=10^{-9}\,\mathrm{F}$. '
          r'Example: $L=250\,\mathrm{mH}$, $C=10\,\mathrm{nF}$ → $\omega_0=\dfrac{1}{\sqrt{0.25\times10^{-8}}}=20000$.')
-    D.CO('info', r'**Bonus (skip-safe): where the series equation comes from.** KVL around the loop, then swap the current for $Cv_C\prime$:' '\n\n'
-         '```steps\n'
-         r'$$ V_s=Ri+Li\prime+v_C $$' '\n'
-         'KVL: the voltages on R, L and C add up to the source.\n'
-         r'$$ i=\hl{Cv_C\prime} $$' '\n'
-         'The loop current is the capacitor current.\n'
-         r'$$ V_s=RC\,v_C\prime+LC\,v_C\prime\prime+v_C $$' '\n'
-         'Put that current (and its derivative) into the KVL line.\n'
-         r'$$ v_C\prime\prime+\hl{\dfrac RL}v_C\prime+\hl{\dfrac1{LC}}v_C=\hl{\dfrac{V_s}{LC}} $$' '\n'
-         r'Divide by $LC$ so $v_C\prime\prime$ stands alone.' '\n'
-         '```\n\n'
-         r'Parallel: KCL at the top node gives $Cv\prime+i_L+\dfrac vR=0$. Differentiate once, use $i_L\prime=\dfrac vL$, and divide by $C$.')
 
-    D.EX('W5 · A series step response · textbook P8.53',
-         r'The circuit has been running for a long time with $V_s=200\,\mathrm{V}$. At $t=0$ the source drops to $100\,\mathrm{V}$. Find $v_C(t)$ for $t\ge0$.'
-         '\n\n' + sch(P853),
-         [S(r'**Type:** one $L$ and one $C$ in one loop, and a source that stays on: a series RLC step response.'),
-          S(r'**Before:** long time, so DC steady state. $C$ is open, so $i=0$. With no current, $R$ and $L$ drop nothing, so $C$ holds the whole 200 V.', r'v_C(0^-)=200\,\mathrm{V},\quad i(0^-)=0'),
-          S(r'**Starting values:** $v_C$ and $i$ can’t jump. The slope is $i/C$, and $i=0$.', r"v_C(0^+)=200,\quad v_C'(0^+)=\dfrac{0}{0.01}=0"),
-          S(r'**Equation:** $\alpha=\frac{R}{2L}=\frac{4}{2(0.04)}=50$ and $\omega_0=\frac{1}{\sqrt{LC}}=\frac{1}{\sqrt{0.04\times0.01}}=50$. They are equal, so it is critically damped.', r"v_C''+100v_C'+2500v_C=250000"),
-          S(r'**Final value:** long after the switch, $C$ is open again and holds the new source, so $v_C\to100\,\mathrm{V}$. Answer = final value + the repeated-root form.', r'v_C=100+(A_1+A_2t)e^{-50t}'),
-          S(r'**Constants:** put in $t=0$. The value $v_C(0)=200$ gives $A_1$.', r'100+A_1=200\ \Rightarrow\ A_1=100'),
-          S(r'The slope at $0$ (product rule) is $A_2-50A_1$, and it must be $0$.', r'A_2-50A_1=0\ \Rightarrow\ A_2=5000')],
-         r'$v_C=100+(100+5000t)e^{-50t}\,\mathrm{V}$, $t\ge0$ ($t$ in seconds). It starts at 200 V with zero slope and settles at 100 V without overshooting.',
-         cites=D.tb('8.53'))
+    D.P(r'**Textbook example (P8.53).** The circuit has been running for a long time with $V_s=200\,\mathrm{V}$. At $t=0$ the source drops to $100\,\mathrm{V}$. Find $v_C(t)$ for $t\ge0$.'
+        '\n\n' + sch(P853), cites=D.tb('8.53'))
+    CARD(D, r'Full solution: a series step response',
+         [(r'**Before:** long time, so $C$ is a gap and $i=0$. With no current, $R$ and $L$ drop nothing, so $C$ holds the whole $200\,\mathrm{V}$.', r'v_C(0^-)=200\,\mathrm{V},\qquad i(0^-)=0'),
+          (r'**Carry across:** neither can jump. The slope is $i/C$, and $i=0$.', (r'v_C(0^+)=200', r'v_C\prime(0^+)=\dfrac{0}{0.01}=0')),
+          (r'**After:** series, so $\alpha=\frac{R}{2L}$. Long after, $C$ is a gap again and holds the new source.', (r'\alpha=\dfrac{4}{2(0.04)}=50,\qquad \omega_0=\dfrac{1}{\sqrt{0.04\times0.01}}=50', r'V_f=100\,\mathrm{V}')),
+          (r'**Pick:** $\alpha=\omega_0$, critically damped (B5 Case 2). Add $V_f$.', r'v_C=100+(c_1+c_2t)\,e^{-50t}'),
+          (r'Differentiate (product rule).', r'v_C\prime=c_2e^{-50t}-50(c_1+c_2t)e^{-50t}'),
+          (r'**Plug in** $t=0$.', (r'100+c_1=200\quad\Rightarrow\quad c_1=100', r'c_2-50c_1=0\quad\Rightarrow\quad c_2=5000')),
+          (r'**Check:** $t\to\infty$ gives $100\,\mathrm{V}$ ✓.', '')],
+         r'v_C=100+(100+5000t)\,e^{-50t}\,\mathrm{V}')
 
+    D.H('Practice: D2', level=3)
     P(D, 'W5 · No resistor: an ideal LC circuit · textbook P8.14',
       r'A $250\,\mathrm{mF}$ capacitor and a $0.4\,\mathrm{H}$ inductor are in parallel. At the start, $v(0)=0$ and $i_L(0)=-3\,\mathrm{A}$ (arrow pointing down). '
       r'Find (a) $v(t)$, (b) its frequency in rad/s, (c) its maximum amplitude.' '\n\n' + sch(P814),
       [S(r'**Type:** parallel with no $R$, so $\alpha=0$: undamped. $\frac{1}{LC}=\frac{1}{0.25\times0.4}=10$.', r"v''+\dfrac{1}{LC}v=v''+10v=0"),
-       S(r'**Form:** $\omega_0=\sqrt{10}$. The cosine coefficient is $v(0)=0$, so only the sine is left.', r'v=B\sin(\sqrt{10}\,t)'),
-       S(r'**Starting slope:** KCL at the top node: $i_C+i_L=0$, so $i_C(0^+)=+3\,\mathrm{A}$ (down). Divide by $C$.', r"v'(0^+)=\dfrac{3}{0.25}=12\,\mathrm{V/s}"),
-       S(r'**Constant:** the slope of $B\sin(\sqrt{10}\,t)$ at $0$ is $\sqrt{10}\,B$. Set it equal to 12.', r'B=\dfrac{12}{\sqrt{10}}\approx3.795')],
+       S(r'**Pick:** $\omega_0=\sqrt{10}$. The cosine coefficient is $v(0)=0$, so only the sine is left.', r'v=c_2\sin(\sqrt{10}\,t)'),
+       S(r'**Carry across** (slope): KCL at the top node: $i_C+i_L=0$, so $i_C(0^+)=+3\,\mathrm{A}$ (down). Divide by $C$.', r"v'(0^+)=\dfrac{3}{0.25}=12\,\mathrm{V/s}"),
+       S(r'**Plug in:** the slope of $c_2\sin(\sqrt{10}\,t)$ at $0$ is $\sqrt{10}\,c_2$. Set it equal to 12.', r'c_2=\dfrac{12}{\sqrt{10}}\approx3.795')],
       r'(a) $v=\dfrac{12}{\sqrt{10}}\sin(\sqrt{10}\,t)\,\mathrm{V}$. (b) $\omega_0=\sqrt{10}\approx3.162\,\mathrm{rad/s}$. (c) $3.795\,\mathrm{V}$. With no $R$, nothing uses up the energy, so it never dies out.',
       cites=D.tb('8.14'))
     P(D, 'W5 · Read the circuit back from its response · textbook P8.3',
@@ -231,21 +220,21 @@ def build(D):
       r'The switch has been at $a$ for a long time. At $t=0$ it moves to $b$. Find $i(t)$ for $t\ge0$.' '\n\n' + sch(P844),
       [S(r'**Type:** after the switch, $C$, the $200\,\Omega$ and $L$ form one loop with no source: a series RLC natural response. We solve for $i$, the inductor current.'),
        S(r'**Before:** at $a$, $C$ is open (steady state), so no current flows in the $50\,\Omega$ and $C$ charges to the full 70 V. $L$ isn’t connected, so its current is 0.', r'v_C(0^-)=70\,\mathrm{V},\quad i(0^-)=0'),
-       S(r'**Starting slope:** KVL around the new loop is $v_C=Ri+L\,i\prime$. At $0^+$, $v_C=70$ and $i=0$.', r"i'(0^+)=\dfrac{70-200(0)}{0.1}=700\,\mathrm{A/s}"),
-       S(r'**Equation:** $\alpha=\dfrac{R}{2L}=\dfrac{200}{2(0.1)}=1000$ and $\omega_0^2=\dfrac{1}{LC}=\dfrac{1}{0.1\times200\times10^{-9}}=5\times10^7$. $\alpha^2=10^6$ is smaller, so underdamped.', r'\omega_d=\sqrt{5\times10^7-10^6}=7000\,\mathrm{rad/s}'),
-       S(r'**Form:** the cosine coefficient is $i(0)=0$, so only the sine is left.', r'i=B\,e^{-1000t}\sin7000t'),
-       S(r'**Constant:** the slope of this at $t=0$ is $7000B$. Set it equal to 700.', r'B=0.1')],
+       S(r'**Carry across** (slope): KVL around the new loop is $v_C=Ri+L\,i\prime$. At $0^+$, $v_C=70$ and $i=0$.', r"i'(0^+)=\dfrac{70-200(0)}{0.1}=700\,\mathrm{A/s}"),
+       S(r'**After:** $\alpha=\dfrac{R}{2L}=\dfrac{200}{2(0.1)}=1000$ and $\omega_0^2=\dfrac{1}{LC}=\dfrac{1}{0.1\times200\times10^{-9}}=5\times10^7$. $\alpha^2=10^6$ is smaller, so underdamped.', r'\omega_d=\sqrt{5\times10^7-10^6}=7000\,\mathrm{rad/s}'),
+       S(r'**Pick:** the cosine coefficient is $i(0)=0$, so only the sine is left.', r'i=c_2\,e^{-1000t}\sin7000t'),
+       S(r'**Plug in:** the slope of this at $t=0$ is $7000c_2$. Set it equal to 700.', r'c_2=0.1')],
       r'$i=0.1\,e^{-1000t}\sin7000t\ \mathrm{A}$ $=100\,e^{-1000t}\sin7000t\ \mathrm{mA}$, $t\ge0$.',
       diff='intermediate', cites=D.tb('8.44'))
     P(D, 'W5 · The slope comes from KCL · textbook P8.7',
       r'$R=\tfrac{12500}{3}\,\Omega$, $L=250\,\mathrm{mH}$ and $C=10\,\mathrm{nF}$ are in parallel. At the start, $v(0)=90\,\mathrm{V}$ and $i_L(0)=-30\,\mathrm{mA}$ (arrows as drawn). Find $v(t)$ for $t\ge0$.'
       '\n\n' + sch(P87),
       [S(r'**Type:** parallel RLC, no source: a natural response.'),
-       S(r'**Starting slope:** first the resistor current, $i_R=\dfrac{90}{12500/3}=21.6\,\mathrm{mA}$. KCL at the top node (all arrows down): $i_C+i_L+i_R=0$, so $i_C=-(-30)-21.6$.', r'i_C(0^+)=30-21.6=8.4\,\mathrm{mA}'),
+       S(r'**Carry across** (slope): first the resistor current, $i_R=\dfrac{90}{12500/3}=21.6\,\mathrm{mA}$. KCL at the top node (all arrows down): $i_C+i_L+i_R=0$, so $i_C=-(-30)-21.6$.', r'i_C(0^+)=30-21.6=8.4\,\mathrm{mA}'),
        S(r'Divide by $C$ to get the slope.', r"v'(0^+)=\dfrac{8.4\times10^{-3}}{10^{-8}}=8.4\times10^5\,\mathrm{V/s}"),
-       S(r'**Equation:** $\alpha=\dfrac{1}{2RC}=12000$ and $\omega_0=\dfrac{1}{\sqrt{LC}}=20000$. $\alpha<\omega_0$, so underdamped.', r'\omega_d=\sqrt{20000^2-12000^2}=16000'),
-       S(r'**Form:** the cosine coefficient is $v(0)=90$.', r'v=e^{-12000t}(90\cos16000t+B_2\sin16000t)'),
-       S(r'**Constant:** the slope at $0$ is $-\alpha(90)+\omega_dB_2$ (the $y\prime(0)$ column of the B5 table). Set it equal to $8.4\times10^5$.', r'-12000(90)+16000B_2=840000\ \Rightarrow\ B_2=120')],
+       S(r'**After:** $\alpha=\dfrac{1}{2RC}=12000$ and $\omega_0=\dfrac{1}{\sqrt{LC}}=20000$. $\alpha<\omega_0$, so underdamped.', r'\omega_d=\sqrt{20000^2-12000^2}=16000'),
+       S(r'**Pick:** the cosine coefficient is $v(0)=90$.', r'v=e^{-12000t}(90\cos16000t+c_2\sin16000t)'),
+       S(r'**Plug in:** the slope at $0$ is $-\alpha(90)+\omega_dc_2$ (the $y\prime(0)$ column of the B5 table). Set it equal to $8.4\times10^5$.', r'-12000(90)+16000c_2=840000\ \Rightarrow\ c_2=120')],
       r'$v=e^{-12000t}(90\cos16000t+120\sin16000t)\,\mathrm{V}$, $t\ge0$.',
       diff='intermediate', cites=D.tb('8.7'))
     P(D, 'W5 · Choose R for critical damping · textbook P8.42',
@@ -254,8 +243,8 @@ def build(D):
       [S(r'**Type:** one loop, no source: a series RLC natural response. Critically damped means $\alpha=\omega_0$.'),
        S(r'**(a)** $\omega_0=\dfrac{1}{\sqrt{0.25\times160\times10^{-9}}}=5000$. Set $\alpha=\dfrac{R}{2L}=5000$ and solve for $R$.', r'R=2(0.25)(5000)=2500\,\Omega'),
        S(r'**(b)** $i$ is the inductor current, so it can’t jump: $i(0^+)=24\,\mathrm{mA}$. For the slope, use KVL around the loop, $v_C=Ri+L\,i\prime$, at $0^+$.', r"i'(0^+)=\dfrac{90-2500(0.024)}{0.25}=120\,\mathrm{A/s}"),
-       S(r'**(c) Form:** critically damped, so one repeated root $s=-\alpha=-5000$.', r'i=(A_1+A_2t)e^{-5000t}'),
-       S(r'**Constants:** $A_1=i(0)=0.024$. The slope at $0$ is $A_2-5000A_1$; set it equal to 120.', r'A_2=240'),
+       S(r'**(c) Pick:** critically damped, so one repeated root $s=-\alpha=-5000$.', r'i=(c_1+c_2t)e^{-5000t}'),
+       S(r'**Plug in:** $c_1=i(0)=0.024$. The slope at $0$ is $c_2-5000c_1$; set it equal to 120.', r'c_2=240'),
        S(r'For $v_C$, use the same KVL: $v_C=Ri+L\,i\prime$. (Check: $i=-C\,v_C\prime$, with a minus because $i$ leaves the $+$ of $C$.)', r'v_C=(90+3\times10^5\,t)e^{-5000t}')],
       r'(a) $R=2500\,\Omega$. (b) $i(0^+)=24\,\mathrm{mA}$, $i\prime(0^+)=120\,\mathrm{A/s}$. (c) $i=(0.024+240t)e^{-5000t}\,\mathrm{A}$, $v_C=(90+3\times10^5t)e^{-5000t}\,\mathrm{V}$.',
       diff='advanced', cites=D.tb('8.42'))
@@ -263,9 +252,9 @@ def build(D):
       r'The switch has been open for a long time and the capacitor is uncharged. At $t=0$ the switch closes. Find $v_o(t)$ for $t\ge0$.' '\n\n' + sch(P824),
       [S(r'**Type:** after closing, $L$ and $C$ sit across the same two nodes, fed by the source through $400\,\Omega$: a parallel RLC with a DC source.'),
        S(r'**Before:** steady state, so $L$ is a short and takes the whole source current. $C$ isn’t connected and has no charge.', r'i_L(0^-)=\dfrac{12}{400}=30\,\mathrm{mA},\quad v_o(0^-)=0'),
-       S(r'**Starting slope:** at $0^+$, $v_o=0$, so the $400\,\Omega$ still carries $30\,\mathrm{mA}$. $L$ still takes all 30 mA (it can’t jump). KCL at the top node leaves nothing for $C$.', r'i_C(0^+)=30-30=0\ \Rightarrow\ v_o\prime(0^+)=0'),
-       S(r'**Equation:** KCL at the top node is $\dfrac{v_o-12}{400}+i_L+Cv_o\prime=0$. Differentiate once: the constant 12 disappears, so the right side is $0$.', r"Cv_o''+\dfrac{v_o'}{400}+\dfrac{v_o}{L}=0"),
-       S(r'**Condition:** right side $0$, $v_o(0)=0$ and $v_o\prime(0)=0$. The only solution that fits is $v_o=0$ (the zero-start rule in ' + link('Topic C', 'topic-c') + ').')],
+       S(r'**Carry across** (slope): at $0^+$, $v_o=0$, so the $400\,\Omega$ still carries $30\,\mathrm{mA}$. $L$ still takes all 30 mA (it can’t jump). KCL at the top node leaves nothing for $C$.', r'i_C(0^+)=30-30=0\ \Rightarrow\ v_o\prime(0^+)=0'),
+       S(r'**After:** KCL at the top node is $\dfrac{v_o-12}{400}+i_L+Cv_o\prime=0$. Differentiate once: the constant 12 disappears, so the right side is $0$.', r"Cv_o''+\dfrac{v_o'}{400}+\dfrac{v_o}{L}=0"),
+       S(r'**Plug in:** right side $0$, $v_o(0)=0$ and $v_o\prime(0)=0$. The only solution that fits is $v_o=0$ (the zero-start rule in ' + link('Topic C', 'topic-c') + ').')],
       r'$v_o(t)=0$ for all $t\ge0$. The inductor already carries the whole source current, so nothing ever flows into the capacitor.',
       diff='advanced', cites=D.tb('8.24'))
 

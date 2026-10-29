@@ -48,6 +48,9 @@ class Node(Model):
     y: Coord
     label: str = Field(default="", max_length=40)
     inputs: int = Field(default=2, ge=0, le=8)
+    # Step-by-step and live-input views: draw this part in the accent colour / show its output bit.
+    highlight: bool = False
+    value: Literal[0, 1] | None = None
 
     @model_validator(mode="after")
     def pins(self):
@@ -68,6 +71,8 @@ class Wire(Model):
     start: str = Field(max_length=25)
     end: str = Field(max_length=25)
     via: list[tuple[Coord, Coord]] = Field(default_factory=list, max_length=8)
+    highlight: bool = False
+    value: Literal[0, 1] | None = None
 
 
 class Circuit(Model):
@@ -232,6 +237,15 @@ class CMOS(Model):
     kind: Literal["cmos"]
     title: Label = "CMOS network"
     pdn: Network
+    # "resistor" draws a resistor-load NMOS gate instead of the dual PMOS pull-up network.
+    pullup: Literal["pmos", "resistor"] = "pmos"
+    # Draw a hidden half as a dashed "?" box (e.g. "derive the missing PMOS half").
+    show: Literal["both", "pdn", "pun", "none"] = "both"
+    output: Label = "f"
+    # Step-by-step views: draw these halves in the accent colour.
+    highlight: list[Literal["pdn", "pun"]] = Field(default_factory=list, max_length=2)
+    # Input values: colour every transistor on/off, the conducting path, and arrow where f is pulled.
+    inputs: dict[Name, Literal[0, 1]] | None = None
 
     @model_validator(mode="after")
     def bounded(self):
@@ -293,7 +307,7 @@ def gray_order(n):
 class SVG:
     def __init__(self, width, height, title):
         self.parts = [
-            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:g} {height:g}" '
+            f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width:g} {height:g}" width="{width:g}" height="{height:g}" '
             f'role="img" aria-labelledby="title"><title id="title">{escape(title)}</title>',
             '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" '
             'markerWidth="7" markerHeight="7" orient="auto-start-reverse">'
@@ -344,17 +358,26 @@ def circuit_svg(f):
         xx, yy = pin(nodes[b], int(p))
         via = w.via or [((x + xx) / 2, y), ((x + xx) / 2, yy)]
         points = [(x, y), *via, (xx, yy)]
-        svg.add('<polyline points="' + " ".join(f"{px:g},{py:g}" for px, py in points) + '"/>')
+        style = (
+            ' stroke="#2563eb" stroke-width="3"'
+            if w.highlight
+            else {1: ' stroke="#16a34a" stroke-width="3"', 0: ' stroke="#94a3b8"'}.get(w.value, "")
+        )
+        svg.add('<polyline points="' + " ".join(f"{px:g},{py:g}" for px, py in points) + f'"{style}/>')
     for n in f.nodes:
         x, y, gate = n.x, n.y, n.gate
         h = max(25, n.inputs * 11)
+        ink = "#1d4ed8" if n.highlight else "#0f172a"
+        paint = ' stroke="#2563eb" stroke-width="2.6" fill="#dbeafe"' if n.highlight else ' fill="#f8fafc"'
         if gate == "INPUT":
             svg.line(x - 32, y, x + 48, y)
-            svg.text(x, y - 12, n.label or n.id)
+            svg.text(x, y - 12, n.label or n.id, 19, color=ink)
+            badge(svg, x - 46, y, n.value)
             continue
         if gate == "OUTPUT":
             svg.line(x - 48, y, x + 15, y)
-            svg.text(x, y - 12, n.label or n.id)
+            svg.text(x, y - 12, n.label or n.id, 19, color=ink)
+            badge(svg, x + 29, y, n.value)
             continue
         for i in range(n.inputs):
             px, py = pin(n, i)
@@ -362,17 +385,17 @@ def circuit_svg(f):
         svg.line(x + 29, y, x + 48, y)
         if gate in {"AND", "NAND"}:
             d = f"M{x - 28},{y - h} L{x},{y - h} C{x + 43},{y - h} {x + 43},{y + h} {x},{y + h} L{x - 28},{y + h} Z"
-            svg.add(f'<path d="{d}" fill="#f8fafc"/>')
+            svg.add(f'<path d="{d}"{paint}/>')
         elif gate in {"OR", "NOR", "XOR", "XNOR"}:
             d = (
                 f"M{x - 30},{y - h} Q{x + 8},{y - h} {x + 35},{y} Q{x + 8},{y + h} {x - 30},{y + h} "
                 f"Q{x - 10},{y} {x - 30},{y - h} Z"
             )
-            svg.add(f'<path d="{d}" fill="#f8fafc"/>')
+            svg.add(f'<path d="{d}"{paint}/>')
             if gate in {"XOR", "XNOR"}:
                 svg.add(f'<path d="M{x - 37},{y - h} Q{x - 17},{y} {x - 37},{y + h}"/>')
         elif gate in {"NOT", "BUF"}:
-            svg.add(f'<path d="M{x - 28},{y - 24} L{x + 29},{y} L{x - 28},{y + 24} Z" fill="#f8fafc"/>')
+            svg.add(f'<path d="M{x - 28},{y - 24} L{x + 29},{y} L{x - 28},{y + 24} Z"{paint}/>')
         else:
             svg.add(
                 f'<rect x="{x - 28}" y="{y - h - 5}" width="63" height="{2 * h + 10}" rx="4" fill="#eff6ff"/>'
@@ -393,10 +416,20 @@ def circuit_svg(f):
             else:
                 svg.text(x + 4, y + 5, n.label or n.id, 12)
         if gate in {"NOT", "NAND", "NOR", "XNOR"}:
-            svg.circle(x + 35, y, 5, fill="white")
+            svg.circle(x + 35, y, 5, fill="white", **({"stroke": "#2563eb"} if n.highlight else {}))
         if gate not in {"MUX", "DFF", "TFF", "JKFF", "LATCH", "BLOCK"}:
-            svg.text(x, y - h - 12, n.label or n.id, 14)
+            svg.text(x, y - h - 12, n.label or n.id, 17, color=ink)
+        badge(svg, x + 52, y - 15, n.value)
     return svg.finish()
+
+
+def badge(svg, x, y, value):
+    """A small 0/1 chip showing the bit on a part's output."""
+    if value is None:
+        return
+    fill = "#16a34a" if value else "#94a3b8"
+    svg.add(f'<rect x="{x - 8:g}" y="{y - 9:g}" width="16" height="18" rx="4" fill="{fill}" stroke="none"/>')
+    svg.text(x, y + 5, value, 13, color="#fff")
 
 
 COLORS = ["#2563eb", "#dc2626", "#059669", "#9333ea", "#d97706", "#0891b2"]
@@ -552,64 +585,153 @@ def dimensions(n):
     )
 
 
+RESISTOR = (110, 90)  # size of the resistor pull-up that replaces the PUN in NMOS logic
+GREEN, GREY, ACCENT = "#16a34a", "#94a3b8", "#2563eb"
+
+
+def cmos_size(f):
+    """The drawing's (width, height); frontend/src/components/mathtools/LogicSteps.tsx mirrors it."""
+    pw, ph = RESISTOR if f.pullup == "resistor" else dimensions(dual(f.pdn))
+    nw, nh = dimensions(f.pdn)
+    return max(pw, nw) + 140 + (230 if f.inputs is not None else 0), ph + nh + 160
+
+
 def cmos_svg(f):
     pun = dual(f.pdn)
-    pw, ph = dimensions(pun)
+    pw, ph = RESISTOR if f.pullup == "resistor" else dimensions(pun)
     nw, nh = dimensions(f.pdn)
-    width = max(pw, nw) + 140
-    height = ph + nh + 160
+    core = max(pw, nw) + 140
+    width, height = cmos_size(f)
     svg = SVG(width, height, f.title)
-    cx = width / 2
+    svg.add(
+        f'<defs><marker id="arrow-on" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" '
+        f'orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="{GREEN}"/></marker></defs>'
+    )
+    cx = core / 2
+    state = f.inputs is not None
+    env = f.inputs or {}
 
-    def draw(n, x, y, w, h, pmos):
+    def on(n, pmos):
+        return env.get(n.gate, 0) == (0 if pmos else 1)
+
+    def conducts(n, pmos):
+        if n.gate:
+            return on(n, pmos)
+        return (all if n.series else any)(conducts(c, pmos) for c in n.series or n.parallel)
+
+    def style(path, accent):
+        if path:
+            return {"stroke": GREEN, "stroke_width": 3}
+        return {"stroke": ACCENT, "stroke_width": 2.6} if accent else {}
+
+    def draw(n, x, y, w, h, pmos, path, accent):
+        """path: this part carries the current from a rail to f; accent: changed in this step."""
         mid = x + w / 2
+        wire = style(path, accent)
         if n.gate:
             sy = y + h / 2
-            svg.line(mid, y, mid, sy - 14)
-            svg.line(mid, sy - 14, mid - 10, sy - 14)
-            svg.line(mid - 10, sy - 14, mid - 10, sy + 14)
-            svg.line(mid - 10, sy + 14, mid, sy + 14)
-            svg.line(mid, sy + 14, mid, y + h)
-            svg.line(mid - 19, sy - 17, mid - 19, sy + 17)
-            svg.line(mid - 38, sy, mid - 25 if pmos else mid - 19, sy)
+            body = {"stroke": GREEN if on(n, pmos) else GREY, "stroke_width": 2.6} if state else style(False, accent)
+            svg.line(mid, y, mid, sy - 14, **wire)
+            svg.line(mid, sy - 14, mid - 10, sy - 14, **body)
+            svg.line(mid - 10, sy - 14, mid - 10, sy + 14, **body)
+            svg.line(mid - 10, sy + 14, mid, sy + 14, **body)
+            svg.line(mid, sy + 14, mid, y + h, **wire)
+            svg.line(mid - 19, sy - 17, mid - 19, sy + 17, **body)
+            svg.line(mid - 38, sy, mid - 25 if pmos else mid - 19, sy, **body)
             if pmos:
-                svg.circle(mid - 23, sy, 4, fill="white")
-            svg.text(mid - 41, sy + 5, n.gate, 14, "end")
+                svg.circle(mid - 23, sy, 4, fill="white", **body)
+            if state:
+                color = GREEN if on(n, pmos) else "#64748b"
+                svg.text(mid - 41, sy, f"{n.gate}={env.get(n.gate, 0)}", 17, "end", color)
+                svg.text(mid - 41, sy + 16, "on" if on(n, pmos) else "off", 13, "end", color)
+            else:
+                svg.text(mid - 41, sy + 6, n.gate, 17, "end", "#1d4ed8" if accent else "#0f172a")
         elif n.series:
             total = sum(dimensions(c)[1] for c in n.series)
             yy = y
             for c in n.series:
                 ch = h * dimensions(c)[1] / total
-                draw(c, x, yy, w, ch, pmos)
+                draw(c, x, yy, w, ch, pmos, path, accent)
                 yy += ch
         else:
             xx = x
             total = sum(dimensions(c)[0] for c in n.parallel)
-            svg.line(mid, y, mid, y + 15)
-            svg.line(mid, y + h - 15, mid, y + h)
+            svg.line(mid, y, mid, y + 15, **wire)
+            svg.line(mid, y + h - 15, mid, y + h, **wire)
             for c in n.parallel:
                 cw = w * dimensions(c)[0] / total
                 cc = xx + cw / 2
-                svg.line(mid, y + 15, cc, y + 15)
-                svg.line(mid, y + h - 15, cc, y + h - 15)
-                draw(c, xx, y + 15, cw, h - 30, pmos)
+                branch = path and conducts(c, pmos)
+                svg.line(mid, y + 15, cc, y + 15, **style(branch, accent))
+                svg.line(mid, y + h - 15, cc, y + h - 15, **style(branch, accent))
+                draw(c, xx, y + 15, cw, h - 30, pmos, branch, accent)
                 xx += cw
 
+    def hidden(x, y, w, h, name):
+        svg.add(
+            f'<rect x="{x + 20:g}" y="{y + 6:g}" width="{w - 40:g}" height="{h - 12:g}" rx="10" '
+            f'stroke="{GREY}" stroke-dasharray="7 6" fill="#f8fafc"/>'
+        )
+        svg.text(x + w / 2, y + h / 2 + 6, f"{name}: ?", 17, "middle", "#64748b")
+
+    down = conducts(f.pdn, False)
+    up = not down if f.pullup == "resistor" else conducts(pun, True)
     svg.text(cx, 24, "VDD")
-    svg.line(cx, 30, cx, 45)
-    draw(pun, (width - pw) / 2, 45, pw, ph, True)
+    svg.line(cx, 30, cx, 45, **style(state and up, False))
+    if f.pullup == "resistor":
+        zig = [(cx, 45), (cx, 60)] + [(cx + (12 if i % 2 else -12), 64 + i * 8) for i in range(6)] + [(cx, 112), (cx, 45 + ph)]
+        r = style(state and up or state and down, "pun" in f.highlight)
+        svg.add('<polyline points="' + " ".join(f"{px:g},{py:g}" for px, py in zig) + f'" {attributes(r)}/>')
+        svg.text(cx + 22, 92, "R", 15, "start")
+    elif f.show in ("both", "pun"):
+        draw(pun, (core - pw) / 2, 45, pw, ph, True, state and up, "pun" in f.highlight)
+    else:
+        hidden((core - pw) / 2, 45, pw, ph, "PUN")
     out_y = 70 + ph
-    svg.line(cx, 45 + ph, cx, 95 + ph)
-    svg.line(cx, out_y, width - 28, out_y)
+    svg.line(cx, 45 + ph, cx, out_y, **style(state and up, False))
+    svg.line(cx, out_y, cx, 95 + ph, **style(state and down, False))
+    svg.line(cx, out_y, core - 28, out_y)
     svg.circle(cx, out_y, 3, fill="#334155")
-    svg.text(width - 25, out_y - 8, "f")
-    draw(f.pdn, (width - nw) / 2, 95 + ph, nw, nh, False)
+    if state:
+        value = 0 if down else 1
+        svg.text(core - 25, out_y - 8, f"{f.output} = {value}", 16, "middle", GREEN if value else "#0f172a")
+    else:
+        svg.text(core - 25, out_y - 8, f.output)
+    if f.show in ("both", "pdn"):
+        draw(f.pdn, (core - nw) / 2, 95 + ph, nw, nh, False, state and down, "pdn" in f.highlight)
+    else:
+        hidden((core - nw) / 2, 95 + ph, nw, nh, "PDN")
     bottom = 95 + ph + nh
-    svg.line(cx, bottom, cx, bottom + 15)
+    svg.line(cx, bottom, cx, bottom + 15, **style(state and down, False))
     for i in range(3):
         svg.line(cx - 16 + i * 5, bottom + 15 + i * 6, cx + 16 - i * 5, bottom + 15 + i * 6)
-    svg.text(12, 50, "PUN", 13, "start", "#2563eb")
-    svg.text(12, 100 + ph, "PDN", 13, "start", "#dc2626")
+    svg.text(12, 50, "PUN" if f.pullup == "pmos" else "pull-up", 15, "start", "#2563eb")
+    svg.text(12, 100 + ph, "PDN", 15, "start", "#dc2626")
+    if state:
+        ax = core + 20
+        arrow = f'stroke="{GREEN}" stroke-width="3" marker-end="url(#arrow-on)"'
+        if up:
+            svg.add(f'<path d="M{ax:g},48 L{ax:g},{out_y - 10:g}" {arrow}/>')
+        if down:
+            svg.add(f'<path d="M{ax:g},{out_y + 10:g} L{ax:g},{bottom + 10:g}" {arrow}/>')
+        top_y, low_y = (48 + out_y) / 2, (out_y + bottom) / 2
+        if f.pullup == "pmos":
+            lines = (
+                (top_y, ["PUN conducts:", "f is connected to VDD", f"so {f.output} = 1"])
+                if up
+                else (low_y, ["PDN conducts:", "f is connected to ground", f"so {f.output} = 0"])
+            )
+            texts = [lines]
+        elif down:
+            texts = [
+                (top_y, ["Current flows from VDD", "through R ..."]),
+                (low_y, ["... and the PDN to ground:", f"{f.output} = 0, power is used"]),
+            ]
+        else:
+            texts = [(top_y, ["PDN is open: R pulls", f"{f.output} up, so {f.output} = 1", "(no current flows)"])]
+        for mid_y, words in texts:
+            for i, line in enumerate(words):
+                svg.text(ax + 14, mid_y - 10 * len(words) + 21 * i + 14, line, 16, "start", GREEN)
     return svg.finish()
 
 

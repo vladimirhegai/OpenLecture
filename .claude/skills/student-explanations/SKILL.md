@@ -40,6 +40,10 @@ Pick the shape that matches the content:
 
 Bold only the term being defined or the lead word of a step. Never bold half a sentence.
 
+**Figures need a question first.** Put the line that says what the figure is for ("**PS1 Q3:** what does this
+circuit compute?") *before* the figure, and the explanation right after it. A figure with no prompt, or one placed
+under an unrelated example, reads as random. Never let a figure's title or caption give away a try-it answer.
+
 ## 3. Always: what → example → why
 
 Every rule or method gets, in this order:

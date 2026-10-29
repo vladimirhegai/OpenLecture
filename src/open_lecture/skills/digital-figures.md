@@ -72,6 +72,18 @@ Combinations take 2–8 children; max depth 5 and max 16 NMOS leaves. The render
 An NMOS leaf conducts for input 1; a PMOS leaf (bubble) conducts for input 0. The output is the complement of PDN conduction.
 Only complementary static CMOS with series/parallel networks is supported. No transistor sizing, analog simulation or arbitrary pass-transistor topology.
 
+Optional fields:
+
+| Field | Does |
+|---|---|
+| `"pullup":"resistor"` | Draw a resistor-load NMOS gate (resistor instead of the PMOS network). |
+| `"show":"pdn"` (or `"pun"`, `"none"`) | Draw the other half as a dashed "?" box, e.g. "derive the missing PMOS half". |
+| `"inputs":{"A":1,"B":0}` | Show one row: each transistor on (green) or off (grey), the conducting path in green, and an arrow saying whether f is pulled up to 1 or down to 0 (with a resistor: whether current flows). Widens the drawing by 230 for the explanation. |
+| `"output":"F"` | Output label (default `f`). |
+| `"highlight":["pdn"]` | Accent colour on a half (logicsteps sets this). |
+
+To build a CMOS gate step by step (complement → PDN → dual PUN → check a row) or let the reader try inputs, use a ```logicsteps card with cmos drawings: see math-tools.md.
+
 ## Venn diagrams
 
 ```digital
@@ -80,3 +92,5 @@ Only complementary static CMOS with series/parallel networks is supported. No tr
 
 Use 2 or 3 distinct variables, MSB first. `shaded` lists input-assignment indices, exactly like minterm numbers.
 The rectangle is the whole universe; region 0 is outside every circle. This example shades everything except AB=11.
+
+To walk through a circuit one gate at a time (label outputs left to right, or AND–OR → NAND–NAND), use a ```logicsteps card instead of several static figures: see math-tools.md. Circuit nodes and wires also accept `highlight: true` (accent colour) and `value: 0|1` (a bit chip on the output; wires at 1 draw green); logicsteps sets these for you.

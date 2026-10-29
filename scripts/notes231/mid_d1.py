@@ -1,7 +1,7 @@
 """D1: first-order RC and RL circuits (Weeks 1-3)."""
 import sympy as sp
 
-from midlib import P, S, TAGS, link, t, zero
+from midlib import CARD, P, S, TAGS, link, t, zero
 
 TB = 'http://127.0.0.1:8000'  # (schematics are checked by finish())
 
@@ -94,88 +94,82 @@ ground 0,0
 
 
 def build(D):
-    D.H('D1 · First-order RC and RL circuits', level=2, cites=D.cite('W1', 6) + D.cite('W2', 4, 5) + D.cite('W3', 2, 3))
+    D.H('D1 · One C or one L: first order', level=2, cites=D.cite('W1', 6) + D.cite('W2', 4, 5) + D.cite('W3', 2, 3))
     TAGS(D, (1, 3), (2, 3), (3, 2))
-    D.P(r'**When is a circuit first order?** When, after the switch, only **one** capacitor or **one** inductor is left (after combining), plus resistors and DC sources.')
-    D.P('Then the ODE always has the same shape, and one formula solves it.')
-    D.P(r'Call $x$ the quantity that can’t jump: $v_C$ in an RC circuit, $i_L$ in an RL circuit. For $t>0$, KVL or KCL always gives:')
-    D.EQ(r'\dfrac{dx}{dt}+\dfrac{x}{\tau}=\dfrac{x_f}{\tau}')
-    D.L([r'$x$ = $v_C$ (RC circuit) or $i_L$ (RL circuit)',
-         r'$\tau$ = the **time constant**, in seconds: $\;\tau=R_{th}C\;$ or $\;\tau=\dfrac{L}{R_{th}}$',
-         r'$x_f$ = the **final value** $x(\infty)$: where $x$ ends up long after the switch ($x_f=0$ if no source is left)',
-         r'$R_{th}$ = the resistance the $C$ or $L$ “sees” (how to find it is just below)'])
-    D.P('Examples of reading the form:')
-    D.L([r'$\dfrac{di}{dt}+5i=50$ → $\frac1\tau=5$, so $\tau=0.2\,\mathrm{s}$. And $\frac{x_f}{\tau}=50$, so $x_f=50\times0.2=10\,\mathrm{A}$.',
-         r'$\dfrac{dv}{dt}+50v=0$ → $\tau=\frac1{50}\,\mathrm{s}=20\,\mathrm{ms}$, and $x_f=0$ (no source).'])
-    D.P(r'**Finding $R_{th}$**, in the $t>0$ circuit:')
-    D.L([r'**Turn the sources off:** a voltage source becomes a wire, a current source becomes a gap.',
-         r'**Combine** the resistors between the two ends of the $C$ or $L$.'], ordered=True)
-    D.P(r'Example: a voltage source in series with $6\,\Omega$ feeds a capacitor, and a $3\,\Omega$ sits across the capacitor. '
-        r'The source becomes a wire, so the capacitor sees $6\parallel3=2\,\Omega$.')
-    D.P(r'Why the sources go off: they only set the right side of the ODE ($x_f$). The speed, $\tau$, comes from the left side, which only has the resistors and the $C$ or $L$.')
-    D.P(r'**The formula.** The ODE above is a ' + link('B2', 'b2') + r' equation with constants $a=\frac1\tau$ and $f=\frac{x_f}{\tau}$. '
-        r'Solve it once, with starting value $x(0)=x_0$, and you get the one formula you need:')
-    D.EQ(r'x(t)=x_f+\big(x_0-x_f\big)\,e^{-t/\tau},\qquad t\ge0')
-    D.P('Why it makes sense:')
-    D.L([r'at $t=0$: $e^0=1$, so $x=x_f+x_0-x_f=x_0$, the starting value ✓',
-         r'as $t\to\infty$: $e^{-t/\tau}\to0$, so $x\to x_f$, the final value ✓'])
-    D.P(r'**Method.** You don’t even have to write the ODE: find three numbers and plug in.')
-    D.L([r'**$x_0$:** from the $t<0$ circuit ($C$ = gap, $L$ = wire). It carries over to $0^+$.',
-         r'**$x_f$:** from the $t\to\infty$ circuit, with the switch in its **new** spot ($C$ = gap, $L$ = wire again).',
-         r'**$\tau$:** find $R_{th}$ in the $t>0$ circuit. Then $\tau=R_{th}C$ or $\tau=L/R_{th}$.',
+    D.P(r'**Use this when**, after the switch, only **one** capacitor or **one** inductor is left (after combining), plus resistors and DC sources.')
+    D.P(r'Call $x$ the thing that can’t jump: $v_C$ in an RC circuit, $i_L$ in an RL circuit.')
+    D.P(r'**The move: you don’t need to solve the ODE.** Find three numbers and plug them in:')
+    D.EQ(r'x(t)=x_f+\big(x_0-x_f\big)\,e^{-t/\tau}')
+    D.L([r'$x_0$ = the **starting value** (from the old circuit)',
+         r'$x_f$ = the **final value**, long after the switch (from the new circuit). $0$ if no source is left.',
+         r'$\tau$ = the **time constant** in seconds: $\;\tau=R_{th}C\;$ or $\;\tau=\dfrac{L}{R_{th}}$'])
+    D.P(r'$R_{th}$ = the resistance the $C$ or $L$ “sees” in the new circuit: turn the sources off (a voltage source → a wire, a current source → a gap), then combine the resistors.')
+    D.P('**Short example:**')
+    D.EQ(r'x_0=0,\quad x_f=10,\quad \tau=0.2\quad\Longrightarrow\quad x(t)=10-10e^{-5t}')
+    D.WHY('Where does the formula come from?',
+          r'KVL or KCL after the switch always gives this ' + link('B2', 'b2') + r' equation, with $p=\frac1\tau$ and $f=\frac{x_f}{\tau}$:'
+          '\n\n$$\n' r'\dfrac{dx}{dt}+\dfrac{x}{\tau}=\dfrac{x_f}{\tau}' '\n$$\n\n'
+          r'Solve it once with $x(0)=x_0$ and you get the formula. Check: at $t=0$, $e^0=1$, so $x=x_0$ ✓. As $t\to\infty$, $e^{-t/\tau}\to0$, so $x\to x_f$ ✓.'
+          '\n\n'
+          r'Example (the lecture’s RC step response): $I_s$, $R$, $C$ in parallel. KCL: $C\frac{dv}{dt}+\frac vR=I_s$, so $\tau=RC$ and $x_f=RI_s$.'
+          '\n\n'
+          r'Why the sources go off for $R_{th}$: they only set $x_f$ (the right side). The speed $\tau$ comes from the left side: just the resistors and the $C$ or $L$.')
+
+    D.P('**Steps**')
+    D.L([r'**Before:** old circuit, long time ($C$ = gap, $L$ = wire). Find $x(0^-)$.',
+         r'**Carry across:** $x_0=x(0^+)=x(0^-)$.',
+         r'**After:** new circuit. Final value $x_f$ (long time again). Time constant: $R_{th}$, then $\tau=R_{th}C$ or $L/R_{th}$.',
          r'**Plug in:** $x(t)=x_f+(x_0-x_f)e^{-t/\tau}$.',
-         r'**Anything else** comes from $x(t)$: Ohm’s law, KCL, $i_C=C\frac{dv_C}{dt}$, $v_L=L\frac{di_L}{dt}$.'],
-        ordered=True)
-    D.P('Two names you’ll see:')
-    D.L([r'**Natural response:** no source after $t=0$. The stored energy drains away through the resistors, so $x_f=0$.',
-         r'**Step response:** a DC source is still connected after $t=0$. It pushes $x$ to a new value $x_f$.'])
-    D.T(['', 'Natural response', 'Step response'], [
-        ['Final value', r'$x_f=0$', r'$x_f$ from the new DC circuit'],
-        ['Answer', r'$x_0\,e^{-t/\tau}$', r'$x_f+(x_0-x_f)\,e^{-t/\tau}$'],
-        ['Example', r'$i=4e^{-500t}$', r'$i=10\big(1-e^{-5t}\big)$'],
-    ])
-    D.P(r'**How fast does it settle?** Count in time constants. After:')
-    D.L([r'$1\tau$: 37% of the gap $x_0-x_f$ is left (63% done), since $e^{-1}\approx0.37$',
-         r'$2\tau$: 13.5% left',
-         r'$5\tau$: under 1% left; call it done'])
-    D.P(r'Example: $\tau=2\,\mathrm{ms}$ → the circuit has settled after about $5\tau=10\,\mathrm{ms}$.')
+         r'**Check:** $x(0)=x_0$ and $x(\infty)=x_f$. Anything else comes from $x(t)$: $i_C=C\frac{dv_C}{dt}$, $v_L=L\frac{di_L}{dt}$, Ohm’s law.'], ordered=True)
+
+    D.H('Case 1: natural response (no source left)', level=3)
+    D.P(r'The stored energy drains away through the resistors, so $x_f=0$:')
+    D.EQ(r'x(t)=x_0\,e^{-t/\tau}')
+    D.P(r'**Short example:** $i_L$ starts at $4\,\mathrm{A}$, $L=8\,\mathrm{mH}$, $R=4\,\Omega$:')
+    D.EQ(r'\tau=\dfrac{8\times10^{-3}}{4}=2\,\mathrm{ms}\quad\Longrightarrow\quad i(t)=4e^{-500t}\,\mathrm{A}')
+
+    D.H('Case 2: step response (a source stays on)', level=3)
+    D.P(r'The source pushes $x$ to a new value $x_f$:')
+    D.EQ(r'x(t)=x_f+\big(x_0-x_f\big)\,e^{-t/\tau}')
+    D.P(r'**Short example:** $i$ starts at $0$, ends at $10\,\mathrm{A}$, $\tau=0.2\,\mathrm{s}$:')
+    D.EQ(r'i(t)=10+(0-10)e^{-5t}=10\big(1-e^{-5t}\big)\,\mathrm{A}')
+
+    D.H('Examples and handy facts', level=3)
+    D.P(r'**Lecture example (§1.1).** The switch closes at $t=0$. The inductor carries no current before that. Find $i(t)$ for $t\ge0$.'
+        '\n\n' + fence(LECTURE_RL), cites=D.cite('W3', 2, 3))
+    CARD(D, r'Full solution: the lecture’s RL step response',
+         [(r'**Before:** the switch is open, so no current flows.', r'i(0^-)=0'),
+          (r'**Carry across:** an inductor current can’t jump.', r'x_0=i(0^+)=0'),
+          (r'**After** (final value): long after, $L$ is a wire, so only the $10\,\Omega$ limits the current.', r'x_f=\dfrac{100}{10}=10\,\mathrm{A}'),
+          (r'**After** (time constant): the source is off, so $L$ sees just the $10\,\Omega$.', r'\tau=\dfrac{L}{R}=\dfrac{2}{10}=0.2\,\mathrm{s}'),
+          (r'**Plug in.**', r'i(t)=10+(0-10)e^{-t/0.2}=10-10e^{-5t}'),
+          (r'**Check** with the ODE (KVL: $100=10i+2\frac{di}{dt}$). Divide by $2$: it’s $i\prime+5i=50$, the ' + link('B2', 'b2') + ' practice problem. Same answer.',
+           r'\dfrac{di}{dt}+5i=50')],
+         r'i(t)=10\big(1-e^{-5t}\big)\,\mathrm{A}')
+    D.P('**Handy facts.** Open a card for an example:')
+    CARD(D, r'How fast it settles: after $1\tau$ 37% of the gap is left, after $5\tau$ it’s done',
+         [(r'$e^{-1}\approx0.37$, $e^{-2}\approx0.135$, $e^{-5}<0.01$.', r'x(\tau)=x_f+0.37\,(x_0-x_f)'),
+          (r'Example: $\tau=2\,\mathrm{ms}$.', r'5\tau=10\,\mathrm{ms}\quad\text{(settled)}')])
+    CARD(D, r'Derivative: $\;\dfrac{d}{dt}e^{-t/\tau}=-\dfrac1\tau\,e^{-t/\tau}$',
+         [(r'For $i_C=C\frac{dv}{dt}$ or $v_L=L\frac{di}{dt}$. Example: $i=10-10e^{-5t}$, $L=2\,\mathrm{H}$:', r'v_L=2\cdot50e^{-5t}=100e^{-5t}\,\mathrm{V}')])
+    CARD(D, r'Energy stored: $\;w_C=\tfrac12Cv^2$, $\;w_L=\tfrac12Li^2$',
+         [(r'In joules. The sign of $i$ doesn’t matter (it’s squared). Example: $L=8\,\mathrm{mH}$, $i=12.5\,\mathrm{A}$:', r'w=\tfrac12(8\times10^{-3})(12.5)^2=0.625\,\mathrm{J}')])
+    CARD(D, r'Parallel resistors: $\;R_1\parallel R_2=\dfrac{R_1R_2}{R_1+R_2}$',
+         [(r'For $R_{th}$. Example:', r'6\parallel3=\dfrac{18}{9}=2\,\Omega')])
     D.GRAPH(r'''
-    title "Drag the sliders: the curve always heads for $x_f$, and the tangent at $t=0$ reaches $x_f$ at $t=\tau$"
+    title "Drag the sliders: the curve always heads for $x_f$"
     x 0 8 label="$t$"
     y -12 12 label="$x$"
     slider x0 -10 10 10 step=1 label="$x_0$"
     slider xf -10 10 2 step=1 label="$x_f$"
     slider tau 0.2 3 1 step=0.1 label="$\tau$"
     curve "xf+(x0-xf)*exp(-x/tau)" label="$x(t)=x_f+(x_0-x_f)e^{-t/\tau}$" color=1
-    curve "x0+(xf-x0)*x/tau" from=0 to="tau" label="tangent at $t=0$" color=0 dash
     hline "xf" label="$x_f$" color=3
     point "tau" "xf+(x0-xf)*exp(-1)" label="at $t=\tau$: 37% of the gap left" color=2
-    readout "$x(5\tau)$" "xf+(x0-xf)*exp(-5)"
     caption "Set $x_f=0$ for a natural response. A bigger $\tau$ (bigger $RC$ or $L/R$) means a slower circuit."
-    ''')
-    D.P('**Formulas you’ll also need:**')
-    D.T(['Quantity', 'Formula', 'Note'], [
-        [r'derivative of the exponential', r'$\dfrac{d}{dt}e^{-t/\tau}=-\dfrac1\tau e^{-t/\tau}$', r'for $i_C=C\frac{dv}{dt}$ and $v_L=L\frac{di}{dt}$'],
-        ['energy stored', r'$w_C=\tfrac12Cv^2,\quad w_L=\tfrac12Li^2$', 'in joules'],
-        ['parallel resistors', r'$R_1\parallel R_2=\dfrac{R_1R_2}{R_1+R_2}$', r'for $R_{th}$'],
-    ])
-    D.CO('info', r'**Bonus (skip-safe): where the formula comes from (the lecture’s RC step response).** Take a current source $I_s$, a resistor $R$ and a capacitor $C$, all in parallel. '
-         r'KCL at the top node: capacitor current + resistor current = source current.'
-         '\n\n$$\n' r'C\dfrac{dv}{dt}+\dfrac{v}{R}=I_s\quad\Rightarrow\quad\dfrac{dv}{dt}+\dfrac{v}{RC}=\dfrac{I_s}{C}' '\n$$\n\n'
-         r'That’s the standard form with $\tau=RC$ and $x_f=RI_s$. Plug in: $v=RI_s+(V_0-RI_s)e^{-t/RC}$. '
-         r'You can solve it with ' + link('B2', 'b2') + r', or separate it (' + link('B1', 'b1') + r'), as the lecture did for the RL circuit.')
+    ''', intro='**What does the formula look like?**')
 
-    D.EX('W3 · Circuit → ODE → answer · lecture §1.1',
-         'The switch closes at $t=0$. The inductor carries no current before that. Find $i(t)$ for $t\\ge0$.\n\n' + fence(LECTURE_RL),
-         [S(r'**Type:** one inductor and one DC source → first-order RL **step** response. Solve for $i$, the inductor current.'),
-          S(r'**Before:** the switch is open, so no current flows: $i(0^-)=0$. It can’t jump, so $i(0^+)=0$ too.'),
-          S(r'**After:** KVL around the loop: source voltage = resistor voltage + inductor voltage.', r'2\dfrac{di}{dt}+10i=100'),
-          S(r'**Standard form:** divide by $L=2$. Then $\frac1\tau=5$, so $\tau=0.2\,\mathrm{s}$ (check: $L/R=2/10$ ✓).', r'\dfrac{di}{dt}+5i=50'),
-          S(r'**Final value:** long after, the inductor is a wire, so $i_f=100/10=10\,\mathrm{A}$.'),
-          S(r'**Plug in** $x_0=0$, $x_f=10$, $\tau=0.2$.', r'i(t)=10+(0-10)e^{-5t}')],
-         r'$i(t)=10\big(1-e^{-5t}\big)\,\mathrm{A}$. Same answer as the integrating-factor problem in ' + link('B2', 'b2') + '.',
-         cites=D.cite('W3', 2, 3))
-
+    D.H('Practice: D1', level=3)
     P(D, 'W1 · RL natural response · Pre-tutorial 1',
       r'The switch has been closed for a long time and opens at $t=0$. Use $L=8\,\mathrm{mH}$, $R=4\,\Omega$ and $I_s=4\,\mathrm{A}$. '
       r'Find $i(t)$ for $t\ge0$ (with numbers) and sketch it.' '\n\n' + fence(T1),
@@ -190,19 +184,19 @@ def build(D):
       r'Find the capacitor current just before ($t=0^-$, switch open) and just after ($t=0^+$, switch closed). Does the capacitor current jump, even though the capacitor voltage can’t?' '\n\n' + fence(T2),
       [S(r'**Type:** a just-before / just-after question. Use “$v_C$ can’t jump”, then KCL at $0^+$.'),
        S(r'**Before:** the switch is open, so the capacitor isn’t connected to anything.', r'i_C(0^-)=0'),
-       S(r'**Just after:** $v(0^+)=v(0^-)=0$, since it can’t jump. The resistor sits across the capacitor, so its current is $v/R=0$.'),
+       S(r'**Carry across:** $v(0^+)=v(0^-)=0$, since it can’t jump. The resistor sits across the capacitor, so its current is $v/R=0$.'),
        S(r'**KCL** at the top node: the resistor takes nothing, so all of the source current goes into the capacitor.', r'i_C(0^+)=I_s-\dfrac{v(0^+)}{R}=2-0=2\,\mathrm{A}'),
-       S(r'**Afterwards:** $v$ rises toward $RI_s=2000\,\mathrm{V}$ and $i_C$ dies down to 0.')],
+       S(r'**Check:** $v$ rises toward $RI_s=2000\,\mathrm{V}$ and $i_C$ dies down to 0.')],
       r'$i_C(0^-)=0$, $i_C(0^+)=2\,\mathrm{A}$. So yes, the capacitor **current** jumps. The capacitor **voltage** doesn’t: it stays at 0.', cites=D.cite('T2', 1))
     P(D, 'W2–W3 · Read the circuit from its response · textbook P7.42',
       r'The switch closes at $t=0$. For $t\ge0$ you measure:' '\n\n'
       r'$i(t)=\big(10-10e^{-500t}\big)\,\mathrm{A},\qquad v(t)=200e^{-500t}\,\mathrm{V}\ (t\ge0^+)$' '\n\n'
       r'Find $V_s$, $R$, the starting current $I_0$ and $L$.' '\n\n' + fence(P742),
       [S(r'**Type:** RL step response, read backwards. Match each piece to $x_f+(x_0-x_f)e^{-t/\tau}$.'),
-       S(r'**Starting value:** put $t=0$ into $i(t)$: $I_0=10-10=0$.'),
-       S(r'**Just after:** $i=0$, so the resistor has 0 V across it. The whole source voltage sits on $L$.', r'V_s=v(0^+)=200\,\mathrm{V}'),
-       S(r'**Final value:** long after, $L$ is a wire, so $i_f=V_s/R$. From $i(t)$, $i_f=10$.', r'10=\dfrac{200}{R}\quad\Rightarrow\quad R=20\,\Omega'),
-       S(r'**Time constant:** the exponent is $-500t$, so $\frac1\tau=500$ and $\tau=2\,\mathrm{ms}$. Use $\tau=L/R$.', r'L=20\times0.002=40\,\mathrm{mH}'),
+       S(r'**Carry across:** put $t=0$ into $i(t)$: $I_0=10-10=0$.'),
+       S(r'**Carry across:** $i=0$, so the resistor has 0 V across it. The whole source voltage sits on $L$.', r'V_s=v(0^+)=200\,\mathrm{V}'),
+       S(r'**After** (final value): long after, $L$ is a wire, so $i_f=V_s/R$. From $i(t)$, $i_f=10$.', r'10=\dfrac{200}{R}\quad\Rightarrow\quad R=20\,\Omega'),
+       S(r'**After** (time constant): the exponent is $-500t$, so $\frac1\tau=500$ and $\tau=2\,\mathrm{ms}$. Use $\tau=L/R$.', r'L=20\times0.002=40\,\mathrm{mH}'),
        S(r'**Check:** $L\frac{di}{dt}=0.04\times5000e^{-500t}=200e^{-500t}$, which matches $v(t)$ ✓.')],
       r'$V_s=200\,\mathrm{V}$, $R=20\,\Omega$, $I_0=0$, $L=40\,\mathrm{mH}$.', diff='intermediate', cites=D.tb('7.42'))
     P(D, 'W2 · RC natural response with a divider first · textbook P7.22',

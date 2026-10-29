@@ -22,6 +22,20 @@ KEYS = ['complex_numbers', 'separable_odes', 'linear_first_order', 'exact_equati
         'existence_uniqueness', 'rc_rl_circuits', 'rlc_circuits']
 
 
+def fold_equations(D):
+    """The server caps a note at 500 blocks. A line of text and the centred equations right under it render the same as
+    one paragraph with $$ displays in it, so fold them together (only blocks without citations)."""
+    out = []
+    for b in D.B:
+        prev = out[-1] if out else None
+        if (b['type'] == 'equation' and not b['citations'] and prev and prev['type'] == 'paragraph'
+                and not prev['citations'] and '```' not in prev['text']):
+            prev['text'] += '\n\n$$\n' + lib231._wrap(b['latex']) + '\n$$'
+        else:
+            out.append(b)
+    D.B = out
+
+
 def main():
     args = sys.argv[1:]
     preview = [a for a in args[args.index('--preview') + 1:] if not a.startswith('--')] if '--preview' in args else None
@@ -47,6 +61,7 @@ def main():
     for module in modules:
         module.verify()
         module.build(D)
+    fold_equations(D)
     finish(D, 'ELEC-231-Midterm-Weeks-1-6-by-Problem-Type.md' if not preview else f'../scripts/notes231/out/{key}.md')
 
 

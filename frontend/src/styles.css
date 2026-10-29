@@ -3814,6 +3814,57 @@ a.note-link {
 .cs-key-add { background: var(--accent); }
 .cs-key-gone { background: var(--danger); }
 
+/* Logic figures carry their real size: use the column width instead of the 340px schematic cap. */
+.digital-figure img { max-height: 75vh; }
+.zoomable { cursor: zoom-in; }
+
+/* Full-screen figure viewer (FigureZoom) and enlarged step-through cards */
+.zoom-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  animation: fade 0.15s ease;
+}
+.zoom-bar { position: relative; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+.zoom-pct { min-width: 56px; justify-content: center; font-variant-numeric: tabular-nums; }
+.zoom-hint { color: var(--ink-3); font-size: 12px; margin: 0 10px; }
+.zoom-bar .icon-btn:last-child { position: absolute; right: 12px; }
+.zoom-box { flex: 1; display: flex; overflow: auto; padding: 16px; touch-action: none; }
+.zoom-box.can-drag { cursor: grab; }
+.zoom-box.can-drag:active { cursor: grabbing; }
+.zoom-img { margin: auto; flex: none; max-width: none; user-select: none; border-radius: var(--r-md); }
+:root[data-theme="dark"] .zoom-img { filter: invert(0.9) hue-rotate(180deg); }
+.ls-scrim { overflow: auto; padding: 3vh 3vw; }
+.ls-big { max-width: 1500px; width: 100%; margin: 0 auto; box-sizing: border-box; }
+.ls-big .cs-notes { font-size: 16px; }
+
+/* ```logicsteps: logic-gate circuits stepped through, or driven with live inputs */
+.ls-frame { position: relative; width: 100%; margin: 0 auto; }
+.ls-frame img { position: absolute; left: 0; top: 0; height: auto; }
+:root[data-theme="dark"] .ls-frame img { filter: invert(0.9) hue-rotate(180deg); }
+.ls-error { color: var(--danger); font-size: 13px; padding: 12px; }
+.ls-try { display: inline-flex; align-items: center; width: auto; gap: 5px; padding: 0 8px; margin-right: 6px; font-size: 12px; }
+.ls-try.active { color: var(--accent-text); border-color: var(--accent); }
+.ls-inputs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 2px 0 8px; }
+.ls-inputs .cs-notes-label { margin: 0 4px 0 0; }
+.ls-bit {
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--paper);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 13px;
+  padding: 3px 10px;
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+.ls-bit.on { background: #16a34a; border-color: #16a34a; color: #fff; }
+.ls-key-one { background: #16a34a; }
+.ls-key-zero { background: #94a3b8; }
+
 .cs-stack { display: grid; }
 .cs-stack > * { grid-area: 1 / 1; visibility: hidden; }
 .cs-stack > .on { visibility: visible; }
