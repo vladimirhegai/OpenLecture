@@ -12,7 +12,7 @@
  "blocks": [
   {
    "type": "paragraph",
-   "text": "**Lectures 9–11.** $X$ can be any number in an interval (a time, a voltage). Find $c$, the CDF, and probabilities.",
+   "text": "**Lectures 9–11.** Question 2 gives you a PDF or a CDF (or names one: uniform, exponential, normal) and asks for $c$, the CDF, and probabilities. It’s all about how the **PDF**, the **CDF** and **probability** connect.",
    "citations": [
     {
      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
@@ -30,123 +30,70 @@
      "chunk_id": "c05b6c21-3c16-4ded-81ef-37cac1e34a5b"
     }
    ],
-   "id": "b397572f-5daf-5170-a83c-fc3775a23137"
+   "id": "0fc372e4-2316-518c-9ec5-1640edd74c9c"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Question 2 in plain words",
+   "text": "Topic 1: PDF ↔ CDF ↔ probability",
    "citations": [],
-   "id": "36092287-05b4-516f-b8b8-4ecf40d2723b"
+   "id": "b0ed1a8a-8d7c-5ad1-933f-b003c1eb9dc4"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** a PDF or CDF formula, or a story with “uniform”, “exponential” or “normal”. Then parts (a), (b), (c).",
+   "text": "$X$ can be any number in a range: a time, a voltage, a length. Its **PDF** $f_X(x)$ is a curve. The curve’s height is **not** a probability. The **area under it** is.",
    "citations": [],
-   "id": "b5ff50ea-32f9-51e1-9a60-290a7908875d"
+   "id": "2b433dc4-7ff8-5ab3-95fc-b8f2735b5ff6"
   },
   {
    "type": "paragraph",
-   "text": "**The move: probability is area under the PDF.** The CDF is the area so far:",
+   "text": "**Compared with Question 1:** a PMF gives a chance at each point, and you **add** them. A PDF gives a height, and you take **area** (integrate).",
    "citations": [],
-   "id": "0ccc3f11-f9c1-51ef-98ad-507ec5023cd4"
-  },
-  {
-   "type": "equation",
-   "latex": "P(a<X\\le b)=\\int_a^b f_X(x)\\,dx=F_X(b)-F_X(a)",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
-     "version": 1,
-     "chunk_id": "e59899bd-78d2-4233-af73-4b504f002cbf"
-    }
-   ],
-   "id": "67d2b420-60a2-5be6-8ba4-89a5f9d1798d"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Accumulate:** $F_X(x)=P(X\\le x)$ = the area left of $x$. Same word as the running total in Question 1.",
-    "**Differentiate:** the PDF is the slope of the CDF, $f_X=F_X^{\\prime}$.",
-    "**One exact value has chance $0$:** $P(X=2)=0$. So $<$ and $\\le$ give the same answer."
-   ],
-   "ordered": false,
-   "citations": [],
-   "id": "4347b3ec-16ea-55b7-8bdf-528870979329"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Short example:** $X$ uniform on $[0,4]$ is flat at $\\tfrac14$:",
-   "citations": [],
-   "id": "9f84a710-f43c-5323-9169-5a9301bd5e1d"
-  },
-  {
-   "type": "equation",
-   "latex": "P(1<X<3)=\\underbrace{2}_{\\text{width}}\\cdot\\underbrace{\\frac14}_{\\text{height}}=\\frac12",
-   "display": true,
-   "citations": [],
-   "id": "02821039-0311-57e1-a20a-7611607463f6"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Which case?** Look for the clue:",
-   "citations": [],
-   "id": "63c7e1cd-011d-587f-a00e-2bdbc6c8d40a"
+   "id": "2f34062d-7360-5b70-9193-e317702793db"
   },
   {
    "type": "table",
    "columns": [
-    "The question says…",
-    "Go to"
+    "",
+    "Discrete (Question 1)",
+    "Continuous (Question 2)"
    ],
    "rows": [
     [
-     "“$f_X(x)=c\\cdot(\\dots)$, find $c$”",
-     "Case 1"
+     "chance of one exact value",
+     "$p_X(x)$",
+     "$0$"
     ],
     [
-     "“find the CDF / PDF / $P(a<X<b)$”",
-     "Case 2"
+     "everything adds to 1",
+     "$\\sum p_X(x)=1$",
+     "$\\int f_X(x)\\,dx=1$"
     ],
     [
-     "“uniformly at random between…”",
-     "Case 3"
+     "CDF $F_X(x)=P(X\\le x)$",
+     "running total",
+     "area so far"
     ],
     [
-     "“exponential”, a lifetime, a waiting time",
-     "Case 4"
-    ],
-    [
-     "“normal” / “Gaussian” with $\\mu$, $\\sigma$",
-     "Case 5"
-    ],
-    [
-     "“with probability $q$ it is exactly…”, a CDF with a jump",
-     "Case 6"
+     "back from the CDF",
+     "jump sizes",
+     "slope"
     ]
    ],
    "citations": [],
-   "id": "b45aa254-eec5-55c7-b396-b9c7c79bcedc"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 1: find c (total area = 1)",
-   "citations": [],
-   "id": "1f531102-3d26-58dd-a456-867befe7e1f1"
+   "id": "a76f5105-bb3a-5872-b436-bc3cee95a1ab"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** “$f_X(x)=c\\cdot(\\dots)$. Find $c$”, or “show this is a PDF”.",
+   "text": "**The 5 formulas.** $f_X$ = the PDF (height of the curve), $F_X$ = the CDF (area so far), $a$ and $b$ = the ends of the range you’re asked about.",
    "citations": [],
-   "id": "01797385-74f9-5fdf-ba4e-b3fd9f314c6e"
+   "id": "2f1a9408-3f8d-5cfb-af14-ad1199557274"
   },
   {
    "type": "paragraph",
-   "text": "**The move:** the whole area under a PDF is $1$. Write it, set it to $1$, solve:",
+   "text": "**1. Total area = 1.** This is how you find an unknown $c$:",
    "citations": [],
-   "id": "93b852a6-90db-5255-aa24-f807007436db"
+   "id": "985a0b23-e3d1-5fed-8fdf-ba3e5ef99e89"
   },
   {
    "type": "equation",
@@ -159,37 +106,170 @@
      "chunk_id": "e59899bd-78d2-4233-af73-4b504f002cbf"
     }
    ],
-   "id": "ffafdef0-4dc9-5e57-a366-a8afcc4b0d0b"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Spot:** the unknown is $c$.",
-    "**Find $c$:** integrate $f_X$ over the range where it isn’t $0$ (split at every break), set it to $1$.",
-    "**Check:** $f_X\\ge0$ everywhere. It may be bigger than $1$, that’s fine."
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "2d8e4071-7b3f-51df-994a-95fb71e018a0"
+   "id": "a2a3a3c1-7ebf-517e-b172-50a723c5999f"
   },
   {
    "type": "paragraph",
-   "text": "**Short example:** $f_X(x)=c(1-x^4)$ on $[-1,1]$:",
+   "text": "**2. CDF = the area from the far left up to $x$.** It starts at $0$ on the left and ends at $1$ on the right. ($t$ is just a placeholder letter, so it doesn’t clash with the $x$ at the top.)",
    "citations": [],
-   "id": "d8356cfa-07c6-597e-8d14-6ae6ee9e1a0e"
+   "id": "ce5a8811-5feb-542f-9717-1b15ec787b71"
   },
   {
    "type": "equation",
-   "latex": "c\\Big[x-\\frac{x^5}{5}\\Big]_{-1}^{1}=\\frac{8c}{5}=1\\quad\\Longrightarrow\\quad c=\\frac58",
+   "latex": "F_X(x)=P(X\\le x)=\\int_{-\\infty}^{x}f_X(t)\\,dt",
    "display": true,
-   "citations": [],
-   "id": "3ea921f9-f818-5e4d-90bc-9dfe075fa1c8"
+   "citations": [
+    {
+     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+     "version": 1,
+     "chunk_id": "e59899bd-78d2-4233-af73-4b504f002cbf"
+    }
+   ],
+   "id": "c3126307-c077-5b59-b1ef-3f5b277b409a"
   },
   {
-   "type": "solution",
-   "title": "Full example (Practice 02 Q1): $\\;f_X(x)=c(1-x^4)$ on $[-1,1]$: find $c$, the CDF, $P(|X|<\\tfrac12)$",
-   "text": "Step 1 · **Find $c$:** total area $=1$.\n\n$$\nc\\Big[x-\\frac{x^5}{5}\\Big]_{-1}^{1}=\\frac{8c}{5}=1\\quad\\Longrightarrow\\quad c=\\frac58\n$$\n\nStep 2 · **Accumulate:** the area from $-1$ up to $x$. It’s $0$ before $-1$ and $1$ after $1$.\n\n$$\nF_X(x)=\\frac58\\int_{-1}^{x}(1-t^4)\\,dt=\\frac58\\Big(x-\\frac{x^5}{5}+\\frac45\\Big),\\qquad -1\\le x\\le1\n$$\n\nStep 3 · **Rewrite:** $|X|<\\tfrac12$ means $-\\tfrac12<X<\\tfrac12$. The PDF is symmetric, so double the area on $[0,\\tfrac12]$.\n\n$$\nP\\big(|X|<\\tfrac12\\big)=2\\cdot\\frac58\\Big[x-\\frac{x^5}{5}\\Big]_0^{1/2}=\\frac{79}{128}\\approx 0.6172\n$$\n\n**Answer:**\n\n$$\nc=\\frac58,\\qquad P\\big(|X|<\\tfrac12\\big)=\\frac{79}{128}\\approx 0.6172\n$$",
-   "collapsed": true,
+   "type": "paragraph",
+   "text": "**3. PDF = the slope of the CDF.** Going back is a derivative:",
+   "citations": [],
+   "id": "c0a36f11-c5d1-58d2-be5e-b1009cdf187e"
+  },
+  {
+   "type": "equation",
+   "latex": "f_X(x)=F_X^{\\prime}(x)",
+   "display": true,
+   "citations": [],
+   "id": "2e078059-09ae-5727-a711-c42305693e63"
+  },
+  {
+   "type": "paragraph",
+   "text": "**4. Probability = area between = a difference of $F$’s.** Every probability turns into $F$’s:",
+   "citations": [],
+   "id": "5c111650-823e-554a-bf79-fefb13bd07dd"
+  },
+  {
+   "type": "equation",
+   "latex": "P(a<X<b)=\\int_a^b f_X(x)\\,dx=F_X(b)-F_X(a)",
+   "display": true,
+   "citations": [
+    {
+     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+     "version": 1,
+     "chunk_id": "e59899bd-78d2-4233-af73-4b504f002cbf"
+    }
+   ],
+   "id": "b8c37973-59af-5864-b494-ff0bf5fb9879"
+  },
+  {
+   "type": "equation",
+   "latex": "P(X>a)=1-F_X(a),\\qquad P(X\\le b)=F_X(b)",
+   "display": true,
+   "citations": [],
+   "id": "e90fbd19-3d5b-54cc-85a1-07eb26adfa65"
+  },
+  {
+   "type": "paragraph",
+   "text": "**5. One exact value has chance 0.** So $<$ and $\\le$ give the same answer.",
+   "citations": [],
+   "id": "b897a23c-779c-5c21-8a88-fcb9843bafa1"
+  },
+  {
+   "type": "equation",
+   "latex": "P(X=a)=0\\qquad\\Longrightarrow\\qquad P(a<X<b)=P(a\\le X\\le b)",
+   "display": true,
+   "citations": [],
+   "id": "5a30228f-570d-50d9-82c3-ad24c57ea9ca"
+  },
+  {
+   "type": "paragraph",
+   "text": "**See it:** $f(x)=\\tfrac x2$ on $[0,2]$. The shaded area left of $x$ is exactly the height of the CDF at $x$.\n\n```graph\ntitle \"Drag $x$: the shaded area under the PDF is the CDF $F(x)$\"\nx -0.3 2.4 label=\"$x$\" height=250\ny 0 1.15 label=\"\"\nslider X 0 2 1 step=0.05 label=\"$x$\" animate\nregion \"(x>0)*(x<X)*(y>0)*(y<x/2)\"\ncurve \"x/2\" from=0 to=2 color=1 label=\"PDF $f(x)=x/2$\"\ncurve \"x^2/4\" from=0 to=2 color=2 label=\"CDF $F(x)=x^2/4$\"\nsegment \"X\" \"0\" \"X\" \"X^2/4\" color=0 dash\npoint \"X\" \"X^2/4\" color=2\n```",
+   "citations": [],
+   "id": "a2bdb836-a4d2-5edd-af68-1c97ef6d8ca4"
+  },
+  {
+   "type": "paragraph",
+   "text": "**What to do, by what you have and what you want:**",
+   "citations": [],
+   "id": "6facfbd5-5032-5fc0-81b2-32df39ff1a0c"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "You have",
+    "You want",
+    "Do"
+   ],
+   "rows": [
+    [
+     "$f_X$ with an unknown $c$",
+     "$c$",
+     "total area $=1$, solve (triangle: $\\tfrac12$ base × height)"
+    ],
+    [
+     "$f_X$",
+     "$F_X$",
+     "integrate from the left end up to $x$"
+    ],
+    [
+     "$F_X$",
+     "$f_X$",
+     "differentiate"
+    ],
+    [
+     "$f_X$ or $F_X$",
+     "$P(a<X<b)$",
+     "$F_X(b)-F_X(a)$"
+    ],
+    [
+     "a probability",
+     "the cut-off $b$",
+     "set $F_X(b)=$ that probability, solve for $b$"
+    ]
+   ],
+   "citations": [],
+   "id": "1b15b516-27a9-515c-b132-93a6e44f5a3b"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Piecewise PDF** (a triangle, or a formula that changes at some $x$): split at every corner. On each piece, $F_X(x)$ = all the area of the earlier pieces + the area of this piece up to $x$. Before the range $F_X=0$; after it $F_X=1$.",
+   "citations": [],
+   "id": "999ab16d-4611-5929-ad11-398795a94e6f"
+  },
+  {
+   "type": "callout",
+   "tone": "reminder",
+   "text": "**Integrals you’ll need**\n\n$$\n\\int x^n\\,dx=\\frac{x^{n+1}}{n+1}\\qquad\\qquad \\int e^{-\\lambda x}\\,dx=-\\frac1\\lambda\\,e^{-\\lambda x}\n$$\n\nBy parts, for $x\\,e^{-x}$ (take $u=x$, $dv=e^{-x}dx$):\n\n$$\n\\int x\\,e^{-x}\\,dx=-(x+1)\\,e^{-x}\n$$\n\nShortcut (not from the lectures, good for checking):\n\n$$\n\\int_0^{\\infty}x^n\\,e^{-\\lambda x}\\,dx=\\frac{n!}{\\lambda^{n+1}}\n$$",
+   "citations": [],
+   "id": "bc0a289d-20e8-5266-83b9-3f8d1c3c98a4"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Examples: one for each kind of question.**",
+   "citations": [],
+   "id": "be3129df-5191-5720-9838-b94147287d5d"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · Find $c$, then the CDF and a probability · Practice 02 Q1",
+   "prompt": "$f_X(x)=c(1-x^4)$ for $-1\\le x\\le1$, and $0$ elsewhere. Find $c$, the CDF, and $P(|X|<\\tfrac12)$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** an unknown $c$ → total area $=1$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Find $c$:** integrate over the range, set it to $1$.",
+     "latex": "c\\Big[x-\\frac{x^5}{5}\\Big]_{-1}^{1}=c\\Big(\\frac45+\\frac45\\Big)=\\frac{8c}{5}=1\\quad\\Longrightarrow\\quad c=\\frac58"
+    },
+    {
+     "explanation": "**Accumulate:** the area from $-1$ up to $x$. It’s $0$ before $-1$ and $1$ after $1$.",
+     "latex": "F_X(x)=\\frac58\\int_{-1}^{x}(1-t^4)\\,dt=\\frac58\\Big(x-\\frac{x^5}{5}+\\frac45\\Big),\\qquad -1\\le x\\le1"
+    },
+    {
+     "explanation": "**Rewrite:** $|X|<\\tfrac12$ means $-\\tfrac12<X<\\tfrac12$. The PDF is symmetric, so double the area on $[0,\\tfrac12]$.",
+     "latex": "P\\big(|X|<\\frac12\\big)=2\\cdot\\frac58\\Big[x-\\frac{x^5}{5}\\Big]_0^{1/2}=\\frac{79}{128}\\approx 0.6172"
+    }
+   ],
+   "answer": "$c=\\tfrac58$, $\\;F_X(x)=\\tfrac58\\big(x-\\tfrac{x^5}{5}+\\tfrac45\\big)$ on $[-1,1]$, $\\;P(|X|<\\tfrac12)=\\tfrac{79}{128}\\approx 0.6172$",
    "citations": [
     {
      "source_id": "369e3c07-a6c8-40d0-8b8c-41f2e6a3bc4b",
@@ -197,13 +277,31 @@
      "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
     }
    ],
-   "id": "867e8e74-b27a-5182-9c43-e28635dbf6a5"
+   "id": "ce65a0df-bb49-5eee-9f16-52272df152cd"
   },
   {
-   "type": "solution",
-   "title": "Shortcut: a triangle or rectangle PDF → use its area formula",
-   "text": "Tutorial 4 Q2: $f(x)=\\tfrac12-\\tfrac14|x-3|$ on $[1,5]$ is a triangle: base $4$, peak height $f(3)=\\tfrac12$.\n\n$$\n\\text{area}=\\frac12\\cdot4\\cdot\\frac12=1\\quad\\checkmark\n$$\n\nUnknown height $c$, base $2a$ (Practice 02 Q2):\n\n$$\n\\frac12\\cdot2a\\cdot c=1\\quad\\Longrightarrow\\quad c=\\frac1a\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 2 · Find $c$ fast: the triangle shortcut · Tutorial 4 Q2",
+   "prompt": "$X$ has a triangle PDF: $0$ at $x=1$, peak height $c$ at $x=3$, back to $0$ at $x=5$. Find $c$ and write $f_X$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** the PDF is a triangle, so skip the integral. Area of a triangle $=\\tfrac12\\cdot$ base $\\cdot$ height.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Read off:** the base runs from $1$ to $5$.",
+     "latex": "\\text{base}=4,\\qquad\\text{height}=c"
+    },
+    {
+     "explanation": "**Find $c$:** area $=1$.",
+     "latex": "\\frac12\\cdot4\\cdot c=1\\quad\\Longrightarrow\\quad c=\\frac12"
+    },
+    {
+     "explanation": "Each side is a straight line: it climbs $\\tfrac12$ over $2$ units, so the slope is $\\tfrac14$.",
+     "latex": "f_X(x)=\\begin{cases}\\frac{x-1}{4},&1\\le x\\le3\\\\ \\frac{5-x}{4},&3\\le x\\le5\\\\ 0,&\\text{elsewhere}\\end{cases}"
+    }
+   ],
+   "answer": "$c=\\tfrac12$",
    "citations": [
     {
      "source_id": "4d61db5e-8336-42fa-9292-37c2b7a2378a",
@@ -211,91 +309,79 @@
      "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
     }
    ],
-   "id": "c9c51a1d-559a-58da-9a32-45b165863a1f"
+   "id": "e9814366-4545-5b27-9dc0-511fd86dabe2"
   },
   {
-   "type": "solution",
-   "title": "Integrals you’ll need",
-   "text": "Power rule:\n\n$$\n\\int x^n\\,dx=\\frac{x^{n+1}}{n+1}\n$$\n\nExponential (and $e^{-\\lambda x}\\to0$ as $x\\to\\infty$):\n\n$$\n\\int e^{-\\lambda x}\\,dx=-\\frac1\\lambda\\,e^{-\\lambda x}\n$$\n\nBy parts, for $x\\,e^{-x}$ (take $u=x$):\n\n$$\n\\int x\\,e^{-x}\\,dx=-(x+1)\\,e^{-x}\n$$\n\nShortcut (not from the lectures):\n\n$$\n\\int_0^{\\infty}x^n\\,e^{-\\lambda x}\\,dx=\\frac{n!}{\\lambda^{n+1}}\n$$",
-   "collapsed": true,
-   "citations": [],
-   "id": "7ce5245b-748e-571e-a3a2-bdd27cbdaed0"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 2: PDF → CDF → probabilities",
-   "citations": [],
-   "id": "aaf16fd7-0061-58c1-bcbd-55610dd2a0fa"
-  },
-  {
-   "type": "paragraph",
-   "text": "**You’ll see:** “find the CDF”, “find the PDF from this CDF”, “find $P(a<X<b)$”.",
-   "citations": [],
-   "id": "dfc84698-3298-5088-8c02-eab22441c582"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** go back and forth between the two, then turn every probability into $F$’s:",
-   "citations": [],
-   "id": "c2e6b824-bd2b-57d2-a1e1-ef01aeca9269"
-  },
-  {
-   "type": "equation",
-   "latex": "F_X(x)=\\int_{-\\infty}^{x}f_X(t)\\,dt\\qquad\\Longleftrightarrow\\qquad f_X(x)=F_X^{\\prime}(x)",
-   "display": true,
-   "citations": [
+   "type": "worked_example",
+   "title": "Example 3 · PDF → CDF, piece by piece · Tutorial 4 Q2",
+   "prompt": "Same triangle: $f_X(x)=\\tfrac{x-1}{4}$ on $[1,3]$ and $\\tfrac{5-x}{4}$ on $[3,5]$. Find the CDF and $P(2<X<3.5)$.",
+   "steps": [
     {
-     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
-     "version": 1,
-     "chunk_id": "e59899bd-78d2-4233-af73-4b504f002cbf"
+     "explanation": "**Spot:** have $f$, want $F$ → integrate. The PDF changes at $x=3$, so do two pieces.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Accumulate**, left piece: the area from $1$ up to $x$.",
+     "latex": "F_X(x)=\\int_1^x\\frac{t-1}{4}\\,dt=\\frac{(x-1)^2}{8},\\qquad 1\\le x\\le3"
+    },
+    {
+     "explanation": "**Accumulate**, right piece: everything ($1$) minus the small triangle still to come on the right.",
+     "latex": "F_X(x)=1-\\frac{(5-x)^2}{8},\\qquad 3\\le x\\le5"
+    },
+    {
+     "explanation": "**Check:** both pieces give $\\tfrac12$ at $x=3$ (the peak splits the area in half).",
+     "latex": "\\frac{(3-1)^2}{8}=\\frac12=1-\\frac{(5-3)^2}{8}"
+    },
+    {
+     "explanation": "**Rewrite** $P(2<X<3.5)=F(3.5)-F(2)$, then **plug in**: $3.5$ is on the right piece, $2$ on the left.",
+     "latex": "F(3.5)-F(2)=\\Big(1-\\frac{1.5^2}{8}\\Big)-\\frac18=\\frac{19}{32}\\approx0.5938"
     }
    ],
-   "id": "66dbd5da-8c49-5233-9194-b2fc5d26c159"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Accumulate** (PDF → CDF): the area from the left end up to $x$. Do it piece by piece. $0$ before the range, $1$ after.",
-    "**Differentiate** (CDF → PDF): the slope of each piece.",
-    "**Rewrite** the probability with $F$’s (card below), then **plug in**."
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "c8ce97ca-8d9e-54bb-90c8-b5a39855c20f"
-  },
-  {
-   "type": "solution",
-   "title": "Rewrite: turn any probability into $F$’s",
-   "text": "Example: $F_X(x)=\\tfrac x4$ on $[0,4]$.\n\nUp to $b$:\n\n$$\nP(X\\le b)=F_X(b)\\qquad\\qquad P(X\\le1)=\\frac14\n$$\n\nAbove $a$:\n\n$$\nP(X>a)=1-F_X(a)\\qquad\\qquad P(X>1)=\\frac34\n$$\n\nBetween:\n\n$$\nP(a<X<b)=F_X(b)-F_X(a)\\qquad\\qquad P(2<X<3)=\\frac34-\\frac24=\\frac14\n$$\n\nOne point:\n\n$$\nP(X=a)=0\n$$",
-   "collapsed": true,
+   "answer": "$F_X(x)=\\begin{cases}0,&x<1\\\\ \\frac{(x-1)^2}{8},&1\\le x\\le3\\\\ 1-\\frac{(5-x)^2}{8},&3\\le x\\le5\\\\ 1,&x>5\\end{cases}$, $\\;P(2<X<3.5)=\\tfrac{19}{32}$",
    "citations": [
     {
-     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+     "source_id": "4d61db5e-8336-42fa-9292-37c2b7a2378a",
      "version": 1,
-     "chunk_id": "e59899bd-78d2-4233-af73-4b504f002cbf"
+     "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
     }
    ],
-   "id": "49429250-fcfb-51c4-b4fa-a6f3a255e68d"
+   "id": "6eb0bc04-aa8c-5474-8f57-267470127062"
   },
   {
-   "type": "paragraph",
-   "text": "**Short example:** $f_X(x)=\\tfrac x2$ on $[0,2]$:",
-   "citations": [],
-   "id": "31620aac-6bd4-5530-ab26-ee7527821dba"
-  },
-  {
-   "type": "equation",
-   "latex": "F_X(x)=\\int_0^x\\frac t2\\,dt=\\frac{x^2}{4}\\quad\\Longrightarrow\\quad P(X>1)=1-\\frac14=\\frac34",
-   "display": true,
-   "citations": [],
-   "id": "b73a95c6-e439-550b-9910-9cf156925ea8"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Lecture 9): read a CDF, $\\;F_X(x)=\\tfrac x4$ on $[0,4]$",
-   "text": "Step 1 · (a) $P(X\\le-1)$: left of the range.\n\n$$\nF_X(-1)=0\n$$\n\nStep 2 · (b) $P(X\\le1)$.\n\n$$\nF_X(1)=\\frac14\n$$\n\nStep 3 · (c) $P(2<X\\le3)$: **Rewrite** as a difference.\n\n$$\nF_X(3)-F_X(2)=\\frac34-\\frac24=\\frac14\n$$\n\nStep 4 · (d) $P(X>1)$: one minus.\n\n$$\n1-F_X(1)=\\frac34\n$$\n\nStep 5 · (e) $P(X=1)$: one point.\n\n$$\n0\n$$\n\nStep 6 · **Differentiate** for the PDF.\n\n$$\nf_X(x)=\\frac14,\\qquad 0\\le x\\le4\\quad(0\\text{ elsewhere})\n$$\n\n**Answer:**\n\n$$\n0,\\ \\ \\frac14,\\ \\ \\frac14,\\ \\ \\frac34,\\ \\ 0;\\qquad f_X=\\frac14\\ \\text{on }[0,4]\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 4 · CDF → probabilities and the PDF · Lecture 9",
+   "prompt": "$F_X(x)=\\tfrac x4$ for $0\\le x\\le4$ ($0$ before, $1$ after). Find (a) $P(X\\le-1)$, (b) $P(X\\le1)$, (c) $P(2<X\\le3)$, (d) $P(X>1)$, (e) $P(X=1)$, (f) the PDF.",
+   "steps": [
+    {
+     "explanation": "**Spot:** have $F$. Probabilities → **rewrite** with $F$’s; the PDF → **differentiate**.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) $-1$ is left of the range.",
+     "latex": "P(X\\le-1)=F_X(-1)=0"
+    },
+    {
+     "explanation": "(b) Up to $1$.",
+     "latex": "P(X\\le1)=F_X(1)=\\frac14"
+    },
+    {
+     "explanation": "(c) Between: a difference.",
+     "latex": "P(2<X\\le3)=F_X(3)-F_X(2)=\\frac34-\\frac24=\\frac14"
+    },
+    {
+     "explanation": "(d) Above: one minus.",
+     "latex": "P(X>1)=1-F_X(1)=\\frac34"
+    },
+    {
+     "explanation": "(e) One exact value.",
+     "latex": "P(X=1)=0"
+    },
+    {
+     "explanation": "(f) **Differentiate:** the slope of $\\tfrac x4$.",
+     "latex": "f_X(x)=\\frac14,\\qquad 0\\le x\\le4\\quad(0\\text{ elsewhere})"
+    }
+   ],
+   "answer": "(a) $0$ (b) $\\tfrac14$ (c) $\\tfrac14$ (d) $\\tfrac34$ (e) $0$ (f) $f_X=\\tfrac14$ on $[0,4]$",
    "citations": [
     {
      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
@@ -303,40 +389,52 @@
      "chunk_id": "daa189cb-f7db-4598-b3df-1d8166bdcaa4"
     }
    ],
-   "id": "bbfd1884-dbb2-5a6e-a826-0623ffcff277"
+   "id": "10886a08-f2f6-57af-b94d-b3311a9de480"
   },
   {
-   "type": "solution",
-   "title": "Full example (Tutorial 4 Q2): a triangle PDF, piece by piece",
-   "text": "Step 1 · $f(x)=\\tfrac12-\\tfrac14|x-3|$ on $[1,5]$. Split at the peak: left $\\tfrac{x-1}{4}$, right $\\tfrac{5-x}{4}$.\n\nStep 2 · **Accumulate**, left half: the area of a small triangle.\n\n$$\nF(x)=\\int_1^x\\frac{t-1}{4}\\,dt=\\frac{(x-1)^2}{8},\\qquad 1\\le x\\le3\n$$\n\nStep 3 · **Accumulate**, right half: $1$ minus the small triangle still to come.\n\n$$\nF(x)=1-\\frac{(5-x)^2}{8},\\qquad 3\\le x\\le5\n$$\n\nStep 4 · **Rewrite** $P(2<X<3.5)$.\n\n$$\nF(3.5)-F(2)=\\Big(1-\\frac{1.5^2}{8}\\Big)-\\frac18=\\frac{19}{32}\\approx0.5938\n$$\n\n**Answer:**\n\n$$\nF(x)=\\begin{cases}0,&x<1\\\\ \\frac{(x-1)^2}{8},&1\\le x\\le3\\\\ 1-\\frac{(5-x)^2}{8},&3\\le x\\le5\\\\ 1,&x>5\\end{cases}\n$$",
-   "collapsed": true,
-   "citations": [
+   "type": "worked_example",
+   "title": "Example 5 · Working backwards: find the cut-off $b$",
+   "prompt": "$f_X(x)=\\tfrac x2$ on $[0,2]$ (the PDF in the graph above). (a) Find $b$ with $P(X\\le b)=\\tfrac12$. (b) Find the value that only the top $10\\%$ are above.",
+   "steps": [
     {
-     "source_id": "4d61db5e-8336-42fa-9292-37c2b7a2378a",
-     "version": 1,
-     "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
+     "explanation": "**Spot:** given a probability, want the cut-off → get $F$, set it equal, solve.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Accumulate** first.",
+     "latex": "F_X(x)=\\int_0^x\\frac t2\\,dt=\\frac{x^2}{4},\\qquad 0\\le x\\le2"
+    },
+    {
+     "explanation": "(a) Set $F_X(b)=\\tfrac12$.",
+     "latex": "\\frac{b^2}{4}=\\frac12\\quad\\Longrightarrow\\quad b=\\sqrt2\\approx 1.414"
+    },
+    {
+     "explanation": "(b) Top $10\\%$ above $b$ means $90\\%$ below it: set $F_X(b)=0.9$.",
+     "latex": "\\frac{b^2}{4}=0.9\\quad\\Longrightarrow\\quad b=\\sqrt{3.6}\\approx 1.897"
     }
    ],
-   "id": "27af8f2d-13c6-5cbd-89b8-08bcd1801d85"
+   "answer": "(a) $b=\\sqrt2\\approx 1.414$ (b) $b=\\sqrt{3.6}\\approx 1.897$",
+   "citations": [],
+   "id": "9cfacd33-22c3-5827-a50b-16ff1fabbc13"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Case 3: uniform",
+   "text": "Topic 2: Uniform and exponential",
    "citations": [],
-   "id": "1f02595d-1cba-5402-8bca-07989834a5e3"
+   "id": "3689d5ac-75b6-5bcc-8091-1b28eb2463eb"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** “uniformly at random between $a$ and $b$”.",
+   "text": "When the question **names** the PDF, it’s ready-made: no $c$ to find. Just learn these two and use Topic 1’s rules on them.",
    "citations": [],
-   "id": "c5209e90-fd26-5c55-a240-e0c61ebf46d6"
+   "id": "64f426e7-21d0-5dcf-9b2b-772f22ebf5ab"
   },
   {
    "type": "paragraph",
-   "text": "**The move:** a flat PDF, so every probability is **length ÷ total length**:",
+   "text": "**Uniform$(a,b)$:** “uniformly at random between $a$ and $b$”. $a$ = the left end, $b$ = the right end. The PDF is flat:",
    "citations": [],
-   "id": "4a1d0209-f3b5-5f0c-81f6-84881b29dc80"
+   "id": "eaa84d4c-8cc1-5eee-87f3-d1d0a93cf52a"
   },
   {
    "type": "equation",
@@ -349,64 +447,30 @@
      "chunk_id": "84f78a1d-4d26-4c22-a575-eaa2d5ce6fa6"
     }
    ],
-   "id": "4df2d4ac-c66f-56d9-871a-f5d59294a5be"
+   "id": "ed83575b-6580-5ffa-aff2-78fa71b8a206"
+  },
+  {
+   "type": "paragraph",
+   "text": "Flat means every probability is just a **length ratio**:",
+   "citations": [],
+   "id": "97962cf8-1095-535f-93a7-9ef550f19ca1"
   },
   {
    "type": "equation",
-   "latex": "P(\\text{X lands in a piece})=\\frac{\\text{length of the piece}}{b-a}",
+   "latex": "P(X\\text{ lands in a piece})=\\frac{\\text{length of the piece}}{b-a}",
    "display": true,
    "citations": [],
-   "id": "8b3cc2ed-9d69-55e3-95c1-2a9e1664b3fa"
+   "id": "846b689f-3298-5663-86ba-d5b007daef74"
   },
   {
    "type": "paragraph",
-   "text": "**Short example** (Tutorial 2 Q5): a bus comes uniformly between 1:00 and 1:30. Wait at least 10 minutes:",
+   "text": "**Exponential$(\\lambda)$:** a lifetime or a waiting time. $\\lambda$ = the rate (per hour, per minute), $x\\ge0$ = the time. Given the **mean** instead? Then $\\lambda=\\dfrac1{\\text{mean}}$.",
    "citations": [],
-   "id": "e746e97f-c38a-53eb-9a75-2ddc0607d034"
+   "id": "e19a2297-4153-5b1b-90d1-e4a718691076"
   },
   {
    "type": "equation",
-   "latex": "P(X\\ge10)=\\frac{30-10}{30}=\\frac23",
-   "display": true,
-   "citations": [],
-   "id": "efe5c156-e081-572a-bed6-6b3535c11865"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Tutorial 3 Q1): pick $X$ uniformly in $(0,\\tfrac\\pi2)$. Chance $\\sin X>\\cos X$?",
-   "text": "Step 1 · **Spot:** uniform on $(0,\\tfrac\\pi2)$, total length $\\tfrac\\pi2$.\n\nStep 2 · **Rewrite** the event: $\\sin x$ passes $\\cos x$ at $x=\\tfrac\\pi4$.\n\n$$\n\\sin X>\\cos X\\iff X>\\frac\\pi4\n$$\n\nStep 3 · Length ÷ total length.\n\n$$\nP=\\frac{\\frac\\pi2-\\frac\\pi4}{\\frac\\pi2}=\\frac12\n$$\n\n**Answer:**\n\n$$\n\\frac12\n$$",
-   "collapsed": true,
-   "citations": [
-    {
-     "source_id": "de4d1db1-eb13-4c83-9232-afdabb6c52fe",
-     "version": 1,
-     "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
-    }
-   ],
-   "id": "41cac324-b8a8-5790-848a-c137a322c072"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 4: exponential",
-   "citations": [],
-   "id": "85120756-c51d-5b5f-8cb3-d27100149d35"
-  },
-  {
-   "type": "paragraph",
-   "text": "**You’ll see:** a lifetime or a waiting time, “exponential with $\\lambda=\\dots$” ($\\lambda$ = the rate, per hour/minute).",
-   "citations": [],
-   "id": "c214925c-6019-53f8-bc49-48407620e10d"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** use the **tail**. You’ll need it more than the CDF:",
-   "citations": [],
-   "id": "50a9b7d5-739c-59d4-95c7-75c9edc459a1"
-  },
-  {
-   "type": "equation",
-   "latex": "f_X(x)=\\lambda e^{-\\lambda x},\\qquad F_X(x)=1-e^{-\\lambda x},\\qquad P(X>x)=e^{-\\lambda x}\\qquad(x\\ge0)",
+   "latex": "f_X(x)=\\lambda e^{-\\lambda x},\\qquad F_X(x)=1-e^{-\\lambda x},\\qquad x\\ge0",
    "display": true,
    "citations": [
     {
@@ -415,37 +479,31 @@
      "chunk_id": "98067cee-6ada-49dc-9a53-51e6ce216e3a"
     }
    ],
-   "id": "d2072c28-e1d5-59b9-90ec-ea4bb3dd4385"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Spot:** exponential, and read $\\lambda$. Given the **mean** instead? Then $\\lambda=\\dfrac{1}{\\text{mean}}$.",
-    "**Rewrite** with tails: $P(a<X<b)=e^{-\\lambda a}-e^{-\\lambda b}$.",
-    "**Plug in.**"
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "3e11fd00-a1ba-53b8-a504-93f35f7ed820"
+   "id": "f5e987d2-e9fa-58fb-bcf8-6d2cf42cabac"
   },
   {
    "type": "paragraph",
-   "text": "**Short example:** lifetime with $\\lambda=0.002$ per hour. Lasts at least 500 hours:",
+   "text": "You’ll use the **tail** (chance it lasts longer than $x$) more than the CDF. A “between” is a difference of two tails:",
    "citations": [],
-   "id": "46f41f96-ab59-5bb0-8d90-d0d2424d571d"
+   "id": "04c1b7fc-2f36-5416-ada3-299b3eae4eb9"
   },
   {
    "type": "equation",
-   "latex": "P(X>500)=e^{-0.002\\cdot500}=e^{-1}\\approx 0.3679",
+   "latex": "P(X>x)=e^{-\\lambda x},\\qquad P(a<X<b)=e^{-\\lambda a}-e^{-\\lambda b}",
    "display": true,
    "citations": [],
-   "id": "ecea65c2-0e8c-5f02-8859-c55beb51e32f"
+   "id": "ad0b91ac-02bc-5169-90df-da76747f9179"
   },
   {
-   "type": "solution",
-   "title": "Memoryless: $\\;P(X>s+t\\mid X>s)=P(X>t)$",
-   "text": "Time already waited doesn’t matter: an old part is as good as new.\n\nTo use it: “already lasted $s$, chance of $t$ more” is a ratio of tails.\n\n$$\n\\frac{P(X>s+t)}{P(X>s)}=\\frac{e^{-\\lambda(s+t)}}{e^{-\\lambda s}}=e^{-\\lambda t}\n$$",
-   "collapsed": true,
+   "type": "paragraph",
+   "text": "**Memoryless:** “it has already lasted $s$; chance it lasts $t$ more?” The time already waited doesn’t matter: an old part is as good as new. $s$ = time already lasted, $t$ = the extra time.",
+   "citations": [],
+   "id": "92f2a391-b302-5dfe-beb5-eb8b67d15c2b"
+  },
+  {
+   "type": "equation",
+   "latex": "P(X>s+t\\mid X>s)=P(X>t)=e^{-\\lambda t}",
+   "display": true,
    "citations": [
     {
      "source_id": "9fcf2f9a-3334-4274-81f8-749ccf386df8",
@@ -453,13 +511,119 @@
      "chunk_id": "3a37160a-a1b1-4b28-b8d5-5d855238d3c8"
     }
    ],
-   "id": "05f7246e-5c14-5a4d-a80d-390ed0888de9"
+   "id": "bd487749-aeac-52ac-93c0-158a1f347a9b"
   },
   {
-   "type": "solution",
-   "title": "Full example (Tutorial 4 Q3): a TV tube is 10 years old, $\\lambda=0.1$. Chance it lasts another 10?",
-   "text": "Step 1 · **Spot:** exponential, $\\lambda=0.1$, and “already lasted” → memoryless.\n\n$$\nP(X>20\\mid X>10)\n$$\n\nStep 2 · **Rewrite** as a ratio of tails.\n\n$$\n\\frac{P(X>20)}{P(X>10)}=\\frac{e^{-2}}{e^{-1}}=e^{-1}\n$$\n\nStep 3 · Same as a new tube lasting 10 years.\n\n$$\nP(X>10)=e^{-0.1\\cdot10}=e^{-1}\\approx 0.3679\n$$\n\n**Answer:**\n\n$$\ne^{-1}\\approx 0.3679\n$$",
-   "collapsed": true,
+   "type": "paragraph",
+   "text": "**Examples.**",
+   "citations": [],
+   "id": "8a1371dc-1f11-5910-a052-03a8c6c60f43"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 6 · Uniform: length ÷ length · Tutorial 2 Q5",
+   "prompt": "A bus comes at a uniform random time between 1:00 and 1:30. What’s the chance you wait at least 10 minutes (arriving at 1:00)?",
+   "steps": [
+    {
+     "explanation": "**Spot:** “uniformly between” → uniform. $X$ = minutes after 1:00.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Read off:**",
+     "latex": "a=0,\\qquad b=30"
+    },
+    {
+     "explanation": "**Rewrite:** waiting at least 10 means the bus comes in $[10,30]$, a piece of length $20$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Plug in:** length ÷ total length.",
+     "latex": "P(X\\ge10)=\\frac{30-10}{30}=\\frac23"
+    }
+   ],
+   "answer": "$\\tfrac23$",
+   "citations": [
+    {
+     "source_id": "79045332-ad82-4bc0-9029-1e2e50deab2c",
+     "version": 1,
+     "chunk_id": "b06d67ad-f8be-4015-91df-f7b8dc81ed01"
+    }
+   ],
+   "id": "f626f20d-5028-530b-9681-5784f562701a"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 7 · Uniform, with an event to rewrite · Tutorial 3 Q1",
+   "prompt": "Pick $X$ uniformly in $(0,\\tfrac\\pi2)$. What’s the chance $\\sin X>\\cos X$?",
+   "steps": [
+    {
+     "explanation": "**Spot:** uniform.",
+     "latex": "a=0,\\qquad b=\\frac\\pi2"
+    },
+    {
+     "explanation": "**Rewrite** the event as a range of $X$: $\\sin x$ passes $\\cos x$ at $x=\\tfrac\\pi4$.",
+     "latex": "\\sin X>\\cos X\\iff X>\\frac\\pi4"
+    },
+    {
+     "explanation": "**Plug in:** length ÷ total length.",
+     "latex": "P=\\frac{\\frac\\pi2-\\frac\\pi4}{\\frac\\pi2}=\\frac12"
+    }
+   ],
+   "answer": "$\\tfrac12$",
+   "citations": [
+    {
+     "source_id": "de4d1db1-eb13-4c83-9232-afdabb6c52fe",
+     "version": 1,
+     "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
+    }
+   ],
+   "id": "ffe6eff1-b5b9-5340-a916-b917cabfb1e6"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 8 · Exponential: tail and between",
+   "prompt": "A part’s lifetime is exponential with a mean of 500 hours. Find (a) $P(X>500)$, (b) $P(200<X<1000)$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** lifetime, exponential. **Read off** $\\lambda$ from the mean.",
+     "latex": "\\lambda=\\frac1{500}=0.002\\text{ per hour}"
+    },
+    {
+     "explanation": "(a) **Plug in** the tail.",
+     "latex": "P(X>500)=e^{-0.002\\cdot500}=e^{-1}\\approx 0.3679"
+    },
+    {
+     "explanation": "(b) **Rewrite** as a difference of tails, then **plug in**.",
+     "latex": "P(200<X<1000)=e^{-0.4}-e^{-2}\\approx 0.5350"
+    }
+   ],
+   "answer": "(a) $e^{-1}\\approx 0.3679$ (b) $\\approx 0.5350$",
+   "citations": [],
+   "id": "7e401dc7-540b-51dc-8b55-9bf7cf5e828d"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 9 · Exponential, memoryless · Tutorial 4 Q3",
+   "prompt": "A TV tube’s lifetime (years) is exponential with $\\lambda=0.1$. The tube is already 10 years old. What’s the chance it lasts another 10?",
+   "steps": [
+    {
+     "explanation": "**Spot:** “already lasted” → memoryless.",
+     "latex": "P(X>20\\mid X>10)"
+    },
+    {
+     "explanation": "**Read off:**",
+     "latex": "\\lambda=0.1,\\qquad s=10,\\qquad t=10"
+    },
+    {
+     "explanation": "**Plug in:** the old tube is as good as new, so it’s just a new tube lasting 10 years.",
+     "latex": "P(X>10)=e^{-0.1\\cdot10}=e^{-1}\\approx 0.3679"
+    },
+    {
+     "explanation": "Same thing the long way, as a ratio of tails:",
+     "latex": "\\frac{P(X>20)}{P(X>10)}=\\frac{e^{-2}}{e^{-1}}=e^{-1}"
+    }
+   ],
+   "answer": "$e^{-1}\\approx 0.3679$",
    "citations": [
     {
      "source_id": "4d61db5e-8336-42fa-9292-37c2b7a2378a",
@@ -467,30 +631,37 @@
      "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
     }
    ],
-   "id": "967f87ff-4829-5fe2-85fc-b9405fc03015"
+   "id": "103acc9a-d2b2-50d7-a7d8-06cf96abb627"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Case 5: Gaussian (normal)",
+   "text": "Extras: Gaussian and mixed",
    "citations": [],
-   "id": "c8f951b6-e7de-54c9-9218-b11c53cf54b3"
+   "id": "6caaff6e-731a-574f-897c-e2a59960e966"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Gaussian (normal)",
+   "citations": [],
+   "id": "fb3f6321-f3ea-5583-89dc-a03a8bd72d2b"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** “normal with mean $\\mu$ and standard deviation $\\sigma$” (or variance $\\sigma^2$): $X\\sim N(\\mu,\\sigma^2)$.",
+   "text": "“Normal with mean $\\mu$ and standard deviation $\\sigma$”, written $X\\sim N(\\mu,\\sigma^2)$. $\\mu$ = the centre of the bell, $\\sigma$ = how wide it is, $\\sigma^2$ = the variance.",
    "citations": [],
-   "id": "032a4f35-b2f6-5e8e-9728-dad10942a479"
+   "id": "eda439bf-d1c0-56d1-9d7e-2b26482ed83b"
   },
   {
    "type": "paragraph",
-   "text": "**The move:** you can’t integrate the bell curve. **Standardise** to $z$ and read $\\Phi(z)=P(Z\\le z)$ from the table:",
+   "text": "You can’t integrate the bell curve by hand. So **standardise**: $z$ = how many $\\sigma$’s you are from the centre. Then read $\\Phi(z)=P(Z\\le z)$ from the table.",
    "citations": [],
-   "id": "72d85738-2d94-50e4-83bc-abcdc885343d"
+   "id": "a0e38447-30fb-58a3-9482-086d97a647ef"
   },
   {
    "type": "equation",
-   "latex": "F_X(x)=\\Phi\\Big(\\frac{x-\\mu}{\\sigma}\\Big),\\qquad \\Phi(-z)=1-\\Phi(z)",
+   "latex": "z=\\frac{x-\\mu}{\\sigma},\\qquad F_X(x)=\\Phi(z),\\qquad \\Phi(-z)=1-\\Phi(z)",
    "display": true,
    "citations": [
     {
@@ -499,19 +670,46 @@
      "chunk_id": "c05b6c21-3c16-4ded-81ef-37cac1e34a5b"
     }
    ],
-   "id": "57eb57b0-d06c-51c0-8211-c8ae61444985"
+   "id": "f5965f05-87ec-509a-a49b-9547226a6b33"
   },
   {
-   "type": "list",
-   "items": [
-    "**Spot:** read $\\mu$ and $\\sigma$. Given the **variance**? Take its square root first.",
-    "**Standardise** every number: $z=\\dfrac{x-\\mu}{\\sigma}$.",
-    "**Rewrite** with $\\Phi$: $P(X>x)=1-\\Phi(z)$, $\\;P(a<X<b)=\\Phi(z_b)-\\Phi(z_a)$. Negative $z$? $\\Phi(-z)=1-\\Phi(z)$.",
-    "**Table.**"
-   ],
-   "ordered": true,
+   "type": "paragraph",
+   "text": "Topic 1’s rules, with $\\Phi$ in place of $F$:",
    "citations": [],
-   "id": "992f4836-65a7-5665-8b5a-79495c6f4d81"
+   "id": "48b311ee-15f4-5b8a-be3f-139f887e14b1"
+  },
+  {
+   "type": "equation",
+   "latex": "P(X>x)=1-\\Phi(z),\\qquad P(a<X<b)=\\Phi(z_b)-\\Phi(z_a)",
+   "display": true,
+   "citations": [],
+   "id": "a835cfcf-bf02-5ae1-a8a1-89ec4cb9cfb8"
+  },
+  {
+   "type": "paragraph",
+   "text": "For a range centred on $\\mu$ (within $k$ standard deviations), both tails are the same size:",
+   "citations": [],
+   "id": "e1eb2f66-a1aa-5755-847b-c6cfb2fa962e"
+  },
+  {
+   "type": "equation",
+   "latex": "P(|X-\\mu|<k\\sigma)=2\\Phi(k)-1",
+   "display": true,
+   "citations": [],
+   "id": "27921d5d-aa6c-5776-ad6d-e597952a8c7f"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Backwards** (given a probability, find $x$): find the $z$ whose $\\Phi(z)$ is the chance **below** $x$, then undo the standardising:",
+   "citations": [],
+   "id": "2c18280d-12b2-52d2-bc0b-1a0c903faf6f"
+  },
+  {
+   "type": "equation",
+   "latex": "x=\\mu+z\\,\\sigma",
+   "display": true,
+   "citations": [],
+   "id": "ed4ff485-b647-5d0d-8dca-625041d0c20a"
   },
   {
    "type": "table",
@@ -546,42 +744,42 @@
      "chunk_id": "c0dd9d2c-78d9-4477-bb78-036702e3d6c7"
     }
    ],
-   "id": "04336444-0dc3-510e-9596-cac1084cb149"
+   "id": "c3469129-6287-5405-8fc5-85c49df41863"
   },
   {
-   "type": "paragraph",
-   "text": "**Short example:** $\\mu=0$, $\\sigma=0.5$, find $P(X<1)$:",
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Variance or standard deviation?** “$\\sigma^2=2.25$” means $\\sigma=1.5$. Dividing by $2.25$ is the most common lost mark.",
    "citations": [],
-   "id": "898680ea-0bbc-557f-b99b-44003197627b"
+   "id": "e2008ba6-fc22-519a-9246-f42268faba0d"
   },
   {
-   "type": "equation",
-   "latex": "z=\\frac{1-0}{0.5}=2\\quad\\Longrightarrow\\quad P(X<1)=\\Phi(2)=0.97725",
-   "display": true,
-   "citations": [],
-   "id": "2920bdfd-881a-5948-be14-31feac6f2532"
-  },
-  {
-   "type": "solution",
-   "title": "Shortcut: a symmetric interval, $\\;P(|X-\\mu|<k\\sigma)=2\\Phi(k)-1$",
-   "text": "Both tails are the same size, so take $\\Phi(k)$ and remove one tail twice.\n\n$$\n\\Phi(k)-\\Phi(-k)=\\Phi(k)-\\big(1-\\Phi(k)\\big)=2\\Phi(k)-1\n$$\n\nExample: within $1.5\\sigma$ of the mean.\n\n$$\n2(0.9332)-1=0.8664\n$$",
-   "collapsed": true,
-   "citations": [],
-   "id": "173794c0-6286-541f-bf13-de5f0c37b058"
-  },
-  {
-   "type": "solution",
-   "title": "Backwards: given a probability, find $x$ $\\;\\Longrightarrow\\;x=\\mu+z\\sigma$",
-   "text": "Find the $z$ in the table whose $\\Phi(z)$ is the probability **below** $x$, then undo the standardising.\n\n$$\nx=\\mu+z\\,\\sigma\n$$\n\nTop $5\\%$ → $95\\%$ below → $z=1.645$. Middle $95\\%$ → $\\Phi(z)=0.975$ → $z=1.96$.",
-   "collapsed": true,
-   "citations": [],
-   "id": "4a390098-016a-5e7d-9a52-a1753083b54e"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Lecture 11): sensor error, $\\;\\mu=0$, $\\;\\sigma=0.5$. Chance $|X|<0.8$?",
-   "text": "Step 1 · **Rewrite:** $|X|<0.8$ means $-0.8<X<0.8$.\n\nStep 2 · **Standardise** both ends.\n\n$$\nz=\\frac{\\pm0.8-0}{0.5}=\\pm1.6\n$$\n\nStep 3 · Negative $z$: flip it.\n\n$$\n\\Phi(1.6)-\\Phi(-1.6)=\\Phi(1.6)-\\big(1-\\Phi(1.6)\\big)=2\\Phi(1.6)-1\n$$\n\nStep 4 · **Table:** $\\Phi(1.6)=0.9452$.\n\n$$\n2(0.9452)-1=0.8904\n$$\n\n**Answer:**\n\n$$\n0.8904\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 10 · Gaussian, forwards · Lecture 11",
+   "prompt": "A sensor’s error $X$ is normal with $\\mu=0$ and $\\sigma=0.5$. What’s the chance $|X|<0.8$?",
+   "steps": [
+    {
+     "explanation": "**Read off:**",
+     "latex": "\\mu=0,\\qquad\\sigma=0.5"
+    },
+    {
+     "explanation": "**Rewrite:** $|X|<0.8$ means $-0.8<X<0.8$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Standardise** both ends.",
+     "latex": "z=\\frac{\\pm0.8-0}{0.5}=\\pm1.6"
+    },
+    {
+     "explanation": "A symmetric interval, so use $2\\Phi(k)-1$.",
+     "latex": "\\Phi(1.6)-\\Phi(-1.6)=\\Phi(1.6)-\\big(1-\\Phi(1.6)\\big)=2\\Phi(1.6)-1"
+    },
+    {
+     "explanation": "**Table:** $\\Phi(1.6)=0.9452$.",
+     "latex": "2(0.9452)-1=0.8904"
+    }
+   ],
+   "answer": "$0.8904$",
    "citations": [
     {
      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
@@ -589,13 +787,31 @@
      "chunk_id": "77f999fd-1723-4e56-a2ea-089aecc8f575"
     }
    ],
-   "id": "371af65e-c8a8-54d1-910d-5b4380ab70b6"
+   "id": "19672bb4-5591-51aa-bcf8-51415bdc19c0"
   },
   {
-   "type": "solution",
-   "title": "Full example (Tutorial 4 Q4): scores $N(500,100^2)$. Which score is the top $10\\%$?",
-   "text": "Step 1 · **Rewrite:** top $10\\%$ means $90\\%$ below.\n\n$$\n\\Phi\\Big(\\frac{x-500}{100}\\Big)=0.90\n$$\n\nStep 2 · **Table, backwards:** $\\Phi(1.28)=0.8997$ is closest to $0.90$.\n\n$$\nz\\approx1.28\n$$\n\nStep 3 · Undo the standardising.\n\n$$\nx=500+1.28\\cdot100=628\n$$\n\n**Answer:**\n\n$$\n\\text{about }628\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 11 · Gaussian, backwards · Tutorial 4 Q4",
+   "prompt": "Test scores are $N(500,100^2)$. Which score marks the top $10\\%$?",
+   "steps": [
+    {
+     "explanation": "**Read off:**",
+     "latex": "\\mu=500,\\qquad\\sigma=100"
+    },
+    {
+     "explanation": "**Rewrite:** top $10\\%$ above means $90\\%$ below.",
+     "latex": "\\Phi(z)=0.90"
+    },
+    {
+     "explanation": "**Table, backwards:** $\\Phi(1.28)=0.8997$ is closest to $0.90$.",
+     "latex": "z\\approx1.28"
+    },
+    {
+     "explanation": "Undo the standardising.",
+     "latex": "x=\\mu+z\\sigma=500+1.28\\cdot100=628"
+    }
+   ],
+   "answer": "about $628$",
    "citations": [
     {
      "source_id": "4d61db5e-8336-42fa-9292-37c2b7a2378a",
@@ -603,37 +819,27 @@
      "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
     }
    ],
-   "id": "14dec921-5854-580e-96ff-3f53c93a11d8"
+   "id": "5118ec60-2294-520b-b92a-21911d53764a"
   },
   {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Variance or standard deviation?** “$\\sigma^2=2.25$” means $\\sigma=1.5$. Dividing by $2.25$ is the most common lost mark.",
-   "citations": [],
-   "id": "25163d34-bd64-5f5e-a6b5-ec1283bd575a"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 1 · Case 5 · Blood pressure · Practice 03 Q8",
-   "difficulty": "intermediate",
-   "origin": "source",
+   "type": "worked_example",
+   "title": "Example 12 · Gaussian, two cut-offs · Practice 03 Q8",
    "prompt": "Diastolic blood pressure is normal with $\\mu=80$, $\\sigma=7$ (mm Hg). $\\ge95$ is hypertensive; strictly between $89$ and $95$ is mild hypertension. What percent of people are in each group?",
-   "solution": "",
    "steps": [
     {
-     "explanation": "**Spot:** Gaussian, $\\mu=80$, $\\sigma=7$.",
-     "latex": ""
+     "explanation": "**Read off:**",
+     "latex": "\\mu=80,\\qquad\\sigma=7"
     },
     {
      "explanation": "**Standardise** both cut-offs (2 decimals, like the table).",
      "latex": "\\begin{gathered}z_{95}=\\frac{95-80}{7}\\approx2.14 \\\\ z_{89}=\\frac{89-80}{7}\\approx1.29\\end{gathered}"
     },
     {
-     "explanation": "**Rewrite**, hypertensive: the right tail. **Table.**",
+     "explanation": "Hypertensive: the right tail. **Table.**",
      "latex": "P(X\\ge95)=1-\\Phi(2.14)=1-0.98382=0.01618"
     },
     {
-     "explanation": "**Rewrite**, mild: between the two. **Table.**",
+     "explanation": "Mild: between the two. **Table.**",
      "latex": "\\begin{gathered}P(89<X<95)=\\Phi(2.14)-\\Phi(1.29) \\\\ =0.98382-0.9015=0.0823\\end{gathered}"
     }
    ],
@@ -645,30 +851,35 @@
      "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
     }
    ],
-   "id": "55001a91-2747-5a78-a79d-210cca434105"
+   "id": "2f18b1ed-7561-5df9-8fd3-3d498a7e97f1"
   },
   {
    "type": "heading",
-   "level": 1,
-   "text": "Case 6: mixed (a jump and a ramp)",
+   "level": 2,
+   "text": "Mixed: a jump and a ramp",
    "citations": [],
-   "id": "a82b1507-f3ea-5f48-8ddf-64a91c879e7c"
+   "id": "54578f41-e3d9-5760-898d-be38cec5c304"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** “with probability $q$ it is exactly $x_0$, otherwise it is spread over…”, or a CDF that jumps **and** ramps.",
+   "text": "“With probability $q$ it is **exactly** $x_0$, otherwise it’s spread over a range.” That’s a mixed $X$: part discrete, part continuous.",
    "citations": [],
-   "id": "906ccfdb-1b65-57d0-891e-41d7831a05d7"
+   "id": "c94f17ae-eac9-5ac6-ae87-7b7657200ae1"
   },
   {
-   "type": "paragraph",
-   "text": "**The move:** the jump is an exact chance. The spread part only has the **leftover** area $1-q$:",
+   "type": "list",
+   "items": [
+    "**Jump:** an exact value with real chance. On the CDF it’s a jump, and the jump size is the chance: $P(X=x_0)=q$.",
+    "**Spread:** the rest of the time, $X$ has its usual PDF, but it only gets the **leftover** chance $1-q$. So multiply that PDF by $1-q$.",
+    "**Any probability** = the jumps inside the range + the area over the range."
+   ],
+   "ordered": false,
    "citations": [],
-   "id": "b7d2374f-f2d9-559a-b508-ada6fc3431c6"
+   "id": "3e79f6c4-9a10-5fe0-b3b3-1b97ced5982e"
   },
   {
    "type": "equation",
-   "latex": "P(X=x_0)=\\text{jump size},\\qquad f_{\\text{spread}}=(1-q)\\times(\\text{its usual PDF})",
+   "latex": "P(X=x_0)=q,\\qquad f_{\\text{spread}}(x)=(1-q)\\times(\\text{its usual PDF})",
    "display": true,
    "citations": [
     {
@@ -677,37 +888,37 @@
      "chunk_id": "2765690d-ffea-4bba-8998-f9b1095c0dc0"
     }
    ],
-   "id": "7d3657da-6b24-5219-be5c-563ec3044075"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Jump:** $P(X=x_0)=q$ (or read the jump size off the CDF).",
-    "**Spread:** the usual PDF times $1-q$.",
-    "**Rewrite:** any probability = the jumps inside the range + the area over the range."
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "955a28ea-e11d-599a-aece-d7cb97709b21"
+   "id": "abfc5687-f31d-5332-a4a8-3c49735e02ba"
   },
   {
    "type": "paragraph",
-   "text": "**Short example:** signal lost ($X=0$) with chance $0.2$, otherwise uniform on $(0,10)$:",
+   "text": "**Discrete = all jumps, continuous = all slope, mixed = both.**\n\n```graph\ntitle \"CDF of the received signal: a jump, then a ramp\"\nx -2 12 label=\"$x$\" height=230\ny 0 1.1 label=\"$F_X(x)$\"\nsegment \"-2\" \"0\" \"0\" \"0\" color=2\nsegment \"0\" \"0.2\" \"10\" \"1\" color=2\nsegment \"10\" \"1\" \"12\" \"1\" color=2\npoint \"0\" \"0.2\" color=2\nsegment \"0\" \"0\" \"0\" \"0.2\" color=0 dash\ntext \"1.6\" \"0.12\" \"jump $=0.2$\"\ntext \"6.8\" \"0.6\" \"slope $0.08$\"\n```",
    "citations": [],
-   "id": "24cdcb1e-d4c3-5ab4-bc3c-30e1220c878c"
+   "id": "684dd6f9-9e3e-503c-a6cf-64872acdef90"
   },
   {
-   "type": "equation",
-   "latex": "f_{\\text{spread}}=0.8\\cdot\\frac1{10}=0.08\\quad\\Longrightarrow\\quad P(2<X<5)=0.08\\cdot3=0.24",
-   "display": true,
-   "citations": [],
-   "id": "64ded5d8-a5c2-5861-a074-5fb49d521b31"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Lectures 10–11): received signal level, the CDF",
-   "text": "Step 1 · **Jump** at $0$: the lost signal.\n\n$$\nP(X=0)=0.2\n$$\n\nStep 2 · **Spread:** uniform on $(0,10)$ scaled by $0.8$.\n\n$$\nf(x)=0.8\\cdot\\frac1{10}=0.08,\\qquad 0<x<10\n$$\n\nStep 3 · **Accumulate:** jump first, then the ramp.\n\n$$\nF_X(x)=\\begin{cases}0,&x<0\\\\ 0.2+0.08x,&0\\le x<10\\\\ 1,&x\\ge10\\end{cases}\n$$\n\nStep 4 · **Rewrite** $P(2<X<5)$: the jump at $0$ isn’t inside, so only area.\n\n$$\nF_X(5)-F_X(2)=0.6-0.36=0.24\n$$\n\n**Answer:**\n\n$$\n\\text{jump }0.2\\text{ at }0,\\ \\text{then a ramp up to }1\\text{ at }x=10\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 13 · Mixed: build the CDF · Lectures 10–11",
+   "prompt": "A received signal is lost ($X=0$) with probability $0.2$. Otherwise its level is uniform on $(0,10)$. Find the CDF and $P(2<X<5)$.",
+   "steps": [
+    {
+     "explanation": "**Jump** at $0$: the lost signal.",
+     "latex": "P(X=0)=0.2"
+    },
+    {
+     "explanation": "**Spread:** the uniform PDF times the leftover $0.8$.",
+     "latex": "f(x)=0.8\\cdot\\frac1{10}=0.08,\\qquad 0<x<10"
+    },
+    {
+     "explanation": "**Accumulate:** the jump first, then the ramp.",
+     "latex": "F_X(x)=\\begin{cases}0,&x<0\\\\ 0.2+0.08x,&0\\le x<10\\\\ 1,&x\\ge10\\end{cases}"
+    },
+    {
+     "explanation": "**Rewrite** $P(2<X<5)$: the jump at $0$ isn’t inside, so only area counts.",
+     "latex": "F_X(5)-F_X(2)=0.6-0.36=0.24"
+    }
+   ],
+   "answer": "jump $0.2$ at $0$, then the ramp $0.2+0.08x$ up to $1$ at $x=10$; $\\;P(2<X<5)=0.24$",
    "citations": [
     {
      "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
@@ -720,32 +931,23 @@
      "chunk_id": "d067bd0f-961a-4d57-aaaf-a696ccdff0bf"
     }
    ],
-   "id": "165e2d15-6a16-5715-8072-d67877335b60"
+   "id": "b0eb4795-61f6-59e8-ad7d-722282dc3cd5"
   },
   {
-   "type": "paragraph",
-   "text": "**Discrete = all jumps, continuous = all slope, mixed = both.**\n\n```graph\ntitle \"CDF of the received signal: a jump, then a ramp\"\nx -2 12 label=\"$x$\" height=230\ny 0 1.1 label=\"$F_X(x)$\"\nsegment \"-2\" \"0\" \"0\" \"0\" color=2\nsegment \"0\" \"0.2\" \"10\" \"1\" color=2\nsegment \"10\" \"1\" \"12\" \"1\" color=2\npoint \"0\" \"0.2\" color=2\nsegment \"0\" \"0\" \"0\" \"0.2\" color=0 dash\ntext \"1.6\" \"0.12\" \"jump $=0.2$\"\ntext \"6.8\" \"0.6\" \"slope $0.08$\"\n```",
-   "citations": [],
-   "id": "e248f319-2a85-5a69-85a0-b465a67d6782"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 2 · Case 6 · Daily rainfall",
-   "difficulty": "intermediate",
-   "origin": "original",
+   "type": "worked_example",
+   "title": "Example 14 · Mixed: daily rainfall",
    "prompt": "On a given day it doesn’t rain with probability $0.6$ ($X=0$). If it rains, the amount $X$ (mm) is exponential with $\\lambda=0.5$. (a) Find the CDF of $X$. (b) Find $P(X>2)$. (c) Find $P(X\\le1)$.",
-   "solution": "",
    "steps": [
     {
-     "explanation": "**Spot:** an exact value with chance $0.6$, plus a spread → Case 6.",
-     "latex": ""
+     "explanation": "**Spot:** an exact value ($0$) with chance $0.6$, plus a spread → mixed.",
+     "latex": "q=0.6,\\qquad 1-q=0.4,\\qquad\\lambda=0.5"
     },
     {
-     "explanation": "(a) **Jump** of $0.6$ at $0$, then **spread:** the exponential CDF scaled by $0.4$.",
+     "explanation": "(a) **Jump** of $0.6$ at $0$, then the exponential CDF scaled by $0.4$.",
      "latex": "F_X(x)=\\begin{cases}0,&x<0\\\\ 0.6+0.4\\left(1-e^{-0.5x}\\right),&x\\ge0\\end{cases}"
     },
     {
-     "explanation": "(b) **Rewrite:** only rainy days can go above 2. Exponential tail times $0.4$.",
+     "explanation": "(b) **Rewrite:** only rainy days can go above 2. The exponential tail times $0.4$.",
      "latex": "P(X>2)=0.4\\,e^{-0.5\\cdot2}=0.4e^{-1}\\approx 0.1472"
     },
     {
@@ -755,38 +957,38 @@
    ],
    "answer": "(a) jump $0.6$ at $0$, then $0.6+0.4(1-e^{-0.5x})$ (b) $\\approx 0.1472$ (c) $\\approx 0.7574$",
    "citations": [],
-   "id": "8ab8e8a7-eb40-5f52-b2b1-01ff743acc48"
+   "id": "cecd87e8-e9d7-5d19-af29-2dae48d3f5d7"
   },
   {
    "type": "heading",
    "level": 1,
    "text": "Practice Questions",
    "citations": [],
-   "id": "5287574d-416f-5185-8b08-8141147860d0"
+   "id": "b193386d-96b6-5963-a975-22ae2cc10511"
   },
   {
    "type": "callout",
    "tone": "tip",
-   "text": "**Question 2 is always these cases, in parts (a), (b), (c).** Spot the clue, run its steps:\n\n1. **Find $c$:** total area $=1$ (triangle/rectangle: area formula).\n2. **PDF ↔ CDF:** Accumulate (area so far), Differentiate (slope), Rewrite with $F$'s.\n3. **Uniform:** length ÷ total length.\n4. **Exponential:** $P(X>x)=e^{-\\lambda x}$; “already lasted” → memoryless.\n5. **Gaussian:** $z=\\frac{x-\\mu}{\\sigma}$ → $\\Phi$ table; $\\Phi(-z)=1-\\Phi(z)$; backwards $x=\\mu+z\\sigma$.\n6. **Mixed:** jump = exact chance; spread × $(1-q)$; add jumps + area.",
+   "text": "**Question 2 is always these, in parts (a), (b), (c):**\n\n1. **PDF ↔ CDF ↔ probability:** find $c$ (total area $=1$), integrate for $F$, differentiate for $f$, probabilities $=F(b)-F(a)$.\n2. **Uniform:** length ÷ total length. **Exponential:** $P(X>x)=e^{-\\lambda x}$; “already lasted” → memoryless.\n3. **Gaussian:** $z=\\frac{x-\\mu}{\\sigma}$ → $\\Phi$ table; $\\Phi(-z)=1-\\Phi(z)$; backwards $x=\\mu+z\\sigma$.\n4. **Mixed:** jump = exact chance; spread × $(1-q)$; add jumps + area.",
    "citations": [],
-   "id": "3ec4027c-d342-5756-a0a6-cfb8958bcc12"
+   "id": "0913bb9f-29ac-558e-8056-72d013346979"
   },
   {
    "type": "paragraph",
    "text": "Test-style, easy → hard. Solve on paper first, then open the solution.",
    "citations": [],
-   "id": "f80a412a-100d-5ea9-b2b3-2a2ec36a42f8"
+   "id": "692d2da9-d9b2-5206-94d2-105bd6109e89"
   },
   {
    "type": "practice_problem",
-   "title": "Question 1 · Case 3 · Uniform · Tutorial 4 Q5",
+   "title": "Question 1 · Uniform · Tutorial 4 Q5",
    "difficulty": "introductory",
    "origin": "source",
    "prompt": "Flights leave every half hour (9:00, 9:30, 10:00, …). A passenger arrives at a uniform random time between 8:45 and 9:45 A.M. Find the probability the passenger waits (a) **at most 10 minutes**, (b) **at least 15 minutes**.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** uniform → Case 3. $T$ = minutes after 8:45, total length $60$. Flights leave at $T=15,\\ 45,\\ 75$.",
+     "explanation": "**Type:** uniform. $T$ = minutes after 8:45, total length $60$. Flights leave at $T=15,\\ 45,\\ 75$.",
      "latex": "f_T(t)=\\frac1{60},\\quad 0\\le t\\le60"
     },
     {
@@ -814,18 +1016,18 @@
      "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
     }
    ],
-   "id": "4f9b5873-9cec-5d74-b2e4-290ab0868feb"
+   "id": "1869567e-a03a-5ad9-9dc8-b95d019643c0"
   },
   {
    "type": "practice_problem",
-   "title": "Question 2 · Case 4 · Exponential, memoryless · like Lecture 10",
+   "title": "Question 2 · Exponential, memoryless · like Lecture 10",
    "difficulty": "introductory",
    "origin": "source",
    "prompt": "The length $X$ (minutes) of a phone call is exponential with $\\lambda=0.25$. Find (a) $P(X>4)$, (b) $P(2<X<6)$, (c) the chance a call that has already lasted 3 minutes lasts **more than 7** in total, (d) the time $t$ with $P(X>t)=\\tfrac12$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** exponential, $\\lambda=0.25$ → Case 4.",
+     "explanation": "**Type:** exponential, $\\lambda=0.25$.",
      "latex": ""
     },
     {
@@ -853,18 +1055,18 @@
      "chunk_id": "98067cee-6ada-49dc-9a53-51e6ce216e3a"
     }
    ],
-   "id": "9a8b3780-b587-5004-9c97-01d2d590f710"
+   "id": "ac0dc79d-72dc-5c86-832b-f4030f2c0073"
   },
   {
    "type": "practice_problem",
-   "title": "Question 3 · Case 2 · CDF → probabilities and PDF · Practice 02 Q4",
+   "title": "Question 3 · PDF ↔ CDF · CDF → probabilities and PDF · Practice 02 Q4",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "The Rayleigh random variable $R$ has CDF\n\n$$\nF_R(r)=\\begin{cases}0,&r<0\\\\ 1-e^{-r^2/(2\\sigma^2)},&r\\ge0\\end{cases}\n$$\n\n(a) Find $P(\\sigma\\le R\\le2\\sigma)$ and $P(R>3\\sigma)$. (b) Find the PDF of $R$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** a CDF is given → Case 2.",
+     "explanation": "**Type:** a CDF is given → PDF ↔ CDF (have $F$).",
      "latex": ""
     },
     {
@@ -888,22 +1090,22 @@
      "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
     }
    ],
-   "id": "8d0ce425-1843-54d2-8083-7a2d25033a5b"
+   "id": "42aab905-3252-5923-aa5f-1807844a3cd4"
   },
   {
    "type": "practice_problem",
-   "title": "Question 4 · Case 1 + 2 · Find $c$, then the CDF · Tutorial 5 Q5",
+   "title": "Question 4 · PDF ↔ CDF · find $c$, then the CDF · Tutorial 5 Q5",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "$X$ has PDF $f_X(x)=Cx^2$ for $|x|\\le1$, and $0$ otherwise. (a) Find $C$. (b) Find the CDF. (c) Find $P(X>\\tfrac12)$ and $P(|X|<\\tfrac12)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Type:** unknown constant → Case 1. **Find $c$:** total area $=1$.",
+     "explanation": "(a) **Type:** unknown constant → total area $=1$. **Find $c$.**",
      "latex": "C\\int_{-1}^{1}x^2\\,dx=\\frac{2C}{3}=1\\quad\\Longrightarrow\\quad C=\\frac32"
     },
     {
-     "explanation": "(b) **Accumulate** from $-1$ up to $x$ (Case 2).",
+     "explanation": "(b) **Accumulate** from $-1$ up to $x$.",
      "latex": "F_X(x)=\\int_{-1}^{x}\\frac32t^2\\,dt=\\frac{x^3+1}{2},\\qquad -1\\le x\\le1"
     },
     {
@@ -923,18 +1125,18 @@
      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
     }
    ],
-   "id": "7316e6fe-2ca4-5f4f-a77e-fe54e0e7eb5b"
+   "id": "6604953f-4699-556e-b910-728cff5efcb9"
   },
   {
    "type": "practice_problem",
-   "title": "Question 5 · Case 1 + 2 · Find $c$ by parts · Tutorial 4 Q1",
+   "title": "Question 5 · PDF ↔ CDF · find $c$ by parts · Tutorial 4 Q1",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "The time $X$ (minutes) between seeing two runners has PDF $f(x)=\\lambda x e^{-x}$ for $x>0$. (a) Find $\\lambda$. (b) Find the CDF. (c) Find the probability the next runner is seen in 2 to 5 minutes, and in at least 7 minutes.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** unknown constant → Case 1. First the integral, **by parts** ($u=x$, $dv=e^{-x}dx$):",
+     "explanation": "**Type:** unknown constant → total area $=1$. First the integral, **by parts** ($u=x$, $dv=e^{-x}dx$):",
      "latex": "\\int xe^{-x}\\,dx=-xe^{-x}+\\int e^{-x}\\,dx=-(x+1)e^{-x}"
     },
     {
@@ -962,18 +1164,18 @@
      "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
     }
    ],
-   "id": "32b7393f-5349-5785-b002-9102250b040c"
+   "id": "85a733da-e5ed-559b-9f2c-5b0a6cf969c4"
   },
   {
    "type": "practice_problem",
-   "title": "Question 6 · Case 1 + 2 · a triangle, then work backwards · Practice 02 Q2",
+   "title": "Question 6 · PDF ↔ CDF · a triangle, then work backwards · Practice 02 Q2",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "$X$ has a triangle PDF: $0$ at $x=-a$, peak height $c$ at $x=0$, back to $0$ at $x=a$. (a) Find $c$ and $f_X(x)$. (b) Find the CDF. (c) Find $b$ with $P(|X|<b)=\\tfrac12$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Type:** unknown height → Case 1. **Find $c$** with the triangle shortcut: base $2a$, height $c$.",
+     "explanation": "(a) **Type:** unknown height → total area $=1$. **Find $c$** with the triangle shortcut: base $2a$, height $c$.",
      "latex": "\\frac12(2a)c=1\\quad\\Longrightarrow\\quad c=\\frac1a"
     },
     {
@@ -1001,18 +1203,18 @@
      "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
     }
    ],
-   "id": "0fabdabd-2fa8-5847-b149-cc264925c453"
+   "id": "7050844b-d8a5-5e76-9142-f40cb2c7e84e"
   },
   {
    "type": "practice_problem",
-   "title": "Question 7 · Case 5 · Gaussian · Tutorial 6 Q5",
+   "title": "Question 7 · Gaussian · Tutorial 6 Q5",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "A rover’s distance travelled is $X\\sim N(\\mu,\\sigma^2)$ with $\\mu=500$ m and $\\sigma^2=2.25$ m². Find (a) $P(X<500)$, (b) $P(X=501)$, (c) $P(X>501)$ and $P(X>505)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** normal → Case 5. **Spot:** that’s the variance, so take the root.",
+     "explanation": "**Type:** normal. **Spot:** that’s the variance, so take the root.",
      "latex": "\\sigma=\\sqrt{2.25}=1.5"
     },
     {
@@ -1040,18 +1242,18 @@
      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
     }
    ],
-   "id": "89120f3a-f569-5740-9226-4e1d3d20995e"
+   "id": "206306c5-e1ec-5d67-9641-19c05d807266"
   },
   {
    "type": "practice_problem",
-   "title": "Question 8 · Case 5 · Gaussian, backwards · like Tutorial 4 Q4",
+   "title": "Question 8 · Gaussian, backwards · like Tutorial 4 Q4",
    "difficulty": "intermediate",
    "origin": "original",
    "prompt": "Resistances are normal with $\\mu=100\\ \\Omega$ and variance $4\\ \\Omega^2$. (a) What fraction are within $100\\pm3\\ \\Omega$? (b) Find $t$ so that $95\\%$ are within $100\\pm t$. (c) Which value is exceeded by only $5\\%$?",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** normal → Case 5. **Spot:** variance $4$, so $\\sigma=2$.",
+     "explanation": "**Type:** normal. **Spot:** variance $4$, so $\\sigma=2$.",
      "latex": "\\sigma=2"
     },
     {
@@ -1069,18 +1271,18 @@
    ],
    "answer": "(a) $0.8664$ (b) $t=3.92\\ \\Omega$ (c) $103.29\\ \\Omega$",
    "citations": [],
-   "id": "60610dd2-ef8b-5209-b950-2aa7a5ea01ca"
+   "id": "73efe8d1-e374-5d9c-a574-3ea49dd35dba"
   },
   {
    "type": "practice_problem",
-   "title": "Question 9 · Case 6 · a CDF with two jumps",
+   "title": "Question 9 · Mixed · a CDF with two jumps",
    "difficulty": "intermediate",
    "origin": "original",
    "prompt": "A clipped sensor reading $X$ has CDF\n\n$$\nF_X(x)=\\begin{cases}0,&x<0\\\\ 0.25+\\tfrac x2,&0\\le x<1\\\\ 1,&x\\ge1\\end{cases}\n$$\n\n(a) Why is $X$ mixed? (b) Find $P(X=0)$ and $P(X=1)$. (c) Find $P(0<X<1)$ and $P(X\\le0.5)$. (d) Find the PDF of the spread part.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Type:** $F$ jumps (exact values with real chance) **and** ramps → Case 6.",
+     "explanation": "(a) **Type:** $F$ jumps (exact values with real chance) **and** ramps → mixed.",
      "latex": "\\text{jumps at }0\\text{ and }1,\\ \\text{ramp in between}"
     },
     {
@@ -1102,18 +1304,18 @@
    ],
    "answer": "(b) $0.25$, $0.25$ (c) $0.5$, $0.5$ (d) $\\tfrac12$ on $(0,1)$",
    "citations": [],
-   "id": "be632ac2-1ed1-5427-83b7-2a3008bdf913"
+   "id": "18c60cf9-dae0-5b1e-b82b-2ff79f1edc5d"
   },
   {
    "type": "practice_problem",
-   "title": "Question 10 · Case 6 · Practice 02 Q3",
+   "title": "Question 10 · Mixed · Practice 02 Q3",
    "difficulty": "advanced",
    "origin": "source",
    "prompt": "$X$ has CDF\n\n$$\nF_X(x)=\\begin{cases}0,&x<-1\\\\ \\tfrac13+\\tfrac23(x+1)^2,&-1\\le x\\le0\\\\ 1,&x>0\\end{cases}\n$$\n\nFind the probabilities of $A=\\{X>\\tfrac13\\}$, $B=\\{|X|\\ge1\\}$, $C=\\{|X-\\tfrac13|<1\\}$, $D=\\{X<0\\}$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $F$ jumps from $0$ to $\\tfrac13$ at $x=-1$, then rises smoothly → Case 6.",
+     "explanation": "**Type:** $F$ jumps from $0$ to $\\tfrac13$ at $x=-1$, then rises smoothly → mixed.",
      "latex": "P(X=-1)=\\frac13"
     },
     {
@@ -1141,7 +1343,7 @@
      "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
     }
    ],
-   "id": "fe646fa6-de16-5e7e-8878-0fe3724a73ae"
+   "id": "92b8be40-823f-50ef-b88e-de3f668cd052"
   }
  ]
 }

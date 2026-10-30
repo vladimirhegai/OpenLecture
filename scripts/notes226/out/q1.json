@@ -11,7 +11,7 @@
  "blocks": [
   {
    "type": "paragraph",
-   "text": "**Lectures 7–9.** $X$ turns the result of an experiment into a number that lands on separate values ($0,1,2,\\dots$). Find its PMF and CDF.",
+   "text": "**Lectures 7–9.** Question 1 gives you a random number $X$ that lands on separate values ($0,1,2,\\dots$), like the number of heads in 3 tosses. You find the chance of each value (the **PMF**) and the running total (the **CDF**). Two topics cover it: **PMF and CDF**, then **named families**.",
    "citations": [
     {
      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
@@ -29,123 +29,126 @@
      "chunk_id": "9da48eda-56cf-48d4-aabf-f344f0c3c9de"
     }
    ],
-   "id": "c203c341-2747-5867-9331-666fe94e2293"
+   "id": "e21a4a1d-3902-5554-a1b3-12467c0409dd"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Question 1 in plain words",
+   "text": "Topic 1: PMF and CDF",
    "citations": [],
-   "id": "d1456bbe-c11b-5ef7-906c-bcd17accf957"
+   "id": "e62ef162-d49d-5b7b-b42a-784f9cd070c9"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** an experiment (coins, dice, chips), a PMF with a $c$, a CDF, or a story with a clue word (“on average”, “until”). Then parts (a), (b), (c).",
+   "text": "There are two ways to write down the chances of $X$. Both say the same thing.",
    "citations": [],
-   "id": "04bd1772-7165-519b-bff2-7789b2731412"
+   "id": "d7b98516-0e0a-544d-9658-a7be614bc33d"
   },
   {
    "type": "paragraph",
-   "text": "**The move:** the **PMF** lists every value of $X$ and its chance. The chances add to $1$. The **CDF** is the running total:",
+   "text": "**The PMF** = the chance of each value. Every chance is between $0$ and $1$, and together they add to $1$.",
    "citations": [],
-   "id": "a882c147-71cf-5965-8d6a-60b3d0568b01"
+   "id": "eb600e42-46f6-5863-9bf3-5a5247ff3436"
   },
   {
    "type": "equation",
-   "latex": "p_X(x)=P(X=x),\\qquad \\sum_x p_X(x)=1,\\qquad F_X(x)=P(X\\le x)",
+   "latex": "p_X(x)=P(X=x),\\qquad \\sum_{\\text{all }x}p_X(x)=1",
    "display": true,
    "citations": [
     {
      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
      "version": 1,
      "chunk_id": "00ea87ae-feb2-4f24-9135-68dc5e61ebf2"
-    },
+    }
+   ],
+   "id": "f6ba79f4-e763-52fb-89be-1651ceb55ccc"
+  },
+  {
+   "type": "paragraph",
+   "text": "Example: toss 3 coins, $X$ = number of heads.",
+   "citations": [],
+   "id": "402fc7e8-76b5-5595-91b1-712933b489e7"
+  },
+  {
+   "type": "equation",
+   "latex": "p_X(0)=\\frac18,\\quad p_X(1)=\\frac38,\\quad p_X(2)=\\frac38,\\quad p_X(3)=\\frac18",
+   "display": true,
+   "citations": [],
+   "id": "5641c86b-d803-5733-8d8e-54ee5d272ee2"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The CDF** = the running total: the chance that $X$ is **at most** $x$.",
+   "citations": [],
+   "id": "97853fc5-a82e-5479-83ff-3bc01ce2c852"
+  },
+  {
+   "type": "equation",
+   "latex": "F_X(x)=P(X\\le x)=\\sum_{k\\le x}p_X(k)",
+   "display": true,
+   "citations": [
     {
      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
      "version": 1,
      "chunk_id": "38ff2542-662e-4214-b9df-ce346da8ab92"
     }
    ],
-   "id": "2ba6d640-fc4e-5447-8d4e-f2739980cba8"
+   "id": "f14b28c9-bbb8-5f04-a753-21cb858bb373"
   },
   {
    "type": "paragraph",
-   "text": "**Short example:** toss 3 coins, $X$ = number of heads:",
+   "text": "Same example: add the chances as you walk right.",
    "citations": [],
-   "id": "2ec1d7bf-5e64-53d0-8e90-2355a15f9ff7"
+   "id": "81d69549-51c0-506f-80c5-65d3e788505f"
   },
   {
    "type": "equation",
-   "latex": "p_X(0,1,2,3)=\\frac18,\\ \\frac38,\\ \\frac38,\\ \\frac18\\qquad\\Longrightarrow\\qquad F_X(1)=\\frac18+\\frac38=\\frac12",
+   "latex": "F_X:\\quad 0\\ \\to\\ \\frac18\\ \\to\\ \\frac12\\ \\to\\ \\frac78\\ \\to\\ 1",
    "display": true,
    "citations": [],
-   "id": "8022f594-5244-534a-8ebe-30ccff67cd41"
+   "id": "fb4e96bd-fc28-541d-a66f-25c9d1c772d0"
   },
   {
    "type": "paragraph",
-   "text": "**Which case?**",
+   "text": "So the CDF is a **staircase**: flat between values, and it **jumps by $p_X(x)$** at each value. It starts at $0$ and ends at $1$. At a jump, the value is the **top** of the step (the dot).\n\n```graph\ntitle \"CDF of the number of heads in 3 tosses\"\nx -1 4.5 label=\"$x$\" height=240\ny 0 1.1 label=\"$F_X(x)$\"\nsegment \"-1\" \"0\" \"0\" \"0\" color=2\npoint \"0\" \"0.125\" color=2\nsegment \"0\" \"0.125\" \"1\" \"0.125\" color=2\npoint \"1\" \"0.5\" color=2\nsegment \"1\" \"0.5\" \"2\" \"0.5\" color=2\npoint \"2\" \"0.875\" color=2\nsegment \"2\" \"0.875\" \"3\" \"0.875\" color=2\npoint \"3\" \"1\" color=2\nsegment \"3\" \"1\" \"4.5\" \"1\" color=2\nhline \"1\"\ntext \"0.35\" \"0.2\" \"jump $\\tfrac18$\"\ntext \"1.4\" \"0.6\" \"jump $\\tfrac38$\"\n```",
    "citations": [],
-   "id": "59074584-e156-53c2-8f13-bd6f08846689"
+   "id": "241b2f38-6923-589e-9c82-73337fdb3e71"
+  },
+  {
+   "type": "paragraph",
+   "text": "**How to go between them:**",
+   "citations": [],
+   "id": "e2ecda08-b397-5a7b-b7ea-7d7d42ddfbc8"
   },
   {
    "type": "table",
    "columns": [
-    "The question gives you…",
-    "Go to"
+    "You have",
+    "You want",
+    "Do this"
    ],
    "rows": [
     [
-     "an experiment that matches no family",
-     "Case 1"
+     "an experiment",
+     "the PMF",
+     "**List** the outcomes → **Label** each with its $X$ → **Add** the chances per value → **Check** they add to $1$"
     ],
     [
-     "“$p_X(x)=c\\cdot(\\dots)$, find $c$”",
-     "Case 2"
+     "a PMF with an unknown $c$",
+     "$c$",
+     "**Find $c$:** add every chance, set the total to $1$, solve"
     ],
     [
-     "a CDF, or asks for one",
-     "Case 3"
+     "the PMF",
+     "the CDF",
+     "**Accumulate:** running total"
     ],
     [
-     "a story with a clue word (“on average”, “until”, “without replacement”)",
-     "Case 4"
-    ],
-    [
-     "“in exactly 3 of the next 8 years…”",
-     "Case 5"
+     "the CDF",
+     "the PMF",
+     "the **jump sizes** are the PMF"
     ]
    ],
-   "citations": [],
-   "id": "b59004af-f265-59b9-a2f1-3dc638b41afd"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 1: build the PMF from an experiment",
-   "citations": [],
-   "id": "5c2a1bf2-6d99-53d9-a104-6670f06dedd3"
-  },
-  {
-   "type": "paragraph",
-   "text": "**You’ll see:** coins, dice, chips, balls, but no family fits. “Find the PMF of $X$.”",
-   "citations": [],
-   "id": "25cad07f-1907-5404-9ab9-0ba27a0926be"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** list the outcomes, turn each into a number, and add up the chances of each number.",
-   "citations": [],
-   "id": "0e6d5daa-980d-5833-baeb-4376d932f39a"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**List** all the outcomes (equally likely? count them).",
-    "**Label** each outcome with its value of $X$.",
-    "**Add** the chances of outcomes with the same value.",
-    "**Check:** the PMF adds to $1$."
-   ],
-   "ordered": true,
    "citations": [
     {
      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
@@ -153,26 +156,94 @@
      "chunk_id": "00ea87ae-feb2-4f24-9135-68dc5e61ebf2"
     }
    ],
-   "id": "55eec641-554e-5805-8643-1b94510c6429"
+   "id": "64c041e6-464b-5377-9d8c-76eeaf25952a"
   },
   {
    "type": "paragraph",
-   "text": "**Short example:** 3 coins: $X=2$ for $hht$, $hth$, $thh$:",
+   "text": "**Any probability from the CDF** (**Rewrite** it with $F$’s):",
    "citations": [],
-   "id": "0de2386c-751f-5cfb-847c-27c2bccab846"
+   "id": "9910f983-f045-5321-93a7-d2f6ae2531e5"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Asked",
+    "Write it as"
+   ],
+   "rows": [
+    [
+     "$P(X\\le b)$",
+     "$F_X(b)$"
+    ],
+    [
+     "$P(X>a)$",
+     "$1-F_X(a)$"
+    ],
+    [
+     "$P(a<X\\le b)$",
+     "$F_X(b)-F_X(a)$"
+    ],
+    [
+     "$P(X=a)$",
+     "the jump at $a$ ($0$ if there’s no jump)"
+    ]
+   ],
+   "citations": [
+    {
+     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
+     "version": 1,
+     "chunk_id": "ffe2be55-a527-440d-89e9-8fa816005537"
+    }
+   ],
+   "id": "930a9e64-ada1-56af-a372-7b9c7667c94b"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Whole numbers: turn $<$ into $\\le$ first.** $P(X<4)=P(X\\le3)=F_X(3)$. For a discrete $X$, $<$ and $\\le$ give different answers.",
+   "citations": [],
+   "id": "5e7744fe-c1ee-5a75-a092-d04ae96eeb50"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Sums you’ll need for “find $c$”:** the geometric series ($|r|<1$) and the exponential series.",
+   "citations": [],
+   "id": "c05a60db-efc9-5ad2-8e00-434db3cb3f2a"
   },
   {
    "type": "equation",
-   "latex": "P(X=2)=\\frac18+\\frac18+\\frac18=\\frac38",
+   "latex": "\\sum_{k=0}^{\\infty}r^k=\\frac{1}{1-r},\\qquad \\sum_{k=1}^{\\infty}r^k=\\frac{r}{1-r},\\qquad \\sum_{k=0}^{\\infty}\\frac{\\lambda^k}{k!}=e^{\\lambda}",
    "display": true,
    "citations": [],
-   "id": "df55f44f-d49d-5cda-b807-69a465efc0e3"
+   "id": "bd4a3556-8a7a-5379-a12b-27f31c456448"
   },
   {
-   "type": "solution",
-   "title": "Full example (Lecture 7): toss a coin 3 times, $\\;X$ = number of heads",
-   "text": "Step 1 · **List:** $2^3=8$ equally likely outcomes, each $\\tfrac18$.\n\n$$\nhhh,\\ hht,\\ hth,\\ thh,\\ htt,\\ tht,\\ tth,\\ ttt\n$$\n\nStep 2 · **Label** each with its number of heads.\n\n$$\nX=3:\\ hhh\\qquad X=2:\\ hht,\\ hth,\\ thh\n$$\n\n$$\nX=1:\\ htt,\\ tht,\\ tth\\qquad X=0:\\ ttt\n$$\n\nStep 3 · **Add** the chances in each group.\n\n$$\np_X(0)=\\frac18,\\quad p_X(1)=\\frac38,\\quad p_X(2)=\\frac38,\\quad p_X(3)=\\frac18\n$$\n\nStep 4 · **Check.** (Practice 02 Q6, boys in a 3-child family, is the same question.)\n\n$$\n\\frac18+\\frac38+\\frac38+\\frac18=1\\ \\checkmark\n$$\n\n**Answer:**\n\n$$\np_X=\\frac18,\\ \\frac38,\\ \\frac38,\\ \\frac18\\ \\text{ for }x=0,1,2,3\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 1 · Build a PMF · 3 coins (Lecture 7)",
+   "prompt": "Toss a fair coin 3 times. $X$ = the number of heads. Find the PMF of $X$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** an experiment, no family named → build the PMF.",
+     "latex": ""
+    },
+    {
+     "explanation": "**List:** $2^3=8$ equally likely outcomes, each with chance $\\tfrac18$.",
+     "latex": "hhh,\\ hht,\\ hth,\\ thh,\\ htt,\\ tht,\\ tth,\\ ttt"
+    },
+    {
+     "explanation": "**Label** each outcome with its number of heads.",
+     "latex": "\\begin{gathered}X=3:\\ hhh\\qquad X=2:\\ hht,\\ hth,\\ thh\\\\ X=1:\\ htt,\\ tht,\\ tth\\qquad X=0:\\ ttt\\end{gathered}"
+    },
+    {
+     "explanation": "**Add** the chances in each group.",
+     "latex": "p_X(0)=\\frac18,\\quad p_X(1)=\\frac38,\\quad p_X(2)=\\frac38,\\quad p_X(3)=\\frac18"
+    },
+    {
+     "explanation": "**Check** they add to $1$.",
+     "latex": "\\frac18+\\frac38+\\frac38+\\frac18=1\\ \\checkmark"
+    }
+   ],
+   "answer": "$p_X=\\tfrac18,\\ \\tfrac38,\\ \\tfrac38,\\ \\tfrac18$ for $x=0,1,2,3$",
    "citations": [
     {
      "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
@@ -180,13 +251,35 @@
      "chunk_id": "381e054b-d711-4fff-8a08-f599a93371f1"
     }
    ],
-   "id": "859951e8-3ea3-5326-8172-e5b3735166ef"
+   "id": "d7127ca9-d843-5454-a9eb-1b7fd018c3e3"
   },
   {
-   "type": "solution",
-   "title": "Full example (Practice 02 Q5): the total of two chips",
-   "text": "Step 1 · 10 chips numbered 0–9; draw 2 without replacement; $S$ = their total. **List:** a pair of different chips, order doesn’t matter.\n\n$$\n\\binom{10}{2}=45\\ \\text{ equally likely pairs}\n$$\n\nStep 2 · **Label:** totals run from $0+1=1$ up to $8+9=17$. Count the pairs for each total. Example $S=9$:\n\n$$\n\\{0,9\\},\\{1,8\\},\\{2,7\\},\\{3,6\\},\\{4,5\\}\\quad\\Rightarrow\\quad 5\\text{ pairs}\n$$\n\nStep 3 · $S=10$: $\\{1,9\\},\\{2,8\\},\\{3,7\\},\\{4,6\\}$ (not $\\{5,5\\}$: one chip can’t be drawn twice).\n\n$$\n4\\text{ pairs}\n$$\n\nStep 4 · **Add:** the counts climb $1,1,2,2,3,3,4,4,5$ up to $S=9$, then fall back $4,4,3,3,2,2,1,1$.\n\n$$\np_S(s)=\\frac{\\text{pairs with total }s}{45},\\qquad p_S(9)=\\frac{5}{45}=\\frac19\n$$\n\nStep 5 · **Check.**\n\n$$\n1+1+2+2+3+3+4+4+5+4+4+3+3+2+2+1+1=45\\ \\checkmark\n$$\n\n**Answer:**\n\n$$\np_S(s)=\\frac{1}{45}\\times(1,1,2,2,3,3,4,4,5,4,4,3,3,2,2,1,1)\\ \\text{ for }s=1,\\dots,17\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 2 · Build a PMF · without replacement (Practice 02 Q5)",
+   "prompt": "10 chips are numbered $0$ to $9$. You draw 2 without replacement. $S$ = the total of the two numbers. Find the PMF of $S$.",
+   "steps": [
+    {
+     "explanation": "**List:** a pair of different chips, order doesn’t matter.",
+     "latex": "\\binom{10}{2}=45\\ \\text{ equally likely pairs}"
+    },
+    {
+     "explanation": "**Label:** totals run from $0+1=1$ up to $8+9=17$. Count the pairs for each total. For $S=9$:",
+     "latex": "\\{0,9\\},\\{1,8\\},\\{2,7\\},\\{3,6\\},\\{4,5\\}\\quad\\Rightarrow\\quad 5\\text{ pairs}"
+    },
+    {
+     "explanation": "For $S=10$: $\\{1,9\\},\\{2,8\\},\\{3,7\\},\\{4,6\\}$. Not $\\{5,5\\}$: one chip can’t be drawn twice.",
+     "latex": "4\\text{ pairs}"
+    },
+    {
+     "explanation": "**Add:** the counts climb $1,1,2,2,3,3,4,4,5$ up to $S=9$, then fall $4,4,3,3,2,2,1,1$. Divide by $45$.",
+     "latex": "p_S(s)=\\frac{\\text{pairs with total }s}{45},\\qquad p_S(9)=\\frac{5}{45}=\\frac19"
+    },
+    {
+     "explanation": "**Check:** the counts add up to all 45 pairs.",
+     "latex": "\\begin{gathered}1+1+2+2+3+3+4+4+5=25\\\\ 4+4+3+3+2+2+1+1=20\\\\ 25+20=45\\ \\checkmark\\end{gathered}"
+    }
+   ],
+   "answer": "$p_S(s)=\\tfrac{1}{45}\\times(1,1,2,2,3,3,4,4,5,4,4,3,3,2,2,1,1)$ for $s=1,\\dots,17$",
    "citations": [
     {
      "source_id": "369e3c07-a6c8-40d0-8b8c-41f2e6a3bc4b",
@@ -194,26 +287,23 @@
      "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
     }
    ],
-   "id": "c10b5631-b8cd-5c23-aedb-0e4ed88db199"
+   "id": "e5d8fd1e-9c25-5b84-9d3a-c8755a2c71af"
   },
   {
-   "type": "practice_problem",
-   "title": "Try it 1 · Case 1 · Larger of two dice",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "Two fair dice are rolled. Let $X$ be the **larger** of the two numbers. Find $P(X=x)$ for $x=1,\\dots,6$.",
-   "solution": "",
+   "type": "worked_example",
+   "title": "Example 3 · Build a PMF · larger of two dice",
+   "prompt": "Two fair dice are rolled. $X$ = the **larger** of the two numbers. Find $P(X=x)$ for $x=1,\\dots,6$.",
    "steps": [
     {
      "explanation": "**List:** $6\\cdot6=36$ equally likely pairs $(a,b)$.",
      "latex": "36\\text{ outcomes}"
     },
     {
-     "explanation": "**Label** $x=3$ as an example: $(1,3),(2,3),(3,3),(3,2),(3,1)$.",
-     "latex": "5\\text{ pairs}"
+     "explanation": "**Label** one value first, $x=3$: the pairs whose larger number is 3.",
+     "latex": "(1,3),\\ (2,3),\\ (3,3),\\ (3,2),\\ (3,1)\\quad\\Rightarrow\\quad 5\\text{ pairs}"
     },
     {
-     "explanation": "In general: $x$ pairs with $a=x$, plus $x$ with $b=x$, minus $(x,x)$ counted twice.",
+     "explanation": "In general: $x$ pairs with $a=x$, plus $x$ pairs with $b=x$, minus $(x,x)$ counted twice.",
      "latex": "2x-1\\text{ pairs}"
     },
     {
@@ -227,58 +317,27 @@
    ],
    "answer": "$P(X=x)=\\dfrac{2x-1}{36}$: $\\tfrac1{36},\\tfrac3{36},\\tfrac5{36},\\tfrac7{36},\\tfrac9{36},\\tfrac{11}{36}$",
    "citations": [],
-   "id": "eec831e2-f9e8-5d23-aebd-dc0dc0f39546"
+   "id": "b0590f7c-6528-5bdc-a753-7dba9b908020"
   },
   {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 2: find c (the chances add to 1)",
-   "citations": [],
-   "id": "2b57e657-b966-5779-90f6-2de857e434e8"
-  },
-  {
-   "type": "paragraph",
-   "text": "**You’ll see:** “$p_X(x)=c\\cdot(\\dots)$. Find $c$.”",
-   "citations": [],
-   "id": "2a0f5fbb-2cde-59b4-a79f-ab80da8eaa62"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** add up every chance, set it to $1$, solve. (Same as Question 2, with a sum instead of an area.)",
-   "citations": [],
-   "id": "529b0222-9bf6-5317-968e-08079cbeeef6"
-  },
-  {
-   "type": "equation",
-   "latex": "\\sum_{\\text{all }x}c\\cdot(\\dots)=1",
-   "display": true,
-   "citations": [
+   "type": "worked_example",
+   "title": "Example 4 · Find $c$ · a geometric series (Tutorial 3 Q2)",
+   "prompt": "$p_X(x)=c\\big(\\tfrac23\\big)^x$ for $x=1,2,3,\\dots$ Find $c$.",
+   "steps": [
     {
-     "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
-     "version": 1,
-     "chunk_id": "7f7f773c-8d78-4dc7-a28c-bc8cdc088ce9"
+     "explanation": "**Spot:** a PMF with an unknown $c$ → the chances must add to $1$.",
+     "latex": "\\sum_{x=1}^{\\infty}c\\Big(\\frac23\\Big)^x=1"
+    },
+    {
+     "explanation": "**Read off:** a geometric series starting at $x=1$, ratio $r=\\tfrac23$.",
+     "latex": "\\sum_{x=1}^{\\infty}r^x=\\frac{r}{1-r}=\\frac{2/3}{1-2/3}=2"
+    },
+    {
+     "explanation": "**Find $c$:** solve.",
+     "latex": "2c=1\\quad\\Longrightarrow\\quad c=\\frac12"
     }
    ],
-   "id": "66f0a246-0400-55fe-9f81-ccb392ab5b46"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Short example:** $p_X(x)=c(x+1)$ for $x=0,1,2,3$:",
-   "citations": [],
-   "id": "3ab80d2a-e024-5994-afb6-4dc8833986ee"
-  },
-  {
-   "type": "equation",
-   "latex": "c(1+2+3+4)=10c=1\\quad\\Longrightarrow\\quad c=\\frac1{10}",
-   "display": true,
-   "citations": [],
-   "id": "dad2b4b4-337f-5e28-8cf1-03ac85f58a5e"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Tutorial 3 Q2): $\\;p_X(x)=c\\big(\\tfrac23\\big)^x$, $\\;x=1,2,3,\\dots$",
-   "text": "Step 1 · **Find $c$:** add every chance.\n\n$$\n\\sum_{x=1}^{\\infty}c\\Big(\\frac23\\Big)^x=1\n$$\n\nStep 2 · Geometric series starting at $1$, ratio $r=\\tfrac23$ (card below).\n\n$$\n\\sum_{x=1}^{\\infty}\\Big(\\frac23\\Big)^x=\\frac{2/3}{1-2/3}=2\n$$\n\nStep 3 · Solve.\n\n$$\n2c=1\\quad\\Longrightarrow\\quad c=\\frac12\n$$\n\n**Answer:**\n\n$$\nc=\\frac12\n$$",
-   "collapsed": true,
+   "answer": "$c=\\tfrac12$",
    "citations": [
     {
      "source_id": "de4d1db1-eb13-4c83-9232-afdabb6c52fe",
@@ -286,91 +345,23 @@
      "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
     }
    ],
-   "id": "1585ca12-4759-5afa-8959-1830981281bf"
+   "id": "5d848f88-3974-5b32-b62f-6af982e9f9ed"
   },
   {
-   "type": "solution",
-   "title": "Sums you’ll need",
-   "text": "Geometric series ($|r|<1$), starting at $0$ or at $1$:\n\n$$\n\\sum_{k=0}^{\\infty}r^k=\\frac{1}{1-r},\\qquad \\sum_{k=1}^{\\infty}r^k=\\frac{r}{1-r}\n$$\n\nThe exponential series (it’s why the Poisson PMF adds to 1):\n\n$$\n\\sum_{k=0}^{\\infty}\\frac{\\lambda^k}{k!}=e^{\\lambda}\n$$",
-   "collapsed": true,
-   "citations": [],
-   "id": "f3d8aef6-a4e4-56b9-a5fa-fdbb94f59ec7"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 3: the CDF (a staircase)",
-   "citations": [],
-   "id": "4c2bb0b6-9895-5ae8-8adb-1842728d7d32"
-  },
-  {
-   "type": "paragraph",
-   "text": "**You’ll see:** “find the CDF”, “find the PMF from this CDF”, “find $P(a<X\\le b)$”.",
-   "citations": [],
-   "id": "d3101f9d-ac87-51ff-8685-6ced415e719f"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** the CDF is a **staircase**. It’s flat between values and **jumps by $p_X(x)$** at each value:",
-   "citations": [],
-   "id": "407e122b-b65f-5a0a-9e9c-2488f1342ae0"
-  },
-  {
-   "type": "equation",
-   "latex": "F_X(x)=P(X\\le x)=\\sum_{k\\le x}p_X(k)",
-   "display": true,
-   "citations": [
+   "type": "worked_example",
+   "title": "Example 5 · PMF → CDF · the 3-coin staircase (Lecture 9)",
+   "prompt": "$X$ = the number of heads in 3 tosses, with PMF $\\tfrac18,\\tfrac38,\\tfrac38,\\tfrac18$ at $0,1,2,3$. Find the CDF and $P(1<X\\le3)$.",
+   "steps": [
     {
-     "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
-     "version": 1,
-     "chunk_id": "38ff2542-662e-4214-b9df-ce346da8ab92"
+     "explanation": "**Accumulate:** start at $0$, then add each jump as you pass $0$, $1$, $2$, $3$.",
+     "latex": "F_X(x)=\\begin{cases}0,&x<0\\\\ \\frac18,&0\\le x<1\\\\ \\frac12,&1\\le x<2\\\\ \\frac78,&2\\le x<3\\\\ 1,&x\\ge3\\end{cases}"
+    },
+    {
+     "explanation": "**Rewrite** $P(1<X\\le3)$ as a difference of $F$’s.",
+     "latex": "P(1<X\\le3)=F_X(3)-F_X(1)=1-\\frac12=\\frac12"
     }
    ],
-   "id": "3a97c4f1-0916-5de8-b174-479b814becf2"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Accumulate** (PMF → CDF): keep a running total, adding each jump as you pass a value.",
-    "**Jumps** (CDF → PMF): the jump sizes are the PMF.",
-    "**Rewrite** the probability asked with $F$’s (card below)."
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "6630d65a-e3e2-5c41-833b-c7dbb4f5b751"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Short example:** 3 coins, the running total:",
-   "citations": [],
-   "id": "18061c52-d7dc-5b78-92df-5a6e68595153"
-  },
-  {
-   "type": "equation",
-   "latex": "0\\ \\to\\ \\frac18\\ \\to\\ \\frac12\\ \\to\\ \\frac78\\ \\to\\ 1",
-   "display": true,
-   "citations": [],
-   "id": "541b5726-fdb6-547b-8c47-b9bf769d6429"
-  },
-  {
-   "type": "solution",
-   "title": "Rewrite: turn any probability into $F$’s",
-   "text": "Up to $b$:\n\n$$\nP(X\\le b)=F_X(b)\n$$\n\nAbove $a$:\n\n$$\nP(X>a)=1-F_X(a)\n$$\n\nBetween:\n\n$$\nP(a<X\\le b)=F_X(b)-F_X(a)\n$$\n\nOne value: the jump there ($0$ if no jump).\n\n$$\nP(X=a)=\\text{jump at }a\n$$\n\n**For whole numbers, turn $<$ into $\\le$ first:**\n\n$$\nP(X<4)=P(X\\le3)=F_X(3)\n$$",
-   "collapsed": true,
-   "citations": [
-    {
-     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
-     "version": 1,
-     "chunk_id": "ffe2be55-a527-440d-89e9-8fa816005537"
-    }
-   ],
-   "id": "4b1662a6-6341-528a-90b7-314d9ce81fec"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Lecture 9): the CDF of the 3-coin count",
-   "text": "Step 1 · **Accumulate:** start at $0$, jump $\\tfrac18$ at $0$, $\\tfrac38$ at $1$, $\\tfrac38$ at $2$, $\\tfrac18$ at $3$.\n\n$$\nF_X(x)=\\begin{cases}0,&x<0\\\\ \\frac18,&0\\le x<1\\\\ \\frac12,&1\\le x<2\\\\ \\frac78,&2\\le x<3\\\\ 1,&x\\ge3\\end{cases}\n$$\n\nStep 2 · **Rewrite** $P(1<X\\le3)$.\n\n$$\nF_X(3)-F_X(1)=1-\\frac12=\\frac12\n$$\n\n**Answer:**\n\n$$\n\\text{a staircase }0\\to\\frac18\\to\\frac12\\to\\frac78\\to1\n$$",
-   "collapsed": true,
+   "answer": "the staircase above; $P(1<X\\le3)=\\tfrac12$",
    "citations": [
     {
      "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
@@ -378,19 +369,31 @@
      "chunk_id": "9da48eda-56cf-48d4-aabf-f344f0c3c9de"
     }
    ],
-   "id": "21d83926-4239-563c-a6bb-42dc024358f7"
+   "id": "d84bcb00-4da7-528a-813e-46e6c2aa50b2"
   },
   {
-   "type": "paragraph",
-   "text": "**What does it look like?** At each jump, the value is the **top** of the step (the dot).\n\n```graph\ntitle \"CDF of the number of heads in 3 tosses\"\nx -1 4.5 label=\"$x$\" height=240\ny 0 1.1 label=\"$F_X(x)$\"\nsegment \"-1\" \"0\" \"0\" \"0\" color=2\npoint \"0\" \"0.125\" color=2\nsegment \"0\" \"0.125\" \"1\" \"0.125\" color=2\npoint \"1\" \"0.5\" color=2\nsegment \"1\" \"0.5\" \"2\" \"0.5\" color=2\npoint \"2\" \"0.875\" color=2\nsegment \"2\" \"0.875\" \"3\" \"0.875\" color=2\npoint \"3\" \"1\" color=2\nsegment \"3\" \"1\" \"4.5\" \"1\" color=2\nhline \"1\"\ntext \"0.35\" \"0.2\" \"jump $\\tfrac18$\"\ntext \"1.4\" \"0.6\" \"jump $\\tfrac38$\"\n```",
-   "citations": [],
-   "id": "9b50cbe9-5d37-5598-8633-9b8337a70328"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Practice 03 Q9): from a CDF back to the PMF",
-   "text": "Step 1 · $F_X=0$ for $x<-3$, $\\tfrac38$ on $[-3,0)$, $\\tfrac34$ on $[0,6)$, $1$ for $x\\ge6$. It’s a staircase, so $X$ is **discrete**.\n\n$$\nX\\in\\{-3,\\ 0,\\ 6\\}\n$$\n\nStep 2 · **Jumps** = the PMF.\n\n$$\np_X(-3)=\\frac38,\\quad p_X(0)=\\frac34-\\frac38=\\frac38,\\quad p_X(6)=1-\\frac34=\\frac14\n$$\n\nStep 3 · **Rewrite** $P(-3<X\\le6)$.\n\n$$\nF_X(6)-F_X(-3)=1-\\frac38=\\frac58\n$$\n\nStep 4 · **Rewrite** $P(X<0)$: the step just left of $0$.\n\n$$\nP(X<0)=\\frac38\n$$\n\n**Answer:**\n\n$$\np_X=\\frac38,\\ \\frac38,\\ \\frac14\\ \\text{ at }-3,\\ 0,\\ 6\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 6 · CDF → PMF · read the jumps (Practice 03 Q9)",
+   "prompt": "$F_X(x)=0$ for $x<-3$, $\\tfrac38$ on $[-3,0)$, $\\tfrac34$ on $[0,6)$, and $1$ for $x\\ge6$. Find the PMF, $P(-3<X\\le6)$ and $P(X<0)$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** a staircase → $X$ is discrete. It jumps at $-3$, $0$, $6$.",
+     "latex": "X\\in\\{-3,\\ 0,\\ 6\\}"
+    },
+    {
+     "explanation": "The **jump sizes** are the PMF.",
+     "latex": "p_X(-3)=\\frac38,\\quad p_X(0)=\\frac34-\\frac38=\\frac38,\\quad p_X(6)=1-\\frac34=\\frac14"
+    },
+    {
+     "explanation": "**Rewrite** $P(-3<X\\le6)$.",
+     "latex": "F_X(6)-F_X(-3)=1-\\frac38=\\frac58"
+    },
+    {
+     "explanation": "**Rewrite** $P(X<0)$: the step just left of $0$.",
+     "latex": "P(X<0)=\\frac38"
+    }
+   ],
+   "answer": "$p_X=\\tfrac38,\\ \\tfrac38,\\ \\tfrac14$ at $-3,\\ 0,\\ 6$; $P(-3<X\\le6)=\\tfrac58$; $P(X<0)=\\tfrac38$",
    "citations": [
     {
      "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
@@ -398,51 +401,58 @@
      "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
     }
    ],
-   "id": "af3e7fdd-6673-53d1-b8e0-ee4b3396e798"
+   "id": "dc06ba55-56f4-5b56-852b-09cc9a82d700"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Case 4: a named family (spot the clue word)",
+   "text": "Topic 2: named families",
    "citations": [],
-   "id": "7f64d54f-a576-5141-b61c-b0454099c097"
+   "id": "af68bcea-a563-56b1-b1d0-22e3b274b176"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** a story. A clue word tells you the family; its PMF is ready-made. **Spot** the clue:",
+   "text": "Some stories follow a pattern. Then you don’t build the PMF: it’s ready-made. A **clue word** tells you which one.",
    "citations": [],
-   "id": "de177359-0aff-5162-88fd-2531cb83a0f8"
+   "id": "3f1ca9aa-463f-5c86-b315-f220452630bb"
   },
   {
    "type": "table",
    "columns": [
     "Clue in the question",
-    "Family"
+    "Family",
+    "PMF"
    ],
    "rows": [
     [
      "**one** yes/no try",
-     "Bernoulli"
+     "Bernoulli$(p)$",
+     "$P(1)=p,\\ P(0)=1-p$"
     ],
     [
      "**fixed number $n$** of tries, count successes",
-     "Binomial"
+     "Binomial$(n,p)$",
+     "$\\binom nk p^k(1-p)^{n-k}$, $k=0..n$"
     ],
     [
      "tries **until the first** success",
-     "Geometric"
+     "Geometric$(p)$",
+     "$(1-p)^{k-1}p$, $k=1,2,..$"
     ],
     [
      "tries **until the $r$-th** success",
-     "Negative Binomial"
+     "Negative Binomial$(r,p)$",
+     "$\\binom{k-1}{r-1}p^r(1-p)^{k-r}$, $k=r,r+1,..$"
     ],
     [
      "draw $n$ **without replacement**",
-     "Hypergeometric"
+     "Hypergeometric",
+     "$\\binom Kk\\binom{N-K}{n-k}\\big/\\binom Nn$"
     ],
     [
      "“**on average** $\\lambda$ per hour/page/year”",
-     "Poisson"
+     "Poisson$(\\lambda)$",
+     "$e^{-\\lambda}\\lambda^k/k!$, $k=0,1,2,..$"
     ]
    ],
    "citations": [
@@ -452,70 +462,222 @@
      "chunk_id": "e22c0106-b34e-4202-8360-b4f834ccb3da"
     }
    ],
-   "id": "902a6400-65da-51af-9e1b-2f699ee5606c"
+   "id": "50de509d-4773-51e5-9fb1-5c0bdc64346c"
+  },
+  {
+   "type": "paragraph",
+   "text": "**What the letters mean:**",
+   "citations": [],
+   "id": "d7e95782-1873-57cd-816b-385bdf0a409f"
   },
   {
    "type": "list",
    "items": [
-    "**Spot** the family and its numbers ($n$, $p$, $\\lambda$, …).",
-    "**Write** its PMF with those numbers.",
-    "**Plug in** $k$. “At least” → $1-$ (the few below)."
+    "$p$ = the chance one try “succeeds”. **Success** = whatever the question counts, even a bad thing (a wrong bit, a defect).",
+    "$n$ = how many tries (Binomial), or how many you grab (Hypergeometric).",
+    "$k$ = the value the question asks about: how many successes, which try, or how many arrivals.",
+    "$r$ = how many successes you wait for (Negative Binomial).",
+    "$N$ = items in the box, $K$ = the special ones in the box (Hypergeometric).",
+    "$\\lambda$ = the average count **for the time window asked** (Poisson)."
    ],
-   "ordered": true,
+   "ordered": false,
    "citations": [],
-   "id": "bcd082d8-17f0-5cd9-a9e1-f389f4f49d2c"
+   "id": "c8be425d-2ae6-5118-b6b6-9486456489dc"
   },
   {
    "type": "paragraph",
-   "text": "Open a card for the formula and a short example:",
+   "text": "**The steps, every time:**",
    "citations": [],
-   "id": "b9afcc16-2b30-5afa-9d10-e56bb9ebc7ea"
+   "id": "acfdf9cf-683c-5176-9780-0edbd02262f8"
   },
   {
-   "type": "solution",
-   "title": "Bernoulli$(p)$: $\\;P(1)=p$, $\\;P(0)=1-p$",
-   "text": "One yes/no try. Example: is the first of 12 accidents on June 13?\n\n$$\nP(Y=1)=\\frac1{30},\\qquad P(Y=0)=\\frac{29}{30}\n$$",
-   "collapsed": true,
+   "type": "list",
+   "items": [
+    "**Spot** the family from the clue word.",
+    "**Read off** its numbers from the story ($n=\\dots$, $p=\\dots$, $k=\\dots$).",
+    "**Plug in** to the PMF."
+   ],
+   "ordered": true,
    "citations": [],
-   "id": "5c2fb8f8-825e-5d31-959c-198dd9e05a43"
+   "id": "e95290c9-550c-5431-88b4-5cc1742dbd7b"
   },
   {
-   "type": "solution",
-   "title": "Binomial$(n,p)$: $\\;\\dbinom nk\\,p^k(1-p)^{n-k}$, $\\;k=0,\\dots,n$",
-   "text": "$n$ independent tries, count the successes. Example: 8 bits, each wrong with $p=0.1$, exactly 1 wrong:\n\n$$\n\\binom81(0.1)(0.9)^7\\approx0.3826\n$$\n\n$\\binom nk$ = “choose $k$ of $n$”, the only counting you need. On the Casio: `n nCr k`.\n\n$$\n\\binom{8}{1}=8,\\qquad \\binom{10}{2}=45\n$$\n\nWith replacement → Binomial. Without → Hypergeometric.",
-   "collapsed": true,
+   "type": "paragraph",
+   "text": "**Three shortcuts:**",
    "citations": [],
-   "id": "3d689441-d8b0-555b-b46d-edfa924cddff"
+   "id": "547ee200-a0b7-5fa1-bb72-be12d93190b9"
   },
   {
-   "type": "solution",
-   "title": "Geometric$(p)$: $\\;(1-p)^{k-1}p$, $\\;k=1,2,\\dots$",
-   "text": "Tries until the first success: $k-1$ failures, then a success. Example: each try works with $0.2$; succeed on try 3:\n\n$$\n(0.8)^2(0.2)=0.128\n$$\n\nShortcut: “more than $k$ tries” = the first $k$ all failed.\n\n$$\nP(X>k)=(1-p)^k\n$$",
-   "collapsed": true,
+   "type": "list",
+   "items": [
+    "**At least one** = one minus none: $P(X\\ge1)=1-P(X=0)$.",
+    "**At least $m$** = one minus the few below: $P(X\\ge4)=1-\\big[P(0)+P(1)+P(2)+P(3)\\big]$.",
+    "**Geometric, more than $k$ tries** = the first $k$ all failed: $P(X>k)=(1-p)^k$."
+   ],
+   "ordered": false,
    "citations": [],
-   "id": "9c0dd0b0-1bc8-5958-a945-10ef1a26c584"
+   "id": "043447ad-7735-58ac-9d7d-e6f467593b2d"
   },
   {
-   "type": "solution",
-   "title": "Negative Binomial$(r,p)$: $\\;\\dbinom{k-1}{r-1}p^r(1-p)^{k-r}$, $\\;k=r,r+1,\\dots$",
-   "text": "Tries until the $r$-th success. The **last** try is a success; $\\binom{k-1}{r-1}$ picks where the other $r-1$ go among the first $k-1$.\n\nExample: free throws with $0.7$; the 3rd basket on shot 5.\n\n$$\n\\binom42(0.7)^3(0.3)^2\\approx0.1852\n$$",
-   "collapsed": true,
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Poisson: scale $\\lambda$ to the time asked.** 7 per week, a question about one day → $\\lambda=1$. **With replacement** → Binomial; **without** → Hypergeometric.",
    "citations": [],
-   "id": "0b212b80-56da-56ed-a3b9-fd437b42ed14"
+   "id": "5887f9f4-cb48-5a69-a1f7-67cae4fdc57d"
   },
   {
-   "type": "solution",
-   "title": "Hypergeometric: $\\;\\dfrac{\\binom Kk\\binom{N-K}{n-k}}{\\binom Nn}$",
-   "text": "Draw $n$ from $N$ without replacement, $K$ of them “good”. Pick $k$ good **and** $n-k$ bad.\n\nExample: 10 chips, 3 defective, choose 4. Exactly 1 defective:\n\n$$\n\\frac{\\binom31\\binom73}{\\binom{10}{4}}=\\frac{3\\cdot35}{210}=\\frac12\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 7 · Bernoulli · one free throw",
+   "prompt": "You take **one** free throw and make it with chance $0.7$. $Y=1$ if you make it, $0$ if you miss. Find the PMF of $Y$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** one yes/no try → Bernoulli. $p$ = the chance the one try succeeds.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Read off:**",
+     "latex": "p=0.7"
+    },
+    {
+     "explanation": "**Plug in:**",
+     "latex": "P(Y=1)=0.7,\\qquad P(Y=0)=1-0.7=0.3"
+    }
+   ],
+   "answer": "$P(Y=1)=0.7$, $P(Y=0)=0.3$",
    "citations": [],
-   "id": "51c607f2-aa37-5eeb-9966-61f757c8cd3f"
+   "id": "d29ae498-deb3-570c-926b-dd0181d8e199"
   },
   {
-   "type": "solution",
-   "title": "Poisson$(\\lambda)$: $\\;e^{-\\lambda}\\dfrac{\\lambda^k}{k!}$, $\\;k=0,1,2,\\dots$",
-   "text": "“On average $\\lambda$ per …”. **Scale $\\lambda$ to the time asked.** Example (Lecture 8): 4 emails per hour, exactly 3 next hour:\n\n$$\nP(X=3)=e^{-4}\\frac{4^3}{3!}\\approx0.1954\n$$\n\nSame rate, a 30-minute window: $\\lambda=2$.\n\n$$\nP(X=0)=e^{-2}\\approx0.1353\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 8 · Binomial · wrong bits",
+   "prompt": "You send $8$ bits. Each one arrives wrong with chance $0.1$, independently. $X$ = how many arrive wrong. Find $P(X=1)$, exactly one wrong.",
+   "steps": [
+    {
+     "explanation": "**Spot:** a fixed number of tries (8 bits), count the successes (“wrong”) → Binomial.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Read off:** $n$ = tries, $p$ = chance of a wrong bit, $k$ = how many wrong we want.",
+     "latex": "n=8,\\qquad p=0.1,\\qquad k=1"
+    },
+    {
+     "explanation": "**Plug in:**",
+     "latex": "\\binom81(0.1)^1(0.9)^{7}=8(0.1)(0.9)^7\\approx0.3826"
+    },
+    {
+     "explanation": "Why it works: $\\binom81=8$ picks **which** bit is wrong, $(0.1)^1$ is that bit going wrong, $(0.9)^7$ is the other 7 being fine.",
+     "latex": ""
+    }
+   ],
+   "answer": "$P(X=1)\\approx 0.3826$",
+   "citations": [],
+   "id": "8530e74a-f13a-585b-91b3-d6c5e2544d53"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 9 · Geometric · retransmit until it works",
+   "prompt": "A packet is sent again and again until one gets through. Each try works with chance $0.2$, independently. $X$ = the try that finally works. Find $P(X=3)$ and $P(X>3)$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** “until it works” → Geometric.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Read off:** $p$ = the chance one try works, $k$ = the try where the first success happens.",
+     "latex": "p=0.2,\\qquad k=3"
+    },
+    {
+     "explanation": "**Plug in:** try 1 fails, try 2 fails, try 3 works.",
+     "latex": "(1-0.2)^{3-1}(0.2)=(0.8)^2(0.2)=0.128"
+    },
+    {
+     "explanation": "$X>3$ means the first 3 tries all failed (shortcut).",
+     "latex": "P(X>3)=(0.8)^3=0.512"
+    }
+   ],
+   "answer": "$P(X=3)=0.128$, $P(X>3)=0.512$",
+   "citations": [],
+   "id": "e7267a98-1a5e-5051-bc7a-92ee646ab793"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 10 · Negative Binomial · the 3rd basket",
+   "prompt": "Each free throw goes in with chance $0.7$. $X$ = the shot where you make your **3rd** basket. Find $P(X=5)$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** “until the 3rd success” → Negative Binomial.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Read off:** $r$ = successes you wait for, $p$ = chance per shot, $k$ = the shot where the 3rd one lands.",
+     "latex": "r=3,\\qquad p=0.7,\\qquad k=5"
+    },
+    {
+     "explanation": "**Plug in:**",
+     "latex": "\\binom{5-1}{3-1}(0.7)^3(0.3)^{5-3}=\\binom42(0.7)^3(0.3)^2\\approx0.1852"
+    },
+    {
+     "explanation": "Why it works: shot 5 must be the 3rd basket, so the first 4 shots hold the other 2. $\\binom42=6$ ways to place them; 3 baskets at $0.7$, 2 misses at $0.3$.",
+     "latex": ""
+    }
+   ],
+   "answer": "$P(X=5)\\approx 0.1852$",
+   "citations": [],
+   "id": "aeb0cdba-0314-5d5d-ba36-34d71497277b"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 11 · Hypergeometric · defective chips",
+   "prompt": "A box has 10 chips, 3 of them defective. You grab 4 (no putting back). $X$ = how many of your 4 are defective. Find $P(X=1)$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** grab without replacement → Hypergeometric. “Defective” is the special kind.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Read off:** $N$ = chips in the box, $K$ = defective ones in the box, $n$ = how many you grab, $k$ = defective ones we want in the grab.",
+     "latex": "N=10,\\qquad K=3,\\qquad n=4,\\qquad k=1"
+    },
+    {
+     "explanation": "**Plug in:**",
+     "latex": "\\frac{\\binom31\\binom{10-3}{4-1}}{\\binom{10}{4}}=\\frac{\\binom31\\binom73}{\\binom{10}{4}}=\\frac{3\\cdot35}{210}=\\frac12"
+    },
+    {
+     "explanation": "Why it works: top = pick 1 of the 3 defective **and** 3 of the 7 good. Bottom = every possible grab of 4.",
+     "latex": ""
+    }
+   ],
+   "answer": "$P(X=1)=\\tfrac12$",
+   "citations": [],
+   "id": "66012652-be9c-5cd5-8058-6a47fbd4122d"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 12 · Poisson · emails per hour (Lecture 8)",
+   "prompt": "Emails arrive at 4 per hour on average. (a) Find the chance of exactly 3 emails in the next hour. (b) Find the chance of no emails in the next 30 minutes.",
+   "steps": [
+    {
+     "explanation": "**Spot:** “on average … per hour” → Poisson.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) **Read off:** the window is one hour, so $\\lambda=4$. $k$ = the count asked.",
+     "latex": "\\lambda=4,\\qquad k=3"
+    },
+    {
+     "explanation": "**Plug in:**",
+     "latex": "P(X=3)=e^{-4}\\frac{4^3}{3!}\\approx0.1954"
+    },
+    {
+     "explanation": "(b) **Read off:** half the window → half the average.",
+     "latex": "\\lambda=2,\\qquad k=0"
+    },
+    {
+     "explanation": "**Plug in:**",
+     "latex": "P(X=0)=e^{-2}\\frac{2^0}{0!}=e^{-2}\\approx0.1353"
+    }
+   ],
+   "answer": "(a) $\\approx 0.1954$ (b) $\\approx 0.1353$",
    "citations": [
     {
      "source_id": "bc634ee4-8053-4faf-8b88-b77a1013feb7",
@@ -523,117 +685,61 @@
      "chunk_id": "35f81dc1-57b9-47ae-94e4-fda09f9d0fb7"
     }
    ],
-   "id": "583c6b9f-f22f-597a-912d-1d247733569e"
+   "id": "52981f61-552f-581a-a037-523e34e90315"
   },
   {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Poisson: scale $\\lambda$ to the time asked.** 7 per week, a question about one day → $\\lambda=1$.",
-   "citations": [],
-   "id": "859524d0-27f3-5ea6-b2e2-19a19316e36d"
-  },
-  {
-   "type": "solution",
-   "title": "Shortcut: “at least” → one minus the rest",
-   "text": "At least one:\n\n$$\nP(X\\ge1)=1-P(X=0)\n$$\n\nAt least 4 (Binomial, Poisson): subtract the few values below.\n\n$$\nP(X\\ge4)=1-\\big[P(0)+P(1)+P(2)+P(3)\\big]\n$$",
-   "collapsed": true,
-   "citations": [],
-   "id": "cdcd3498-6bfd-54c8-bd70-471c5efd0ab0"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 2 · Case 4 · Retransmit until it works",
-   "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "A packet is sent again and again until one gets through. Each try works with probability $0.2$, independently. $X$ = number of tries. Find $P(X=3)$ and $P(X>3)$.",
-   "solution": "",
+   "type": "worked_example",
+   "title": "Example 13 · Two families in one question · clean pages",
+   "prompt": "Typos follow a Poisson law, on average 2 per page. Find the chance that **exactly 1 of the next 5 pages** has no typos.",
    "steps": [
     {
-     "explanation": "**Spot:** “until it works” → Geometric, $p=0.2$.",
+     "explanation": "**Spot:** two layers. **Inside**, one page is Poisson. **Outside**, each page is a yes/no try: clean or not.",
      "latex": ""
     },
     {
-     "explanation": "**Write** the PMF.",
-     "latex": "P(X=k)=(0.8)^{k-1}(0.2)"
+     "explanation": "**Inside:** the chance one page is clean is Poisson with $\\lambda=2$, $k=0$. Call it $q$.",
+     "latex": "q=e^{-2}\\frac{2^0}{0!}=e^{-2}\\approx0.1353"
     },
     {
-     "explanation": "**Plug in** $k=3$: fail, fail, work.",
-     "latex": "P(X=3)=(0.8)^2(0.2)=0.128"
+     "explanation": "**Outside:** 5 pages, count the clean ones → Binomial. **Read off:**",
+     "latex": "n=5,\\qquad p=q,\\qquad k=1"
     },
     {
-     "explanation": "$X>3$: the first 3 all failed (shortcut).",
-     "latex": "P(X>3)=(0.8)^3=0.512"
+     "explanation": "**Plug in:**",
+     "latex": "\\binom51\\,q\\,(1-q)^4\\approx0.3782"
+    },
+    {
+     "explanation": "If the question asked for the **first** clean page instead, the outside would be Geometric$(q)$.",
+     "latex": ""
     }
    ],
-   "answer": "$P(X=3)=0.128$, $P(X>3)=0.512$",
+   "answer": "$\\approx 0.3782$",
    "citations": [],
-   "id": "6600ca47-dcd3-5a2f-b021-37bc3bef70e9"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 5: two families in one question",
-   "citations": [],
-   "id": "76f3c300-a9dc-5867-b175-aee9d5ddbac9"
-  },
-  {
-   "type": "paragraph",
-   "text": "**You’ll see:** “in exactly 3 of the next 8 years…”, “the first day with no…”.",
-   "citations": [],
-   "id": "4dfee76b-50ff-5042-8f27-045934861d76"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** one family **inside** gives the chance $q$ that a single year/day/page is “good”. Then **outside**, each year is a yes/no try with chance $q$.",
-   "citations": [],
-   "id": "4c3c7ce3-15bf-50bd-9ccf-df12cc3774fc"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Inside:** use the first family (often Poisson with $k=0$) to get $q$.",
-    "**Outside:** count the good ones → Binomial$(n,q)$. Wait for the first → Geometric$(q)$."
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "958effea-5b41-5743-ba87-3ab7dcd4f144"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Short example:** typos are Poisson, 2 per page. A page is clean with $q=e^{-2}$. Exactly 1 of 5 pages clean:",
-   "citations": [],
-   "id": "3337a7bd-aa7c-52dd-a517-0ef9b4a36068"
-  },
-  {
-   "type": "equation",
-   "latex": "\\binom51\\,q\\,(1-q)^4,\\qquad q=e^{-2}",
-   "display": true,
-   "citations": [],
-   "id": "90ff9490-6097-5a96-a3f5-180c0cd5ba5b"
+   "id": "980c482f-5047-50e5-898e-18b25b3acef0"
   },
   {
    "type": "heading",
    "level": 1,
    "text": "Practice Questions",
    "citations": [],
-   "id": "c3f90ed3-0ac6-50f1-9e70-9c735cce71da"
+   "id": "e5482b99-cec9-56d3-8836-9bcade65cdec"
   },
   {
    "type": "callout",
    "tone": "tip",
-   "text": "**Question 1 is always these cases, in parts (a), (b), (c).** Spot the case, run its steps:\n\n1. **No family:** List → Label → Add → Check.\n2. **A $c$:** add every chance, set it to $1$.\n3. **CDF:** running total; jumps = the PMF; $P(a<X\\le b)=F(b)-F(a)$; whole numbers: $<$ → $\\le$.\n4. **Clue word:** Spot → Write → Plug in. Scale Poisson’s $\\lambda$. “At least” → $1-$ the rest.\n5. **Two families:** Inside gives $q$, Outside is Binomial or Geometric.",
+   "text": "**Question 1 is always these, in parts (a), (b), (c).** Spot which kind, then run its steps:\n\n1. **Build a PMF** (no family): List → Label → Add → Check.\n2. **Find $c$:** add every chance, set it to $1$.\n3. **CDF:** running total; jumps = the PMF; $P(a<X\\le b)=F(b)-F(a)$; whole numbers: $<$ → $\\le$.\n4. **Named family:** Spot → Read off → Plug in. Scale Poisson’s $\\lambda$. “At least” → $1-$ the rest.\n5. **Two families:** Inside gives $q$, Outside is Binomial or Geometric.",
    "citations": [],
-   "id": "66131a34-df98-539c-99cf-cb491e775ab8"
+   "id": "613020c4-8229-50e6-8f5d-e4d701cf0c75"
   },
   {
    "type": "paragraph",
    "text": "Test-style, easy → hard. Solve on paper first, then open the solution.",
    "citations": [],
-   "id": "a66a47d7-9643-54d1-87ce-5d47bf3a45e1"
+   "id": "d3282675-644d-5f3c-a689-843fe06fb5dd"
   },
   {
    "type": "practice_problem",
-   "title": "Question 1 · Case 4 (Poisson) · Tutorial 3 Q3, Q5",
+   "title": "Question 1 · Named family (Poisson) · Tutorial 3 Q3, Q5",
    "difficulty": "introductory",
    "origin": "source",
    "prompt": "A mail-order house gets on average **7 wrong-number calls per week** (Poisson). Find the probability that tomorrow they get (a) exactly two wrong-number calls, (b) at least one. (c) A book has on average one typo every **three pages** (Poisson). Find the chance a given page has at least one typo.",
@@ -664,11 +770,11 @@
      "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
     }
    ],
-   "id": "9e3d2310-c5a2-55bf-a2bf-936d5a3314fc"
+   "id": "9b6985bd-fddf-5daf-8695-cf4b03a02fcc"
   },
   {
    "type": "practice_problem",
-   "title": "Question 2 · Case 1 · with and without replacement · like Practice 01 Q7",
+   "title": "Question 2 · Build a PMF · with and without replacement · like Practice 01 Q7",
    "difficulty": "introductory",
    "origin": "source",
    "prompt": "An urn has 2 black balls and 1 white ball. Two balls are drawn one after the other. $X$ = number of black balls drawn. Find the PMF of $X$ (a) **without** replacement, (b) **with** replacement. (c) Which one is a named family?",
@@ -703,11 +809,11 @@
      "chunk_id": "0a97238a-a1ac-4761-90a7-c16e251c64b8"
     }
    ],
-   "id": "550c6e00-4bf5-5631-bb97-78ad015c03a3"
+   "id": "85ab6c1d-64f4-5f55-9ea6-baa4ac45d6c4"
   },
   {
    "type": "practice_problem",
-   "title": "Question 3 · Case 2 + 3 · find $c$, then the CDF",
+   "title": "Question 3 · PMF and CDF · find $c$, then the CDF",
    "difficulty": "intermediate",
    "origin": "original",
    "prompt": "(a) $p_X(x)=c\\,(x+1)$ for $x=0,1,2,3$. Find $c$, then $F_X(1.5)$ and $P(X\\ge2)$. (b) $p_X(k)=c\\,\\dfrac{3^k}{k!}$ for $k=0,1,2,\\dots$ Find $c$. Which family is this?",
@@ -736,11 +842,11 @@
    ],
    "answer": "(a) $c=\\tfrac1{10}$, $F_X(1.5)=0.3$, $P(X\\ge2)=0.7$ (b) $c=e^{-3}$, Poisson$(3)$",
    "citations": [],
-   "id": "134fcaff-8bf4-5748-a5c0-941c61cf9f72"
+   "id": "ba2401ad-3cc9-5717-8959-415c18dcc6da"
   },
   {
    "type": "practice_problem",
-   "title": "Question 4 · Case 3 · CDF → PMF",
+   "title": "Question 4 · PMF and CDF · CDF → PMF",
    "difficulty": "intermediate",
    "origin": "original",
    "prompt": "$X$ has CDF\n\n$$\nF_X(x)=\\begin{cases}0,&x<1\\\\ 0.2,&1\\le x<2\\\\ 0.5,&2\\le x<4\\\\ 1,&x\\ge4\\end{cases}\n$$\n\nFind (a) the PMF, (b) $P(X<4)$, (c) $P(1<X\\le4)$, (d) $P(X>2)$, (e) $P(X=3)$.",
@@ -769,11 +875,11 @@
    ],
    "answer": "(a) $0.2,0.3,0.5$ at $1,2,4$ (b) $0.5$ (c) $0.8$ (d) $0.5$ (e) $0$",
    "citations": [],
-   "id": "df60624c-c1b6-576c-ad84-d7974266a8ad"
+   "id": "9e29bb6f-732e-5714-953f-a7a7de6bc99e"
   },
   {
    "type": "practice_problem",
-   "title": "Question 5 · Case 4 (Hypergeometric) · Lecture 7",
+   "title": "Question 5 · Named family (Hypergeometric) · Lecture 7",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "You get 7 cards from a 52-card deck, without replacement. $X$ = number of queens. Find $P(X=k)$ for $k=0,1,2,3,4$, and $P(X\\ge1)$.",
@@ -804,11 +910,11 @@
      "chunk_id": "611cfbf9-c4f5-41a0-9a08-2ae0fb70879a"
     }
    ],
-   "id": "ee93e368-db6a-5b07-9020-f7c287a95111"
+   "id": "5e5f6529-b8d2-5a38-b942-4aadbae1fc53"
   },
   {
    "type": "practice_problem",
-   "title": "Question 6 · Case 4 (Binomial, Bernoulli) · Tutorial 3 Q7",
+   "title": "Question 6 · Named family (Binomial, Bernoulli) · Tutorial 3 Q7",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "A town had 12 accidents in June (30 days). Each accident is equally likely to be on any day, independently. (a) Let $Y=1$ if the first accident is on June 13, else $Y=0$. Name the family of $Y$ and give its PMF. (b) Find the probability that **at least 4** of the 12 fall on June 13.",
@@ -839,11 +945,11 @@
      "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
     }
    ],
-   "id": "27666253-6131-5fa6-bc89-9362b4b140f8"
+   "id": "d2de4640-2f0c-5b11-ad9f-f9d70b6eff1e"
   },
   {
    "type": "practice_problem",
-   "title": "Question 7 · Case 1 · toss until a head, at most 4 tosses",
+   "title": "Question 7 · Build a PMF · toss until a head, at most 4 tosses",
    "difficulty": "intermediate",
    "origin": "original",
    "prompt": "A coin with $P(H)=p$ is tossed until the first head **or** until 4 tosses have been made. (a) Write the sample space. (b) Let $X$ = number of tosses. Find the PMF of $X$. (c) Evaluate it for $p=\\tfrac12$.",
@@ -868,11 +974,11 @@
    ],
    "answer": "$p,\\ (1-p)p,\\ (1-p)^2p,\\ (1-p)^3$; for $p=\\tfrac12$: $\\tfrac12,\\tfrac14,\\tfrac18,\\tfrac18$.",
    "citations": [],
-   "id": "a39af9b8-51a1-5dee-9e5e-f3fd22b1177b"
+   "id": "58f71922-30cf-5296-8ce7-9b34d0120be8"
   },
   {
    "type": "practice_problem",
-   "title": "Question 8 · Case 4 (Negative Binomial)",
+   "title": "Question 8 · Named family (Negative Binomial)",
    "difficulty": "intermediate",
    "origin": "original",
    "prompt": "A player makes each free throw with probability $0.7$, independently. $X$ = number of shots needed to make **3** baskets. (a) Name the family. (b) Find $P(X=5)$. (c) Find $P(X\\le4)$. (d) Compare: the chance of exactly 3 baskets in 5 shots.",
@@ -901,11 +1007,11 @@
    ],
    "answer": "(a) NB$(3,0.7)$ (b) $\\approx 0.1852$ (c) $\\approx 0.6517$ (d) $\\approx 0.3087$",
    "citations": [],
-   "id": "9240d316-e3a1-5f48-aab2-f4a9421b0eb3"
+   "id": "98e07fbe-ad79-5921-806b-dccefbf70543"
   },
   {
    "type": "practice_problem",
-   "title": "Question 9 · Case 4 + 3 (Geometric and its CDF) · Practice 03 Q7",
+   "title": "Question 9 · Named family + CDF (Geometric) · Practice 03 Q7",
    "difficulty": "advanced",
    "origin": "source",
    "prompt": "$N\\sim$ Geometric$(p)$, so $P(N=k)=(1-p)^{k-1}p$ for $k=1,2,\\dots$ (a) Find $P(N>k)$. (b) Find the CDF of $N$. (c) Find $P(N\\text{ is even})$. (d) Find $P(N=k\\mid N\\le m)$.",
@@ -936,11 +1042,11 @@
      "chunk_id": "1f2ee630-5190-42fa-a945-2d6fdf2e12c0"
     }
    ],
-   "id": "86569dd3-5f6a-5bed-aa6f-237d3f53ac4f"
+   "id": "54b389d3-3043-5448-a6ae-6e21ec1179e9"
   },
   {
    "type": "practice_problem",
-   "title": "Question 10 · Case 5 (Poisson → Binomial, Geometric) · Tutorial 3 Q6",
+   "title": "Question 10 · Two families (Poisson → Binomial, Geometric) · Tutorial 3 Q6",
    "difficulty": "advanced",
    "origin": "source",
    "prompt": "Earthquakes: on average 7 per year (Poisson). (a) Find the probability of no earthquakes in one year. (b) Find the probability that **exactly three of the next eight years** have no earthquakes. (c) Find the probability that the **first** quiet year is year 3.",
@@ -967,7 +1073,7 @@
      "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
     }
    ],
-   "id": "6f7158a1-5b2c-5f1b-ada0-03b20bfb1166"
+   "id": "7c503ddf-15e8-5ec5-ae46-4bf99b8bfa5e"
   }
  ]
 }

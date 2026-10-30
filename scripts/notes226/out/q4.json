@@ -10,7 +10,7 @@
  "blocks": [
   {
    "type": "paragraph",
-   "text": "**Lectures 12–15 · Tutorial 6.** You know $X$. Find the CDF and PDF of a new random variable $Y=g(X)$.",
+   "text": "**Lectures 12–15 · Tutorial 6.** **Question 4 asks:** you know $X$. Find the CDF and PDF (or PMF) of a new random variable $Y=g(X)$. For example, $X\\sim U(-1,1)$ and $Y=X^3$.",
    "citations": [
     {
      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
@@ -33,109 +33,49 @@
      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
     }
    ],
-   "id": "d988c15b-2fea-544d-a9dd-42a1a256b5ef"
+   "id": "62a9d509-7f7c-5615-a1af-180dd5e78f4b"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Question 4 in plain words",
+   "text": "Topic 1: what type is Y, and discrete Y",
    "citations": [],
-   "id": "a0abaad4-5579-5777-a893-a932f68eb824"
+   "id": "662b590e-dd5c-5662-b644-adbd4eaef509"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** “$X$ is … Find the CDF and PDF of $Y=g(X)$.” For example:",
+   "text": "**First, look at $X$ and $g$.** They tell you what kind of answer to give:",
    "citations": [],
-   "id": "d7abd643-913d-5a04-813a-1c51d3af4623"
-  },
-  {
-   "type": "equation",
-   "latex": "X\\sim U(-1,1),\\qquad Y=X^3",
-   "display": true,
-   "citations": [],
-   "id": "c5ca396b-be28-594e-b7e2-0539af5efd9a"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move: always go through the CDF.** Three steps, every time:",
-   "citations": [],
-   "id": "4b46b1d1-c48f-5078-8f38-350109100ffc"
-  },
-  {
-   "type": "equation",
-   "latex": "\\text{Range}\\ \\longrightarrow\\ F_Y(y)=P\\big(g(X)\\le y\\big)\\ \\longrightarrow\\ f_Y(y)=\\frac{d}{dy}F_Y(y)",
-   "display": true,
-   "citations": [],
-   "id": "77608268-fba9-5edc-9868-f7f986c82a28"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Range:** where can $Y$ land? Below that, $F_Y=0$. Above it, $F_Y=1$.",
-    "**Accumulate:** rewrite “$g(X)\\le y$” as a statement about $X$, then use $X$’s CDF.",
-    "**Differentiate:** the PDF is the slope of the CDF."
-   ],
-   "ordered": false,
-   "citations": [],
-   "id": "dcc466f7-7cdd-5aab-9e5a-423921098f6f"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Which case?** Look at the shape of $g$:",
-   "citations": [],
-   "id": "8d9208ac-7899-56a8-908c-ea9ff299fa0a"
+   "id": "1101d34c-f359-5f9c-995e-2d02b3d4fc45"
   },
   {
    "type": "table",
    "columns": [
-    "$g$ looks like",
-    "Example",
-    "Go to"
+    "When",
+    "$Y$ is",
+    "Answer with",
+    "Example"
    ],
    "rows": [
     [
      "$X$ discrete, or $g$ a staircase",
-     "$X^2$ of a die",
-     "Case 1"
+     "**discrete**",
+     "a PMF (this topic)",
+     "$X^2$ of a die"
     ],
     [
-     "only goes up",
-     "$X^3$, $e^X$",
-     "Case 2"
+     "$X$ continuous, $g$ never flat",
+     "**continuous**",
+     "a CDF and a PDF (Topic 2)",
+     "$X^3$, $e^X$"
     ],
     [
-     "only goes down",
-     "$-3X+2$, $-\\ln X$",
-     "Case 3"
-    ],
-    [
-     "turns around",
-     "$X^2$, $|X|$, $\\cos X$",
-     "Case 4"
-    ],
-    [
-     "goes flat somewhere",
-     "$\\max\\{X,0\\}$",
-     "Case 5"
+     "$X$ continuous, $g$ flat somewhere",
+     "**mixed**",
+     "a CDF with a jump (Extras)",
+     "$\\max\\{X,0\\}$"
     ]
    ],
-   "citations": [],
-   "id": "c2b95e5e-8cd9-5ae2-a5b3-10b6346c7924"
-  },
-  {
-   "type": "paragraph",
-   "text": "**First, spot what type $Y$ is.** It tells you what the answer looks like:",
-   "citations": [],
-   "id": "4517727c-33c2-5798-a2b0-2b43ce6d7f43"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Discrete** (a PMF): $X$ discrete, or $g$ a staircase. Example: a 1-bit converter, $B=0$ or $1$.",
-    "**Continuous** (a PDF): $X$ continuous and $g$ has no flat piece. Example: $X^3$.",
-    "**Mixed** (a jump and a slope): $g$ is flat on some interval. Example: $\\max\\{X,0\\}$."
-   ],
-   "ordered": false,
    "citations": [
     {
      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
@@ -143,26 +83,13 @@
      "chunk_id": "e753d065-56e9-4ae9-89b4-8321aa886a13"
     }
    ],
-   "id": "054730ee-cb83-5808-badf-fccf96a63da8"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 1: discrete Y (add what lands on the same value)",
-   "citations": [],
-   "id": "39d31817-beb4-5152-9f56-120c9ec9ebd4"
+   "id": "d6566867-4cea-59cc-8fd4-580131da00d1"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** $X$ takes a list of values (or $g$ is a staircase). Find the PMF of $Y$.",
+   "text": "**Discrete $Y$:** push each value of $X$ through $g$. If several $x$ land on the same $y$, **add** their chances:",
    "citations": [],
-   "id": "99c79899-1a66-5c1a-a7eb-8941a680d59a"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** push each value of $X$ through $g$. If several $x$ land on the same $y$, **add** their chances:",
-   "citations": [],
-   "id": "e38f0c1d-5f13-584e-a76d-1e2a3a0777fa"
+   "id": "19902c7d-a5e8-5e20-8dc0-91a755ef9f7a"
   },
   {
    "type": "equation",
@@ -175,26 +102,69 @@
      "chunk_id": "500ec2d7-6fac-497b-b5a0-7e71fe769c5f"
     }
    ],
-   "id": "13e8bac8-4df2-5cc5-8597-e7ba058ed6f4"
+   "id": "8889ddd6-f1d6-537f-bdaf-b9e7e13b2dbb"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$p_X(x)$ = the chance $X$ takes the value $x$.",
+    "The sum runs over every $x$ that $g$ sends to this $y$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "ff9dfb7d-2458-5abd-993f-2684b7fcb8ba"
   },
   {
    "type": "paragraph",
-   "text": "**Short example:** $X$ equally likely $-2,-1,0,1,2$, and $Y=X^2$:",
+   "text": "Why it works: $Y=y$ happens when $X$ is **any** of those $x$. They can’t happen together, so their chances add.",
    "citations": [],
-   "id": "63d30691-66ec-5dd0-9260-3b3f6748d98c"
+   "id": "f571cb19-5b6b-5692-a8cc-379e73b3b1c2"
   },
   {
-   "type": "equation",
-   "latex": "(\\pm1)^2=1\\quad\\Longrightarrow\\quad p_Y(1)=\\frac15+\\frac15=\\frac25",
-   "display": true,
+   "type": "worked_example",
+   "title": "Example 1 · Two values land on one: $Y=X^2$",
+   "prompt": "$X$ is equally likely to be $-2,-1,0,1,2$. Find the PMF of $Y=X^2$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** $X$ is discrete, so $Y$ is discrete. Answer with a PMF.",
+     "latex": ""
+    },
+    {
+     "explanation": "**List** where each $x$ goes. Each $x$ has chance $\\tfrac15$.",
+     "latex": "(-2,-1,0,1,2)\\ \\longrightarrow\\ (4,\\,1,\\,0,\\,1,\\,4)"
+    },
+    {
+     "explanation": "**Add** the chances that land on the same $y$: $\\pm1$ both give $1$, $\\pm2$ both give $4$.",
+     "latex": "p_Y(0)=\\frac15,\\qquad p_Y(1)=\\frac15+\\frac15=\\frac25,\\qquad p_Y(4)=\\frac25"
+    },
+    {
+     "explanation": "**Check:** they add to 1.",
+     "latex": "\\frac15+\\frac25+\\frac25=1"
+    }
+   ],
+   "answer": "$p_Y(0)=\\tfrac15$, $p_Y(1)=\\tfrac25$, $p_Y(4)=\\tfrac25$.",
    "citations": [],
-   "id": "18ce771c-7737-5653-aaaa-fde0d71ae342"
+   "id": "f66629cb-c7f1-5635-a2cf-5c4a80641fb7"
   },
   {
-   "type": "solution",
-   "title": "Full example (like Lecture 13): a 3-level quantizer",
-   "text": "Step 1 · $X\\sim U(-1,1)$. $Y=-1$ if $X<-0.5$, $Y=0$ if $-0.5\\le X\\le0.5$, $Y=1$ if $X>0.5$.\n\nStep 2 · **Spot:** $g$ is a staircase with three outputs, so $Y$ is **discrete**.\n\n$$\nY\\in\\{-1,\\,0,\\,1\\}\n$$\n\nStep 3 · Each value gets the chance of its $x$-interval: length × height $\\tfrac12$.\n\n$$\nP(Y=-1)=P(X<-0.5)=0.5\\cdot\\frac12=\\frac14\n$$\n\n$$\nP(Y=0)=1\\cdot\\frac12=\\frac12\n$$\n\n$$\nP(Y=1)=\\frac14\n$$\n\nStep 4 · **Check:** they add to 1.\n\n$$\n\\frac14+\\frac12+\\frac14=1\n$$\n\n**Answer:**\n\n$$\np_Y(-1)=\\frac14,\\quad p_Y(0)=\\frac12,\\quad p_Y(1)=\\frac14\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 2 · A staircase $g$: a 3-level quantizer (like Lecture 13)",
+   "prompt": "$X\\sim U(-1,1)$. $Y=-1$ if $X<-0.5$, $Y=0$ if $-0.5\\le X\\le0.5$, $Y=1$ if $X>0.5$. Find the PMF of $Y$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** $X$ is continuous, but $g$ is a staircase with 3 outputs. So $Y$ is **discrete**.",
+     "latex": "Y\\in\\{-1,\\,0,\\,1\\}"
+    },
+    {
+     "explanation": "Each value of $Y$ gets the chance of its $x$-interval. For $U(-1,1)$ that’s length × height $\\tfrac12$.",
+     "latex": "\\begin{gathered}P(Y=-1)=P(X<-0.5)=0.5\\cdot\\frac12=\\frac14 \\\\ P(Y=0)=P(-0.5\\le X\\le0.5)=1\\cdot\\frac12=\\frac12 \\\\ P(Y=1)=P(X>0.5)=\\frac14\\end{gathered}"
+    },
+    {
+     "explanation": "**Check:** they add to 1.",
+     "latex": "\\frac14+\\frac12+\\frac14=1"
+    }
+   ],
+   "answer": "$p_Y(-1)=\\tfrac14$, $p_Y(0)=\\tfrac12$, $p_Y(1)=\\tfrac14$.",
    "citations": [
     {
      "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
@@ -202,30 +172,24 @@
      "chunk_id": "2e08d2f4-7ce3-47dd-8074-24db399beabf"
     }
    ],
-   "id": "2b919e16-daf5-5860-a683-b2f50b56aa90"
+   "id": "9b2f2681-99e9-5cea-a01d-c72e1e6dd763"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Case 2: g only goes up",
+   "text": "Topic 2: continuous Y, the CDF method (one method for every g)",
    "citations": [],
-   "id": "9da199da-69f2-5ae5-84ca-b0afd268fc7b"
+   "id": "47f8388c-75ee-5702-b0f1-90b1e42be957"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** $Y=X^3$, $e^X$, $\\ln X$, $\\sqrt X$, $aX+b$ with $a>0$.",
+   "text": "**The idea:** you don’t know $Y$’s CDF, but you know $X$’s. So turn the question about $Y$ into a question about $X$:",
    "citations": [],
-   "id": "cd31dbc8-a647-5ee9-ac1e-0399c47ddc77"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** an increasing $g$ keeps the $\\le$. So $g(X)\\le y$ is just $X\\le g^{-1}(y)$:",
-   "citations": [],
-   "id": "00d166f1-229e-5047-b750-95fc19ca246e"
+   "id": "82393eb0-f26e-596a-9ffc-30fcd5ebf846"
   },
   {
    "type": "equation",
-   "latex": "F_Y(y)=F_X\\big(g^{-1}(y)\\big)",
+   "latex": "F_Y(y)=P(Y\\le y)=P\\big(g(X)\\le y\\big)",
    "display": true,
    "citations": [
     {
@@ -234,45 +198,193 @@
      "chunk_id": "655b2b16-b365-41d0-a2b3-9b54ab2ab2a7"
     }
    ],
-   "id": "c5dee47e-b3f3-5eb9-875a-69d3e309413b"
+   "id": "745088b8-477e-56d4-8cad-e73cce285674"
   },
   {
    "type": "paragraph",
-   "text": "**Steps**",
+   "text": "Then the PDF is the slope of the CDF:",
    "citations": [],
-   "id": "2b2c1589-e781-5702-b845-cd943912f05d"
+   "id": "046f40c4-75e0-5986-824a-199db3127726"
+  },
+  {
+   "type": "equation",
+   "latex": "f_Y(y)=\\frac{d}{dy}F_Y(y)",
+   "display": true,
+   "citations": [],
+   "id": "283c9691-64dc-53cc-993f-5bb3eaa1e0d2"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Steps** (the same for every $g$):",
+   "citations": [],
+   "id": "08d5d05b-ebad-5d73-b531-f3532b7997ff"
   },
   {
    "type": "list",
    "items": [
-    "**Spot:** $g$ only goes up.",
-    "**Range:** push the ends of $X$’s range through $g$.",
-    "**Invert:** solve $y=g(x)$ for $x$. That’s $g^{-1}(y)$.",
-    "**Accumulate:** $F_Y(y)=F_X(g^{-1}(y))$ inside the range, $0$ below, $1$ above.",
+    "**Range:** where can $Y$ land? Push the ends of $X$’s range through $g$. Below the range $F_Y=0$, above it $F_Y=1$.",
+    "**Rewrite:** solve “$g(X)\\le y$” for $X$, so it says something about $X$ alone.",
+    "**Accumulate:** find $X$’s chance of that, using $F_X$ (or the area under $f_X$).",
     "**Differentiate:** $f_Y(y)=F_Y^{\\prime}(y)$."
    ],
    "ordered": true,
    "citations": [],
-   "id": "0a2a8e47-3701-5ab0-a77a-3170379e3c8c"
+   "id": "fe567c57-dae8-5a04-b66e-ec3f0c99cb92"
   },
   {
    "type": "paragraph",
-   "text": "**Short example:** $X\\sim U(0,1)$ (so $F_X(x)=x$), $Y=e^X$:",
+   "text": "**Only the Rewrite step changes**, and it depends on the shape of $g$:",
    "citations": [],
-   "id": "9032f51f-8571-5709-87cb-6eb38801ed1a"
+   "id": "f9e891ff-10e8-5c3c-b027-c28a69570387"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "$g$",
+    "Example",
+    "$g(X)\\le y$ becomes",
+    "so $F_Y(y)=$"
+   ],
+   "rows": [
+    [
+     "only goes up",
+     "$X^3$, $e^X$, $2X-3$",
+     "$X\\le g^{-1}(y)$",
+     "$F_X\\big(g^{-1}(y)\\big)$"
+    ],
+    [
+     "only goes down",
+     "$-3X+2$, $-\\ln X$",
+     "$X\\ge g^{-1}(y)$ (flipped)",
+     "$1-F_X\\big(g^{-1}(y)\\big)$"
+    ],
+    [
+     "turns around",
+     "$X^2$, $|X|$, $\\cos X$",
+     "an interval, e.g. $-\\sqrt y\\le X\\le\\sqrt y$",
+     "$F_X(\\sqrt y)-F_X(-\\sqrt y)$"
+    ]
+   ],
+   "citations": [
+    {
+     "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
+     "version": 1,
+     "chunk_id": "655b2b16-b365-41d0-a2b3-9b54ab2ab2a7"
+    },
+    {
+     "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+     "version": 1,
+     "chunk_id": "cbcba062-3a3f-4433-ad53-7050ac630d53"
+    },
+    {
+     "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+     "version": 1,
+     "chunk_id": "c95de292-0b58-4163-9f5f-ae7296874275"
+    }
+   ],
+   "id": "b091a420-ec39-5b45-8153-7e8498de3966"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$g^{-1}(y)$ = solve $y=g(x)$ for $x$. Example: $y=x^3$ gives $g^{-1}(y)=\\sqrt[3]{y}$.",
+    "**Why the flip:** a decreasing $g$ reverses the order. Bigger $x$ gives smaller $y$. Example: $-3X+2\\le y$, divide by $-3$: $X\\ge\\frac{2-y}{3}$.",
+    "**Why an interval:** when $g$ turns around, two $x$ give the same $y$ (for $x^2$: $\\pm0.5$ both give $0.25$). So $g(X)\\le y$ holds on a whole stretch of $x$. The lecture calls this DAD (Distribution, Accumulation, Differentiation): it’s the same steps."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "83307435-4014-52c5-8c9c-60ac433c0db0"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Turns around: finding the $x$-set.** Drag $y$. The shaded $x$-set is where the curve is below the line.\n\n```graph\ntitle \"$Y=X^2$, $X\\sim U(-1,1)$: drag $y$\"\nx -1.3 1.3 label=\"$x$\" height=250\ny -0.25 1.25 label=\"$x^2$\"\nslider h 0 1.2 0.36 step=0.01 label=\"$y$\"\ncurve \"x^2\" from=-1 to=1 color=1 label=\"$g(x)=x^2$\"\nhline \"h\" color=2\nregion \"(x*x<=h)*(x>=-1)*(x<=1)*(y>-0.2)*(y<-0.06)\" color=4 label=\"$x$-set: $-\\sqrt y\\le x\\le\\sqrt y$\"\nreadout \"$F_Y(y)$ = shaded length × $\\tfrac12$\" \"min(sqrt(h),1)\"\n```",
+   "citations": [],
+   "id": "4165a47a-4024-5926-81c5-69796116ac23"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Special case $Y=aX+b$** (Lecture 15). It’s a line, so it only goes up ($a>0$) or only down ($a<0$):",
+   "citations": [],
+   "id": "27c7986b-e15e-584d-bd5b-77d576dc44ad"
   },
   {
    "type": "equation",
-   "latex": "F_Y(y)=F_X(\\ln y)=\\ln y\\quad\\Longrightarrow\\quad f_Y(y)=\\frac1y,\\qquad 1<y<e",
+   "latex": "\\begin{gathered}a>0:\\quad F_Y(y)=F_X\\Big(\\frac{y-b}{a}\\Big)\\\\ a<0:\\quad F_Y(y)=1-F_X\\Big(\\frac{y-b}{a}\\Big)\\\\ a=0:\\quad Y=b\\text{ always}\\end{gathered}",
    "display": true,
-   "citations": [],
-   "id": "443ec2be-e7a1-51e9-a9bc-a0ac04cd1e0a"
+   "citations": [
+    {
+     "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
+     "version": 1,
+     "chunk_id": "28df4f3d-382b-4027-b8f5-4cc69b31d12d"
+    }
+   ],
+   "id": "efbcc12c-4b06-5d94-af1b-3b03cf8eb4eb"
   },
   {
-   "type": "solution",
-   "title": "Full example (Lecture 14): $\\;X\\sim U(-1,1)$, $\\;Y=X^3$",
-   "text": "Step 1 · **Spot:** $x^3$ only goes up. $X$ is continuous, so $Y$ is continuous.\n\n$$\ng(x)=x^3\n$$\n\nStep 2 · **Range:** $(-1)^3=-1$ and $1^3=1$.\n\n$$\n-1\\le Y\\le1\n$$\n\nStep 3 · **Invert.**\n\n$$\ny=x^3\\quad\\Longrightarrow\\quad x=\\sqrt[3]{y}\n$$\n\nStep 4 · **Accumulate:** $X$’s CDF is $F_X(x)=\\dfrac{x+1}{2}$ on $[-1,1]$. Put $\\sqrt[3]y$ in for $x$.\n\n$$\nF_Y(y)=\\begin{cases}0,&y<-1\\\\ \\dfrac{\\sqrt[3]{y}+1}{2},&-1\\le y\\le1\\\\ 1,&y>1\\end{cases}\n$$\n\nStep 5 · **Differentiate:** the derivative of $y^{1/3}$ is $\\tfrac13y^{-2/3}$.\n\n$$\nf_Y(y)=\\frac12\\cdot\\frac13\\,y^{-2/3}=\\frac{1}{6\\,y^{2/3}},\\qquad -1<y<1\n$$\n\n**Answer:**\n\n$$\nf_Y(y)=\\frac{1}{6\\,y^{2/3}}\\ \\ \\text{on }(-1,1),\\quad 0\\ \\text{otherwise}\n$$",
-   "collapsed": true,
+   "type": "paragraph",
+   "text": "**CDFs you’ll plug in** (from Question 2), and the chain rule for the Differentiate step:",
+   "citations": [],
+   "id": "2f869f0f-9c09-5d57-82ed-bb99912876df"
+  },
+  {
+   "type": "list",
+   "items": [
+    "Uniform $U(a,b)$: $\\;F_X(x)=\\dfrac{x-a}{b-a}$ for $a\\le x\\le b$.",
+    "Exponential$(\\lambda)$: $\\;F_X(x)=1-e^{-\\lambda x}$ for $x\\ge0$, so $P(X>x)=e^{-\\lambda x}$.",
+    "Gaussian $N(\\mu,\\sigma^2)$: $\\;F_X(x)=\\Phi\\Big(\\dfrac{x-\\mu}{\\sigma}\\Big)$, and $\\Phi(-z)=1-\\Phi(z)$.",
+    "Chain rule: $\\;\\dfrac{d}{dy}F_X\\big(h(y)\\big)=f_X\\big(h(y)\\big)\\,h^{\\prime}(y)$."
+   ],
+   "ordered": false,
+   "citations": [
+    {
+     "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+     "version": 1,
+     "chunk_id": "c05b6c21-3c16-4ded-81ef-37cac1e34a5b"
+    }
+   ],
+   "id": "3e029acf-9ea8-517e-911d-56fadc0a0730"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Flip the $\\le$** whenever you divide by a negative number or undo a decreasing function. Forgetting it gives $F_X(\\dots)$ instead of $1-F_X(\\dots)$.",
+   "citations": [],
+   "id": "9201a0c3-faf9-5cd7-9c06-ed4bf29e1c60"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Keep only $x$ that $X$ can take.** $X\\sim U(-1,2)$, $Y=X^2$, $y=4$: the $x$-set $[-2,2]$ gets cut down to $[-1,2]$.",
+   "citations": [],
+   "id": "f9849797-d433-590c-b532-387c46a80a2a"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · Goes up: $Y=X^3$ (Lecture 14)",
+   "prompt": "$X\\sim U(-1,1)$. Find the CDF and PDF of $Y=X^3$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** $x^3$ only goes up, and $X$ is continuous. Use the first row of the table.",
+     "latex": "F_Y(y)=F_X\\big(g^{-1}(y)\\big)"
+    },
+    {
+     "explanation": "**Range:** $(-1)^3=-1$ and $1^3=1$.",
+     "latex": "-1\\le Y\\le1"
+    },
+    {
+     "explanation": "**Rewrite:** take the cube root of both sides.",
+     "latex": "X^3\\le y\\quad\\Longleftrightarrow\\quad X\\le\\sqrt[3]{y}"
+    },
+    {
+     "explanation": "**Accumulate:** $X$’s CDF is $F_X(x)=\\tfrac{x+1}{2}$ on $[-1,1]$. Put $\\sqrt[3]{y}$ in for $x$.",
+     "latex": "F_Y(y)=\\begin{cases}0,&y<-1\\\\ \\dfrac{\\sqrt[3]{y}+1}{2},&-1\\le y\\le1\\\\ 1,&y>1\\end{cases}"
+    },
+    {
+     "explanation": "**Differentiate:** the derivative of $y^{1/3}$ is $\\tfrac13y^{-2/3}$.",
+     "latex": "f_Y(y)=\\frac12\\cdot\\frac13\\,y^{-2/3}=\\frac{1}{6\\,y^{2/3}},\\qquad -1<y<1"
+    }
+   ],
+   "answer": "$F_Y(y)=\\dfrac{\\sqrt[3]{y}+1}{2}$ on $[-1,1]$; $f_Y(y)=\\dfrac{1}{6\\,y^{2/3}}$ on $(-1,1)$.",
    "citations": [
     {
      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
@@ -285,56 +397,31 @@
      "chunk_id": "6db5e3e1-b721-4a08-8829-211016f210f6"
     }
    ],
-   "id": "5cc2f663-d6fb-542a-8298-11c1d42c5085"
+   "id": "567e240d-9d76-5d06-9e23-ccf9aefaee2b"
   },
   {
-   "type": "solution",
-   "title": "Shortcut (not from the lectures): $\\;f_Y(y)=f_X\\big(g^{-1}(y)\\big)\\cdot|\\text{slope of }g^{-1}(y)|$",
-   "text": "Skips the CDF. Use it to go faster, or to check your answer. Works when $g$ only goes up **or** only goes down.\n\n$$\nf_Y(y)=f_X\\big(g^{-1}(y)\\big)\\cdot\\Big|\\frac{d}{dy}g^{-1}(y)\\Big|\n$$\n\nCheck on $Y=X^3$: $f_X=\\tfrac12$, $g^{-1}(y)=y^{1/3}$, its derivative is $\\tfrac13y^{-2/3}$.\n\n$$\nf_Y(y)=\\frac12\\cdot\\frac13\\,y^{-2/3}=\\frac{1}{6\\,y^{2/3}}\\quad\\checkmark\n$$\n\nCheck on $Y=e^X$, $X\\sim U(0,1)$: $g^{-1}(y)=\\ln y$, derivative $\\tfrac1y$.\n\n$$\nf_Y(y)=1\\cdot\\frac1y=\\frac1y\\quad\\checkmark\n$$",
-   "collapsed": true,
-   "citations": [],
-   "id": "59718820-498b-5528-9961-c5a2a3c18611"
-  },
-  {
-   "type": "solution",
-   "title": "CDFs you’ll plug in (from Question 2)",
-   "text": "Uniform $U(a,b)$:\n\n$$\nF_X(x)=\\frac{x-a}{b-a},\\qquad a\\le x\\le b\n$$\n\nExponential $(\\lambda)$:\n\n$$\nF_X(x)=1-e^{-\\lambda x},\\qquad x\\ge0\n$$\n\n$$\nP(X>x)=e^{-\\lambda x}\n$$\n\nGaussian $N(\\mu,\\sigma^2)$:\n\n$$\nF_X(x)=\\Phi\\Big(\\frac{x-\\mu}{\\sigma}\\Big)\n$$\n\n$$\n\\Phi(-z)=1-\\Phi(z)\n$$\n\nChain rule, for the **Differentiate** step:\n\n$$\n\\frac{d}{dy}F_X\\big(h(y)\\big)=f_X\\big(h(y)\\big)\\,h^{\\prime}(y)\n$$",
-   "collapsed": true,
-   "citations": [
-    {
-     "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
-     "version": 1,
-     "chunk_id": "c05b6c21-3c16-4ded-81ef-37cac1e34a5b"
-    }
-   ],
-   "id": "ccf8b24d-760e-5265-a597-69a9dd88cbf3"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 1 · Case 2 · Log of an exponential · Tutorial 6 Q2",
-   "difficulty": "intermediate",
-   "origin": "source",
+   "type": "worked_example",
+   "title": "Example 4 · Goes up, with the chain rule: $Y=\\ln X$ (Tutorial 6 Q2)",
    "prompt": "$X\\sim$ Exp$(1)$. Find the PDF of $Y=\\ln X$.",
-   "solution": "",
    "steps": [
     {
-     "explanation": "**Spot:** $\\ln x$ only goes up → Case 2.",
-     "latex": ""
+     "explanation": "**Spot:** $\\ln x$ only goes up.",
+     "latex": "F_Y(y)=F_X\\big(g^{-1}(y)\\big)"
     },
     {
      "explanation": "**Range:** $X$ is anywhere in $(0,\\infty)$, so $\\ln X$ can be any real number.",
      "latex": "-\\infty<Y<\\infty"
     },
     {
-     "explanation": "**Invert.**",
-     "latex": "y=\\ln x\\quad\\Longrightarrow\\quad x=e^{y}"
+     "explanation": "**Rewrite:** undo the $\\ln$.",
+     "latex": "\\ln X\\le y\\quad\\Longleftrightarrow\\quad X\\le e^{y}"
     },
     {
      "explanation": "**Accumulate:** plug $e^y$ into $F_X(x)=1-e^{-x}$.",
      "latex": "F_Y(y)=1-e^{-e^{y}}"
     },
     {
-     "explanation": "**Differentiate:** chain rule; the inside $-e^{y}$ has derivative $-e^{y}$.",
+     "explanation": "**Differentiate:** chain rule. The inside, $-e^{y}$, has derivative $-e^{y}$.",
      "latex": "f_Y(y)=e^{y}\\,e^{-e^{y}}"
     }
    ],
@@ -346,69 +433,35 @@
      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
     }
    ],
-   "id": "f0ee9bc6-5871-5802-baf9-62ff5d34bd79"
+   "id": "a58703c5-eca4-5637-badd-478cfd18a644"
   },
   {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 3: g only goes down",
-   "citations": [],
-   "id": "4ba12028-86b1-51aa-81bc-1e90b18df963"
-  },
-  {
-   "type": "paragraph",
-   "text": "**You’ll see:** $Y=-3X+2$ ($aX+b$ with $a<0$), $-\\ln X$, $\\tfrac1X$ for $X>0$, $e^{-X}$.",
-   "citations": [],
-   "id": "3f6ab310-5d9a-565b-84fa-31d24f067126"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** a decreasing $g$ **flips** the $\\le$. So $g(X)\\le y$ becomes $X\\ge g^{-1}(y)$:",
-   "citations": [],
-   "id": "79ab9446-45d1-5f3d-ba60-01fc40fb9202"
-  },
-  {
-   "type": "equation",
-   "latex": "F_Y(y)=1-F_X\\big(g^{-1}(y)\\big)",
-   "display": true,
-   "citations": [
+   "type": "worked_example",
+   "title": "Example 5 · Goes down: $Y=-3X+2$ (Lecture 15)",
+   "prompt": "$X\\sim U(0,1)$. Find the CDF and PDF of $Y=-3X+2$.",
+   "steps": [
     {
-     "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
-     "version": 1,
-     "chunk_id": "cbcba062-3a3f-4433-ad53-7050ac630d53"
+     "explanation": "**Spot:** the slope is $-3$, so $g$ only goes down. Use the second row: the $\\le$ flips.",
+     "latex": "F_Y(y)=1-F_X\\big(g^{-1}(y)\\big)"
     },
     {
-     "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
-     "version": 1,
-     "chunk_id": "28df4f3d-382b-4027-b8f5-4cc69b31d12d"
+     "explanation": "**Range:** $x=0$ gives $2$, $x=1$ gives $-1$.",
+     "latex": "-1\\le Y\\le2"
+    },
+    {
+     "explanation": "**Rewrite:** subtract 2, then divide by $-3$. That flips the $\\le$.",
+     "latex": "-3X+2\\le y\\quad\\Longleftrightarrow\\quad X\\ge\\frac{2-y}{3}"
+    },
+    {
+     "explanation": "**Accumulate:** $F_X(x)=x$, so $P(X\\ge t)=1-t$.",
+     "latex": "F_Y(y)=1-\\frac{2-y}{3}=\\frac{y+1}{3},\\qquad -1\\le y\\le2"
+    },
+    {
+     "explanation": "**Differentiate.**",
+     "latex": "f_Y(y)=\\frac13,\\qquad -1<y<2"
     }
    ],
-   "id": "578ec946-9ef2-5223-99f7-cd2038caffdd"
-  },
-  {
-   "type": "paragraph",
-   "text": "Same steps as Case 2. Only the **Accumulate** step changes: $1-F_X(\\dots)$.",
-   "citations": [],
-   "id": "407cb693-519e-5484-97c5-068c114da89d"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Short example:** $X\\sim U(0,1)$, $Y=-\\ln X$. $\\;-\\ln X\\le y$ means $X\\ge e^{-y}$:",
-   "citations": [],
-   "id": "ff8598f9-cc0b-570d-b864-2bd73910e2c3"
-  },
-  {
-   "type": "equation",
-   "latex": "F_Y(y)=1-F_X(e^{-y})=1-e^{-y}\\quad\\Longrightarrow\\quad f_Y(y)=e^{-y},\\qquad y>0",
-   "display": true,
-   "citations": [],
-   "id": "494a32db-3e63-5cb2-ad40-6d88fb8007fc"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Lecture 15): $\\;X\\sim U(0,1)$, $\\;Y=-3X+2$",
-   "text": "Step 1 · **Spot:** $-3x+2$ only goes down (the slope is $-3$).\n\nStep 2 · **Range:** $x=0$ gives $2$, $x=1$ gives $-1$.\n\n$$\n-1\\le Y\\le2\n$$\n\nStep 3 · **Invert.**\n\n$$\ny=-3x+2\\quad\\Longrightarrow\\quad x=\\frac{2-y}{3}\n$$\n\nStep 4 · **Accumulate:** dividing by $-3$ flips the $\\le$. Then $F_X(x)=x$.\n\n$$\n-3X+2\\le y\\iff X\\ge\\frac{2-y}{3}\n$$\n\n$$\nF_Y(y)=1-\\frac{2-y}{3}=\\frac{y+1}{3},\\qquad -1\\le y\\le2\n$$\n\nStep 5 · **Differentiate.**\n\n$$\nf_Y(y)=\\frac13,\\qquad -1<y<2\n$$\n\n**Answer:**\n\n$$\nf_Y(y)=\\frac13\\ \\text{ on }(-1,2):\\quad Y\\sim U(-1,2)\n$$",
-   "collapsed": true,
+   "answer": "$f_Y(y)=\\tfrac13$ on $(-1,2)$, so $Y\\sim U(-1,2)$.",
    "citations": [
     {
      "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
@@ -416,110 +469,35 @@
      "chunk_id": "28df4f3d-382b-4027-b8f5-4cc69b31d12d"
     }
    ],
-   "id": "e2d6132a-cddf-5df9-8c7e-f271af4f0816"
+   "id": "980a4ef5-56c8-54c3-9489-0d7d2d3a2f97"
   },
   {
-   "type": "solution",
-   "title": "$Y=aX+b$, all three cases (Lecture 15)",
-   "text": "$a>0$ (goes up, Case 2):\n\n$$\nF_Y(y)=F_X\\Big(\\frac{y-b}{a}\\Big)\n$$\n\n$a<0$ (goes down, Case 3):\n\n$$\nF_Y(y)=1-F_X\\Big(\\frac{y-b}{a}\\Big)\n$$\n\n$a=0$: $Y=b$ always, a single step at $b$.\n\n$$\nF_Y(y)=\\begin{cases}0,&y<b\\\\ 1,&y\\ge b\\end{cases}\n$$",
-   "collapsed": true,
-   "citations": [
+   "type": "worked_example",
+   "title": "Example 6 · Turns around: $Y=X^2$ (Lecture 15)",
+   "prompt": "$X\\sim U(-1,1)$. Find the CDF and PDF of $Y=X^2$.",
+   "steps": [
     {
-     "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
-     "version": 1,
-     "chunk_id": "28df4f3d-382b-4027-b8f5-4cc69b31d12d"
+     "explanation": "**Spot:** $x^2$ turns around at $0$. Use the third row: an interval.",
+     "latex": "F_Y(y)=F_X(\\sqrt y)-F_X(-\\sqrt y)"
+    },
+    {
+     "explanation": "**Range:** $X$ is in $[-1,1]$, so $X^2$ is in $[0,1]$.",
+     "latex": "0\\le Y\\le1"
+    },
+    {
+     "explanation": "**Rewrite:** a square is at most $y$ when $x$ is within $\\sqrt y$ of $0$.",
+     "latex": "X^2\\le y\\quad\\Longleftrightarrow\\quad -\\sqrt y\\le X\\le\\sqrt y"
+    },
+    {
+     "explanation": "**Accumulate:** that interval has length $2\\sqrt y$, and the height of $f_X$ is $\\tfrac12$.",
+     "latex": "F_Y(y)=2\\sqrt y\\cdot\\frac12=\\sqrt y,\\qquad 0\\le y\\le1"
+    },
+    {
+     "explanation": "**Differentiate.**",
+     "latex": "f_Y(y)=\\frac{1}{2\\sqrt y},\\qquad 0<y<1"
     }
    ],
-   "id": "bc05ebfd-431d-5fed-99ec-7eb1b3ff658f"
-  },
-  {
-   "type": "solution",
-   "title": "Shortcut: a line keeps the family",
-   "text": "Gaussian in, Gaussian out. The mean and variance follow the Question 3 rules.\n\n$$\nX\\sim N(\\mu,\\sigma^2)\\quad\\Longrightarrow\\quad aX+b\\sim N(a\\mu+b,\\ a^2\\sigma^2)\n$$\n\nUniform in, uniform out: push the two ends through.\n\n$$\nX\\sim U(0,1),\\ Y=-3X+2\\quad\\Longrightarrow\\quad Y\\sim U(-1,2)\n$$",
-   "collapsed": true,
-   "citations": [],
-   "id": "12869b10-d90f-5540-9367-2ee401b19100"
-  },
-  {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Flip the $\\le$** whenever you divide by a negative number or undo a decreasing function: $-2x\\le y\\iff x\\ge-\\tfrac y2$. Forgetting the flip gives $F_X(\\dots)$ instead of $1-F_X(\\dots)$.",
-   "citations": [],
-   "id": "228a2b72-826e-5dab-80ef-16f4086bf304"
-  },
-  {
-   "type": "heading",
-   "level": 1,
-   "text": "Case 4: g turns around (DAD)",
-   "citations": [],
-   "id": "ff8fa924-2a7e-5737-88c0-84c60eff8718"
-  },
-  {
-   "type": "paragraph",
-   "text": "**You’ll see:** $Y=X^2$, $|X|$, $\\cos X$, or a drawn curve with bumps.",
-   "citations": [],
-   "id": "9fa1d56d-83ff-5fc3-b696-f6540b958292"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** one $y$ can come from **several** $x$, so there’s no single inverse. Instead, find **every** $x$ with $g(x)\\le y$, and add up $X$’s chance there:",
-   "citations": [],
-   "id": "5baa40e5-7eae-5b43-9e0c-f63badd75ed1"
-  },
-  {
-   "type": "equation",
-   "latex": "F_Y(y)=P\\big(X\\text{ is in }\\{x:\\ g(x)\\le y\\}\\big)",
-   "display": true,
-   "citations": [
-    {
-     "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
-     "version": 1,
-     "chunk_id": "c95de292-0b58-4163-9f5f-ae7296874275"
-    }
-   ],
-   "id": "83664940-1977-5d1a-8852-12401443a78d"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Steps** (the lecture calls them DAD: Distribution, Accumulation, Differentiation)",
-   "citations": [],
-   "id": "4f18c94a-c0f2-5d39-925d-51dac2141474"
-  },
-  {
-   "type": "list",
-   "items": [
-    "**Range:** where can $Y$ land? Start from $X$’s range.",
-    "**Accumulate:** draw $g$ and a flat line at height $y$. The $x$-set is wherever the curve is **below** the line. Keep only $x$ that $X$ can take. $F_Y(y)$ = $X$’s chance on that set.",
-    "**Differentiate:** $f_Y(y)=F_Y^{\\prime}(y)$."
-   ],
-   "ordered": true,
-   "citations": [],
-   "id": "e6bea52f-17c4-5749-ab32-937af31a593f"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Short example:** $X\\sim U(-1,1)$, $Y=X^2$. $\\;X^2\\le y$ means $-\\sqrt y\\le X\\le\\sqrt y$: length $2\\sqrt y$, height $\\tfrac12$:",
-   "citations": [],
-   "id": "3fcacdb6-2cdd-557e-ab87-6187da76eb04"
-  },
-  {
-   "type": "equation",
-   "latex": "F_Y(y)=2\\sqrt y\\cdot\\frac12=\\sqrt y\\quad\\Longrightarrow\\quad f_Y(y)=\\frac{1}{2\\sqrt y},\\qquad 0<y<1",
-   "display": true,
-   "citations": [],
-   "id": "ae17a787-82b5-5a76-8a27-6530e95c83e4"
-  },
-  {
-   "type": "paragraph",
-   "text": "**Finding the $x$-set:** drag $y$. The shaded $x$-set is where the curve is below the line.\n\n```graph\ntitle \"$Y=X^2$, $X\\sim U(-1,1)$: drag $y$\"\nx -1.3 1.3 label=\"$x$\" height=250\ny -0.25 1.25 label=\"$x^2$\"\nslider h 0 1.2 0.36 step=0.01 label=\"$y$\"\ncurve \"x^2\" from=-1 to=1 color=1 label=\"$g(x)=x^2$\"\nhline \"h\" color=2\nregion \"(x*x<=h)*(x>=-1)*(x<=1)*(y>-0.2)*(y<-0.06)\" color=4 label=\"$x$-set: $-\\sqrt y\\le x\\le\\sqrt y$\"\nreadout \"$F_Y(y)$ = shaded length × $\\tfrac12$\" \"min(sqrt(h),1)\"\n```",
-   "citations": [],
-   "id": "e2e73761-adfe-5dc2-aac5-5defba3a6cbf"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Lecture 15): $\\;X\\sim U(-1,1)$, $\\;Y=X^2$, all three pieces",
-   "text": "Step 1 · **Range:** $X$ is in $[-1,1]$, so $X^2$ is in $[0,1]$.\n\n$$\n0\\le Y\\le1\n$$\n\nStep 2 · **Accumulate**, $y<0$: a square is never negative.\n\n$$\nF_Y(y)=0\n$$\n\nStep 3 · **Accumulate**, $0\\le y\\le1$: the $x$-set is $[-\\sqrt y,\\sqrt y]$, inside $[-1,1]$.\n\n$$\nF_Y(y)=\\int_{-\\sqrt y}^{\\sqrt y}\\frac12\\,dx=\\sqrt y\n$$\n\nStep 4 · **Accumulate**, $y>1$: $X^2\\le1$ always.\n\n$$\nF_Y(y)=1\n$$\n\nStep 5 · **Differentiate** the middle piece.\n\n$$\nf_Y(y)=\\frac{1}{2\\sqrt y},\\qquad 0<y<1\n$$\n\n**Answer:**\n\n$$\nF_Y(y)=\\sqrt y\\ \\text{ on }[0,1];\\qquad f_Y(y)=\\frac{1}{2\\sqrt y}\\ \\text{ on }(0,1)\n$$",
-   "collapsed": true,
+   "answer": "$F_Y(y)=\\sqrt y$ on $[0,1]$ ($0$ below, $1$ above); $f_Y(y)=\\dfrac{1}{2\\sqrt y}$ on $(0,1)$.",
    "citations": [
     {
      "source_id": "02aff1ce-de48-4c04-b61d-906e7ad59715",
@@ -532,13 +510,39 @@
      "chunk_id": "658939db-bdae-456b-9cc2-00f8a5d1d239"
     }
    ],
-   "id": "065a7f9b-b5a9-511c-a74b-fd8a077817d6"
+   "id": "ade41678-d261-5c68-9c6c-1f0a7da3205f"
   },
   {
-   "type": "solution",
-   "title": "Full example (Tutorial 6 Q4): $\\;X\\sim U(-1,1)$, $\\;Y=|X|$",
-   "text": "Step 1 · **Range:** $|x|$ on $[-1,1]$ runs from $0$ to $1$.\n\n$$\n0\\le Y\\le1\n$$\n\nStep 2 · **Accumulate:** $|X|\\le y$ means $-y\\le X\\le y$. Length $2y$, height $\\tfrac12$.\n\n$$\nF_Y(y)=2y\\cdot\\frac12=y\n$$\n\nStep 3 · **Differentiate.**\n\n$$\nf_Y(y)=1,\\qquad 0<y<1\n$$\n\nStep 4 · Part (a) asked $P(|X|>\\tfrac12)$: that’s $1-F_Y(\\tfrac12)$.\n\n$$\nP\\big(|X|>\\tfrac12\\big)=1-\\frac12=\\frac12\n$$\n\n**Answer:**\n\n$$\nf_Y(y)=1\\ \\text{ on }(0,1):\\quad |X|\\sim U(0,1)\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 7 · Turns around: $Y=|X|$ (Tutorial 6 Q4)",
+   "prompt": "$X\\sim U(-1,1)$. Find the PDF of $Y=|X|$, then $P(|X|>\\tfrac12)$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** $|x|$ turns around at $0$. An interval again.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Range:** $|x|$ on $[-1,1]$ runs from $0$ to $1$.",
+     "latex": "0\\le Y\\le1"
+    },
+    {
+     "explanation": "**Rewrite.**",
+     "latex": "|X|\\le y\\quad\\Longleftrightarrow\\quad -y\\le X\\le y"
+    },
+    {
+     "explanation": "**Accumulate:** length $2y$, height $\\tfrac12$.",
+     "latex": "F_Y(y)=2y\\cdot\\frac12=y"
+    },
+    {
+     "explanation": "**Differentiate.**",
+     "latex": "f_Y(y)=1,\\qquad 0<y<1"
+    },
+    {
+     "explanation": "The probability is one minus the CDF.",
+     "latex": "P\\big(|X|>\\frac12\\big)=1-F_Y\\big(\\frac12\\big)=1-\\frac12=\\frac12"
+    }
+   ],
+   "answer": "$f_Y(y)=1$ on $(0,1)$, so $|X|\\sim U(0,1)$; $P(|X|>\\tfrac12)=\\tfrac12$.",
    "citations": [
     {
      "source_id": "8b50801c-193d-4e1e-92f4-d54dc3a7332b",
@@ -546,85 +550,50 @@
      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
     }
    ],
-   "id": "a8d2d735-b120-5a12-a8b5-09210f06def6"
+   "id": "4b710ab1-ea35-5244-9a68-17b77703c552"
   },
   {
-   "type": "solution",
-   "title": "Shortcut (not from the lectures): $\\;Y=X^2$ and $\\;Y=|X|$",
-   "text": "Both $\\pm\\sqrt y$ land on the same $y$, so add both:\n\n$$\nY=X^2:\\qquad f_Y(y)=\\frac{f_X(\\sqrt y)+f_X(-\\sqrt y)}{2\\sqrt y},\\quad y>0\n$$\n\nBoth $\\pm y$ land on the same $y$:\n\n$$\nY=|X|:\\qquad f_Y(y)=f_X(y)+f_X(-y),\\quad y>0\n$$\n\nCheck on $X\\sim U(-1,1)$ ($f_X=\\tfrac12$):\n\n$$\n\\frac{\\frac12+\\frac12}{2\\sqrt y}=\\frac{1}{2\\sqrt y}\\quad\\checkmark\n$$\n\nIf $X$ can’t be negative, drop the $f_X(-\\dots)$ term (it’s $0$).",
-   "collapsed": true,
-   "citations": [],
-   "id": "dda49955-5b10-574f-a26a-57601c93656a"
-  },
-  {
-   "type": "callout",
-   "tone": "warning",
-   "text": "**Keep only $x$ that $X$ can take.** $X\\sim U(-1,2)$, $Y=X^2$, $y=4$: the $x$-set $[-2,2]$ is cut down to $[-1,2]$.",
-   "citations": [],
-   "id": "315911a4-f3bc-532b-8ea7-3465b7a69701"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Try it 2 · Case 4 · Squaring a uniform on $[0,2]$ · Lecture 12",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "$X\\sim U[0,2]$ and $Y=X^2$. (a) Find the CDF and PDF of $Y$. (b) Find $E[Y]$ from $f_Y$, and check it against $E[X^2]$.",
-   "solution": "",
+   "type": "worked_example",
+   "title": "Example 8 · A Gaussian through a line: $Y=2X+1$",
+   "prompt": "$X\\sim N(0,1)$. Write $F_Y(y)$ for $Y=2X+1$ using $\\Phi$. What distribution is $Y$? Find $P(Y>3)$.",
    "steps": [
     {
-     "explanation": "**Spot:** $x^2$ turns around at $0$ → Case 4 (here $X\\ge0$, so only one side is used).",
-     "latex": ""
+     "explanation": "**Spot:** slope $2>0$, so $g$ only goes up. **Read off** $a$ and $b$ for the $aX+b$ formula.",
+     "latex": "a=2,\\qquad b=1"
     },
     {
-     "explanation": "**Range:** $0\\le X\\le2$, so $0\\le Y\\le4$.",
-     "latex": "0\\le Y\\le4"
+     "explanation": "**Rewrite.**",
+     "latex": "2X+1\\le y\\quad\\Longleftrightarrow\\quad X\\le\\frac{y-1}{2}"
     },
     {
-     "explanation": "**Accumulate:** $x^2\\le y$ means $-\\sqrt y\\le x\\le\\sqrt y$, but $X$ is never negative. Only $[0,\\sqrt y]$ counts.",
-     "latex": "F_Y(y)=\\sqrt y\\cdot\\frac12=\\frac{\\sqrt y}{2},\\qquad 0\\le y\\le4"
+     "explanation": "**Accumulate:** $X$ is standard normal, so $F_X=\\Phi$.",
+     "latex": "F_Y(y)=\\Phi\\Big(\\frac{y-1}{2}\\Big)"
     },
     {
-     "explanation": "**Differentiate.**",
-     "latex": "f_Y(y)=\\frac{1}{4\\sqrt y},\\qquad 0<y<4"
+     "explanation": "That’s the CDF of a Gaussian with $\\mu=1$, $\\sigma=2$.",
+     "latex": "Y\\sim N(1,\\,4)"
     },
     {
-     "explanation": "(b) Both ways give the same mean.",
-     "latex": "\\int_0^4 y\\cdot\\frac{1}{4\\sqrt y}\\,dy=\\frac43=\\int_0^2x^2\\cdot\\frac12\\,dx"
+     "explanation": "Complement, then the table: $\\Phi(1)=0.8413$.",
+     "latex": "P(Y>3)=1-\\Phi\\Big(\\frac{3-1}{2}\\Big)=1-\\Phi(1)\\approx0.1587"
     }
    ],
-   "answer": "$F_Y=\\tfrac{\\sqrt y}{2}$ on $[0,4]$; $f_Y=\\dfrac{1}{4\\sqrt y}$ on $(0,4)$; $E[Y]=\\tfrac43$ both ways.",
-   "citations": [
-    {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
-     "version": 1,
-     "chunk_id": "1fa5f1c7-2d1d-4842-a1f9-1949b30bc7b2"
-    },
-    {
-     "source_id": "b8fcca89-f00b-4b0a-8a73-1aec471f4407",
-     "version": 1,
-     "chunk_id": "d265eb48-420d-4e76-858a-49452a94d127"
-    }
-   ],
-   "id": "bc97150c-3bbc-5bab-bcb0-c0d661722cb6"
+   "answer": "$F_Y(y)=\\Phi\\left(\\tfrac{y-1}{2}\\right)$, so $Y\\sim N(1,4)$; $P(Y>3)\\approx 0.1587$.",
+   "citations": [],
+   "id": "28588640-ba30-5186-86eb-8f54d0413327"
   },
   {
    "type": "heading",
    "level": 1,
-   "text": "Case 5: g goes flat (a jump: mixed Y)",
+   "text": "Extras: flat pieces (mixed Y) and a shortcut formula",
    "citations": [],
-   "id": "93f60938-966f-59c2-8da5-5d095bc9b19c"
+   "id": "44e491c4-a892-5306-831b-080464b29e10"
   },
   {
    "type": "paragraph",
-   "text": "**You’ll see:** clipping, a rectifier, a limiter, a timeout: $\\max\\{X,0\\}$, $\\min\\{X,1\\}$.",
+   "text": "**When $g$ goes flat.** Clipping, a rectifier, a limiter, a timeout: $\\max\\{X,0\\}$, $\\min\\{X,1\\}$. A flat piece at height $c$ sends a whole interval of $X$ to the single value $c$. So $Y=c$ has real chance, and $F_Y$ **jumps** there:",
    "citations": [],
-   "id": "21987498-dccc-5fe2-b421-4774e047270d"
-  },
-  {
-   "type": "paragraph",
-   "text": "**The move:** a flat piece at height $c$ sends a whole interval of $X$ to $c$. That’s a **jump** in $F_Y$:",
-   "citations": [],
-   "id": "a3902cf3-9252-5e32-a731-ba3804f401aa"
+   "id": "c011a578-a756-5eb1-b9d7-c581f659644c"
   },
   {
    "type": "equation",
@@ -637,38 +606,47 @@
      "chunk_id": "2eed7acb-8ac6-4738-99c3-478135a51df2"
     }
    ],
-   "id": "65f6743c-2f49-55aa-9da5-8f181292bfef"
+   "id": "c267b53f-6817-5225-b9b4-3523de397fbd"
   },
   {
    "type": "list",
    "items": [
     "**Range:** as always.",
     "**Jump:** one per flat piece, sized $P(X$ in that piece$)$.",
-    "**Accumulate** everywhere else, as in Cases 2–4.",
-    "**Spot:** jumps plus a slope → **mixed**."
+    "**Accumulate** everywhere else, as in Topic 2.",
+    "**Spot:** jumps plus a slope means $Y$ is **mixed**."
    ],
    "ordered": true,
    "citations": [],
-   "id": "26832a0c-a25d-5337-a859-f441c4b05e46"
+   "id": "84130a61-ce78-5e16-a746-e102f5ba5b79"
   },
   {
-   "type": "paragraph",
-   "text": "**Short example:** $X\\sim U(-1,1)$, $Y=\\max\\{X,0\\}$. Every $X\\le0$ lands on $0$:",
-   "citations": [],
-   "id": "f83f2946-4583-5add-8645-4c4f784ed770"
-  },
-  {
-   "type": "equation",
-   "latex": "P(Y=0)=P(X\\le0)=\\frac12",
-   "display": true,
-   "citations": [],
-   "id": "fa788085-5186-57ed-9964-e4fb2ac15cfc"
-  },
-  {
-   "type": "solution",
-   "title": "Full example (Lecture 14): $\\;X\\sim U(-1,1)$, $\\;Y=\\max\\{X,0\\}$ (a half-wave rectifier)",
-   "text": "Step 1 · **Range:** negative $X$ become $0$, positive $X$ stay.\n\n$$\n0\\le Y\\le1\n$$\n\nStep 2 · **Jump** at $0$: the flat part is $X\\le0$.\n\n$$\nP(Y=0)=\\frac12\n$$\n\nStep 3 · **Accumulate**, $0\\le y\\le1$: $\\max\\{X,0\\}\\le y$ just means $X\\le y$.\n\n$$\nF_Y(y)=P(X\\le y)=\\frac{y+1}{2}\n$$\n\nStep 4 · Put the pieces together.\n\n$$\nF_Y(y)=\\begin{cases}0,&y<0\\\\ \\dfrac{y+1}{2},&0\\le y\\le1\\\\ 1,&y>1\\end{cases}\n$$\n\nStep 5 · **Spot:** a jump of $\\tfrac12$ at $0$, then a slope → **mixed**.\n\n**Answer:**\n\n$$\n\\text{mixed: }P(Y=0)=\\frac12,\\ \\text{ plus density }\\frac12\\text{ on }(0,1)\n$$",
-   "collapsed": true,
+   "type": "worked_example",
+   "title": "Example 9 · Flat piece: a half-wave rectifier $Y=\\max\\{X,0\\}$ (Lecture 14)",
+   "prompt": "$X\\sim U(-1,1)$. Find the CDF of $Y=\\max\\{X,0\\}$. What type is $Y$?",
+   "steps": [
+    {
+     "explanation": "**Range:** negative $X$ become $0$, positive $X$ stay.",
+     "latex": "0\\le Y\\le1"
+    },
+    {
+     "explanation": "**Jump** at $0$: the flat part is every $X\\le0$.",
+     "latex": "P(Y=0)=P(X\\le0)=\\frac12"
+    },
+    {
+     "explanation": "**Accumulate**, $0\\le y\\le1$: $\\max\\{X,0\\}\\le y$ just means $X\\le y$.",
+     "latex": "F_Y(y)=P(X\\le y)=\\frac{y+1}{2}"
+    },
+    {
+     "explanation": "Put the pieces together.",
+     "latex": "F_Y(y)=\\begin{cases}0,&y<0\\\\ \\dfrac{y+1}{2},&0\\le y\\le1\\\\ 1,&y>1\\end{cases}"
+    },
+    {
+     "explanation": "**Spot:** a jump of $\\tfrac12$ at $0$, then a slope.",
+     "latex": "\\text{mixed}"
+    }
+   ],
+   "answer": "Mixed: $P(Y=0)=\\tfrac12$, plus density $\\tfrac12$ on $(0,1)$.",
    "citations": [
     {
      "source_id": "8fc07b50-0ad8-4dd1-9994-4284ef5b512d",
@@ -681,44 +659,101 @@
      "chunk_id": "1d66e547-c5e8-41a6-bcfa-a351228e8590"
     }
    ],
-   "id": "cbc0e2b9-6691-55be-9d61-e44e61a4b8b0"
+   "id": "cda938aa-9158-57fa-8aa7-b5096069980b"
   },
   {
    "type": "paragraph",
-   "text": "**What does the jump look like?**\n\n```graph\ntitle \"$F_Y$ for $Y=\\max\\{X,0\\}$: the flat piece becomes a jump\"\nx -0.6 1.5 label=\"$y$\" height=200\ny 0 1.12 label=\"$F_Y(y)$\"\nsegment \"-0.6\" \"0\" \"0\" \"0\" color=2\ncurve \"(x+1)/2\" from=0 to=1 color=2\nsegment \"1\" \"1\" \"1.5\" \"1\" color=2\npoint \"0\" \"0.5\" color=2\nsegment \"0\" \"0\" \"0\" \"0.5\" color=2 dash\ntext \"0.42\" \"0.25\" \"jump $\\tfrac12=P(Y=0)$\"\n```",
+   "text": "**What the jump looks like:**\n\n```graph\ntitle \"$F_Y$ for $Y=\\max\\{X,0\\}$: the flat piece becomes a jump\"\nx -0.6 1.5 label=\"$y$\" height=200\ny 0 1.12 label=\"$F_Y(y)$\"\nsegment \"-0.6\" \"0\" \"0\" \"0\" color=2\ncurve \"(x+1)/2\" from=0 to=1 color=2\nsegment \"1\" \"1\" \"1.5\" \"1\" color=2\npoint \"0\" \"0.5\" color=2\nsegment \"0\" \"0\" \"0\" \"0.5\" color=2 dash\ntext \"0.42\" \"0.25\" \"jump $\\tfrac12=P(Y=0)$\"\n```",
    "citations": [],
-   "id": "a7ac3224-80a7-552b-8be1-990ecafe5497"
+   "id": "6d78ef13-a781-5a00-b46c-78c0de5d4d5d"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The shortcut formula** (not from the lectures: use it to check your answer). It skips the CDF. It works when $g$ only goes up **or** only goes down:",
+   "citations": [],
+   "id": "51603e5a-ce9e-5313-a8e8-0f2b45da189e"
+  },
+  {
+   "type": "equation",
+   "latex": "f_Y(y)=f_X\\big(g^{-1}(y)\\big)\\cdot\\Big|\\frac{d}{dy}g^{-1}(y)\\Big|",
+   "display": true,
+   "citations": [],
+   "id": "0c998f27-5c4b-5bd0-9e0b-71ad7dd6b226"
+  },
+  {
+   "type": "paragraph",
+   "text": "When $g$ turns around, add one term per $x$ that lands on $y$:",
+   "citations": [],
+   "id": "b036e932-8604-5f11-bce7-63da78ee2873"
+  },
+  {
+   "type": "equation",
+   "latex": "\\begin{gathered}Y=X^2:\\quad f_Y(y)=\\frac{f_X(\\sqrt y)+f_X(-\\sqrt y)}{2\\sqrt y}\\\\ Y=|X|:\\quad f_Y(y)=f_X(y)+f_X(-y)\\end{gathered}\\qquad y>0",
+   "display": true,
+   "citations": [],
+   "id": "7a21764a-9324-57f1-869c-51849683507a"
+  },
+  {
+   "type": "paragraph",
+   "text": "**A line keeps the family:** Gaussian in, Gaussian out. Uniform in, uniform out (push the two ends through).",
+   "citations": [],
+   "id": "174a8c6e-2724-541b-a0ff-fd80b37fdfe0"
+  },
+  {
+   "type": "equation",
+   "latex": "X\\sim N(\\mu,\\sigma^2)\\quad\\Longrightarrow\\quad aX+b\\sim N(a\\mu+b,\\ a^2\\sigma^2)",
+   "display": true,
+   "citations": [],
+   "id": "baa41084-4bb7-5346-8889-6987f5567c35"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 10 · Shortcut check: $Y=X^3$ and $Y=X^2$",
+   "prompt": "Check the Topic 2 answers for $X\\sim U(-1,1)$ with the shortcut formulas.",
+   "steps": [
+    {
+     "explanation": "$Y=X^3$: **read off** $f_X=\\tfrac12$, $g^{-1}(y)=y^{1/3}$, its derivative is $\\tfrac13y^{-2/3}$.",
+     "latex": "f_Y(y)=\\frac12\\cdot\\frac13\\,y^{-2/3}=\\frac{1}{6\\,y^{2/3}}\\quad\\checkmark"
+    },
+    {
+     "explanation": "$Y=X^2$: **read off** $f_X(\\sqrt y)=f_X(-\\sqrt y)=\\tfrac12$.",
+     "latex": "f_Y(y)=\\frac{\\frac12+\\frac12}{2\\sqrt y}=\\frac{1}{2\\sqrt y}\\quad\\checkmark"
+    }
+   ],
+   "answer": "Both match the CDF-method answers.",
+   "citations": [],
+   "id": "7e3fdb1a-9e7a-545a-b2bb-67488cf6eda5"
   },
   {
    "type": "heading",
    "level": 1,
    "text": "Practice Questions",
    "citations": [],
-   "id": "a80f2ffa-2fa5-5123-87b2-9fb40120282b"
+   "id": "e8666050-7f71-55ba-85d3-b4448b5207ab"
   },
   {
    "type": "callout",
    "tone": "tip",
-   "text": "**Question 4 is always one of these.** Spot the shape of $g$, then run its steps:\n\n1. **$X$ discrete / staircase:** add the chances that land on the same value.\n2. **Only up:** Range → Invert → $F_Y=F_X(g^{-1}(y))$ → Differentiate.\n3. **Only down:** same, but $F_Y=1-F_X(g^{-1}(y))$.\n4. **Turns around:** Range → the $x$-set where $g(x)\\le y$ → Differentiate (DAD).\n5. **Goes flat:** a jump $P(X$ in the flat part$)$, then accumulate the rest.",
+   "text": "**Question 4 is always one of these.** Spot the type of $Y$ and the shape of $g$, then run the steps:\n\n1. **Discrete $Y$** ($X$ discrete or $g$ a staircase): add the chances that land on the same value.\n2. **Continuous $Y$:** Range → Rewrite $g(X)\\le y$ as a statement about $X$ → Accumulate with $F_X$ → Differentiate.\n   - only up: $F_X(g^{-1}(y))$ · only down: $1-F_X(g^{-1}(y))$ · turns around: an interval of $x$.\n3. **Flat piece (mixed $Y$):** a jump $P(X$ in the flat part$)$, then accumulate the rest.",
    "citations": [],
-   "id": "541ac577-67a8-5411-b948-ca7b802b2887"
+   "id": "a9f638e4-6ad2-517b-bfd4-03c31bb4172d"
   },
   {
    "type": "paragraph",
    "text": "Test-style, easy → hard. Solve on paper first, then open the solution.",
    "citations": [],
-   "id": "b5728408-f788-5953-ab0b-c2b602996ffb"
+   "id": "4bf903b8-497c-58fe-97b7-73e2f88b05e9"
   },
   {
    "type": "practice_problem",
-   "title": "Question 1 · Case 1 · what type is $Y$ · Lecture 13 Examples 1–2",
+   "title": "Question 1 · Discrete Y · what type is $Y$ · Lecture 13 Examples 1–2",
    "difficulty": "introductory",
    "origin": "source",
    "prompt": "$X$ = number of failed packet sends, with $P(X=0,1,2,3)=0.4,\\ 0.3,\\ 0.2,\\ 0.1$. (a) Find the PMF of $Y=2X+1$. (b) Find the PMF of $Z=(X-1)^2$. (c) $V\\sim U(0,1)$ goes into a 1-bit converter: $B=0$ if $V<0.5$, $B=1$ if $V\\ge0.5$. What type is $B$? Find its PMF.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $X$ discrete → Case 1. (a) Each $x$ gives a different $y$, so the chances just move.",
+     "explanation": "**Type:** $X$ discrete → discrete $Y$ (Topic 1). (a) Each $x$ gives a different $y$, so the chances just move.",
      "latex": "p_Y(1)=0.4,\\ \\ p_Y(3)=0.3,\\ \\ p_Y(5)=0.2,\\ \\ p_Y(7)=0.1"
     },
     {
@@ -747,18 +782,18 @@
      "chunk_id": "2e08d2f4-7ce3-47dd-8074-24db399beabf"
     }
    ],
-   "id": "d92207de-7c48-5d54-8d4f-1040897ba7dd"
+   "id": "91a94ff0-2a8f-5339-aa1c-f1063bab10fb"
   },
   {
    "type": "practice_problem",
-   "title": "Question 2 · Case 2 · Exponential of a uniform · Tutorial 6 Q3",
+   "title": "Question 2 · CDF method, goes up · Exponential of a uniform · Tutorial 6 Q3",
    "difficulty": "introductory",
    "origin": "source",
    "prompt": "$X\\sim U(0,1)$. Find the CDF and PDF of $Y=e^X$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $e^x$ only goes up → Case 2.",
+     "explanation": "**Type:** $e^x$ only goes up → CDF method, first row.",
      "latex": ""
     },
     {
@@ -766,7 +801,7 @@
      "latex": "1\\le Y\\le e"
     },
     {
-     "explanation": "**Invert.**",
+     "explanation": "**Rewrite:** solve $y=g(x)$ for $x$.",
      "latex": "y=e^{x}\\quad\\Longrightarrow\\quad x=\\ln y"
     },
     {
@@ -786,22 +821,22 @@
      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
     }
    ],
-   "id": "ab8b04ed-ebf8-584b-a7f5-7717d20db176"
+   "id": "f685cb2e-31d4-5953-8e04-43885f72eb74"
   },
   {
    "type": "practice_problem",
-   "title": "Question 3 · Case 3 · decreasing $g$",
+   "title": "Question 3 · CDF method, goes down · decreasing $g$",
    "difficulty": "intermediate",
    "origin": "original",
    "prompt": "(a) $X\\sim$ Exp$(\\lambda)$. Find the CDF and PDF of $Y=-2X+3$. (b) $X\\sim U(0,1)$. Find the CDF and PDF of $Y=-\\ln X$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Type:** slope $-2$, only goes down → Case 3. **Range:** $X\\ge0$, so $Y=3-2X\\le3$.",
+     "explanation": "(a) **Type:** slope $-2$, only goes down → CDF method, the $\\le$ flips. **Range:** $X\\ge0$, so $Y=3-2X\\le3$.",
      "latex": "Y\\le3"
     },
     {
-     "explanation": "**Invert.**",
+     "explanation": "**Rewrite:** solve $y=g(x)$ for $x$.",
      "latex": "y=-2x+3\\quad\\Longrightarrow\\quad x=\\frac{3-y}{2}"
     },
     {
@@ -813,11 +848,11 @@
      "latex": "f_Y(y)=\\frac{\\lambda}{2}\\,e^{-\\lambda(3-y)/2},\\qquad y<3"
     },
     {
-     "explanation": "(b) **Type:** $-\\ln x$ only goes down → Case 3. **Range:** $X\\in(0,1)$, so $-\\ln X\\in(0,\\infty)$.",
+     "explanation": "(b) **Type:** $-\\ln x$ only goes down → CDF method, the $\\le$ flips. **Range:** $X\\in(0,1)$, so $-\\ln X\\in(0,\\infty)$.",
      "latex": "Y>0"
     },
     {
-     "explanation": "**Invert.**",
+     "explanation": "**Rewrite:** solve $y=g(x)$ for $x$.",
      "latex": "y=-\\ln x\\quad\\Longrightarrow\\quad x=e^{-y}"
     },
     {
@@ -831,22 +866,22 @@
    ],
    "answer": "(a) $F_Y=e^{-\\lambda(3-y)/2}$ for $y\\le3$, $f_Y=\\tfrac\\lambda2e^{-\\lambda(3-y)/2}$ (b) $F_Y=1-e^{-y}$, $f_Y=e^{-y}$: $Y\\sim$ Exp$(1)$.",
    "citations": [],
-   "id": "006371ee-dbb4-5a58-afeb-09867dfd9f1a"
+   "id": "1fc02990-e449-5dd4-bf31-82f3b7b08a11"
   },
   {
    "type": "practice_problem",
-   "title": "Question 4 · Case 2 · a Gaussian through a line · like Lecture 13 sensor",
+   "title": "Question 4 · CDF method, goes up · a Gaussian through a line · like Lecture 13 sensor",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "A sensor reading is $X\\sim N(2,9)$. It is calibrated to $Y=2X-3$. (a) Write $F_Y(y)$ using $\\Phi$. (b) What are the mean and variance of $Y$? (c) Find $P(Y>7)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** slope $2>0$, only goes up → Case 2.",
+     "explanation": "**Type:** slope $2>0$, only goes up → CDF method, first row.",
      "latex": ""
     },
     {
-     "explanation": "**Invert.**",
+     "explanation": "**Rewrite:** solve $y=g(x)$ for $x$.",
      "latex": "y=2x-3\\quad\\Longrightarrow\\quad x=\\frac{y+3}{2}"
     },
     {
@@ -870,22 +905,22 @@
      "chunk_id": "e3a36a46-a9a1-41da-89bc-cdc1cc104ae6"
     }
    ],
-   "id": "23c8fa69-bcc0-58e5-b134-2d1ec00d7a4e"
+   "id": "91e80926-da43-5610-beb2-4de914b29d5d"
   },
   {
    "type": "practice_problem",
-   "title": "Question 5 · Case 3 · $Y=aX+b$, in general · Lecture 15",
+   "title": "Question 5 · CDF method · $Y=aX+b$, in general · Lecture 15",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "$X$ is continuous with CDF $F_X$. (a) Write $F_Y$ for $Y=aX+b$ when $a>0$, $a<0$ and $a=0$. (b) Use it for $X\\sim U(0,1)$ and $Y=-3X+2$: find $F_Y$ and $f_Y$. What is $Y$?",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **$a>0$:** goes up (Case 2). Dividing by $a$ keeps the $\\le$.",
+     "explanation": "(a) **$a>0$:** goes up. Dividing by $a$ keeps the $\\le$.",
      "latex": "F_Y(y)=P\\Big(X\\le\\frac{y-b}{a}\\Big)=F_X\\Big(\\frac{y-b}{a}\\Big)"
     },
     {
-     "explanation": "**$a<0$:** goes down (Case 3). Dividing by $a$ **flips** it.",
+     "explanation": "**$a<0$:** goes down. Dividing by $a$ **flips** it.",
      "latex": "F_Y(y)=P\\Big(X\\ge\\frac{y-b}{a}\\Big)=1-F_X\\Big(\\frac{y-b}{a}\\Big)"
     },
     {
@@ -909,18 +944,18 @@
      "chunk_id": "28df4f3d-382b-4027-b8f5-4cc69b31d12d"
     }
    ],
-   "id": "2d640ef3-3dfb-5fe1-8f07-0984293044ee"
+   "id": "e6964403-c5e0-5ade-8721-b1e73b58e4bb"
   },
   {
    "type": "practice_problem",
-   "title": "Question 6 · Case 5 · flat pieces: timeout and limiter",
+   "title": "Question 6 · Extras: flat pieces · timeout and limiter",
    "difficulty": "intermediate",
    "origin": "original",
    "prompt": "(a) A job takes $X\\sim$ Exp$(1)$ seconds, but it is stopped after 1 second: $Y=\\min\\{X,1\\}$. Find $F_Y$ and $P(Y=1)$. (b) $X\\sim U(-2,2)$ goes through a limiter: $W=-1$ if $X<-1$, $W=X$ if $-1\\le X\\le1$, $W=1$ if $X>1$. Find $F_W$. What type is $W$?",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Type:** flat at $1$ → Case 5. **Range:** times above 1 are recorded as 1.",
+     "explanation": "(a) **Type:** flat at $1$ → a jump (mixed $Y$). **Range:** times above 1 are recorded as 1.",
      "latex": "0\\le Y\\le1"
     },
     {
@@ -932,7 +967,7 @@
      "latex": "F_Y(y)=1-e^{-y}"
     },
     {
-     "explanation": "(b) **Type:** flat at $-1$ and at $1$ → Case 5. **Jumps:** each flat part has length 1, height $\\tfrac14$.",
+     "explanation": "(b) **Type:** flat at $-1$ and at $1$ → two jumps. **Jumps:** each flat part has length 1, height $\\tfrac14$.",
      "latex": "\\begin{gathered}P(W=-1)=P(X<-1)=\\frac14 \\\\ P(W=1)=P(X>1)=\\frac14\\end{gathered}"
     },
     {
@@ -946,11 +981,11 @@
    ],
    "answer": "(a) $F_Y=1-e^{-y}$ on $[0,1)$, $1$ for $y\\ge1$; $P(Y=1)=e^{-1}\\approx 0.3679$ (b) $F_W=\\tfrac{w+2}{4}$ on $[-1,1)$, jumps of $\\tfrac14$ at $\\pm1$: mixed.",
    "citations": [],
-   "id": "47cabc7f-dab4-5afb-9a30-fe2faea56bbb"
+   "id": "d8276094-6fa1-5e39-9e00-d0ba4f509047"
   },
   {
    "type": "practice_problem",
-   "title": "Question 7 · Case 4 · $|X|$ of a $Cx^2$ variable · Tutorial 5 Q5",
+   "title": "Question 7 · CDF method, turns around · $|X|$ of a $Cx^2$ variable · Tutorial 5 Q5",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "$f_X(x)=Cx^2$ for $|x|\\le1$, $0$ otherwise. (a) Find $C$. (b) Find the PDF of $Y=|X|$. (c) Find $E[Y^2]$ and $\\mathrm{Var}[3X-1]$.",
@@ -961,7 +996,7 @@
      "latex": "\\int_{-1}^{1}Cx^2\\,dx=\\frac{2C}{3}=1\\quad\\Rightarrow\\quad C=\\frac32"
     },
     {
-     "explanation": "(b) **Type:** $|x|$ turns around at $0$ → Case 4. **Range:** $0\\le Y\\le1$.",
+     "explanation": "(b) **Type:** $|x|$ turns around at $0$ → CDF method, an interval. **Range:** $0\\le Y\\le1$.",
      "latex": "0\\le Y\\le1"
     },
     {
@@ -989,18 +1024,18 @@
      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
     }
    ],
-   "id": "2fbe0486-028d-5c65-83b1-5b0f086d9ec5"
+   "id": "5f835086-547b-59ae-a30e-9c541e9f6f9f"
   },
   {
    "type": "practice_problem",
-   "title": "Question 8 · Case 4 · power of a Gaussian noise voltage",
+   "title": "Question 8 · CDF method, turns around · power of a Gaussian noise voltage",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "A noise voltage is $X\\sim N(0,1)$. Its power is $Y=X^2$. (a) Write $F_Y(y)$ using $\\Phi$. (b) Find $f_Y(y)$. (c) Find $P(Y\\le1)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $x^2$ turns around → Case 4. **Range:** $Y\\ge0$.",
+     "explanation": "**Type:** $x^2$ turns around → CDF method, an interval. **Range:** $Y\\ge0$.",
      "latex": "Y\\ge0"
     },
     {
@@ -1024,18 +1059,18 @@
      "chunk_id": "1ea570c1-749a-46f9-a7b4-1a001500edae"
     }
    ],
-   "id": "be365207-4dc4-5aaf-acc0-5973b313dff1"
+   "id": "2e0ed28f-7adb-5637-9f5e-3dcc83f90441"
   },
   {
    "type": "practice_problem",
-   "title": "Question 9 · Case 4 · squaring a lopsided uniform",
+   "title": "Question 9 · CDF method, turns around · squaring a lopsided uniform",
    "difficulty": "advanced",
    "origin": "original",
    "prompt": "$X\\sim U(-1,2)$. Find the CDF and PDF of $Y=X^2$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $x^2$ turns around → Case 4. **Range:** smallest at $x=0$, largest at $x=2$.",
+     "explanation": "**Type:** $x^2$ turns around → CDF method, an interval. **Range:** smallest at $x=0$, largest at $x=2$.",
      "latex": "0\\le Y\\le4"
     },
     {
@@ -1053,18 +1088,18 @@
    ],
    "answer": "Two pieces: $\\dfrac{1}{3\\sqrt y}$ on $(0,1)$, $\\dfrac{1}{6\\sqrt y}$ on $(1,4)$. Above $y=1$ only $+\\sqrt y$ is possible.",
    "citations": [],
-   "id": "d0f56fcd-fc93-5692-ba31-c3f905ad5730"
+   "id": "4aca8612-a415-559c-bd79-05c75569342d"
   },
   {
    "type": "practice_problem",
-   "title": "Question 10 · Case 4 · $F_Y$ from a picture · Lecture 15",
+   "title": "Question 10 · CDF method, turns around · $F_Y$ from a picture · Lecture 15",
    "difficulty": "advanced",
    "origin": "source",
    "prompt": "$X$ is continuous with CDF $F_X$, and $Y=g(X)$ with $g(x)=x^3-3x$ (graph below: it peaks at $(-1,2)$ and dips to $(1,-2)$). Write (a) $F_Y(3)$, (b) $F_Y(0)$, (c) $F_Y(-3)$ using $F_X$. (d) Find $F_Y(0)$ when $X\\sim U(-2,2)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $g$ turns around twice → Case 4. **Accumulate:** for each height, find where the curve is below the line.",
+     "explanation": "**Type:** $g$ turns around twice → CDF method, intervals. **Accumulate:** for each height, find where the curve is below the line.",
      "latex": ""
     },
     {
@@ -1092,24 +1127,24 @@
      "chunk_id": "c95de292-0b58-4163-9f5f-ae7296874275"
     }
    ],
-   "id": "518ee85e-9962-5562-a264-ebfbfcb0f5ef"
+   "id": "90dfee04-eecc-5b24-8355-9eeefc8bd65f"
   },
   {
    "type": "paragraph",
    "text": "For the question above: drag $y$ and count where the curve is below the line.\n\n```graph\ntitle \"$g(x)=x^3-3x$: drag the line to height $y$\"\nx -2.6 2.6 label=\"$x$\" height=280\ny -4 4 label=\"$g(x)$\"\nslider h -3.5 3.5 0 step=0.1 label=\"$y$\"\ncurve \"x^3-3*x\" from=-2.2 to=2.2 color=1 label=\"$g(x)$\"\nhline \"h\" color=2\n```",
    "citations": [],
-   "id": "9306155a-63ed-5db1-958e-e311ac593231"
+   "id": "894f2a3b-dadb-5681-8b1f-81b3d51e598e"
   },
   {
    "type": "practice_problem",
-   "title": "Question 11 · Case 4 · $Y=\\cos X$ · Lecture 15",
+   "title": "Question 11 · CDF method, turns around · $Y=\\cos X$ · Lecture 15",
    "difficulty": "advanced",
    "origin": "source",
    "prompt": "$X$ is continuous and takes values in $[-\\pi,\\pi]$. (a) Write $F_Y(y)$ for $Y=\\cos X$ using $F_X$, for $-1\\le y\\le1$. (b) Find $F_Y$ and $f_Y$ when $X\\sim U(-\\pi,\\pi)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $\\cos x$ goes up then down → Case 4. **Range:** $-1\\le\\cos X\\le1$.",
+     "explanation": "**Type:** $\\cos x$ goes up then down → CDF method, intervals. **Range:** $-1\\le\\cos X\\le1$.",
      "latex": "-1\\le Y\\le1"
     },
     {
@@ -1133,22 +1168,22 @@
      "chunk_id": "026ebc91-2bdc-4df5-9463-b8b9fd3c7c40"
     }
    ],
-   "id": "ee345e50-e923-5d2c-adbc-e1168137e9ad"
+   "id": "a49d0916-43ab-5043-afb2-8c5e70fcaa3c"
   },
   {
    "type": "practice_problem",
-   "title": "Question 12 · Case 3 + 4 · the reciprocal, in general · Tutorial 6 Q1",
+   "title": "Question 12 · CDF method, goes down on two sides · the reciprocal, in general · Tutorial 6 Q1",
    "difficulty": "advanced",
    "origin": "source",
    "prompt": "$X$ is continuous with CDF $F_X$ and PDF $f_X$. Write the CDF and PDF of $Y=\\dfrac1X$ using $F_X$ and $f_X$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $\\tfrac1x$ goes down on each side of $0$, but jumps across it. So split by the sign, like Case 4. **Range:** any nonzero number.",
+     "explanation": "**Type:** $\\tfrac1x$ goes down on each side of $0$, but jumps across it. So split by the sign and handle each side. **Range:** any nonzero number.",
      "latex": "Y\\ne0"
     },
     {
-     "explanation": "**Accumulate**, $y>0$: every negative $X$ works ($\\tfrac1X<0<y$). A positive $X$ works when $X\\ge\\tfrac1y$ (flip, Case 3).",
+     "explanation": "**Accumulate**, $y>0$: every negative $X$ works ($\\tfrac1X<0<y$). A positive $X$ works when $X\\ge\\tfrac1y$ (flip: $\\tfrac1x$ goes down).",
      "latex": "F_Y(y)=F_X(0)+1-F_X\\Big(\\frac1y\\Big)"
     },
     {
@@ -1172,7 +1207,7 @@
      "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
     }
    ],
-   "id": "0737478b-b2a8-5cd0-8ff9-98bb32f0c445"
+   "id": "10e1dca8-1f1a-565c-b6d4-e9123d16d601"
   }
  ]
 }

@@ -1,8 +1,8 @@
 r"""Test 2 - Question 1: random experiments, sample spaces, discrete random variables, PMFs and CDFs (Lectures 7-9).
 
-Layout (REWRITE_PLAN.md): you'll see -> the move -> Case 1-5 (formula, short example, full example in
-a closed card, shortcut card) -> practice. Step words: Spot, List, Label, Add, Check, Find c, Accumulate, Rewrite,
-Write, Plug in, Inside, Outside (the same words as Questions 2-4).
+Layout (REWRITE_PLAN.md, v3): two topics, each = explanation + formulas (open) -> open worked examples of the
+different kinds of question -> practice. Step words: Spot, List, Label, Add, Check, Find c, Accumulate, Rewrite,
+Read off, Plug in, Inside, Outside (the same words as Questions 2-4).
 """
 from fractions import Fraction as Fr
 from math import comb, exp, factorial, perm
@@ -24,182 +24,186 @@ def big(n):
     return f'{n:,}'.replace(',', '{,}')
 
 
-D.P(r'**Lectures 7–9.** $X$ turns the result of an experiment into a number that lands on separate values ($0,1,2,\dots$). Find its PMF and CDF.',
+D.P(r'**Lectures 7–9.** Question 1 gives you a random number $X$ that lands on separate values ($0,1,2,\dots$), like the number of heads in 3 tosses. You find the chance of each value (the **PMF**) and the running total (the **CDF**). Two topics cover it: **PMF and CDF**, then **named families**.',
     cites=cite('L7', 2) + cite('L8', 5) + cite('L9', 2))
 
 # =====================================================================================================
-D.H('Question 1 in plain words')
-D.P(r'**You’ll see:** an experiment (coins, dice, chips), a PMF with a $c$, a CDF, or a story with a clue word (“on average”, “until”). Then parts (a), (b), (c).')
-D.P(r'**The move:** the **PMF** lists every value of $X$ and its chance. The chances add to $1$. The **CDF** is the running total:')
-D.EQ(r'p_X(x)=P(X=x),\qquad \sum_x p_X(x)=1,\qquad F_X(x)=P(X\le x)', cites=cite('L7', 3) + cite('L8', 6))
-D.P(r'**Short example:** toss 3 coins, $X$ = number of heads:')
-D.EQ(r'p_X(0,1,2,3)=\frac18,\ \frac38,\ \frac38,\ \frac18\qquad\Longrightarrow\qquad F_X(1)=\frac18+\frac38=\frac12')
-D.P(r'**Which case?**')
-D.T(['The question gives you…', 'Go to'],
-    [['an experiment that matches no family', 'Case 1'],
-     [r'“$p_X(x)=c\cdot(\dots)$, find $c$”', 'Case 2'],
-     ['a CDF, or asks for one', 'Case 3'],
-     ['a story with a clue word (“on average”, “until”, “without replacement”)', 'Case 4'],
-     ['“in exactly 3 of the next 8 years…”', 'Case 5']])
-
-
-# =====================================================================================================
-D.H('Case 1: build the PMF from an experiment')
-D.P(r'**You’ll see:** coins, dice, chips, balls, but no family fits. “Find the PMF of $X$.”')
-D.P(r'**The move:** list the outcomes, turn each into a number, and add up the chances of each number.')
-D.L([r'**List** all the outcomes (equally likely? count them).',
-     r'**Label** each outcome with its value of $X$.',
-     r'**Add** the chances of outcomes with the same value.',
-     r'**Check:** the PMF adds to $1$.'], ordered=True, cites=cite('L7', 3))
-D.P(r'**Short example:** 3 coins: $X=2$ for $hht$, $hth$, $thh$:')
-D.EQ(r'P(X=2)=\frac18+\frac18+\frac18=\frac38')
-D.CARD(r'Full example (Lecture 7): toss a coin 3 times, $\;X$ = number of heads',
-       [(r'**List:** $2^3=8$ equally likely outcomes, each $\tfrac18$.', r'hhh,\ hht,\ hth,\ thh,\ htt,\ tht,\ tth,\ ttt'),
-        (r'**Label** each with its number of heads.', (r'X=3:\ hhh\qquad X=2:\ hht,\ hth,\ thh', r'X=1:\ htt,\ tht,\ tth\qquad X=0:\ ttt')),
-        (r'**Add** the chances in each group.', r'p_X(0)=\frac18,\quad p_X(1)=\frac38,\quad p_X(2)=\frac38,\quad p_X(3)=\frac18'),
-        (r'**Check.** (Practice 02 Q6, boys in a 3-child family, is the same question.)', r'\frac18+\frac38+\frac38+\frac18=1\ \checkmark')],
-       r'p_X=\frac18,\ \frac38,\ \frac38,\ \frac18\ \text{ for }x=0,1,2,3', cites=cite('L7', 4))
-chips = {s: Fr(sum(1 for a in range(10) for b in range(a + 1, 10) if a + b == s), 45) for s in range(1, 18)}
-D.CARD(r'Full example (Practice 02 Q5): the total of two chips',
-       [(r'10 chips numbered 0–9; draw 2 without replacement; $S$ = their total. **List:** a pair of different chips, order doesn’t matter.', r'\binom{10}{2}=45\ \text{ equally likely pairs}'),
-        (r'**Label:** totals run from $0+1=1$ up to $8+9=17$. Count the pairs for each total. Example $S=9$:', r'\{0,9\},\{1,8\},\{2,7\},\{3,6\},\{4,5\}\quad\Rightarrow\quad 5\text{ pairs}'),
-        (r'$S=10$: $\{1,9\},\{2,8\},\{3,7\},\{4,6\}$ (not $\{5,5\}$: one chip can’t be drawn twice).', r'4\text{ pairs}'),
-        (r'**Add:** the counts climb $1,1,2,2,3,3,4,4,5$ up to $S=9$, then fall back $4,4,3,3,2,2,1,1$.', r'p_S(s)=\frac{\text{pairs with total }s}{45},\qquad p_S(9)=\frac{5}{45}=\frac19'),
-        (r'**Check.**', r'1+1+2+2+3+3+4+4+5+4+4+3+3+2+2+1+1=45\ \checkmark')],
-       r'p_S(s)=\frac{1}{45}\times(1,1,2,2,3,3,4,4,5,4,4,3,3,2,2,1,1)\ \text{ for }s=1,\dots,17', cites=cite('P2', 1))
-mx = {x: Fr(2 * x - 1, 36) for x in range(1, 7)}
-assert mx == {x: Fr(sum(1 for a in range(1, 7) for b in range(1, 7) if max(a, b) == x), 36) for x in range(1, 7)}
-D.TRY('Case 1 · Larger of two dice',
-      'Two fair dice are rolled. Let $X$ be the **larger** of the two numbers. Find $P(X=x)$ for $x=1,\\dots,6$.',
-      [S(r'**List:** $6\cdot6=36$ equally likely pairs $(a,b)$.', r'36\text{ outcomes}'),
-       S(r'**Label** $x=3$ as an example: $(1,3),(2,3),(3,3),(3,2),(3,1)$.', r'5\text{ pairs}'),
-       S(r'In general: $x$ pairs with $a=x$, plus $x$ with $b=x$, minus $(x,x)$ counted twice.', r'2x-1\text{ pairs}'),
-       S(r'**Add:** divide by 36.', r'P(X=x)=\frac{2x-1}{36}'),
-       S(r'**Check:** $1+3+5+7+9+11=36$ ✓.')],
-      r'$P(X=x)=\dfrac{2x-1}{36}$: $\tfrac1{36},\tfrac3{36},\tfrac5{36},\tfrac7{36},\tfrac9{36},\tfrac{11}{36}$')
-
-# =====================================================================================================
-D.H('Case 2: find c (the chances add to 1)')
-D.P(r'**You’ll see:** “$p_X(x)=c\cdot(\dots)$. Find $c$.”')
-D.P(r'**The move:** add up every chance, set it to $1$, solve. (Same as Question 2, with a sum instead of an area.)')
-D.EQ(r'\sum_{\text{all }x}c\cdot(\dots)=1', cites=cite('L7', 5))
-D.P(r'**Short example:** $p_X(x)=c(x+1)$ for $x=0,1,2,3$:')
-D.EQ(r'c(1+2+3+4)=10c=1\quad\Longrightarrow\quad c=\frac1{10}')
-D.CARD(r'Full example (Tutorial 3 Q2): $\;p_X(x)=c\big(\tfrac23\big)^x$, $\;x=1,2,3,\dots$',
-       [(r'**Find $c$:** add every chance.', r'\sum_{x=1}^{\infty}c\Big(\frac23\Big)^x=1'),
-        (r'Geometric series starting at $1$, ratio $r=\tfrac23$ (card below).', r'\sum_{x=1}^{\infty}\Big(\frac23\Big)^x=\frac{2/3}{1-2/3}=2'),
-        (r'Solve.', r'2c=1\quad\Longrightarrow\quad c=\frac12')],
-       r'c=\frac12', cites=cite('T3', 1))
-D.CARD(r'Sums you’ll need',
-       [(r'Geometric series ($|r|<1$), starting at $0$ or at $1$:', r'\sum_{k=0}^{\infty}r^k=\frac{1}{1-r},\qquad \sum_{k=1}^{\infty}r^k=\frac{r}{1-r}'),
-        (r'The exponential series (it’s why the Poisson PMF adds to 1):', r'\sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{\lambda}')], numbered=False)
-
-# =====================================================================================================
-D.H('Case 3: the CDF (a staircase)')
-D.P(r'**You’ll see:** “find the CDF”, “find the PMF from this CDF”, “find $P(a<X\le b)$”.')
-D.P(r'**The move:** the CDF is a **staircase**. It’s flat between values and **jumps by $p_X(x)$** at each value:')
+D.H('Topic 1: PMF and CDF')
+D.P(r'There are two ways to write down the chances of $X$. Both say the same thing.')
+D.P(r'**The PMF** = the chance of each value. Every chance is between $0$ and $1$, and together they add to $1$.')
+D.EQ(r'p_X(x)=P(X=x),\qquad \sum_{\text{all }x}p_X(x)=1', cites=cite('L7', 3))
+D.P(r'Example: toss 3 coins, $X$ = number of heads.')
+D.EQ(r'p_X(0)=\frac18,\quad p_X(1)=\frac38,\quad p_X(2)=\frac38,\quad p_X(3)=\frac18')
+D.P(r'**The CDF** = the running total: the chance that $X$ is **at most** $x$.')
 D.EQ(r'F_X(x)=P(X\le x)=\sum_{k\le x}p_X(k)', cites=cite('L8', 6))
-D.L([r'**Accumulate** (PMF → CDF): keep a running total, adding each jump as you pass a value.',
-     r'**Jumps** (CDF → PMF): the jump sizes are the PMF.',
-     r'**Rewrite** the probability asked with $F$’s (card below).'], ordered=True)
-D.P(r'**Short example:** 3 coins, the running total:')
-D.EQ(r'0\ \to\ \frac18\ \to\ \frac12\ \to\ \frac78\ \to\ 1')
-D.CARD(r'Rewrite: turn any probability into $F$’s',
-       [(r'Up to $b$:', r'P(X\le b)=F_X(b)'),
-        (r'Above $a$:', r'P(X>a)=1-F_X(a)'),
-        (r'Between:', r'P(a<X\le b)=F_X(b)-F_X(a)'),
-        (r'One value: the jump there ($0$ if no jump).', r'P(X=a)=\text{jump at }a'),
-        (r'**For whole numbers, turn $<$ into $\le$ first:**', r'P(X<4)=P(X\le3)=F_X(3)')], numbered=False, cites=cite('L9', 4))
-D.CARD(r'Full example (Lecture 9): the CDF of the 3-coin count',
-       [(r'**Accumulate:** start at $0$, jump $\tfrac18$ at $0$, $\tfrac38$ at $1$, $\tfrac38$ at $2$, $\tfrac18$ at $3$.',
-         r'F_X(x)=\begin{cases}0,&x<0\\ \frac18,&0\le x<1\\ \frac12,&1\le x<2\\ \frac78,&2\le x<3\\ 1,&x\ge3\end{cases}'),
-        (r'**Rewrite** $P(1<X\le3)$.', r'F_X(3)-F_X(1)=1-\frac12=\frac12')],
-       r'\text{a staircase }0\to\frac18\to\frac12\to\frac78\to1', cites=cite('L9', 2))
+D.P(r'Same example: add the chances as you walk right.')
+D.EQ(r'F_X:\quad 0\ \to\ \frac18\ \to\ \frac12\ \to\ \frac78\ \to\ 1')
 D.GRAPH(['title "CDF of the number of heads in 3 tosses"', 'x -1 4.5 label="$x$" height=240', 'y 0 1.1 label="$F_X(x)$"']
         + steps([(0, 1 / 8), (1, 3 / 8), (2, 3 / 8), (3, 1 / 8)], -1, 4.5, color=2)
         + ['hline "1"', 'text "0.35" "0.2" "jump $\\tfrac18$"', 'text "1.4" "0.6" "jump $\\tfrac38$"'],
-        intro='**What does it look like?** At each jump, the value is the **top** of the step (the dot).')
-D.CARD(r'Full example (Practice 03 Q9): from a CDF back to the PMF',
-       [(r'$F_X=0$ for $x<-3$, $\tfrac38$ on $[-3,0)$, $\tfrac34$ on $[0,6)$, $1$ for $x\ge6$. It’s a staircase, so $X$ is **discrete**.', r'X\in\{-3,\ 0,\ 6\}'),
-        (r'**Jumps** = the PMF.', r'p_X(-3)=\frac38,\quad p_X(0)=\frac34-\frac38=\frac38,\quad p_X(6)=1-\frac34=\frac14'),
-        (r'**Rewrite** $P(-3<X\le6)$.', r'F_X(6)-F_X(-3)=1-\frac38=\frac58'),
-        (r'**Rewrite** $P(X<0)$: the step just left of $0$.', r'P(X<0)=\frac38')],
-       r'p_X=\frac38,\ \frac38,\ \frac14\ \text{ at }-3,\ 0,\ 6', cites=cite('P3', 3))
+        intro='So the CDF is a **staircase**: flat between values, and it **jumps by $p_X(x)$** at each value. It starts at $0$ and ends at $1$. At a jump, the value is the **top** of the step (the dot).')
+D.P(r'**How to go between them:**')
+D.T(['You have', 'You want', 'Do this'],
+    [['an experiment', 'the PMF', '**List** the outcomes → **Label** each with its $X$ → **Add** the chances per value → **Check** they add to $1$'],
+     [r'a PMF with an unknown $c$', '$c$', '**Find $c$:** add every chance, set the total to $1$, solve'],
+     ['the PMF', 'the CDF', '**Accumulate:** running total'],
+     ['the CDF', 'the PMF', 'the **jump sizes** are the PMF']], cites=cite('L7', 3))
+D.P(r'**Any probability from the CDF** (**Rewrite** it with $F$’s):')
+D.T(['Asked', 'Write it as'],
+    [[r'$P(X\le b)$', r'$F_X(b)$'],
+     [r'$P(X>a)$', r'$1-F_X(a)$'],
+     [r'$P(a<X\le b)$', r'$F_X(b)-F_X(a)$'],
+     [r'$P(X=a)$', r'the jump at $a$ ($0$ if there’s no jump)']], cites=cite('L9', 4))
+D.CO('warning', r'**Whole numbers: turn $<$ into $\le$ first.** $P(X<4)=P(X\le3)=F_X(3)$. For a discrete $X$, $<$ and $\le$ give different answers.')
+D.P(r'**Sums you’ll need for “find $c$”:** the geometric series ($|r|<1$) and the exponential series.')
+D.EQ(r'\sum_{k=0}^{\infty}r^k=\frac{1}{1-r},\qquad \sum_{k=1}^{\infty}r^k=\frac{r}{1-r},\qquad \sum_{k=0}^{\infty}\frac{\lambda^k}{k!}=e^{\lambda}')
+
+D.EX('Build a PMF · 3 coins (Lecture 7)',
+     r'Toss a fair coin 3 times. $X$ = the number of heads. Find the PMF of $X$.',
+     [S(r'**Spot:** an experiment, no family named → build the PMF.'),
+      S(r'**List:** $2^3=8$ equally likely outcomes, each with chance $\tfrac18$.', r'hhh,\ hht,\ hth,\ thh,\ htt,\ tht,\ tth,\ ttt'),
+      S(r'**Label** each outcome with its number of heads.', r'\begin{gathered}X=3:\ hhh\qquad X=2:\ hht,\ hth,\ thh\\ X=1:\ htt,\ tht,\ tth\qquad X=0:\ ttt\end{gathered}'),
+      S(r'**Add** the chances in each group.', r'p_X(0)=\frac18,\quad p_X(1)=\frac38,\quad p_X(2)=\frac38,\quad p_X(3)=\frac18'),
+      S(r'**Check** they add to $1$.', r'\frac18+\frac38+\frac38+\frac18=1\ \checkmark')],
+     r'$p_X=\tfrac18,\ \tfrac38,\ \tfrac38,\ \tfrac18$ for $x=0,1,2,3$', cites=cite('L7', 4))
+chips = {s: Fr(sum(1 for a in range(10) for b in range(a + 1, 10) if a + b == s), 45) for s in range(1, 18)}
+D.EX('Build a PMF · without replacement (Practice 02 Q5)',
+     r'10 chips are numbered $0$ to $9$. You draw 2 without replacement. $S$ = the total of the two numbers. Find the PMF of $S$.',
+     [S(r'**List:** a pair of different chips, order doesn’t matter.', r'\binom{10}{2}=45\ \text{ equally likely pairs}'),
+      S(r'**Label:** totals run from $0+1=1$ up to $8+9=17$. Count the pairs for each total. For $S=9$:', r'\{0,9\},\{1,8\},\{2,7\},\{3,6\},\{4,5\}\quad\Rightarrow\quad 5\text{ pairs}'),
+      S(r'For $S=10$: $\{1,9\},\{2,8\},\{3,7\},\{4,6\}$. Not $\{5,5\}$: one chip can’t be drawn twice.', r'4\text{ pairs}'),
+      S(r'**Add:** the counts climb $1,1,2,2,3,3,4,4,5$ up to $S=9$, then fall $4,4,3,3,2,2,1,1$. Divide by $45$.', r'p_S(s)=\frac{\text{pairs with total }s}{45},\qquad p_S(9)=\frac{5}{45}=\frac19'),
+      S(r'**Check:** the counts add up to all 45 pairs.', r'\begin{gathered}1+1+2+2+3+3+4+4+5=25\\ 4+4+3+3+2+2+1+1=20\\ 25+20=45\ \checkmark\end{gathered}')],
+     r'$p_S(s)=\tfrac{1}{45}\times(1,1,2,2,3,3,4,4,5,4,4,3,3,2,2,1,1)$ for $s=1,\dots,17$', cites=cite('P2', 1))
+mx = {x: Fr(2 * x - 1, 36) for x in range(1, 7)}
+assert mx == {x: Fr(sum(1 for a in range(1, 7) for b in range(1, 7) if max(a, b) == x), 36) for x in range(1, 7)}
+D.EX('Build a PMF · larger of two dice',
+     r'Two fair dice are rolled. $X$ = the **larger** of the two numbers. Find $P(X=x)$ for $x=1,\dots,6$.',
+     [S(r'**List:** $6\cdot6=36$ equally likely pairs $(a,b)$.', r'36\text{ outcomes}'),
+      S(r'**Label** one value first, $x=3$: the pairs whose larger number is 3.', r'(1,3),\ (2,3),\ (3,3),\ (3,2),\ (3,1)\quad\Rightarrow\quad 5\text{ pairs}'),
+      S(r'In general: $x$ pairs with $a=x$, plus $x$ pairs with $b=x$, minus $(x,x)$ counted twice.', r'2x-1\text{ pairs}'),
+      S(r'**Add:** divide by 36.', r'P(X=x)=\frac{2x-1}{36}'),
+      S(r'**Check:** $1+3+5+7+9+11=36$ ✓.')],
+     r'$P(X=x)=\dfrac{2x-1}{36}$: $\tfrac1{36},\tfrac3{36},\tfrac5{36},\tfrac7{36},\tfrac9{36},\tfrac{11}{36}$')
+D.EX(r'Find $c$ · a geometric series (Tutorial 3 Q2)',
+     r'$p_X(x)=c\big(\tfrac23\big)^x$ for $x=1,2,3,\dots$ Find $c$.',
+     [S(r'**Spot:** a PMF with an unknown $c$ → the chances must add to $1$.', r'\sum_{x=1}^{\infty}c\Big(\frac23\Big)^x=1'),
+      S(r'**Read off:** a geometric series starting at $x=1$, ratio $r=\tfrac23$.', r'\sum_{x=1}^{\infty}r^x=\frac{r}{1-r}=\frac{2/3}{1-2/3}=2'),
+      S(r'**Find $c$:** solve.', r'2c=1\quad\Longrightarrow\quad c=\frac12')],
+     r'$c=\tfrac12$', cites=cite('T3', 1))
+D.EX('PMF → CDF · the 3-coin staircase (Lecture 9)',
+     r'$X$ = the number of heads in 3 tosses, with PMF $\tfrac18,\tfrac38,\tfrac38,\tfrac18$ at $0,1,2,3$. Find the CDF and $P(1<X\le3)$.',
+     [S(r'**Accumulate:** start at $0$, then add each jump as you pass $0$, $1$, $2$, $3$.',
+        r'F_X(x)=\begin{cases}0,&x<0\\ \frac18,&0\le x<1\\ \frac12,&1\le x<2\\ \frac78,&2\le x<3\\ 1,&x\ge3\end{cases}'),
+      S(r'**Rewrite** $P(1<X\le3)$ as a difference of $F$’s.', r'P(1<X\le3)=F_X(3)-F_X(1)=1-\frac12=\frac12')],
+     r'the staircase above; $P(1<X\le3)=\tfrac12$', cites=cite('L9', 2))
+D.EX('CDF → PMF · read the jumps (Practice 03 Q9)',
+     r'$F_X(x)=0$ for $x<-3$, $\tfrac38$ on $[-3,0)$, $\tfrac34$ on $[0,6)$, and $1$ for $x\ge6$. Find the PMF, $P(-3<X\le6)$ and $P(X<0)$.',
+     [S(r'**Spot:** a staircase → $X$ is discrete. It jumps at $-3$, $0$, $6$.', r'X\in\{-3,\ 0,\ 6\}'),
+      S(r'The **jump sizes** are the PMF.', r'p_X(-3)=\frac38,\quad p_X(0)=\frac34-\frac38=\frac38,\quad p_X(6)=1-\frac34=\frac14'),
+      S(r'**Rewrite** $P(-3<X\le6)$.', r'F_X(6)-F_X(-3)=1-\frac38=\frac58'),
+      S(r'**Rewrite** $P(X<0)$: the step just left of $0$.', r'P(X<0)=\frac38')],
+     r'$p_X=\tfrac38,\ \tfrac38,\ \tfrac14$ at $-3,\ 0,\ 6$; $P(-3<X\le6)=\tfrac58$; $P(X<0)=\tfrac38$', cites=cite('P3', 3))
 
 # =====================================================================================================
-D.H('Case 4: a named family (spot the clue word)')
-D.P(r'**You’ll see:** a story. A clue word tells you the family; its PMF is ready-made. **Spot** the clue:')
-D.T(['Clue in the question', 'Family'],
-    [['**one** yes/no try', 'Bernoulli'],
-     ['**fixed number $n$** of tries, count successes', 'Binomial'],
-     ['tries **until the first** success', 'Geometric'],
-     ['tries **until the $r$-th** success', 'Negative Binomial'],
-     ['draw $n$ **without replacement**', 'Hypergeometric'],
-     ['“**on average** $\\lambda$ per hour/page/year”', 'Poisson']], cites=cite('L8', 5))
-D.L([r'**Spot** the family and its numbers ($n$, $p$, $\lambda$, …).',
-     r'**Write** its PMF with those numbers.',
-     r'**Plug in** $k$. “At least” → $1-$ (the few below).'], ordered=True)
-D.P(r'Open a card for the formula and a short example:')
-D.CARD(r'Bernoulli$(p)$: $\;P(1)=p$, $\;P(0)=1-p$',
-       [(r'One yes/no try. Example: is the first of 12 accidents on June 13?', r'P(Y=1)=\frac1{30},\qquad P(Y=0)=\frac{29}{30}')], numbered=False)
-D.CARD(r'Binomial$(n,p)$: $\;\dbinom nk\,p^k(1-p)^{n-k}$, $\;k=0,\dots,n$',
-       [(r'$n$ independent tries, count the successes. Example: 8 bits, each wrong with $p=0.1$, exactly 1 wrong:',
-         r'\binom81(0.1)(0.9)^7\approx' + f'{binom(8, 0.1, 1):.4f}'),
-        (r'$\binom nk$ = “choose $k$ of $n$”, the only counting you need. On the Casio: `n nCr k`.', r'\binom{8}{1}=8,\qquad \binom{10}{2}=45'),
-        (r'With replacement → Binomial. Without → Hypergeometric.', '')], numbered=False)
-D.CARD(r'Geometric$(p)$: $\;(1-p)^{k-1}p$, $\;k=1,2,\dots$',
-       [(r'Tries until the first success: $k-1$ failures, then a success. Example: each try works with $0.2$; succeed on try 3:', r'(0.8)^2(0.2)=0.128'),
-        (r'Shortcut: “more than $k$ tries” = the first $k$ all failed.', r'P(X>k)=(1-p)^k')], numbered=False)
+D.H('Topic 2: named families')
+D.P(r'Some stories follow a pattern. Then you don’t build the PMF: it’s ready-made. A **clue word** tells you which one.')
+D.T(['Clue in the question', 'Family', 'PMF'],
+    [['**one** yes/no try', 'Bernoulli$(p)$', r'$P(1)=p,\ P(0)=1-p$'],
+     ['**fixed number $n$** of tries, count successes', 'Binomial$(n,p)$', r'$\binom nk p^k(1-p)^{n-k}$, $k=0..n$'],
+     ['tries **until the first** success', 'Geometric$(p)$', r'$(1-p)^{k-1}p$, $k=1,2,..$'],
+     ['tries **until the $r$-th** success', 'Negative Binomial$(r,p)$', r'$\binom{k-1}{r-1}p^r(1-p)^{k-r}$, $k=r,r+1,..$'],
+     ['draw $n$ **without replacement**', 'Hypergeometric', r'$\binom Kk\binom{N-K}{n-k}\big/\binom Nn$'],
+     [r'“**on average** $\lambda$ per hour/page/year”', r'Poisson$(\lambda)$', r'$e^{-\lambda}\lambda^k/k!$, $k=0,1,2,..$']], cites=cite('L8', 5))
+D.P(r'**What the letters mean:**')
+D.L([r'$p$ = the chance one try “succeeds”. **Success** = whatever the question counts, even a bad thing (a wrong bit, a defect).',
+     r'$n$ = how many tries (Binomial), or how many you grab (Hypergeometric).',
+     r'$k$ = the value the question asks about: how many successes, which try, or how many arrivals.',
+     r'$r$ = how many successes you wait for (Negative Binomial).',
+     r'$N$ = items in the box, $K$ = the special ones in the box (Hypergeometric).',
+     r'$\lambda$ = the average count **for the time window asked** (Poisson).'])
+D.P(r'**The steps, every time:**')
+D.L([r'**Spot** the family from the clue word.',
+     r'**Read off** its numbers from the story ($n=\dots$, $p=\dots$, $k=\dots$).',
+     r'**Plug in** to the PMF.'], ordered=True)
+D.P(r'**Three shortcuts:**')
+D.L([r'**At least one** = one minus none: $P(X\ge1)=1-P(X=0)$.',
+     r'**At least $m$** = one minus the few below: $P(X\ge4)=1-\big[P(0)+P(1)+P(2)+P(3)\big]$.',
+     r'**Geometric, more than $k$ tries** = the first $k$ all failed: $P(X>k)=(1-p)^k$.'])
+D.CO('warning', r'**Poisson: scale $\lambda$ to the time asked.** 7 per week, a question about one day → $\lambda=1$. **With replacement** → Binomial; **without** → Hypergeometric.')
+
+D.EX(r'Bernoulli · one free throw',
+     r'You take **one** free throw and make it with chance $0.7$. $Y=1$ if you make it, $0$ if you miss. Find the PMF of $Y$.',
+     [S(r'**Spot:** one yes/no try → Bernoulli. $p$ = the chance the one try succeeds.'),
+      S(r'**Read off:**', r'p=0.7'),
+      S(r'**Plug in:**', r'P(Y=1)=0.7,\qquad P(Y=0)=1-0.7=0.3')],
+     r'$P(Y=1)=0.7$, $P(Y=0)=0.3$')
+D.EX(r'Binomial · wrong bits',
+     r'You send $8$ bits. Each one arrives wrong with chance $0.1$, independently. $X$ = how many arrive wrong. Find $P(X=1)$, exactly one wrong.',
+     [S(r'**Spot:** a fixed number of tries (8 bits), count the successes (“wrong”) → Binomial.'),
+      S(r'**Read off:** $n$ = tries, $p$ = chance of a wrong bit, $k$ = how many wrong we want.', r'n=8,\qquad p=0.1,\qquad k=1'),
+      S(r'**Plug in:**', r'\binom81(0.1)^1(0.9)^{7}=8(0.1)(0.9)^7\approx' + f'{binom(8, 0.1, 1):.4f}'),
+      S(r'Why it works: $\binom81=8$ picks **which** bit is wrong, $(0.1)^1$ is that bit going wrong, $(0.9)^7$ is the other 7 being fine.')],
+     f'$P(X=1)\\approx {binom(8, 0.1, 1):.4f}$')
+g3, g4 = 0.8 ** 2 * 0.2, 0.8 ** 3
+D.EX(r'Geometric · retransmit until it works',
+     r'A packet is sent again and again until one gets through. Each try works with chance $0.2$, independently. $X$ = the try that finally works. Find $P(X=3)$ and $P(X>3)$.',
+     [S(r'**Spot:** “until it works” → Geometric.'),
+      S(r'**Read off:** $p$ = the chance one try works, $k$ = the try where the first success happens.', r'p=0.2,\qquad k=3'),
+      S(r'**Plug in:** try 1 fails, try 2 fails, try 3 works.', r'(1-0.2)^{3-1}(0.2)=(0.8)^2(0.2)=' + num(g3)),
+      S(r'$X>3$ means the first 3 tries all failed (shortcut).', r'P(X>3)=(0.8)^3=' + num(g4))],
+     f'$P(X=3)={num(g3)}$, $P(X>3)={num(g4)}$')
 nb5 = comb(4, 2) * 0.7 ** 3 * 0.3 ** 2
-D.CARD(r'Negative Binomial$(r,p)$: $\;\dbinom{k-1}{r-1}p^r(1-p)^{k-r}$, $\;k=r,r+1,\dots$',
-       [(r'Tries until the $r$-th success. The **last** try is a success; $\binom{k-1}{r-1}$ picks where the other $r-1$ go among the first $k-1$.', ''),
-        (r'Example: free throws with $0.7$; the 3rd basket on shot 5.', r'\binom42(0.7)^3(0.3)^2\approx' + f'{nb5:.4f}')], numbered=False)
+D.EX(r'Negative Binomial · the 3rd basket',
+     r'Each free throw goes in with chance $0.7$. $X$ = the shot where you make your **3rd** basket. Find $P(X=5)$.',
+     [S(r'**Spot:** “until the 3rd success” → Negative Binomial.'),
+      S(r'**Read off:** $r$ = successes you wait for, $p$ = chance per shot, $k$ = the shot where the 3rd one lands.', r'r=3,\qquad p=0.7,\qquad k=5'),
+      S(r'**Plug in:**', r'\binom{5-1}{3-1}(0.7)^3(0.3)^{5-3}=\binom42(0.7)^3(0.3)^2\approx' + f'{nb5:.4f}'),
+      S(r'Why it works: shot 5 must be the 3rd basket, so the first 4 shots hold the other 2. $\binom42=6$ ways to place them; 3 baskets at $0.7$, 2 misses at $0.3$.')],
+     f'$P(X=5)\\approx {nb5:.4f}$')
 hy = {k: Fr(comb(3, k) * comb(7, 4 - k), comb(10, 4)) for k in range(4)}
 assert hy == {0: Fr(1, 6), 1: Fr(1, 2), 2: Fr(3, 10), 3: Fr(1, 30)}
-D.CARD(r'Hypergeometric: $\;\dfrac{\binom Kk\binom{N-K}{n-k}}{\binom Nn}$',
-       [(r'Draw $n$ from $N$ without replacement, $K$ of them “good”. Pick $k$ good **and** $n-k$ bad.', ''),
-        (r'Example: 10 chips, 3 defective, choose 4. Exactly 1 defective:', r'\frac{\binom31\binom73}{\binom{10}{4}}=\frac{3\cdot35}{210}=\frac12')], numbered=False)
+D.EX(r'Hypergeometric · defective chips',
+     r'A box has 10 chips, 3 of them defective. You grab 4 (no putting back). $X$ = how many of your 4 are defective. Find $P(X=1)$.',
+     [S(r'**Spot:** grab without replacement → Hypergeometric. “Defective” is the special kind.'),
+      S(r'**Read off:** $N$ = chips in the box, $K$ = defective ones in the box, $n$ = how many you grab, $k$ = defective ones we want in the grab.', r'N=10,\qquad K=3,\qquad n=4,\qquad k=1'),
+      S(r'**Plug in:**', r'\frac{\binom31\binom{10-3}{4-1}}{\binom{10}{4}}=\frac{\binom31\binom73}{\binom{10}{4}}=\frac{3\cdot35}{210}=\frac12'),
+      S(r'Why it works: top = pick 1 of the 3 defective **and** 3 of the 7 good. Bottom = every possible grab of 4.')],
+     r'$P(X=1)=\tfrac12$')
 p3, p4 = pois(4, 3), pois(4, 4)
 assert abs(p3 - p4) < 1e-12 and abs(p3 - 0.1954) < 5e-5
-D.CARD(r'Poisson$(\lambda)$: $\;e^{-\lambda}\dfrac{\lambda^k}{k!}$, $\;k=0,1,2,\dots$',
-       [(r'“On average $\lambda$ per …”. **Scale $\lambda$ to the time asked.** Example (Lecture 8): 4 emails per hour, exactly 3 next hour:', r'P(X=3)=e^{-4}\frac{4^3}{3!}\approx' + f'{p3:.4f}'),
-        (r'Same rate, a 30-minute window: $\lambda=2$.', r'P(X=0)=e^{-2}\approx' + f'{exp(-2):.4f}')], numbered=False, cites=cite('L8', 3))
-D.CO('warning', r'**Poisson: scale $\lambda$ to the time asked.** 7 per week, a question about one day → $\lambda=1$.')
-D.CARD(r'Shortcut: “at least” → one minus the rest',
-       [(r'At least one:', r'P(X\ge1)=1-P(X=0)'),
-        (r'At least 4 (Binomial, Poisson): subtract the few values below.', r'P(X\ge4)=1-\big[P(0)+P(1)+P(2)+P(3)\big]')], numbered=False)
-g3, g4 = 0.8 ** 2 * 0.2, 0.8 ** 3
-D.TRY('Case 4 · Retransmit until it works',
-      'A packet is sent again and again until one gets through. Each try works with probability $0.2$, independently. '
-      '$X$ = number of tries. Find $P(X=3)$ and $P(X>3)$.',
-      [S(r'**Spot:** “until it works” → Geometric, $p=0.2$.'),
-       S(r'**Write** the PMF.', r'P(X=k)=(0.8)^{k-1}(0.2)'),
-       S(r'**Plug in** $k=3$: fail, fail, work.', r'P(X=3)=(0.8)^2(0.2)=' + num(g3)),
-       S(r'$X>3$: the first 3 all failed (shortcut).', r'P(X>3)=(0.8)^3=' + num(g4))],
-      f'$P(X=3)={num(g3)}$, $P(X>3)={num(g4)}$')
-
-# =====================================================================================================
-D.H('Case 5: two families in one question')
-D.P(r'**You’ll see:** “in exactly 3 of the next 8 years…”, “the first day with no…”.')
-D.P(r'**The move:** one family **inside** gives the chance $q$ that a single year/day/page is “good”. Then **outside**, each year is a yes/no try with chance $q$.')
-D.L([r'**Inside:** use the first family (often Poisson with $k=0$) to get $q$.',
-     r'**Outside:** count the good ones → Binomial$(n,q)$. Wait for the first → Geometric$(q)$.'], ordered=True)
-D.P(r'**Short example:** typos are Poisson, 2 per page. A page is clean with $q=e^{-2}$. Exactly 1 of 5 pages clean:')
-D.EQ(r'\binom51\,q\,(1-q)^4,\qquad q=e^{-2}')
+D.EX(r'Poisson · emails per hour (Lecture 8)',
+     r'Emails arrive at 4 per hour on average. (a) Find the chance of exactly 3 emails in the next hour. (b) Find the chance of no emails in the next 30 minutes.',
+     [S(r'**Spot:** “on average … per hour” → Poisson.'),
+      S(r'(a) **Read off:** the window is one hour, so $\lambda=4$. $k$ = the count asked.', r'\lambda=4,\qquad k=3'),
+      S(r'**Plug in:**', r'P(X=3)=e^{-4}\frac{4^3}{3!}\approx' + f'{p3:.4f}'),
+      S(r'(b) **Read off:** half the window → half the average.', r'\lambda=2,\qquad k=0'),
+      S(r'**Plug in:**', r'P(X=0)=e^{-2}\frac{2^0}{0!}=e^{-2}\approx' + f'{exp(-2):.4f}')],
+     f'(a) $\\approx {p3:.4f}$ (b) $\\approx {exp(-2):.4f}$', cites=cite('L8', 3))
+qt = exp(-2)
+t1 = 5 * qt * (1 - qt) ** 4
+D.EX(r'Two families in one question · clean pages',
+     r'Typos follow a Poisson law, on average 2 per page. Find the chance that **exactly 1 of the next 5 pages** has no typos.',
+     [S(r'**Spot:** two layers. **Inside**, one page is Poisson. **Outside**, each page is a yes/no try: clean or not.'),
+      S(r'**Inside:** the chance one page is clean is Poisson with $\lambda=2$, $k=0$. Call it $q$.', r'q=e^{-2}\frac{2^0}{0!}=e^{-2}\approx' + f'{qt:.4f}'),
+      S(r'**Outside:** 5 pages, count the clean ones → Binomial. **Read off:**', r'n=5,\qquad p=q,\qquad k=1'),
+      S(r'**Plug in:**', r'\binom51\,q\,(1-q)^4\approx' + f'{t1:.4f}'),
+      S(r'If the question asked for the **first** clean page instead, the outside would be Geometric$(q)$.')],
+     f'$\\approx {t1:.4f}$')
 
 # =====================================================================================================
 D.H('Practice Questions')
-D.CO('tip', r'''**Question 1 is always these cases, in parts (a), (b), (c).** Spot the case, run its steps:
+D.CO('tip', r'''**Question 1 is always these, in parts (a), (b), (c).** Spot which kind, then run its steps:
 
-1. **No family:** List → Label → Add → Check.
-2. **A $c$:** add every chance, set it to $1$.
+1. **Build a PMF** (no family): List → Label → Add → Check.
+2. **Find $c$:** add every chance, set it to $1$.
 3. **CDF:** running total; jumps = the PMF; $P(a<X\le b)=F(b)-F(a)$; whole numbers: $<$ → $\le$.
-4. **Clue word:** Spot → Write → Plug in. Scale Poisson’s $\lambda$. “At least” → $1-$ the rest.
+4. **Named family:** Spot → Read off → Plug in. Scale Poisson’s $\lambda$. “At least” → $1-$ the rest.
 5. **Two families:** Inside gives $q$, Outside is Binomial or Geometric.''')
 D.P('Test-style, easy → hard. Solve on paper first, then open the solution.')
 
 d1, d2, d3 = pois(1, 2), 1 - exp(-1), 1 - exp(-1 / 3)
-D.Q('Case 4 (Poisson) · Tutorial 3 Q3, Q5',
+D.Q('Named family (Poisson) · Tutorial 3 Q3, Q5',
     'A mail-order house gets on average **7 wrong-number calls per week** (Poisson). Find the probability that tomorrow they get '
     '(a) exactly two wrong-number calls, (b) at least one. '
     '(c) A book has on average one typo every **three pages** (Poisson). Find the chance a given page has at least one typo.',
@@ -209,7 +213,7 @@ D.Q('Case 4 (Poisson) · Tutorial 3 Q3, Q5',
      S(r'(c) Scale to one page: $\lambda=\tfrac13$. Then one minus none.', r'P(X\ge1)=1-e^{-1/3}\approx ' + f'{d3:.4f}')],
     f'(a) $\\approx {d1:.4f}$ (b) $\\approx {d2:.4f}$ (c) $\\approx {d3:.4f}$', diff='introductory', cites=cite('T3', 1))
 
-D.Q('Case 1 · with and without replacement · like Practice 01 Q7',
+D.Q('Build a PMF · with and without replacement · like Practice 01 Q7',
     'An urn has 2 black balls and 1 white ball. Two balls are drawn one after the other. $X$ = number of black balls drawn. '
     'Find the PMF of $X$ (a) **without** replacement, (b) **with** replacement. (c) Which one is a named family?',
     [S(r'(a) **List** ordered draws, calling the black balls $B_1,B_2$: 6 equally likely.', r'B_1B_2,\ B_2B_1,\ B_1W,\ B_2W,\ WB_1,\ WB_2'),
@@ -221,7 +225,7 @@ D.Q('Case 1 · with and without replacement · like Practice 01 Q7',
     r'(a) $0,\tfrac23,\tfrac13$ for $x=0,1,2$ (b) $\tfrac19,\tfrac49,\tfrac49$ (c) (b) is Binomial$(2,\tfrac23)$',
     diff='introductory', cites=cite('P1', 1))
 
-D.Q('Case 2 + 3 · find $c$, then the CDF',
+D.Q('PMF and CDF · find $c$, then the CDF',
     r'(a) $p_X(x)=c\,(x+1)$ for $x=0,1,2,3$. Find $c$, then $F_X(1.5)$ and $P(X\ge2)$. '
     r'(b) $p_X(k)=c\,\dfrac{3^k}{k!}$ for $k=0,1,2,\dots$ Find $c$. Which family is this?',
     [S(r'(a) **Find $c$:** add every chance.', r'c(1+2+3+4)=10c=1\quad\Longrightarrow\quad c=\frac1{10}'),
@@ -231,7 +235,7 @@ D.Q('Case 2 + 3 · find $c$, then the CDF',
      S(r'That’s the Poisson PMF with $\lambda=3$.', r'X\sim\text{Poisson}(3)')],
     r'(a) $c=\tfrac1{10}$, $F_X(1.5)=0.3$, $P(X\ge2)=0.7$ (b) $c=e^{-3}$, Poisson$(3)$')
 
-D.Q('Case 3 · CDF → PMF',
+D.Q('PMF and CDF · CDF → PMF',
     r'''$X$ has CDF
 
 $$
@@ -248,7 +252,7 @@ Find (a) the PMF, (b) $P(X<4)$, (c) $P(1<X\le4)$, (d) $P(X>2)$, (e) $P(X=3)$.'''
 
 qn = {k: comb(4, k) * comb(48, 7 - k) / comb(52, 7) for k in range(5)}
 assert abs(sum(qn.values()) - 1) < 1e-12 and abs(qn[0] - 0.55036) < 5e-6
-D.Q('Case 4 (Hypergeometric) · Lecture 7',
+D.Q('Named family (Hypergeometric) · Lecture 7',
     'You get 7 cards from a 52-card deck, without replacement. $X$ = number of queens. '
     'Find $P(X=k)$ for $k=0,1,2,3,4$, and $P(X\\ge1)$.',
     [S(r'**Spot:** without replacement, 4 queens out of 52 → Hypergeometric.'),
@@ -260,7 +264,7 @@ D.Q('Case 4 (Hypergeometric) · Lecture 7',
     cites=cite('L7', 1))
 
 acc = 1 - sum(binom(12, 1 / 30, k) for k in range(4))
-D.Q('Case 4 (Binomial, Bernoulli) · Tutorial 3 Q7',
+D.Q('Named family (Binomial, Bernoulli) · Tutorial 3 Q7',
     'A town had 12 accidents in June (30 days). Each accident is equally likely to be on any day, independently. '
     '(a) Let $Y=1$ if the first accident is on June 13, else $Y=0$. Name the family of $Y$ and give its PMF. '
     '(b) Find the probability that **at least 4** of the 12 fall on June 13.',
@@ -270,7 +274,7 @@ D.Q('Case 4 (Binomial, Bernoulli) · Tutorial 3 Q7',
      S(r'**Plug in.**', r'P(X\ge4)\approx ' + f'{acc:.5f}')],
     f'(a) Bernoulli$(\\tfrac1{{30}})$ (b) $\\approx {acc:.5f}$, so 4 on one day is very unlikely by chance.', cites=cite('T3', 1))
 
-D.Q('Case 1 · toss until a head, at most 4 tosses',
+D.Q('Build a PMF · toss until a head, at most 4 tosses',
     r'A coin with $P(H)=p$ is tossed until the first head **or** until 4 tosses have been made. '
     r'(a) Write the sample space. (b) Let $X$ = number of tosses. Find the PMF of $X$. (c) Evaluate it for $p=\tfrac12$.',
     [S(r'(a) **List:** stop at the first $H$, or after 4 tosses.', r'\Omega=\{H,\ TH,\ TTH,\ TTTH,\ TTTT\}'),
@@ -281,7 +285,7 @@ D.Q('Case 1 · toss until a head, at most 4 tosses',
 
 nb4 = 0.7 ** 3 + comb(3, 2) * 0.7 ** 3 * 0.3
 b35 = comb(5, 3) * 0.7 ** 3 * 0.3 ** 2
-D.Q('Case 4 (Negative Binomial)',
+D.Q('Named family (Negative Binomial)',
     'A player makes each free throw with probability $0.7$, independently. $X$ = number of shots needed to make **3** baskets. '
     '(a) Name the family. (b) Find $P(X=5)$. (c) Find $P(X\\le4)$. '
     '(d) Compare: the chance of exactly 3 baskets in 5 shots.',
@@ -292,7 +296,7 @@ D.Q('Case 4 (Negative Binomial)',
      S(r'(d) Binomial$(5,0.7)$: the 3 baskets can be **any** 3 of the 5, so it’s bigger.', r'\binom53(0.7)^3(0.3)^2\approx ' + f'{b35:.4f}')],
     f'(a) NB$(3,0.7)$ (b) $\\approx {nb5:.4f}$ (c) $\\approx {nb4:.4f}$ (d) $\\approx {b35:.4f}$')
 
-D.Q('Case 4 + 3 (Geometric and its CDF) · Practice 03 Q7',
+D.Q('Named family + CDF (Geometric) · Practice 03 Q7',
     r'$N\sim$ Geometric$(p)$, so $P(N=k)=(1-p)^{k-1}p$ for $k=1,2,\dots$ '
     r'(a) Find $P(N>k)$. (b) Find the CDF of $N$. (c) Find $P(N\text{ is even})$. (d) Find $P(N=k\mid N\le m)$.',
     [S(r'(a) $N>k$ means the first $k$ tries all failed (shortcut).', r'P(N>k)=(1-p)^k'),
@@ -306,7 +310,7 @@ D.Q('Case 4 + 3 (Geometric and its CDF) · Practice 03 Q7',
 e0 = exp(-7)
 e3 = comb(8, 3) * e0 ** 3 * (1 - e0) ** 5
 eg = (1 - e0) ** 2 * e0
-D.Q('Case 5 (Poisson → Binomial, Geometric) · Tutorial 3 Q6',
+D.Q('Two families (Poisson → Binomial, Geometric) · Tutorial 3 Q6',
     'Earthquakes: on average 7 per year (Poisson). '
     '(a) Find the probability of no earthquakes in one year. '
     '(b) Find the probability that **exactly three of the next eight years** have no earthquakes. '

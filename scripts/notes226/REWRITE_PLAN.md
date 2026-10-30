@@ -4,7 +4,29 @@
 Four notes, one per test question (keep that split, it matches the test):
 Q1 discrete RVs · Q2 continuous RVs · Q3 mean and variance · Q4 functions of a RV.
 
-**Goal:** the same treatment as the ELEC 231 midterm note. Each kind of question becomes: what you'll see → the move
+## v3 layout (2026-10-29): topics, not cases (this replaces sections 3–4 below)
+
+The user said there were far too many cases. Many could merge into a few topics: Q2, for example, is really the
+relationships between PDF, PMF and CDF. They also want examples shown open, not collapsed.
+
+Every note:
+1. **Short top**: lecture range + one line on what Question N asks.
+2. **2–3 topics** (level-1 headings). Each topic:
+   - **Explanation + formulas first, open**: plain TA voice (skill `student-explanations`), each formula in its own
+     equation block, every letter named in plain words, a small summary table where it helps. No closed cards here.
+   - **Examples of the different cases, open**: `D.EX` worked examples (shown solved), one per kind of question the
+     topic covers. Each example: **Spot** which case it is → **Read off** the numbers (n=…, p=…) → **Plug in** →
+     answer. Name the old "case" in the example title (e.g. `Example 3 · CDF → PDF`).
+3. **Extras** (level-1 heading `Extras: …`): the less central material (Q2: Gaussian, mixed RVs; Q3: Chebyshev/
+   Markov, tail formula; Q4: flat pieces/mixed Y, the shortcut formula). Same shape: explanation → open examples.
+4. **Practice Questions**: keep the ~10 (closed solutions are fine there: they're for self-testing). Retitle each one
+   with its topic name instead of "Case N"; its **Type:** line names the topic/example kind.
+
+Gone: "Case N" headings, the which-case routing table at the top, closed reference cards (`D.CARD`) for formulas,
+`D.TRY` inside topics (became open `D.EX`), calculator tips. Keep the family cards' "letters → story → read off →
+plug in" shape, as `D.EX` examples.
+
+**Goal (v2, superseded):** the same treatment as the ELEC 231 midterm note. Each kind of question becomes: what you'll see → the move
 → steps → cases (short example + full example in a closed card) → practice. Theory goes in closed "Why?" boxes.
 Nothing on the test gets dropped. It moves into a step, a case, a card or a box.
 
