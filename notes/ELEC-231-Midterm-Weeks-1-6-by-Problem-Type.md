@@ -313,7 +313,7 @@ There are seven methods, B1–B7. Which one you use depends only on **what the e
 
 | Check | Looks like | Go to |
 |---|---|---|
-| 1. A $t$-part **times** a $y$-part? | $y^{\prime}=g(t)\,h(y)$ | [B1](#b1) |
+| 1. A $t$-part **times** a $y$-part? | $y^{\prime}=f(t)\,h(y)$ | [B1](#b1) |
 | 2. Linear: $y$, $y^{\prime}$ only to the power 1? | $y^{\prime}+p(t)\,y=f(t)$ | [B2](#b2) |
 | 3. Neither: write it with $dt$, $dy$. Test passes? | $M\,dt+N\,dy=0$ | [B3](#b3) |
 | 4. Test fails? | $M_y\neq N_t$ | [B4](#b4) |
@@ -321,7 +321,7 @@ There are seven methods, B1–B7. Which one you use depends only on **what the e
 **One example each:**
 
 $$
-y^{\prime}=t^2y\quad\Longrightarrow\quad\text{B1}\quad(g=t^2,\ h=y)
+y^{\prime}=t^2y\quad\Longrightarrow\quad\text{B1}\quad(f=t^2,\ h=y)
 $$
 
 $$
@@ -432,23 +432,23 @@ $$
 Every separable equation has this shape:
 
 $$
-\dfrac{dy}{dt}=g(t)\cdot h(y)
+\dfrac{dy}{dt}=f(t)\cdot h(y)
 $$
 
-- $g(t)$ = a piece with **only $t$** in it
+- $f(t)$ = a piece with **only $t$** in it
 - $h(y)$ = a piece with **only $y$** in it
 
 **Short examples:**
 
 $$
-\dfrac{dy}{dt}=\dfrac{y^2}{t^3}\quad\Longrightarrow\quad g=\dfrac{1}{t^3},\quad h=y^2
+\dfrac{dy}{dt}=\dfrac{y^2}{t^3}\quad\Longrightarrow\quad f=\dfrac{1}{t^3},\quad h=y^2
 $$
 
 $$
-\dfrac{dy}{dt}=3y\quad\Longrightarrow\quad g=3,\quad h=y
+\dfrac{dy}{dt}=3y\quad\Longrightarrow\quad f=3,\quad h=y
 $$
 
-No $t$ at all (like $3y$) is fine: $g$ is just a number.
+No $t$ at all (like $3y$) is fine: $f$ is just a number.
 
 **Not separable:** $\dfrac{dy}{dt}=t+y$. That’s a **sum**, and a sum won’t split into a product. Go to [B2](#b2).
 
@@ -461,13 +461,13 @@ $$
 In general:
 
 $$
-\int\dfrac{dy}{h(y)}=\int g(t)\,dt+C
+\int\dfrac{dy}{h(y)}=\int f(t)\,dt+C
 $$
 
 **Steps**
 
-1. **Write** it as $\dfrac{dy}{dt}=g(t)\,h(y)$. Factor first if you have to.
-2. **Separate:** divide by $h(y)$, multiply by $dt$. You get $\dfrac{dy}{h(y)}=g(t)\,dt$.
+1. **Write** it as $\dfrac{dy}{dt}=f(t)\,h(y)$. Factor first if you have to.
+2. **Separate:** divide by $h(y)$, multiply by $dt$. You get $\dfrac{dy}{h(y)}=f(t)\,dt$.
 3. **Integrate** both sides. Write **one** constant $C$, on the $t$ side.
 4. **Solve for $y$** if you can. If you can’t, the answer with $y$ mixed in (like $t^2+y^2=5$) is a full answer.
 5. **Plug in** the condition, like $y(0)=3$, to find $C$.
@@ -480,7 +480,7 @@ $$
 
 <details><summary>Full example: $\;\dfrac{dy}{dt}=2t\,y$, $\;y(0)=3$</summary>
 
-Step 1 · **Write:** it’s $g(t)=2t$ times $h(y)=y$.
+Step 1 · **Write:** it’s $f(t)=2t$ times $h(y)=y$.
 
 $$
 \dfrac{dy}{dt}=2t\cdot y
@@ -665,7 +665,7 @@ Find the general solution of $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** $\dfrac{y^2}{t^3}=\dfrac{1}{t^3}\cdot y^2$ → B1, with $g=t^{-3}$, $h=y^2$.
+1. **Type:** $\dfrac{y^2}{t^3}=\dfrac{1}{t^3}\cdot y^2$ → B1, with $f=t^{-3}$, $h=y^2$.
 2. **Separate:** divide by $y^2$, multiply by $dt$.
 
    $$y^{-2}\,dy=t^{-3}\,dt$$
@@ -1318,10 +1318,10 @@ To find $\mu$, start from the mismatch $M_y-N_t$ and try two ratios. One of them
 
 #### Case 1: only t left
 
-Divide the mismatch by $N$. If only $t$ is left, call it $g(t)$:
+Divide the mismatch by $N$. If only $t$ is left, call it $f(t)$:
 
 $$
-\dfrac{M_y-N_t}{N}=g(t)\quad\Longrightarrow\quad \mu=e^{\int g\,dt}
+\dfrac{M_y-N_t}{N}=f(t)\quad\Longrightarrow\quad \mu=e^{\int f\,dt}
 $$
 
 **Short example:** $(t^2+y)\,dt-t\,dy=0$:
@@ -1499,7 +1499,7 @@ $$
 \mu=e^{-\ln y}=\dfrac1y
 $$
 
-Step 3 · $g=-\frac2t$:
+Step 3 · $f=-\frac2t$:
 
 $$
 \mu=e^{-2\ln t}=\dfrac{1}{t^2}

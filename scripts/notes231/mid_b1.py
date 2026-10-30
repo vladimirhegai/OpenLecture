@@ -1,7 +1,7 @@
 """B1: separable equations (Week 3).
 
 Layout (REWRITE_PLAN.md): use this when -> the form -> the move -> Why? box -> steps -> examples (cards) ->
-integral cards -> traps -> practice. Shared letters across B1-B4: g(t) = a piece with only t, h(y) = a piece with
+integral cards -> traps -> practice. Shared letters across B1-B4: f(t) = a piece with only t, h(y) = a piece with
 only y, C = the constant. Step words: Write, Separate, Integrate, Solve for y, Plug in.
 """
 import sympy as sp
@@ -16,29 +16,29 @@ def build(D):
     D.P(r'**Use this when** the right side splits into a $t$-part **times** a $y$-part, and you want $y(t)$:')
     D.EQ(r'\dfrac{dy}{dt}=2t\,y')
     D.P('Every separable equation has this shape:')
-    D.EQ(r'\dfrac{dy}{dt}=g(t)\cdot h(y)')
-    D.L([r'$g(t)$ = a piece with **only $t$** in it',
+    D.EQ(r'\dfrac{dy}{dt}=f(t)\cdot h(y)')
+    D.L([r'$f(t)$ = a piece with **only $t$** in it',
          r'$h(y)$ = a piece with **only $y$** in it'])
     D.P('**Short examples:**')
-    D.EQ(r'\dfrac{dy}{dt}=\dfrac{y^2}{t^3}\quad\Longrightarrow\quad g=\dfrac{1}{t^3},\quad h=y^2')
-    D.EQ(r'\dfrac{dy}{dt}=3y\quad\Longrightarrow\quad g=3,\quad h=y')
-    D.P(r'No $t$ at all (like $3y$) is fine: $g$ is just a number.')
+    D.EQ(r'\dfrac{dy}{dt}=\dfrac{y^2}{t^3}\quad\Longrightarrow\quad f=\dfrac{1}{t^3},\quad h=y^2')
+    D.EQ(r'\dfrac{dy}{dt}=3y\quad\Longrightarrow\quad f=3,\quad h=y')
+    D.P(r'No $t$ at all (like $3y$) is fine: $f$ is just a number.')
     D.P(r'**Not separable:** $\dfrac{dy}{dt}=t+y$. That’s a **sum**, and a sum won’t split into a product. Go to ' + link('B2', 'b2') + '.')
 
     D.P(r'**The move: put every $y$ with $dy$ and every $t$ with $dt$, then integrate both sides.**')
     D.EQ(r'\dfrac{dy}{dt}=2t\,y\quad\longrightarrow\quad \dfrac{dy}{y}=2t\,dt')
     D.P('In general:')
-    D.EQ(r'\int\dfrac{dy}{h(y)}=\int g(t)\,dt+C')
+    D.EQ(r'\int\dfrac{dy}{h(y)}=\int f(t)\,dt+C')
     D.P('**Steps**')
-    D.L([r'**Write** it as $\dfrac{dy}{dt}=g(t)\,h(y)$. Factor first if you have to.',
-         r'**Separate:** divide by $h(y)$, multiply by $dt$. You get $\dfrac{dy}{h(y)}=g(t)\,dt$.',
+    D.L([r'**Write** it as $\dfrac{dy}{dt}=f(t)\,h(y)$. Factor first if you have to.',
+         r'**Separate:** divide by $h(y)$, multiply by $dt$. You get $\dfrac{dy}{h(y)}=f(t)\,dt$.',
          r'**Integrate** both sides. Write **one** constant $C$, on the $t$ side.',
          r'**Solve for $y$** if you can. If you can’t, the answer with $y$ mixed in (like $t^2+y^2=5$) is a full answer.',
          r'**Plug in** the condition, like $y(0)=3$, to find $C$.'], ordered=True)
     D.P('**Short example:**')
     D.EQ(r'\dfrac{dy}{y}=2t\,dt\quad\Longrightarrow\quad \ln|y|=t^2+C\quad\Longrightarrow\quad y=Ce^{t^2}')
     CARD(D, r'Full example: $\;\dfrac{dy}{dt}=2t\,y$, $\;y(0)=3$',
-         [(r'**Write:** it’s $g(t)=2t$ times $h(y)=y$.', r'\dfrac{dy}{dt}=2t\cdot y'),
+         [(r'**Write:** it’s $f(t)=2t$ times $h(y)=y$.', r'\dfrac{dy}{dt}=2t\cdot y'),
           (r'**Separate:** divide by $y$, multiply by $dt$.', r'\dfrac{dy}{y}=2t\,dt'),
           (r'**Integrate** each side. One constant, on the $t$ side.', r'\ln|y|=t^2+C'),
           (r'**Solve for $y$:** raise $e$ to both sides. $e^{t^2+C}=e^{C}e^{t^2}$, and $e^{C}$ is just a new constant: call it $C$ again.',
@@ -87,7 +87,7 @@ def build(D):
       r'$y=\sqrt{5-t^2}$. It’s the top half of the circle $t^2+y^2=5$, so it only exists for $-\sqrt5<t<\sqrt5$.', cites=D.cite('T3', 1))
     P(D, '★ W3 · A general solution with a power · lecture Example 3.2',
       r'Find the general solution of $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$.',
-      [S(r'**Type:** $\dfrac{y^2}{t^3}=\dfrac{1}{t^3}\cdot y^2$ → B1, with $g=t^{-3}$, $h=y^2$.'),
+      [S(r'**Type:** $\dfrac{y^2}{t^3}=\dfrac{1}{t^3}\cdot y^2$ → B1, with $f=t^{-3}$, $h=y^2$.'),
        S(r'**Separate:** divide by $y^2$, multiply by $dt$.', r'y^{-2}\,dy=t^{-3}\,dt'),
        S(r'**Integrate** with the power rule ($n=-2$ on the left, $n=-3$ on the right).', r'-y^{-1}=-\tfrac12t^{-2}+C'),
        S(r'**Solve for $y$:** multiply by $-1$ (call $-C$ just $C$ again).', r'\dfrac1y=\dfrac{1}{2t^2}+C=\dfrac{1+2Ct^2}{2t^2}'),

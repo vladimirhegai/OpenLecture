@@ -122,9 +122,9 @@ Steps: **Test** (fails) → **Try case 1, then case 2** → **Multiply** by μ �
 
 **B5 · Characteristic equation.** As in section 2 above.
 
-**B6 · Undetermined coefficients.** The move: $y=y_c+y_p$. $y_c$ = B5 with right side 0. $y_p$ = a guess that copies $g(t)$.
+**B6 · Undetermined coefficients.** The move: $y=y_c+y_p$. $y_c$ = B5 with right side 0. $y_p$ = a guess that copies $f(t)$.
 Steps: **Solve** $y_c$ (B5) → **Guess** $y_p$ from the table → **Plug in** and **Match** → **Add** $y=y_c+y_p$ → **Conditions** on the whole $y$.
-Cases (one per kind of $g(t)$, each with a short example): constant · polynomial (all lower powers) · $e^{at}$ · $\sin/\cos$ (always both) · **guess already in $y_c$ → multiply by $t$**.
+Cases (one per kind of $f(t)$, each with a short example): constant · polynomial (all lower powers) · $e^{at}$ · $\sin/\cos$ (always both) · **guess already in $y_c$ → multiply by $t$**.
 Full worked example: the tutorial problem $\ddot y+y=6\cos^2t$, $y(0)=0$, $y(\pi/2)=0$ (marked "know this cold").
 Why? boxes: why $y_c+y_p$; why the ×t fix. Keep the resonance graph only if it fits. Practice: 4–5.
 

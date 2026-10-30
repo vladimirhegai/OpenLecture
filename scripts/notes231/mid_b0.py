@@ -27,13 +27,13 @@ def build(D):
     # ---------------------------------------------------------------- 1st order
     D.P(r'**1st order** (the top derivative is $y\prime$). Check in this order and stop at the first one that fits:')
     D.T(['Check', 'Looks like', 'Go to'], [
-        [r'1. A $t$-part **times** a $y$-part?', r'$y\prime=g(t)\,h(y)$', link('B1', 'b1')],
+        [r'1. A $t$-part **times** a $y$-part?', r'$y\prime=f(t)\,h(y)$', link('B1', 'b1')],
         [r'2. Linear: $y$, $y\prime$ only to the power 1?', r'$y\prime+p(t)\,y=f(t)$', link('B2', 'b2')],
         [r'3. Neither: write it with $dt$, $dy$. Test passes?', r'$M\,dt+N\,dy=0$', link('B3', 'b3')],
         [r'4. Test fails?', r'$M_y\neq N_t$', link('B4', 'b4')],
     ])
     D.P('**One example each:**')
-    D.EQ(r'y\prime=t^2y\quad\Longrightarrow\quad\text{B1}\quad(g=t^2,\ h=y)')
+    D.EQ(r'y\prime=t^2y\quad\Longrightarrow\quad\text{B1}\quad(f=t^2,\ h=y)')
     D.EQ(r'y\prime+y=t\quad\Longrightarrow\quad\text{B2}\quad(\text{a sum: it won’t split})')
     D.EQ(r'(t-y)\,dt-(t+y)\,dy=0\quad\Longrightarrow\quad\text{B3}\quad(M_y=-1=N_t)')
     D.EQ(r'y\,dt+(3+3t-y)\,dy=0\quad\Longrightarrow\quad\text{B4}\quad(M_y=1\neq3=N_t)')

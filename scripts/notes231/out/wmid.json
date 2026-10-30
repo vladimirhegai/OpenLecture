@@ -643,7 +643,7 @@
    "rows": [
     [
      "1. A $t$-part **times** a $y$-part?",
-     "$y^{\\prime}=g(t)\\,h(y)$",
+     "$y^{\\prime}=f(t)\\,h(y)$",
      "[B1](#b1)"
     ],
     [
@@ -667,7 +667,7 @@
   },
   {
    "type": "paragraph",
-   "text": "**One example each:**\n\n$$\ny^{\\prime}=t^2y\\quad\\Longrightarrow\\quad\\text{B1}\\quad(g=t^2,\\ h=y)\n$$\n\n$$\ny^{\\prime}+y=t\\quad\\Longrightarrow\\quad\\text{B2}\\quad(\\text{a sum: it won’t split})\n$$\n\n$$\n(t-y)\\,dt-(t+y)\\,dy=0\\quad\\Longrightarrow\\quad\\text{B3}\\quad(M_y=-1=N_t)\n$$\n\n$$\ny\\,dt+(3+3t-y)\\,dy=0\\quad\\Longrightarrow\\quad\\text{B4}\\quad(M_y=1\\neq3=N_t)\n$$",
+   "text": "**One example each:**\n\n$$\ny^{\\prime}=t^2y\\quad\\Longrightarrow\\quad\\text{B1}\\quad(f=t^2,\\ h=y)\n$$\n\n$$\ny^{\\prime}+y=t\\quad\\Longrightarrow\\quad\\text{B2}\\quad(\\text{a sum: it won’t split})\n$$\n\n$$\n(t-y)\\,dt-(t+y)\\,dy=0\\quad\\Longrightarrow\\quad\\text{B3}\\quad(M_y=-1=N_t)\n$$\n\n$$\ny\\,dt+(3+3t-y)\\,dy=0\\quad\\Longrightarrow\\quad\\text{B4}\\quad(M_y=1\\neq3=N_t)\n$$",
    "citations": [],
    "id": "11b77f6b-fbeb-559a-be47-a9cf12bfb74e"
   },
@@ -846,31 +846,31 @@
   },
   {
    "type": "paragraph",
-   "text": "Every separable equation has this shape:\n\n$$\n\\dfrac{dy}{dt}=g(t)\\cdot h(y)\n$$",
+   "text": "Every separable equation has this shape:\n\n$$\n\\dfrac{dy}{dt}=f(t)\\cdot h(y)\n$$",
    "citations": [],
    "id": "c697b4e7-4e08-544e-9a7e-68ab2a820b45"
   },
   {
    "type": "list",
    "items": [
-    "$g(t)$ = a piece with **only $t$** in it",
+    "$f(t)$ = a piece with **only $t$** in it",
     "$h(y)$ = a piece with **only $y$** in it"
    ],
    "ordered": false,
    "citations": [],
-   "id": "f7710e40-e70a-5a83-9045-ee36c8866418"
+   "id": "584d2743-40da-50fb-b6fe-4a7b8e7247f3"
   },
   {
    "type": "paragraph",
-   "text": "**Short examples:**\n\n$$\n\\dfrac{dy}{dt}=\\dfrac{y^2}{t^3}\\quad\\Longrightarrow\\quad g=\\dfrac{1}{t^3},\\quad h=y^2\n$$\n\n$$\n\\dfrac{dy}{dt}=3y\\quad\\Longrightarrow\\quad g=3,\\quad h=y\n$$",
+   "text": "**Short examples:**\n\n$$\n\\dfrac{dy}{dt}=\\dfrac{y^2}{t^3}\\quad\\Longrightarrow\\quad f=\\dfrac{1}{t^3},\\quad h=y^2\n$$\n\n$$\n\\dfrac{dy}{dt}=3y\\quad\\Longrightarrow\\quad f=3,\\quad h=y\n$$",
    "citations": [],
    "id": "df7b1c2d-2d7f-5661-b5b6-c9e4e9937846"
   },
   {
    "type": "paragraph",
-   "text": "No $t$ at all (like $3y$) is fine: $g$ is just a number.",
+   "text": "No $t$ at all (like $3y$) is fine: $f$ is just a number.",
    "citations": [],
-   "id": "b0501357-e108-5a74-8802-42ae0fcca490"
+   "id": "a0ded72c-1912-5e16-85b0-d8b67f19662a"
   },
   {
    "type": "paragraph",
@@ -886,7 +886,7 @@
   },
   {
    "type": "paragraph",
-   "text": "In general:\n\n$$\n\\int\\dfrac{dy}{h(y)}=\\int g(t)\\,dt+C\n$$",
+   "text": "In general:\n\n$$\n\\int\\dfrac{dy}{h(y)}=\\int f(t)\\,dt+C\n$$",
    "citations": [],
    "id": "fd32f416-11d3-5d18-a0e9-7c254a454aa5"
   },
@@ -899,15 +899,15 @@
   {
    "type": "list",
    "items": [
-    "**Write** it as $\\dfrac{dy}{dt}=g(t)\\,h(y)$. Factor first if you have to.",
-    "**Separate:** divide by $h(y)$, multiply by $dt$. You get $\\dfrac{dy}{h(y)}=g(t)\\,dt$.",
+    "**Write** it as $\\dfrac{dy}{dt}=f(t)\\,h(y)$. Factor first if you have to.",
+    "**Separate:** divide by $h(y)$, multiply by $dt$. You get $\\dfrac{dy}{h(y)}=f(t)\\,dt$.",
     "**Integrate** both sides. Write **one** constant $C$, on the $t$ side.",
     "**Solve for $y$** if you can. If you can’t, the answer with $y$ mixed in (like $t^2+y^2=5$) is a full answer.",
     "**Plug in** the condition, like $y(0)=3$, to find $C$."
    ],
    "ordered": true,
    "citations": [],
-   "id": "095875d5-619d-50f4-8d02-2828a91fe735"
+   "id": "3707805b-5810-5823-b938-a1aa4790328b"
   },
   {
    "type": "paragraph",
@@ -918,7 +918,7 @@
   {
    "type": "solution",
    "title": "Full example: $\\;\\dfrac{dy}{dt}=2t\\,y$, $\\;y(0)=3$",
-   "text": "Step 1 · **Write:** it’s $g(t)=2t$ times $h(y)=y$.\n\n$$\n\\dfrac{dy}{dt}=2t\\cdot y\n$$\n\nStep 2 · **Separate:** divide by $y$, multiply by $dt$.\n\n$$\n\\dfrac{dy}{y}=2t\\,dt\n$$\n\nStep 3 · **Integrate** each side. One constant, on the $t$ side.\n\n$$\n\\ln|y|=t^2+C\n$$\n\nStep 4 · **Solve for $y$:** raise $e$ to both sides. $e^{t^2+C}=e^{C}e^{t^2}$, and $e^{C}$ is just a new constant: call it $C$ again.\n\n$$\ny=C\\,e^{t^2}\n$$\n\nStep 5 · **Plug in** $y(0)=3$: $e^{0}=1$.\n\n$$\n3=C\n$$\n\n**Answer:**\n\n$$\ny=3e^{t^2}\n$$",
+   "text": "Step 1 · **Write:** it’s $f(t)=2t$ times $h(y)=y$.\n\n$$\n\\dfrac{dy}{dt}=2t\\cdot y\n$$\n\nStep 2 · **Separate:** divide by $y$, multiply by $dt$.\n\n$$\n\\dfrac{dy}{y}=2t\\,dt\n$$\n\nStep 3 · **Integrate** each side. One constant, on the $t$ side.\n\n$$\n\\ln|y|=t^2+C\n$$\n\nStep 4 · **Solve for $y$:** raise $e$ to both sides. $e^{t^2+C}=e^{C}e^{t^2}$, and $e^{C}$ is just a new constant: call it $C$ again.\n\n$$\ny=C\\,e^{t^2}\n$$\n\nStep 5 · **Plug in** $y(0)=3$: $e^{0}=1$.\n\n$$\n3=C\n$$\n\n**Answer:**\n\n$$\ny=3e^{t^2}\n$$",
    "collapsed": true,
    "id": "e5e19a8c-d2ed-5f68-96cc-66205644f467",
    "citations": []
@@ -1050,7 +1050,7 @@
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $\\dfrac{y^2}{t^3}=\\dfrac{1}{t^3}\\cdot y^2$ → B1, with $g=t^{-3}$, $h=y^2$.",
+     "explanation": "**Type:** $\\dfrac{y^2}{t^3}=\\dfrac{1}{t^3}\\cdot y^2$ → B1, with $f=t^{-3}$, $h=y^2$.",
      "latex": ""
     },
     {
@@ -1835,9 +1835,9 @@
   },
   {
    "type": "paragraph",
-   "text": "Divide the mismatch by $N$. If only $t$ is left, call it $g(t)$:\n\n$$\n\\dfrac{M_y-N_t}{N}=g(t)\\quad\\Longrightarrow\\quad \\mu=e^{\\int g\\,dt}\n$$",
+   "text": "Divide the mismatch by $N$. If only $t$ is left, call it $f(t)$:\n\n$$\n\\dfrac{M_y-N_t}{N}=f(t)\\quad\\Longrightarrow\\quad \\mu=e^{\\int f\\,dt}\n$$",
    "citations": [],
-   "id": "c905f7a2-1c0b-51b5-afe8-e2f4db691fcf"
+   "id": "f1f40e91-7e50-5fb7-bfa9-0af481d546eb"
   },
   {
    "type": "paragraph",
@@ -1916,7 +1916,7 @@
   {
    "type": "solution",
    "title": "$e$ and $\\ln$ cancel: $\\;e^{\\int\\frac{k}{y}dy}=y^k$, $\\;e^{\\int\\frac{k}{t}dt}=t^k$",
-   "text": "Step 1 · $h=\\frac2y$:\n\n$$\n\\mu=e^{2\\ln y}=y^2\n$$\n\nStep 2 · $h=-\\frac1y$:\n\n$$\n\\mu=e^{-\\ln y}=\\dfrac1y\n$$\n\nStep 3 · $g=-\\frac2t$:\n\n$$\n\\mu=e^{-2\\ln t}=\\dfrac{1}{t^2}\n$$",
+   "text": "Step 1 · $h=\\frac2y$:\n\n$$\n\\mu=e^{2\\ln y}=y^2\n$$\n\nStep 2 · $h=-\\frac1y$:\n\n$$\n\\mu=e^{-\\ln y}=\\dfrac1y\n$$\n\nStep 3 · $f=-\\frac2t$:\n\n$$\n\\mu=e^{-2\\ln t}=\\dfrac{1}{t^2}\n$$",
    "collapsed": true,
    "id": "7b35ed29-30f6-5d0f-a6d5-eb28d17d5c81",
    "citations": []

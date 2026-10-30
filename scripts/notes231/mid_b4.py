@@ -1,6 +1,6 @@
 """B4: make a non-exact equation exact with an integrating factor (Week 4).
 
-Layout (REWRITE_PLAN.md). Shared letters: M, N, U, h(y) from B3; g(t) / h(y) = a ratio with only t / only y
+Layout (REWRITE_PLAN.md). Shared letters: M, N, U, h(y) from B3; f(t) / h(y) = a ratio with only t / only y
 (as in B1); mu = the integrating factor (as in B2). Step words: Write, Test, Find mu (Case 1 / Case 2), Multiply,
 Re-test, then the B3 steps, Plug in.
 """
@@ -20,8 +20,8 @@ def build(D):
     D.P(r'To find $\mu$, start from the mismatch $M_y-N_t$ and try two ratios. One of them should have **only one letter** left.')
 
     D.H('Case 1: only t left', level=3)
-    D.P(r'Divide the mismatch by $N$. If only $t$ is left, call it $g(t)$:')
-    D.EQ(r'\dfrac{M_y-N_t}{N}=g(t)\quad\Longrightarrow\quad \mu=e^{\int g\,dt}')
+    D.P(r'Divide the mismatch by $N$. If only $t$ is left, call it $f(t)$:')
+    D.EQ(r'\dfrac{M_y-N_t}{N}=f(t)\quad\Longrightarrow\quad \mu=e^{\int f\,dt}')
     D.P(r'**Short example:** $(t^2+y)\,dt-t\,dy=0$:')
     D.EQ(r'\dfrac{1-(-1)}{-t}=-\dfrac2t\quad\Longrightarrow\quad \mu=e^{-2\ln t}=\dfrac{1}{t^2}')
 
@@ -62,7 +62,7 @@ def build(D):
     CARD(D, r'$e$ and $\ln$ cancel: $\;e^{\int\frac{k}{y}dy}=y^k$, $\;e^{\int\frac{k}{t}dt}=t^k$',
          [(r'$h=\frac2y$:', r'\mu=e^{2\ln y}=y^2'),
           (r'$h=-\frac1y$:', r'\mu=e^{-\ln y}=\dfrac1y'),
-          (r'$g=-\frac2t$:', r'\mu=e^{-2\ln t}=\dfrac{1}{t^2}')])
+          (r'$f=-\frac2t$:', r'\mu=e^{-2\ln t}=\dfrac{1}{t^2}')])
     D.CO('warning', r'**The two ratios are different.** Case 1: $M_y-N_t$ over $N$. Case 2: $N_t-M_y$ (flipped) over $M$. Mix them up and the sign of $\mu$’s power flips.')
 
     D.H('Practice: B4', level=3)

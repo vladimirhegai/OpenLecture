@@ -39,8 +39,10 @@ every equation its own centred `D.EQ`, one idea per line. Full plan: `REWRITE_PL
 7. At most 2 `warning` callouts (traps that cost marks). Graphs only where they show the cases, after them.
 8. `D.H('Practice: <code>', level=3)`, then problems easy → hard.
 
-**Shared letters (keep them):** $f(t)$ = right side; $p(t)$ multiplies the term just under the top derivative,
-$q(t)$ multiplies $y$ (2nd order); $g(t)$ / $h(y)$ = only-$t$ / only-$y$ piece (B1, B3's $U=\int M\,dt+h(y)$, B4's ratios);
+**Shared letters (keep them; the user memorises by letter, so never introduce a new one for the same idea):**
+$f(t)$ = the only-$t$ piece (B1's $y\prime=f(t)\,h(y)$, the right side in B2/B6/C, B4's $t$-ratio); $h(y)$ = the only-$y$ piece
+(B1, B3's $U=\int M\,dt+h(y)$, B4's $y$-ratio); $p(t)$ multiplies the term just under the top derivative,
+$q(t)$ multiplies $y$ (2nd order); no $g$;
 $\mu$ = integrating factor (B2, B4); $C$ = 1st-order constant; $c_1,c_2$ = 2nd-order constants (B5–B7, D2);
 $A,B,D$ = unknowns in a B6 guess.
 
