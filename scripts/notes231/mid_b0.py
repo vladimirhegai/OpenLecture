@@ -50,18 +50,8 @@ def build(D):
     D.EQ(r'y\prime\prime+3y\prime+2y=4\quad\Longrightarrow\quad\text{B6}')
     D.EQ(r'y\prime\prime-t\,y\prime+y=0,\ \ y_1=t\quad\Longrightarrow\quad\text{B7}')
 
-    D.P(r'**The same letters everywhere.** Every B method uses these names, so there’s less to remember:')
-    D.T(['Letter', 'Means', 'In'], [
-        [r'$f(t)$', r'the right side: no $y$ in it', 'B2, B6, B7, C2'],
-        [r'$p(t)$', r'multiplies the term just under the top derivative', 'B2, B7, C2'],
-        [r'$q(t)$', r'multiplies $y$ (2nd order)', 'B7, C2'],
-        [r'$g(t)$, $h(y)$', r'a piece with only $t$ / only $y$', 'B1, B3, B4'],
-        [r'$\mu$', 'the multiply-everything factor', 'B2, B4'],
-        [r'$C$', 'the one constant (1st order)', 'B1–B4'],
-        [r'$c_1,\ c_2$', 'the two constants (2nd order)', 'B5–B7, D2'],
-        [r'$A,\ B,\ D$', 'unknown numbers in a guess', 'B6'],
-    ])
-    D.P(r'And every method starts with **Write** (put it in its form) and ends with **Plug in** (use the conditions).')
+    D.P(r'**Linear means you can scale** (lecture §3.1): if $y(t)$ solves the equation with right side $f(t)$, '
+        r'then $A\,y(t)$ solves it with right side $A\,f(t)$. Example: $y=2-2e^{-2t}$ solves $y\prime+2y=4$, so $3y=6-6e^{-2t}$ solves $y\prime+2y=12$.')
 
     D.P('**Step 3: fix the constants.** Every method gives a **general solution**: a formula with unknown constants in it.')
     D.L([r'1st order → one constant, $C$. One condition, like $y(1)=2$, pins it down.',
@@ -71,7 +61,7 @@ def build(D):
     D.P(r'**Checking a solution** (Week 2 asks this). Plug $y$ and its derivatives into the ODE. If both sides match for **every** $t$, it’s a solution.')
     D.P(r'Example: is $y=e^{-2t}$ a solution of $y\prime+2y=0$? $\;-2e^{-2t}+2e^{-2t}=0$ ✓. Yes.')
 
-    P(D, 'W2 · Name it, then route it · lecture Example 2.1 and others',
+    P(D, '★ W2 · Name it, then route it · lecture Example 2.1 and others',
       'For each equation, give its order, and say whether it is linear, homogeneous, constant-coefficient and autonomous. Then say which method (B1–B7) solves it.\n\n'
       r'(a) $t^3y\prime\prime+e^ty\prime+y=0$' '\n\n'
       r'(b) $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$' '\n\n'

@@ -59,10 +59,17 @@ def CARD(D, title, steps, answer=None):
     D.BOX(title, '\n\n'.join(parts))
 
 
+STAR = '★ '  # marks the prof's own problems (lecture examples, tutorials): he reuses them on the midterm
+
+
 def P(D, title, prompt, steps, answer, diff='introductory', cites=()):
-    """A practice problem numbered through the whole note: 'Problem n · <title>'. Title starts with the week tag."""
+    """A practice problem numbered through the whole note: 'Problem n · <title>'. Title starts with the week tag,
+    or with STAR for a lecture/tutorial problem ('★ Problem n · …'). Nothing harder than the prof's problems."""
     D.pnum = getattr(D, 'pnum', 0) + 1
-    D.PR(title, prompt, steps, answer, diff=diff, cites=cites, label=f'Problem {D.pnum}')
+    label = f'Problem {D.pnum}'
+    if title.startswith(STAR):
+        title, label = title[len(STAR):], STAR + label
+    D.PR(title, prompt, steps, answer, diff='intermediate' if diff == 'advanced' else diff, cites=cites, label=label)
 
 
 # ---------------------------------------------------------------- sympy checks

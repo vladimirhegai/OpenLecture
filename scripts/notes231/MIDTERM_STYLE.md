@@ -2,10 +2,16 @@
 
 One note, "ELEC 231 Midterm: Weeks 1–6 by Problem Type", built by `build_midterm.py` from section modules
 `mid_<part>.py` (each has `build(D)` and `verify()`). Parts, in order: head, a, b0–b7, c, d0–d2, e.
-Topic E (`mid_e.py`) is the exception to the subtopic layout: a short mixed practice midterm (~10 multi-part problems,
-titles `E<n> · W<k> · …`), copied from or modelled on lecture/tutorial examples, each answer ending in a `Review:` link.
-Keep it short; the user asked not to be overwhelmed.
+Topic E (`mid_e.py`) is the exception to the subtopic layout: the **final run**, every ★ problem by week (one-line
+prompts, short answers in a closed box per week, links to the sections that solve them in full).
 Reference sections: `mid_b1.py` and `mid_b2.py`. Copy their shape.
+
+**Cram mode (2026-10-30, the user's call): the prof reuses his lecture examples and tutorial problems, and says they
+are the hardest the midterm gets.** So: every lecture/tutorial problem is marked ★ (`P(D, '★ W3 · …')` →
+"★ Problem n"; worked cards titled `★ Lecture Example x.y (try it, then open)`), practice is mostly ★ problems plus a
+few easier warm-ups or same-shape variants, nothing above ★ difficulty (`P` caps `advanced`), and anything the
+lectures never taught is cut (Wronskian, ×t fix, e^{at}/polynomial guesses, textbook circuits). No `D.WHY` theory
+boxes and no concept-only graphs. The head holds the 10:00–18:00 study plan.
 
 ## Who it is for
 A student who finds ELEC 231 their hardest course, preparing to **solve midterm problems** (Fri Oct 30, 2 h, 30 marks).

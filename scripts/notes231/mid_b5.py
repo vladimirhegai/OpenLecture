@@ -25,17 +25,6 @@ def build(D):
     D.EQ(r'4y\prime\prime+4y\prime+y=0\quad\longrightarrow\quad 4s^2+4s+1=0')
     D.EQ(r'y\prime\prime+9y=0\quad\longrightarrow\quad s^2+9=0')
     D.P(r'No $y\prime$ means no $s$ term. This quadratic is called the **characteristic equation**.')
-    D.WHY('Why are we allowed to do this?',
-          r'Guess $y=e^{st}$. Each derivative pulls out one more $s$:'
-          '\n\n$$\n' r'y\prime=s\,e^{st},\qquad y\prime\prime=s^2e^{st}' '\n$$\n\n'
-          r'Plug them into $y\prime\prime+3y\prime+2y=0$:'
-          '\n\n$$\n' r's^2e^{st}+3s\,e^{st}+2e^{st}=0' '\n$$\n\n'
-          r'Pull out the $e^{st}$:'
-          '\n\n$$\n' r'(s^2+3s+2)\,e^{st}=0' '\n$$\n\n'
-          r'$e^{st}$ is never $0$, so the bracket must be $0$. That bracket is the quadratic.'
-          '\n\n'
-          r'So every root $s$ gives a solution $e^{st}$. Two roots give two solutions, and the general solution is $c_1$ times one plus $c_2$ times the other.')
-
     D.P('**Steps**')
     D.L([r'**Write** the quadratic: $as^2+bs+c=0$.',
          r'**Solve** it. Factor if you can. If not, use the quadratic formula (below).',
@@ -83,13 +72,6 @@ def build(D):
           (r'**Plug in** $t=0$. The $c_2t$ becomes $0$, and $e^{0}=1$.', (r'y(0)=c_1=1', r'y\prime(0)=c_2-2c_1=1')),
           (r'**Solve for $c_1$ and $c_2$:** put $c_1=1$ into the second equation.', r'c_2-2=1\quad\Rightarrow\quad c_2=3')],
          r'y=(1+3t)\,e^{-2t}')
-    D.WHY('Why the extra $t$?',
-          r'$c_1e^{st}$ and $c_2e^{st}$ are the same function, so together they only give one constant. You need a second, different solution.'
-          '\n\n'
-          r'When the root is repeated, $te^{st}$ also solves the ODE. Check with $y=te^{-2t}$ in $y\prime\prime+4y\prime+4y$: you get $0$.'
-          '\n\n'
-          r'It comes from reduction of order: see the first practice problem in ' + link('B7', 'b7') + '.')
-
     D.H('Case 3: complex roots', level=3)
     D.P(r'The number under the square root is negative. That’s fine.')
     D.P(r'Pull out a $j$, where $j=\sqrt{-1}$:')
@@ -118,13 +100,6 @@ def build(D):
     D.EQ(r's^2+9=0\quad\Longrightarrow\quad s^2=-9\quad\Longrightarrow\quad s=\pm j3')
     D.P(r'So $\sigma=0$ and $\omega=3$. Since $e^{0t}=1$, the exponential disappears:')
     D.EQ(r'y=c_1\cos3t+c_2\sin3t')
-    D.WHY('Why $\\cos$ and $\\sin$, and where did the $j$ go?',
-          r'The two roots give $e^{(\sigma+j\omega)t}$ and $e^{(\sigma-j\omega)t}$. Euler’s formula splits each one:'
-          '\n\n$$\n' r'e^{(\sigma\pm j\omega)t}=e^{\sigma t}\,(\cos\omega t\pm j\sin\omega t)' '\n$$\n\n'
-          r'Adding and subtracting the two solutions cancels the $j$’s. What’s left is $e^{\sigma t}\cos\omega t$ and $e^{\sigma t}\sin\omega t$.'
-          '\n\n'
-          r'Both are real solutions, so the general solution is $c_1$ times one plus $c_2$ times the other.')
-
     D.H('Traps and a quick check', level=3)
     D.CO('warning', r'**Differentiate first, then plug in $t=0$.** In Cases 2 and 3 the product rule gives an extra term. '
          r'Skip it and you get the wrong $c_2$. Example: in Case 2 above, $y\prime(0)=c_2-2c_1$, not just $c_2$.')
@@ -149,20 +124,6 @@ def build(D):
           (r'$y\prime(0)$: $\sigma$ times $c_1$, plus $\omega$ times $c_2$.', r'-3c_1+4c_2=8'),
           (r'Put in $c_1=0$: $4c_2=8$.', r'c_2=2'),
           (r'Where it comes from: the product rule, then $t=0$. The $\sin0=0$ wipes out two of the terms.', r'y\prime(0)=\sigma c_1+\omega c_2')])
-    D.GRAPH(r'''
-    title "Slide $k$ through 1: the same start, all three cases"
-    x 0 8 label="$t$"
-    y -0.6 1.2 label="$y$"
-    slider k 0 5 0.5 step=0.05 label="$k$" animate
-    let d "sqrt(abs(1-k))"
-    let s1 "-1+d"
-    let s2 "-1-d"
-    curve "if(k<0.999, (s2*exp(s1*x)-s1*exp(s2*x))/(s2-s1), if(k>1.001, exp(-x)*(cos(d*x)+sin(d*x)/d), (1+x)*exp(-x)))" label="$y(t)$" color=1
-    hline "0"
-    readout "$b^2-4ac=4-4k$" "4-4*k"
-    caption "$y\prime\prime+2y\prime+ky=0$, starting at $y(0)=1$, $y\prime(0)=0$. $k<1$: Case 1, it settles with no wiggle. $k=1$: Case 2, the border. $k>1$: Case 3, it wiggles while $e^{-t}$ shrinks it. Same three cases as an RLC circuit in D2."
-    ''', intro=r'**What do the three cases look like?**')
-
     D.H('Practice: B5', level=3)
     P(D, 'W5 · Two different real roots',
       r'Solve $y\prime\prime+5y\prime+6y=0$, $\;y(0)=2$, $y\prime(0)=-5$.',
@@ -194,19 +155,6 @@ def build(D):
        S(r'**Plug in** $t=0$: $\cos0=1$, $\sin0=0$.', r'c_1=2,\qquad 3c_2=3\ \Rightarrow\ c_2=1')],
       r'$y=2\cos3t+\sin3t$. Nothing shrinks it, so it swings forever: that’s the ideal LC circuit in ' + link('D2', 'd2') + '.',
       diff='intermediate')
-    P(D, 'W5 · Work backwards from the roots',
-      r'A constant-coefficient equation $y\prime\prime+by\prime+cy=0$ has roots $-3\pm j4$. ' '\n\n'
-      r'(a) Find $b$ and $c$. (b) Write the general solution. (c) Find the solution with $y(0)=0$, $y\prime(0)=8$.',
-      [S(r'**Type:** backwards. Roots $s_1$, $s_2$ come from the quadratic $(s-s_1)(s-s_2)=0$.'),
-       S(r'(a) Multiply out. The brackets are $(s+3)-j4$ and $(s+3)+j4$: a difference of squares. And $(j4)^2=16j^2=-16$.',
-         r'(s+3)^2-(j4)^2=s^2+6s+9+16=s^2+6s+25'),
-       S(r'So $b=6$ and $c=25$.', r'y\prime\prime+6y\prime+25y=0'),
-       S(r'(b) **Pick:** Case 3 with $\sigma=-3$, $\omega=4$.', r'y=e^{-3t}(c_1\cos4t+c_2\sin4t)'),
-       S(r'(c) **Differentiate** with the product rule.', r'y\prime=-3e^{-3t}(c_1\cos4t+c_2\sin4t)+e^{-3t}(-4c_1\sin4t+4c_2\cos4t)'),
-       S(r'**Plug in** $t=0$.', r'c_1=0,\qquad -3c_1+4c_2=8\ \Rightarrow\ c_2=2')],
-      r'(a) $b=6$, $c=25$. (b) $y=e^{-3t}(c_1\cos4t+c_2\sin4t)$. (c) $y=2e^{-3t}\sin4t$.', diff='advanced')
-
-
 def verify():
     A, B = sp.symbols('A B')
     E = sp.exp

@@ -31,13 +31,6 @@ def build(D):
     D.L([r'$M_y$ = differentiate $M$ in $y$, treating $t$ like a number',
          r'$N_t$ = differentiate $N$ in $t$, treating $y$ like a number',
          r'Not equal? Not exact: go to ' + link('B4', 'b4') + '.'])
-    D.WHY('Why the cross test, and why $U=C$?',
-          r'If $U$ exists, then $M=U_t$ and $N=U_y$. So $M_y$ is $U$ differentiated in $t$, then $y$. And $N_t$ is $U$ differentiated in $y$, then $t$. '
-          r'The order doesn’t change the result, so the two must match.'
-          '\n\n'
-          r'$M\,dt+N\,dy$ is the small change in $U$. The equation sets that change to $0$, so $U$ stays at one constant value: $U=C$. '
-          r'Each solution is a contour line of the surface $z=U(t,y)$, like on a map.')
-
     D.P('**Steps**')
     D.L([r'**Write** it as $M\,dt+N\,dy=0$, everything on the left. Read $M$ and $N$ with their signs.',
          r'**Test:** is $M_y=N_t$? If not, go to ' + link('B4', 'b4') + '.',
@@ -49,14 +42,14 @@ def build(D):
     D.P(r'Why $h(y)$ and not $C$: anything with only $y$ in it disappears when you differentiate in $t$. So it could be hiding there.')
     D.P('**Short example:**')
     D.EQ(r'M=2ty+3t^2\quad\Longrightarrow\quad U=t^2y+t^3+h(y)')
-    CARD(D, r'Full example (lecture 4.1): $\;(2ty+3t^2)\,dt+t^2\,dy=0$',
+    CARD(D, r'★ Lecture Example 4.1 (try it, then open): $\;(2ty+3t^2)\,dt+t^2\,dy=0$',
          [(r'**Write:** already in form.', r'M=2ty+3t^2,\qquad N=t^2'),
           (r'**Test:** for $M_y$ treat $t$ as a number. For $N_t$ treat $y$ as a number.', r'M_y=2t,\qquad N_t=2t\quad\checkmark'),
           (r'**Integrate $M$ in $t$** ($y$ is a number). Add $h(y)$.', r'U=t^2y+t^3+h(y)'),
           (r'**Match $N$:** differentiate $U$ in $y$, set it equal to $N=t^2$.', (r'U_y=t^2+h\prime(y)=t^2', r'h\prime(y)=0\quad\Rightarrow\quad h=\text{a number}')),
           (r'**Answer:** the number in $h$ merges into $C$.', r't^2y+t^3=C')],
          r't^2y+t^3=C\qquad\Big(y=\dfrac{C-t^3}{t^2}\Big)')
-    CARD(D, r'Full example (lecture (b)): $\;y\prime=\dfrac{t-y}{t+y}$, $\;y(0)=1$',
+    CARD(D, r'★ Lecture exercise (b) (try it, then open): $\;y\prime=\dfrac{t-y}{t+y}$, $\;y(0)=1$',
          [(r'**Write:** cross-multiply, $(t+y)\,dy=(t-y)\,dt$, then move everything left. Moving $dy$ across flips its sign.',
            (r'(t-y)\,dt-(t+y)\,dy=0', r'M=t-y,\qquad N=-t-y')),
           (r'**Test.**', r'M_y=-1,\qquad N_t=-1\quad\checkmark'),
@@ -78,7 +71,7 @@ def build(D):
          r'One wrong sign and the test fails.')
 
     D.H('Practice: B3', level=3)
-    P(D, 'W4 · Test, then solve · lecture exercise (a)',
+    P(D, '★ W4 · Test, then solve · lecture exercise (a)',
       r'Test $3t\,dt+4y\,dy=0$ for exactness, and if so, solve.',
       [S(r'**Type:** $M\,dt+N\,dy=0$ → test for B3.'),
        S(r'**Write:** already in form.', r'M=3t,\qquad N=4y'),
@@ -87,7 +80,7 @@ def build(D):
        S(r'**Match $N$:** $U_y=h\prime(y)$ must equal $4y$.', r'h\prime=4y\quad\Rightarrow\quad h=2y^2'),
        S(r'**Answer:** $U=C$. Multiply by $2$ ($2C$ is a new $C$).', r'3t^2+4y^2=C')],
       r'Exact. $3t^2+4y^2=C$: ellipses. (It’s also separable: $4y\,dy=-3t\,dt$.)', cites=W4(3))
-    P(D, 'W4 · Test before you integrate · lecture exercise (d)',
+    P(D, '★ W4 · Test before you integrate · lecture exercise (d)',
       r'Is $y\prime=\dfrac{t}{t+y}$ exact?',
       [S(r'**Type:** a slope fraction → write it with $dt$, $dy$ and test.'),
        S(r'**Write:** cross-multiply, $(t+y)\,dy=t\,dt$, then move everything left.', (r't\,dt-(t+y)\,dy=0', r'M=t,\qquad N=-(t+y)')),
@@ -95,7 +88,7 @@ def build(D):
        S(r'$0\neq-1$, so it’s **not exact**. You’d try ' + link('B4', 'b4') + r' next, but neither ratio has just one letter. The lecture stops at “not exact”.',
          r'\dfrac{M_y-N_t}{N}=-\dfrac{1}{t+y},\qquad \dfrac{N_t-M_y}{M}=-\dfrac1t')],
       r'Not exact: $M_y=0\neq-1=N_t$.', cites=W4(4))
-    P(D, 'W4 · The sign trap · lecture exercise (c)',
+    P(D, '★ W4 · The sign trap · lecture exercise (c)',
       r'Solve $2ty\,y\prime=t^2-y^2$.',
       [S(r'**Type:** not separable, not linear ($y^2$) → write with $dt$, $dy$ and test for B3.'),
        S(r'**Write:** $2ty\,dy=(t^2-y^2)\,dt$. Moving $2ty\,dy$ left makes it **negative**.', (r'(t^2-y^2)\,dt-2ty\,dy=0', r'M=t^2-y^2,\qquad N=-2ty')),

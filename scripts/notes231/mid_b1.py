@@ -29,13 +29,6 @@ def build(D):
     D.EQ(r'\dfrac{dy}{dt}=2t\,y\quad\longrightarrow\quad \dfrac{dy}{y}=2t\,dt')
     D.P('In general:')
     D.EQ(r'\int\dfrac{dy}{h(y)}=\int g(t)\,dt+C')
-    D.WHY('Why can you move $dy$ and $dt$ around like a fraction?',
-          r'Divide by $h$:'
-          '\n\n$$\n' r'\dfrac{1}{h(y)}\,\dfrac{dy}{dt}=g(t)' '\n$$\n\n'
-          r'Now integrate both sides with respect to $t$. The chain rule says'
-          '\n\n$$\n' r'\int\dfrac{1}{h(y)}\dfrac{dy}{dt}\,dt=\int\dfrac{1}{h(y)}\,dy' '\n$$\n\n'
-          r'Moving “$dt$” across is a shortcut for exactly this.')
-
     D.P('**Steps**')
     D.L([r'**Write** it as $\dfrac{dy}{dt}=g(t)\,h(y)$. Factor first if you have to.',
          r'**Separate:** divide by $h(y)$, multiply by $dt$. You get $\dfrac{dy}{h(y)}=g(t)\,dt$.',
@@ -52,7 +45,7 @@ def build(D):
            r'y=C\,e^{t^2}'),
           (r'**Plug in** $y(0)=3$: $e^{0}=1$.', r'3=C')],
          r'y=3e^{t^2}')
-    CARD(D, r'Full example (lecture 3.3): $\;\dfrac{dy}{dt}=\dfrac{3t+ty^2}{y+t^2y}$, $\;y(1)=3$',
+    CARD(D, r'★ Lecture Example 3.3 (try it, then open): $\;\dfrac{dy}{dt}=\dfrac{3t+ty^2}{y+t^2y}$, $\;y(1)=3$',
          [(r'**Write:** pull $t$ out of the top and $y$ out of the bottom. Now it’s a $t$-part times a $y$-part.',
            r'\dfrac{dy}{dt}=\dfrac{t}{1+t^2}\cdot\dfrac{3+y^2}{y}'),
           (r'**Separate:** everything with $y$ goes with $dy$, everything with $t$ goes with $dt$.',
@@ -83,7 +76,7 @@ def build(D):
     D.CO('warning', r'**Only one $C$.** Put it on the $t$ side right when you integrate. Two constants ($C_1$ left, $C_2$ right) are really one.')
 
     D.H('Practice: B1', level=3)
-    P(D, 'W3 · Separate and use a starting value · Pre-tutorial 3(a)',
+    P(D, '★ W3 · Separate and use a starting value · Pre-tutorial 3(a)',
       r'Solve $\dfrac{dy}{dt}=-\dfrac{t}{y}$, $\;y=2$ when $t=1$.',
       [S(r'**Type:** $-\dfrac{t}{y}=(-t)\cdot\dfrac1y$, a $t$-part times a $y$-part → B1.'),
        S(r'**Separate:** multiply both sides by $y\,dt$.', r'y\,dy=-t\,dt'),
@@ -92,7 +85,7 @@ def build(D):
        S(r'Put $C$ back and multiply by $2$.', r't^2+y^2=5'),
        S(r'**Solve for $y$.** Keep the $+$ root, since $y(1)=2$ is positive.', r'y=\sqrt{5-t^2}')],
       r'$y=\sqrt{5-t^2}$. It’s the top half of the circle $t^2+y^2=5$, so it only exists for $-\sqrt5<t<\sqrt5$.', cites=D.cite('T3', 1))
-    P(D, 'W3 · A general solution with a power · lecture Example 3.2',
+    P(D, '★ W3 · A general solution with a power · lecture Example 3.2',
       r'Find the general solution of $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$.',
       [S(r'**Type:** $\dfrac{y^2}{t^3}=\dfrac{1}{t^3}\cdot y^2$ → B1, with $g=t^{-3}$, $h=y^2$.'),
        S(r'**Separate:** divide by $y^2$, multiply by $dt$.', r'y^{-2}\,dy=t^{-3}\,dt'),
@@ -100,15 +93,7 @@ def build(D):
        S(r'**Solve for $y$:** multiply by $-1$ (call $-C$ just $C$ again).', r'\dfrac1y=\dfrac{1}{2t^2}+C=\dfrac{1+2Ct^2}{2t^2}'),
        S(r'Flip both sides.', r'y=\dfrac{2t^2}{1+2Ct^2}')],
       r'$y=\dfrac{2t^2}{1+2Ct^2}$, plus $y=0$. We divided by $y^2$, which skips $y=0$ (see the warning).', cites=W3(4))
-    P(D, 'W3 · An exponential of y',
-      r'Solve $\dfrac{dy}{dt}=2t\,e^{-y}$, $\;y(0)=0$.',
-      [S(r'**Type:** $2t\cdot e^{-y}$ is a $t$-part times a $y$-part → B1.'),
-       S(r'**Separate:** dividing by $e^{-y}$ is the same as multiplying by $e^{y}$.', r'e^{y}\,dy=2t\,dt'),
-       S(r'**Integrate** each side.', r'e^{y}=t^2+C'),
-       S(r'**Solve for $y$:** take $\ln$ of both sides.', r'y=\ln(t^2+C)'),
-       S(r'**Plug in** $y(0)=0$: $\ln C=0$.', r'C=1')],
-      r'$y=\ln(t^2+1)$.', diff='intermediate')
-    P(D, 'W3 · Differential form · Pre-tutorial 3(b)',
+    P(D, '★ W3 · Differential form · Pre-tutorial 3(b)',
       r'Solve $3t(y^2+1)\,dt+y(t^2+2)\,dy=0$.',
       [S(r'**Type:** each term is a $t$-part times a $y$-part → B1.'),
        S(r'**Separate:** divide every term by $(y^2+1)(t^2+2)$. Now only $t$ sits with $dt$, only $y$ with $dy$.',
@@ -117,7 +102,7 @@ def build(D):
        S(r'Multiply by $2$, then combine the logs (card above).', r'\ln\!\big[(t^2+2)^3(y^2+1)\big]=2C'),
        S(r'Raise $e$ to both sides. $e^{2C}$ is a new constant: call it $C$.', r'(t^2+2)^3(y^2+1)=C')],
       r'$(t^2+2)^3(y^2+1)=C$, with $C>0$. You can’t easily get $y$ alone, so this is a full answer.', diff='intermediate', cites=D.cite('T3', 1))
-    P(D, 'W3 · Collect before separating · lecture Example 3.4',
+    P(D, '★ W3 · Collect before separating · lecture Example 3.4',
       r'Solve $y\,dt+(t^3y^2+t^3)\,dy=0$.',
       [S(r'**Type:** the $dy$ term has a common factor, $t^3y^2+t^3=t^3(y^2+1)$. Now each term is a $t$-part times a $y$-part → B1.'),
        S(r'**Separate:** divide every term by $t^3y$.', r't^{-3}\,dt+\dfrac{y^2+1}{y}\,dy=0'),
@@ -135,7 +120,6 @@ def verify():
     C = sp.symbols('C')
     first(C * sp.exp(t ** 2), 2 * t * y)
     first(2 * t ** 2 / (1 + 2 * C * t ** 2), y ** 2 / t ** 3)
-    first(sp.log(t ** 2 + 1), 2 * t * sp.exp(-y), (0, 0))
     implicit((t ** 2 + 2) ** 3 * (y ** 2 + 1), -3 * t * (y ** 2 + 1) / (y * (t ** 2 + 2)))
     implicit(y ** 2 + 2 * sp.log(y) - t ** -2, -y / (t ** 3 * y ** 2 + t ** 3))
     zero(sp.integrate(t / (t ** 2 + 1), t) - sp.log(t ** 2 + 1) / 2)

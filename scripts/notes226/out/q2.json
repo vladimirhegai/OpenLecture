@@ -969,104 +969,127 @@
   {
    "type": "callout",
    "tone": "tip",
-   "text": "**Question 2 is always these, in parts (a), (b), (c):**\n\n1. **PDF ↔ CDF ↔ probability:** find $c$ (total area $=1$), integrate for $F$, differentiate for $f$, probabilities $=F(b)-F(a)$.\n2. **Uniform:** length ÷ total length. **Exponential:** $P(X>x)=e^{-\\lambda x}$; “already lasted” → memoryless.\n3. **Gaussian:** $z=\\frac{x-\\mu}{\\sigma}$ → $\\Phi$ table; $\\Phi(-z)=1-\\Phi(z)$; backwards $x=\\mu+z\\sigma$.\n4. **Mixed:** jump = exact chance; spread × $(1-q)$; add jumps + area.",
+   "text": "**Question 2 is always one of these three, in parts (a), (b), (c):**\n\n1. **PDF ↔ CDF ↔ PMF:** integrate $f$ for $F$; differentiate $F$ for $f$; a **staircase** $F$ → the jumps are a PMF; probabilities $=F(b)-F(a)$.\n2. **Find $c$:** total area $=1$, solve (triangle: $\\tfrac12$ base × height).\n3. **Uniform:** length ÷ total length. **Exponential:** $\\lambda=\\tfrac1{\\text{mean}}$, $P(X>x)=e^{-\\lambda x}$, between = difference of tails, “already lasted” → memoryless.",
    "citations": [],
-   "id": "0913bb9f-29ac-558e-8056-72d013346979"
+   "id": "099884b5-3275-52ee-994f-88d91a8be03f"
   },
   {
    "type": "paragraph",
-   "text": "Test-style, easy → hard. Solve on paper first, then open the solution.",
+   "text": "Test-style, easy → medium, same level as the practice sets. Solve on paper first, then open the solution.",
    "citations": [],
-   "id": "692d2da9-d9b2-5206-94d2-105bd6109e89"
+   "id": "1757af7d-3f30-5cd0-88d4-628fa5958734"
   },
   {
    "type": "practice_problem",
-   "title": "Question 1 · Uniform · Tutorial 4 Q5",
+   "title": "Question 1 · PDF ↔ CDF · CDF → probabilities and the PDF",
    "difficulty": "introductory",
    "origin": "source",
-   "prompt": "Flights leave every half hour (9:00, 9:30, 10:00, …). A passenger arrives at a uniform random time between 8:45 and 9:45 A.M. Find the probability the passenger waits (a) **at most 10 minutes**, (b) **at least 15 minutes**.",
+   "prompt": "$X$ has CDF $F_X(x)=\\dfrac{x^2}{9}$ for $0\\le x\\le3$ ($0$ before, $1$ after). Find (a) $P(X\\le1)$, (b) $P(1<X\\le2)$, (c) $P(X>2)$, (d) the PDF.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** uniform. $T$ = minutes after 8:45, total length $60$. Flights leave at $T=15,\\ 45,\\ 75$.",
-     "latex": "f_T(t)=\\frac1{60},\\quad 0\\le t\\le60"
-    },
-    {
-     "explanation": "(a) **Rewrite:** wait $\\le10$ means arriving in the 10 minutes before a flight.",
-     "latex": "T\\in[5,15]\\cup[35,45]"
-    },
-    {
-     "explanation": "Length ÷ total length.",
-     "latex": "P=\\frac{10+10}{60}=\\frac13"
-    },
-    {
-     "explanation": "(b) **Rewrite:** wait $\\ge15$ means the next flight is 15+ minutes away.",
-     "latex": "T\\in[15,30]\\cup[45,60]"
-    },
-    {
-     "explanation": "Length ÷ total length.",
-     "latex": "P=\\frac{15+15}{60}=\\frac12"
-    }
-   ],
-   "answer": "(a) $\\tfrac13$ (b) $\\tfrac12$",
-   "citations": [
-    {
-     "source_id": "4d61db5e-8336-42fa-9292-37c2b7a2378a",
-     "version": 1,
-     "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
-    }
-   ],
-   "id": "1869567e-a03a-5ad9-9dc8-b95d019643c0"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 2 · Exponential, memoryless · like Lecture 10",
-   "difficulty": "introductory",
-   "origin": "source",
-   "prompt": "The length $X$ (minutes) of a phone call is exponential with $\\lambda=0.25$. Find (a) $P(X>4)$, (b) $P(2<X<6)$, (c) the chance a call that has already lasted 3 minutes lasts **more than 7** in total, (d) the time $t$ with $P(X>t)=\\tfrac12$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Type:** exponential, $\\lambda=0.25$.",
+     "explanation": "**Spot:** have $F$. Probabilities → **rewrite** with $F$’s; the PDF → **differentiate**.",
      "latex": ""
     },
     {
-     "explanation": "(a) **Rewrite** as a tail. **Plug in.**",
-     "latex": "P(X>4)=e^{-0.25\\cdot4}=e^{-1}\\approx 0.3679"
+     "explanation": "(a) Up to $1$.",
+     "latex": "P(X\\le1)=F_X(1)=\\frac19"
     },
     {
-     "explanation": "(b) **Rewrite:** difference of two tails.",
-     "latex": "P(2<X<6)=e^{-0.5}-e^{-1.5}\\approx 0.3834"
+     "explanation": "(b) Between: a difference.",
+     "latex": "P(1<X\\le2)=F_X(2)-F_X(1)=\\frac49-\\frac19=\\frac13"
     },
     {
-     "explanation": "(c) **Memoryless:** 4 more minutes, as if new.",
-     "latex": "P(X>7\\mid X>3)=P(X>4)=e^{-1}\\approx 0.3679"
+     "explanation": "(c) Above: one minus.",
+     "latex": "P(X>2)=1-F_X(2)=1-\\frac49=\\frac59"
     },
     {
-     "explanation": "(d) **Backwards:** set the tail to $\\tfrac12$, take $\\ln$.",
-     "latex": "e^{-0.25t}=\\frac12\\quad\\Longrightarrow\\quad t=4\\ln2\\approx 2.77\\text{ min}"
+     "explanation": "(d) **Differentiate** $\\tfrac{x^2}{9}$.",
+     "latex": "f_X(x)=\\frac{2x}{9},\\qquad 0\\le x\\le3\\quad(0\\text{ elsewhere})"
     }
    ],
-   "answer": "(a) $\\approx 0.3679$ (b) $\\approx 0.3834$ (c) $\\approx 0.3679$ (d) $4\\ln2\\approx 2.77$ min",
+   "answer": "(a) $\\tfrac19$ (b) $\\tfrac13$ (c) $\\tfrac59$ (d) $\\tfrac{2x}{9}$ on $[0,3]$",
    "citations": [
     {
-     "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+     "source_id": "75039f49-dee4-4b4d-a0d9-2ce37da85e1a",
      "version": 1,
-     "chunk_id": "98067cee-6ada-49dc-9a53-51e6ce216e3a"
+     "chunk_id": "daa189cb-f7db-4598-b3df-1d8166bdcaa4"
     }
    ],
-   "id": "ac0dc79d-72dc-5c86-832b-f4030f2c0073"
+   "id": "3c4f4a42-f05d-56f0-8c0c-3fef1121987e"
   },
   {
    "type": "practice_problem",
-   "title": "Question 3 · PDF ↔ CDF · CDF → probabilities and PDF · Practice 02 Q4",
+   "title": "Question 2 · PDF ↔ CDF ↔ PMF · staircase or smooth?",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Two CDFs:\n\n$$\nF_X(x)=\\begin{cases}0,&x<0\\\\ 0.3,&0\\le x<1\\\\ 0.8,&1\\le x<2\\\\ 1,&x\\ge2\\end{cases}\\qquad\\qquad F_Y(y)=\\begin{cases}0,&y<0\\\\ 1-e^{-2y},&y\\ge0\\end{cases}\n$$\n\n(a) Which one is discrete? Find its PMF. (b) Find the PDF of the other one. (c) Find $P(X\\le1)$, $P(X<1)$, $P(Y\\le1)$ and $P(Y<1)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Spot:** $F_X$ is a **staircase** → $X$ is discrete. The **jump sizes** are the PMF.",
+     "latex": "p_X(0)=0.3,\\quad p_X(1)=0.8-0.3=0.5,\\quad p_X(2)=1-0.8=0.2"
+    },
+    {
+     "explanation": "(b) $F_Y$ is **smooth** → $Y$ is continuous. **Differentiate.**",
+     "latex": "f_Y(y)=\\frac{d}{dy}\\big(1-e^{-2y}\\big)=2e^{-2y},\\qquad y\\ge0"
+    },
+    {
+     "explanation": "(c) Discrete: $\\le1$ includes the jump at $1$, $<1$ doesn’t.",
+     "latex": "P(X\\le1)=F_X(1)=0.8,\\qquad P(X<1)=0.3"
+    },
+    {
+     "explanation": "Continuous: one point has chance $0$, so $<$ and $\\le$ agree.",
+     "latex": "P(Y\\le1)=P(Y<1)=1-e^{-2}\\approx0.8647"
+    }
+   ],
+   "answer": "(a) $X$: $0.3,0.5,0.2$ at $0,1,2$ (b) $f_Y=2e^{-2y}$, $y\\ge0$ (c) $0.8$, $0.3$, $\\approx0.8647$, $\\approx0.8647$",
+   "citations": [],
+   "id": "f3682b19-4df7-554e-a8f2-5a60f3d6c852"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 3 · PDF ↔ CDF · a triangle, piece by piece",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "$f_X(x)=x$ for $0\\le x\\le1$, $f_X(x)=2-x$ for $1\\le x\\le2$, and $0$ elsewhere. (a) Find the CDF. (b) Find $P(0.5<X<1.5)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** have $f$, want $F$ → integrate. The PDF changes at $x=1$, so do two pieces.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) **Accumulate**, left piece: area from $0$ up to $x$.",
+     "latex": "F_X(x)=\\int_0^x t\\,dt=\\frac{x^2}{2},\\qquad 0\\le x\\le1"
+    },
+    {
+     "explanation": "**Accumulate**, right piece: everything ($1$) minus the small triangle still to come on the right.",
+     "latex": "F_X(x)=1-\\frac{(2-x)^2}{2},\\qquad 1\\le x\\le2"
+    },
+    {
+     "explanation": "**Check:** both pieces give $\\tfrac12$ at $x=1$.",
+     "latex": "\\frac{1^2}{2}=\\frac12=1-\\frac{(2-1)^2}{2}"
+    },
+    {
+     "explanation": "(b) **Rewrite** as $F(1.5)-F(0.5)$: $1.5$ is on the right piece, $0.5$ on the left.",
+     "latex": "\\Big(1-\\frac{0.5^2}{2}\\Big)-\\frac{0.5^2}{2}=0.875-0.125=0.75"
+    }
+   ],
+   "answer": "(a) $0$, $\\tfrac{x^2}{2}$ on $[0,1]$, $1-\\tfrac{(2-x)^2}{2}$ on $[1,2]$, $1$ after (b) $0.75$",
+   "citations": [],
+   "id": "80ecee42-9f81-5af2-b2ec-1e4a5a2a1219"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 4 · PDF ↔ CDF · CDF → probabilities and PDF · Practice 02 Q4",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "The Rayleigh random variable $R$ has CDF\n\n$$\nF_R(r)=\\begin{cases}0,&r<0\\\\ 1-e^{-r^2/(2\\sigma^2)},&r\\ge0\\end{cases}\n$$\n\n(a) Find $P(\\sigma\\le R\\le2\\sigma)$ and $P(R>3\\sigma)$. (b) Find the PDF of $R$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** a CDF is given → PDF ↔ CDF (have $F$).",
+     "explanation": "**Spot:** a CDF is given → have $F$.",
      "latex": ""
     },
     {
@@ -1090,18 +1113,51 @@
      "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
     }
    ],
-   "id": "42aab905-3252-5923-aa5f-1807844a3cd4"
+   "id": "1a86401e-d450-583a-a6a7-9ace079fe7ea"
   },
   {
    "type": "practice_problem",
-   "title": "Question 4 · PDF ↔ CDF · find $c$, then the CDF · Tutorial 5 Q5",
+   "title": "Question 5 · Find $c$ · area = 1",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "(a) $f_X(x)=c(2-x)$ for $0\\le x\\le2$, $0$ elsewhere. Find $c$, the CDF, and $P(X<1)$. (b) $f_Y(y)=c\\,e^{-3y}$ for $y\\ge0$. Find $c$ and $P(Y>1)$. Which family is $Y$?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Find $c$:** total area $=1$. (Or the triangle shortcut: base $2$, height $2c$.)",
+     "latex": "c\\int_0^2(2-x)\\,dx=c\\Big[2x-\\frac{x^2}{2}\\Big]_0^2=2c=1\\quad\\Longrightarrow\\quad c=\\frac12"
+    },
+    {
+     "explanation": "**Accumulate** from $0$ up to $x$.",
+     "latex": "F_X(x)=\\frac12\\Big(2x-\\frac{x^2}{2}\\Big)=x-\\frac{x^2}{4},\\qquad 0\\le x\\le2"
+    },
+    {
+     "explanation": "**Plug in** $x=1$.",
+     "latex": "P(X<1)=F_X(1)=1-\\frac14=\\frac34"
+    },
+    {
+     "explanation": "(b) **Find $c$:**",
+     "latex": "c\\int_0^{\\infty}e^{-3y}\\,dy=\\frac c3=1\\quad\\Longrightarrow\\quad c=3"
+    },
+    {
+     "explanation": "That’s the exponential PDF with $\\lambda=3$, so use the tail.",
+     "latex": "P(Y>1)=e^{-3}\\approx0.0498"
+    }
+   ],
+   "answer": "(a) $c=\\tfrac12$, $F_X=x-\\tfrac{x^2}{4}$ on $[0,2]$, $P(X<1)=\\tfrac34$ (b) $c=3$, $P(Y>1)=e^{-3}\\approx0.0498$, exponential$(3)$",
+   "citations": [],
+   "id": "e9093862-9365-531e-bc17-7e5777fb1ad8"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 6 · Find $c$ · then the CDF · Tutorial 5 Q5",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "$X$ has PDF $f_X(x)=Cx^2$ for $|x|\\le1$, and $0$ otherwise. (a) Find $C$. (b) Find the CDF. (c) Find $P(X>\\tfrac12)$ and $P(|X|<\\tfrac12)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Type:** unknown constant → total area $=1$. **Find $c$.**",
+     "explanation": "(a) **Spot:** unknown constant → total area $=1$. **Find $c$.**",
      "latex": "C\\int_{-1}^{1}x^2\\,dx=\\frac{2C}{3}=1\\quad\\Longrightarrow\\quad C=\\frac32"
     },
     {
@@ -1125,18 +1181,18 @@
      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
     }
    ],
-   "id": "6604953f-4699-556e-b910-728cff5efcb9"
+   "id": "f592ef59-08e8-5ec0-9a1c-2901757a06a4"
   },
   {
    "type": "practice_problem",
-   "title": "Question 5 · PDF ↔ CDF · find $c$ by parts · Tutorial 4 Q1",
+   "title": "Question 7 · Find $c$ · by parts · Tutorial 4 Q1",
    "difficulty": "intermediate",
    "origin": "source",
    "prompt": "The time $X$ (minutes) between seeing two runners has PDF $f(x)=\\lambda x e^{-x}$ for $x>0$. (a) Find $\\lambda$. (b) Find the CDF. (c) Find the probability the next runner is seen in 2 to 5 minutes, and in at least 7 minutes.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** unknown constant → total area $=1$. First the integral, **by parts** ($u=x$, $dv=e^{-x}dx$):",
+     "explanation": "**Spot:** unknown constant → total area $=1$. First the integral, **by parts** ($u=x$, $dv=e^{-x}dx$):",
      "latex": "\\int xe^{-x}\\,dx=-xe^{-x}+\\int e^{-x}\\,dx=-(x+1)e^{-x}"
     },
     {
@@ -1164,186 +1220,118 @@
      "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
     }
    ],
-   "id": "85a733da-e5ed-559b-9f2c-5b0a6cf969c4"
+   "id": "0dc4c095-3ae2-5402-baae-9aa9cb3a98c1"
   },
   {
    "type": "practice_problem",
-   "title": "Question 6 · PDF ↔ CDF · a triangle, then work backwards · Practice 02 Q2",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "$X$ has a triangle PDF: $0$ at $x=-a$, peak height $c$ at $x=0$, back to $0$ at $x=a$. (a) Find $c$ and $f_X(x)$. (b) Find the CDF. (c) Find $b$ with $P(|X|<b)=\\tfrac12$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) **Type:** unknown height → total area $=1$. **Find $c$** with the triangle shortcut: base $2a$, height $c$.",
-     "latex": "\\frac12(2a)c=1\\quad\\Longrightarrow\\quad c=\\frac1a"
-    },
-    {
-     "explanation": "The two sides are straight lines down from the peak.",
-     "latex": "f_X(x)=\\frac1a\\Big(1-\\frac{|x|}{a}\\Big),\\qquad |x|\\le a"
-    },
-    {
-     "explanation": "(b) **Accumulate:** left half = a small triangle; right half = $1$ minus the small triangle still to come.",
-     "latex": "F_X(x)=\\begin{cases}0,&x<-a\\\\ \\frac{(a+x)^2}{2a^2},&-a\\le x\\le0\\\\ 1-\\frac{(a-x)^2}{2a^2},&0\\le x\\le a\\\\ 1,&x>a\\end{cases}"
-    },
-    {
-     "explanation": "(c) **Rewrite:** $F(b)-F(-b)$. Each tail outside $[-b,b]$ is $\\tfrac{(a-b)^2}{2a^2}$.",
-     "latex": "1-\\frac{(a-b)^2}{a^2}=\\frac12\\quad\\Longrightarrow\\quad\\frac{a-b}{a}=\\frac1{\\sqrt2}"
-    },
-    {
-     "explanation": "Solve for $b$.",
-     "latex": "b=a\\Big(1-\\frac1{\\sqrt2}\\Big)\\approx 0.293\\,a"
-    }
-   ],
-   "answer": "(a) $c=\\tfrac1a$ (b) as above (c) $b=a(1-\\tfrac1{\\sqrt2})\\approx0.293a$",
-   "citations": [
-    {
-     "source_id": "369e3c07-a6c8-40d0-8b8c-41f2e6a3bc4b",
-     "version": 1,
-     "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
-    }
-   ],
-   "id": "7050844b-d8a5-5e76-9142-f40cb2c7e84e"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 7 · Gaussian · Tutorial 6 Q5",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "A rover’s distance travelled is $X\\sim N(\\mu,\\sigma^2)$ with $\\mu=500$ m and $\\sigma^2=2.25$ m². Find (a) $P(X<500)$, (b) $P(X=501)$, (c) $P(X>501)$ and $P(X>505)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Type:** normal. **Spot:** that’s the variance, so take the root.",
-     "latex": "\\sigma=\\sqrt{2.25}=1.5"
-    },
-    {
-     "explanation": "(a) $500$ is the centre: half the bell is below it.",
-     "latex": "P(X<500)=0.5"
-    },
-    {
-     "explanation": "(b) One point of a continuous $X$.",
-     "latex": "P(X=501)=0"
-    },
-    {
-     "explanation": "(c) **Standardise**, then **Rewrite** as one minus. **Table.**",
-     "latex": "\\begin{gathered}z=\\frac{501-500}{1.5}\\approx0.67 \\\\ P(X>501)=1-\\Phi(0.67)=1-0.7486=0.2514\\end{gathered}"
-    },
-    {
-     "explanation": "$z=\\tfrac{5}{1.5}\\approx3.33$ is off the table ($\\Phi\\approx1$).",
-     "latex": "P(X>505)=1-\\Phi(3.33)\\approx 0.0004"
-    }
-   ],
-   "answer": "(a) $0.5$ (b) $0$ (c) $\\approx0.2514$ and $\\approx0.0004$",
-   "citations": [
-    {
-     "source_id": "8b50801c-193d-4e1e-92f4-d54dc3a7332b",
-     "version": 1,
-     "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
-    }
-   ],
-   "id": "206306c5-e1ec-5d67-9641-19c05d807266"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 8 · Gaussian, backwards · like Tutorial 4 Q4",
-   "difficulty": "intermediate",
+   "title": "Question 8 · Uniform · the basics",
+   "difficulty": "introductory",
    "origin": "original",
-   "prompt": "Resistances are normal with $\\mu=100\\ \\Omega$ and variance $4\\ \\Omega^2$. (a) What fraction are within $100\\pm3\\ \\Omega$? (b) Find $t$ so that $95\\%$ are within $100\\pm t$. (c) Which value is exceeded by only $5\\%$?",
+   "prompt": "$X$ is uniform on $[2,8]$. Find (a) the PDF and the CDF, (b) $P(X<5)$, (c) $P(3<X<4)$, (d) $P(X>7)$, (e) the $b$ with $P(X\\le b)=0.25$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** normal. **Spot:** variance $4$, so $\\sigma=2$.",
-     "latex": "\\sigma=2"
+     "explanation": "(a) **Read off:** $a=2$, $b=8$, total length $6$.",
+     "latex": "f_X(x)=\\frac16,\\qquad F_X(x)=\\frac{x-2}{6},\\qquad 2\\le x\\le8"
     },
     {
-     "explanation": "(a) **Standardise:** $z=\\tfrac32=1.5$. Symmetric interval shortcut.",
-     "latex": "2\\Phi(1.5)-1=2(0.9332)-1=0.8664"
+     "explanation": "(b) Length ÷ total length: $[2,5]$ has length $3$.",
+     "latex": "P(X<5)=\\frac36=\\frac12"
     },
     {
-     "explanation": "(b) **Backwards:** $2\\Phi(z)-1=0.95$, so $\\Phi(z)=0.975$. Then $t=z\\sigma$.",
-     "latex": "z=1.96\\quad\\Longrightarrow\\quad t=1.96\\cdot2=3.92\\ \\Omega"
+     "explanation": "(c) $[3,4]$ has length $1$.",
+     "latex": "P(3<X<4)=\\frac16"
     },
     {
-     "explanation": "(c) **Backwards**, one tail: $\\Phi(z)=0.95$, so $z=1.645$. Then $x=\\mu+z\\sigma$.",
-     "latex": "x=100+1.645\\cdot2=103.29\\ \\Omega"
+     "explanation": "(d) $[7,8]$ has length $1$.",
+     "latex": "P(X>7)=\\frac16"
+    },
+    {
+     "explanation": "(e) **Backwards:** set $F_X(b)=0.25$.",
+     "latex": "\\frac{b-2}{6}=0.25\\quad\\Longrightarrow\\quad b=3.5"
     }
    ],
-   "answer": "(a) $0.8664$ (b) $t=3.92\\ \\Omega$ (c) $103.29\\ \\Omega$",
+   "answer": "(a) $\\tfrac16$ and $\\tfrac{x-2}{6}$ on $[2,8]$ (b) $\\tfrac12$ (c) $\\tfrac16$ (d) $\\tfrac16$ (e) $3.5$",
    "citations": [],
-   "id": "73efe8d1-e374-5d9c-a574-3ea49dd35dba"
+   "id": "c68827a5-2ca2-5d09-8491-7e35376175f6"
   },
   {
    "type": "practice_problem",
-   "title": "Question 9 · Mixed · a CDF with two jumps",
+   "title": "Question 9 · Uniform · Tutorial 4 Q5",
    "difficulty": "intermediate",
-   "origin": "original",
-   "prompt": "A clipped sensor reading $X$ has CDF\n\n$$\nF_X(x)=\\begin{cases}0,&x<0\\\\ 0.25+\\tfrac x2,&0\\le x<1\\\\ 1,&x\\ge1\\end{cases}\n$$\n\n(a) Why is $X$ mixed? (b) Find $P(X=0)$ and $P(X=1)$. (c) Find $P(0<X<1)$ and $P(X\\le0.5)$. (d) Find the PDF of the spread part.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) **Type:** $F$ jumps (exact values with real chance) **and** ramps → mixed.",
-     "latex": "\\text{jumps at }0\\text{ and }1,\\ \\text{ramp in between}"
-    },
-    {
-     "explanation": "(b) **Jump** sizes. At $1$, $F$ goes from $0.25+0.5=0.75$ up to $1$.",
-     "latex": "P(X=0)=0.25,\\qquad P(X=1)=1-0.75=0.25"
-    },
-    {
-     "explanation": "(c) **Rewrite:** only the ramp is strictly inside $(0,1)$.",
-     "latex": "P(0<X<1)=0.75-0.25=0.5"
-    },
-    {
-     "explanation": "$P(X\\le0.5)$ is just $F(0.5)$, jump at $0$ included.",
-     "latex": "P(X\\le0.5)=F(0.5)=0.25+0.25=0.5"
-    },
-    {
-     "explanation": "(d) **Differentiate** the ramp. Check: $0.25+0.25+0.5=1$.",
-     "latex": "f(x)=\\frac12,\\qquad 0<x<1"
-    }
-   ],
-   "answer": "(b) $0.25$, $0.25$ (c) $0.5$, $0.5$ (d) $\\tfrac12$ on $(0,1)$",
-   "citations": [],
-   "id": "18c60cf9-dae0-5b1e-b82b-2ff79f1edc5d"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 10 · Mixed · Practice 02 Q3",
-   "difficulty": "advanced",
    "origin": "source",
-   "prompt": "$X$ has CDF\n\n$$\nF_X(x)=\\begin{cases}0,&x<-1\\\\ \\tfrac13+\\tfrac23(x+1)^2,&-1\\le x\\le0\\\\ 1,&x>0\\end{cases}\n$$\n\nFind the probabilities of $A=\\{X>\\tfrac13\\}$, $B=\\{|X|\\ge1\\}$, $C=\\{|X-\\tfrac13|<1\\}$, $D=\\{X<0\\}$.",
+   "prompt": "Flights leave every half hour (9:00, 9:30, 10:00, …). A passenger arrives at a uniform random time between 8:45 and 9:45 A.M. Find the probability the passenger waits (a) **at most 10 minutes**, (b) **at least 15 minutes**.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** $F$ jumps from $0$ to $\\tfrac13$ at $x=-1$, then rises smoothly → mixed.",
-     "latex": "P(X=-1)=\\frac13"
+     "explanation": "**Spot:** uniform. $T$ = minutes after 8:45, total length $60$. Flights leave at $T=15,\\ 45,\\ 75$.",
+     "latex": "f_T(t)=\\frac1{60},\\quad 0\\le t\\le60"
     },
     {
-     "explanation": "$A$: **Rewrite** as one minus. $X$ is never above $0$.",
-     "latex": "P(A)=1-F_X(\\frac13)=0"
+     "explanation": "(a) **Rewrite:** wait $\\le10$ means arriving in the 10 minutes before a flight.",
+     "latex": "T\\in[5,15]\\cup[35,45]"
     },
     {
-     "explanation": "$B$: $X\\ge1$ can’t happen, and $X\\le-1$ means $X=-1$ (the jump).",
-     "latex": "P(B)=F_X(-1)=\\frac13"
+     "explanation": "Length ÷ total length.",
+     "latex": "P=\\frac{10+10}{60}=\\frac13"
     },
     {
-     "explanation": "$C$ is $-\\tfrac23<X<\\tfrac43$. **Rewrite**; no jump at $-\\tfrac23$.",
-     "latex": "P(C)=1-F_X(-\\frac23)=1-\\Big(\\frac13+\\frac23\\cdot\\frac19\\Big)=\\frac{16}{27}"
+     "explanation": "(b) **Rewrite:** wait $\\ge15$ means the next flight is 15+ minutes away.",
+     "latex": "T\\in[15,30]\\cup[45,60]"
     },
     {
-     "explanation": "$D$: no jump at $0$ ($\\tfrac13+\\tfrac23=1$), so $P(X<0)=F_X(0)$.",
-     "latex": "P(D)=F_X(0)=1"
+     "explanation": "Length ÷ total length.",
+     "latex": "P=\\frac{15+15}{60}=\\frac12"
     }
    ],
-   "answer": "$P(A)=0$, $P(B)=\\tfrac13$, $P(C)=\\tfrac{16}{27}$, $P(D)=1$",
+   "answer": "(a) $\\tfrac13$ (b) $\\tfrac12$",
    "citations": [
     {
-     "source_id": "369e3c07-a6c8-40d0-8b8c-41f2e6a3bc4b",
+     "source_id": "4d61db5e-8336-42fa-9292-37c2b7a2378a",
      "version": 1,
-     "chunk_id": "7593c702-0a55-47cd-9cbd-c040fd61240d"
+     "chunk_id": "2a903a59-3816-4b22-8adc-daec226ae94d"
     }
    ],
-   "id": "92b8be40-823f-50ef-b88e-de3f668cd052"
+   "id": "d16baa94-51ec-5720-a713-ae55fba059da"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 10 · Exponential, memoryless · like Lecture 10",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "The length $X$ (minutes) of a phone call is exponential with a **mean of 4 minutes**. Find (a) $P(X>4)$, (b) $P(2<X<6)$, (c) the chance a call that has already lasted 3 minutes lasts **more than 7** in total, (d) the time $t$ with $P(X>t)=\\tfrac12$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Read off** $\\lambda$ from the mean.",
+     "latex": "\\lambda=\\frac14=0.25\\text{ per minute}"
+    },
+    {
+     "explanation": "(a) **Rewrite** as a tail. **Plug in.**",
+     "latex": "P(X>4)=e^{-0.25\\cdot4}=e^{-1}\\approx 0.3679"
+    },
+    {
+     "explanation": "(b) **Rewrite:** difference of two tails.",
+     "latex": "P(2<X<6)=e^{-0.5}-e^{-1.5}\\approx 0.3834"
+    },
+    {
+     "explanation": "(c) **Memoryless:** 4 more minutes, as if new.",
+     "latex": "P(X>7\\mid X>3)=P(X>4)=e^{-1}\\approx 0.3679"
+    },
+    {
+     "explanation": "(d) **Backwards:** set the tail to $\\tfrac12$, take $\\ln$.",
+     "latex": "e^{-0.25t}=\\frac12\\quad\\Longrightarrow\\quad t=4\\ln2\\approx 2.77\\text{ min}"
+    }
+   ],
+   "answer": "(a) $\\approx 0.3679$ (b) $\\approx 0.3834$ (c) $\\approx 0.3679$ (d) $4\\ln2\\approx 2.77$ min",
+   "citations": [
+    {
+     "source_id": "acf5b4b4-e7d3-4cc1-a3d0-ab8651d3dc89",
+     "version": 1,
+     "chunk_id": "98067cee-6ada-49dc-9a53-51e6ce216e3a"
+    }
+   ],
+   "id": "bc14fba7-7bb4-5132-8271-196e154cf549"
   }
  ]
 }

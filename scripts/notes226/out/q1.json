@@ -727,57 +727,61 @@
   {
    "type": "callout",
    "tone": "tip",
-   "text": "**Question 1 is always these, in parts (a), (b), (c).** Spot which kind, then run its steps:\n\n1. **Build a PMF** (no family): List → Label → Add → Check.\n2. **Find $c$:** add every chance, set it to $1$.\n3. **CDF:** running total; jumps = the PMF; $P(a<X\\le b)=F(b)-F(a)$; whole numbers: $<$ → $\\le$.\n4. **Named family:** Spot → Read off → Plug in. Scale Poisson’s $\\lambda$. “At least” → $1-$ the rest.\n5. **Two families:** Inside gives $q$, Outside is Binomial or Geometric.",
+   "text": "**Question 1 is always one of these three, in parts (a), (b), (c).** Spot which kind, then run its steps:\n\n1. **PMF and CDF:** build the PMF with List → Label → Add → Check. CDF = running total; jumps = the PMF; $P(a<X\\le b)=F(b)-F(a)$; whole numbers: $<$ → $\\le$.\n2. **Find $c$:** add every chance, set the total to $1$, solve. Then use the PMF like any other.\n3. **Poisson:** scale $\\lambda$ to the time asked, then $e^{-\\lambda}\\lambda^k/k!$. “At least one” $=1-e^{-\\lambda}$.",
    "citations": [],
-   "id": "613020c4-8229-50e6-8f5d-e4d701cf0c75"
+   "id": "4798ac8f-cd22-5f80-aad8-ca1b41b0b88a"
   },
   {
    "type": "paragraph",
-   "text": "Test-style, easy → hard. Solve on paper first, then open the solution.",
+   "text": "Test-style, easy → medium, same level as the practice sets. Solve on paper first, then open the solution.",
    "citations": [],
-   "id": "d3282675-644d-5f3c-a689-843fe06fb5dd"
+   "id": "3b48a89b-7ee9-5d5e-80fb-54d26b3e246f"
   },
   {
    "type": "practice_problem",
-   "title": "Question 1 · Named family (Poisson) · Tutorial 3 Q3, Q5",
+   "title": "Question 1 · PMF and CDF · 2 coins",
    "difficulty": "introductory",
    "origin": "source",
-   "prompt": "A mail-order house gets on average **7 wrong-number calls per week** (Poisson). Find the probability that tomorrow they get (a) exactly two wrong-number calls, (b) at least one. (c) A book has on average one typo every **three pages** (Poisson). Find the chance a given page has at least one typo.",
+   "prompt": "Toss a fair coin twice. $X$ = the number of heads. Find (a) the PMF of $X$, (b) the CDF of $X$, (c) $P(X\\ge1)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Spot:** “on average” → Poisson. Scale $\\lambda$ to one day.",
-     "latex": "\\lambda=\\frac{7}{7}=1"
+     "explanation": "(a) **List:** $2^2=4$ equally likely outcomes, each $\\tfrac14$.",
+     "latex": "hh,\\ ht,\\ th,\\ tt"
     },
     {
-     "explanation": "(a) **Write** and **plug in** $k=2$.",
-     "latex": "P(X=2)=e^{-1}\\frac{1^2}{2!}\\approx 0.1839"
+     "explanation": "**Label** and **add:** $X=2$: $hh$. $X=1$: $ht,th$. $X=0$: $tt$.",
+     "latex": "p_X(0)=\\frac14,\\quad p_X(1)=\\frac12,\\quad p_X(2)=\\frac14"
     },
     {
-     "explanation": "(b) **At least one** → one minus none.",
-     "latex": "P(X\\ge1)=1-e^{-1}\\approx 0.6321"
+     "explanation": "**Check:** they add to $1$.",
+     "latex": "\\frac14+\\frac12+\\frac14=1\\ \\checkmark"
     },
     {
-     "explanation": "(c) Scale to one page: $\\lambda=\\tfrac13$. Then one minus none.",
-     "latex": "P(X\\ge1)=1-e^{-1/3}\\approx 0.2835"
+     "explanation": "(b) **Accumulate:** add each chance as you pass $0$, $1$, $2$.",
+     "latex": "F_X(x)=\\begin{cases}0,&x<0\\\\ \\frac14,&0\\le x<1\\\\ \\frac34,&1\\le x<2\\\\ 1,&x\\ge2\\end{cases}"
+    },
+    {
+     "explanation": "(c) **Rewrite:** at least one = one minus none.",
+     "latex": "P(X\\ge1)=1-p_X(0)=1-\\frac14=\\frac34"
     }
    ],
-   "answer": "(a) $\\approx 0.1839$ (b) $\\approx 0.6321$ (c) $\\approx 0.2835$",
+   "answer": "(a) $\\tfrac14,\\tfrac12,\\tfrac14$ for $x=0,1,2$ (b) the staircase $0,\\tfrac14,\\tfrac34,1$ (c) $\\tfrac34$",
    "citations": [
     {
-     "source_id": "de4d1db1-eb13-4c83-9232-afdabb6c52fe",
+     "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
      "version": 1,
-     "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
+     "chunk_id": "381e054b-d711-4fff-8a08-f599a93371f1"
     }
    ],
-   "id": "9b6985bd-fddf-5daf-8695-cf4b03a02fcc"
+   "id": "aca78385-a1cb-5884-82c3-c5e0cb7d92da"
   },
   {
    "type": "practice_problem",
-   "title": "Question 2 · Build a PMF · with and without replacement · like Practice 01 Q7",
+   "title": "Question 2 · PMF and CDF · with and without replacement · like Practice 01 Q7",
    "difficulty": "introductory",
    "origin": "source",
-   "prompt": "An urn has 2 black balls and 1 white ball. Two balls are drawn one after the other. $X$ = number of black balls drawn. Find the PMF of $X$ (a) **without** replacement, (b) **with** replacement. (c) Which one is a named family?",
+   "prompt": "An urn has 2 black balls and 1 white ball. Two balls are drawn one after the other. $X$ = number of black balls drawn. Find the PMF of $X$ (a) **without** replacement, (b) **with** replacement.",
    "solution": "",
    "steps": [
     {
@@ -789,19 +793,15 @@
      "latex": "P(X=2)=\\frac26=\\frac13,\\quad P(X=1)=\\frac46=\\frac23,\\quad P(X=0)=0"
     },
     {
-     "explanation": "(b) With replacement, each draw is black with $\\tfrac23$, independently. **Add** the orders for $X=1$.",
+     "explanation": "(b) With replacement, each draw is black with $\\tfrac23$, independently. **Add** the two orders for $X=1$ (BW and WB).",
      "latex": "\\begin{gathered}P(X=2)=\\Big(\\frac23\\Big)^2=\\frac49,\\qquad P(X=0)=\\Big(\\frac13\\Big)^2=\\frac19 \\\\ P(X=1)=2\\cdot\\frac23\\cdot\\frac13=\\frac49\\end{gathered}"
     },
     {
      "explanation": "**Check:** both PMFs add to $1$.",
      "latex": "\\frac13+\\frac23=1,\\qquad \\frac49+\\frac49+\\frac19=1"
-    },
-    {
-     "explanation": "(c) With replacement = independent tries → **Binomial**$(2,\\tfrac23)$. Without → Hypergeometric.",
-     "latex": ""
     }
    ],
-   "answer": "(a) $0,\\tfrac23,\\tfrac13$ for $x=0,1,2$ (b) $\\tfrac19,\\tfrac49,\\tfrac49$ (c) (b) is Binomial$(2,\\tfrac23)$",
+   "answer": "(a) $0,\\tfrac23,\\tfrac13$ for $x=0,1,2$ (b) $\\tfrac19,\\tfrac49,\\tfrac49$",
    "citations": [
     {
      "source_id": "50e2652a-ee53-495c-9bdd-b449000555a8",
@@ -809,46 +809,46 @@
      "chunk_id": "0a97238a-a1ac-4761-90a7-c16e251c64b8"
     }
    ],
-   "id": "85ab6c1d-64f4-5f55-9ea6-baa4ac45d6c4"
+   "id": "f3c0fa73-a1dc-5e2e-bf2c-6f720659e74b"
   },
   {
    "type": "practice_problem",
-   "title": "Question 3 · PMF and CDF · find $c$, then the CDF",
-   "difficulty": "intermediate",
+   "title": "Question 3 · PMF and CDF · PMF → CDF → probabilities",
+   "difficulty": "introductory",
    "origin": "original",
-   "prompt": "(a) $p_X(x)=c\\,(x+1)$ for $x=0,1,2,3$. Find $c$, then $F_X(1.5)$ and $P(X\\ge2)$. (b) $p_X(k)=c\\,\\dfrac{3^k}{k!}$ for $k=0,1,2,\\dots$ Find $c$. Which family is this?",
+   "prompt": "$X$ takes the values $-1$, $0$, $2$ with $p_X(-1)=0.2$, $p_X(0)=0.5$, $p_X(2)=0.3$. Find (a) the CDF, (b) $F_X(1)$, (c) $P(X<2)$, (d) $P(-1<X\\le2)$, (e) $P(X>0)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Find $c$:** add every chance.",
-     "latex": "c(1+2+3+4)=10c=1\\quad\\Longrightarrow\\quad c=\\frac1{10}"
+     "explanation": "(a) **Accumulate:** start at $0$, add each chance as you pass $-1$, $0$, $2$.",
+     "latex": "F_X(x)=\\begin{cases}0,&x<-1\\\\ 0.2,&-1\\le x<0\\\\ 0.7,&0\\le x<2\\\\ 1,&x\\ge2\\end{cases}"
     },
     {
-     "explanation": "So the PMF is $0.1,0.2,0.3,0.4$. **Accumulate** every value $\\le1.5$: $x=0,1$.",
-     "latex": "F_X(1.5)=0.1+0.2=0.3"
+     "explanation": "(b) $x=1$ sits on the flat step $[0,2)$.",
+     "latex": "F_X(1)=0.7"
     },
     {
-     "explanation": "**Rewrite:** $X\\ge2$ is one minus $X\\le1$.",
-     "latex": "P(X\\ge2)=1-F_X(1)=1-0.3=0.7"
+     "explanation": "(c) **Rewrite:** whole steps, so “$<2$” is the step just left of $2$.",
+     "latex": "P(X<2)=0.2+0.5=0.7"
     },
     {
-     "explanation": "(b) **Find $c$** with the exponential series, $\\sum\\frac{3^k}{k!}=e^3$.",
-     "latex": "c\\,e^{3}=1\\quad\\Longrightarrow\\quad c=e^{-3}"
+     "explanation": "(d) **Rewrite** as a difference.",
+     "latex": "P(-1<X\\le2)=F_X(2)-F_X(-1)=1-0.2=0.8"
     },
     {
-     "explanation": "That’s the Poisson PMF with $\\lambda=3$.",
-     "latex": "X\\sim\\text{Poisson}(3)"
+     "explanation": "(e) **Rewrite** as one minus.",
+     "latex": "P(X>0)=1-F_X(0)=1-0.7=0.3"
     }
    ],
-   "answer": "(a) $c=\\tfrac1{10}$, $F_X(1.5)=0.3$, $P(X\\ge2)=0.7$ (b) $c=e^{-3}$, Poisson$(3)$",
+   "answer": "(a) staircase $0,\\ 0.2,\\ 0.7,\\ 1$ (b) $0.7$ (c) $0.7$ (d) $0.8$ (e) $0.3$",
    "citations": [],
-   "id": "ba2401ad-3cc9-5717-8959-415c18dcc6da"
+   "id": "f40a6794-15f2-5f52-a11f-6e9874ac4c87"
   },
   {
    "type": "practice_problem",
    "title": "Question 4 · PMF and CDF · CDF → PMF",
    "difficulty": "intermediate",
-   "origin": "original",
+   "origin": "source",
    "prompt": "$X$ has CDF\n\n$$\nF_X(x)=\\begin{cases}0,&x<1\\\\ 0.2,&1\\le x<2\\\\ 0.5,&2\\le x<4\\\\ 1,&x\\ge4\\end{cases}\n$$\n\nFind (a) the PMF, (b) $P(X<4)$, (c) $P(1<X\\le4)$, (d) $P(X>2)$, (e) $P(X=3)$.",
    "solution": "",
    "steps": [
@@ -874,85 +874,21 @@
     }
    ],
    "answer": "(a) $0.2,0.3,0.5$ at $1,2,4$ (b) $0.5$ (c) $0.8$ (d) $0.5$ (e) $0$",
-   "citations": [],
+   "citations": [
+    {
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+     "version": 1,
+     "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
+    }
+   ],
    "id": "9e29bb6f-732e-5714-953f-a7a7de6bc99e"
   },
   {
    "type": "practice_problem",
-   "title": "Question 5 · Named family (Hypergeometric) · Lecture 7",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "You get 7 cards from a 52-card deck, without replacement. $X$ = number of queens. Find $P(X=k)$ for $k=0,1,2,3,4$, and $P(X\\ge1)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Spot:** without replacement, 4 queens out of 52 → Hypergeometric.",
-     "latex": ""
-    },
-    {
-     "explanation": "**Write:** pick $k$ queens **and** $7-k$ non-queens.",
-     "latex": "P(X=k)=\\frac{\\binom4k\\binom{48}{7-k}}{\\binom{52}{7}}"
-    },
-    {
-     "explanation": "**Plug in** $k=0,\\dots,4$.",
-     "latex": "\\begin{gathered}P(0)\\approx 0.5504,\\quad P(1)\\approx 0.3669,\\quad P(2)\\approx 0.0768 \\\\ P(3)\\approx 0.0058,\\quad P(4)\\approx 0.00013\\end{gathered}"
-    },
-    {
-     "explanation": "At least one → one minus none.",
-     "latex": "P(X\\ge1)=1-P(X=0)\\approx 0.4496"
-    }
-   ],
-   "answer": "$\\approx 0.5504,\\ 0.3669,\\ 0.0768,\\ 0.0058,\\ 0.00013$; $P(X\\ge1)\\approx 0.4496$",
-   "citations": [
-    {
-     "source_id": "3fa2195b-a4b9-4efe-a373-92d08bfae677",
-     "version": 1,
-     "chunk_id": "611cfbf9-c4f5-41a0-9a08-2ae0fb70879a"
-    }
-   ],
-   "id": "5e5f6529-b8d2-5a38-b942-4aadbae1fc53"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 6 · Named family (Binomial, Bernoulli) · Tutorial 3 Q7",
-   "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "A town had 12 accidents in June (30 days). Each accident is equally likely to be on any day, independently. (a) Let $Y=1$ if the first accident is on June 13, else $Y=0$. Name the family of $Y$ and give its PMF. (b) Find the probability that **at least 4** of the 12 fall on June 13.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) **Spot:** one yes/no try → Bernoulli.",
-     "latex": "P(Y=1)=\\frac1{30},\\qquad P(Y=0)=\\frac{29}{30}"
-    },
-    {
-     "explanation": "(b) **Spot:** 12 tries, “success” = lands on June 13 → Binomial.",
-     "latex": "n=12,\\qquad p=\\frac1{30}"
-    },
-    {
-     "explanation": "**Write** and use the “at least” shortcut: one minus $k=0,1,2,3$.",
-     "latex": "P(X\\ge4)=1-\\sum_{k=0}^{3}\\binom{12}{k}\\Big(\\frac1{30}\\Big)^k\\Big(\\frac{29}{30}\\Big)^{12-k}"
-    },
-    {
-     "explanation": "**Plug in.**",
-     "latex": "P(X\\ge4)\\approx 0.00049"
-    }
-   ],
-   "answer": "(a) Bernoulli$(\\tfrac1{30})$ (b) $\\approx 0.00049$, so 4 on one day is very unlikely by chance.",
-   "citations": [
-    {
-     "source_id": "de4d1db1-eb13-4c83-9232-afdabb6c52fe",
-     "version": 1,
-     "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
-    }
-   ],
-   "id": "d2de4640-2f0c-5b11-ad9f-f9d70b6eff1e"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 7 · Build a PMF · toss until a head, at most 4 tosses",
+   "title": "Question 5 · PMF and CDF · toss until a head, at most 4 tosses",
    "difficulty": "intermediate",
    "origin": "original",
-   "prompt": "A coin with $P(H)=p$ is tossed until the first head **or** until 4 tosses have been made. (a) Write the sample space. (b) Let $X$ = number of tosses. Find the PMF of $X$. (c) Evaluate it for $p=\\tfrac12$.",
+   "prompt": "A coin with $P(H)=p$ is tossed until the first head **or** until 4 tosses have been made. (a) Write the sample space. (b) Let $X$ = number of tosses. Find the PMF of $X$. (c) Evaluate it for $p=\\tfrac12$ and find $F_X(2)$.",
    "solution": "",
    "steps": [
     {
@@ -969,103 +905,80 @@
     },
     {
      "explanation": "(c) $p=\\tfrac12$. **Check:** they add to $1$.",
-     "latex": "\\frac12+\\frac14+\\frac18+\\frac18=1"
+     "latex": "\\frac12+\\frac14+\\frac18+\\frac18=1\\ \\checkmark"
+    },
+    {
+     "explanation": "**Accumulate** up to $2$.",
+     "latex": "F_X(2)=\\frac12+\\frac14=\\frac34"
     }
    ],
-   "answer": "$p,\\ (1-p)p,\\ (1-p)^2p,\\ (1-p)^3$; for $p=\\tfrac12$: $\\tfrac12,\\tfrac14,\\tfrac18,\\tfrac18$.",
+   "answer": "$p,\\ (1-p)p,\\ (1-p)^2p,\\ (1-p)^3$; for $p=\\tfrac12$: $\\tfrac12,\\tfrac14,\\tfrac18,\\tfrac18$ and $F_X(2)=\\tfrac34$.",
    "citations": [],
-   "id": "58f71922-30cf-5296-8ce7-9b34d0120be8"
+   "id": "accccf0b-5f57-5687-ad80-1f286c8e155e"
   },
   {
    "type": "practice_problem",
-   "title": "Question 8 · Named family (Negative Binomial)",
-   "difficulty": "intermediate",
+   "title": "Question 6 · Find $c$ · a finite PMF",
+   "difficulty": "introductory",
    "origin": "original",
-   "prompt": "A player makes each free throw with probability $0.7$, independently. $X$ = number of shots needed to make **3** baskets. (a) Name the family. (b) Find $P(X=5)$. (c) Find $P(X\\le4)$. (d) Compare: the chance of exactly 3 baskets in 5 shots.",
+   "prompt": "(a) $p_X(x)=c\\,(x+1)$ for $x=0,1,2,3$. Find $c$, then $F_X(1.5)$ and $P(X\\ge2)$. (b) $p_X(x)=c\\,x^2$ for $x=1,2,3$. Find $c$ and $P(X\\le2)$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Spot:** “until the 3rd success” → Negative Binomial, $r=3$, $p=0.7$.",
-     "latex": ""
+     "explanation": "(a) **Find $c$:** add every chance, set to $1$.",
+     "latex": "c(1+2+3+4)=10c=1\\quad\\Longrightarrow\\quad c=\\frac1{10}"
     },
     {
-     "explanation": "**Write** the PMF.",
-     "latex": "P(X=k)=\\binom{k-1}{2}(0.7)^3(0.3)^{k-3}"
+     "explanation": "So the PMF is $0.1,0.2,0.3,0.4$. **Accumulate** every value $\\le1.5$: $x=0,1$.",
+     "latex": "F_X(1.5)=0.1+0.2=0.3"
     },
     {
-     "explanation": "(b) **Plug in** $k=5$: shot 5 goes in, and 2 of the first 4.",
-     "latex": "P(X=5)=\\binom42(0.7)^3(0.3)^2\\approx 0.1852"
+     "explanation": "**Rewrite:** $X\\ge2$ is one minus $X\\le1$.",
+     "latex": "P(X\\ge2)=1-F_X(1)=1-0.3=0.7"
     },
     {
-     "explanation": "(c) Add $k=3$ and $k=4$.",
-     "latex": "P(X\\le4)=(0.7)^3+\\binom32(0.7)^3(0.3)\\approx 0.6517"
+     "explanation": "(b) **Find $c$:**",
+     "latex": "c(1+4+9)=14c=1\\quad\\Longrightarrow\\quad c=\\frac1{14}"
     },
     {
-     "explanation": "(d) Binomial$(5,0.7)$: the 3 baskets can be **any** 3 of the 5, so it’s bigger.",
-     "latex": "\\binom53(0.7)^3(0.3)^2\\approx 0.3087"
+     "explanation": "**Accumulate** $x=1,2$.",
+     "latex": "P(X\\le2)=\\frac{1+4}{14}=\\frac5{14}"
     }
    ],
-   "answer": "(a) NB$(3,0.7)$ (b) $\\approx 0.1852$ (c) $\\approx 0.6517$ (d) $\\approx 0.3087$",
+   "answer": "(a) $c=\\tfrac1{10}$, $F_X(1.5)=0.3$, $P(X\\ge2)=0.7$ (b) $c=\\tfrac1{14}$, $P(X\\le2)=\\tfrac5{14}$",
    "citations": [],
-   "id": "98e07fbe-ad79-5921-806b-dccefbf70543"
+   "id": "7e1422fa-c7fc-5555-8bb0-987e6b9d48b7"
   },
   {
    "type": "practice_problem",
-   "title": "Question 9 · Named family + CDF (Geometric) · Practice 03 Q7",
-   "difficulty": "advanced",
+   "title": "Question 7 · Find $c$ · an infinite PMF · like Tutorial 3 Q2",
+   "difficulty": "intermediate",
    "origin": "source",
-   "prompt": "$N\\sim$ Geometric$(p)$, so $P(N=k)=(1-p)^{k-1}p$ for $k=1,2,\\dots$ (a) Find $P(N>k)$. (b) Find the CDF of $N$. (c) Find $P(N\\text{ is even})$. (d) Find $P(N=k\\mid N\\le m)$.",
+   "prompt": "(a) $p_X(k)=c\\big(\\tfrac13\\big)^k$ for $k=0,1,2,\\dots$ Find $c$ and $P(X\\ge1)$. (b) $p_X(k)=c\\,\\dfrac{2^k}{k!}$ for $k=0,1,2,\\dots$ Find $c$ and $P(X=1)$. Which family is this?",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) $N>k$ means the first $k$ tries all failed (shortcut).",
-     "latex": "P(N>k)=(1-p)^k"
+     "explanation": "(a) **Find $c$:** a geometric series starting at $k=0$, ratio $r=\\tfrac13$.",
+     "latex": "\\sum_{k=0}^{\\infty}\\Big(\\frac13\\Big)^k=\\frac{1}{1-\\frac13}=\\frac32\\quad\\Longrightarrow\\quad \\frac32c=1\\quad\\Longrightarrow\\quad c=\\frac23"
     },
     {
-     "explanation": "(b) **Rewrite:** one minus the tail. Flat between whole numbers.",
-     "latex": "F_N(k)=1-(1-p)^k,\\quad k=1,2,\\dots"
+     "explanation": "**Rewrite:** at least one = one minus $k=0$.",
+     "latex": "P(X\\ge1)=1-c\\Big(\\frac13\\Big)^0=1-\\frac23=\\frac13"
     },
     {
-     "explanation": "(c) Add $k=2,4,6,\\dots$: a geometric series with ratio $(1-p)^2$.",
-     "latex": "\\sum_{j=1}^{\\infty}(1-p)^{2j-1}p=\\frac{(1-p)p}{1-(1-p)^2}=\\frac{1-p}{2-p}"
+     "explanation": "(b) **Find $c$** with the exponential series, $\\sum\\frac{2^k}{k!}=e^2$.",
+     "latex": "c\\,e^{2}=1\\quad\\Longrightarrow\\quad c=e^{-2}"
     },
     {
-     "explanation": "(d) Conditional = (both) / (given). For $k\\le m$, “$N=k$ and $N\\le m$” is just $N=k$.",
-     "latex": "P(N=k\\mid N\\le m)=\\frac{(1-p)^{k-1}p}{1-(1-p)^m},\\quad k=1,\\dots,m"
+     "explanation": "**Plug in** $k=1$.",
+     "latex": "P(X=1)=e^{-2}\\frac{2^1}{1!}=2e^{-2}\\approx0.2707"
+    },
+    {
+     "explanation": "That’s the Poisson PMF with $\\lambda=2$.",
+     "latex": "X\\sim\\text{Poisson}(2)"
     }
    ],
-   "answer": "(a) $(1-p)^k$ (b) $1-(1-p)^k$ (c) $\\dfrac{1-p}{2-p}$ (d) $\\dfrac{(1-p)^{k-1}p}{1-(1-p)^m}$",
-   "citations": [
-    {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "1f2ee630-5190-42fa-a945-2d6fdf2e12c0"
-    }
-   ],
-   "id": "54b389d3-3043-5448-a6ae-6e21ec1179e9"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 10 · Two families (Poisson → Binomial, Geometric) · Tutorial 3 Q6",
-   "difficulty": "advanced",
-   "origin": "source",
-   "prompt": "Earthquakes: on average 7 per year (Poisson). (a) Find the probability of no earthquakes in one year. (b) Find the probability that **exactly three of the next eight years** have no earthquakes. (c) Find the probability that the **first** quiet year is year 3.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) **Inside:** Poisson, $\\lambda=7$, $k=0$.",
-     "latex": "q=e^{-7}\\approx 0.000912"
-    },
-    {
-     "explanation": "(b) **Outside:** each year is a yes/no try (“quiet”, chance $q$), 8 years → Binomial$(8,q)$.",
-     "latex": "P=\\binom83q^3(1-q)^5\\approx 4.23\\times10^{-8}"
-    },
-    {
-     "explanation": "(c) **Outside:** “first quiet year” → Geometric$(q)$: two loud years, then a quiet one.",
-     "latex": "P=(1-q)^2q\\approx 9.10\\times10^{-4}"
-    }
-   ],
-   "answer": "(a) $\\approx 0.000912$ (b) $\\approx 4.23\\times10^{-8}$ (c) $\\approx 9.10\\times10^{-4}$",
+   "answer": "(a) $c=\\tfrac23$, $P(X\\ge1)=\\tfrac13$ (b) $c=e^{-2}$, $P(X=1)\\approx 0.2707$, Poisson$(2)$",
    "citations": [
     {
      "source_id": "de4d1db1-eb13-4c83-9232-afdabb6c52fe",
@@ -1073,7 +986,100 @@
      "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
     }
    ],
-   "id": "7c503ddf-15e8-5ec5-ae46-4bf99b8bfa5e"
+   "id": "c2d49cfc-7f96-506b-9ea2-f6a8f67a1167"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 8 · Poisson · Tutorial 3 Q3, Q5",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "A mail-order house gets on average **7 wrong-number calls per week** (Poisson). Find the probability that tomorrow they get (a) exactly two wrong-number calls, (b) at least one. (c) A book has on average one typo every **three pages** (Poisson). Find the chance a given page has at least one typo.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** “on average” → Poisson. **Read off:** scale $\\lambda$ to one day.",
+     "latex": "\\lambda=\\frac{7}{7}=1"
+    },
+    {
+     "explanation": "(a) **Plug in** $k=2$.",
+     "latex": "P(X=2)=e^{-1}\\frac{1^2}{2!}\\approx 0.1839"
+    },
+    {
+     "explanation": "(b) **At least one** → one minus none.",
+     "latex": "P(X\\ge1)=1-e^{-1}\\approx 0.6321"
+    },
+    {
+     "explanation": "(c) Scale to one page: $\\lambda=\\tfrac13$. Then one minus none.",
+     "latex": "P(X\\ge1)=1-e^{-1/3}\\approx 0.2835"
+    }
+   ],
+   "answer": "(a) $\\approx 0.1839$ (b) $\\approx 0.6321$ (c) $\\approx 0.2835$",
+   "citations": [
+    {
+     "source_id": "de4d1db1-eb13-4c83-9232-afdabb6c52fe",
+     "version": 1,
+     "chunk_id": "0a1227c1-6900-42bb-97f9-faba9784fef1"
+    }
+   ],
+   "id": "80f7634f-ad89-5248-9d38-6883c0df8473"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 9 · Poisson · customers per hour",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Customers arrive at a counter at **3 per hour** on average (Poisson). Find the chance of (a) exactly 2 customers in the next hour, (b) **at most** 2 customers in the next hour, (c) no customers in the next 20 minutes.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** “on average … per hour” → Poisson. (a) **Read off:** one hour, so $\\lambda=3$.",
+     "latex": "\\lambda=3,\\qquad k=2"
+    },
+    {
+     "explanation": "**Plug in:**",
+     "latex": "P(X=2)=e^{-3}\\frac{3^2}{2!}=4.5\\,e^{-3}\\approx0.2240"
+    },
+    {
+     "explanation": "(b) **At most 2** = add $k=0,1,2$.",
+     "latex": "P(X\\le2)=e^{-3}\\Big(1+3+\\frac{9}{2}\\Big)=8.5\\,e^{-3}\\approx0.4232"
+    },
+    {
+     "explanation": "(c) **Read off:** 20 minutes is a third of an hour → a third of the average.",
+     "latex": "\\lambda=\\frac{3}{3}=1,\\qquad k=0"
+    },
+    {
+     "explanation": "**Plug in:**",
+     "latex": "P(X=0)=e^{-1}\\approx0.3679"
+    }
+   ],
+   "answer": "(a) $\\approx 0.2240$ (b) $\\approx 0.4232$ (c) $\\approx 0.3679$",
+   "citations": [],
+   "id": "68ec778e-052d-5d4c-b048-862926e81d28"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 10 · Poisson · typos per page",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "A report has on average **2 typos per page** (Poisson). Find the chance that (a) a given page has no typos, (b) a given page has **at least 2** typos, (c) a 3-page section has no typos.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Read off:** one page, $\\lambda=2$, $k=0$. **Plug in:**",
+     "latex": "P(X=0)=e^{-2}\\approx0.1353"
+    },
+    {
+     "explanation": "(b) **At least 2** = one minus $k=0,1$.",
+     "latex": "P(X\\ge2)=1-e^{-2}\\Big(1+2\\Big)=1-3e^{-2}\\approx0.5940"
+    },
+    {
+     "explanation": "(c) **Read off:** 3 pages → $\\lambda=3\\cdot2=6$, $k=0$.",
+     "latex": "P(X=0)=e^{-6}\\approx0.00248"
+    }
+   ],
+   "answer": "(a) $\\approx 0.1353$ (b) $\\approx 0.5940$ (c) $\\approx 0.00248$",
+   "citations": [],
+   "id": "eb6cf783-84db-5c09-861d-9a64e1a70f00"
   }
  ]
 }

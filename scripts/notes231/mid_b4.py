@@ -31,12 +31,6 @@ def build(D):
     D.P(r'**Short example:** $y\,dt+(3+3t-y)\,dy=0$:')
     D.EQ(r'\dfrac{3-1}{y}=\dfrac2y\quad\Longrightarrow\quad \mu=e^{2\ln y}=y^2')
     D.P(r'(The lecture calls these Theorem 1 and Theorem 2.)', cites=W4(5))
-    D.WHY('Where does Case 1 come from?',
-          r'Multiply by $\mu(t)$ and ask the new equation to pass the test, $(\mu M)_y=(\mu N)_t$. '
-          r'On the left, $\mu$ has no $y$, so it just comes out. On the right, use the product rule:'
-          '\n\n$$\n' r'\mu\,M_y=\mu\prime N+\mu\,N_t\quad\Longrightarrow\quad \dfrac{\mu\prime}{\mu}=\dfrac{M_y-N_t}{N}' '\n$$\n\n'
-          r'The left side only has $t$, so the right side must too. Then $\ln\mu=\int g\,dt$. Case 2 is the same with $\mu(y)$.')
-
     D.H('Steps and examples', level=3)
     D.L([r'**Write** it as $M\,dt+N\,dy=0$. Read $M$ and $N$ with their signs.',
          r'**Test:** $M_y\neq N_t$. (Equal? It’s already exact: ' + link('B3', 'b3') + '.)',
@@ -44,7 +38,7 @@ def build(D):
          r'**Multiply** the whole equation by $\mu$: both $M$ and $N$.',
          r'**Re-test:** it must pass now. If not, recheck your algebra.',
          r'**Finish like B3:** integrate $M$ in $t$, match $N$, answer $U=C$, plug in.'], ordered=True)
-    CARD(D, r'Full example (Pre-tutorial 4): $\;y\,dt+(3+3t-y)\,dy=0$',
+    CARD(D, r'★ Lecture Example 4.6 + Pre-tutorial 4 (try it, then open): $\;y\,dt+(3+3t-y)\,dy=0$',
          [(r'**Write.**', r'M=y,\qquad N=3+3t-y'),
           (r'**Test:** they don’t match.', r'M_y=1,\qquad N_t=3'),
           (r'**Find $\mu$:** Case 1 gives $\frac{1-3}{3+3t-y}$, both letters. Case 2 leaves only $y$.', r'\dfrac{N_t-M_y}{M}=\dfrac{3-1}{y}=\dfrac2y'),
@@ -84,22 +78,6 @@ def build(D):
        S(r'**Match $N$:** $U_y=2ty+h\prime$ must equal $2ty+y^4$.', r'h\prime=y^4\quad\Rightarrow\quad h=\dfrac{y^5}{5}'),
        S(r'**Answer.**', r'ty^2+\dfrac{y^5}{5}=C')],
       r'$ty^2+\dfrac{y^5}{5}=C$.')
-    P(D, 'W4 · Which case applies?',
-      r'Find an integrating factor for each equation, then solve it.' '\n\n'
-      r'(a) $(2y+3t)\,dt+t\,dy=0$' '\n\n'
-      r'(b) $y^2\,dt+(ty+1)\,dy=0$',
-      [S(r'(a) **Write** and **test:** $M=2y+3t$, $N=t$.', r'M_y=2,\qquad N_t=1'),
-       S(r'(a) **Find $\mu$:** Case 1 leaves only $t$.', (r'\dfrac{M_y-N_t}{N}=\dfrac{2-1}{t}=\dfrac1t', r'\mu=e^{\ln t}=t')),
-       S(r'(a) **Multiply** by $t$: it’s exactly the B3 lecture example.', r'(2ty+3t^2)\,dt+t^2\,dy=0'),
-       S(r'(a) **Answer:** from B3.', r't^2y+t^3=C'),
-       S(r'(b) **Write** and **test:** $M=y^2$, $N=ty+1$.', r'M_y=2y,\qquad N_t=y'),
-       S(r'(b) **Find $\mu$:** Case 1 gives $\frac{y}{ty+1}$, both letters. Case 2:', (r'\dfrac{N_t-M_y}{M}=\dfrac{y-2y}{y^2}=-\dfrac1y', r'\mu=e^{-\ln y}=\dfrac1y')),
-       S(r'(b) **Multiply** by $\frac1y$ and **re-test.**', (r'y\,dt+\Big(t+\dfrac1y\Big)dy=0', r'M_y=1,\qquad N_t=1\quad\checkmark')),
-       S(r'(b) **Integrate $M$** and **match $N$:** $U=ty+h(y)$, and $U_y=t+h\prime$ must equal $t+\frac1y$.', r'h\prime=\dfrac1y\quad\Rightarrow\quad h=\ln|y|'),
-       S(r'(b) **Answer.**', r'ty+\ln|y|=C')],
-      r'(a) $\mu=t$, $\;t^2y+t^3=C$. (b) $\mu=\dfrac1y$, $\;ty+\ln|y|=C$.', diff='advanced')
-
-
 def verify():
     def exact(M, N):
         zero(sp.diff(M, y) - sp.diff(N, t))
@@ -126,14 +104,3 @@ def verify():
     zero(sp.simplify((sp.diff(N, t) - sp.diff(M, y)) / M) - 1 / y)
     exact(y * M, y * N)
     implicit(t * y ** 2 + y ** 5 / 5, -M / N)
-    # which case
-    M, N = 2 * y + 3 * t, t
-    zero(sp.simplify((sp.diff(M, y) - sp.diff(N, t)) / N) - 1 / t)
-    assert sp.simplify((sp.diff(N, t) - sp.diff(M, y)) / M).has(t)
-    exact(t * M, t * N)
-    implicit(t ** 2 * y + t ** 3, -M / N)
-    M, N = y ** 2, t * y + 1
-    assert sp.simplify((sp.diff(M, y) - sp.diff(N, t)) / N).has(y)
-    zero(sp.simplify((sp.diff(N, t) - sp.diff(M, y)) / M) + 1 / y)
-    exact(M / y, N / y)
-    implicit(t * y + sp.log(y), -M / N)

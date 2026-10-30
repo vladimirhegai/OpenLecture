@@ -28,11 +28,6 @@ def build(D):
     D.EQ(r'y=y_1\,v')
     D.P(r'When you plug it in, every term with a plain $v$ **cancels**. Only $v\prime$ and $v\prime\prime$ are left. '
         r'Call $z=v\prime$ and it’s a **first-order** equation (' + link('B1', 'b1') + ' or ' + link('B2', 'b2') + ').')
-    D.WHY('Why do the plain-$v$ terms cancel?',
-          r'After you substitute, gather everything that multiplies $v$ itself. You get'
-          '\n\n$$\n' r'v\,(y_1\prime\prime+p\,y_1\prime+q\,y_1)' '\n$$\n\n'
-          r'The bracket is just $y_1$ plugged into the ODE, which is $0$ because $y_1$ is a solution.')
-
     D.P('**Steps**')
     D.L([r'**Write** it with $y\prime\prime$ alone. Read $p$, $q$. Check $y_1$.',
          r'**Substitute** $y=y_1v$. Use the product rule for $y\prime$ and $y\prime\prime$ (below).',
@@ -47,15 +42,15 @@ def build(D):
     D.P(r'**Short example:** with $y_1=t$:')
     D.EQ(r'y=tv\quad\Longrightarrow\quad y\prime=v+tv\prime,\quad y\prime\prime=2v\prime+tv\prime\prime')
 
-    D.STEPS('Lecture: reduce y″ − t y′ + y = 0, given y₁ = t', [
+    D.STEPS('★ Lecture (Week 6): reduce y″ − t y′ + y = 0, given y₁ = t', [
         (r'y\prime\prime-ty\prime+y=0,\qquad y_1=t', r'**Write.** Check: $y_1=t$ gives $0-t+t=0$.'),
         (r'y=\hl{tv}', r'**Substitute:** the known solution times an unknown $v$.'),
         (r'y\prime=\hl{v+tv\prime},\qquad y\prime\prime=\hl{2v\prime+tv\prime\prime}', 'Product rule.'),
         (r'(2v\prime+tv\prime\prime)-t(v+tv\prime)+tv=0', '**Plug in** all three.'),
         (r'\hl{tv\prime\prime+(2-t^2)v\prime}=0', r'**Collect.** The $-tv$ and $+tv$ cancel.'),
         (r't\hl{z\prime}+(2-t^2)\hl{z}=0', r'Set $z=v\prime$: now it’s first order in $z$.'),
-    ], intro='**The professor’s example**, step by step (press the arrows):')
-    CARD(D, r'Finish the lecture example: solve $\;tz\prime+(2-t^2)z=0$, then find $y$',
+    ], intro='**★ The prof’s example**, step by step (press the arrows). Then finish it yourself:')
+    CARD(D, r'★ Finish the lecture example (try it, then open): solve $\;tz\prime+(2-t^2)z=0$, then find $y$',
          [(r'**Solve for $z$:** it separates. Divide by $tz$ and move the $t$ terms right.', r'\dfrac{dz}{z}=\dfrac{t^2-2}{t}\,dt=\left(t-\dfrac2t\right)dt'),
           (r'Integrate both sides.', r'\ln|z|=\dfrac{t^2}2-2\ln|t|+C'),
           (r'Raise $e$ to both sides. $e^{-2\ln|t|}=\frac1{t^2}$, and $e^{C}$ is a new constant $c_1$.', r'z=c_1\,\dfrac{e^{t^2/2}}{t^2}'),

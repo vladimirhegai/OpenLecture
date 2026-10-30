@@ -790,22 +790,61 @@
   {
    "type": "callout",
    "tone": "tip",
-   "text": "**Question 3 is always one of these, in parts (a)–(c):**\n\n1. **Topic 1, a PMF / PDF / CDF:** Mean → Square → Subtract → Root. CDF first: jumps → PMF, slope → PDF.\n2. **Topic 2, only $E$ and Var:** Expand → Swap $E[X^2]=\\text{Var}+\\mu^2$ → Plug in; $\\text{Var}(aX+b)=a^2\\text{Var}(X)$.\n3. **Topic 2, a named family:** read $E$ and Var off the table.\n4. **Extras:** the tail formula for $X\\ge0$; Chebyshev.",
+   "text": "**Question 3 is always: find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.** Same 4 steps every time: **Mean → Square → Subtract → Root.** Only the start changes:\n\n1. **From a PMF:** sums, $\\sum x\\,p_X(x)$ and $\\sum x^2\\,p_X(x)$.\n2. **From a PDF:** integrals, $\\int x\\,f_X\\,dx$ and $\\int x^2 f_X\\,dx$. Symmetric → mean = the centre. $\\int_0^\\infty x^ne^{-\\lambda x}dx=\\tfrac{n!}{\\lambda^{n+1}}$.\n3. **From a CDF:** staircase → the jumps are the PMF; smooth → the slope is the PDF. Then 1 or 2.",
    "citations": [],
-   "id": "4a035729-6c6d-5e58-8c9d-a80860697592"
+   "id": "4b76f564-1470-5458-b001-adedf992599d"
   },
   {
    "type": "paragraph",
-   "text": "Test-style, easy → hard. Solve on paper first, then open the solution.",
+   "text": "Test-style, easy → medium, same level as the practice sets. Solve on paper first, then open the solution.",
    "citations": [],
-   "id": "4cf03045-d12f-5c4b-9d3f-804ad77c2881"
+   "id": "571ad799-c356-5883-b602-7b1b11b31448"
   },
   {
    "type": "practice_problem",
-   "title": "Question 1 · Topic 1 + 2 · PMF table",
+   "title": "Question 1 · From a PMF · 3 coins",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Toss a fair coin 3 times. $X$ = the number of heads, with PMF $\\tfrac18,\\tfrac38,\\tfrac38,\\tfrac18$ at $x=0,1,2,3$. Find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** a PMF → sums.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X]=0\\cdot\\frac18+1\\cdot\\frac38+2\\cdot\\frac38+3\\cdot\\frac18=\\frac{12}{8}=1.5"
+    },
+    {
+     "explanation": "**Square:** square each value **inside** the sum.",
+     "latex": "E[X^2]=0\\cdot\\frac18+1\\cdot\\frac38+4\\cdot\\frac38+9\\cdot\\frac18=\\frac{24}{8}=3"
+    },
+    {
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(X)=3-1.5^2=0.75"
+    },
+    {
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\sqrt{0.75}\\approx0.866"
+    }
+   ],
+   "answer": "$E[X]=1.5$, $\\operatorname{Var}(X)=0.75$, $\\sigma_X\\approx 0.866$",
+   "citations": [
+    {
+     "source_id": "eaf319c5-b947-4be8-b90d-07e4ea4af2c2",
+     "version": 1,
+     "chunk_id": "81443470-b993-498d-9945-558851b03e47"
+    }
+   ],
+   "id": "b0987749-3700-5659-bf72-739ff5939162"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 2 · From a PMF · a table with $c$",
    "difficulty": "introductory",
    "origin": "original",
-   "prompt": "$X$ has the PMF below.\n\n| $x$ | $-1$ | $0$ | $1$ | $2$ |\n|---|---|---|---|---|\n| $p_X(x)$ | $0.1$ | $c$ | $0.3$ | $0.2$ |\n\nFind (a) $c$, (b) $E[X]$ and $\\operatorname{Var}(X)$, (c) $E[5-2X]$ and $\\operatorname{Var}(5-2X)$.",
+   "prompt": "$X$ has the PMF below.\n\n| $x$ | $-1$ | $0$ | $1$ | $2$ |\n|---|---|---|---|---|\n| $p_X(x)$ | $0.1$ | $c$ | $0.3$ | $0.2$ |\n\nFind (a) $c$, (b) $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
    "solution": "",
    "steps": [
     {
@@ -813,134 +852,131 @@
      "latex": "0.1+c+0.3+0.2=1\\quad\\Longrightarrow\\quad c=0.4"
     },
     {
-     "explanation": "(b) **Type:** a PMF → Topic 1. **Mean.**",
-     "latex": "E[X]=-1(0.1)+0+1(0.3)+2(0.2)=0.6"
+     "explanation": "(b) **Mean.**",
+     "latex": "E[X]=-1(0.1)+0(0.4)+1(0.3)+2(0.2)=0.6"
     },
     {
-     "explanation": "**Square.**",
-     "latex": "E[X^2]=1(0.1)+0+1(0.3)+4(0.2)=1.2"
+     "explanation": "**Square:** $(-1)^2=1$, so the negative value adds, not subtracts.",
+     "latex": "E[X^2]=1(0.1)+0(0.4)+1(0.3)+4(0.2)=1.2"
     },
     {
      "explanation": "**Subtract.**",
      "latex": "\\operatorname{Var}(X)=1.2-0.6^2=0.84"
     },
     {
-     "explanation": "(c) **Rules** (Topic 2): the $5$ drops out of Var, the $-2$ gets squared.",
-     "latex": "\\begin{gathered}E[5-2X]=5-2(0.6)=3.8 \\\\ \\operatorname{Var}(5-2X)=4(0.84)=3.36\\end{gathered}"
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\sqrt{0.84}\\approx0.917"
     }
    ],
-   "answer": "$c=0.4$; $E[X]=0.6$, $\\operatorname{Var}(X)=0.84$; $E[5-2X]=3.8$, $\\operatorname{Var}(5-2X)=3.36$.",
+   "answer": "$c=0.4$; $E[X]=0.6$, $\\operatorname{Var}(X)=0.84$, $\\sigma_X\\approx 0.917$",
    "citations": [],
-   "id": "ef0d72aa-a344-5e78-94aa-c1c9744ce590"
+   "id": "f092d25c-e831-545a-8e3c-ce6d1ee8cb93"
   },
   {
    "type": "practice_problem",
-   "title": "Question 2 · Topic 2 · Gaussian · Tutorial 5 Q4",
+   "title": "Question 3 · From a PMF · a formula",
    "difficulty": "introductory",
-   "origin": "source",
-   "prompt": "$X$ is normal with mean $12$ and variance $4$. (a) Find $c$ so that $P(X\\ge c)=0.5$. (b) Find $E[X^2]$.",
+   "origin": "original",
+   "prompt": "$p_X(x)=\\dfrac{x}{10}$ for $x=1,2,3,4$. Find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** named family (Gaussian) → Topic 2 table: $E[X]=12$, $\\operatorname{Var}(X)=4$.",
+     "explanation": "**Spot:** a PMF given as a formula. Write out the chances first.",
+     "latex": "p_X(1)=0.1,\\quad p_X(2)=0.2,\\quad p_X(3)=0.3,\\quad p_X(4)=0.4"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X]=1(0.1)+2(0.2)+3(0.3)+4(0.4)=3"
+    },
+    {
+     "explanation": "**Square.**",
+     "latex": "E[X^2]=1(0.1)+4(0.2)+9(0.3)+16(0.4)=10"
+    },
+    {
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(X)=10-3^2=1"
+    },
+    {
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\sqrt1=1"
+    }
+   ],
+   "answer": "$E[X]=3$, $\\operatorname{Var}(X)=1$, $\\sigma_X=1$",
+   "citations": [],
+   "id": "bb3eae09-1b04-5214-9c12-c0e0dc15101a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 4 · From a PDF · a power of $x$",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "$f_X(x)=3x^2$ for $0\\le x\\le1$, and $0$ elsewhere. Find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** a PDF → integrals over $[0,1]$.",
      "latex": ""
     },
     {
-     "explanation": "(a) The bell is symmetric around its mean, so half the area is above $12$.",
-     "latex": "c=\\mu=12"
+     "explanation": "**Mean.**",
+     "latex": "E[X]=\\int_0^1x\\cdot3x^2\\,dx=3\\cdot\\frac{x^4}{4}\\Big|_0^1=\\frac34"
     },
     {
-     "explanation": "(b) **Swap** (Topic 2).",
-     "latex": "E[X^2]=\\operatorname{Var}(X)+\\mu^2=4+144=148"
-    }
-   ],
-   "answer": "(a) $c=12$ (b) $E[X^2]=148$",
-   "citations": [
+     "explanation": "**Square.**",
+     "latex": "E[X^2]=\\int_0^1x^2\\cdot3x^2\\,dx=3\\cdot\\frac{x^5}{5}\\Big|_0^1=\\frac35"
+    },
     {
-     "source_id": "a2bcf96c-29bc-4570-bbde-f69160346624",
-     "version": 1,
-     "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(X)=\\frac35-\\Big(\\frac34\\Big)^2=\\frac{48-45}{80}=\\frac3{80}"
+    },
+    {
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\sqrt{3/80}\\approx0.194"
     }
    ],
-   "id": "1c3115bd-cc4e-5c62-811f-7cc38b075fcf"
+   "answer": "$E[X]=\\tfrac34$, $\\operatorname{Var}(X)=\\tfrac3{80}$, $\\sigma_X\\approx 0.194$",
+   "citations": [],
+   "id": "750f7071-b5d7-5e52-b2c8-4296c9e193d4"
   },
   {
    "type": "practice_problem",
-   "title": "Question 3 · Topic 2 · Prove the Var rule · Practice 03 Q4",
-   "difficulty": "introductory",
-   "origin": "source",
-   "prompt": "Show that $\\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)$ for any constants $a,b$. Use $\\operatorname{Var}(Y)=E\\big[(Y-E[Y])^2\\big]$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Mean** of $Y=aX+b$, with the first rule.",
-     "latex": "E[Y]=a\\,E[X]+b"
-    },
-    {
-     "explanation": "**Subtract** it from $Y$: the $b$ cancels.",
-     "latex": "Y-E[Y]=aX+b-a\\,E[X]-b=a\\,(X-E[X])"
-    },
-    {
-     "explanation": "**Square** and take $E$: the constant $a^2$ comes out.",
-     "latex": "\\begin{gathered}\\operatorname{Var}(Y)=E\\big[a^2(X-E[X])^2\\big] \\\\ =a^2\\,E\\big[(X-E[X])^2\\big]=a^2\\operatorname{Var}(X)\\end{gathered}"
-    }
-   ],
-   "answer": "Shown: $\\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)$, so $\\sigma_{aX+b}=|a|\\sigma_X$.",
-   "citations": [
-    {
-     "source_id": "52e9fc11-81ed-4bab-a495-7e4b29f79a8b",
-     "version": 1,
-     "chunk_id": "72ec1f08-5a0f-478f-8963-c20f6396f281"
-    },
-    {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
-    }
-   ],
-   "id": "14765906-dbf6-5dac-9b9e-c34142306a0b"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 4 · Topic 1 · Mars canisters · Practice 03 Q6",
+   "title": "Question 5 · From a PDF · a flat one",
    "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "A rover brings back 560 g of material in four canisters A, B, C, D holding $140$, $112$, $125$ and $183$ g. First, pick a **canister** at random (each $\\tfrac14$); $x$ = grams in it. Then, pick **one gram** at random from all 560 g; $y$ = grams in the canister it came from. (a) Which should be larger, $E[x]$ or $E[y]$? Why? (b) Compute both.",
+   "origin": "original",
+   "prompt": "$f_X(x)=\\tfrac14$ for $2\\le x\\le6$, and $0$ elsewhere. Find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** two PMFs → Topic 1. The difference is the chances.",
+     "explanation": "**Spot:** a PDF (flat, so uniform on $[2,6]$) → integrals.",
      "latex": ""
     },
     {
-     "explanation": "(a) A random gram lands in a big canister more often: each canister gets chance (its mass)/560. So expect $E[y]>E[x]$.",
-     "latex": "P(y=m)=\\frac{m}{560}"
+     "explanation": "**Mean:** flat is symmetric, so the mean is the centre. Check with the integral:",
+     "latex": "E[X]=\\int_2^6\\frac x4\\,dx=\\frac{36-4}{8}=4"
     },
     {
-     "explanation": "(b) **Mean** of $x$: equal chances.",
-     "latex": "E[x]=\\frac14(140+112+125+183)=140\\text{ g}"
+     "explanation": "**Square.**",
+     "latex": "E[X^2]=\\int_2^6\\frac{x^2}{4}\\,dx=\\frac{216-8}{12}=\\frac{52}{3}"
     },
     {
-     "explanation": "**Mean** of $y$: each mass $m$ times its chance $\\frac{m}{560}$.",
-     "latex": "E[y]=\\frac{140^2+112^2+125^2+183^2}{560}=\\frac{81258}{560}\\approx145.10\\text{ g}"
-    }
-   ],
-   "answer": "$E[x]=140$ g, $E[y]\\approx 145.10$ g. Picking by the gram favours the big canisters.",
-   "citations": [
+     "explanation": "**Subtract.** (Same as the uniform shortcut $\\tfrac{(b-a)^2}{12}=\\tfrac{16}{12}$.)",
+     "latex": "\\operatorname{Var}(X)=\\frac{52}3-4^2=\\frac43"
+    },
     {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\sqrt{4/3}\\approx1.155"
     }
    ],
-   "id": "ff86b068-2491-574e-8478-009ab1f3bbc8"
+   "answer": "$E[X]=4$, $\\operatorname{Var}(X)=\\tfrac43$, $\\sigma_X\\approx 1.155$",
+   "citations": [],
+   "id": "c16c20ac-2f50-5ce7-bf81-8208e1afdd7b"
   },
   {
    "type": "practice_problem",
-   "title": "Question 5 · Topic 1 + 2 · $E[g(X)]$ from a PDF · Tutorial 5 Q5",
+   "title": "Question 6 · From a PDF · find $C$ first · Tutorial 5 Q5",
    "difficulty": "intermediate",
    "origin": "source",
-   "prompt": "$f_X(x)=Cx^2$ for $|x|\\le1$, and $0$ otherwise. (a) Find $C$. (b) Find $E[X]$ and $\\operatorname{Var}(X)$. (c) Let $Y=|X|$. Find $E[Y]$, $E[Y^2]$ and $\\operatorname{Var}(3X-1)$.",
+   "prompt": "$f_X(x)=Cx^2$ for $|x|\\le1$, and $0$ otherwise. (a) Find $C$. (b) Find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
    "solution": "",
    "steps": [
     {
@@ -948,7 +984,7 @@
      "latex": "\\int_{-1}^{1}Cx^2\\,dx=\\frac{2C}{3}=1\\quad\\Longrightarrow\\quad C=\\frac32"
     },
     {
-     "explanation": "(b) **Type:** a PDF → Topic 1. **Mean:** symmetric around $0$ (Shortcut 1).",
+     "explanation": "(b) **Mean:** $x^2$ is the same on both sides of $0$ (symmetric), so the mean is the centre.",
      "latex": "E[X]=0"
     },
     {
@@ -960,19 +996,11 @@
      "latex": "\\operatorname{Var}(X)=\\frac35-0^2=\\frac35"
     },
     {
-     "explanation": "(c) $E[g(X)]$ with $g(x)=|x|$. Both halves match, so double the right half.",
-     "latex": "E[Y]=2\\int_0^1 x\\cdot\\frac32x^2\\,dx=3\\cdot\\frac14=\\frac34"
-    },
-    {
-     "explanation": "$|X|^2=X^2$, so no new work.",
-     "latex": "E[Y^2]=E[X^2]=\\frac35"
-    },
-    {
-     "explanation": "**Rules** (Topic 2): the $-1$ drops out, the $3$ gets squared.",
-     "latex": "\\operatorname{Var}(3X-1)=9\\cdot\\frac35=\\frac{27}{5}"
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\sqrt{3/5}\\approx0.775"
     }
    ],
-   "answer": "(a) $C=\\tfrac32$ (b) $E[X]=0$, $\\operatorname{Var}(X)=\\tfrac35$ (c) $E[Y]=\\tfrac34$, $E[Y^2]=\\tfrac35$, $\\operatorname{Var}(3X-1)=\\tfrac{27}5$",
+   "answer": "(a) $C=\\tfrac32$ (b) $E[X]=0$, $\\operatorname{Var}(X)=\\tfrac35$, $\\sigma_X\\approx 0.775$",
    "citations": [
     {
      "source_id": "a2bcf96c-29bc-4570-bbde-f69160346624",
@@ -980,19 +1008,54 @@
      "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
     }
    ],
-   "id": "5b9f662b-de2d-5ec2-815d-dba3b91cdcee"
+   "id": "4e49ce03-271a-58ae-947d-a9f881280586"
   },
   {
    "type": "practice_problem",
-   "title": "Question 6 · Topic 1 · Variance from a CDF · Practice 03 Q9",
+   "title": "Question 7 · From a PDF · symmetric, with a shift · Practice 03 Q3",
    "difficulty": "intermediate",
    "origin": "source",
-   "prompt": "Find the variance and standard deviation of $X$, and say if $X$ is discrete or continuous:\n\n$$\nF(x)=\\begin{cases}0,&x<-3\\\\ 3/8,&-3\\le x<0\\\\ 3/4,&0\\le x<6\\\\ 1,&x\\ge6\\end{cases}\n$$",
+   "prompt": "$X$ has PDF $f_X(t)=\\tfrac12\\lambda e^{-\\lambda|t-\\gamma|}$ for all $t$. Find (a) $E[X]$, (b) $\\operatorname{Var}(X)$ and $\\sigma_X$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** a CDF → Topic 1. It’s a staircase, so discrete: the **jump sizes** are the PMF.",
-     "latex": "p(-3)=\\frac38,\\quad p(0)=\\frac38,\\quad p(6)=\\frac14"
+     "explanation": "(a) **Mean:** the PDF is symmetric around $t=\\gamma$ (same value at $\\gamma\\pm u$), so the mean is the centre.",
+     "latex": "E[X]=\\gamma"
+    },
+    {
+     "explanation": "(b) Use $\\operatorname{Var}(X)=E[(X-\\gamma)^2]$. Let $u=t-\\gamma$; both halves match, so double the right half.",
+     "latex": "\\operatorname{Var}(X)=2\\int_0^{\\infty}u^2\\cdot\\frac12\\lambda e^{-\\lambda u}\\,du=\\lambda\\int_0^{\\infty}u^2e^{-\\lambda u}\\,du"
+    },
+    {
+     "explanation": "The exponential integral with $n=2$.",
+     "latex": "=\\lambda\\cdot\\frac{2!}{\\lambda^3}=\\frac{2}{\\lambda^2}"
+    },
+    {
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\frac{\\sqrt2}{\\lambda}"
+    }
+   ],
+   "answer": "(a) $E[X]=\\gamma$ (b) $\\operatorname{Var}(X)=\\dfrac2{\\lambda^2}$, $\\sigma_X=\\dfrac{\\sqrt2}\\lambda$",
+   "citations": [
+    {
+     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
+     "version": 1,
+     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
+    }
+   ],
+   "id": "6568871a-66bd-5074-a03f-10f1ccaaab24"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 8 · From a CDF · a staircase · Practice 03 Q9",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "Say if $X$ is discrete or continuous, then find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$:\n\n$$\nF(x)=\\begin{cases}0,&x<-3\\\\ 3/8,&-3\\le x<0\\\\ 3/4,&0\\le x<6\\\\ 1,&x\\ge6\\end{cases}\n$$",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** a staircase → discrete. The **jump sizes** are the PMF.",
+     "latex": "p(-3)=\\frac38,\\quad p(0)=\\frac34-\\frac38=\\frac38,\\quad p(6)=1-\\frac34=\\frac14"
     },
     {
      "explanation": "**Mean.**",
@@ -1011,7 +1074,7 @@
      "latex": "\\sigma_X\\approx3.498"
     }
    ],
-   "answer": "Discrete; $\\operatorname{Var}(X)=\\tfrac{783}{64}\\approx 12.234$, $\\sigma_X\\approx 3.498$",
+   "answer": "Discrete; $E[X]=\\tfrac38$, $\\operatorname{Var}(X)=\\tfrac{783}{64}\\approx 12.234$, $\\sigma_X\\approx 3.498$",
    "citations": [
     {
      "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
@@ -1019,187 +1082,73 @@
      "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
     }
    ],
-   "id": "bce4d05d-8924-57b6-a78d-ba6f3f65b304"
+   "id": "4a070acd-400c-506d-a890-60fc12784440"
   },
   {
    "type": "practice_problem",
-   "title": "Question 7 · Topic 1 · Mean by symmetry, then Var · Practice 03 Q3",
+   "title": "Question 9 · From a CDF · a smooth one",
    "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "$X$ has PDF $f_X(t)=\\tfrac12\\lambda e^{-\\lambda|t-\\gamma|}$ for all $t$. (a) Find $E[X]$. (b) Find $\\operatorname{Var}(X)$.",
+   "origin": "original",
+   "prompt": "$F_X(x)=\\dfrac{x^2}{4}$ for $0\\le x\\le2$ ($0$ before, $1$ after). Find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "**Type:** a PDF → Topic 1. (a) **Mean:** symmetric around $t=\\gamma$ (same value at $\\gamma\\pm u$).",
-     "latex": "E[X]=\\gamma"
+     "explanation": "**Spot:** $F_X$ rises smoothly → continuous. The **slope** is the PDF.",
+     "latex": "f_X(x)=\\frac{d}{dx}\\,\\frac{x^2}{4}=\\frac x2,\\qquad 0\\le x\\le2"
     },
     {
-     "explanation": "(b) Use the definition $E[(X-\\gamma)^2]$. Let $u=t-\\gamma$; both halves match, so double the right half.",
-     "latex": "\\operatorname{Var}(X)=2\\int_0^{\\infty}u^2\\cdot\\frac12\\lambda e^{-\\lambda u}\\,du=\\lambda\\int_0^{\\infty}u^2e^{-\\lambda u}\\,du"
+     "explanation": "**Mean.**",
+     "latex": "E[X]=\\int_0^2x\\cdot\\frac x2\\,dx=\\frac{x^3}{6}\\Big|_0^2=\\frac86=\\frac43"
     },
     {
-     "explanation": "**Shortcut 2** with $n=2$.",
-     "latex": "=\\lambda\\cdot\\frac{2!}{\\lambda^3}=\\frac{2}{\\lambda^2}"
-    }
-   ],
-   "answer": "(a) $E[X]=\\gamma$ (b) $\\operatorname{Var}(X)=\\dfrac2{\\lambda^2}$",
-   "citations": [
+     "explanation": "**Square.**",
+     "latex": "E[X^2]=\\int_0^2x^2\\cdot\\frac x2\\,dx=\\frac{x^4}{8}\\Big|_0^2=2"
+    },
     {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(X)=2-\\Big(\\frac43\\Big)^2=\\frac{18-16}{9}=\\frac29"
+    },
+    {
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\frac{\\sqrt2}{3}\\approx0.471"
     }
    ],
-   "id": "85e6ff2c-0680-5bab-80ae-cf4e12af9e91"
+   "answer": "$E[X]=\\tfrac43$, $\\operatorname{Var}(X)=\\tfrac29$, $\\sigma_X\\approx 0.471$",
+   "citations": [],
+   "id": "9daebc89-ad1b-59e6-8842-93af4f7f524e"
   },
   {
    "type": "practice_problem",
-   "title": "Question 8 · Topic 2 · Geometric · Tutorial 6 Q7",
+   "title": "Question 10 · From a CDF · exponential",
    "difficulty": "intermediate",
-   "origin": "source",
-   "prompt": "Spirit sends an image pixel by pixel. Each pixel is wrong with probability $p=0.03$, independently. (a) Find the PMF of $N$, the number of good pixels before the next bad one. (b) Find $E[N]$. (c) A new rover needs a 99% chance that **at least 1000** pixels arrive correctly before a bad one. How small must $p$ be?",
+   "origin": "original",
+   "prompt": "$F_X(x)=1-e^{-2x}$ for $x\\ge0$ ($0$ before). Find $E[X]$, $\\operatorname{Var}(X)$ and $\\sigma_X$.",
    "solution": "",
    "steps": [
     {
-     "explanation": "(a) **Spot:** $k$ good pixels, then a bad one → Geometric, counting failures ($k=0,1,\\dots$).",
-     "latex": "P(N=k)=(1-p)^k\\,p=(0.97)^k(0.03),\\quad k=0,1,2,\\dots"
+     "explanation": "**Spot:** smooth → continuous. **Slope** = the PDF.",
+     "latex": "f_X(x)=2e^{-2x},\\qquad x\\ge0"
     },
     {
-     "explanation": "(b) **Read it off** the Topic 2 table, failures version (the warning under it).",
-     "latex": "E[N]=\\frac{1-p}{p}=\\frac{0.97}{0.03}\\approx32.33"
+     "explanation": "**Mean:** the exponential integral with $n=1$, $\\lambda=2$.",
+     "latex": "E[X]=2\\int_0^{\\infty}x\\,e^{-2x}\\,dx=2\\cdot\\frac{1!}{2^2}=\\frac12"
     },
     {
-     "explanation": "(c) “At least 1000 good first” means the first 1000 pixels are all good.",
-     "latex": "P(N\\ge1000)=(1-p)^{1000}\\ge0.99"
+     "explanation": "**Square:** $n=2$.",
+     "latex": "E[X^2]=2\\int_0^{\\infty}x^2e^{-2x}\\,dx=2\\cdot\\frac{2!}{2^3}=\\frac12"
     },
     {
-     "explanation": "Solve for $p$.",
-     "latex": "p\\le1-0.99^{1/1000}\\approx1.01\\times10^{-5}"
+     "explanation": "**Subtract.** (Same as the exponential’s $\\tfrac1{\\lambda^2}$.)",
+     "latex": "\\operatorname{Var}(X)=\\frac12-\\Big(\\frac12\\Big)^2=\\frac14"
+    },
+    {
+     "explanation": "**Root.**",
+     "latex": "\\sigma_X=\\frac12"
     }
    ],
-   "answer": "(a) $(0.97)^k(0.03)$ (b) $E[N]\\approx 32.33$ (c) $p\\le 1.01\\times10^{-5}$",
-   "citations": [
-    {
-     "source_id": "8b50801c-193d-4e1e-92f4-d54dc3a7332b",
-     "version": 1,
-     "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
-    }
-   ],
-   "id": "2fb52ecd-e7f8-59d4-b056-b57b159d0360"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 9 · Extras · The tail formula · Practice 03 Q1 / Tutorial 5 Q3",
-   "difficulty": "advanced",
-   "origin": "source",
-   "prompt": "(a) $X\\ge0$ is continuous with CDF $F_X$. Show that $E[X]=\\displaystyle\\int_0^{\\infty}\\big(1-F_X(t)\\big)\\,dt$ (assume $t\\,(1-F_X(t))\\to0$ as $t\\to\\infty$). Use it to find the mean of an exponential. (b) Use the whole-number version $E[N]=\\sum_{k\\ge0}P(N>k)$ to find the mean of a Geometric$(p)$ on $k=1,2,\\dots$",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "(a) **By parts:** $u=1-F_X(t)$, $dv=dt$, so $du=-f_X(t)\\,dt$ and $v=t$.",
-     "latex": "\\int_0^{\\infty}(1-F_X(t))\\,dt=\\Big[t\\,(1-F_X(t))\\Big]_0^{\\infty}+\\int_0^{\\infty}t\\,f_X(t)\\,dt"
-    },
-    {
-     "explanation": "The bracket is $0$ at both ends.",
-     "latex": "=0+E[X]"
-    },
-    {
-     "explanation": "**Exponential:** $1-F_X(t)=e^{-\\lambda t}$.",
-     "latex": "E[X]=\\int_0^{\\infty}e^{-\\lambda t}\\,dt=\\frac1\\lambda"
-    },
-    {
-     "explanation": "If $X$ can be negative (Tutorial 5 Q3), the same by-parts on $(-\\infty,0]$ subtracts one more piece.",
-     "latex": "E[X]=\\int_0^{\\infty}(1-F_X)\\,dt-\\int_{-\\infty}^{0}F_X\\,dt"
-    },
-    {
-     "explanation": "(b) $N>k$ means the first $k$ tries failed. Geometric series.",
-     "latex": "E[N]=\\sum_{k=0}^{\\infty}(1-p)^k=\\frac{1}{1-(1-p)}=\\frac1p"
-    }
-   ],
-   "answer": "(a) Shown; exponential mean $\\tfrac1\\lambda$ (b) $E[N]=\\tfrac1p$",
-   "citations": [
-    {
-     "source_id": "a2bcf96c-29bc-4570-bbde-f69160346624",
-     "version": 1,
-     "chunk_id": "f45053a1-7484-41c4-af69-627221be855d"
-    },
-    {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "5d0c04fd-0343-4ac4-b647-98627bcad82c"
-    }
-   ],
-   "id": "afa185ef-94ab-57c8-b6f3-85e6208b9d17"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 10 · Topic 1 + 2 · Find the constants, then the variance · Tutorial 6 Q6",
-   "difficulty": "advanced",
-   "origin": "source",
-   "prompt": "$X$ has PDF\n\n$$\nf_X(x)=\\frac{C}{1+(x+K)^2},\\qquad -K-1\\le x\\le -K+1,\n$$\n\nand $0$ otherwise, where $C>0$ and $K$ are constants. (a) Find $C$ and $K$ so that $E[X]=5$. (b) Find $\\operatorname{Var}(X)$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Shift:** let $u=x+K$, so $u$ runs from $-1$ to $1$.",
-     "latex": "f_U(u)=\\frac{C}{1+u^2},\\qquad X=U-K"
-    },
-    {
-     "explanation": "(a) **Find $c$:** total area $=1$.",
-     "latex": "C\\big[\\arctan u\\big]_{-1}^{1}=C\\cdot\\frac{\\pi}{2}=1\\quad\\Longrightarrow\\quad C=\\frac{2}{\\pi}"
-    },
-    {
-     "explanation": "**Mean:** $f_U$ is symmetric around $0$, so $E[U]=0$. Then the rule $E[U-K]=E[U]-K$.",
-     "latex": "E[X]=-K=5\\quad\\Longrightarrow\\quad K=-5"
-    },
-    {
-     "explanation": "(b) A shift doesn’t change Var (Topic 2), and $E[U]=0$.",
-     "latex": "\\operatorname{Var}(X)=\\operatorname{Var}(U)=E[U^2]"
-    },
-    {
-     "explanation": "**Square:** write $\\frac{u^2}{1+u^2}=1-\\frac{1}{1+u^2}$.",
-     "latex": "E[U^2]=\\frac2\\pi\\int_{-1}^{1}\\Big(1-\\frac{1}{1+u^2}\\Big)du=\\frac2\\pi\\Big(2-\\frac\\pi2\\Big)=\\frac4\\pi-1\\approx0.2732"
-    }
-   ],
-   "answer": "(a) $C=\\tfrac2\\pi$, $K=-5$ (so $X\\in[4,6]$) (b) $\\operatorname{Var}(X)=\\tfrac4\\pi-1\\approx0.2732$",
-   "citations": [
-    {
-     "source_id": "8b50801c-193d-4e1e-92f4-d54dc3a7332b",
-     "version": 1,
-     "chunk_id": "35f99245-aa41-4957-9ed0-1ca171c35e49"
-    }
-   ],
-   "id": "3bfd7ffa-cec5-5ed5-856d-56172422dab1"
-  },
-  {
-   "type": "practice_problem",
-   "title": "Question 11 · Extras · Chebyshev · Practice 03 Q11",
-   "difficulty": "advanced",
-   "origin": "source",
-   "prompt": "Chebyshev says $P(|Y-\\mu_Y|\\ge\\varepsilon)\\le\\dfrac{\\operatorname{Var}(Y)}{\\varepsilon^2}$. $E[X]=5$, $\\operatorname{Var}(X)=5$ and $Y=aX+b$. Find $a$ and $b$ so that $P(|Y-10|\\ge0.1)\\le0.01$.",
-   "solution": "",
-   "steps": [
-    {
-     "explanation": "**Type:** only $E$ and Var → Topic 2 rules. Make the mean of $Y$ equal $10$.",
-     "latex": "E[Y]=5a+b=10"
-    },
-    {
-     "explanation": "**Plug in** $\\operatorname{Var}(Y)=a^2\\cdot5$, then make the Chebyshev bound at most $0.01$.",
-     "latex": "\\frac{5a^2}{0.1^2}\\le0.01\\quad\\Longrightarrow\\quad a^2\\le2\\times10^{-5}"
-    },
-    {
-     "explanation": "Any such $a$ works, with $b$ from the first line.",
-     "latex": "|a|\\le0.00447,\\qquad b=10-5a"
-    }
-   ],
-   "answer": "Any $|a|\\le 0.00447$ with $b=10-5a$ (e.g. $a=0.004$, $b=9.98$).",
-   "citations": [
-    {
-     "source_id": "f017b9e2-c705-4ab7-a4d1-e289ed6c90bf",
-     "version": 1,
-     "chunk_id": "d7d6bffe-de13-4e08-924d-b1ebc73b82b9"
-    }
-   ],
-   "id": "6d344f67-d485-53df-b372-4ee4f8746bf7"
+   "answer": "$E[X]=\\tfrac12$, $\\operatorname{Var}(X)=\\tfrac14$, $\\sigma_X=\\tfrac12$",
+   "citations": [],
+   "id": "3d41a3b9-1c52-5861-a622-0b4d7b6afd36"
   }
  ]
 }

@@ -250,35 +250,47 @@ D.EX(r'Mixed: daily rainfall',
 
 # =====================================================================================================
 D.H('Practice Questions')
-D.CO('tip', r'''**Question 2 is always these, in parts (a), (b), (c):**
+D.CO('tip', r'''**Question 2 is always one of these three, in parts (a), (b), (c):**
 
-1. **PDF ↔ CDF ↔ probability:** find $c$ (total area $=1$), integrate for $F$, differentiate for $f$, probabilities $=F(b)-F(a)$.
-2. **Uniform:** length ÷ total length. **Exponential:** $P(X>x)=e^{-\lambda x}$; “already lasted” → memoryless.
-3. **Gaussian:** $z=\frac{x-\mu}{\sigma}$ → $\Phi$ table; $\Phi(-z)=1-\Phi(z)$; backwards $x=\mu+z\sigma$.
-4. **Mixed:** jump = exact chance; spread × $(1-q)$; add jumps + area.''')
-D.P('Test-style, easy → hard. Solve on paper first, then open the solution.')
+1. **PDF ↔ CDF ↔ PMF:** integrate $f$ for $F$; differentiate $F$ for $f$; a **staircase** $F$ → the jumps are a PMF; probabilities $=F(b)-F(a)$.
+2. **Find $c$:** total area $=1$, solve (triangle: $\tfrac12$ base × height).
+3. **Uniform:** length ÷ total length. **Exponential:** $\lambda=\tfrac1{\text{mean}}$, $P(X>x)=e^{-\lambda x}$, between = difference of tails, “already lasted” → memoryless.''')
+D.P('Test-style, easy → medium, same level as the practice sets. Solve on paper first, then open the solution.')
 
-D.Q('Uniform · Tutorial 4 Q5',
-    'Flights leave every half hour (9:00, 9:30, 10:00, …). A passenger arrives at a uniform random time between 8:45 and 9:45 A.M. '
-    'Find the probability the passenger waits (a) **at most 10 minutes**, (b) **at least 15 minutes**.',
-    [S(r'**Type:** uniform. $T$ = minutes after 8:45, total length $60$. Flights leave at $T=15,\ 45,\ 75$.', r'f_T(t)=\frac1{60},\quad 0\le t\le60'),
-     S(r'(a) **Rewrite:** wait $\le10$ means arriving in the 10 minutes before a flight.', r'T\in[5,15]\cup[35,45]'),
-     S(r'Length ÷ total length.', r'P=\frac{10+10}{60}=\frac13'),
-     S(r'(b) **Rewrite:** wait $\ge15$ means the next flight is 15+ minutes away.', r'T\in[15,30]\cup[45,60]'),
-     S(r'Length ÷ total length.', r'P=\frac{15+15}{60}=\frac12')],
-    r'(a) $\tfrac13$ (b) $\tfrac12$', diff='introductory', cites=cite('T4', 1))
+# ---- PDF <-> CDF <-> PMF
+D.Q('PDF ↔ CDF · CDF → probabilities and the PDF',
+    r'$X$ has CDF $F_X(x)=\dfrac{x^2}{9}$ for $0\le x\le3$ ($0$ before, $1$ after). Find (a) $P(X\le1)$, (b) $P(1<X\le2)$, (c) $P(X>2)$, (d) the PDF.',
+    [S(r'**Spot:** have $F$. Probabilities → **rewrite** with $F$’s; the PDF → **differentiate**.'),
+     S(r'(a) Up to $1$.', r'P(X\le1)=F_X(1)=\frac19'),
+     S(r'(b) Between: a difference.', r'P(1<X\le2)=F_X(2)-F_X(1)=\frac49-\frac19=\frac13'),
+     S(r'(c) Above: one minus.', r'P(X>2)=1-F_X(2)=1-\frac49=\frac59'),
+     S(r'(d) **Differentiate** $\tfrac{x^2}{9}$.', r'f_X(x)=\frac{2x}{9},\qquad 0\le x\le3\quad(0\text{ elsewhere})')],
+    r'(a) $\tfrac19$ (b) $\tfrac13$ (c) $\tfrac59$ (d) $\tfrac{2x}{9}$ on $[0,3]$', diff='introductory', cites=cite('L9', 5))
 
-ea, eb, med = exp(-1), exp(-0.5) - exp(-1.5), 4 * log(2)
-D.Q('Exponential, memoryless · like Lecture 10',
-    r'The length $X$ (minutes) of a phone call is exponential with $\lambda=0.25$. Find (a) $P(X>4)$, (b) $P(2<X<6)$, '
-    r'(c) the chance a call that has already lasted 3 minutes lasts **more than 7** in total, (d) the time $t$ with $P(X>t)=\tfrac12$.',
-    [S(r'**Type:** exponential, $\lambda=0.25$.'),
-     S(r'(a) **Rewrite** as a tail. **Plug in.**', r'P(X>4)=e^{-0.25\cdot4}=e^{-1}\approx ' + f4(ea)),
-     S(r'(b) **Rewrite:** difference of two tails.', r'P(2<X<6)=e^{-0.5}-e^{-1.5}\approx ' + f4(eb)),
-     S(r'(c) **Memoryless:** 4 more minutes, as if new.', r'P(X>7\mid X>3)=P(X>4)=e^{-1}\approx ' + f4(ea)),
-     S(r'(d) **Backwards:** set the tail to $\tfrac12$, take $\ln$.', r'e^{-0.25t}=\frac12\quad\Longrightarrow\quad t=4\ln2\approx ' + f'{med:.2f}' + r'\text{ min}')],
-    f'(a) $\\approx {f4(ea)}$ (b) $\\approx {f4(eb)}$ (c) $\\approx {f4(ea)}$ (d) $4\\ln2\\approx {med:.2f}$ min', diff='introductory',
-    cites=cite('L10', 4))
+e2 = 1 - exp(-2)
+D.Q('PDF ↔ CDF ↔ PMF · staircase or smooth?',
+    r'''Two CDFs:
+
+$$
+F_X(x)=\begin{cases}0,&x<0\\ 0.3,&0\le x<1\\ 0.8,&1\le x<2\\ 1,&x\ge2\end{cases}\qquad\qquad F_Y(y)=\begin{cases}0,&y<0\\ 1-e^{-2y},&y\ge0\end{cases}
+$$
+
+(a) Which one is discrete? Find its PMF. (b) Find the PDF of the other one. (c) Find $P(X\le1)$, $P(X<1)$, $P(Y\le1)$ and $P(Y<1)$.''',
+    [S(r'(a) **Spot:** $F_X$ is a **staircase** → $X$ is discrete. The **jump sizes** are the PMF.', r'p_X(0)=0.3,\quad p_X(1)=0.8-0.3=0.5,\quad p_X(2)=1-0.8=0.2'),
+     S(r'(b) $F_Y$ is **smooth** → $Y$ is continuous. **Differentiate.**', r'f_Y(y)=\frac{d}{dy}\big(1-e^{-2y}\big)=2e^{-2y},\qquad y\ge0'),
+     S(r'(c) Discrete: $\le1$ includes the jump at $1$, $<1$ doesn’t.', r'P(X\le1)=F_X(1)=0.8,\qquad P(X<1)=0.3'),
+     S(r'Continuous: one point has chance $0$, so $<$ and $\le$ agree.', r'P(Y\le1)=P(Y<1)=1-e^{-2}\approx' + f4(e2))],
+    r'(a) $X$: $0.3,0.5,0.2$ at $0,1,2$ (b) $f_Y=2e^{-2y}$, $y\ge0$ (c) $0.8$, $0.3$, $\approx' + f4(e2) + r'$, $\approx' + f4(e2) + '$',
+    diff='introductory')
+
+D.Q('PDF ↔ CDF · a triangle, piece by piece',
+    r'$f_X(x)=x$ for $0\le x\le1$, $f_X(x)=2-x$ for $1\le x\le2$, and $0$ elsewhere. (a) Find the CDF. (b) Find $P(0.5<X<1.5)$.',
+    [S(r'**Spot:** have $f$, want $F$ → integrate. The PDF changes at $x=1$, so do two pieces.'),
+     S(r'(a) **Accumulate**, left piece: area from $0$ up to $x$.', r'F_X(x)=\int_0^x t\,dt=\frac{x^2}{2},\qquad 0\le x\le1'),
+     S(r'**Accumulate**, right piece: everything ($1$) minus the small triangle still to come on the right.', r'F_X(x)=1-\frac{(2-x)^2}{2},\qquad 1\le x\le2'),
+     S(r'**Check:** both pieces give $\tfrac12$ at $x=1$.', r'\frac{1^2}{2}=\frac12=1-\frac{(2-1)^2}{2}'),
+     S(r'(b) **Rewrite** as $F(1.5)-F(0.5)$: $1.5$ is on the right piece, $0.5$ on the left.', r'\Big(1-\frac{0.5^2}{2}\Big)-\frac{0.5^2}{2}=0.875-0.125=0.75')],
+    r'(a) $0$, $\tfrac{x^2}{2}$ on $[0,1]$, $1-\tfrac{(2-x)^2}{2}$ on $[1,2]$, $1$ after (b) $0.75$')
 
 ra, rb = exp(-0.5) - exp(-2), exp(-4.5)
 D.Q('PDF ↔ CDF · CDF → probabilities and PDF · Practice 02 Q4',
@@ -289,94 +301,75 @@ F_R(r)=\begin{cases}0,&r<0\\ 1-e^{-r^2/(2\sigma^2)},&r\ge0\end{cases}
 $$
 
 (a) Find $P(\sigma\le R\le2\sigma)$ and $P(R>3\sigma)$. (b) Find the PDF of $R$.''',
-    [S(r'**Type:** a CDF is given → PDF ↔ CDF (have $F$).'),
+    [S(r'**Spot:** a CDF is given → have $F$.'),
      S(r'(a) **Rewrite** as a difference. $\sigma$ cancels in each power.', r'P(\sigma\le R\le2\sigma)=F_R(2\sigma)-F_R(\sigma)=e^{-1/2}-e^{-2}\approx ' + f4(ra)),
      S(r'**Rewrite** as one minus: $\tfrac{(3\sigma)^2}{2\sigma^2}=\tfrac92$.', r'P(R>3\sigma)=1-F_R(3\sigma)=e^{-9/2}\approx ' + f4(rb)),
      S(r'(b) **Differentiate** (chain rule: the inside $-\tfrac{r^2}{2\sigma^2}$ has slope $-\tfrac{r}{\sigma^2}$).', r'f_R(r)=\frac{r}{\sigma^2}\,e^{-r^2/(2\sigma^2)},\qquad r\ge0')],
     f'(a) $e^{{-1/2}}-e^{{-2}}\\approx {f4(ra)}$; $e^{{-9/2}}\\approx {f4(rb)}$ (b) $\\dfrac{{r}}{{\\sigma^2}}e^{{-r^2/(2\\sigma^2)}}$ for $r\\ge0$',
     cites=cite('P2', 1))
 
-D.Q('PDF ↔ CDF · find $c$, then the CDF · Tutorial 5 Q5',
+# ---- Find c
+e3 = exp(-3)
+D.Q('Find $c$ · area = 1',
+    r'(a) $f_X(x)=c(2-x)$ for $0\le x\le2$, $0$ elsewhere. Find $c$, the CDF, and $P(X<1)$. '
+    r'(b) $f_Y(y)=c\,e^{-3y}$ for $y\ge0$. Find $c$ and $P(Y>1)$. Which family is $Y$?',
+    [S(r'(a) **Find $c$:** total area $=1$. (Or the triangle shortcut: base $2$, height $2c$.)', r'c\int_0^2(2-x)\,dx=c\Big[2x-\frac{x^2}{2}\Big]_0^2=2c=1\quad\Longrightarrow\quad c=\frac12'),
+     S(r'**Accumulate** from $0$ up to $x$.', r'F_X(x)=\frac12\Big(2x-\frac{x^2}{2}\Big)=x-\frac{x^2}{4},\qquad 0\le x\le2'),
+     S(r'**Plug in** $x=1$.', r'P(X<1)=F_X(1)=1-\frac14=\frac34'),
+     S(r'(b) **Find $c$:**', r'c\int_0^{\infty}e^{-3y}\,dy=\frac c3=1\quad\Longrightarrow\quad c=3'),
+     S(r'That’s the exponential PDF with $\lambda=3$, so use the tail.', r'P(Y>1)=e^{-3}\approx' + f4(e3))],
+    r'(a) $c=\tfrac12$, $F_X=x-\tfrac{x^2}{4}$ on $[0,2]$, $P(X<1)=\tfrac34$ (b) $c=3$, $P(Y>1)=e^{-3}\approx' + f4(e3) + '$, exponential$(3)$',
+    diff='introductory')
+
+D.Q('Find $c$ · then the CDF · Tutorial 5 Q5',
     r'$X$ has PDF $f_X(x)=Cx^2$ for $|x|\le1$, and $0$ otherwise. (a) Find $C$. (b) Find the CDF. (c) Find $P(X>\tfrac12)$ and $P(|X|<\tfrac12)$.',
-    [S(r'(a) **Type:** unknown constant → total area $=1$. **Find $c$.**', r'C\int_{-1}^{1}x^2\,dx=\frac{2C}{3}=1\quad\Longrightarrow\quad C=\frac32'),
+    [S(r'(a) **Spot:** unknown constant → total area $=1$. **Find $c$.**', r'C\int_{-1}^{1}x^2\,dx=\frac{2C}{3}=1\quad\Longrightarrow\quad C=\frac32'),
      S(r'(b) **Accumulate** from $-1$ up to $x$.', r'F_X(x)=\int_{-1}^{x}\frac32t^2\,dt=\frac{x^3+1}{2},\qquad -1\le x\le1'),
      S(r'(c) **Rewrite** as one minus.', r'P(X>\tfrac12)=1-\frac{\frac18+1}{2}=\frac{7}{16}'),
      S(r'**Rewrite** as a difference. Small, because the PDF is near $0$ around $x=0$.', r'F(\tfrac12)-F(-\tfrac12)=\frac{\frac98-\frac78}{2}=\frac18')],
     r'(a) $C=\tfrac32$ (b) $\tfrac{x^3+1}{2}$ on $[-1,1]$ (c) $\tfrac7{16}$ and $\tfrac18$', cites=cite('T5', 1))
 
 t25, t7 = 3 * exp(-2) - 6 * exp(-5), 8 * exp(-7)
-D.Q('PDF ↔ CDF · find $c$ by parts · Tutorial 4 Q1',
+D.Q('Find $c$ · by parts · Tutorial 4 Q1',
     r'The time $X$ (minutes) between seeing two runners has PDF $f(x)=\lambda x e^{-x}$ for $x>0$. (a) Find $\lambda$. (b) Find the CDF. '
     r'(c) Find the probability the next runner is seen in 2 to 5 minutes, and in at least 7 minutes.',
-    [S(r'**Type:** unknown constant → total area $=1$. First the integral, **by parts** ($u=x$, $dv=e^{-x}dx$):', r'\int xe^{-x}\,dx=-xe^{-x}+\int e^{-x}\,dx=-(x+1)e^{-x}'),
+    [S(r'**Spot:** unknown constant → total area $=1$. First the integral, **by parts** ($u=x$, $dv=e^{-x}dx$):', r'\int xe^{-x}\,dx=-xe^{-x}+\int e^{-x}\,dx=-(x+1)e^{-x}'),
      S(r'(a) **Find $c$:** total area $=1$. (Shortcut: $\int_0^\infty xe^{-x}dx=\tfrac{1!}{1^2}=1$.)', r'\lambda\Big[-(x+1)e^{-x}\Big]_0^{\infty}=\lambda(0+1)=1\quad\Longrightarrow\quad\lambda=1'),
      S(r'(b) **Accumulate** from $0$ to $x$ ($0$ for $x<0$).', r'F(x)=\Big[-(t+1)e^{-t}\Big]_0^{x}=1-(1+x)e^{-x}'),
      S(r'(c) **Rewrite** as a difference.', r'P(2<X<5)=F(5)-F(2)=3e^{-2}-6e^{-5}\approx ' + f4(t25)),
      S(r'**Rewrite** as one minus.', r'P(X\ge7)=1-F(7)=8e^{-7}\approx ' + f4(t7))],
     f'$\\lambda=1$; $F(x)=1-(1+x)e^{{-x}}$; $\\approx {f4(t25)}$ and $\\approx {f4(t7)}$', cites=cite('T4', 1))
 
-tb = 1 - 1 / sqrt(2)
-D.Q('PDF ↔ CDF · a triangle, then work backwards · Practice 02 Q2',
-    r'$X$ has a triangle PDF: $0$ at $x=-a$, peak height $c$ at $x=0$, back to $0$ at $x=a$. '
-    r'(a) Find $c$ and $f_X(x)$. (b) Find the CDF. (c) Find $b$ with $P(|X|<b)=\tfrac12$.',
-    [S(r'(a) **Type:** unknown height → total area $=1$. **Find $c$** with the triangle shortcut: base $2a$, height $c$.', r'\frac12(2a)c=1\quad\Longrightarrow\quad c=\frac1a'),
-     S(r'The two sides are straight lines down from the peak.', r'f_X(x)=\frac1a\Big(1-\frac{|x|}{a}\Big),\qquad |x|\le a'),
-     S(r'(b) **Accumulate:** left half = a small triangle; right half = $1$ minus the small triangle still to come.',
-       r'F_X(x)=\begin{cases}0,&x<-a\\ \frac{(a+x)^2}{2a^2},&-a\le x\le0\\ 1-\frac{(a-x)^2}{2a^2},&0\le x\le a\\ 1,&x>a\end{cases}'),
-     S(r'(c) **Rewrite:** $F(b)-F(-b)$. Each tail outside $[-b,b]$ is $\tfrac{(a-b)^2}{2a^2}$.', r'1-\frac{(a-b)^2}{a^2}=\frac12\quad\Longrightarrow\quad\frac{a-b}{a}=\frac1{\sqrt2}'),
-     S(r'Solve for $b$.', r'b=a\Big(1-\frac1{\sqrt2}\Big)\approx ' + f'{tb:.3f}' + r'\,a')],
-    r'(a) $c=\tfrac1a$ (b) as above (c) $b=a(1-\tfrac1{\sqrt2})\approx' + f'{tb:.3f}' + 'a$', cites=cite('P2', 1))
+# ---- Uniform and exponential
+D.Q('Uniform · the basics',
+    r'$X$ is uniform on $[2,8]$. Find (a) the PDF and the CDF, (b) $P(X<5)$, (c) $P(3<X<4)$, (d) $P(X>7)$, (e) the $b$ with $P(X\le b)=0.25$.',
+    [S(r'(a) **Read off:** $a=2$, $b=8$, total length $6$.', r'f_X(x)=\frac16,\qquad F_X(x)=\frac{x-2}{6},\qquad 2\le x\le8'),
+     S(r'(b) Length ÷ total length: $[2,5]$ has length $3$.', r'P(X<5)=\frac36=\frac12'),
+     S(r'(c) $[3,4]$ has length $1$.', r'P(3<X<4)=\frac16'),
+     S(r'(d) $[7,8]$ has length $1$.', r'P(X>7)=\frac16'),
+     S(r'(e) **Backwards:** set $F_X(b)=0.25$.', r'\frac{b-2}{6}=0.25\quad\Longrightarrow\quad b=3.5')],
+    r'(a) $\tfrac16$ and $\tfrac{x-2}{6}$ on $[2,8]$ (b) $\tfrac12$ (c) $\tfrac16$ (d) $\tfrac16$ (e) $3.5$', diff='introductory')
 
-r1 = Phi(round(1 / 1.5, 2))
-r5 = 1 - norm.cdf(5 / 1.5)
-D.Q('Gaussian · Tutorial 6 Q5',
-    r'A rover’s distance travelled is $X\sim N(\mu,\sigma^2)$ with $\mu=500$ m and $\sigma^2=2.25$ m². Find (a) $P(X<500)$, (b) $P(X=501)$, (c) $P(X>501)$ and $P(X>505)$.',
-    [S(r'**Type:** normal. **Spot:** that’s the variance, so take the root.', r'\sigma=\sqrt{2.25}=1.5'),
-     S(r'(a) $500$ is the centre: half the bell is below it.', r'P(X<500)=0.5'),
-     S(r'(b) One point of a continuous $X$.', r'P(X=501)=0'),
-     S(r'(c) **Standardise**, then **Rewrite** as one minus. **Table.**', (r'z=\frac{501-500}{1.5}\approx0.67', r'P(X>501)=1-\Phi(0.67)=1-' + f4(r1) + '=' + f4(1 - r1))),
-     S(r'$z=\tfrac{5}{1.5}\approx3.33$ is off the table ($\Phi\approx1$).', r'P(X>505)=1-\Phi(3.33)\approx ' + f4(r5))],
-    r'(a) $0.5$ (b) $0$ (c) $\approx' + f4(1 - r1) + r'$ and $\approx' + f4(r5) + '$', cites=cite('T6', 1))
+D.Q('Uniform · Tutorial 4 Q5',
+    'Flights leave every half hour (9:00, 9:30, 10:00, …). A passenger arrives at a uniform random time between 8:45 and 9:45 A.M. '
+    'Find the probability the passenger waits (a) **at most 10 minutes**, (b) **at least 15 minutes**.',
+    [S(r'**Spot:** uniform. $T$ = minutes after 8:45, total length $60$. Flights leave at $T=15,\ 45,\ 75$.', r'f_T(t)=\frac1{60},\quad 0\le t\le60'),
+     S(r'(a) **Rewrite:** wait $\le10$ means arriving in the 10 minutes before a flight.', r'T\in[5,15]\cup[35,45]'),
+     S(r'Length ÷ total length.', r'P=\frac{10+10}{60}=\frac13'),
+     S(r'(b) **Rewrite:** wait $\ge15$ means the next flight is 15+ minutes away.', r'T\in[15,30]\cup[45,60]'),
+     S(r'Length ÷ total length.', r'P=\frac{15+15}{60}=\frac12')],
+    r'(a) $\tfrac13$ (b) $\tfrac12$', cites=cite('T4', 1))
 
-rw = 2 * Phi(1.5) - 1
-D.Q('Gaussian, backwards · like Tutorial 4 Q4',
-    r'Resistances are normal with $\mu=100\ \Omega$ and variance $4\ \Omega^2$. '
-    r'(a) What fraction are within $100\pm3\ \Omega$? (b) Find $t$ so that $95\%$ are within $100\pm t$. (c) Which value is exceeded by only $5\%$?',
-    [S(r'**Type:** normal. **Spot:** variance $4$, so $\sigma=2$.', r'\sigma=2'),
-     S(r'(a) **Standardise:** $z=\tfrac32=1.5$. Symmetric interval shortcut.', r'2\Phi(1.5)-1=2(' + f4(Phi(1.5)) + ')-1=' + f4(rw)),
-     S(r'(b) **Backwards:** $2\Phi(z)-1=0.95$, so $\Phi(z)=0.975$. Then $t=z\sigma$.', r'z=1.96\quad\Longrightarrow\quad t=1.96\cdot2=3.92\ \Omega'),
-     S(r'(c) **Backwards**, one tail: $\Phi(z)=0.95$, so $z=1.645$. Then $x=\mu+z\sigma$.', r'x=100+1.645\cdot2=103.29\ \Omega')],
-    f'(a) ${f4(rw)}$ (b) $t=3.92\\ \\Omega$ (c) $103.29\\ \\Omega$')
-
-D.Q('Mixed · a CDF with two jumps',
-    r'''A clipped sensor reading $X$ has CDF
-
-$$
-F_X(x)=\begin{cases}0,&x<0\\ 0.25+\tfrac x2,&0\le x<1\\ 1,&x\ge1\end{cases}
-$$
-
-(a) Why is $X$ mixed? (b) Find $P(X=0)$ and $P(X=1)$. (c) Find $P(0<X<1)$ and $P(X\le0.5)$. (d) Find the PDF of the spread part.''',
-    [S(r'(a) **Type:** $F$ jumps (exact values with real chance) **and** ramps → mixed.', r'\text{jumps at }0\text{ and }1,\ \text{ramp in between}'),
-     S(r'(b) **Jump** sizes. At $1$, $F$ goes from $0.25+0.5=0.75$ up to $1$.', r'P(X=0)=0.25,\qquad P(X=1)=1-0.75=0.25'),
-     S(r'(c) **Rewrite:** only the ramp is strictly inside $(0,1)$.', r'P(0<X<1)=0.75-0.25=0.5'),
-     S(r'$P(X\le0.5)$ is just $F(0.5)$, jump at $0$ included.', r'P(X\le0.5)=F(0.5)=0.25+0.25=0.5'),
-     S(r'(d) **Differentiate** the ramp. Check: $0.25+0.25+0.5=1$.', r'f(x)=\frac12,\qquad 0<x<1')],
-    r'(b) $0.25$, $0.25$ (c) $0.5$, $0.5$ (d) $\tfrac12$ on $(0,1)$')
-
-D.Q('Mixed · Practice 02 Q3',
-    r'''$X$ has CDF
-
-$$
-F_X(x)=\begin{cases}0,&x<-1\\ \tfrac13+\tfrac23(x+1)^2,&-1\le x\le0\\ 1,&x>0\end{cases}
-$$
-
-Find the probabilities of $A=\{X>\tfrac13\}$, $B=\{|X|\ge1\}$, $C=\{|X-\tfrac13|<1\}$, $D=\{X<0\}$.''',
-    [S(r'**Type:** $F$ jumps from $0$ to $\tfrac13$ at $x=-1$, then rises smoothly → mixed.', r'P(X=-1)=\frac13'),
-     S(r'$A$: **Rewrite** as one minus. $X$ is never above $0$.', r'P(A)=1-F_X(\tfrac13)=0'),
-     S(r'$B$: $X\ge1$ can’t happen, and $X\le-1$ means $X=-1$ (the jump).', r'P(B)=F_X(-1)=\frac13'),
-     S(r'$C$ is $-\tfrac23<X<\tfrac43$. **Rewrite**; no jump at $-\tfrac23$.', r'P(C)=1-F_X(-\tfrac23)=1-\Big(\frac13+\frac23\cdot\frac19\Big)=\frac{16}{27}'),
-     S(r'$D$: no jump at $0$ ($\tfrac13+\tfrac23=1$), so $P(X<0)=F_X(0)$.', r'P(D)=F_X(0)=1')],
-    r'$P(A)=0$, $P(B)=\tfrac13$, $P(C)=\tfrac{16}{27}$, $P(D)=1$', diff='advanced', cites=cite('P2', 1))
+ea, eb, med = exp(-1), exp(-0.5) - exp(-1.5), 4 * log(2)
+D.Q('Exponential, memoryless · like Lecture 10',
+    r'The length $X$ (minutes) of a phone call is exponential with a **mean of 4 minutes**. Find (a) $P(X>4)$, (b) $P(2<X<6)$, '
+    r'(c) the chance a call that has already lasted 3 minutes lasts **more than 7** in total, (d) the time $t$ with $P(X>t)=\tfrac12$.',
+    [S(r'**Read off** $\lambda$ from the mean.', r'\lambda=\frac14=0.25\text{ per minute}'),
+     S(r'(a) **Rewrite** as a tail. **Plug in.**', r'P(X>4)=e^{-0.25\cdot4}=e^{-1}\approx ' + f4(ea)),
+     S(r'(b) **Rewrite:** difference of two tails.', r'P(2<X<6)=e^{-0.5}-e^{-1.5}\approx ' + f4(eb)),
+     S(r'(c) **Memoryless:** 4 more minutes, as if new.', r'P(X>7\mid X>3)=P(X>4)=e^{-1}\approx ' + f4(ea)),
+     S(r'(d) **Backwards:** set the tail to $\tfrac12$, take $\ln$.', r'e^{-0.25t}=\frac12\quad\Longrightarrow\quad t=4\ln2\approx ' + f'{med:.2f}' + r'\text{ min}')],
+    f'(a) $\\approx {f4(ea)}$ (b) $\\approx {f4(eb)}$ (c) $\\approx {f4(ea)}$ (d) $4\\ln2\\approx {med:.2f}$ min', cites=cite('L10', 4))
 
 
 def erf_as(x):
@@ -458,6 +451,21 @@ def verify():
     assert 1 - Fm.subs(X, -sp.Rational(2, 3)) == sp.Rational(16, 27) and Fm.subs(X, 0) == 1
     assert sp.Rational(1, 2) == (sp.pi / 2 - sp.pi / 4) / (sp.pi / 2)  # sin beats cos
     assert abs(2 * Phi(1.5) - 1 - 0.8664) < 1e-9
+    # new practice: x^2/9, staircase vs 1-e^{-2y}, triangle on [0,2], c(2-x), c e^{-3y}, Uniform(2,8)
+    F9 = x ** 2 / 9
+    assert [F9.subs(x, 1), F9.subs(x, 2) - F9.subs(x, 1), 1 - F9.subs(x, 2)] == [sp.Rational(1, 9), sp.Rational(1, 3), sp.Rational(5, 9)]
+    assert sp.diff(F9, x) == 2 * x / 9 and sp.diff(1 - sp.exp(-2 * x), x) == 2 * sp.exp(-2 * x)
+    tri2 = sp.Piecewise((t, t <= 1), (2 - t, True))
+    Ftri = lambda v: sp.integrate(tri2, (t, 0, v))
+    assert Ftri(2) == 1 and Ftri(sp.Rational(3, 2)) - Ftri(sp.Rational(1, 2)) == sp.Rational(3, 4)
+    assert sp.simplify(Ftri(sp.Rational(3, 2)) - (1 - sp.Rational(1, 2) ** 2 / 2)) == 0
+    assert sp.solve(c * sp.integrate(2 - x, (x, 0, 2)) - 1, c) == [sp.Rational(1, 2)]
+    Fl = sp.integrate((2 - t) / 2, (t, 0, x))
+    assert sp.simplify(Fl - (x - x ** 2 / 4)) == 0 and Fl.subs(x, 1) == sp.Rational(3, 4)
+    assert sp.solve(c * sp.integrate(sp.exp(-3 * x), (x, 0, sp.oo)) - 1, c) == [3]
+    assert sp.integrate(3 * sp.exp(-3 * x), (x, 1, sp.oo)) == sp.exp(-3)
+    assert [sp.Rational(3, 6), sp.Rational(1, 6), sp.Rational(1, 6)] == [sp.Rational(5 - 2, 6), sp.Rational(4 - 3, 6), sp.Rational(8 - 7, 6)]
+    assert sp.solve((x - 2) / 6 - sp.Rational(1, 4), x) == [sp.Rational(7, 2)]
     print('q2 verify ok')
 
 

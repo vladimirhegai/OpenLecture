@@ -28,13 +28,6 @@ def build(D):
     D.EQ(r'\mu=e^{\int p\,dt}')
     D.P(r'After multiplying, the equation always turns into:')
     D.EQ(r'(\mu\,y)\prime=\mu\,f')
-    D.WHY('Why does multiplying by $\\mu$ work?',
-          r'The product rule says'
-          '\n\n$$\n' r'(\mu y)\prime=\mu\,y\prime+\mu\prime\,y' '\n$$\n\n'
-          r'With $\mu=e^{\int p\,dt}$, the chain rule gives $\mu\prime=p\,\mu$. So'
-          '\n\n$$\n' r'(\mu y)\prime=\mu\,y\prime+p\,\mu\,y=\mu\,(y\prime+p\,y)' '\n$$\n\n'
-          r'That’s $\mu$ times the left side of your equation. So multiplying by $\mu$ turns $y\prime+py$ into one derivative.')
-
     D.P('**Steps**')
     D.L([r'**Write** it as $y\prime+p(t)\,y=f(t)$. Divide first if something multiplies $y\prime$. Read $p$ and $f$.',
          r'**Find $\mu$** $=e^{\int p\,dt}$. No $+C$ here: any one $\mu$ works.',
@@ -53,7 +46,7 @@ def build(D):
           (r'**Divide** by $e^{2t}$.', r'y=2+Ce^{-2t}'),
           (r'**Plug in** $y(0)=0$.', r'0=2+C\quad\Rightarrow\quad C=-2')],
          r'y=2-2e^{-2t}')
-    CARD(D, r'Full example (lecture 3.1): $\;y\prime+\dfrac{10\,y}{2t+5}=10$, $\;y(0)=0$',
+    CARD(D, r'★ Lecture Example 3.1 (try it, then open): $\;y\prime+\dfrac{10\,y}{2t+5}=10$, $\;y(0)=0$',
          [(r'**Write:** $y\prime$ is already alone.', r'p=\dfrac{10}{2t+5},\qquad f=10'),
           (r'**Find $\mu$:** $\int\frac{10}{2t+5}dt=5\ln(2t+5)$, and $e^{5\ln(2t+5)}=(2t+5)^5$ (card “$e$ and $\ln$ cancel”).',
            r'\mu=(2t+5)^5'),
@@ -69,22 +62,15 @@ def build(D):
           (r'$p=-\frac1t$:', r'\mu=e^{-\ln t}=\dfrac1t')])
     CARD(D, r'Constant $p$: $\;e^{\int k\,dt}=e^{kt}$',
          [(r'$p=5$:', r'\mu=e^{5t}')])
-    CARD(D, r'By parts: $\;\displaystyle\int t\,e^{t}\,dt=(t-1)\,e^{t}$',
-         [(r'Check it by differentiating with the product rule:', r'\big[(t-1)e^{t}\big]\prime=e^{t}+(t-1)e^{t}=t\,e^{t}')])
-    CARD(D, r'Substitution: $\;\displaystyle\int t\,e^{t^2}dt=\tfrac12e^{t^2}$',
-         [(r'Let $u=t^2$, so $du=2t\,dt$ and $t\,dt=\frac12du$.', r'\int t\,e^{t^2}dt=\tfrac12\int e^{u}\,du=\tfrac12e^{t^2}')])
     D.CO('tip', r'**Shortcut when $p=k$ and $f=F$ are both plain numbers:** $\;y=\dfrac{F}{k}+Ce^{-kt}$. '
          r'Example: $y\prime+2y=4$ gives $y=2+Ce^{-2t}$. Every RC and RL circuit has this shape (' + link('D1', 'd1') + ').')
     D.CO('warning', r'**Get $y\prime$ alone first.** In $ty\prime+2y=t^2$, divide by $t$ first. Then $p=\frac2t$, not $2$.')
     D.CO('warning', r'**Multiply the right side by $\mu$ too.** It’s $\int\mu f\,dt$, not $\int f\,dt$.')
-    D.WHY('Both separable and linear?',
-          r'Some equations are both. Then either method works, and separating is usually faster.'
-          '\n\n'
-          r'- $f=0$: $\;y\prime=(8t+3)y$ separates as $\dfrac{dy}{y}=(8t+3)\,dt$.' '\n'
-          r'- $p$ and $f$ both numbers: $\;y\prime+2y=4$ separates as $\dfrac{dy}{4-2y}=dt$.')
+    D.CO('tip', r'**Both separable and linear?** Either method works (the prof solves the RL circuit $i\prime+5i=50$ both ways). '
+         r'Happens when $f=0$, or when $p$ and $f$ are plain numbers: $\;\dfrac{di}{50-5i}=dt$.')
 
     D.H('Practice: B2', level=3)
-    P(D, 'W3 · The lecture’s RL equation · lecture §1.1',
+    P(D, '★ W3 · The lecture’s RL equation · lecture §1.1',
       r'Solve $\dfrac{di}{dt}+5i=50$, $\;i(0)=0$ (the series RL circuit of the Week 3 lecture, $i$ in amperes).',
       [S(r'**Type:** linear → B2. Here the unknown is $i$ instead of $y$.'),
        S(r'**Write:** $i\prime$ is already alone.', r'p=5,\qquad f=50'),
@@ -94,7 +80,7 @@ def build(D):
        S(r'**Divide** by $e^{5t}$.', r'i=10+Ce^{-5t}'),
        S(r'**Plug in** $i(0)=0$.', r'0=10+C\quad\Rightarrow\quad C=-10')],
       r'$i(t)=10(1-e^{-5t})\,\mathrm{A}$. It climbs from 0 to 10 A. The shortcut gives the 10 straight away: $F/k=50/5$.', cites=W3(3))
-    P(D, 'W3 · Linear and separable: solve it both ways · Pre-tutorial 3(c)',
+    P(D, '★ W3 · Linear and separable: solve it both ways · Pre-tutorial 3(c)',
       r'Find the general solution of $\dfrac{dy}{dt}=8ty+3y$ with an integrating factor, then check it by separating.',
       [S(r'**Type:** linear → B2.'),
        S(r'**Write:** move the $y$ terms left.', (r'y\prime-(8t+3)\,y=0', r'p=-(8t+3),\qquad f=0')),
@@ -104,16 +90,6 @@ def build(D):
        S(r'**Divide** by $\mu$.', r'y=Ce^{4t^2+3t}'),
        S(r'**Check by separating** (B1): $\dfrac{dy}{y}=(8t+3)\,dt$ gives $\ln|y|=4t^2+3t+C$, so $y=Ce^{4t^2+3t}$. Same answer.')],
       r'$y=Ce^{4t^2+3t}$.', cites=D.cite('T3', 1))
-    P(D, 'W3 · An integral that needs parts',
-      r'Solve $y\prime+y=t$, $\;y(0)=0$.',
-      [S(r'**Type:** linear → B2. It won’t separate: $y\prime=t-y$ is a sum.'),
-       S(r'**Write:** $y\prime$ is already alone.', r'p=1,\qquad f=t'),
-       S(r'**Find $\mu$.**', r'\mu=e^{t}'),
-       S(r'**Multiply.**', r'(e^{t}y)\prime=t\,e^{t}'),
-       S(r'**Integrate** with the by-parts card: $\int te^t\,dt=(t-1)e^t$.', r'e^{t}y=(t-1)e^{t}+C'),
-       S(r'**Divide** by $e^t$.', r'y=t-1+Ce^{-t}'),
-       S(r'**Plug in** $y(0)=0$.', r'0=-1+C\quad\Rightarrow\quad C=1')],
-      r'$y=t-1+e^{-t}$.', diff='intermediate')
     P(D, 'W3 · Divide first, then a power of t',
       r'Solve $t\,y\prime+2y=t^2$, $\;y(1)=0$, for $t>0$.',
       [S(r'**Type:** linear → B2.'),
@@ -124,18 +100,6 @@ def build(D):
        S(r'**Divide** by $t^2$.', r'y=\dfrac{t^2}{4}+\dfrac{C}{t^2}'),
        S(r'**Plug in** $y(1)=0$.', r'0=\tfrac14+C\quad\Rightarrow\quad C=-\tfrac14')],
       r'$y=\dfrac{t^2}{4}-\dfrac{1}{4t^2}$.', diff='intermediate')
-    P(D, 'W3 · An integrating factor with t²',
-      r'Solve $y\prime+2t\,y=t$, $\;y(0)=1$.',
-      [S(r'**Type:** linear → B2.'),
-       S(r'**Write:** $y\prime$ is already alone.', r'p=2t,\qquad f=t'),
-       S(r'**Find $\mu$:** $\int2t\,dt=t^2$.', r'\mu=e^{t^2}'),
-       S(r'**Multiply.**', r'(e^{t^2}y)\prime=t\,e^{t^2}'),
-       S(r'**Integrate** with the substitution card: $\int te^{t^2}dt=\frac12e^{t^2}$.', r'e^{t^2}y=\tfrac12e^{t^2}+C'),
-       S(r'**Divide** by $e^{t^2}$.', r'y=\tfrac12+Ce^{-t^2}'),
-       S(r'**Plug in** $y(0)=1$.', r'1=\tfrac12+C\quad\Rightarrow\quad C=\tfrac12')],
-      r'$y=\dfrac12\big(1+e^{-t^2}\big)$. It also separates, $y\prime=t(1-2y)$, so you could check it with ' + link('B1', 'b1') + '.', diff='advanced')
-
-
 def verify():
     C = sp.symbols('C')
     first(2 + C * sp.exp(-2 * t), 4 - 2 * y)
@@ -144,9 +108,5 @@ def verify():
     first(ys, 10 - 10 * y / (2 * t + 5), (0, 0))
     first(10 - 10 * sp.exp(-5 * t), 50 - 5 * y, (0, 0))
     first(C * sp.exp(4 * t ** 2 + 3 * t), 8 * t * y + 3 * y)
-    first(t - 1 + sp.exp(-t), t - y, (0, 0))
     first(t ** 2 / 4 - 1 / (4 * t ** 2), (t ** 2 - 2 * y) / t, (1, 0))
-    first((1 + sp.exp(-t ** 2)) / 2, t - 2 * t * y, (0, 1))
-    zero(sp.diff((t - 1) * sp.exp(t), t) - t * sp.exp(t))
     zero(sp.diff((2 * t + 5) ** 6 / 12, t) - (2 * t + 5) ** 5)
-    zero(sp.integrate(t * sp.exp(t ** 2), t) - sp.exp(t ** 2) / 2)

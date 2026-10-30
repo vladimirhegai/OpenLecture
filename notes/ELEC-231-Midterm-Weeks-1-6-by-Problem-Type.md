@@ -2,34 +2,50 @@
 
 ## Start here: what the midterm asks
 
-**Midterm:** Friday Oct 30 · 2 hours · 30 marks · Casio 991 only.
+**Midterm:** 2 hours · 30 marks · Casio 991 only. Everything up to Monday Oct 26’s lecture and this week’s tutorial. **No Laplace transforms.**
 
-**What’s on it** (announced in class): everything up to and including Monday Oct 26’s lecture (the comments on undetermined coefficients), plus this week’s tutorials (Mon Oct 26 and Wed Oct 28). That is every section of this note.
+> **Tip:** **The prof reuses his own problems.** If you can do every lecture example and tutorial problem, you’re fine: the midterm is that hard or easier. In this note they are marked **★**. Do the ★ ones first. The rest are short, easier warm-ups.
 
-- **Not on it: Laplace transforms.** Skip them for now.
-- **This week’s tutorial problem** is Pre-tutorial 5: $y^{\prime\prime}+y=6\cos^2t$ with $y(0)=0$, $y(\pi/2)=0$. It’s the “know this cold” card in [B6](#b6). Practise it until you can do it without looking.
+**Today’s plan (10:00–18:00).** Each block: read the steps, then do that section’s ★ problems with the answer closed.
 
-Every solution in this note has the same shape. Use it on the exam too. Naming the type first is what tells you which steps to run.
-
-1. **Type:** say what kind of problem it is, and the clue that told you. Example: “$y^{\prime}=t^2y$ is separable: the right side is a $t$-part times a $y$-part.”
-2. **Steps:** run that section’s numbered steps, using its words. Every method starts with **Write** (put it in its form).
-3. **Plug in:** use the given values to find the constants. Example: $y=Ce^{2t}$ with $y(0)=5$ gives $C=5$. (In a circuit, the values come from the circuit just before the switch moves.)
-
-**Where do I go?** Find what your question gives you in the left column, then click the link. The browser’s Back button brings you back here.
-
-| The question gives you… | Go to | Weeks |
+| Time | Do | The ★ problems |
 |---|---|---|
-| a complex number to convert, multiply, divide, raise to a power or take roots of | [Topic A](#topic-a) | 1 |
-| an ODE to classify, or a function to check as a solution | [Topic B](#topic-b) | 2 |
-| a first-order ODE where you can split the $y$’s from the $t$’s | [B1 · Separable](#b1) | 3 |
-| $y^{\prime}+p(t)\,y=f(t)$ | [B2 · Integrating factor](#b2) | 3 |
-| $M\,dt+N\,dy=0$ | [B3 · Exact](#b3), [B4 · Make it exact](#b4) | 4 |
-| $ay^{\prime\prime}+by^{\prime}+cy=0$ (numbers $a,b,c$) | [B5 · Characteristic equation](#b5) | 4–5 |
-| $ay^{\prime\prime}+by^{\prime}+cy=f(t)$ | [B6 · Undetermined coefficients](#b6) | 6 |
-| a second-order ODE with $t$ in the coefficients, and one solution given | [B7 · Reduction of order](#b7) | 6 |
-| “does a unique solution exist?”, an interval, or two solutions to compare | [Topic C](#topic-c) | 3, 5, 6 |
-| a circuit with a switch: find $v(t)$ or $i(t)$ | [Topic D](#topic-d) | 1–3, 5 |
-| a mixed set of exam-style problems, to practise like the real thing | [Topic E](#topic-e) | 1–6 |
+| 10:00–10:30 | [Topic A](#topic-a) complex numbers | Ex 1.1 divide, Ex 1.2 roots |
+| 10:30–11:45 | [B0](#topic-b), [B1](#b1), [B2](#b2) name it, separable, linear | Ex 2.1, Ex 3.1–3.4, RL circuit, Pre-tut 3 |
+| 11:45–12:00 | break |  |
+| 12:00–13:00 | [B3](#b3), [B4](#b4) exact, make it exact | Ex 4.1–4.6, Pre-tut 4 |
+| 13:00–13:45 | lunch |  |
+| 13:45–14:30 | [D1](#d1) RC / RL circuits | Pre-tut 1, Pre-tut 2, RC natural/step |
+| 14:30–15:30 | [B5](#b5), [D2](#d2) characteristic equation, RLC | Ex 5.2 (24 mA) |
+| 15:30–15:45 | break |  |
+| 15:45–16:45 | [B6](#b6), [B7](#b7) undetermined coefficients, reduction of order | Pre-tut 5 ($6\cos^2t$), $y^{\prime\prime}-ty^{\prime}+y=0$ |
+| 16:45–17:05 | [Topic C](#topic-c) does a unique solution exist? | the two theorems |
+| 17:05–18:00 | [Topic E](#topic-e) final run | redo every ★ from memory |
+
+**Behind? Cut from the bottom of each block, never the ★ problems.** If you’re really short on time, skip [Topic C](#topic-c) and the non-★ warm-ups.
+
+**Not taught, so not in this note:** Wronskians, the “multiply the guess by $t$” fix, guesses for $e^{at}$ or polynomial right sides, textbook circuit problems, Thévenin inside a circuit, Laplace.
+
+Every solution in this note has the same shape. Use it on the exam too:
+
+1. **Type:** say what kind of problem it is, and the clue. Example: “$y^{\prime}=t^2y$ is separable: a $t$-part times a $y$-part.”
+2. **Steps:** run that section’s numbered steps, using its words. Every method starts with **Write**.
+3. **Plug in:** use the given values to find the constants. Example: $y=Ce^{2t}$ with $y(0)=5$ gives $C=5$.
+
+**Where do I go?** Find what the question gives you, then click the link. The browser’s Back button brings you back.
+
+| The question gives you… | Go to |
+|---|---|
+| a complex number to convert, multiply, divide, power, roots | [Topic A](#topic-a) |
+| an ODE to classify (order, linear, …) | [Topic B](#topic-b) |
+| a first-order ODE where you can split the $y$’s from the $t$’s | [B1 · Separable](#b1) |
+| $y^{\prime}+p(t)\,y=f(t)$ | [B2 · Integrating factor](#b2) |
+| $M\,dt+N\,dy=0$ | [B3 · Exact](#b3), [B4 · Make it exact](#b4) |
+| $ay^{\prime\prime}+by^{\prime}+cy=0$ (numbers $a,b,c$) | [B5 · Characteristic equation](#b5) |
+| $ay^{\prime\prime}+by^{\prime}+cy=f(t)$ | [B6 · Undetermined coefficients](#b6) |
+| $t$ in the coefficients, and one solution given | [B7 · Reduction of order](#b7) |
+| “does a unique solution exist?”, or an interval | [Topic C](#topic-c) |
+| a circuit with a switch: find $v(t)$ or $i(t)$ | [Topic D](#topic-d) |
 
 ## Topic A: Complex numbers
 
@@ -53,15 +69,29 @@ $$
 3+j4=5\angle53.13^\circ
 $$
 
-<details><summary>Why does multiplying add the angles? (optional)</summary>
+<details><summary>★ Lecture §2: $\cos(A+B)$ and $\sin(A+B)$ from Euler, $\;e^{j\theta}=\cos\theta+j\sin\theta$</summary>
 
-Write both as exponentials and use $e^Ae^B=e^{A+B}$:
+Step 1 · **Write** $e^{jA}e^{jB}=e^{j(A+B)}$ and expand each side with Euler.
 
 $$
-c_1e^{j\theta_1}\cdot c_2e^{j\theta_2}=c_1c_2\,e^{j(\theta_1+\theta_2)}
+(\cos A+j\sin A)(\cos B+j\sin B)=\cos(A+B)+j\sin(A+B)
 $$
 
-The two forms are linked by Euler’s identity, $e^{j\theta}=\cos\theta+j\sin\theta$. The lecture uses it for trig identities: expand $e^{jA}e^{jB}=e^{j(A+B)}$, and the real parts give $\cos(A+B)=\cos A\cos B-\sin A\sin B$.
+Step 2 · **Multiply out** the left side ($j^2=-1$).
+
+$$
+\cos A\cos B-\sin A\sin B+j(\sin A\cos B+\cos A\sin B)
+$$
+
+Step 3 · **Match** the real parts, then the $j$ parts.
+
+$$
+\cos(A+B)=\cos A\cos B-\sin A\sin B
+$$
+
+$$
+\sin(A+B)=\sin A\cos B+\cos A\sin B
+$$
 
 </details>
 
@@ -115,6 +145,8 @@ $$
 
 Adding or subtracting? Stay rectangular: $(1+j2)+(3-j5)=4-j3$.
 
+**Conjugate facts** (lecture 4.3): $z^*=a-jb$ (polar: flip the angle). Then $zz^*=a^2+b^2=c^2$, $\;z+z^*=2a$, $\;z-z^*=j2b$. And $|e^{j\theta}|=1$ always.
+
 <details><summary>Powers of $j$: $\;j^2=-1,\ \ j^3=-j,\ \ j^4=1,\ \ \dfrac1j=-j$</summary>
 
 Step 1 · They repeat every four.
@@ -149,72 +181,6 @@ $$
 \sqrt4=2,\quad \dfrac{60^\circ}{2}=30^\circ,\quad +\dfrac{360^\circ}{2}=180^\circ\quad\Longrightarrow\quad 2\angle30^\circ,\ \ 2\angle210^\circ
 $$
 
-<details><summary>Full example (lecture 1.2): the fourth roots of $\;z=81e^{j60^\circ}$</summary>
-
-Step 1 · Already polar: $c=81$, $\theta=60^\circ$, $k=4$.
-
-$$
-z=81\angle60^\circ
-$$
-
-Step 2 · **Length:** $81^{1/4}$.
-
-$$
-81^{1/4}=3
-$$
-
-Step 3 · **First angle.**
-
-$$
-\dfrac{60^\circ}{4}=15^\circ
-$$
-
-Step 4 · **Spacing:** keep adding $360^\circ/4$.
-
-$$
-\dfrac{360^\circ}{4}=90^\circ
-$$
-
-Step 5 · List all four.
-
-$$
-3\angle15^\circ,\quad 3\angle105^\circ,\quad 3\angle195^\circ,\quad 3\angle285^\circ
-$$
-
-</details>
-
-<details><summary>Why $k$ answers? (optional)</summary>
-
-$\theta$ and $\theta+360^\circ$ are the same arrow. But after you divide by $k$, they point different ways. Each extra $360^\circ$ gives a new root, until you come back round after $k$ of them.
-
-</details>
-
-**What do the roots look like?**
-
-```graph
-title "Drag $z$, change $k$: the $k$ roots sit evenly on one circle"
-x -3 3 label="Re"
-y -3 3 label="Im"
-equal
-drag Z 0 2.5 label="$z$" color=1
-slider k 2 6 3 step=1 label="$k$"
-let c "hypot(Z_x,Z_y)"
-let th "atan2(Z_y,Z_x)"
-let r "c^(1/k)"
-arrow "Z_x" "Z_y" color=1
-circle "0" "0" "r" color=0 dash
-point "r*cos(th/k)" "r*sin(th/k)" label="the $k$ roots of $z$" color=2
-point "r*cos((th+2*pi)/k)" "r*sin((th+2*pi)/k)" color=2
-point "if(k>2, r*cos((th+4*pi)/k), 99)" "if(k>2, r*sin((th+4*pi)/k), 99)" color=2
-point "if(k>3, r*cos((th+6*pi)/k), 99)" "if(k>3, r*sin((th+6*pi)/k), 99)" color=2
-point "if(k>4, r*cos((th+8*pi)/k), 99)" "if(k>4, r*sin((th+8*pi)/k), 99)" color=2
-point "if(k>5, r*cos((th+10*pi)/k), 99)" "if(k>5, r*sin((th+10*pi)/k), 99)" color=2
-readout "$|z|$" "c"
-readout "$\angle z$" "deg(th)" unit="°"
-readout "root magnitude" "r"
-caption "Start: $z=2.5\angle90^\circ$, $k=3$. The roots have length $2.5^{1/3}$. The first is at $90^\circ/3=30^\circ$, the others $120^\circ$ apart."
-```
-
 > **Tip:** **Casio 991 check:** complex mode does $+,-,\times,\div$ and can show $r\angle\theta$. Use it to check, but write the steps: the marks are for the working.
 
 #### Practice: A
@@ -240,7 +206,7 @@ Write (a) $-3+j4$ and (b) $-3-j4$ in polar form.
 
 </details>
 
-**Problem: Problem 2 · W1 · Divide in rectangular form · lecture Example 1.1** (introductory)
+**Problem: ★ Problem 2 · W1 · Divide in rectangular form · lecture Example 1.1** (introductory)
 
 Compute $\dfrac{80+j18}{8+j10}$. Give the answer in rectangular and polar form.
 
@@ -280,23 +246,29 @@ Compute $(1+j)^8$.
 
 </details>
 
-**Problem: Problem 4 · W1 · Cube roots of a negative number** (intermediate)
+**Problem: ★ Problem 4 · W1 · The four fourth roots · lecture Example 1.2** (introductory)
 
-Find all three cube roots of $-8$, in polar and rectangular form.
+Find the four fourth roots of $z=81e^{j60^\circ}$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** roots ($k=3$). Go polar first: $-8$ points straight left.
+1. **Type:** roots ($k=4$). Already polar: $c=81$, $\theta=60^\circ$.
 
-   $$-8=8\angle180^\circ$$
-2. **Roots:** length $8^{1/3}=2$, first angle $180^\circ/3=60^\circ$, spacing $360^\circ/3=120^\circ$.
+   $$z=81\angle60^\circ$$
+2. **Length:** the same for all four.
 
-   $$2\angle60^\circ,\quad 2\angle180^\circ,\quad 2\angle300^\circ$$
-3. **Rectangular:** $a=2\cos\theta$, $b=2\sin\theta$.
+   $$81^{1/4}=3$$
+3. **First angle.**
 
-   $$1+j\sqrt3,\quad -2,\quad 1-j\sqrt3$$
+   $$\dfrac{60^\circ}{4}=15^\circ$$
+4. **Spacing:** keep adding $360^\circ/4$.
 
-**Answer:** $2\angle60^\circ=1+j\sqrt3$, $2\angle180^\circ=-2$, $2\angle300^\circ=1-j\sqrt3$. The real root $-2$ is only one of three.
+   $$\dfrac{360^\circ}{4}=90^\circ$$
+5. List all four.
+
+   $$3\angle15^\circ,\quad 3\angle105^\circ,\quad 3\angle195^\circ,\quad 3\angle285^\circ$$
+
+**Answer:** $3e^{j15^\circ}$, $3e^{j105^\circ}$, $3e^{j195^\circ}$, $3e^{j285^\circ}$.
 
 </details>
 
@@ -387,20 +359,7 @@ $$
 y^{\prime\prime}-t\,y^{\prime}+y=0,\ \ y_1=t\quad\Longrightarrow\quad\text{B7}
 $$
 
-**The same letters everywhere.** Every B method uses these names, so there’s less to remember:
-
-| Letter | Means | In |
-|---|---|---|
-| $f(t)$ | the right side: no $y$ in it | B2, B6, B7, C2 |
-| $p(t)$ | multiplies the term just under the top derivative | B2, B7, C2 |
-| $q(t)$ | multiplies $y$ (2nd order) | B7, C2 |
-| $g(t)$, $h(y)$ | a piece with only $t$ / only $y$ | B1, B3, B4 |
-| $\mu$ | the multiply-everything factor | B2, B4 |
-| $C$ | the one constant (1st order) | B1–B4 |
-| $c_1,\ c_2$ | the two constants (2nd order) | B5–B7, D2 |
-| $A,\ B,\ D$ | unknown numbers in a guess | B6 |
-
-And every method starts with **Write** (put it in its form) and ends with **Plug in** (use the conditions).
+**Linear means you can scale** (lecture §3.1): if $y(t)$ solves the equation with right side $f(t)$, then $A\,y(t)$ solves it with right side $A\,f(t)$. Example: $y=2-2e^{-2t}$ solves $y^{\prime}+2y=4$, so $3y=6-6e^{-2t}$ solves $y^{\prime}+2y=12$.
 
 **Step 3: fix the constants.** Every method gives a **general solution**: a formula with unknown constants in it.
 
@@ -412,7 +371,7 @@ And every method starts with **Write** (put it in its form) and ends with **Plug
 
 Example: is $y=e^{-2t}$ a solution of $y^{\prime}+2y=0$? $\;-2e^{-2t}+2e^{-2t}=0$ ✓. Yes.
 
-**Problem: Problem 6 · W2 · Name it, then route it · lecture Example 2.1 and others** (introductory)
+**Problem: ★ Problem 6 · W2 · Name it, then route it · lecture Example 2.1 and others** (introductory)
 
 For each equation, give its order, and say whether it is linear, homogeneous, constant-coefficient and autonomous. Then say which method (B1–B7) solves it.
 
@@ -505,24 +464,6 @@ $$
 \int\dfrac{dy}{h(y)}=\int g(t)\,dt+C
 $$
 
-<details><summary>Why can you move $dy$ and $dt$ around like a fraction? (optional)</summary>
-
-Divide by $h$:
-
-$$
-\dfrac{1}{h(y)}\,\dfrac{dy}{dt}=g(t)
-$$
-
-Now integrate both sides with respect to $t$. The chain rule says
-
-$$
-\int\dfrac{1}{h(y)}\dfrac{dy}{dt}\,dt=\int\dfrac{1}{h(y)}\,dy
-$$
-
-Moving “$dt$” across is a shortcut for exactly this.
-
-</details>
-
 **Steps**
 
 1. **Write** it as $\dfrac{dy}{dt}=g(t)\,h(y)$. Factor first if you have to.
@@ -577,7 +518,7 @@ $$
 
 </details>
 
-<details><summary>Full example (lecture 3.3): $\;\dfrac{dy}{dt}=\dfrac{3t+ty^2}{y+t^2y}$, $\;y(1)=3$</summary>
+<details><summary>★ Lecture Example 3.3 (try it, then open): $\;\dfrac{dy}{dt}=\dfrac{3t+ty^2}{y+t^2y}$, $\;y(1)=3$</summary>
 
 Step 1 · **Write:** pull $t$ out of the top and $y$ out of the bottom. Now it’s a $t$-part times a $y$-part.
 
@@ -691,7 +632,7 @@ $$
 
 #### Practice: B1
 
-**Problem: Problem 8 · W3 · Separate and use a starting value · Pre-tutorial 3(a)** (introductory)
+**Problem: ★ Problem 8 · W3 · Separate and use a starting value · Pre-tutorial 3(a)** (introductory)
 
 Solve $\dfrac{dy}{dt}=-\dfrac{t}{y}$, $\;y=2$ when $t=1$.
 
@@ -718,7 +659,7 @@ Solve $\dfrac{dy}{dt}=-\dfrac{t}{y}$, $\;y=2$ when $t=1$.
 
 </details>
 
-**Problem: Problem 9 · W3 · A general solution with a power · lecture Example 3.2** (introductory)
+**Problem: ★ Problem 9 · W3 · A general solution with a power · lecture Example 3.2** (introductory)
 
 Find the general solution of $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$.
 
@@ -742,31 +683,7 @@ Find the general solution of $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$.
 
 </details>
 
-**Problem: Problem 10 · W3 · An exponential of y** (intermediate)
-
-Solve $\dfrac{dy}{dt}=2t\,e^{-y}$, $\;y(0)=0$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** $2t\cdot e^{-y}$ is a $t$-part times a $y$-part → B1.
-2. **Separate:** dividing by $e^{-y}$ is the same as multiplying by $e^{y}$.
-
-   $$e^{y}\,dy=2t\,dt$$
-3. **Integrate** each side.
-
-   $$e^{y}=t^2+C$$
-4. **Solve for $y$:** take $\ln$ of both sides.
-
-   $$y=\ln(t^2+C)$$
-5. **Plug in** $y(0)=0$: $\ln C=0$.
-
-   $$C=1$$
-
-**Answer:** $y=\ln(t^2+1)$.
-
-</details>
-
-**Problem: Problem 11 · W3 · Differential form · Pre-tutorial 3(b)** (intermediate)
+**Problem: ★ Problem 10 · W3 · Differential form · Pre-tutorial 3(b)** (intermediate)
 
 Solve $3t(y^2+1)\,dt+y(t^2+2)\,dy=0$.
 
@@ -790,7 +707,7 @@ Solve $3t(y^2+1)\,dt+y(t^2+2)\,dy=0$.
 
 </details>
 
-**Problem: Problem 12 · W3 · Collect before separating · lecture Example 3.4** (advanced)
+**Problem: ★ Problem 11 · W3 · Collect before separating · lecture Example 3.4** (intermediate)
 
 Solve $y\,dt+(t^3y^2+t^3)\,dy=0$.
 
@@ -857,24 +774,6 @@ $$
 (\mu\,y)^{\prime}=\mu\,f
 $$
 
-<details><summary>Why does multiplying by $\mu$ work? (optional)</summary>
-
-The product rule says
-
-$$
-(\mu y)^{\prime}=\mu\,y^{\prime}+\mu^{\prime}\,y
-$$
-
-With $\mu=e^{\int p\,dt}$, the chain rule gives $\mu^{\prime}=p\,\mu$. So
-
-$$
-(\mu y)^{\prime}=\mu\,y^{\prime}+p\,\mu\,y=\mu\,(y^{\prime}+p\,y)
-$$
-
-That’s $\mu$ times the left side of your equation. So multiplying by $\mu$ turns $y^{\prime}+py$ into one derivative.
-
-</details>
-
 **Steps**
 
 1. **Write** it as $y^{\prime}+p(t)\,y=f(t)$. Divide first if something multiplies $y^{\prime}$. Read $p$ and $f$.
@@ -940,7 +839,7 @@ $$
 
 </details>
 
-<details><summary>Full example (lecture 3.1): $\;y^{\prime}+\dfrac{10\,y}{2t+5}=10$, $\;y(0)=0$</summary>
+<details><summary>★ Lecture Example 3.1 (try it, then open): $\;y^{\prime}+\dfrac{10\,y}{2t+5}=10$, $\;y(0)=0$</summary>
 
 Step 1 · **Write:** $y^{\prime}$ is already alone.
 
@@ -1018,44 +917,17 @@ $$
 
 </details>
 
-<details><summary>By parts: $\;\displaystyle\int t\,e^{t}\,dt=(t-1)\,e^{t}$</summary>
-
-Step 1 · Check it by differentiating with the product rule:
-
-$$
-\big[(t-1)e^{t}\big]^{\prime}=e^{t}+(t-1)e^{t}=t\,e^{t}
-$$
-
-</details>
-
-<details><summary>Substitution: $\;\displaystyle\int t\,e^{t^2}dt=\tfrac12e^{t^2}$</summary>
-
-Step 1 · Let $u=t^2$, so $du=2t\,dt$ and $t\,dt=\frac12du$.
-
-$$
-\int t\,e^{t^2}dt=\tfrac12\int e^{u}\,du=\tfrac12e^{t^2}
-$$
-
-</details>
-
 > **Tip:** **Shortcut when $p=k$ and $f=F$ are both plain numbers:** $\;y=\dfrac{F}{k}+Ce^{-kt}$. Example: $y^{\prime}+2y=4$ gives $y=2+Ce^{-2t}$. Every RC and RL circuit has this shape ([D1](#d1)).
 
 > **Warning:** **Get $y^{\prime}$ alone first.** In $ty^{\prime}+2y=t^2$, divide by $t$ first. Then $p=\frac2t$, not $2$.
 
 > **Warning:** **Multiply the right side by $\mu$ too.** It’s $\int\mu f\,dt$, not $\int f\,dt$.
 
-<details><summary>Both separable and linear? (optional)</summary>
-
-Some equations are both. Then either method works, and separating is usually faster.
-
-- $f=0$: $\;y^{\prime}=(8t+3)y$ separates as $\dfrac{dy}{y}=(8t+3)\,dt$.
-- $p$ and $f$ both numbers: $\;y^{\prime}+2y=4$ separates as $\dfrac{dy}{4-2y}=dt$.
-
-</details>
+> **Tip:** **Both separable and linear?** Either method works (the prof solves the RL circuit $i^{\prime}+5i=50$ both ways). Happens when $f=0$, or when $p$ and $f$ are plain numbers: $\;\dfrac{di}{50-5i}=dt$.
 
 #### Practice: B2
 
-**Problem: Problem 13 · W3 · The lecture’s RL equation · lecture §1.1** (introductory)
+**Problem: ★ Problem 12 · W3 · The lecture’s RL equation · lecture §1.1** (introductory)
 
 Solve $\dfrac{di}{dt}+5i=50$, $\;i(0)=0$ (the series RL circuit of the Week 3 lecture, $i$ in amperes).
 
@@ -1085,7 +957,7 @@ Solve $\dfrac{di}{dt}+5i=50$, $\;i(0)=0$ (the series RL circuit of the Week 3 le
 
 </details>
 
-**Problem: Problem 14 · W3 · Linear and separable: solve it both ways · Pre-tutorial 3(c)** (introductory)
+**Problem: ★ Problem 13 · W3 · Linear and separable: solve it both ways · Pre-tutorial 3(c)** (introductory)
 
 Find the general solution of $\dfrac{dy}{dt}=8ty+3y$ with an integrating factor, then check it by separating.
 
@@ -1113,37 +985,7 @@ Find the general solution of $\dfrac{dy}{dt}=8ty+3y$ with an integrating factor,
 
 </details>
 
-**Problem: Problem 15 · W3 · An integral that needs parts** (intermediate)
-
-Solve $y^{\prime}+y=t$, $\;y(0)=0$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** linear → B2. It won’t separate: $y^{\prime}=t-y$ is a sum.
-2. **Write:** $y^{\prime}$ is already alone.
-
-   $$p=1,\qquad f=t$$
-3. **Find $\mu$.**
-
-   $$\mu=e^{t}$$
-4. **Multiply.**
-
-   $$(e^{t}y)^{\prime}=t\,e^{t}$$
-5. **Integrate** with the by-parts card: $\int te^t\,dt=(t-1)e^t$.
-
-   $$e^{t}y=(t-1)e^{t}+C$$
-6. **Divide** by $e^t$.
-
-   $$y=t-1+Ce^{-t}$$
-7. **Plug in** $y(0)=0$.
-
-   $$0=-1+C\quad\Rightarrow\quad C=1$$
-
-**Answer:** $y=t-1+e^{-t}$.
-
-</details>
-
-**Problem: Problem 16 · W3 · Divide first, then a power of t** (intermediate)
+**Problem: Problem 14 · W3 · Divide first, then a power of t** (intermediate)
 
 Solve $t\,y^{\prime}+2y=t^2$, $\;y(1)=0$, for $t>0$.
 
@@ -1170,36 +1012,6 @@ Solve $t\,y^{\prime}+2y=t^2$, $\;y(1)=0$, for $t>0$.
    $$0=\tfrac14+C\quad\Rightarrow\quad C=-\tfrac14$$
 
 **Answer:** $y=\dfrac{t^2}{4}-\dfrac{1}{4t^2}$.
-
-</details>
-
-**Problem: Problem 17 · W3 · An integrating factor with t²** (advanced)
-
-Solve $y^{\prime}+2t\,y=t$, $\;y(0)=1$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** linear → B2.
-2. **Write:** $y^{\prime}$ is already alone.
-
-   $$p=2t,\qquad f=t$$
-3. **Find $\mu$:** $\int2t\,dt=t^2$.
-
-   $$\mu=e^{t^2}$$
-4. **Multiply.**
-
-   $$(e^{t^2}y)^{\prime}=t\,e^{t^2}$$
-5. **Integrate** with the substitution card: $\int te^{t^2}dt=\frac12e^{t^2}$.
-
-   $$e^{t^2}y=\tfrac12e^{t^2}+C$$
-6. **Divide** by $e^{t^2}$.
-
-   $$y=\tfrac12+Ce^{-t^2}$$
-7. **Plug in** $y(0)=1$.
-
-   $$1=\tfrac12+C\quad\Rightarrow\quad C=\tfrac12$$
-
-**Answer:** $y=\dfrac12\big(1+e^{-t^2}\big)$. It also separates, $y^{\prime}=t(1-2y)$, so you could check it with [B1](#b1).
 
 </details>
 
@@ -1254,14 +1066,6 @@ $$
 - $N_t$ = differentiate $N$ in $t$, treating $y$ like a number
 - Not equal? Not exact: go to [B4](#b4).
 
-<details><summary>Why the cross test, and why $U=C$? (optional)</summary>
-
-If $U$ exists, then $M=U_t$ and $N=U_y$. So $M_y$ is $U$ differentiated in $t$, then $y$. And $N_t$ is $U$ differentiated in $y$, then $t$. The order doesn’t change the result, so the two must match.
-
-$M\,dt+N\,dy$ is the small change in $U$. The equation sets that change to $0$, so $U$ stays at one constant value: $U=C$. Each solution is a contour line of the surface $z=U(t,y)$, like on a map.
-
-</details>
-
 **Steps**
 
 1. **Write** it as $M\,dt+N\,dy=0$, everything on the left. Read $M$ and $N$ with their signs.
@@ -1281,7 +1085,7 @@ $$
 M=2ty+3t^2\quad\Longrightarrow\quad U=t^2y+t^3+h(y)
 $$
 
-<details><summary>Full example (lecture 4.1): $\;(2ty+3t^2)\,dt+t^2\,dy=0$</summary>
+<details><summary>★ Lecture Example 4.1 (try it, then open): $\;(2ty+3t^2)\,dt+t^2\,dy=0$</summary>
 
 Step 1 · **Write:** already in form.
 
@@ -1325,7 +1129,7 @@ $$
 
 </details>
 
-<details><summary>Full example (lecture (b)): $\;y^{\prime}=\dfrac{t-y}{t+y}$, $\;y(0)=1$</summary>
+<details><summary>★ Lecture exercise (b) (try it, then open): $\;y^{\prime}=\dfrac{t-y}{t+y}$, $\;y(0)=1$</summary>
 
 Step 1 · **Write:** cross-multiply, $(t+y)\,dy=(t-y)\,dt$, then move everything left. Moving $dy$ across flips its sign.
 
@@ -1421,7 +1225,7 @@ $$
 
 #### Practice: B3
 
-**Problem: Problem 18 · W4 · Test, then solve · lecture exercise (a)** (introductory)
+**Problem: ★ Problem 15 · W4 · Test, then solve · lecture exercise (a)** (introductory)
 
 Test $3t\,dt+4y\,dy=0$ for exactness, and if so, solve.
 
@@ -1448,7 +1252,7 @@ Test $3t\,dt+4y\,dy=0$ for exactness, and if so, solve.
 
 </details>
 
-**Problem: Problem 19 · W4 · Test before you integrate · lecture exercise (d)** (introductory)
+**Problem: ★ Problem 16 · W4 · Test before you integrate · lecture exercise (d)** (introductory)
 
 Is $y^{\prime}=\dfrac{t}{t+y}$ exact?
 
@@ -1469,7 +1273,7 @@ Is $y^{\prime}=\dfrac{t}{t+y}$ exact?
 
 </details>
 
-**Problem: Problem 20 · W4 · The sign trap · lecture exercise (c)** (intermediate)
+**Problem: ★ Problem 17 · W4 · The sign trap · lecture exercise (c)** (intermediate)
 
 Solve $2ty\,y^{\prime}=t^2-y^2$.
 
@@ -1542,18 +1346,6 @@ $$
 
 (The lecture calls these Theorem 1 and Theorem 2.)
 
-<details><summary>Where does Case 1 come from? (optional)</summary>
-
-Multiply by $\mu(t)$ and ask the new equation to pass the test, $(\mu M)_y=(\mu N)_t$. On the left, $\mu$ has no $y$, so it just comes out. On the right, use the product rule:
-
-$$
-\mu\,M_y=\mu^{\prime} N+\mu\,N_t\quad\Longrightarrow\quad \dfrac{\mu^{\prime}}{\mu}=\dfrac{M_y-N_t}{N}
-$$
-
-The left side only has $t$, so the right side must too. Then $\ln\mu=\int g\,dt$. Case 2 is the same with $\mu(y)$.
-
-</details>
-
 #### Steps and examples
 
 1. **Write** it as $M\,dt+N\,dy=0$. Read $M$ and $N$ with their signs.
@@ -1563,7 +1355,7 @@ The left side only has $t$, so the right side must too. Then $\ln\mu=\int g\,dt$
 5. **Re-test:** it must pass now. If not, recheck your algebra.
 6. **Finish like B3:** integrate $M$ in $t$, match $N$, answer $U=C$, plug in.
 
-<details><summary>Full example (Pre-tutorial 4): $\;y\,dt+(3+3t-y)\,dy=0$</summary>
+<details><summary>★ Lecture Example 4.6 + Pre-tutorial 4 (try it, then open): $\;y\,dt+(3+3t-y)\,dy=0$</summary>
 
 Step 1 · **Write.**
 
@@ -1719,7 +1511,7 @@ $$
 
 #### Practice: B4
 
-**Problem: Problem 21 · W4 · A factor in y only** (introductory)
+**Problem: Problem 18 · W4 · A factor in y only** (introductory)
 
 Solve $y\,dt+(2t+y^3)\,dy=0$.
 
@@ -1752,48 +1544,6 @@ Solve $y\,dt+(2t+y^3)\,dy=0$.
    $$ty^2+\dfrac{y^5}{5}=C$$
 
 **Answer:** $ty^2+\dfrac{y^5}{5}=C$.
-
-</details>
-
-**Problem: Problem 22 · W4 · Which case applies?** (advanced)
-
-Find an integrating factor for each equation, then solve it.
-
-(a) $(2y+3t)\,dt+t\,dy=0$
-
-(b) $y^2\,dt+(ty+1)\,dy=0$
-
-<details><summary>Solution</summary>
-
-1. (a) **Write** and **test:** $M=2y+3t$, $N=t$.
-
-   $$M_y=2,\qquad N_t=1$$
-2. (a) **Find $\mu$:** Case 1 leaves only $t$.
-
-   $$\begin{gathered}\dfrac{M_y-N_t}{N}=\dfrac{2-1}{t}=\dfrac1t \\ \mu=e^{\ln t}=t\end{gathered}$$
-3. (a) **Multiply** by $t$: it’s exactly the B3 lecture example.
-
-   $$(2ty+3t^2)\,dt+t^2\,dy=0$$
-4. (a) **Answer:** from B3.
-
-   $$t^2y+t^3=C$$
-5. (b) **Write** and **test:** $M=y^2$, $N=ty+1$.
-
-   $$M_y=2y,\qquad N_t=y$$
-6. (b) **Find $\mu$:** Case 1 gives $\frac{y}{ty+1}$, both letters. Case 2:
-
-   $$\begin{gathered}\dfrac{N_t-M_y}{M}=\dfrac{y-2y}{y^2}=-\dfrac1y \\ \mu=e^{-\ln y}=\dfrac1y\end{gathered}$$
-7. (b) **Multiply** by $\frac1y$ and **re-test.**
-
-   $$\begin{gathered}y\,dt+\Big(t+\dfrac1y\Big)dy=0 \\ M_y=1,\qquad N_t=1\quad\checkmark\end{gathered}$$
-8. (b) **Integrate $M$** and **match $N$:** $U=ty+h(y)$, and $U_y=t+h^{\prime}$ must equal $t+\frac1y$.
-
-   $$h^{\prime}=\dfrac1y\quad\Rightarrow\quad h=\ln|y|$$
-9. (b) **Answer.**
-
-   $$ty+\ln|y|=C$$
-
-**Answer:** (a) $\mu=t$, $\;t^2y+t^3=C$. (b) $\mu=\dfrac1y$, $\;ty+\ln|y|=C$.
 
 </details>
 
@@ -1831,32 +1581,6 @@ y^{\prime\prime}+9y=0\quad\longrightarrow\quad s^2+9=0
 $$
 
 No $y^{\prime}$ means no $s$ term. This quadratic is called the **characteristic equation**.
-
-<details><summary>Why are we allowed to do this? (optional)</summary>
-
-Guess $y=e^{st}$. Each derivative pulls out one more $s$:
-
-$$
-y^{\prime}=s\,e^{st},\qquad y^{\prime\prime}=s^2e^{st}
-$$
-
-Plug them into $y^{\prime\prime}+3y^{\prime}+2y=0$:
-
-$$
-s^2e^{st}+3s\,e^{st}+2e^{st}=0
-$$
-
-Pull out the $e^{st}$:
-
-$$
-(s^2+3s+2)\,e^{st}=0
-$$
-
-$e^{st}$ is never $0$, so the bracket must be $0$. That bracket is the quadratic.
-
-So every root $s$ gives a solution $e^{st}$. Two roots give two solutions, and the general solution is $c_1$ times one plus $c_2$ times the other.
-
-</details>
 
 **Steps**
 
@@ -2024,16 +1748,6 @@ $$
 
 </details>
 
-<details><summary>Why the extra $t$? (optional)</summary>
-
-$c_1e^{st}$ and $c_2e^{st}$ are the same function, so together they only give one constant. You need a second, different solution.
-
-When the root is repeated, $te^{st}$ also solves the ODE. Check with $y=te^{-2t}$ in $y^{\prime\prime}+4y^{\prime}+4y$: you get $0$.
-
-It comes from reduction of order: see the first practice problem in [B7](#b7).
-
-</details>
-
 #### Case 3: complex roots
 
 The number under the square root is negative. That’s fine.
@@ -2140,20 +1854,6 @@ So $\sigma=0$ and $\omega=3$. Since $e^{0t}=1$, the exponential disappears:
 $$
 y=c_1\cos3t+c_2\sin3t
 $$
-
-<details><summary>Why $\cos$ and $\sin$, and where did the $j$ go? (optional)</summary>
-
-The two roots give $e^{(\sigma+j\omega)t}$ and $e^{(\sigma-j\omega)t}$. Euler’s formula splits each one:
-
-$$
-e^{(\sigma\pm j\omega)t}=e^{\sigma t}\,(\cos\omega t\pm j\sin\omega t)
-$$
-
-Adding and subtracting the two solutions cancels the $j$’s. What’s left is $e^{\sigma t}\cos\omega t$ and $e^{\sigma t}\sin\omega t$.
-
-Both are real solutions, so the general solution is $c_1$ times one plus $c_2$ times the other.
-
-</details>
 
 #### Traps and a quick check
 
@@ -2271,25 +1971,9 @@ $$
 
 </details>
 
-**What do the three cases look like?**
-
-```graph
-title "Slide $k$ through 1: the same start, all three cases"
-x 0 8 label="$t$"
-y -0.6 1.2 label="$y$"
-slider k 0 5 0.5 step=0.05 label="$k$" animate
-let d "sqrt(abs(1-k))"
-let s1 "-1+d"
-let s2 "-1-d"
-curve "if(k<0.999, (s2*exp(s1*x)-s1*exp(s2*x))/(s2-s1), if(k>1.001, exp(-x)*(cos(d*x)+sin(d*x)/d), (1+x)*exp(-x)))" label="$y(t)$" color=1
-hline "0"
-readout "$b^2-4ac=4-4k$" "4-4*k"
-caption "$y^{\prime\prime}+2y^{\prime}+ky=0$, starting at $y(0)=1$, $y^{\prime}(0)=0$. $k<1$: Case 1, it settles with no wiggle. $k=1$: Case 2, the border. $k>1$: Case 3, it wiggles while $e^{-t}$ shrinks it. Same three cases as an RLC circuit in D2."
-```
-
 #### Practice: B5
 
-**Problem: Problem 23 · W5 · Two different real roots** (introductory)
+**Problem: Problem 19 · W5 · Two different real roots** (introductory)
 
 Solve $y^{\prime\prime}+5y^{\prime}+6y=0$, $\;y(0)=2$, $y^{\prime}(0)=-5$.
 
@@ -2319,7 +2003,7 @@ Solve $y^{\prime\prime}+5y^{\prime}+6y=0$, $\;y(0)=2$, $y^{\prime}(0)=-5$.
 
 </details>
 
-**Problem: Problem 24 · W5 · A repeated root** (introductory)
+**Problem: Problem 20 · W5 · A repeated root** (introductory)
 
 Solve $4y^{\prime\prime}+4y^{\prime}+y=0$, $\;y(0)=4$, $y^{\prime}(0)=0$.
 
@@ -2349,7 +2033,7 @@ Solve $4y^{\prime\prime}+4y^{\prime}+y=0$, $\;y(0)=4$, $y^{\prime}(0)=0$.
 
 </details>
 
-**Problem: Problem 25 · W5 · No damping term** (intermediate)
+**Problem: Problem 21 · W5 · No damping term** (intermediate)
 
 Solve $y^{\prime\prime}+9y=0$, $\;y(0)=2$, $y^{\prime}(0)=3$.
 
@@ -2373,35 +2057,6 @@ Solve $y^{\prime\prime}+9y=0$, $\;y(0)=2$, $y^{\prime}(0)=3$.
    $$c_1=2,\qquad 3c_2=3\ \Rightarrow\ c_2=1$$
 
 **Answer:** $y=2\cos3t+\sin3t$. Nothing shrinks it, so it swings forever: that’s the ideal LC circuit in [D2](#d2).
-
-</details>
-
-**Problem: Problem 26 · W5 · Work backwards from the roots** (advanced)
-
-A constant-coefficient equation $y^{\prime\prime}+by^{\prime}+cy=0$ has roots $-3\pm j4$. 
-
-(a) Find $b$ and $c$. (b) Write the general solution. (c) Find the solution with $y(0)=0$, $y^{\prime}(0)=8$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** backwards. Roots $s_1$, $s_2$ come from the quadratic $(s-s_1)(s-s_2)=0$.
-2. (a) Multiply out. The brackets are $(s+3)-j4$ and $(s+3)+j4$: a difference of squares. And $(j4)^2=16j^2=-16$.
-
-   $$(s+3)^2-(j4)^2=s^2+6s+9+16=s^2+6s+25$$
-3. So $b=6$ and $c=25$.
-
-   $$y^{\prime\prime}+6y^{\prime}+25y=0$$
-4. (b) **Pick:** Case 3 with $\sigma=-3$, $\omega=4$.
-
-   $$y=e^{-3t}(c_1\cos4t+c_2\sin4t)$$
-5. (c) **Differentiate** with the product rule.
-
-   $$y^{\prime}=-3e^{-3t}(c_1\cos4t+c_2\sin4t)+e^{-3t}(-4c_1\sin4t+4c_2\cos4t)$$
-6. **Plug in** $t=0$.
-
-   $$c_1=0,\qquad -3c_1+4c_2=8\ \Rightarrow\ c_2=2$$
-
-**Answer:** (a) $b=6$, $c=25$. (b) $y=e^{-3t}(c_1\cos4t+c_2\sin4t)$. (c) $y=2e^{-3t}\sin4t$.
 
 </details>
 
@@ -2443,134 +2098,24 @@ $$
 y=3+c_1\sin t+c_2\cos t
 $$
 
-<details><summary>Why add two pieces? (optional)</summary>
-
-Plug $y_c+y_p$ into the left side. The $y_c$ part gives $0$ (that’s how B5 built it). The $y_p$ part gives $f$. Total: $0+f=f$.
-
-And $y_p$ has no free constants, so on its own it can’t meet two conditions like $y(0)$ and $y^{\prime}(0)$. $y_c$ brings the $c_1,c_2$ that the conditions pin down.
-
-</details>
-
 **Steps**
 
 1. **Write** it with every $y$ term on the left and $f(t)$ on the right.
 2. **Solve $y_c$:** set the right side to $0$ and do [B5](#b5) (quadratic → case → form with $c_1,c_2$).
-3. **Guess $y_p$** from the cases below. If any term of it is already in $y_c$, multiply it by $t$.
-4. **Plug $y_p$ into the ODE and match:** constants with constants, each $\cos$, each $\sin$, each power of $t$. Solve for $A,B,\dots$
+3. **Guess $y_p$** from the two cases below.
+4. **Plug $y_p$ into the ODE and match:** constants with constants, each $\cos$, each $\sin$. Solve for $A,B,D$.
 5. **Add:** $y=y_c+y_p$.
 6. **Plug in** the conditions on the **whole** $y$, never on $y_c$ alone.
 
-> **Tip:** **What the lecture worked (Mon Oct 26):** Cases 1 and 3 below (a constant, and $\sin$/$\cos$). That’s exactly what the tutorial problem needs. Nail those first.
+#### Case 1: f is a constant
 
-#### Case 1: f is a constant or a polynomial
-
-Guess a polynomial of the **same degree**, with **every lower power** too:
+Guess a constant $A$. Two derivatives of a constant are $0$, so only the $y$ term is left:
 
 $$
-\begin{gathered}8\ \to\ A, \\ 2t\ \to\ At+B, \\ t^2\ \to\ At^2+Bt+D\end{gathered}
+y^{\prime\prime}+4y=8\quad\Longrightarrow\quad y_p=A,\quad 4A=8,\quad A=2
 $$
 
-<details><summary>Full example: $\;y^{\prime\prime}+y^{\prime}-2y=2t$ (general solution)</summary>
-
-Step 1 · **Solve $y_c$:** set the right side to $0$. The quadratic factors.
-
-$$
-s^2+s-2=(s+2)(s-1)=0
-$$
-
-$$
-y_c=c_1e^{t}+c_2e^{-2t}
-$$
-
-Step 2 · **Guess $y_p$:** degree 1, so $At+B$. You need the $B$ even though $f$ has no constant.
-
-$$
-y_p=At+B
-$$
-
-$$
-y_p^{\prime}=A,\qquad y_p^{\prime\prime}=0
-$$
-
-Step 3 · **Plug in** to $y^{\prime\prime}+y^{\prime}-2y$.
-
-$$
-0+A-2(At+B)=2t
-$$
-
-Step 4 · **Match** the $t$ terms, then the constants.
-
-$$
--2A=2
-$$
-
-$$
-A-2B=0
-$$
-
-Step 5 · Solve.
-
-$$
-A=-1,\qquad B=-\tfrac12
-$$
-
-Step 6 · **Add.**
-
-$$
-y=c_1e^{t}+c_2e^{-2t}-t-\tfrac12
-$$
-
-**Answer:**
-
-$$
-y=c_1e^{t}+c_2e^{-2t}-t-\tfrac12
-$$
-
-</details>
-
-#### Case 2: f is an exponential
-
-Guess the same exponential:
-
-$$
-3e^{2t}\ \to\ Ae^{2t}
-$$
-
-<details><summary>Full example: $\;y^{\prime\prime}+3y^{\prime}+2y=6e^{t}$ (general solution)</summary>
-
-Step 1 · **Solve $y_c$:** $s^2+3s+2=(s+1)(s+2)$.
-
-$$
-y_c=c_1e^{-t}+c_2e^{-2t}
-$$
-
-Step 2 · **Guess $y_p$:** $e^{t}$ is not in $y_c$. Every derivative of $Ae^{t}$ is $Ae^{t}$.
-
-$$
-y_p=Ae^{t},\qquad y_p^{\prime}=y_p^{\prime\prime}=Ae^{t}
-$$
-
-Step 3 · **Plug in and match:** divide by $e^{t}$.
-
-$$
-A+3A+2A=6\quad\Rightarrow\quad A=1
-$$
-
-Step 4 · **Add.**
-
-$$
-y=c_1e^{-t}+c_2e^{-2t}+e^{t}
-$$
-
-**Answer:**
-
-$$
-y=c_1e^{-t}+c_2e^{-2t}+e^{t}
-$$
-
-</details>
-
-#### Case 3: f is a sin or a cos
+#### Case 2: f is a sin or a cos
 
 Guess **both** $\cos$ and $\sin$, even if $f$ has only one:
 
@@ -2586,7 +2131,7 @@ $$
 
 <details><summary>Full example: $\;y^{\prime\prime}+3y^{\prime}+2y=10\sin t$ (general solution)</summary>
 
-Step 1 · **Solve $y_c$:** same quadratic as Case 2.
+Step 1 · **Solve $y_c$:** $s^2+3s+2=(s+1)(s+2)=0$.
 
 $$
 y_c=c_1e^{-t}+c_2e^{-2t}
@@ -2642,11 +2187,7 @@ $$
 
 </details>
 
-**A sum of these?** Guess the sum of their guesses:
-
-$$
-t+e^{t}\ \to\ At+B+De^{t}
-$$
+**A constant plus a cos?** Guess the sum of the two guesses: $A+B\cos2t+D\sin2t$.
 
 **A $\cos^2t$ or $\sin^2t$?** Turn it into a constant plus $\cos2t$ first:
 
@@ -2654,75 +2195,15 @@ $$
 \begin{gathered}\cos^2t=\tfrac12+\tfrac12\cos2t, \\ \sin^2t=\tfrac12-\tfrac12\cos2t\end{gathered}
 $$
 
-#### Case 4: the guess is already in y_c
+#### ★ The tutorial problem (know this cold)
 
-Then plugging it in gives $0$, never $f$. **Multiply the guess by $t$.** Still in $y_c$ (a repeated root)? Multiply by $t^2$.
-
-$$
-y_c=c_1e^{2t}+c_2e^{-t},\quad f=3e^{2t}\quad\Longrightarrow\quad y_p=Ate^{2t}
-$$
-
-<details><summary>Full example: $\;y^{\prime\prime}-y^{\prime}-2y=3e^{2t}$ (general solution)</summary>
-
-Step 1 · **Solve $y_c$:** $s^2-s-2=(s-2)(s+1)$.
-
-$$
-y_c=c_1e^{2t}+c_2e^{-t}
-$$
-
-Step 2 · **Guess $y_p$:** Case 2 says $Ae^{2t}$, but that’s in $y_c$. Multiply by $t$.
-
-$$
-y_p=Ate^{2t}
-$$
-
-Step 3 · Differentiate with the product rule, twice.
-
-$$
-y_p^{\prime}=A(1+2t)e^{2t}
-$$
-
-$$
-y_p^{\prime\prime}=A(4+4t)e^{2t}
-$$
-
-Step 4 · **Plug in** and divide by $e^{2t}$. The $t$ terms cancel.
-
-$$
-A\big[(4+4t)-(1+2t)-2t\big]=3A=3
-$$
-
-Step 5 · **Match.**
-
-$$
-A=1
-$$
-
-Step 6 · **Add.**
-
-$$
-y=c_1e^{2t}+c_2e^{-t}+te^{2t}
-$$
-
-**Answer:**
-
-$$
-y=c_1e^{2t}+c_2e^{-t}+te^{2t}
-$$
-
-</details>
-
-> **Warning:** **Always find $y_c$ before you guess.** That’s the only way to spot Case 4.
-
-#### The tutorial problem (know this cold)
-
-Pre-tutorial 5, the Week 7 tutorial (Oct 26, 28), and the lecture’s own example. Be able to do every step, the two conditions included. ($\ddot y$ is the professor’s way of writing $y^{\prime\prime}$.)
+Pre-tutorial 5 = the Week 6 tutorial = the lecture’s own example. The single most likely midterm question. Be able to do every step, the two conditions included. ($\ddot y$ is the prof’s way of writing $y^{\prime\prime}$.)
 
 $$
 \ddot y+y=6\cos^2t,\qquad y(0)=0,\quad y(\pi/2)=0
 $$
 
-<details><summary>Full solution: $\;\ddot y+y=6\cos^2t$, $\;y(0)=0$, $\;y(\pi/2)=0$</summary>
+<details><summary>★ Full solution (try it, then open): $\;\ddot y+y=6\cos^2t$, $\;y(0)=0$, $\;y(\pi/2)=0$</summary>
 
 Step 1 · **Solve $y_c$:** $s^2+1=0$ gives $s=\pm j$ (B5 Case 3, $\sigma=0$, $\omega=1$).
 
@@ -2730,13 +2211,13 @@ $$
 y_c=c_1\sin t+c_2\cos t
 $$
 
-Step 2 · No case for $\cos^2t$, so use the identity: a constant plus $\cos2t$.
+Step 2 · Use the identity: a constant plus $\cos2t$.
 
 $$
 6\cos^2t=3+3\cos2t
 $$
 
-Step 3 · **Guess $y_p$:** the constant → $A$ (Case 1). The $\cos2t$ → both $\cos2t$ and $\sin2t$ (Case 3). None is in $y_c$.
+Step 3 · **Guess $y_p$:** the constant → $A$ (Case 1). The $\cos2t$ → both $\cos2t$ and $\sin2t$ (Case 2).
 
 $$
 y_p=A+B\cos2t+D\sin2t
@@ -2786,11 +2267,11 @@ $$
 
 </details>
 
-The tutorial hands you the forms of $y_c$ and $y_p$. On the exam they might not: the [Topic E](#topic-e) version has no hints.
+The tutorial hands you $y_c$ and the $y_p$ guess. The exam might not: get $y_c$ from [B5](#b5) and $y_p$ from the two cases above.
 
 #### Practice: B6
 
-**Problem: Problem 27 · W6 · A constant right side, from rest** (introductory)
+**Problem: Problem 22 · W6 · A constant right side, from rest** (introductory)
 
 Solve $y^{\prime\prime}+4y=8$, $\;y(0)=0$, $y^{\prime}(0)=0$.
 
@@ -2800,7 +2281,7 @@ Solve $y^{\prime\prime}+4y=8$, $\;y(0)=0$, $y^{\prime}(0)=0$.
 2. **Solve $y_c$:** $s^2+4=0$, $s=\pm j2$ (B5 Case 3).
 
    $$y_c=c_1\cos2t+c_2\sin2t$$
-3. **Guess $y_p$:** a constant (Case 1). Not in $y_c$.
+3. **Guess $y_p$:** a constant (Case 1).
 
    $$y_p=A$$
 4. **Plug in and match:** $y_p^{\prime\prime}=0$.
@@ -2820,55 +2301,36 @@ Solve $y^{\prime\prime}+4y=8$, $\;y(0)=0$, $y^{\prime}(0)=0$.
 
 </details>
 
-**Problem: Problem 28 · W6 · Choose the form; do not solve** (intermediate)
+**Problem: Problem 23 · W6 · The tutorial problem with sin², no hints · like Pre-tutorial 5** (intermediate)
 
-For $y^{\prime\prime}-2y^{\prime}+y=f(t)$, write the guess for $y_p$ when $f$ is (a) $t^2$, (b) $e^{-t}$, (c) $e^t$, (d) $\cos t$.
-
-<details><summary>Solution</summary>
-
-1. **Solve $y_c$ first** (you need it for Case 4): $s^2-2s+1=(s-1)^2$, a repeated root.
-
-   $$y_c=(c_1+c_2t)\,e^{t}$$
-2. (a) Case 1, degree 2: every lower power too.
-
-   $$At^2+Bt+D$$
-3. (b) Case 2. $e^{-t}$ is not in $y_c$.
-
-   $$Ae^{-t}$$
-4. (c) Case 4. $Ae^t$ is in $y_c$, and so is $Ate^t$. Multiply by $t^2$.
-
-   $$At^2e^{t}$$
-5. (d) Case 3: both $\cos$ and $\sin$.
-
-   $$A\cos t+B\sin t$$
-
-**Answer:** (a) $At^2+Bt+D$. (b) $Ae^{-t}$. (c) $At^2e^{t}$. (d) $A\cos t+B\sin t$.
-
-</details>
-
-**Problem: Problem 29 · W6 · A trig guess that is already in y_c** (advanced)
-
-Find a particular solution of $y^{\prime\prime}+9y=12\cos3t$. Use $(t\,u)^{\prime\prime}=t\,u^{\prime\prime}+2u^{\prime}$ (product rule twice).
+Solve $y^{\prime\prime}+y=4\sin^2t$, $\;y(0)=0$, $y^{\prime}(0)=0$.
 
 <details><summary>Solution</summary>
 
-1. **Solve $y_c$:** $s=\pm j3$.
+1. **Type:** numbers in front, right side not $0$ → B6. Same left side as the tutorial.
+2. **Solve $y_c$:** $s^2+1=0$, $s=\pm j$ (B5 Case 3).
 
-   $$y_c=c_1\cos3t+c_2\sin3t$$
-2. **Guess $y_p$:** Case 3 says $A\cos3t+B\sin3t$, but that’s in $y_c$. Case 4: multiply by $t$.
+   $$y_c=c_1\sin t+c_2\cos t$$
+3. **Write** the right side with the identity.
 
-   $$\begin{gathered}y_p=t\,u \\ u=A\cos3t+B\sin3t\end{gathered}$$
-3. **Plug in:** $u^{\prime\prime}=-9u$, so the $t$ terms cancel.
+   $$4\sin^2t=2-2\cos2t$$
+4. **Guess $y_p$:** constant + both $\cos2t$ and $\sin2t$.
 
-   $$y_p^{\prime\prime}+9y_p=t(u^{\prime\prime}+9u)+2u^{\prime}=2u^{\prime}$$
-4. Differentiate $u$.
+   $$\begin{gathered}y_p=A+B\cos2t+D\sin2t \\ y_p^{\prime\prime}=-4B\cos2t-4D\sin2t\end{gathered}$$
+5. **Plug in and match.**
 
-   $$2u^{\prime}=-6A\sin3t+6B\cos3t$$
-5. **Match** with $12\cos3t$.
+   $$\begin{gathered}A-3B\cos2t-3D\sin2t=2-2\cos2t \\ A=2,\qquad B=\tfrac23,\qquad D=0\end{gathered}$$
+6. **Add.**
 
-   $$6B=12,\qquad -6A=0$$
+   $$y=2+\tfrac23\cos2t+c_1\sin t+c_2\cos t$$
+7. **Differentiate** for $y^{\prime}(0)$.
 
-**Answer:** $A=0$, $B=2$: $\;y_p=2t\sin3t$. It keeps growing like $2t$: that’s **resonance**.
+   $$y^{\prime}=-\tfrac43\sin2t+c_1\cos t-c_2\sin t$$
+8. **Plug in** $t=0$.
+
+   $$\begin{gathered}y(0)=2+\tfrac23+c_2=0\quad\Rightarrow\quad c_2=-\tfrac83 \\ y^{\prime}(0)=c_1=0\end{gathered}$$
+
+**Answer:** $y=2+\tfrac23\cos2t-\tfrac83\cos t$.
 
 </details>
 
@@ -2910,18 +2372,6 @@ $$
 
 When you plug it in, every term with a plain $v$ **cancels**. Only $v^{\prime}$ and $v^{\prime\prime}$ are left. Call $z=v^{\prime}$ and it’s a **first-order** equation ([B1](#b1) or [B2](#b2)).
 
-<details><summary>Why do the plain-$v$ terms cancel? (optional)</summary>
-
-After you substitute, gather everything that multiplies $v$ itself. You get
-
-$$
-v\,(y_1^{\prime\prime}+p\,y_1^{\prime}+q\,y_1)
-$$
-
-The bracket is just $y_1$ plugged into the ODE, which is $0$ because $y_1$ is a solution.
-
-</details>
-
 **Steps**
 
 1. **Write** it with $y^{\prime\prime}$ alone. Read $p$, $q$. Check $y_1$.
@@ -2948,10 +2398,10 @@ $$
 y=tv\quad\Longrightarrow\quad y^{\prime}=v+tv^{\prime},\quad y^{\prime\prime}=2v^{\prime}+tv^{\prime\prime}
 $$
 
-**The professor’s example**, step by step (press the arrows):
+**★ The prof’s example**, step by step (press the arrows). Then finish it yourself:
 
 ```steps
-title "Lecture: reduce y″ − t y′ + y = 0, given y₁ = t"
+title "★ Lecture (Week 6): reduce y″ − t y′ + y = 0, given y₁ = t"
 $$ y^{\prime\prime}-ty^{\prime}+y=0,\qquad y_1=t $$
 **Write.** Check: $y_1=t$ gives $0-t+t=0$.
 $$ y=\hl{tv} $$
@@ -2966,7 +2416,7 @@ $$ t\hl{z^{\prime}}+(2-t^2)\hl{z}=0 $$
 Set $z=v^{\prime}$: now it’s first order in $z$.
 ```
 
-<details><summary>Finish the lecture example: solve $\;tz^{\prime}+(2-t^2)z=0$, then find $y$</summary>
+<details><summary>★ Finish the lecture example (try it, then open): solve $\;tz^{\prime}+(2-t^2)z=0$, then find $y$</summary>
 
 Step 1 · **Solve for $z$:** it separates. Divide by $tz$ and move the $t$ terms right.
 
@@ -3088,7 +2538,7 @@ $$
 
 #### Practice: B7
 
-**Problem: Problem 30 · W5 + W6 · Where the repeated-root t comes from** (introductory)
+**Problem: Problem 24 · W5 + W6 · Where the repeated-root t comes from** (introductory)
 
 $y^{\prime\prime}+4y^{\prime}+4y=0$ has the repeated root $s=-2$, so $y_1=e^{-2t}$. Use reduction of order to find the general solution.
 
@@ -3115,7 +2565,7 @@ $y^{\prime\prime}+4y^{\prime}+4y=0$ has the repeated root $s=-2$, so $y_1=e^{-2t
 
 </details>
 
-**Problem: Problem 31 · W6 · A second solution with a logarithm** (intermediate)
+**Problem: Problem 25 · W6 · A second solution with a logarithm** (intermediate)
 
 For $t>0$, $y_1=t$ solves $t^2y^{\prime\prime}-ty^{\prime}+y=0$. Find the general solution.
 
@@ -3172,13 +2622,7 @@ $$
 - **Both fine** (no blow-ups) → yes, **exactly one** solution through the point.
 - **One breaks** → the theorem says **nothing**. That means “don’t know”, not “no”.
 
-<details><summary>The theorem, and why $F_y$ matters (optional)</summary>
-
-**Theorem** (Spiegel, Week 3 lecture): if $F$ and $\dfrac{\partial F}{\partial y}$ are both continuous near $(t_0,y_0)$, then exactly one solution passes through $(t_0,y_0)$.
-
-$F_y$ says how fast the slope changes as you move up or down. If it stays finite, two solutions that start at the same point can never drift apart. For $\sqrt y$ it is infinite at $y=0$, so a curve can sit on the axis and then “peel off” at any moment (graph below).
-
-</details>
+**The lecture’s words** (Theorem 3.2, Spiegel): if $F$ and $\dfrac{\partial F}{\partial y}$ are real, finite, one-valued and continuous in a region $R$, then exactly one solution passes through any point of $R$. The prof stresses: these conditions are **sufficient, not necessary**.
 
 **Steps**
 
@@ -3213,24 +2657,9 @@ $$
 
 </details>
 
-**What does “no guarantee” look like?**
-
-```graph
-title "$y^{\prime}=\sqrt{y}$: one solution through $(1,4)$, many through $(1,0)$"
-x -1 5 label="$t$"
-y -0.5 6 label="$y$"
-field "sqrt(max(y,0))" density=18
-hline "0" label="$y=0$ is a solution" color=1
-family c 1 3 0.5 "if(x>c,(x-c)^2/4,0)" color=2 label="also solutions through $(1,0)$"
-curve "((x+3)/2)^2" from=-3 label="the only solution through $(1,4)$" color=3
-point "1" "0" color=1
-point "1" "4" color=3
-caption "At $y=0$, $F_y=1/(2\sqrt y)$ blows up, so no guarantee. And in fact many curves leave $(1,0)$. Above the axis nothing breaks, and only one curve goes through each point."
-```
-
 #### Practice: C1
 
-**Problem: Problem 32 · W3 · Same equation, two starting points** (introductory)
+**Problem: Problem 26 · W3 · Same equation, two starting points** (introductory)
 
 For $\dfrac{dy}{dt}=\sqrt{y}$: (a) does the theorem guarantee a unique solution through $(1,4)$? (b) through $(1,0)$? For (b), check that $y=0$ and $y=\dfrac{(t-1)^2}{4}$ (for $t\ge1$) both pass through $(1,0)$ and solve the ODE.
 
@@ -3253,51 +2682,29 @@ For $\dfrac{dy}{dt}=\sqrt{y}$: (a) does the theorem guarantee a unique solution 
 
 </details>
 
-**Problem: Problem 33 · W3 · Which points are guaranteed?** (introductory)
+**Problem: Problem 27 · W3 · Which points are guaranteed? · the Pre-tutorial 3(a) equation** (introductory)
 
-For $\dfrac{dy}{dt}=\dfrac{t}{y}$, decide whether the theorem guarantees a unique solution through (a) $(2,1)$, (b) $(0,3)$, (c) $(2,0)$.
+For $\dfrac{dy}{dt}=-\dfrac{t}{y}$, decide whether the theorem guarantees a unique solution through (a) $(1,2)$, (b) $(0,3)$, (c) $(2,0)$.
 
 <details><summary>Solution</summary>
 
 1. **Type:** C1.
 2. **Write.**
 
-   $$F=\dfrac ty$$
+   $$F=-\dfrac ty$$
 3. **Differentiate** in $y$ (power rule).
 
-   $$F_y=-\dfrac{t}{y^2}$$
+   $$F_y=\dfrac{t}{y^2}$$
 4. **Find where it breaks:** both divide by $y$.
 
    $$y=0$$
-5. **Check the points:** (a) $y_0=1$ and (b) $y_0=3$ are off the line. (c) $y_0=0$ is on it.
+5. **Check the points:** (a) $y_0=2$ and (b) $y_0=3$ are off the line. (c) $y_0=0$ is on it.
 
 **Answer:** (a) Yes. (b) Yes. (c) No guarantee: $F$ itself is undefined at $(2,0)$.
 
 </details>
 
-**Problem: Problem 34 · W3 · A strip, not a point** (intermediate)
-
-For $(t-3)\,y^{\prime}+(\ln t)\,y=2t$, $\;y(1)=2$, find the region containing the starting point where the theorem applies. Do not solve.
-
-<details><summary>Solution</summary>
-
-1. **Type:** C1.
-2. **Write:** get $y^{\prime}$ alone.
-
-   $$F=\dfrac{2t-(\ln t)\,y}{t-3}$$
-3. **Differentiate** in $y$. Only the $y$ term survives.
-
-   $$F_y=-\dfrac{\ln t}{t-3}$$
-4. **Find where it breaks:** $\ln t$ needs $t>0$, and the denominator needs $t\neq3$. Nothing limits $y$.
-5. **Check the point:** $t_0=1$ lies between $0$ and $3$.
-
-   $$0<t<3,\quad\text{any }y$$
-
-**Answer:** The strip $0<t<3$ (all $y$). The start $(1,2)$ is inside it, so exactly one solution passes through it.
-
-</details>
-
-### C2 · Second order linear: interval, zero start, two solutions
+### C2 · Second order linear: what interval?
 
 [Week 5 · Topic 2](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#b4f41ebe-f4f6-4d5d-816d-ceaa37811b8f)
 
@@ -3315,13 +2722,9 @@ $$
 
 **The rule:** if $p$, $q$, $f$ don’t break on an interval around $t_0$, there’s **exactly one** solution there, for any starting values.
 
-<details><summary>The theorem, word for word (optional)</summary>
+**The lecture’s words** (Theorem 5.1, Spiegel): if all the coefficients $a_0(t),\dots,a_n(t)$ and the right side are continuous on $a\le t\le b$, and $a_0(t)$ (what multiplies the top derivative) is **never 0** there, then exactly one solution fits $y(c),y^{\prime}(c),\dots$ — same thing as “$p,q,f$ don’t break”.
 
-If $p$, $q$ and $f$ are continuous on an open interval $I$ that contains $t_0$, then for **any** starting values $y(t_0)$ and $y^{\prime}(t_0)$ there is **exactly one** solution, and it works on the **whole** interval $I$.
-
-</details>
-
-The question is always one of three cases:
+The question is one of two cases:
 
 #### Case 1: what interval?
 
@@ -3349,40 +2752,9 @@ $$
 
 Why: $y=0$ solves it and fits both starting values, and there’s only one solution. It needs $f=0$: in $y^{\prime\prime}+y=1$, $y=0$ gives $0=1$.
 
-#### Case 3: do y₁ and y₂ give the general solution?
-
-Compute the **Wronskian**:
-
-$$
-W=y_1\,y_2^{\prime}-y_1^{\prime}\,y_2
-$$
-
-- $W\neq0$ → independent: $y=c_1y_1+c_2y_2$ **is** the general solution.
-- $W=0$ → one is a multiple of the other: **not** enough.
-
-**Short example:**
-
-$$
-e^{t},\ e^{2t}:\quad W=e^{t}\cdot2e^{2t}-e^{t}\cdot e^{2t}=e^{3t}\neq0
-$$
-
-That’s why the repeated root in [B5](#b5) uses $(c_1+c_2t)e^{st}$: $c_1e^{st}+c_2e^{st}$ is really one constant.
-
-<details><summary>Why the Wronskian decides it (optional)</summary>
-
-Fitting $c_1y_1+c_2y_2$ to $y(t_0)$ and $y^{\prime}(t_0)$ gives two equations:
-
-$$
-c_1y_1+c_2y_2=y(t_0),\qquad c_1y_1^{\prime}+c_2y_2^{\prime}=y^{\prime}(t_0)
-$$
-
-A $2\times2$ system has exactly one answer when its determinant, $y_1y_2^{\prime}-y_1^{\prime} y_2=W$, is not zero.
-
-</details>
-
 #### Practice: C2
 
-**Problem: Problem 35 · W5 · Find the interval; do not solve** (intermediate)
+**Problem: Problem 28 · W5 · Find the interval; do not solve** (intermediate)
 
 For $(t-1)\,y^{\prime\prime}+y^{\prime}+y=\ln t$, find the largest interval on which the theorem guarantees exactly one solution for (a) $t_0=2$, (b) $t_0=\tfrac12$.
 
@@ -3399,26 +2771,7 @@ For $(t-1)\,y^{\prime\prime}+y^{\prime}+y=\ln t$, find the largest interval on w
 
 </details>
 
-**Problem: Problem 36 · W5 · Which pair gives the general solution?** (intermediate)
-
-Both pairs solve $y^{\prime\prime}+4y^{\prime}+4y=0$: (a) $e^{-2t}$ and $3e^{-2t}$; (b) $e^{-2t}$ and $te^{-2t}$. Compute each Wronskian and decide which pair gives the general solution.
-
-<details><summary>Solution</summary>
-
-1. **Type:** C2, Case 3: compute $W=y_1y_2^{\prime}-y_1^{\prime} y_2$.
-2. **Pair (a):** $y_1^{\prime}=-2e^{-2t}$, $y_2^{\prime}=-6e^{-2t}$.
-
-   $$W=e^{-2t}(-6e^{-2t})-(-2e^{-2t})(3e^{-2t})=0$$
-3. **Pair (b):** product rule, $(te^{-2t})^{\prime}=(1-2t)e^{-2t}$.
-
-   $$W=e^{-2t}(1-2t)e^{-2t}-(-2e^{-2t})\,te^{-2t}=e^{-4t}$$
-4. **Decide:** $e^{-4t}$ is never zero, so pair (b) is independent.
-
-**Answer:** (a) $W=0$: not enough (they are multiples). (b) $W=e^{-4t}\neq0$: general solution $y=(c_1+c_2t)e^{-2t}$.
-
-</details>
-
-**Problem: Problem 37 · W5 + W6 · The answer without solving** (advanced)
+**Problem: Problem 29 · W5 + W6 · The answer without solving** (intermediate)
 
 Solve $y^{\prime\prime}+t\,y^{\prime}+e^{t}\,y=0$, $\;y(0)=0$, $\;y^{\prime}(0)=0$.
 
@@ -3489,14 +2842,6 @@ $$
 
 </details>
 
-<details><summary>Why can’t $v_C$ and $i_L$ jump? (optional)</summary>
-
-If $v_C$ jumped, its slope $\frac{dv}{dt}$ would be infinite at that instant. Then $i=C\frac{dv}{dt}$ would be an infinite current, and no real circuit can supply that.
-
-Same for an inductor: a jump in $i_L$ would need an infinite voltage $v=L\frac{di}{dt}$. Another way: the stored energy, $\frac12Cv^2$ or $\frac12Li^2$, can’t change in zero time.
-
-</details>
-
 **Steps** (every circuit problem, D1 and D2):
 
 1. **Before** ($t<0$): the old circuit, sitting for a long time. $C$ = gap, $L$ = wire. Find $v_C(0^-)$ or $i_L(0^-)$.
@@ -3512,18 +2857,6 @@ V_s=Ri+v_C\quad\Longrightarrow\quad RC\,\dfrac{dv_C}{dt}+v_C=V_s
 $$
 
 One $C$ or one $L$ → first order → [D1](#d1). An $L$ **and** a $C$ → second order → [D2](#d2).
-
-**What does “can’t jump” look like?**
-
-```graph
-title "A capacitor charging from $0\,\mathrm{V}$: its voltage doesn’t jump, its current does"
-x -1 5 label="$t/\tau$"
-y -0.2 1.2 label="scaled so the biggest value is 1"
-curve "if(x<0, 0, 1-exp(-x))" label="$v_C$: starts at 0, no jump" color=1
-curve "if(x<0, 0, exp(-x))" label="$i_C$: 0 before, jumps at $t=0$" color=2
-vline "0" label="switch closes" color=0
-caption "Pre-tutorial 2 (a problem in D1). Just after the switch, $v_C$ is still 0, so all of the source current goes into the capacitor. $i_C$ jumps; $v_C$ doesn’t."
-```
 
 > **Warning:** **Before and after are two different circuits.** Draw both. The old one is only for the starting value. Write the ODE from the new one, with only the parts still connected.
 
@@ -3554,22 +2887,6 @@ $R_{th}$ = the resistance the $C$ or $L$ “sees” in the new circuit: turn the
 $$
 x_0=0,\quad x_f=10,\quad \tau=0.2\quad\Longrightarrow\quad x(t)=10-10e^{-5t}
 $$
-
-<details><summary>Where does the formula come from? (optional)</summary>
-
-KVL or KCL after the switch always gives this [B2](#b2) equation, with $p=\frac1\tau$ and $f=\frac{x_f}{\tau}$:
-
-$$
-\dfrac{dx}{dt}+\dfrac{x}{\tau}=\dfrac{x_f}{\tau}
-$$
-
-Solve it once with $x(0)=x_0$ and you get the formula. Check: at $t=0$, $e^0=1$, so $x=x_0$ ✓. As $t\to\infty$, $e^{-t/\tau}\to0$, so $x\to x_f$ ✓.
-
-Example (the lecture’s RC step response): $I_s$, $R$, $C$ in parallel. KCL: $C\frac{dv}{dt}+\frac vR=I_s$, so $\tau=RC$ and $x_f=RI_s$.
-
-Why the sources go off for $R_{th}$: they only set $x_f$ (the right side). The speed $\tau$ comes from the left side: just the resistors and the $C$ or $L$.
-
-</details>
 
 **Steps**
 
@@ -3609,7 +2926,7 @@ $$
 
 #### Examples and handy facts
 
-**Lecture example (§1.1).** The switch closes at $t=0$. The inductor carries no current before that. Find $i(t)$ for $t\ge0$.
+**★ Lecture example (Week 3 §1.1).** The switch closes at $t=0$. The inductor carries no current before that. Find $i(t)$ for $t\ge0$.
 
 ```schematic
 V1 0,3 -> 0,0 "$100\,\mathrm{V}$"
@@ -3620,7 +2937,7 @@ wire 6,0 -> 0,0
 ground 0,0
 ```
 
-<details><summary>Full solution: the lecture’s RL step response</summary>
+<details><summary>★ Lecture §1.1, the 100 V RL circuit (try it, then open)</summary>
 
 Step 1 · **Before:** the switch is open, so no current flows.
 
@@ -3714,24 +3031,9 @@ $$
 
 </details>
 
-**What does the formula look like?**
-
-```graph
-title "Drag the sliders: the curve always heads for $x_f$"
-x 0 8 label="$t$"
-y -12 12 label="$x$"
-slider x0 -10 10 10 step=1 label="$x_0$"
-slider xf -10 10 2 step=1 label="$x_f$"
-slider tau 0.2 3 1 step=0.1 label="$\tau$"
-curve "xf+(x0-xf)*exp(-x/tau)" label="$x(t)=x_f+(x_0-x_f)e^{-t/\tau}$" color=1
-hline "xf" label="$x_f$" color=3
-point "tau" "xf+(x0-xf)*exp(-1)" label="at $t=\tau$: 37% of the gap left" color=2
-caption "Set $x_f=0$ for a natural response. A bigger $\tau$ (bigger $RC$ or $L/R$) means a slower circuit."
-```
-
 #### Practice: D1
 
-**Problem: Problem 38 · W1 · RL natural response · Pre-tutorial 1** (introductory)
+**Problem: ★ Problem 30 · W1 · RL natural response · Pre-tutorial 1** (introductory)
 
 The switch has been closed for a long time and opens at $t=0$. Use $L=8\,\mathrm{mH}$, $R=4\,\Omega$ and $I_s=4\,\mathrm{A}$. Find $i(t)$ for $t\ge0$ (with numbers) and sketch it.
 
@@ -3765,7 +3067,7 @@ ground 0,0
 
 </details>
 
-**Problem: Problem 39 · W2 · Can the capacitor current jump? · Pre-tutorial 2** (introductory)
+**Problem: ★ Problem 31 · W2 · Can the capacitor current jump? · Pre-tutorial 2** (introductory)
 
 The capacitor starts uncharged ($V_0=0$). The switch closes at $t=0$. Use $I_s=2\,\mathrm{A}$ and $R=1\,\mathrm{k\Omega}$. Find the capacitor current just before ($t=0^-$, switch open) and just after ($t=0^+$, switch closed). Does the capacitor current jump, even though the capacitor voltage can’t?
 
@@ -3795,164 +3097,51 @@ ground 0,0
 
 </details>
 
-**Problem: Problem 40 · W2–W3 · Read the circuit from its response · textbook P7.42** (intermediate)
+**Problem: ★ Problem 32 · W2 · RC natural and step response · lecture §4 and §5** (introductory)
 
-The switch closes at $t=0$. For $t\ge0$ you measure:
-
-$i(t)=\big(10-10e^{-500t}\big)\,\mathrm{A},\qquad v(t)=200e^{-500t}\,\mathrm{V}\ (t\ge0^+)$
-
-Find $V_s$, $R$, the starting current $I_0$ and $L$.
+(a) **Natural response** (lecture §4). The switch has been at $a$ for a long time, so $C$ is charged by $V_s$ through $R_1$. At $t=0$ it moves to $b$, leaving $C$ alone with $R$. Find $v(t)$, $t\ge0$.
 
 ```schematic
 V1 0,3 -> 0,0 "$V_s$"
-S1 0,3 -> 3,3 "$t=0$" action=close
-R1 3,3 -> 6,3 "$R$" i="$i$"
-L1 6,3 -> 6,0 "$L$" v="$v$"
-wire 6,0 -> 0,0
+R1 0,3 -> 3,3 "$R_1$"
+S1 3,3 -> 6,3 "$t=0$" action=open
+C1 6,3 -> 6,0 "$C$" v="$v$"
+S2 6,3 -> 9,3 "$t=0$" action=close
+R2 9,3 -> 9,0 "$R$"
+wire 9,0 -> 0,0
+label 3,3 "$a$" above
+label 9,3 "$b$" above
 ground 0,0
 ```
 
-<details><summary>Solution</summary>
+(b) **Step response** (lecture §5, the Pre-tutorial 2 circuit above). $I_s$, $R$ and $C$ end up in parallel, $v(0)=V_0$. Find $v(t)$, $t\ge0$.
 
-1. **Type:** RL step response, read backwards. Match each piece to $x_f+(x_0-x_f)e^{-t/\tau}$.
-2. **Carry across:** put $t=0$ into $i(t)$: $I_0=10-10=0$.
-3. **Carry across:** $i=0$, so the resistor has 0 V across it. The whole source voltage sits on $L$.
-
-   $$V_s=v(0^+)=200\,\mathrm{V}$$
-4. **After** (final value): long after, $L$ is a wire, so $i_f=V_s/R$. From $i(t)$, $i_f=10$.
-
-   $$10=\dfrac{200}{R}\quad\Rightarrow\quad R=20\,\Omega$$
-5. **After** (time constant): the exponent is $-500t$, so $\frac1\tau=500$ and $\tau=2\,\mathrm{ms}$. Use $\tau=L/R$.
-
-   $$L=20\times0.002=40\,\mathrm{mH}$$
-6. **Check:** $L\frac{di}{dt}=0.04\times5000e^{-500t}=200e^{-500t}$, which matches $v(t)$ ✓.
-
-**Answer:** $V_s=200\,\mathrm{V}$, $R=20\,\Omega$, $I_0=0$, $L=40\,\mathrm{mH}$.
-
-</details>
-
-**Problem: Problem 41 · W2 · RC natural response with a divider first · textbook P7.22** (intermediate)
-
-The switch has been closed for a long time and opens at $t=0$. Find (a) $v(0)$, (b) $\tau$ for $t>0$, (c) $v(t)$, (d) the energy stored in the capacitor at $t=0$.
-
-```schematic
-I1 0,0 -> 0,3 "$7.5\,\mathrm{mA}$"
-wire 0,3 -> 3,3
-R1 3,3 -> 3,0 "$80\,\mathrm{k\Omega}$"
-R2 3,3 -> 6,3 "$20\,\mathrm{k\Omega}$"
-S1 6,3 -> 9,3 "$t=0$" action=open
-C1 9,3 -> 9,0 "$0.4\,\mu\mathrm{F}$" v="$v(t)$"
-wire 9,3 -> 12,3
-R3 12,3 -> 12,0 "$50\,\mathrm{k\Omega}$"
-wire 12,0 -> 0,0
-ground 0,0
-```
+(c) In (a), take $V_s=10\,\mathrm{V}$, $R=1\,\mathrm{k\Omega}$, $C=1\,\mu\mathrm{F}$. Find $\tau$ and $v(\tau)$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** once the switch opens, only $C$ and the $50\,\mathrm{k\Omega}$ are left, with no source. RC **natural** response. Solve for $v$.
-2. **Before:** $C$ is a gap, so the source current has two paths: the $80\,\mathrm{k\Omega}$, or $20+50=70\,\mathrm{k\Omega}$. Current divider:
+1. **Type:** one $C$ → first order → D1. (a) has no source after the switch: natural. (b) keeps $I_s$: step.
+2. (a) **Before:** long time, $C$ is a gap, so no current flows through $R_1$ and $C$ sits at the source voltage.
 
-   $$i_{70}=7.5\,\mathrm{mA}\cdot\dfrac{80}{80+70}=4\,\mathrm{mA}$$
-3. (a) $v$ is the voltage across the $50\,\mathrm{k\Omega}$ (it sits on the same two nodes as $C$).
+   $$v(0^-)=V_s=v(0^+)$$
+3. (a) **After:** only $C$ and $R$ in a loop, no source, so $x_f=0$. $C$ sees just $R$.
 
-   $$v(0^-)=4\,\mathrm{mA}\times50\,\mathrm{k\Omega}=200\,\mathrm{V}=v(0^+)$$
-4. (b) **After:** $C$ only sees the $50\,\mathrm{k\Omega}$.
+   $$\tau=RC$$
+4. (a) **Plug in.**
 
-   $$\tau=RC=50\times10^3\times0.4\times10^{-6}=20\,\mathrm{ms}$$
-5. (c) **Plug in** $x_f=0$, $\frac1\tau=50\,\mathrm{s^{-1}}$.
+   $$v(t)=V_s\,e^{-t/RC}$$
+5. (b) **After:** long time, $C$ is a gap, so all of $I_s$ goes through $R$.
 
-   $$v(t)=200e^{-50t}\,\mathrm{V}$$
-6. (d) **Energy:** use $w=\frac12Cv^2$ with $v(0)=200\,\mathrm{V}$.
+   $$\begin{gathered}V_f=RI_s \\ \tau=RC\end{gathered}$$
+6. (b) **Plug in** with $x_0=V_0$.
 
-   $$w=\tfrac12Cv^2=\tfrac12(0.4\times10^{-6})(200)^2=8\,\mathrm{mJ}$$
+   $$v(t)=RI_s+(V_0-RI_s)\,e^{-t/RC}$$
+7. (b) **Check** with KCL at the top node: $C\frac{dv}{dt}+\frac vR=I_s$ is the [B2](#b2) shape, and $t\to\infty$ gives $RI_s$ ✓.
+8. (c) **Numbers:** $\tau=RC=10^3\times10^{-6}$. After one $\tau$, $e^{-1}\approx0.368$ of the start is left.
 
-**Answer:** (a) $200\,\mathrm{V}$. (b) $20\,\mathrm{ms}$. (c) $v(t)=200e^{-50t}\,\mathrm{V}$, $t\ge0$. (d) $8\,\mathrm{mJ}$.
+   $$\begin{gathered}\tau=1\,\mathrm{ms} \\ v(\tau)=10e^{-1}\approx3.68\,\mathrm{V}\end{gathered}$$
 
-</details>
-
-**Problem: Problem 42 · W1–W2 · The sign of the reference arrow · textbook P7.1** (intermediate)
-
-The switch has been closed for a long time and opens at $t=0$. Watch the direction of $i$: it points **up** through the inductor. Find (a) the starting value of $i$, (b) the energy stored in the inductor at $t=0$, (c) the time constant for $t>0$, (d) $i(t)$ for $t\ge0$, with numbers.
-
-```schematic
-V1 0,3 -> 0,0 "$120\,\mathrm{V}$"
-R1 0,3 -> 3,3 "$3\,\Omega$"
-R2 3,3 -> 3,0 "$30\,\Omega$"
-R3 3,3 -> 6,3 "$6\,\Omega$"
-S1 6,3 -> 9,3 "$t=0$" action=open
-L1 9,0 -> 9,3 "$8\,\mathrm{mH}$" i="$i$"
-wire 9,3 -> 12,3
-R4 12,3 -> 12,0 "$2\,\Omega$"
-wire 12,0 -> 0,0
-ground 0,0
-```
-
-<details><summary>Solution</summary>
-
-1. **Type:** once the switch opens, only $L$ and the $2\,\Omega$ are left, with no source. RL **natural** response. Solve for $i$.
-2. **Before:** $L$ is a wire, and it shorts out the $2\,\Omega$. So the source sees $3\,\Omega$ in series with $30\parallel6=5\,\Omega$.
-
-   $$I=\dfrac{120}{3+5}=15\,\mathrm{A}$$
-3. The middle node sits at $120-15\times3=75\,\mathrm{V}$. So $75/6=12.5\,\mathrm{A}$ goes right through the $6\,\Omega$, then **down** through $L$.
-4. (a) The arrow points **up**, but the real current goes down, so the value is negative.
-
-   $$i(0^-)=i(0^+)=-12.5\,\mathrm{A}$$
-5. (b) **Energy:** the sign doesn’t matter, because $i$ gets squared.
-
-   $$w=\tfrac12(8\times10^{-3})(12.5)^2=0.625\,\mathrm{J}$$
-6. (c) **After:** $L$ only sees the $2\,\Omega$.
-
-   $$\tau=\dfrac{L}{R}=\dfrac{8\times10^{-3}}{2}=4\,\mathrm{ms}$$
-7. (d) **Plug in** $x_0=-12.5$, $x_f=0$, $\frac1\tau=250$.
-
-   $$i(t)=-12.5e^{-250t}\,\mathrm{A}$$
-
-**Answer:** (a) $-12.5\,\mathrm{A}$. (b) $0.625\,\mathrm{J}$. (c) $4\,\mathrm{ms}$. (d) $i(t)=-12.5e^{-250t}\,\mathrm{A}$, $t\ge0$.
-
-</details>
-
-**Problem: Problem 43 · W2 · Step response that needs a Thévenin equivalent · textbook P7.52(a)** (advanced)
-
-The switch has been at $a$ for a long time. At $t=0$ it moves to $b$ and stays there. Find the starting and final capacitor voltage, the time constant for $t\ge0$, and $v_C(t)$ for $t\ge0$. (The $200\,\mathrm{V}$ source has its $-$ on top. The two $t=0$ switches are one two-position switch: at $t=0$ the contact at $a$ opens and the contact at $b$ closes.)
-
-```schematic
-V1 0,3 -> 0,0 "$120\,\mathrm{V}$"
-R1 0,3 -> 2,3 "$10\,\mathrm{k\Omega}$"
-S1 2,3 -> 4,3 "$t=0$" action=open
-C1 4,3 -> 4,0 "$40\,\mathrm{nF}$" v="$v_C$" i="$i$"
-S2 4,3 -> 6,3 "$t=0$" action=close
-R2 6,3 -> 8,3 "$12.5\,\mathrm{k\Omega}$"
-R3 8,3 -> 8,0 "$150\,\mathrm{k\Omega}$"
-R4 8,3 -> 10,3 "$50\,\mathrm{k\Omega}$"
-V2 10,0 -> 10,3 "$200\,\mathrm{V}$"
-wire 10,0 -> 0,0
-label 2,3 "$a$" above
-label 6,3 "$b$" above
-ground 0,0
-```
-
-<details><summary>Solution</summary>
-
-1. **Type:** one capacitor, and a DC source still connected after the switch. RC **step** response. Solve for $v_C$.
-2. **Before (at $a$):** $C$ is a gap, so no current flows through the $10\,\mathrm{k\Omega}$ and it drops 0 V. The capacitor gets the full source.
-
-   $$v_C(0^-)=120\,\mathrm{V}=v_C(0^+)$$
-3. **After (at $b$):** shrink everything right of $b$ into one source $V_{th}$ plus one resistor $R_{th}$ (Thévenin). Then it’s a plain RC loop.
-4. **$V_{th}$:** take $C$ out. No current flows in the $12.5\,\mathrm{k\Omega}$, so $V_{th}$ is the voltage on the $150\,\mathrm{k\Omega}$: a divider with the $50\,\mathrm{k\Omega}$. The source’s top is at $-200\,\mathrm{V}$.
-
-   $$V_{th}=-200\cdot\dfrac{150}{150+50}=-150\,\mathrm{V}$$
-5. **$R_{th}$:** turn the source off (it becomes a wire). That leaves $12.5\,\mathrm{k\Omega}$ in series with $150\parallel50=37.5\,\mathrm{k\Omega}$.
-
-   $$R_{th}=12.5+37.5=50\,\mathrm{k\Omega}$$
-6. **Final value and time constant:** in the end $C$ is a gap again, so no current flows and $C$ sits at $V_{th}$.
-
-   $$\begin{gathered}v_f=-150\,\mathrm{V}, \\ \tau=(50\times10^{3})(40\times10^{-9})=2\,\mathrm{ms}\end{gathered}$$
-7. **Plug in:** $x_0-x_f=120-(-150)=270$, $\frac1\tau=500$.
-
-   $$v_C(t)=-150+270e^{-500t}\,\mathrm{V}$$
-
-**Answer:** $v_C(0)=120\,\mathrm{V}$, $v_C(\infty)=-150\,\mathrm{V}$, $\tau=2\,\mathrm{ms}$, $v_C(t)=-150+270e^{-500t}\,\mathrm{V}$, $t\ge0$.
+**Answer:** (a) $v=V_se^{-t/RC}$. (b) $v=RI_s+(V_0-RI_s)e^{-t/RC}$. (c) $\tau=1\,\mathrm{ms}$, $v(\tau)\approx3.68\,\mathrm{V}$ (37% of $V_s$).
 
 </details>
 
@@ -3960,45 +3149,12 @@ ground 0,0
 
 [Week 5 · Topic 3](/courses/206af2a6-c1f1-4700-ac44-5eba708c676b/docs/0c7a77fe-aeed-47a8-b1c3-4967d73eea21#d5ad9ba9-0ec5-4b62-acf5-b1c7e17d6463)
 
-**Use this when**, after the switch, there’s an inductor **and** a capacitor (combine series/parallel ones first, so you have one of each).
+**Use this when**, after the switch, there’s an inductor **and** a capacitor.
 
-**The move: it’s [B5](#b5) with circuit names.** Same quadratic, same three cases. Write the quadratic as:
-
-$$
-s^2+2\alpha s+\omega_0^2=0
-$$
-
-- $\alpha$ (“alpha”) = the **damping**: how fast it dies out
-- $\omega_0$ (“omega-zero”) = the **natural frequency**: how fast it would swing with no $R$
-- Both come straight from $R$, $L$, $C$ (below), so you never have to derive the ODE on the exam.
-
-A source still on after the switch? Then add the final value $V_f$ on top, like $y_p$ in [B6](#b6):
+**The move: it’s [B5](#b5) with circuit names.** The lecture’s parallel RLC gives this quadratic:
 
 $$
-v(t)=V_f+(\text{the B5 form})
-$$
-
-#### Series or parallel: α and ω₀
-
-```schematic
-V1 0,3 -> 0,0 "$V_s$"
-R1 0,3 -> 3,3 "$R$" i="$i$"
-L1 3,3 -> 6,3 "$L$"
-C1 6,3 -> 6,0 "$C$" v="$v_C$"
-wire 6,0 -> 0,0
-ground 0,0
-```
-
-**Series** (solve for $v_C$):
-
-$$
-\begin{gathered}\alpha=\dfrac{R}{2L}, \\ \omega_0=\dfrac{1}{\sqrt{LC}}\end{gathered}
-$$
-
-**Short example:** $R=4\,\Omega$, $L=1\,\mathrm{H}$, $C=0.25\,\mathrm{F}$:
-
-$$
-\begin{gathered}\alpha=\dfrac{4}{2}=2, \\ \omega_0=\dfrac{1}{\sqrt{0.25}}=2\end{gathered}
+s^2+\dfrac{1}{RC}\,s+\dfrac{1}{LC}=0
 $$
 
 ```schematic
@@ -4011,45 +3167,27 @@ wire 6,0 -> 0,0
 ground 0,0
 ```
 
-**Parallel** (solve for the shared $v$). Only $\alpha$ changes:
+Name the two numbers in it:
 
 $$
 \begin{gathered}\alpha=\dfrac{1}{2RC}, \\ \omega_0=\dfrac{1}{\sqrt{LC}}\end{gathered}
 $$
 
-**Short example:** $R=800\,\Omega$, $C=50\,\mathrm{nF}$:
+Then the roots are (lecture eq. 5.7):
 
 $$
-\alpha=\dfrac{1}{2(800)(50\times10^{-9})}=12500\,\mathrm{s^{-1}}
+s_{1,2}=-\alpha\pm\sqrt{\alpha^2-\omega_0^2}
 $$
 
-<details><summary>Where do the equations come from? (optional)</summary>
-
-**Series:** KVL around the loop, $V_s=Ri+Li^{\prime}+v_C$, with $i=Cv_C^{\prime}$. Divide by $LC$:
+**Short example** (lecture Example 5.2): $R=400\,\Omega$, $C=25\,\mathrm{nF}$, $L=25\,\mathrm{mH}$:
 
 $$
-v_C^{\prime\prime}+\dfrac RL\,v_C^{\prime}+\dfrac1{LC}\,v_C=\dfrac{V_s}{LC}
+\begin{gathered}\alpha=\dfrac{1}{2(400)(25\times10^{-9})}=50\,000, \\ \omega_0=\dfrac{1}{\sqrt{(25\times10^{-3})(25\times10^{-9})}}=40\,000\end{gathered}
 $$
 
-Match with $s^2+2\alpha s+\omega_0^2$: $2\alpha=\frac RL$ and $\omega_0^2=\frac1{LC}$.
-
-**Parallel:** KCL at the top node, $Cv^{\prime}+i_L+\frac vR=0$. Differentiate once, use $i_L^{\prime}=\frac vL$, divide by $C$:
-
-$$
-v^{\prime\prime}+\dfrac{1}{RC}\,v^{\prime}+\dfrac{1}{LC}\,v=0
-$$
-
-So $2\alpha=\frac{1}{RC}$. A big parallel $R$ takes almost no current, so it barely drains energy: less damping.
-
-</details>
+(Series RLC, seen once in Week 2: $\;i^{\prime\prime}+\frac RL\,i^{\prime}+\frac1{LC}\,i=0$, so $\alpha=\frac{R}{2L}$ instead. Same $\omega_0$.)
 
 #### The three cases (same as B5)
-
-Compare $\alpha$ with $\omega_0$. The roots are:
-
-$$
-s=-\alpha\pm\sqrt{\alpha^2-\omega_0^2}
-$$
 
 | Compare | Name | B5 case | Form |
 |---|---|---|---|
@@ -4066,71 +3204,49 @@ $$
 **Short examples:**
 
 $$
-\alpha=5,\ \omega_0=3\quad\Longrightarrow\quad s=-5\pm4=-1,\,-9\quad\text{(overdamped)}
+\alpha=50\,000,\ \omega_0=40\,000\quad\Longrightarrow\quad s=-50\,000\pm30\,000\quad\text{(overdamped)}
 $$
 
 $$
-\alpha=50,\ \omega_0=50\quad\Longrightarrow\quad (c_1+c_2t)e^{-50t}\quad\text{(critical)}
+\alpha=\omega_0=40\,000\quad\Longrightarrow\quad (c_1+c_2t)e^{-40\,000t}\quad\text{(critical)}
 $$
 
 $$
-\alpha=3,\ \omega_0=5\quad\Longrightarrow\quad \omega_d=4,\ \ e^{-3t}(c_1\cos4t+c_2\sin4t)
+\alpha=32\,000,\ \omega_0=40\,000\quad\Longrightarrow\quad \omega_d=24\,000\quad\text{(underdamped)}
 $$
 
-No $R$ at all ($\alpha=0$, an ideal LC): $\;c_1\cos\omega_0t+c_2\sin\omega_0t$, swinging forever.
+#### Step response: final value + natural response
 
-**What do the three cases look like?**
-
-```graph
-title "Slide R through the three cases (series RLC, $L=1\,\mathrm{H}$, $C=0.25\,\mathrm{F}$)"
-x 0 6 label="$t$ (s)"
-y -8 11 label="$v_C$ (V)"
-slider R 0 10 1 step=0.1 label="$R$ ($\Omega$)" animate
-let a "R/2"
-let wd "sqrt(abs(4-a^2))"
-let s1 "-a+wd"
-let s2 "-a-wd"
-curve "if(abs(a-2)<0.001, 10*(1+2*t)*exp(-2*t), if(a<2, 10*exp(-a*t)*(cos(wd*t)+a/wd*sin(wd*t)), 10*(s2*exp(s1*t)-s1*exp(s2*t))/(s2-s1)))" label="$v_C(t)$, from $10\,\mathrm{V}$ with $i=0$" color=1
-hline "0"
-readout "$\alpha=R/2L$" "a"
-readout "$\omega_0=1/\sqrt{LC}$" "2"
-caption "$\omega_0=2$ never changes; only $\alpha=R/2$ moves. $R<4$: underdamped, it swings below zero before settling. $R=4$: critically damped, fastest with no overshoot. $R>4$: overdamped, a slow creep back."
-```
-
-#### Steps: the two starting values
-
-Second order needs **two** starting values: $v(0)$ and the slope $v^{\prime}(0)$. The value carries across. The slope comes from the capacitor current:
+A DC source switched on (lecture §3): the answer is the **final value** plus the natural response, like $y_p+y_c$ in [B6](#b6):
 
 $$
-v_C^{\prime}(0^+)=\dfrac{i_C(0^+)}{C}
+i_L(t)=I+(\text{the B5 form})
 $$
 
-1. **Before:** old circuit, long time ($C$ = gap, $L$ = wire). Find $v_C(0^-)$ and $i_L(0^-)$.
-2. **Carry across:** $v_C(0^+)=v_C(0^-)$, $i_L(0^+)=i_L(0^-)$. Then find $i_C(0^+)$ and the slope (cards below).
-3. **After:** series or parallel? Compute $\alpha$, $\omega_0$. Final value $V_f$: $0$ if no source is left, else the new DC state.
-4. **Pick** the case (compare $\alpha$, $\omega_0$) and write $v=V_f+$ the form.
-5. **Plug in** $t=0$: the value gives $c_1$, the slope (product rule) gives $c_2$. Use the **whole** answer, $V_f$ included.
-6. **Check:** $t\to\infty$ gives $V_f$.
+Why $I$: long after, $L$ is a wire, so it carries **all** of the source current. (That’s the lecture’s $I_P=I$.)
 
-<details><summary>Slope in a series circuit: $\;i_C=$ the loop current $=i_L$</summary>
+**Steps**
 
-Step 1 · The loop current is the inductor current, so it carries across. Sign: $+$ if the arrow enters the $+$ end of $C$.
+1. **Before:** old circuit. “No initial energy” means $v(0)=0$ and $i_L(0)=0$ (since $\tfrac12Cv^2=\tfrac12Li^2=0$).
+2. **Carry across:** $v(0^+)=v(0^-)$, $i_L(0^+)=i_L(0^-)$. Then the slope (cards below).
+3. **After:** compute $\alpha$, $\omega_0$. Final value: $I$ for $i_L$ with a source on, $0$ with none.
+4. **Pick** the case (compare $\alpha$, $\omega_0$) and write $x=x_f+$ the form.
+5. **Plug in** $t=0$: the value gives one equation, the slope gives the other. Use the **whole** answer, $x_f$ included.
+6. **Check:** $t\to\infty$ gives $x_f$.
 
-$$
-v_C^{\prime}(0^+)=\dfrac{i_L(0^+)}{C}
-$$
+<details><summary>Slope of $i_L$: $\;\dfrac{di_L}{dt}(0^+)=\dfrac{v(0^+)}{L}$</summary>
 
-Step 2 · Example: $i(0^-)=0$.
+Step 1 · From $v=L\frac{di_L}{dt}$. The lecture uses this in Example 5.2: $v(0)=0$, so the slope is $0$.
 
 $$
-v_C^{\prime}(0^+)=0
+\dfrac{di_L}{dt}(0^+)=\dfrac{0}{L}=0
 $$
 
 </details>
 
-<details><summary>Slope in a parallel circuit: KCL, $\;i_C=-(i_L+i_R)$</summary>
+<details><summary>Slope of $v$: KCL, $\;i_C=-(i_L+i_R)$, then $\;v^{\prime}(0^+)=\dfrac{i_C(0^+)}{C}$</summary>
 
-Step 1 · All three arrows point down, so the currents add to $0$. $i_R=\frac{v(0^+)}{R}$.
+Step 1 · All three arrows point down, so the currents add to $0$ (plus any source current coming in). $i_R=\frac{v(0^+)}{R}$.
 
 $$
 i_C(0^+)=-\big(i_L(0^+)+i_R(0^+)\big)
@@ -4148,208 +3264,112 @@ $$
 
 </details>
 
-<details><summary>Solving for $i$ in a series circuit: $\;i^{\prime}(0^+)=\dfrac{v_L(0^+)}{L}$</summary>
+> **Warning:** **Fit the constants to the whole answer, the final value included.** $i_L=24+A_1e^{s_1t}+A_2e^{s_2t}$ with $i_L(0)=0$: $\;24+A_1+A_2=0$, not $A_1+A_2=0$.
 
-Step 1 · $i(0^+)=i_L(0^-)$. For the slope, KVL around the new loop gives $v_L$.
-
-$$
-v_L(0^+)=v_C(0^+)-R\,i(0^+)
-$$
-
-Step 2 · Example: $v_C=70\,\mathrm{V}$, $i=0$, $L=0.1\,\mathrm{H}$.
-
-$$
-i^{\prime}(0^+)=\dfrac{70}{0.1}=700\,\mathrm{A/s}
-$$
-
-</details>
-
-> **Warning:** **Fit the constants to the whole answer, $V_f$ included.** $v_C=100+(c_1+c_2t)e^{-50t}$ with $v_C(0)=200$: $\;100+c_1=200$, so $c_1=100$, not $200$.
-
-> **Warning:** **Units first.** $1\,\mathrm{mH}=10^{-3}\,\mathrm{H}$, $1\,\mu\mathrm{F}=10^{-6}\,\mathrm{F}$, $1\,\mathrm{nF}=10^{-9}\,\mathrm{F}$. Example: $L=250\,\mathrm{mH}$, $C=10\,\mathrm{nF}$ → $\omega_0=\dfrac{1}{\sqrt{0.25\times10^{-8}}}=20000$.
-
-**Textbook example (P8.53).** The circuit has been running for a long time with $V_s=200\,\mathrm{V}$. At $t=0$ the source drops to $100\,\mathrm{V}$. Find $v_C(t)$ for $t\ge0$.
-
-```schematic
-V1 0,3 -> 0,0 "$200\to100\,\mathrm{V}$"
-R1 0,3 -> 3,3 "$4\,\Omega$" i="$i$"
-L1 3,3 -> 6,3 "$40\,\mathrm{mH}$"
-C1 6,3 -> 6,0 "$10\,\mathrm{mF}$" v="$v_C$"
-wire 6,0 -> 0,0
-ground 0,0
-```
-
-<details><summary>Full solution: a series step response</summary>
-
-Step 1 · **Before:** long time, so $C$ is a gap and $i=0$. With no current, $R$ and $L$ drop nothing, so $C$ holds the whole $200\,\mathrm{V}$.
-
-$$
-v_C(0^-)=200\,\mathrm{V},\qquad i(0^-)=0
-$$
-
-Step 2 · **Carry across:** neither can jump. The slope is $i/C$, and $i=0$.
-
-$$
-v_C(0^+)=200
-$$
-
-$$
-v_C^{\prime}(0^+)=\dfrac{0}{0.01}=0
-$$
-
-Step 3 · **After:** series, so $\alpha=\frac{R}{2L}$. Long after, $C$ is a gap again and holds the new source.
-
-$$
-\alpha=\dfrac{4}{2(0.04)}=50,\qquad \omega_0=\dfrac{1}{\sqrt{0.04\times0.01}}=50
-$$
-
-$$
-V_f=100\,\mathrm{V}
-$$
-
-Step 4 · **Pick:** $\alpha=\omega_0$, critically damped (B5 Case 2). Add $V_f$.
-
-$$
-v_C=100+(c_1+c_2t)\,e^{-50t}
-$$
-
-Step 5 · Differentiate (product rule).
-
-$$
-v_C^{\prime}=c_2e^{-50t}-50(c_1+c_2t)e^{-50t}
-$$
-
-Step 6 · **Plug in** $t=0$.
-
-$$
-100+c_1=200\quad\Rightarrow\quad c_1=100
-$$
-
-$$
-c_2-50c_1=0\quad\Rightarrow\quad c_2=5000
-$$
-
-Step 7 · **Check:** $t\to\infty$ gives $100\,\mathrm{V}$ ✓.
-
-**Answer:**
-
-$$
-v_C=100+(100+5000t)\,e^{-50t}\,\mathrm{V}
-$$
-
-</details>
+> **Warning:** **Units first.** $1\,\mathrm{mH}=10^{-3}\,\mathrm{H}$, $1\,\mu\mathrm{F}=10^{-6}\,\mathrm{F}$, $1\,\mathrm{nF}=10^{-9}\,\mathrm{F}$. Keep currents in mA and the constants come out in mA.
 
 #### Practice: D2
 
-**Problem: Problem 44 · W5 · No resistor: an ideal LC circuit · textbook P8.14** (introductory)
+**Problem: ★ Problem 33 · W5 · Parallel RLC step response · lecture Example 5.2** (introductory)
 
-A $250\,\mathrm{mF}$ capacitor and a $0.4\,\mathrm{H}$ inductor are in parallel. At the start, $v(0)=0$ and $i_L(0)=-3\,\mathrm{A}$ (arrow pointing down). Find (a) $v(t)$, (b) its frequency in rad/s, (c) its maximum amplitude.
-
-```schematic
-C1 0,3 -> 0,0 "$250\,\mathrm{mF}$" v="$v$" i="$i_C$"
-wire 0,3 -> 3,3
-L1 3,3 -> 3,0 "$0.4\,\mathrm{H}$" i="$i_L$"
-wire 3,0 -> 0,0
-ground 0,0
-```
-
-<details><summary>Solution</summary>
-
-1. **Type:** parallel with no $R$, so $\alpha=0$: undamped. $\frac{1}{LC}=\frac{1}{0.25\times0.4}=10$.
-
-   $$v''+\dfrac{1}{LC}v=v''+10v=0$$
-2. **Pick:** $\omega_0=\sqrt{10}$. The cosine coefficient is $v(0)=0$, so only the sine is left.
-
-   $$v=c_2\sin(\sqrt{10}\,t)$$
-3. **Carry across** (slope): KCL at the top node: $i_C+i_L=0$, so $i_C(0^+)=+3\,\mathrm{A}$ (down). Divide by $C$.
-
-   $$v'(0^+)=\dfrac{3}{0.25}=12\,\mathrm{V/s}$$
-4. **Plug in:** the slope of $c_2\sin(\sqrt{10}\,t)$ at $0$ is $\sqrt{10}\,c_2$. Set it equal to 12.
-
-   $$c_2=\dfrac{12}{\sqrt{10}}\approx3.795$$
-
-**Answer:** (a) $v=\dfrac{12}{\sqrt{10}}\sin(\sqrt{10}\,t)\,\mathrm{V}$. (b) $\omega_0=\sqrt{10}\approx3.162\,\mathrm{rad/s}$. (c) $3.795\,\mathrm{V}$. With no $R$, nothing uses up the energy, so it never dies out.
-
-</details>
-
-**Problem: Problem 45 · W5 · Read the circuit back from its response · textbook P8.3** (introductory)
-
-In a parallel RLC circuit, $C=50\,\mathrm{nF}$ and the voltage is $v=-5e^{-5000t}+20e^{-20000t}\,\mathrm{V}$ for $t\ge0$. Find $\alpha$, $\omega_0$, $L$ and $R$.
+The initial energy stored in the circuit is zero. At $t=0$ a DC current source of $24\,\mathrm{mA}$ is switched on. $R=400\,\Omega$, $C=25\,\mathrm{nF}$, $L=25\,\mathrm{mH}$. Find $i_L(t)$, $t\ge0$.
 
 ```schematic
-C1 0,3 -> 0,0 "$50\,\mathrm{nF}$" v="$v$" i="$i_C$"
-wire 0,3 -> 3,3
-L1 3,3 -> 3,0 "$L$" i="$i_L$"
+I1 0,0 -> 0,3 "$24\,\mathrm{mA}$"
+S1 0,3 -> 3,3 "$t=0$" action=close
+C1 3,3 -> 3,0 "$25\,\mathrm{nF}$" v="$v$" i="$i_C$"
 wire 3,3 -> 6,3
-R1 6,3 -> 6,0 "$R$" i="$i_R$"
-wire 6,0 -> 0,0
+L1 6,3 -> 6,0 "$25\,\mathrm{mH}$" i="$i_L$"
+wire 6,3 -> 9,3
+R1 9,3 -> 9,0 "$R$" i="$i_R$"
+wire 9,0 -> 0,0
 ground 0,0
 ```
 
 <details><summary>Solution</summary>
 
-1. **Type:** two decaying exponentials means two real roots: overdamped. The exponents are the roots, $s_1=-5000$ and $s_2=-20000$.
-2. **Roots → equation:** multiply out $(s+5000)(s+20000)$ and line it up with $s^2+2\alpha s+\omega_0^2$.
+1. **Type:** an $L$ and a $C$ → second order → D2. A source stays on → step response: $i_L=24+$ natural.
+2. **Before:** zero energy, so nothing is stored.
 
-   $$s^2+25000s+10^8=0$$
-3. Read off: $2\alpha=25000$ and $\omega_0^2=10^8$.
+   $$v(0)=0,\qquad i_L(0)=0$$
+3. **Carry across** (slope): $L\frac{di_L}{dt}=v$, and $v(0)=0$.
 
-   $$\alpha=12500\,\mathrm{s^{-1}},\quad\omega_0=10^4\,\mathrm{rad/s}$$
-4. **$L$:** use $\omega_0^2=\dfrac{1}{LC}$.
+   $$\dfrac{di_L}{dt}(0)=0$$
+4. **After:** $\alpha$ and $\omega_0$.
 
-   $$L=\dfrac{1}{10^8\times50\times10^{-9}}=0.2\,\mathrm{H}$$
-5. **$R$:** it is parallel, so use $\alpha=\dfrac{1}{2RC}$.
+   $$\begin{gathered}\alpha=\dfrac{1}{2RC}=\dfrac{1}{2(400)(25\times10^{-9})}=50\,000 \\ \omega_0=\dfrac{1}{\sqrt{LC}}=40\,000\end{gathered}$$
+5. **Pick:** $\alpha>\omega_0$, overdamped (B5 Case 1). Roots:
 
-   $$R=\dfrac{1}{2(12500)(50\times10^{-9})}=800\,\Omega$$
+   $$\begin{gathered}s=-50\,000\pm\sqrt{50\,000^2-40\,000^2}=-50\,000\pm30\,000 \\ s_1=-20\,000,\qquad s_2=-80\,000\end{gathered}$$
+6. Write the whole answer (mA).
 
-**Answer:** $\alpha=12500\,\mathrm{s^{-1}}$, $\omega_0=10^4\,\mathrm{rad/s}$, $L=0.2\,\mathrm{H}$, $R=800\,\Omega$.
+   $$i_L=24+A_1e^{-20\,000t}+A_2e^{-80\,000t}$$
+7. **Plug in** $i_L(0)=0$.
+
+   $$24+A_1+A_2=0$$
+8. **Plug in** the slope: differentiate, then $t=0$.
+
+   $$-20\,000A_1-80\,000A_2=0\quad\Rightarrow\quad A_1=-4A_2$$
+9. Solve: $-4A_2+A_2=-24$.
+
+   $$A_2=8,\qquad A_1=-32$$
+10. **Check:** $t\to\infty$ gives $24\,\mathrm{mA}$ ✓ (all the source current through the wire-like $L$).
+
+**Answer:** $i_L(t)=24-32e^{-20\,000t}+8e^{-80\,000t}\ \mathrm{mA}$, $t\ge0$.
 
 </details>
 
-**Problem: Problem 46 · W5 · Switch to a series loop · textbook P8.44** (intermediate)
+**Problem: Problem 34 · W5 · Same circuit, R = 500 Ω: critically damped · like lecture Example 5.2** (intermediate)
 
-The switch has been at $a$ for a long time. At $t=0$ it moves to $b$. Find $i(t)$ for $t\ge0$.
-
-```schematic
-V1 0,3 -> 0,0 "$70\,\mathrm{V}$"
-R1 0,3 -> 3,3 "$50\,\Omega$"
-S1 3,3 -> 6,3 "$t=0$" action=open
-C1 6,3 -> 6,0 "$200\,\mathrm{nF}$" v="$v_C$"
-S2 6,3 -> 9,3 "$t=0$" action=close
-R2 9,3 -> 12,3 "$200\,\Omega$" i="$i$"
-L1 12,3 -> 12,0 "$100\,\mathrm{mH}$"
-wire 12,0 -> 0,0
-ground 0,0
-label 3,3 "$a$" above
-label 9,3 "$b$" above
-```
+Repeat lecture Example 5.2 with $R=500\,\Omega$ (zero initial energy, $24\,\mathrm{mA}$, $25\,\mathrm{nF}$, $25\,\mathrm{mH}$). Find $i_L(t)$.
 
 <details><summary>Solution</summary>
 
-1. **Type:** after the switch, $C$, the $200\,\Omega$ and $L$ form one loop with no source: a series RLC natural response. We solve for $i$, the inductor current.
-2. **Before:** at $a$, $C$ is open (steady state), so no current flows in the $50\,\Omega$ and $C$ charges to the full 70 V. $L$ isn’t connected, so its current is 0.
+1. **Type:** same as Example 5.2: $i_L=24+$ natural, with $i_L(0)=0$ and $i_L^{\prime}(0)=0$.
+2. **After:** only $\alpha$ changes.
 
-   $$v_C(0^-)=70\,\mathrm{V},\quad i(0^-)=0$$
-3. **Carry across** (slope): KVL around the new loop is $v_C=Ri+L\,i^{\prime}$. At $0^+$, $v_C=70$ and $i=0$.
+   $$\begin{gathered}\alpha=\dfrac{1}{2(500)(25\times10^{-9})}=40\,000 \\ \omega_0=40\,000\end{gathered}$$
+3. **Pick:** $\alpha=\omega_0$, critically damped (B5 Case 2), root $-40\,000$ twice.
 
-   $$i'(0^+)=\dfrac{70-200(0)}{0.1}=700\,\mathrm{A/s}$$
-4. **After:** $\alpha=\dfrac{R}{2L}=\dfrac{200}{2(0.1)}=1000$ and $\omega_0^2=\dfrac{1}{LC}=\dfrac{1}{0.1\times200\times10^{-9}}=5\times10^7$. $\alpha^2=10^6$ is smaller, so underdamped.
+   $$i_L=24+(D_1t+D_2)\,e^{-40\,000t}$$
+4. **Plug in** $i_L(0)=0$.
 
-   $$\omega_d=\sqrt{5\times10^7-10^6}=7000\,\mathrm{rad/s}$$
-5. **Pick:** the cosine coefficient is $i(0)=0$, so only the sine is left.
+   $$24+D_2=0\quad\Rightarrow\quad D_2=-24$$
+5. **Plug in** the slope. Product rule: $i_L^{\prime}(0)=D_1-40\,000D_2$.
 
-   $$i=c_2\,e^{-1000t}\sin7000t$$
-6. **Plug in:** the slope of this at $t=0$ is $7000c_2$. Set it equal to 700.
+   $$D_1-40\,000(-24)=0\quad\Rightarrow\quad D_1=-960\,000$$
 
-   $$c_2=0.1$$
-
-**Answer:** $i=0.1\,e^{-1000t}\sin7000t\ \mathrm{A}$ $=100\,e^{-1000t}\sin7000t\ \mathrm{mA}$, $t\ge0$.
+**Answer:** $i_L(t)=24-960\,000\,t\,e^{-40\,000t}-24e^{-40\,000t}\ \mathrm{mA}$.
 
 </details>
 
-**Problem: Problem 47 · W5 · The slope comes from KCL · textbook P8.7** (intermediate)
+**Problem: Problem 35 · W5 · Same circuit, R = 625 Ω: underdamped · like lecture Example 5.2** (intermediate)
 
-$R=\tfrac{12500}{3}\,\Omega$, $L=250\,\mathrm{mH}$ and $C=10\,\mathrm{nF}$ are in parallel. At the start, $v(0)=90\,\mathrm{V}$ and $i_L(0)=-30\,\mathrm{mA}$ (arrows as drawn). Find $v(t)$ for $t\ge0$.
+Repeat lecture Example 5.2 with $R=625\,\Omega$. Find $i_L(t)$.
+
+<details><summary>Solution</summary>
+
+1. **Type:** same as Example 5.2: $i_L=24+$ natural, with $i_L(0)=0$ and $i_L^{\prime}(0)=0$.
+2. **After:**
+
+   $$\begin{gathered}\alpha=\dfrac{1}{2(625)(25\times10^{-9})}=32\,000 \\ \omega_0=40\,000\end{gathered}$$
+3. **Pick:** $\alpha<\omega_0$, underdamped (B5 Case 3).
+
+   $$\begin{gathered}\omega_d=\sqrt{40\,000^2-32\,000^2}=24\,000 \\ i_L=24+e^{-32\,000t}(B_1\cos24\,000t+B_2\sin24\,000t)\end{gathered}$$
+4. **Plug in** $i_L(0)=0$.
+
+   $$24+B_1=0\quad\Rightarrow\quad B_1=-24$$
+5. **Plug in** the slope ($\sigma c_1+\omega c_2$ from B5).
+
+   $$-32\,000B_1+24\,000B_2=0\quad\Rightarrow\quad B_2=-32$$
+
+**Answer:** $i_L(t)=24-e^{-32\,000t}\big(24\cos24\,000t+32\sin24\,000t\big)\ \mathrm{mA}$.
+
+</details>
+
+**Problem: Problem 36 · W5 · Natural response: the slope comes from KCL · textbook P8.7** (intermediate)
+
+$R=\tfrac{12500}{3}\,\Omega$, $L=250\,\mathrm{mH}$ and $C=10\,\mathrm{nF}$ are in parallel, with no source. At the start, $v(0)=90\,\mathrm{V}$ and $i_L(0)=-30\,\mathrm{mA}$ (arrows as drawn). Find $v(t)$ for $t\ge0$.
 
 ```schematic
 C1 0,3 -> 0,0 "$10\,\mathrm{nF}$" v="$v$" i="$i_C$"
@@ -4363,537 +3383,131 @@ ground 0,0
 
 <details><summary>Solution</summary>
 
-1. **Type:** parallel RLC, no source: a natural response.
-2. **Carry across** (slope): first the resistor current, $i_R=\dfrac{90}{12500/3}=21.6\,\mathrm{mA}$. KCL at the top node (all arrows down): $i_C+i_L+i_R=0$, so $i_C=-(-30)-21.6$.
+1. **Type:** parallel RLC, no source: a natural response, final value $0$.
+2. **Carry across** (slope): first the resistor current, $i_R=\dfrac{90}{12500/3}=21.6\,\mathrm{mA}$. KCL (all arrows down): $i_C=-(i_L+i_R)$.
 
-   $$i_C(0^+)=30-21.6=8.4\,\mathrm{mA}$$
+   $$i_C(0^+)=-(-30+21.6)=8.4\,\mathrm{mA}$$
 3. Divide by $C$ to get the slope.
 
    $$v'(0^+)=\dfrac{8.4\times10^{-3}}{10^{-8}}=8.4\times10^5\,\mathrm{V/s}$$
-4. **After:** $\alpha=\dfrac{1}{2RC}=12000$ and $\omega_0=\dfrac{1}{\sqrt{LC}}=20000$. $\alpha<\omega_0$, so underdamped.
+4. **After:** $\alpha=\dfrac{1}{2RC}=12\,000$ and $\omega_0=\dfrac{1}{\sqrt{LC}}=20\,000$. $\alpha<\omega_0$, so underdamped.
 
-   $$\omega_d=\sqrt{20000^2-12000^2}=16000$$
+   $$\omega_d=\sqrt{20\,000^2-12\,000^2}=16\,000$$
 5. **Pick:** the cosine coefficient is $v(0)=90$.
 
-   $$v=e^{-12000t}(90\cos16000t+c_2\sin16000t)$$
-6. **Plug in:** the slope at $0$ is $-\alpha(90)+\omega_dc_2$ (the $y^{\prime}(0)$ column of the B5 table). Set it equal to $8.4\times10^5$.
+   $$v=e^{-12\,000t}(90\cos16\,000t+c_2\sin16\,000t)$$
+6. **Plug in** the slope: $-\alpha(90)+\omega_dc_2=8.4\times10^5$.
 
-   $$-12000(90)+16000c_2=840000\ \Rightarrow\ c_2=120$$
+   $$-12\,000(90)+16\,000c_2=840\,000\ \Rightarrow\ c_2=120$$
 
-**Answer:** $v=e^{-12000t}(90\cos16000t+120\sin16000t)\,\mathrm{V}$, $t\ge0$.
-
-</details>
-
-**Problem: Problem 48 · W5 · Choose R for critical damping · textbook P8.42** (advanced)
-
-$R$ is set so the circuit is critically damped. When the switch closes, $v_C=90\,\mathrm{V}$ and the inductor current is $i=24\,\mathrm{mA}$. Find (a) $R$, (b) $i$ and $\dfrac{di}{dt}$ just after closing, (c) $i(t)$ and $v_C(t)$ for $t\ge0$.
-
-```schematic
-C1 0,3 -> 0,0 "$160\,\mathrm{nF}$" v="$v_C$"
-S1 0,3 -> 3,3 "$t=0$" action=close
-R1 3,3 -> 6,3 "$R$" i="$i$"
-L1 6,3 -> 6,0 "$250\,\mathrm{mH}$"
-wire 6,0 -> 0,0
-ground 0,0
-```
-
-<details><summary>Solution</summary>
-
-1. **Type:** one loop, no source: a series RLC natural response. Critically damped means $\alpha=\omega_0$.
-2. **(a)** $\omega_0=\dfrac{1}{\sqrt{0.25\times160\times10^{-9}}}=5000$. Set $\alpha=\dfrac{R}{2L}=5000$ and solve for $R$.
-
-   $$R=2(0.25)(5000)=2500\,\Omega$$
-3. **(b)** $i$ is the inductor current, so it can’t jump: $i(0^+)=24\,\mathrm{mA}$. For the slope, use KVL around the loop, $v_C=Ri+L\,i^{\prime}$, at $0^+$.
-
-   $$i'(0^+)=\dfrac{90-2500(0.024)}{0.25}=120\,\mathrm{A/s}$$
-4. **(c) Pick:** critically damped, so one repeated root $s=-\alpha=-5000$.
-
-   $$i=(c_1+c_2t)e^{-5000t}$$
-5. **Plug in:** $c_1=i(0)=0.024$. The slope at $0$ is $c_2-5000c_1$; set it equal to 120.
-
-   $$c_2=240$$
-6. For $v_C$, use the same KVL: $v_C=Ri+L\,i^{\prime}$. (Check: $i=-C\,v_C^{\prime}$, with a minus because $i$ leaves the $+$ of $C$.)
-
-   $$v_C=(90+3\times10^5\,t)e^{-5000t}$$
-
-**Answer:** (a) $R=2500\,\Omega$. (b) $i(0^+)=24\,\mathrm{mA}$, $i^{\prime}(0^+)=120\,\mathrm{A/s}$. (c) $i=(0.024+240t)e^{-5000t}\,\mathrm{A}$, $v_C=(90+3\times10^5t)e^{-5000t}\,\mathrm{V}$.
+**Answer:** $v=e^{-12\,000t}(90\cos16\,000t+120\sin16\,000t)\,\mathrm{V}$, $t\ge0$.
 
 </details>
 
-**Problem: Problem 49 · W5 + W6 · The answer is zero · textbook P8.24** (advanced)
+## Topic E: Final run — every ★ problem
 
-The switch has been open for a long time and the capacitor is uncharged. At $t=0$ the switch closes. Find $v_o(t)$ for $t\ge0$.
+**The last hour.** These are all the prof’s own problems. For each one: cover the answer, do it on paper, then open the box and check. Wrong or slow? Click the section link and redo it there (the full solutions are there, same steps).
 
-```schematic
-V1 0,3 -> 0,0 "$12\,\mathrm{V}$"
-R1 0,3 -> 3,3 "$400\,\Omega$"
-L1 3,3 -> 3,0 "$1.25\,\mathrm{H}$" i="$i_L$"
-S1 3,3 -> 6,3 "$t=0$" action=close
-C1 6,3 -> 6,0 "$1.25\,\mu\mathrm{F}$" v="$v_o$"
-wire 6,0 -> 0,0
-ground 0,0
-```
+**Week 1** · [Topic A](#topic-a) · [D1](#d1)
 
-<details><summary>Solution</summary>
+1. **Ex 1.1** Compute $\dfrac{80+j18}{8+j10}$.
+2. **Ex 1.2** The four fourth roots of $81e^{j60^\circ}$.
+3. **§2** Get $\cos(A+B)$ and $\sin(A+B)$ from $e^{jA}e^{jB}=e^{j(A+B)}$.
+4. **Pre-tut 1** RL natural response: $L=8\,\mathrm{mH}$, $R=4\,\Omega$, $I_s=4\,\mathrm{A}$. Find $i(t)$ and sketch.
 
-1. **Type:** after closing, $L$ and $C$ sit across the same two nodes, fed by the source through $400\,\Omega$: a parallel RLC with a DC source.
-2. **Before:** steady state, so $L$ is a short and takes the whole source current. $C$ isn’t connected and has no charge.
+<details><summary>Answers: Week 1</summary>
 
-   $$i_L(0^-)=\dfrac{12}{400}=30\,\mathrm{mA},\quad v_o(0^-)=0$$
-3. **Carry across** (slope): at $0^+$, $v_o=0$, so the $400\,\Omega$ still carries $30\,\mathrm{mA}$. $L$ still takes all 30 mA (it can’t jump). KCL at the top node leaves nothing for $C$.
-
-   $$i_C(0^+)=30-30=0\ \Rightarrow\ v_o^{\prime}(0^+)=0$$
-4. **After:** KCL at the top node is $\dfrac{v_o-12}{400}+i_L+Cv_o^{\prime}=0$. Differentiate once: the constant 12 disappears, so the right side is $0$.
-
-   $$Cv_o''+\dfrac{v_o'}{400}+\dfrac{v_o}{L}=0$$
-5. **Plug in:** right side $0$, $v_o(0)=0$ and $v_o^{\prime}(0)=0$. The only solution that fits is $v_o=0$ (the zero-start rule in [Topic C](#topic-c)).
-
-**Answer:** $v_o(t)=0$ for all $t\ge0$. The inductor already carries the whole source current, so nothing ever flows into the capacitor.
+1. $5-j4$
+2. $3e^{j15^\circ},\ 3e^{j105^\circ},\ 3e^{j195^\circ},\ 3e^{j285^\circ}$
+3. Expand both sides with Euler, match real parts and $j$ parts.
+4. $\tau=2\,\mathrm{ms}$, $i=4e^{-500t}\,\mathrm{A}$
 
 </details>
 
-## Topic E: Practice midterm
+**Week 2** · [Topic B](#topic-b) · [D1](#d1)
 
-**The professor’s advice:** “Study all the examples in the lectures and posted materials, and those in the tutorials, and you will be fine. The examples will be a good guide to the problems on the Midterm.”
+1. **Ex 2.1** Is $t^3y^{\prime\prime}+e^ty^{\prime}+y=0$ linear? Order? Homogeneous? Constant coefficients?
+2. **§4** RC natural response: $v(0)=V_s$, then $C$ alone with $R$. Find $v(t)$.
+3. **§5** RC step response: $I_s$, $R$, $C$ in parallel, $v(0)=V_0$. Find $v(t)$.
+4. **Pre-tut 2** Same circuit, $V_0=0$, $I_s=2\,\mathrm{A}$, $R=1\,\mathrm{k\Omega}$: $i_C(0^-)$ and $i_C(0^+)$?
 
-So this set is built from those examples, some copied, some with new numbers or a twist. **Every solution uses exactly the steps of its section**, word for word, so you practise the way you learned it.
+<details><summary>Answers: Week 2</summary>
 
-**How to use it:**
-
-1. Close the rest of the note. Do a whole problem on paper before you open its solution.
-2. Start every answer with the **type** (which section) and the clue that told you.
-3. Stuck or wrong? Each answer ends with the section to review.
-
-**The midterm question is always one of these.** Spot the clue, run the steps:
-
-| You see… | Go to | First move |
-|---|---|---|
-| a complex number to divide, convert, power, root | [A](#topic-a) | go polar |
-| $y^{\prime}=$ ($t$-part)($y$-part) | [B1](#b1) | separate |
-| $y^{\prime}+p(t)\,y=f(t)$ | [B2](#b2) | $\mu=e^{\int p\,dt}$ |
-| $M\,dt+N\,dy=0$ | [B3](#b3) / [B4](#b4) | test $M_y=N_t$ |
-| $ay^{\prime\prime}+by^{\prime}+cy=0$ | [B5](#b5) | the quadratic |
-| $ay^{\prime\prime}+by^{\prime}+cy=f(t)$ | [B6](#b6) | $y_c$, then guess $y_p$ |
-| $t$ in front, $y_1$ given | [B7](#b7) | $y=y_1v$ |
-| “exactly one solution?”, “interval?” | [C](#topic-c) | find where it breaks |
-| a circuit with a switch | [D](#topic-d) | Before → Carry across → After |
-
-**Redo the full-example cards too, solutions closed:** B1 (lecture 3.3), B2 (lecture 3.1), B3 (lecture 4.1), B4 (Pre-tutorial 4), B6 (the tutorial problem), B7 (the lecture example), D1 (the lecture RL circuit), D2 (P8.53).
-
-**Problem: E1 · W1 · Divide, convert, take roots · like lecture Examples 1.1 and 1.2** (introductory)
-
-(a) Write $z=\dfrac{10+j5}{2-j}$ in rectangular form. (b) Write $z$ in polar form. (c) Find all three cube roots of $8j$, in polar and in rectangular form.
-
-<details><summary>Solution</summary>
-
-1. (a) **Type:** dividing in rectangular → Topic A, Case 2. Multiply top and bottom by the conjugate of the bottom, $2+j$.
-
-   $$z=\dfrac{(10+j5)(2+j)}{(2-j)(2+j)}$$
-2. Multiply out. $j^2=-1$, so $5j^2=-5$. The bottom is $2^2+1^2$.
-
-   $$\begin{gathered}(10+j5)(2+j)=20+j10+j10+5j^2=15+j20 \\ (2-j)(2+j)=5\end{gathered}$$
-3. Divide each part by $5$.
-
-   $$z=3+j4$$
-4. (b) **Type:** Case 1, rectangular → polar. $a=3>0$, so no $180^\circ$ fix.
-
-   $$\begin{gathered}c=\sqrt{3^2+4^2}=5 \\ \theta=\tan^{-1}\tfrac43=53.13^\circ\end{gathered}$$
-5. (c) **Type:** Case 3, roots with $k=3$. Go polar first: $8j$ points straight up.
-
-   $$8j=8\angle90^\circ$$
-6. **Length:** the cube root of $8$.
-
-   $$8^{1/3}=2$$
-7. **First angle**, then **spacing** $360^\circ/3$.
-
-   $$\begin{gathered}\dfrac{90^\circ}{3}=30^\circ \\ 30^\circ,\quad 150^\circ,\quad 270^\circ\end{gathered}$$
-8. Convert each to rectangular (Case 1): $a=2\cos\theta$, $b=2\sin\theta$.
-
-   $$\begin{gathered}2\angle30^\circ=\sqrt3+j \\ 2\angle150^\circ=-\sqrt3+j \\ 2\angle270^\circ=-j2\end{gathered}$$
-
-**Answer:** (a) $3+j4$. (b) $5\angle53.13^\circ$. (c) $2\angle30^\circ=\sqrt3+j$, $\;2\angle150^\circ=-\sqrt3+j$, $\;2\angle270^\circ=-j2$. Review: [Topic A](#topic-a).
+1. Linear, 2nd order, homogeneous, **not** constant-coefficient.
+2. $v=V_se^{-t/RC}$
+3. $v=RI_s+(V_0-RI_s)e^{-t/RC}$
+4. $0$ and $2\,\mathrm{A}$: the current jumps, the voltage doesn’t.
 
 </details>
 
-**Problem: E2 · W2 · Classify, then use linearity** (introductory)
+**Week 3** · [B1](#b1) · [B2](#b2) · [Topic C](#topic-c)
 
-For each equation, give the order and say whether it is linear, homogeneous, constant-coefficient and autonomous.
+1. **Ex 3.1** $y^{\prime}+\dfrac{10y}{2t+5}=10$, $y(0)=0$.
+2. **§1.1** RL circuit: $2\frac{di}{dt}+10i=100$, $i(0)=0$. Integrating factor, then again by separating.
+3. **Ex 3.2** $\dfrac{dy}{dt}=\dfrac{y^2}{t^3}$.
+4. **Ex 3.3** $\dfrac{dy}{dt}=\dfrac{3t+ty^2}{y+t^2y}$, $y(1)=3$.
+5. **Ex 3.4** $y\,dt+(t^3y^2+t^3)\,dy=0$.
+6. **Pre-tut 3(a)** $\dfrac{dy}{dt}=-\dfrac ty$, $y(1)=2$.
+7. **Pre-tut 3(b)** $3t(y^2+1)\,dt+y(t^2+2)\,dy=0$.
+8. **Pre-tut 3(c)** $\dfrac{dy}{dt}=8ty+3y$.
+9. **Theorem 3.2** When is there exactly one solution of $y^{\prime}=F(t,y)$ through a point?
 
-(a) $\dfrac{d^2i}{dt^2}+\dfrac{R}{L}\dfrac{di}{dt}+\dfrac{1}{LC}\,i=0$ (the series RLC circuit of the Week 2 notes)
+<details><summary>Answers: Week 3</summary>
 
-(b) $y^{\prime}=y^2+t$
-
-(c) $y^{\prime\prime}+y=6\cos^2t$
-
-(d) $y=e^{-t}$ solves $y^{\prime}+2y=e^{-t}$. Without solving, give a solution of $y^{\prime}+2y=5e^{-t}$.
-
-<details><summary>Solution</summary>
-
-1. **Type:** classification → the five questions at the start of Topic B.
-2. (a) **Order:** $i^{\prime\prime}$, so 2nd. **Linear:** $i$ only to the power 1. **Homogeneous:** right side $0$. **Constant coefficients:** $\frac RL$, $\frac1{LC}$ are numbers. **Autonomous:** no $t$ anywhere.
-3. (b) **Order** 1. $y^2$ is not power 1, so **nonlinear**. The $t$ means **not** autonomous.
-4. (c) **Order** 2, linear, numbers in front. Right side $\neq0$: **not** homogeneous. $\cos^2t$ has $t$: not autonomous.
-5. (d) **Linearity:** multiply $y$ by $5$ and the whole left side is multiplied by $5$. Check:
-
-   $$(5e^{-t})^{\prime}+2(5e^{-t})=-5e^{-t}+10e^{-t}=5e^{-t}\ \checkmark$$
-
-**Answer:** (a) 2nd order, linear, homogeneous, constant-coefficient, autonomous. (b) 1st order, nonlinear, not autonomous. (c) 2nd order, linear, not homogeneous, constant-coefficient, not autonomous. (d) $y=5e^{-t}$. Review: [Topic B](#topic-b).
-
-</details>
-
-**Problem: E3 · W3–W4 · Name the type, then solve · like lecture Examples 3.3, 3.1 and 4.1** (intermediate)
-
-Name the type of each equation, then solve it.
-
-(a) $\dfrac{dy}{dt}=\dfrac{2t+2ty^2}{y+t^2y}$, $\;y(0)=1$
-
-(b) $\dfrac{dy}{dt}+\dfrac{6y}{3t+2}=4$, $\;y(0)=0$
-
-(c) $(2t+y\cos t)\,dt+(\sin t+2y)\,dy=0$, $\;y(0)=1$
-
-<details><summary>Solution</summary>
-
-1. (a) **Type:** factor top and bottom → a $t$-part times a $y$-part → B1. **Write:**
-
-   $$\dfrac{dy}{dt}=\dfrac{2t}{1+t^2}\cdot\dfrac{1+y^2}{y}$$
-2. **Separate.**
-
-   $$\dfrac{y}{1+y^2}\,dy=\dfrac{2t}{1+t^2}\,dt$$
-3. **Integrate:** both are “top = derivative of bottom” (the left one is half).
-
-   $$\tfrac12\ln(1+y^2)=\ln(1+t^2)+C$$
-4. **Solve for $y$:** multiply by $2$, raise $e$ to both sides ($e^{2C}$ is a new $C$).
-
-   $$1+y^2=C\,(1+t^2)^2$$
-5. **Plug in** $y(0)=1$, then take the $+$ root ($y(0)>0$).
-
-   $$\begin{gathered}1+1=C\cdot1\quad\Rightarrow\quad C=2 \\ y=\sqrt{2(1+t^2)^2-1}\end{gathered}$$
-6. (b) **Type:** linear → B2. **Write:** $y^{\prime}$ is alone.
-
-   $$p=\dfrac{6}{3t+2},\qquad f=4$$
-7. **Find $\mu$:** $\int\frac{6}{3t+2}dt=2\ln(3t+2)$, and $e$, $\ln$ cancel.
-
-   $$\mu=(3t+2)^2$$
-8. **Multiply.**
-
-   $$\big[(3t+2)^2y\big]^{\prime}=4(3t+2)^2$$
-9. **Integrate** with $u=3t+2$, $du=3\,dt$.
-
-   $$(3t+2)^2y=\tfrac49(3t+2)^3+C$$
-10. **Divide** by $(3t+2)^2$.
-
-   $$y=\tfrac49(3t+2)+\dfrac{C}{(3t+2)^2}$$
-11. **Plug in** $y(0)=0$.
-
-   $$0=\tfrac89+\dfrac C4\quad\Rightarrow\quad C=-\tfrac{32}{9}$$
-12. (c) **Type:** $dt$, $dy$ form → B3. **Write.**
-
-   $$M=2t+y\cos t,\qquad N=\sin t+2y$$
-13. **Test.**
-
-   $$M_y=\cos t,\qquad N_t=\cos t\quad\checkmark$$
-14. **Integrate $M$ in $t$** ($y$ is a number).
-
-   $$U=t^2+y\sin t+h(y)$$
-15. **Match $N$.**
-
-   $$U_y=\sin t+h^{\prime}=\sin t+2y\quad\Rightarrow\quad h=y^2$$
-16. **Answer**, then **plug in** $t=0$, $y=1$: $0+0+1=C$.
-
-   $$t^2+y\sin t+y^2=1$$
-
-**Answer:** (a) B1: $y=\sqrt{2(1+t^2)^2-1}$. (b) B2: $y=\frac49(3t+2)-\dfrac{32}{9(3t+2)^2}$. (c) B3: $t^2+y\sin t+y^2=1$. Review: [B1](#b1), [B2](#b2), [B3](#b3).
+1. $\mu=(2t+5)^5$, $\;y=\tfrac56(2t+5)-\dfrac{5^7}{6(2t+5)^5}$
+2. $i=10(1-e^{-5t})\,\mathrm{A}$
+3. $\dfrac1y=\dfrac{1}{2t^2}-C$ (and $y=0$)
+4. $y^2+3=6(t^2+1)$
+5. $y^2+2\ln|y|-t^{-2}=C$
+6. $t^2+y^2=5$, $\;y=\sqrt{5-t^2}$
+7. $(t^2+2)^3(y^2+1)=C$
+8. $y=Ce^{4t^2+3t}$
+9. $F$ and $\partial F/\partial y$ continuous (finite) near the point. Sufficient, not necessary.
 
 </details>
 
-**Problem: E4 · W4 · Not exact: find the factor, then solve · like Pre-tutorial 4** (intermediate)
+**Week 4** · [B3](#b3) · [B4](#b4)
 
-Consider $(3ty+y^2)\,dt+(t^2+ty)\,dy=0$ with $y(1)=1$. (a) Show it is not exact. (b) Find an integrating factor. (c) Solve.
+1. **Ex 4.1** $(2ty+3t^2)\,dt+t^2\,dy=0$.
+2. **(a)** $3t\,dt+4y\,dy=0$.
+3. **(b)** $y^{\prime}=\dfrac{t-y}{t+y}$.
+4. **(c)** $2ty\,y^{\prime}=t^2-y^2$.
+5. **(d)** $y^{\prime}=\dfrac{t}{t+y}$: exact?
+6. **(e) + Pre-tut 4** $y\,dt+(3+3t-y)\,dy=0$: find $\mu$, then solve.
 
-<details><summary>Solution</summary>
+<details><summary>Answers: Week 4</summary>
 
-1. **Type:** $dt$, $dy$ form → test (B3). **Write.**
-
-   $$M=3ty+y^2,\qquad N=t^2+ty$$
-2. (a) **Test:** they don’t match → B4.
-
-   $$M_y=3t+2y,\qquad N_t=2t+y$$
-3. (b) **Find $\mu$:** try Case 1. Factor the bottom, $N=t(t+y)$: the $(t+y)$ cancels, only $t$ is left.
-
-   $$\begin{gathered}\dfrac{M_y-N_t}{N}=\dfrac{t+y}{t(t+y)}=\dfrac1t \\ \mu=e^{\int\frac1t\,dt}=t\end{gathered}$$
-4. **Multiply** by $t$.
-
-   $$(3t^2y+ty^2)\,dt+(t^3+t^2y)\,dy=0$$
-5. **Re-test.**
-
-   $$M_y=3t^2+2ty,\qquad N_t=3t^2+2ty\quad\checkmark$$
-6. (c) **Integrate $M$ in $t$.**
-
-   $$U=t^3y+\tfrac12t^2y^2+h(y)$$
-7. **Match $N$:** $U_y=t^3+t^2y+h^{\prime}$ must equal $t^3+t^2y$.
-
-   $$h^{\prime}=0$$
-8. **Answer**, then **plug in** $t=1$, $y=1$: $1+\tfrac12=C$. Multiply by $2$.
-
-   $$2t^3y+t^2y^2=3$$
-
-**Answer:** (a) $M_y=3t+2y\neq2t+y=N_t$. (b) $\mu=t$. (c) $2t^3y+t^2y^2=3$. If a ratio seems to have both letters, factor before giving up. Review: [B4](#b4).
+1. $t^2y+t^3=C$
+2. $3t^2+4y^2=C$
+3. $t^2-2ty-y^2=C$
+4. $t^3-3ty^2=C$
+5. No: $M_y=0\neq-1=N_t$.
+6. $\mu=y^2$, $\;ty^3+y^3-\tfrac14y^4=C$
 
 </details>
 
-**Problem: E5 · W3 + W5 · Is the solution guaranteed?** (intermediate)
+**Week 5** · [B5](#b5) · [D2](#d2) · [Topic C](#topic-c)
 
-(a) For $\dfrac{dy}{dt}=3y^{2/3}$, does the theorem guarantee exactly one solution through (i) $(1,8)$, (ii) $(0,0)$? Then check that $y=0$ and $y=t^3$ both solve it. What does that say about $(0,0)$?
+1. **§1** Parallel RLC: the characteristic equation and its three cases.
+2. **Ex 5.2** Zero initial energy, $24\,\mathrm{mA}$ switched on, $400\,\Omega$, $25\,\mathrm{nF}$, $25\,\mathrm{mH}$. Find $i_L(t)$.
+3. **Theorem 5.1** When does a linear $n$-th order ODE have exactly one solution?
 
-(b) Without solving, find the largest interval on which $(t^2-9)\,y^{\prime\prime}+t\,y^{\prime}+y=\dfrac1t$, $\;y(1)=0$, $y^{\prime}(1)=2$, has exactly one solution.
+<details><summary>Answers: Week 5</summary>
 
-<details><summary>Solution</summary>
-
-1. (a) **Type:** exactly one solution, first order → C1. **Write.**
-
-   $$F=3y^{2/3}$$
-2. **Differentiate** in $y$.
-
-   $$F_y=2y^{-1/3}=\dfrac{2}{y^{1/3}}$$
-3. **Find where it breaks:** $F$ is fine everywhere. $F_y$ divides by $y^{1/3}$.
-
-   $$y=0$$
-4. **Check the points:** (i) $y_0=8$ is off the line → exactly one. (ii) $y_0=0$ is on it → no guarantee.
-5. Both pass through $(0,0)$ and solve it, so there really are two solutions there.
-
-   $$\begin{gathered}y=0:\ 0=0\ \checkmark \\ y=t^3:\ 3t^2=3(t^3)^{2/3}\ \checkmark\end{gathered}$$
-6. (b) **Type:** interval, second-order linear → C2, Case 1. **Write:** divide by $t^2-9$.
-
-   $$p=\dfrac{t}{t^2-9},\quad q=\dfrac{1}{t^2-9},\quad f=\dfrac{1}{t(t^2-9)}$$
-7. **Find where they break:** the bottoms are $0$ at $t=-3,\,0,\,3$.
-8. **Pick the piece** containing $t_0=1$.
-
-   $$(0,\,3)$$
-
-**Answer:** (a) (i) Yes. (ii) No guarantee, and in fact two solutions ($y=0$, $y=t^3$) pass through $(0,0)$. (b) $(0,3)$. Review: [C1](#c1), [C2](#c2).
+1. $s^2+\frac{1}{RC}s+\frac{1}{LC}=0$; $\alpha=\frac1{2RC}$ vs $\omega_0=\frac1{\sqrt{LC}}$: over / critical / under.
+2. $i_L=24-32e^{-20\,000t}+8e^{-80\,000t}\ \mathrm{mA}$
+3. Coefficients and right side continuous on the interval, and the top coefficient $a_0(t)\neq0$ there.
 
 </details>
 
-**Problem: E6 · W2 · RC step response, and a current that jumps · like Pre-tutorial 2** (introductory)
+**Week 6** · [B6](#b6) · [B7](#b7)
 
-Before $t=0$ the switch is open and the capacitor holds $v=2\,\mathrm{V}$. The switch closes at $t=0$. (a) Write the ODE for $v$ for $t\ge0$. (b) Find $v(t)$. (c) Find $i_C$ just before and just after the switch closes.
+1. **Lecture** $y^{\prime\prime}-ty^{\prime}+y=0$, $y_1=t$. Find the general solution.
+2. **Pre-tut 5 = tutorial** $\ddot y+y=6\cos^2t$, $y(0)=0$, $y(\pi/2)=0$.
 
-```schematic
-I1 0,0 -> 0,3 "$3\,\mathrm{mA}$"
-wire 0,3 -> 3,3
-R1 3,3 -> 3,0 "$2\,\mathrm{k\Omega}$"
-S1 3,3 -> 6,3 "$t=0$" action=close
-C1 6,3 -> 6,0 "$5\,\mu\mathrm{F}$" v="$v$" i="$i_C$"
-wire 6,0 -> 0,0
-ground 0,0
-```
+<details><summary>Answers: Week 6</summary>
 
-<details><summary>Solution</summary>
-
-1. **Type:** one capacitor and a DC source after the switch → D1, step response. Solve for $v$ (it can’t jump).
-2. (a) **After:** KCL at the top node: the source current splits into $R$ and $C$. Divide by $C=5\times10^{-6}$.
-
-   $$\begin{gathered}C\dfrac{dv}{dt}+\dfrac{v}{R}=I_s \\ \dfrac{dv}{dt}+100\,v=600\end{gathered}$$
-3. (b) **Before:** given.
-
-   $$v(0^-)=2\,\mathrm{V}$$
-4. **Carry across:** a capacitor voltage can’t jump.
-
-   $$x_0=v(0^+)=2\,\mathrm{V}$$
-5. **After** (final value): long after, $C$ is a gap, so all of $I_s$ goes through $R$.
-
-   $$x_f=RI_s=2000\times0.003=6\,\mathrm{V}$$
-6. **After** (time constant): the current source is off (a gap), so $C$ sees just $R$.
-
-   $$\tau=RC=2000\times5\times10^{-6}=0.01\,\mathrm{s}$$
-7. **Plug in.**
-
-   $$v=6+(2-6)e^{-t/0.01}=6-4e^{-100t}\ \mathrm{V}$$
-8. (c) **Before:** the switch is open, so no current reaches $C$.
-
-   $$i_C(0^-)=0$$
-9. **Carry across:** $v=2\,\mathrm{V}$ still, so $R$ takes $\frac{2}{2000}=1\,\mathrm{mA}$. KCL: $C$ gets the rest.
-
-   $$i_C(0^+)=3-1=2\,\mathrm{mA}$$
-10. **Check** with $i_C=C\,v^{\prime}$ from (b): $v^{\prime}(0)=400$.
-
-   $$i_C(0^+)=5\times10^{-6}\times400=2\,\mathrm{mA}\ \checkmark$$
-
-**Answer:** (a) $v^{\prime}+100v=600$. (b) $v=6-4e^{-100t}\,\mathrm{V}$. (c) $0$ before, $2\,\mathrm{mA}$ after: the capacitor **current** jumps, its voltage doesn’t. Review: [D1](#d1).
-
-</details>
-
-**Problem: E7 · W5 · Complex roots, then a repeated root** (introductory)
-
-Solve (a) $y^{\prime\prime}+4y^{\prime}+13y=0$, and (b) $y^{\prime\prime}+4y^{\prime}+4y=0$, each with $y(0)=1$, $y^{\prime}(0)=0$.
-
-<details><summary>Solution</summary>
-
-1. (a) **Type:** numbers in front, right side $0$ → B5. **Write** the quadratic.
-
-   $$s^2+4s+13=0$$
-2. **Solve** with the formula. Under the root: $16-52=-36<0$, so Case 3.
-
-   $$s=\dfrac{-4\pm\sqrt{-36}}{2}=\dfrac{-4\pm j6}{2}=-2\pm j3$$
-3. **Pick:** Case 3, $\sigma=-2$, $\omega=3$.
-
-   $$y=e^{-2t}(c_1\cos3t+c_2\sin3t)$$
-4. **Differentiate** (product rule).
-
-   $$y^{\prime}=-2e^{-2t}(c_1\cos3t+c_2\sin3t)+e^{-2t}(-3c_1\sin3t+3c_2\cos3t)$$
-5. **Plug in** $t=0$.
-
-   $$\begin{gathered}y(0)=c_1=1 \\ y^{\prime}(0)=-2c_1+3c_2=0\quad\Rightarrow\quad c_2=\tfrac23\end{gathered}$$
-6. (b) **Type:** B5. **Write** and **solve:** a perfect square.
-
-   $$s^2+4s+4=(s+2)^2=0\quad\Rightarrow\quad s=-2\ \text{(twice)}$$
-7. **Pick:** Case 2.
-
-   $$y=(c_1+c_2t)\,e^{-2t}$$
-8. **Differentiate** (product rule).
-
-   $$y^{\prime}=c_2e^{-2t}-2(c_1+c_2t)\,e^{-2t}$$
-9. **Plug in** $t=0$.
-
-   $$\begin{gathered}y(0)=c_1=1 \\ y^{\prime}(0)=c_2-2c_1=0\quad\Rightarrow\quad c_2=2\end{gathered}$$
-
-**Answer:** (a) $y=e^{-2t}\big(\cos3t+\tfrac23\sin3t\big)$. (b) $y=(1+2t)e^{-2t}$. Review: [B5](#b5).
-
-</details>
-
-**Problem: E8 · W5 · Parallel RLC step response · lecture Example 5.2, plus a twist** (intermediate)
-
-The initial energy stored in the circuit is zero. At $t=0$ a DC current source of $24\,\mathrm{mA}$ is applied. (a) Find $i_L(t)$ for $t\ge0$. (b) Twist: which $R$ would make the circuit critically damped? Find $i_L(t)$ for that $R$.
-
-```schematic
-I1 0,0 -> 0,3 "$24\,\mathrm{mA}$"
-S1 0,3 -> 3,3 "$t=0$" action=close
-C1 3,3 -> 3,0 "$25\,\mathrm{nF}$" i="$i_C$"
-wire 3,3 -> 6,3
-L1 6,3 -> 6,0 "$25\,\mathrm{mH}$" i="$i_L$"
-wire 6,3 -> 9,3
-R1 9,3 -> 9,0 "$400\,\Omega$" i="$i_R$" v="$v$"
-wire 9,0 -> 0,0
-ground 0,0
-```
-
-<details><summary>Solution</summary>
-
-1. **Type:** an $L$ and a $C$, all in parallel, with a DC source → D2, parallel step response. Solve for $i_L$ (it can’t jump).
-2. (a) **Before:** zero energy, so nothing is charged and no current flows.
-
-   $$i_L(0^-)=0,\qquad v_C(0^-)=0$$
-3. **Carry across:** both carry over. Slope: $L$ sits across $C$, so $v_L=v_C(0^+)=0$, and $i_L^{\prime}=\frac{v_L}{L}$.
-
-   $$i_L(0^+)=0,\qquad i_L^{\prime}(0^+)=\dfrac{0}{L}=0$$
-4. **After:** parallel, so $\alpha=\frac{1}{2RC}$. Use H and F.
-
-   $$\begin{gathered}\alpha=\dfrac{1}{2(400)(25\times10^{-9})}=50000, \\ \omega_0=\dfrac{1}{\sqrt{(0.025)(25\times10^{-9})}}=40000\end{gathered}$$
-5. **After** (final value): long after, $L$ is a wire and takes all of the source.
-
-   $$I_f=24\,\mathrm{mA}$$
-6. **Pick:** $\alpha>\omega_0$, overdamped (B5 Case 1). Roots:
-
-   $$\begin{gathered}s=-50000\pm\sqrt{50000^2-40000^2}=-50000\pm30000 \\ i_L=24+c_1e^{-20000t}+c_2e^{-80000t}\ \mathrm{mA}\end{gathered}$$
-7. **Plug in** $t=0$: the value, then the slope (each root times its constant).
-
-   $$\begin{gathered}24+c_1+c_2=0 \\ -20000c_1-80000c_2=0\end{gathered}$$
-8. The second gives $c_1=-4c_2$. Put it in the first: $-3c_2=-24$.
-
-   $$c_2=8,\qquad c_1=-32$$
-9. (b) **Critical damping** means $\alpha=\omega_0=40000$. Solve $\frac{1}{2RC}=40000$.
-
-   $$R=\dfrac{1}{2(40000)(25\times10^{-9})}=500\,\Omega$$
-10. **Pick:** Case 2, root $-40000$ twice. Same final value.
-
-   $$i_L=24+(c_1+c_2t)\,e^{-40000t}\ \mathrm{mA}$$
-11. **Plug in** $t=0$: value, then slope ($c_2-40000c_1$ from the product rule).
-
-   $$\begin{gathered}24+c_1=0\quad\Rightarrow\quad c_1=-24 \\ c_2-40000c_1=0\quad\Rightarrow\quad c_2=-960000\end{gathered}$$
-12. **Check:** $t\to\infty$ gives $24\,\mathrm{mA}$ in both ✓.
-
-**Answer:** (a) $i_L=24-32e^{-20000t}+8e^{-80000t}\ \mathrm{mA}$ (the lecture’s answer). (b) $R=500\,\Omega$: $i_L=24-24(1+40000t)e^{-40000t}\ \mathrm{mA}$. Review: [D2](#d2).
-
-</details>
-
-**Problem: E9 · W6 · The tutorial problem without the hints · Pre-tutorial 5** (intermediate)
-
-(a) Solve $y^{\prime\prime}+y=6\cos^2t$, $\;y(0)=0$, $\;y(\pi/2)=0$. This time the forms of $y_c$ and $y_p$ are **not** given.
-
-(b) For $y^{\prime\prime}-4y=e^{2t}+t$, write the form of $y_p$ and find it.
-
-<details><summary>Solution</summary>
-
-1. (a) **Type:** numbers in front, right side not $0$ → B6. **Solve $y_c$:** $s^2+1=0$, $s=\pm j$ (B5 Case 3, $\sigma=0$, $\omega=1$).
-
-   $$y_c=c_1\sin t+c_2\cos t$$
-2. No case fits $\cos^2t$, so use the identity first.
-
-   $$6\cos^2t=3+3\cos2t$$
-3. **Guess $y_p$:** constant → $A$ (Case 1); $\cos2t$ → both (Case 3). None is in $y_c$.
-
-   $$y_p=A+B\cos2t+D\sin2t$$
-4. Differentiate twice: each $\cos2t$, $\sin2t$ is multiplied by $-4$.
-
-   $$y_p^{\prime\prime}=-4B\cos2t-4D\sin2t$$
-5. **Plug in** to $y_p^{\prime\prime}+y_p$ and collect.
-
-   $$A-3B\cos2t-3D\sin2t=3+3\cos2t$$
-6. **Match** constants, $\cos2t$, $\sin2t$.
-
-   $$A=3,\qquad B=-1,\qquad D=0$$
-7. **Add.**
-
-   $$y=3-\cos2t+c_1\sin t+c_2\cos t$$
-8. **Plug in** $y(0)=0$: $\sin0=0$, $\cos0=1$.
-
-   $$3-1+c_2=0\quad\Rightarrow\quad c_2=-2$$
-9. **Plug in** $y(\pi/2)=0$: $\cos\pi=-1$, $\sin\frac\pi2=1$, $\cos\frac\pi2=0$.
-
-   $$3+1+c_1=0\quad\Rightarrow\quad c_1=-4$$
-10. (b) **Solve $y_c$:** $s^2-4=0$, $s=\pm2$ (B5 Case 1).
-
-   $$y_c=c_1e^{2t}+c_2e^{-2t}$$
-11. **Guess $y_p$:** $e^{2t}$ is in $y_c$ → Case 4, times $t$. The $t$ → Case 1, $Bt+D$.
-
-   $$y_p=Ate^{2t}+Bt+D$$
-12. Differentiate twice (product rule on $te^{2t}$).
-
-   $$y_p^{\prime\prime}=A(4+4t)e^{2t}$$
-13. **Plug in** to $y_p^{\prime\prime}-4y_p$. The $te^{2t}$ terms cancel.
-
-   $$4Ae^{2t}-4Bt-4D=e^{2t}+t$$
-14. **Match** $e^{2t}$, $t$, constants.
-
-   $$A=\tfrac14,\qquad B=-\tfrac14,\qquad D=0$$
-
-**Answer:** (a) $y=3-\cos2t-4\sin t-2\cos t$. (b) $y_p=\frac14te^{2t}-\frac14t$. Review: [B6](#b6).
-
-</details>
-
-**Problem: E10 · W6 · Reduction of order · like lecture Example 6.1** (intermediate)
-
-Given that $y_1=t$ solves $t^2y^{\prime\prime}+t\,y^{\prime}-y=0$ for $t>0$, find the general solution.
-
-<details><summary>Solution</summary>
-
-1. **Type:** $t$ in front, one solution given → B7. **Write** (check $y_1$): $0+t-t=0$ ✓.
-2. **Substitute** $y=tv$ (product rule).
-
-   $$\begin{gathered}y^{\prime}=v+tv^{\prime} \\ y^{\prime\prime}=2v^{\prime}+tv^{\prime\prime}\end{gathered}$$
-3. **Plug in and collect.** The plain-$v$ terms cancel ($tv-tv$).
-
-   $$\begin{gathered}t^2(2v^{\prime}+tv^{\prime\prime})+t(v+tv^{\prime})-tv=0 \\ t^3v^{\prime\prime}+3t^2v^{\prime}=0\end{gathered}$$
-4. **Solve for $z$:** set $z=v^{\prime}$, divide by $t^3$, separate (B1).
-
-   $$\begin{gathered}\dfrac{dz}{z}=-\dfrac3t\,dt \\ z=\dfrac{c_1}{t^3}\end{gathered}$$
-5. **Integrate** (power rule).
-
-   $$v=-\dfrac{c_1}{2t^2}+c_2$$
-6. **Multiply back** by $t$. $-\frac{c_1}{2}$ is just another constant: call it $c_1$.
-
-   $$y=c_2\,t+\dfrac{c_1}{t}$$
-
-**Answer:** $y=c_1\dfrac1t+c_2t$. Check $y=\frac1t$: $t^2\cdot\frac{2}{t^3}+t\cdot\left(-\frac{1}{t^2}\right)-\frac1t=0$ ✓. Review: [B7](#b7).
+1. $y=c_2t+c_1t\displaystyle\int\frac{e^{t^2/2}}{t^2}\,dt$
+2. $y=3-\cos2t-4\sin t-2\cos t$
 
 </details>

@@ -209,7 +209,8 @@ class Doc:
         if key not in docs:
             body = {"title": self.title, "document_type": "study_notes", "academic_week": self.academic_week,
                     "topic_keys": self.topic_keys, "blocks": self.B, "actor": "agent",
-                    "idempotency_key": f'elec231-w{self.week}-v1'}
+                    # previews are created and deleted again and again: a fixed key would hit HTTP 409 the second time
+                    "idempotency_key": f'elec231-w{self.week}-' + (uuid.uuid4().hex[:8] if str(self.week).startswith('prev') else 'v1')}
             out = _send(f'{API}/documents', body, 'POST')
             # The create response shape varies; look the new note up by week and title instead.
             query = f'?academic_week={self.academic_week}' if self.academic_week is not None else '?limit=100'
