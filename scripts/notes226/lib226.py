@@ -26,9 +26,10 @@ _CITES = json.load(open(os.path.join(OUT, 'citations.json'), encoding='utf-8'))
 FILES = {
     **{f'L{n}': f'ELEC226_326 Lec{n:02}{s}.pdf' for n, s in
        [(1, '-1'), (2, '-1'), (3, '-1'), (4, '-1'), (5, '-1'), (6, '-2'), (7, '-1'), (8, ''), (9, ''), (10, ''),
-        (11, ''), (12, ''), (13, ''), (14, ''), (15, '')]},
+        (11, ''), (12, ''), (13, ''), (14, ''), (15, ''), (17, ''), (18, ''), (19, ''), (20, ''), (21, ''),
+        (22, '')]},
     'T2': 'Tutorial 2-2.pdf', 'T3': 'Tutorial 3-2.pdf', 'T4': 'Tutorial 4.pdf', 'T5': 'Tutorial 5.pdf',
-    'T6': 'Tutorial 6.pdf', 'P1': 'Practice 01 (week1&2)-1.pdf', 'P2': 'Practice 02.pdf', 'P3': 'Practice 03.pdf',
+    'T6': 'Tutorial 6.pdf', 'T7': 'Tutorial 7.pdf', 'T8': 'Tutorial 8.pdf','P1': 'Practice 01 (week1&2)-1.pdf', 'P2': 'Practice 02.pdf', 'P3': 'Practice 03.pdf',
 }
 
 
@@ -181,6 +182,39 @@ class Doc:
             out += ['$$', latex, '$$', note]  # multi-line step form (the $$-own-line check in save() needs it)
         self._add({"type": "paragraph", "text": (intro + '\n\n' if intro else '') + '\n'.join(out + ['```']),
                    "citations": []}, 'st' + title)
+
+    def REGION(self, title, cond, x=(0, 1), y=(0, 1), label='where $f_{X,Y}\\ne0$', extra=(), caption='', intro=''):
+        """Shaded support of a joint PDF in the xy-plane (cond uses * for AND, e.g. "(x>0)*(y>x)*(y<1)"), plus extra
+        graph lines (a slice slider, boundary curves)."""
+        lines = [f'title "{title}"', f'x {x[0]} {x[1]} label="$x$"', f'y {y[0]} {y[1]} label="$y$"', 'equal',
+                 f'region "{cond}" color=1 label="{label}"', *extra]
+        if caption:
+            lines.append(f'caption "{caption}"')
+        self.GRAPH(lines, intro)
+
+    def SHEET3(self, uses=''):
+        """The Test 3 formula sheet (handed out with the test), as an info callout."""
+        self.CO('info', r'''**Formula sheet (given with Test 3).** Learn to use these, not to memorise them:
+
+$$
+f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy\qquad f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx
+$$
+
+$$
+p_{X|Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}\qquad f_{X|Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
+$$
+
+$$
+F_X(x)=\sum_{t\le x}p_X(t)\qquad F_X(x)=\int_{-\infty}^{x}f_X(t)\,dt
+$$
+
+$$
+E[X\mid Y=y]=\sum_x x\,p_{X|Y}(x\mid y)
+$$
+
+$$
+E[X\mid Y=y]=\int_{-\infty}^{\infty}x\,f_{X|Y}(x\mid y)\,dx
+$$'''+ (f'\n\n{uses}' if uses else ''))
 
     def GRAPH(self, lines, intro=''):
         body = '\n'.join(l.strip() for l in lines if l.strip())

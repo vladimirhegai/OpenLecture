@@ -1,0 +1,789 @@
+{
+ "title": "Test 3 - Question 2",
+ "topic_keys": [
+  "conditional_pmf",
+  "conditional_cdf",
+  "conditional_expectation",
+  "independence"
+ ],
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Test 3, Question 2 · Discrete conditional distributions and expectation**",
+   "citations": [],
+   "id": "8cc29a63-4a99-5dd1-a9a1-bd19630be1c7"
+  },
+  {
+   "type": "paragraph",
+   "text": "Read the bar $\\mid$ as “given.” In $P(X=x\\mid Y=y)$, you already know that $Y=y$. The question is how likely $X=x$ is among the outcomes that fit that information.",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "37d793a5-49d8-46c7-8cd4-a136e4202f08"
+    }
+   ],
+   "id": "dc3f4762-3d81-51bf-a2df-731cd49dce13"
+  },
+  {
+   "type": "paragraph",
+   "text": "First turn the selected outcomes into a probability distribution. Then use those probabilities to find a running total (a CDF) or a weighted average (a conditional expectation).",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "5ad2282c-1474-44fa-ad34-94fab76cd986"
+    }
+   ],
+   "id": "626cec4f-1a90-52e6-8f1c-c064585eaa95"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Find a conditional PMF",
+   "citations": [],
+   "id": "3f6fa382-90ba-5c26-b514-1e163b64d76a"
+  },
+  {
+   "type": "paragraph",
+   "text": "A **conditional PMF** gives the probability of each possible value after you learn the condition. When you know $Y=y$, keep the cells labeled with that value of $Y$.",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "37d793a5-49d8-46c7-8cd4-a136e4202f08"
+    }
+   ],
+   "id": "fa5345e4-492e-5755-a52a-9391c1c79683"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Select.** Find the row or column labeled $Y=y$.",
+    "**Add.** Its total is $p_Y(y)$, the chance of the condition itself.",
+    "**Divide.** Divide each selected cell by that total. The new probabilities should add to $1$."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "8dc8f7aa-ebc2-5e32-a1ac-dddbf9c7e1dd"
+  },
+  {
+   "type": "equation",
+   "latex": "p_{X|Y}(x\\mid y)=\\frac{p_{X,Y}(x,y)}{p_Y(y)}\\qquad\\text{for }p_Y(y)>0",
+   "display": true,
+   "citations": [],
+   "id": "2ec99463-1f49-5fde-bcf2-43ba5d7cd2bc"
+  },
+  {
+   "type": "paragraph",
+   "text": "The numerator is the chance that both conditions hold. The denominator makes the selected group the whole set you are working with. If its total is zero, the formula is undefined.",
+   "citations": [],
+   "id": "296eaf56-3e82-5881-8fee-be1ab947f234"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · Condition on a row or column ★ (Tutorial 7 Q3)",
+   "prompt": "Using the table, find $p_{X|Y}(x\\mid1)$ and $p_{Y|X}(y\\mid1)$.\n\n| | $y=0$ | $y=1$ | $y=2$ |\n|---|---|---|---|\n| $x=0$ | $0.10$ | $0.15$ | $0.05$ |\n| $x=1$ | $0.20$ | $0.30$ | $0.20$ |",
+   "steps": [
+    {
+     "explanation": "**Given $Y=1$.** The selected column contains $0.15$ and $0.30$. Its total is $0.45$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Divide each cell by $0.45$.** The cell for $X=1$ is twice as large as the one for $X=0$. After dividing, it still has twice the probability.",
+     "latex": "\\begin{gathered}p_{X|Y}(0\\mid1)=\\frac{0.15}{0.45}=\\frac13 \\\\ p_{X|Y}(1\\mid1)=\\frac{0.30}{0.45}=\\frac23\\end{gathered}"
+    },
+    {
+     "explanation": "**Given $X=1$.** This time use the row labeled $X=1$. Its total is $0.20+0.30+0.20=0.70$.",
+     "latex": "\\begin{gathered}p_{Y|X}(0\\mid1)=\\frac{0.20}{0.70}=\\frac27 \\\\ p_{Y|X}(1\\mid1)=\\frac{0.30}{0.70}=\\frac37 \\\\ p_{Y|X}(2\\mid1)=\\frac{0.20}{0.70}=\\frac27\\end{gathered}"
+    },
+    {
+     "explanation": "**Check.** The two probabilities in the first calculation add to $1$. The three in the second calculation also add to $1$.",
+     "latex": ""
+    }
+   ],
+   "answer": "Given $Y=1$, use $\\tfrac13,\\tfrac23$ at $x=0,1$. Given $X=1$, use $\\tfrac27,\\tfrac37,\\tfrac27$ at $y=0,1,2$.",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "a25bde00-9c60-4121-8f33-54a29f5be927"
+    }
+   ],
+   "id": "af506df9-f8ca-5e35-8fc2-84c4b5ae44f4"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Turn the conditional PMF into a CDF",
+   "citations": [],
+   "id": "0294bb91-cc2a-584d-812f-bdc7d43e37d3"
+  },
+  {
+   "type": "paragraph",
+   "text": "The **conditional CDF** adds the conditional probabilities up to and including a cutoff. For instance, $F_{X|Y}(0.8\\mid1)=\\tfrac13$ in the table above because only $X=0$ is at or below $0.8$.",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "37d793a5-49d8-46c7-8cd4-a136e4202f08"
+    }
+   ],
+   "id": "cfe44813-6a69-593c-8908-a663fda441cb"
+  },
+  {
+   "type": "equation",
+   "latex": "F_{X|Y}(x\\mid y)=P(X\\le x\\mid Y=y)=\\sum_{a\\le x}p_{X|Y}(a\\mid y)",
+   "display": true,
+   "citations": [],
+   "id": "a4447bc4-b0b6-51fe-92a8-a2e58b39a3dc"
+  },
+  {
+   "type": "paragraph",
+   "text": "The total jumps at each possible value of $X$. It stays flat between jumps because there are no new values to count. At a jump, include the probability at that value.",
+   "citations": [],
+   "id": "81146a00-6158-5290-bcb0-f3de63a0c314"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · List the dice rolls that fit the condition ★ (Lecture 21)",
+   "prompt": "Roll two fair dice. $X$ is the first die and $Y$ is their sum. Find the conditional PMF and CDF of $X$ given $Y=7$.",
+   "steps": [
+    {
+     "explanation": "**Select.** Only six rolls have sum $7$. They are $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Divide.** The six rolls are equally likely. Exactly one has first die $x$, so each possible $x$ has one sixth of the selected probability.",
+     "latex": "p_{X|Y}(x\\mid7)=\\frac{1/36}{6/36}=\\frac16,\\qquad x=1,2,\\ldots,6"
+    },
+    {
+     "explanation": "**Add up to the cutoff.** At $x=2.5$, include $1$ and $2$. At $x=3$, include $3$ as well.",
+     "latex": "\\begin{gathered}F_{X|Y}(2.5\\mid7)=\\frac16+\\frac16=\\frac26 \\\\ F_{X|Y}(3\\mid7)=\\frac36\\end{gathered}"
+    },
+    {
+     "explanation": "**Write the whole CDF.** Between $k$ and the next integer, exactly $k$ values count.",
+     "latex": "F_{X|Y}(x\\mid7)=\\begin{cases}0,&x<1\\\\ \\frac k6,&k\\le x<k+1,\\ k=1,\\ldots,5\\\\ 1,&x\\ge6\\end{cases}"
+    }
+   ],
+   "answer": "The PMF is $\\tfrac16$ at $1,\\ldots,6$ and zero elsewhere. The CDF jumps by $\\tfrac16$ at each of those values.",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "d8eb7f26-b3eb-4d3d-8c18-85f2099a37cb"
+    },
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "1d5acd9d-c768-4d3b-a08d-e5ff6d4b40ce"
+    }
+   ],
+   "id": "6e53a261-d55d-5ece-9f8f-7d5228aff539"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Take a weighted average",
+   "citations": [],
+   "id": "ca1c2bfa-9ae0-5bf1-a2fd-a6cb752d114c"
+  },
+  {
+   "type": "paragraph",
+   "text": "The **conditional expectation** $E[X\\mid Y=y]$ is the average of $X$ among the outcomes with $Y=y$. Multiply each possible $x$ by its conditional probability, then add the products.",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "5ad2282c-1474-44fa-ad34-94fab76cd986"
+    }
+   ],
+   "id": "d81967ca-902d-55b3-acab-c28e4d4129b1"
+  },
+  {
+   "type": "equation",
+   "latex": "E[X\\mid Y=y]=\\sum_x x\\,p_{X|Y}(x\\mid y)",
+   "display": true,
+   "citations": [],
+   "id": "9d70e5ea-fd9a-568c-bcaa-6653b0c2d158"
+  },
+  {
+   "type": "paragraph",
+   "text": "For a fixed condition such as $Y=7$, the answer is one number. If you leave the condition as $Y=y$, the answer can be a function of $y$.",
+   "citations": [],
+   "id": "e5a31fb3-d8ea-5af2-a829-05dee5142e1c"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · Dice ★ (Lecture 22)",
+   "prompt": "Two dice, $X$ = the first die, $Y$ = the sum. Find $E[X\\mid Y=7]$.",
+   "steps": [
+    {
+     "explanation": "**Use the conditional PMF.** After keeping the rolls with sum $7$, each of the six first-die values has probability $\\tfrac16$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Weight and add.** The weights are all the same here, so this is the usual average of the six values.",
+     "latex": "E[X\\mid Y=7]=\\sum_{x=1}^{6}x\\cdot\\frac16=\\frac{1+2+3+4+5+6}{6}=3.5"
+    }
+   ],
+   "answer": "$3.5$",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "cae95c9c-8ecd-4ad8-8797-8d59909cb6c1"
+    }
+   ],
+   "id": "7bf842aa-a515-5f16-9aa8-44ed31ae9eb6"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Conditional second moment and variance",
+   "citations": [],
+   "id": "425fdc16-4676-5021-956c-33d4b8570c9d"
+  },
+  {
+   "type": "paragraph",
+   "text": "To get the conditional second moment, square each possible value before you weight it. Use the same conditional probabilities.",
+   "citations": [],
+   "id": "e2b70a79-b5a8-5f63-8438-e39bbcdd9a90"
+  },
+  {
+   "type": "equation",
+   "latex": "E[X^2\\mid Y=y]=\\sum_x x^2\\,p_{X|Y}(x\\mid y)",
+   "display": true,
+   "citations": [],
+   "id": "f3c63431-ed6c-5a26-8215-824818dc9b60"
+  },
+  {
+   "type": "equation",
+   "latex": "\\operatorname{Var}(X\\mid Y=y)=E[X^2\\mid Y=y]-\\big(E[X\\mid Y=y]\\big)^2",
+   "display": true,
+   "citations": [],
+   "id": "7526069b-04bd-5dc5-9f30-d6413d9ff6b7"
+  },
+  {
+   "type": "paragraph",
+   "text": "The same idea works for any $E[g(X)\\mid Y=y]$. Use the value $g(x)$ with each weight.",
+   "citations": [],
+   "id": "7d51e81e-5567-5739-bcb2-b4667ecb1e4c"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · From a table: mean, square, variance",
+   "prompt": "Use the conditional probabilities from the first worked table. Find $E[X\\mid Y=1]$, $E[Y\\mid X=1]$ and $\\operatorname{Var}(Y\\mid X=1)$.",
+   "steps": [
+    {
+     "explanation": "**Weight the values of $X$.** Given $Y=1$, $X=0$ has weight $\\tfrac13$ and $X=1$ has weight $\\tfrac23$.",
+     "latex": "E[X\\mid Y=1]=0\\cdot\\frac13+1\\cdot\\frac23=\\frac23"
+    },
+    {
+     "explanation": "$p_{Y|X}(\\cdot\\mid1)=\\tfrac27,\\tfrac37,\\tfrac27$ at $y=0,1,2$. **Mean.**",
+     "latex": "E[Y\\mid X=1]=0\\cdot\\frac27+1\\cdot\\frac37+2\\cdot\\frac27=\\frac77=1"
+    },
+    {
+     "explanation": "**Square** inside the sum.",
+     "latex": "E[Y^2\\mid X=1]=0+1\\cdot\\frac37+4\\cdot\\frac27=\\frac{11}7"
+    },
+    {
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(Y\\mid X=1)=\\frac{11}7-1^2=\\frac47"
+    }
+   ],
+   "answer": "$E[X\\mid Y=1]=\\tfrac23$, $E[Y\\mid X=1]=1$, $\\operatorname{Var}(Y\\mid X=1)=\\tfrac47$",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "a25bde00-9c60-4121-8f33-54a29f5be927"
+    }
+   ],
+   "id": "a4322ab1-cd74-5df3-84ac-cc54a6066fa9"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Use the conditional distribution to check independence",
+   "citations": [],
+   "id": "e564971d-09ce-52e1-990f-5dfa63e4d1e3"
+  },
+  {
+   "type": "paragraph",
+   "text": "For independence, the conditional probability must match the ordinary marginal at each $x$, for every $y$ with $p_Y(y)>0$. One mismatch shows dependence.",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "1d5acd9d-c768-4d3b-a08d-e5ff6d4b40ce"
+    }
+   ],
+   "id": "bbf72ca1-c93c-5f2e-8b28-6c415fab9f8f"
+  },
+  {
+   "type": "equation",
+   "latex": "p_{X|Y}(x\\mid y)=p_X(x)\\quad\\text{for all }x\\text{ and all }y\\text{ with }p_Y(y)>0",
+   "display": true,
+   "citations": [],
+   "id": "7cc55e9a-0230-598c-a571-bd03280bd1c6"
+  },
+  {
+   "type": "paragraph",
+   "text": "In the dice example, $Y=2$ forces both dice to show $1$. That gives $p_{X|Y}(1\\mid2)=1$, while $p_X(1)=\\tfrac16$. The first die and the sum are dependent.",
+   "citations": [],
+   "id": "4365987d-afff-51a5-9dee-5102bbd80e16"
+  },
+  {
+   "type": "paragraph",
+   "text": "A changing conditional mean also shows dependence. A constant mean can come from different distributions. For instance, $X=1$ every time and an even split between $X=0$ and $X=2$ both have mean $1$.",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "5ad2282c-1474-44fa-ad34-94fab76cd986"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "e45fceff-56ef-4197-8f13-d60d0a09adb2"
+    }
+   ],
+   "id": "cb109725-4332-57f1-8749-d2e1476352e9"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Conditional expectation with a density",
+   "citations": [],
+   "id": "6bafe078-fe4e-5888-b096-1c4e3a077eb8"
+  },
+  {
+   "type": "paragraph",
+   "text": "If $X$ is continuous, use the conditional density as the weight and integrate over its range. Question 3 works through how to find the density.",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "5ad2282c-1474-44fa-ad34-94fab76cd986"
+    }
+   ],
+   "id": "3da95897-c352-574a-8a68-d2981d114b0c"
+  },
+  {
+   "type": "equation",
+   "latex": "E[X\\mid Y=y]=\\int_{-\\infty}^{\\infty}x\\,f_{X|Y}(x\\mid y)\\,dx",
+   "display": true,
+   "citations": [],
+   "id": "a859ccb9-af0d-5c7f-badc-58f9ae4b7015"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · Continuous: $E[X\\mid Y=y]$ and independence ★ (Lecture 22)",
+   "prompt": "$f_{X,Y}(x,y)=6xy(2-x-y)$ for $0<x<1,\\ 0<y<1$. (a) Find $E[X\\mid Y=y]$ for $0<y<1$. (b) Are $X$ and $Y$ independent?",
+   "steps": [
+    {
+     "explanation": "(a) **Marginal** $f_Y$: integrate $x$ out over $0$ to $1$.",
+     "latex": "f_Y(y)=\\int_0^1 6xy(2-x-y)\\,dx=6y\\Big(\\frac{2-y}{2}-\\frac13\\Big)=y(4-3y)"
+    },
+    {
+     "explanation": "**Divide** (formula sheet).",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{6xy(2-x-y)}{y(4-3y)}=\\frac{6x(2-x-y)}{4-3y},\\qquad 0<x<1"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=y]=\\int_0^1x\\cdot\\frac{6x(2-x-y)}{4-3y}\\,dx=\\frac{6}{4-3y}\\Big(\\frac{2-y}{3}-\\frac14\\Big)"
+    },
+    {
+     "explanation": "Tidy up.",
+     "latex": "E[X\\mid Y=y]=\\frac{5-4y}{2(4-3y)},\\qquad 0<y<1"
+    },
+    {
+     "explanation": "(b) **Compare two allowed conditions.** The means differ, so $X$ and $Y$ are dependent.",
+     "latex": "\\begin{gathered}E[X\\mid Y=\\frac13]=\\frac{11}{18} \\\\ E[X\\mid Y=\\frac23]=\\frac7{12}\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $\\dfrac{5-4y}{2(4-3y)}$ (b) not independent",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "e45fceff-56ef-4197-8f13-d60d0a09adb2"
+    }
+   ],
+   "id": "6dda9336-e5d2-5e42-8213-f02f6d59e1b5"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 6 · Continuous: a flat triangle ★ (Lecture 21–22)",
+   "prompt": "$f_{X,Y}(x,y)=2$ for $0<x<y<1$. Given $f_{X|Y}(x\\mid y)=\\tfrac1y$ on $0<x<y$ (Question 3, Example 1), find $E[X\\mid Y=y]$.",
+   "steps": [
+    {
+     "explanation": "**Spot:** $\\tfrac1y$ is flat on $(0,y)$: uniform. The mean of a uniform is the midpoint.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=y]=\\int_0^y x\\cdot\\frac1y\\,dx=\\frac1y\\cdot\\frac{y^2}{2}=\\frac y2"
+    }
+   ],
+   "answer": "$E[X\\mid Y=y]=\\tfrac y2$",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "2d923520-0c04-4f6d-8792-7efa39f0d123"
+    }
+   ],
+   "id": "383df5f4-1500-5e07-85ad-971e2a8c73bf"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Practice Questions",
+   "citations": [],
+   "id": "3b97089f-d589-53c4-a21a-88952e63d7bc"
+  },
+  {
+   "type": "paragraph",
+   "text": "Start with the dice or the table. Write the conditional probabilities before you calculate the CDF or mean. Open each solution after you try it. ★ marks problems based on the lectures or tutorials.",
+   "citations": [],
+   "id": "a52f876c-9a0a-5600-b347-7ec8271ebd14"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 1 · Two dice, another sum · like Lecture 21–22",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Two fair dice. $X$ = the first die, $Y$ = the sum. Find (a) $p_{X|Y}(x\\mid4)$, (b) $F_{X|Y}(x\\mid4)$, (c) $E[X\\mid Y=4]$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Column $Y=4$:** $(1,3),(2,2),(3,1)$, three equally likely outcomes.",
+     "latex": "P(Y=4)=\\frac3{36}=\\frac1{12}"
+    },
+    {
+     "explanation": "(a) **Divide.**",
+     "latex": "p_{X|Y}(x\\mid4)=\\frac{1/36}{3/36}=\\frac13,\\qquad x=1,2,3"
+    },
+    {
+     "explanation": "(b) **Accumulate.**",
+     "latex": "F_{X|Y}(x\\mid4)=\\begin{cases}0,&x<1\\\\ \\frac13,&1\\le x<2\\\\ \\frac23,&2\\le x<3\\\\ 1,&x\\ge3\\end{cases}"
+    },
+    {
+     "explanation": "(c) **Mean.**",
+     "latex": "E[X\\mid Y=4]=\\frac{1+2+3}{3}=2"
+    }
+   ],
+   "answer": "(a) $\\tfrac13$ at $x=1,2,3$ (b) staircase $\\tfrac13,\\tfrac23,1$ (c) $2$",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "d8eb7f26-b3eb-4d3d-8c18-85f2099a37cb"
+    }
+   ],
+   "id": "2d36be6a-1694-5bea-a921-7f4461b14f76"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 2 · Two dice, the other way round",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Two fair dice, $X$ = the first die, $Y$ = the sum. Find $p_{Y|X}(y\\mid2)$ and $E[Y\\mid X=2]$. What is $E[Y\\mid X=x]$ in general?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** given $X=2$, $Y=2+(\\text{second die})$, and the second die is still fair.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Divide** (or just read it off).",
+     "latex": "p_{Y|X}(y\\mid2)=\\frac{1/36}{1/6}=\\frac16,\\qquad y=3,4,\\dots,8"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[Y\\mid X=2]=\\frac{3+4+5+6+7+8}{6}=5.5"
+    },
+    {
+     "explanation": "In general: $x$ plus the second die’s mean.",
+     "latex": "E[Y\\mid X=x]=x+3.5"
+    }
+   ],
+   "answer": "$\\tfrac16$ for $y=3..8$; $5.5$; $x+3.5$",
+   "citations": [],
+   "id": "1e3d620a-6a6d-58ee-aae6-95aec6537f5a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 3 · A table: PMF, CDF, mean, variance given $Y$",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "$X\\in\\{1,2,3\\}$, $Y\\in\\{1,2\\}$ with the joint PMF below. Find (a) $p_{X|Y}(x\\mid1)$, $E[X\\mid Y=1]$, $\\operatorname{Var}(X\\mid Y=1)$ (b) $p_{X|Y}(x\\mid2)$, $F_{X|Y}(x\\mid2)$, $E[X\\mid Y=2]$ (c) are $X$, $Y$ independent?\n\n| | $x=1$ | $x=2$ | $x=3$ |\n|---|---|---|---|\n| $y=1$ | $0.10$ | $0.20$ | $0.10$ |\n| $y=2$ | $0.30$ | $0.10$ | $0.20$ |",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Select** the row labeled $Y=1$. Its total is $0.4$. Divide each cell in that row by $0.4$.",
+     "latex": "p_{X|Y}(x\\mid1)=\\frac14,\\ \\frac12,\\ \\frac14\\quad(x=1,2,3)"
+    },
+    {
+     "explanation": "**Mean**, **Square**, **Subtract.**",
+     "latex": "\\begin{gathered}E[X\\mid Y=1]=\\frac14+1+\\frac34=2 \\\\ E[X^2\\mid Y=1]=\\frac14+2+\\frac94=4.5 \\\\ \\operatorname{Var}(X\\mid Y=1)=4.5-2^2=0.5\\end{gathered}"
+    },
+    {
+     "explanation": "(b) $Y=2$: total $p_Y(2)=0.6$. **Divide.**",
+     "latex": "p_{X|Y}(x\\mid2)=\\frac{0.3}{0.6},\\ \\frac{0.1}{0.6},\\ \\frac{0.2}{0.6}=\\frac12,\\ \\frac16,\\ \\frac13"
+    },
+    {
+     "explanation": "**Accumulate.**",
+     "latex": "F_{X|Y}(x\\mid2)=\\begin{cases}0,&x<1\\\\ \\frac12,&1\\le x<2\\\\ \\frac23,&2\\le x<3\\\\ 1,&x\\ge3\\end{cases}"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=2]=\\frac12+\\frac26+\\frac36=\\frac{11}6"
+    },
+    {
+     "explanation": "(c) $E[X\\mid Y=1]=2\\ne\\tfrac{11}6=E[X\\mid Y=2]$: it changes with $y$ → **not** independent.",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) $\\tfrac14,\\tfrac12,\\tfrac14$; $2$; $0.5$ (b) $\\tfrac12,\\tfrac16,\\tfrac13$; staircase $\\tfrac12,\\tfrac23,1$; $\\tfrac{11}6$ (c) not independent",
+   "citations": [],
+   "id": "86514596-2771-5d6a-8eb7-43a3bdc5990a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 4 · Independent table ★ · Lecture 19 table",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "Find $p_{X|Y}(x\\mid1)$ and $E[X\\mid Y=1]$. Compare with $p_X$ and $E[X]$.\n\n| | $Y=0$ | $Y=1$ |\n|---|---|---|\n| $X=0$ | $0.12$ | $0.18$ |\n| $X=1$ | $0.28$ | $0.42$ |",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Column** $Y=1$: total $0.60$. **Divide.**",
+     "latex": "p_{X|Y}(0\\mid1)=\\frac{0.18}{0.60}=0.3,\\qquad p_{X|Y}(1\\mid1)=\\frac{0.42}{0.60}=0.7"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=1]=0.7"
+    },
+    {
+     "explanation": "Plain marginal: $p_X=0.30,\\,0.70$ and $E[X]=0.7$. Exactly the same, as it must be: these $X$, $Y$ are independent.",
+     "latex": ""
+    }
+   ],
+   "answer": "$0.3,\\,0.7$; $E[X\\mid Y=1]=0.7=E[X]$",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "1e46f773-4923-484d-84b8-364e440a75f3"
+    }
+   ],
+   "id": "92e52d8f-3ab8-58b0-acd6-96a9eeafe1fe"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 5 · A die and “even”",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Roll a fair die. $X$ = the number, $Y=1$ if it is even and $Y=0$ if odd. Find $p_{X|Y}(x\\mid1)$, $E[X\\mid Y=1]$ and $E[X\\mid Y=0]$. Independent?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Column** $Y=1$: the outcomes $2,4,6$, each $\\tfrac16$, total $\\tfrac12$. **Divide.**",
+     "latex": "p_{X|Y}(x\\mid1)=\\frac{1/6}{1/2}=\\frac13,\\qquad x=2,4,6"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=1]=\\frac{2+4+6}{3}=4"
+    },
+    {
+     "explanation": "Same for odd ($x=1,3,5$).",
+     "latex": "E[X\\mid Y=0]=\\frac{1+3+5}{3}=3"
+    },
+    {
+     "explanation": "$4\\ne3$ → **not** independent (of course: $Y$ is built from $X$).",
+     "latex": ""
+    }
+   ],
+   "answer": "$\\tfrac13$ on $\\{2,4,6\\}$; $4$; $3$; not independent",
+   "citations": [],
+   "id": "ed7b5fcb-32db-5e2e-8a31-e436335e553f"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 6 · Find $c$, then condition",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Find $c$, then $p_{Y|X}(y\\mid1)$, $E[Y\\mid X=1]$ and $E[Y\\mid X=0]$.\n\n| | $y=0$ | $y=1$ | $y=2$ |\n|---|---|---|---|\n| $x=0$ | $c$ | $2c$ | $c$ |\n| $x=1$ | $2c$ | $c$ | $3c$ |",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Find $c$:** $10c=1$, so $c=0.1$.",
+     "latex": ""
+    },
+    {
+     "explanation": "Given $X=1$: the row $0.2,\\,0.1,\\,0.3$, total $p_X(1)=0.6$. **Divide.**",
+     "latex": "p_{Y|X}(y\\mid1)=\\frac13,\\ \\frac16,\\ \\frac12\\quad(y=0,1,2)"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[Y\\mid X=1]=0+\\frac16+2\\cdot\\frac12=\\frac76"
+    },
+    {
+     "explanation": "Given $X=0$: the row $0.1,\\,0.2,\\,0.1$, total $0.4$ → $\\tfrac14,\\tfrac12,\\tfrac14$.",
+     "latex": "E[Y\\mid X=0]=\\frac12+2\\cdot\\frac14=1"
+    }
+   ],
+   "answer": "$c=0.1$; $\\tfrac13,\\tfrac16,\\tfrac12$; $\\tfrac76$; $1$",
+   "citations": [],
+   "id": "5d18a073-9ffd-59a8-a847-f0c89648aedb"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 7 · Three coins",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "Toss a fair coin 3 times. $X=1$ if the first toss is heads (else $0$); $Y$ = the total number of heads. Find $p_{X|Y}(x\\mid2)$, $E[X\\mid Y=2]$, $p_{Y|X}(y\\mid1)$ and $E[Y\\mid X=1]$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Column** $Y=2$: $HHT,\\ HTH,\\ THH$, equally likely. The first toss is $H$ in two of them.",
+     "latex": "p_{X|Y}(1\\mid2)=\\frac23,\\qquad p_{X|Y}(0\\mid2)=\\frac13"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=2]=\\frac23"
+    },
+    {
+     "explanation": "Given $X=1$: $Y=1+$ (heads in the last two tosses): $HTT$; $HHT,HTH$; $HHH$.",
+     "latex": "p_{Y|X}(y\\mid1)=\\frac14,\\ \\frac12,\\ \\frac14\\quad(y=1,2,3)"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[Y\\mid X=1]=\\frac14+1+\\frac34=2"
+    }
+   ],
+   "answer": "$\\tfrac13,\\tfrac23$; $\\tfrac23$; $\\tfrac14,\\tfrac12,\\tfrac14$; $2$",
+   "citations": [],
+   "id": "2c6dc824-5ed7-56db-aaf6-0af5bebcac85"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Practice with continuous conditional expectation",
+   "citations": [],
+   "id": "6f3328d2-15ca-52d7-a09f-4c2a79e07099"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 8 · Continuous: on the square ★ · Tutorial 7 Q5 joint PDF",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=x+y$ for $0<x<1,\\ 0<y<1$. Find $E[X\\mid Y=y]$. Use it to show $X$, $Y$ are not independent.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Marginal.**",
+     "latex": "f_Y(y)=\\int_0^1(x+y)\\,dx=y+\\frac12"
+    },
+    {
+     "explanation": "**Divide.**",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{x+y}{y+\\frac12},\\qquad 0<x<1"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=y]=\\frac{\\int_0^1x(x+y)\\,dx}{y+\\frac12}=\\frac{\\frac13+\\frac y2}{y+\\frac12}=\\frac{2+3y}{3(1+2y)}"
+    },
+    {
+     "explanation": "At $y=\\tfrac14$ the mean is $\\tfrac{11}{18}$. At $y=\\tfrac12$ it is $\\tfrac7{12}$. The change shows dependence.",
+     "latex": ""
+    }
+   ],
+   "answer": "$E[X\\mid Y=y]=\\dfrac{2+3y}{3(1+2y)}$; not independent",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "0fbffb43-2956-498c-9f5d-b1a897b31fdd"
+    }
+   ],
+   "id": "f81cd494-7f9f-50f6-9dc1-7ad3638d68f3"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 9 · Continuous: a triangle ★ · Tutorial 7 Q6 joint PDF",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=24xy$ for $x,y\\ge0,\\ x+y\\le1$. Find $E[X\\mid Y=y]$ for $0<y<1$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Marginal:** slice at $y$, $x$ from $0$ to $1-y$.",
+     "latex": "f_Y(y)=\\int_0^{1-y}24xy\\,dx=12y(1-y)^2"
+    },
+    {
+     "explanation": "**Divide.**",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{24xy}{12y(1-y)^2}=\\frac{2x}{(1-y)^2},\\qquad 0\\le x\\le1-y"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=y]=\\int_0^{1-y}\\frac{2x^2}{(1-y)^2}\\,dx=\\frac{2(1-y)^3}{3(1-y)^2}=\\frac{2(1-y)}{3}"
+    }
+   ],
+   "answer": "$E[X\\mid Y=y]=\\tfrac23(1-y)$",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "0fbffb43-2956-498c-9f5d-b1a897b31fdd"
+    }
+   ],
+   "id": "7c0ddde1-6ec2-5ac0-be25-65416fedfba8"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 10 · Continuous: mean and variance given $Y$",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "$f_{X,Y}(x,y)=e^{-y}$ for $0<x<y$. Find $f_{X|Y}(x\\mid y)$, $E[X\\mid Y=y]$ and $\\operatorname{Var}(X\\mid Y=y)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Marginal:** slice at $y$, $x$ from $0$ to $y$.",
+     "latex": "f_Y(y)=\\int_0^y e^{-y}\\,dx=y\\,e^{-y},\\qquad y>0"
+    },
+    {
+     "explanation": "**Divide:** flat on $(0,y)$, so uniform.",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{e^{-y}}{y\\,e^{-y}}=\\frac1y,\\qquad 0<x<y"
+    },
+    {
+     "explanation": "**Mean** and **Square.**",
+     "latex": "E[X\\mid Y=y]=\\frac y2,\\qquad E[X^2\\mid Y=y]=\\int_0^y\\frac{x^2}{y}\\,dx=\\frac{y^2}3"
+    },
+    {
+     "explanation": "**Subtract.**",
+     "latex": "\\operatorname{Var}(X\\mid Y=y)=\\frac{y^2}3-\\frac{y^2}4=\\frac{y^2}{12}"
+    }
+   ],
+   "answer": "$\\tfrac1y$ on $(0,y)$; $\\tfrac y2$; $\\tfrac{y^2}{12}$",
+   "citations": [],
+   "id": "bdf48b2b-6371-5284-847f-baaaccb0ea01"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Test 3 formula sheet",
+   "citations": [],
+   "id": "1c17ae23-b26b-5a10-8e70-d0a4f59ccaea"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Formula sheet (given with Test 3).** Learn to use these, not to memorise them:\n\n$$\nf_X(x)=\\int_{-\\infty}^{\\infty}f_{X,Y}(x,y)\\,dy\\qquad f_Y(y)=\\int_{-\\infty}^{\\infty}f_{X,Y}(x,y)\\,dx\n$$\n\n$$\np_{X|Y}(x\\mid y)=\\frac{p_{X,Y}(x,y)}{p_Y(y)}\\qquad f_{X|Y}(x\\mid y)=\\frac{f_{X,Y}(x,y)}{f_Y(y)}\n$$\n\n$$\nF_X(x)=\\sum_{t\\le x}p_X(t)\\qquad F_X(x)=\\int_{-\\infty}^{x}f_X(t)\\,dt\n$$\n\n$$\nE[X\\mid Y=y]=\\sum_x x\\,p_{X|Y}(x\\mid y)\n$$\n\n$$\nE[X\\mid Y=y]=\\int_{-\\infty}^{\\infty}x\\,f_{X|Y}(x\\mid y)\\,dx\n$$",
+   "citations": [],
+   "id": "4f3e9598-f74f-581b-ae28-40b8fd3a44a8"
+  }
+ ]
+}

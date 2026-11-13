@@ -1,0 +1,753 @@
+{
+ "title": "Test 3 - Question 3",
+ "topic_keys": [
+  "conditional_pdf",
+  "conditional_cdf",
+  "conditional_probability",
+  "independence"
+ ],
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Test 3, Question 3 · Continuous conditional distributions**",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "27599022-bac4-4243-9a5e-0b4df18e3642"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "2d923520-0c04-4f6d-8792-7efa39f0d123"
+    }
+   ],
+   "id": "51e0e32e-7f2d-5309-87e3-6b3681838c9e"
+  },
+  {
+   "type": "paragraph",
+   "text": "“Given $Y=y$” means you hold $y$ fixed and ask how $X$ can vary. On the $xy$-plane, this means working along the horizontal line at height $y$.",
+   "citations": [],
+   "id": "4dd02a3b-d2df-5507-9889-0e3e368ac0ab"
+  },
+  {
+   "type": "paragraph",
+   "text": "First find the conditional density on that line. Once you have it, you can calculate probabilities, a CDF, or a mean with a one-variable integral.",
+   "citations": [],
+   "id": "c1e16ab4-facc-594a-a285-c9f92bb3c3b9"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Find the slice and its conditional density",
+   "citations": [],
+   "id": "dd491bc8-f83c-51d2-8c34-18c43a0d35a8"
+  },
+  {
+   "type": "paragraph",
+   "text": "For continuous $Y$, the event $Y=y$ has probability zero. The denominator you need is the **marginal density** $f_Y(y)$, which is the integral of the joint density along the selected slice.",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "27599022-bac4-4243-9a5e-0b4df18e3642"
+    }
+   ],
+   "id": "7715368b-bd0d-5ea2-acf5-23c360ace603"
+  },
+  {
+   "type": "equation",
+   "latex": "f_{X|Y}(x\\mid y)=\\frac{f_{X,Y}(x,y)}{f_Y(y)}\\qquad\\text{wherever }f_Y(y)>0",
+   "display": true,
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "27599022-bac4-4243-9a5e-0b4df18e3642"
+    }
+   ],
+   "id": "2b7d9258-61a1-5aa3-b024-700dd8197b25"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Slice.** Hold $y$ fixed. Use the inequalities in the question to find the possible $x$ values.",
+    "**Integrate.** Add up the joint density along those $x$ values to get $f_Y(y)$.",
+    "**Divide.** Dividing by the slice total makes the conditional density integrate to $1$. For an allowed $y$, the conditional density is zero outside the slice."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "0cdbfb1b-e2ec-5c8e-94d0-6729ddd5237d"
+  },
+  {
+   "type": "paragraph",
+   "text": "If the question gives $X=x$, hold $x$ fixed and use a vertical slice. Integrate in $y$ to get $f_X(x)$, then divide by $f_X(x)$.",
+   "citations": [],
+   "id": "a4135f6d-5d91-56a1-b89e-84b6e83401db"
+  },
+  {
+   "type": "paragraph",
+   "text": "Set $y=\\tfrac12$ in the graph. Which $x$ values are still possible? Move $y$ up and watch what happens to the right endpoint.\n\n```graph\ntitle \"Horizontal slice through $0<x<y<1$\"\nx -0.1 1.15 label=\"$x$\"\ny -0.1 1.15 label=\"$y$\"\nequal\nregion \"(x>0)*(y>x)*(y<1)\" color=1 label=\"where $f_{X,Y}\\ne0$\"\nslider s 0.05 0.95 0.5 label=\"$y$\"\ncurve \"x\" from=0 to=1 color=0 dash label=\"$y=x$\"\nsegment \"0\" \"s\" \"s\" \"s\" color=2 label=\"slice at $Y=y$: $x$ from $0$ to $y$\"\n```",
+   "citations": [],
+   "id": "bd061090-0934-5461-bd0f-3f07b2e88ae2"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · Find the density on a horizontal slice ★ (Lectures 21–22)",
+   "prompt": "$f_{X,Y}(x,y)=2$ for $0<x<y<1$ and zero elsewhere. Find $f_Y(y)$ and $f_{X|Y}(x\\mid y)$.",
+   "steps": [
+    {
+     "explanation": "**Read the range.** For a fixed $y$ between $0$ and $1$, the inequality $0<x<y$ says the slice starts at $0$ and ends at $y$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Find the marginal.** The joint density is $2$ along the whole slice, so its integral is $2$ times the length $y$.",
+     "latex": "f_Y(y)=\\int_0^y 2\\,dx=2y,\\qquad 0<y<1"
+    },
+    {
+     "explanation": "**Divide.** The denominator $2y$ is the total from that same slice.",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{2}{2y}=\\frac1y,\\qquad 0<x<y"
+    },
+    {
+     "explanation": "**Check.** The conditional density has height $1/y$ and width $y$. Its area is $1$.",
+     "latex": ""
+    }
+   ],
+   "answer": "$f_Y(y)=2y$ for $0<y<1$ and zero elsewhere. For those $y$, $f_{X|Y}(x\\mid y)=\\tfrac1y$ on $(0,y)$ and zero outside that slice.",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "04ad4230-3a3a-4cca-9e73-930724b05690"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "2d923520-0c04-4f6d-8792-7efa39f0d123"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "8145df45-df73-4814-9233-49e2bb7dcc5c"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "ae15266d-60e3-4ebc-9b77-fd6d6fdf89b5"
+    }
+   ],
+   "id": "a110dde9-5854-5724-b89b-97a4406943f0"
+  },
+  {
+   "type": "paragraph",
+   "text": "When the joint density is constant along a slice, the conditional density is uniform on that slice. Its height is $1$ divided by the slice length, since its total area has to be $1$.",
+   "citations": [],
+   "id": "5c625c65-73df-5d1c-bb57-900875d6ec14"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · Switch to a vertical slice",
+   "prompt": "Same $f_{X,Y}=2$ on $0<x<y<1$. Find $f_{Y|X}(y\\mid x)$ and $P(Y<0.6\\mid X=0.5)$.",
+   "steps": [
+    {
+     "explanation": "**Fix $x$.** The line goes up from $y=x$ to $y=1$. Its length is $1-x$.",
+     "latex": "f_X(x)=\\int_x^1 2\\,dy=2(1-x),\\qquad 0<x<1"
+    },
+    {
+     "explanation": "**Divide by $f_X(x)$.** This gives the new height for $Y$ along the vertical slice.",
+     "latex": "f_{Y|X}(y\\mid x)=\\frac{2}{2(1-x)}=\\frac1{1-x},\\qquad x<y<1"
+    },
+    {
+     "explanation": "**Use the requested slice.** At $x=0.5$, $Y$ ranges from $0.5$ to $1$. The part below $0.6$ has length $0.1$ out of the full length $0.5$.",
+     "latex": "P(Y<0.6\\mid X=0.5)=\\int_{0.5}^{0.6}\\frac{1}{0.5}\\,dy=\\frac{0.1}{0.5}=0.2"
+    }
+   ],
+   "answer": "For $0<x<1$, the density is $\\tfrac1{1-x}$ on $(x,1)$ and zero elsewhere. The probability is $0.2$.",
+   "citations": [],
+   "id": "d8caaec3-2ec6-5e4a-a696-24afd88312f9"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · A curved region ★ (Lecture 18 joint PDF)",
+   "prompt": "$f_{X,Y}(x,y)=\\dfrac{5y}{4}$ on $-1\\le x\\le1,\\ x^2\\le y\\le1$, with $f_X=\\tfrac58(1-x^4)$, $f_Y=\\tfrac52y^{3/2}$ (Question 1). Find $f_{X|Y}(x\\mid y)$ and $f_{Y|X}(y\\mid x)$.",
+   "steps": [
+    {
+     "explanation": "**Hold $y$ fixed.** Solve $x^2\\le y$ to get the horizontal slice. For $0<y\\le1$, the denominator $f_Y(y)$ is positive.",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{5y/4}{\\frac52y^{3/2}}=\\frac{1}{2\\sqrt y},\\qquad -\\sqrt y\\le x\\le\\sqrt y"
+    },
+    {
+     "explanation": "**Hold $x$ fixed.** The vertical slice runs from $x^2$ to $1$. For $-1<x<1$, the denominator $f_X(x)$ is positive.",
+     "latex": "f_{Y|X}(y\\mid x)=\\frac{5y/4}{\\frac58(1-x^4)}=\\frac{2y}{1-x^4},\\qquad x^2\\le y\\le1"
+    },
+    {
+     "explanation": "**Check:** $\\int_{x^2}^1\\frac{2y}{1-x^4}\\,dy=\\frac{1-x^4}{1-x^4}=1$ ✓.",
+     "latex": ""
+    }
+   ],
+   "answer": "$f_{X|Y}=\\tfrac1{2\\sqrt y}$ on $|x|\\le\\sqrt y$; $f_{Y|X}=\\tfrac{2y}{1-x^4}$ on $x^2\\le y\\le1$",
+   "citations": [
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "2e2d07ef-0fa1-4599-92c9-e91fa179e9d1"
+    }
+   ],
+   "id": "079a8664-dfac-58b1-9da6-c22dc2f787ca"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Get the conditional CDF and probabilities",
+   "citations": [],
+   "id": "4916e995-2b56-51a9-a465-5141fd1b242e"
+  },
+  {
+   "type": "paragraph",
+   "text": "The **conditional CDF** gives the area to the left of a cutoff $x$ on your slice. The letter $u$ runs through the values you integrate over, while $x$ stays fixed at the cutoff.",
+   "citations": [
+    {
+     "source_id": "13df79ff-e9d2-4459-a1c6-4c61d0825c20",
+     "version": 1,
+     "chunk_id": "27599022-bac4-4243-9a5e-0b4df18e3642"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "8145df45-df73-4814-9233-49e2bb7dcc5c"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "ae15266d-60e3-4ebc-9b77-fd6d6fdf89b5"
+    }
+   ],
+   "id": "69737592-ab5b-57c6-866a-0c053b626f07"
+  },
+  {
+   "type": "equation",
+   "latex": "F_{X|Y}(x\\mid y)=P(X\\le x\\mid Y=y)=\\int_{-\\infty}^x f_{X|Y}(u\\mid y)\\,du",
+   "display": true,
+   "citations": [],
+   "id": "4165e6e0-f9c5-5508-bf11-febf266952be"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Before the slice**, the area is $0$.",
+    "**Inside the slice**, integrate from the left endpoint to the cutoff.",
+    "**After the slice**, the area is $1$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "9560566b-7b47-5ee4-a210-d35cf4c1a46f"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · Turn the triangle density into a CDF ★ (Lecture 22)",
+   "prompt": "Use $f_{X|Y}(x\\mid y)=1/y$ on $0<x<y$, for $0<y<1$. Find $F_{X|Y}(x\\mid y)$ and $P(X<\\tfrac14\\mid Y=\\tfrac12)$.",
+   "steps": [
+    {
+     "explanation": "**Inside the slice.** The rectangle from $0$ to $x$ has width $x$ and height $1/y$.",
+     "latex": "\\int_0^x\\frac1y\\,du=\\frac xy"
+    },
+    {
+     "explanation": "**Include the endpoints.** At the left endpoint you have collected zero area. At the right endpoint you have collected all of it.",
+     "latex": "F_{X|Y}(x\\mid y)=\\begin{cases}0,&x\\le0\\\\ \\dfrac xy,&0<x<y\\\\ 1,&x\\ge y\\end{cases}"
+    },
+    {
+     "explanation": "**Use the given $y$.** When $y=\\tfrac12$, the slice is $(0,\\tfrac12)$. The cutoff $\\tfrac14$ is halfway through it. A single point has zero probability, so the CDF also gives the strict inequality.",
+     "latex": "P(X<\\frac14\\mid Y=\\frac12)=F_{X|Y}(\\frac14\\mid\\frac12)=\\frac{1/4}{1/2}=\\frac12"
+    }
+   ],
+   "answer": "The CDF is $0$ up to $0$, $x/y$ inside the slice, and $1$ from $y$ onward. The requested probability is $\\tfrac12$.",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "2d923520-0c04-4f6d-8792-7efa39f0d123"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "8145df45-df73-4814-9233-49e2bb7dcc5c"
+    },
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "ae15266d-60e3-4ebc-9b77-fd6d6fdf89b5"
+    }
+   ],
+   "id": "012c3d23-e98c-5f4c-b8c3-4f720674c2d3"
+  },
+  {
+   "type": "paragraph",
+   "text": "For an interval, use the difference between the CDF at the two cutoffs. If you integrate directly, use just the part of the interval that overlaps the slice.",
+   "citations": [],
+   "id": "d2b2edc8-97c0-59b9-83f7-8b8e14d80353"
+  },
+  {
+   "type": "equation",
+   "latex": "P(a<X<b\\mid Y=y)=F_{X|Y}(b\\mid y)-F_{X|Y}(a\\mid y)",
+   "display": true,
+   "citations": [],
+   "id": "619d9ec4-2bc5-5520-98a5-86f556f1498b"
+  },
+  {
+   "type": "paragraph",
+   "text": "For example, on the triangle at $y=\\tfrac12$, the event $0.3<X<0.8$ overlaps the slice from $0.3$ to $0.5$. Its probability is $1-0.3/0.5=0.4$.",
+   "citations": [],
+   "id": "fc13b936-b3d4-5004-96bd-76ccb3a44dab"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · On a square ★ (Tutorial 7 Q5 joint PDF)",
+   "prompt": "$f_{X,Y}(x,y)=x+y$ on $0<x<1,\\ 0<y<1$. Find $f_{X|Y}(x\\mid y)$, $F_{X|Y}(x\\mid y)$ and $P(X<\\tfrac12\\mid Y=\\tfrac12)$.",
+   "steps": [
+    {
+     "explanation": "**Slice** at $y$: $x$ from $0$ to $1$. **Marginal.**",
+     "latex": "f_Y(y)=\\int_0^1(x+y)\\,dx=y+\\frac12"
+    },
+    {
+     "explanation": "**Divide.**",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{x+y}{y+\\frac12},\\qquad 0<x<1"
+    },
+    {
+     "explanation": "**Accumulate** from $0$. Here the height changes with $x$, so integrate the density over the slice up to the cutoff.",
+     "latex": "F_{X|Y}(x\\mid y)=\\int_0^x\\frac{u+y}{y+\\frac12}\\,du=\\frac{\\frac{x^2}2+xy}{y+\\frac12},\\qquad 0<x<1"
+    },
+    {
+     "explanation": "**Complete the CDF.** It is $0$ for $x\\le0$ and $1$ for $x\\ge1$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Plug in** $y=\\tfrac12$ and $x=\\tfrac12$. The denominator becomes $1$.",
+     "latex": "P\\big(X<\\frac12\\ \\big|\\ Y=\\frac12\\big)=\\frac18+\\frac14=\\frac38"
+    }
+   ],
+   "answer": "On $(0,1)$, the density is $\\tfrac{x+y}{y+1/2}$ and the CDF is $\\tfrac{x^2/2+xy}{y+1/2}$. The probability is $\\tfrac38$.",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "0fbffb43-2956-498c-9f5d-b1a897b31fdd"
+    }
+   ],
+   "id": "22f6a62e-7731-5240-9511-f322e3edbadc"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Use the density for a mean or an independence check",
+   "citations": [],
+   "id": "c1eb6fdf-2b03-596e-beed-040233abcde5"
+  },
+  {
+   "type": "paragraph",
+   "text": "To find a conditional mean, multiply the density by $x$ before you integrate. For a uniform slice, the mean is its midpoint. For the triangle above, that gives $E[X\\mid Y=y]=y/2$.",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "5ad2282c-1474-44fa-ad34-94fab76cd986"
+    }
+   ],
+   "id": "4ecbf074-0d66-5c8c-985e-4f9a49fa11fb"
+  },
+  {
+   "type": "equation",
+   "latex": "E[X\\mid Y=y]=\\int_{-\\infty}^{\\infty} x\\,f_{X|Y}(x\\mid y)\\,dx",
+   "display": true,
+   "citations": [],
+   "id": "65332ce2-1783-5497-ba28-201630abd5ad"
+  },
+  {
+   "type": "paragraph",
+   "text": "For independence, the conditional density must match $f_X(x)$, the density before you learn $Y$. Compare the range of $x$ as well as the formula.",
+   "citations": [],
+   "id": "d0dfdaad-e58b-54b2-b91b-e60d05189081"
+  },
+  {
+   "type": "paragraph",
+   "text": "In the triangle, the upper endpoint moves with $y$. For instance, $x=0.4$ is possible when $y=0.5$, and its density is zero when $y=0.25$. Learning $Y$ changes the distribution of $X$.",
+   "citations": [],
+   "id": "f265ccbb-5a61-55ba-ba32-6ee97ead295e"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 6 · Independent: the conditional is the marginal ★ (Tutorial 7 Q4 joint PDF)",
+   "prompt": "$f_{X,Y}(x,y)=12xy(1-x)$ on the unit square. Find $f_{X|Y}(x\\mid y)$ and $P(X<\\tfrac12\\mid Y=0.3)$.",
+   "steps": [
+    {
+     "explanation": "**Find the marginal.** Integrate over $x$ from $0$ to $1$.",
+     "latex": "f_Y(y)=12y\\int_0^1x(1-x)\\,dx=2y"
+    },
+    {
+     "explanation": "**Divide and compare.** For every $0<y<1$, the conditional density equals the marginal $f_X$ and has the same range $0<x<1$.",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{12xy(1-x)}{2y}=6x(1-x)=f_X(x)"
+    },
+    {
+     "explanation": "**Integrate.** Because $X$ and $Y$ are independent, you get the same probability for any of those values of $y$.",
+     "latex": "P(X<\\frac12\\mid Y=0.3)=\\int_0^{1/2}6x(1-x)\\,dx=\\frac12"
+    }
+   ],
+   "answer": "$6x(1-x)$; $\\tfrac12$",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "a25bde00-9c60-4121-8f33-54a29f5be927"
+    }
+   ],
+   "id": "b02e0d66-9836-550f-9c29-f245ab0ddda0"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Practice Questions",
+   "citations": [],
+   "id": "95274633-0697-58ac-94e5-0f70227c63f2"
+  },
+  {
+   "type": "paragraph",
+   "text": "Start each problem by writing down which variable is fixed and the range of the other variable. Open each solution after you try it. ★ marks problems based on the lectures or tutorials.",
+   "citations": [],
+   "id": "8465b54a-db3a-5d13-a6e2-71b937892ebd"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 1 · The mirror triangle ★ · Tutorial 8 Q2 joint PDF",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=2$ for $0\\le y\\le x\\le1$. Find (a) $f_X$ and $f_{Y|X}(y\\mid x)$, (b) $F_{Y|X}(y\\mid x)$, (c) $P(Y<\\tfrac14\\mid X=\\tfrac12)$, (d) $f_{X|Y}(x\\mid y)$. (e) Independent?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Sketch:** the triangle **below** the line $y=x$.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) **Slice** at $x$: $y$ from $0$ to $x$. **Marginal**, then **Divide**.",
+     "latex": "\\begin{gathered}f_X(x)=\\int_0^x2\\,dy=2x,\\qquad 0<x\\le1 \\\\ f_{Y|X}(y\\mid x)=\\frac{2}{2x}=\\frac1x,\\qquad 0\\le y\\le x\\end{gathered}"
+    },
+    {
+     "explanation": "(b) **Accumulate** from $0$.",
+     "latex": "F_{Y|X}(y\\mid x)=\\begin{cases}0,&y<0\\\\ \\dfrac yx,&0\\le y\\le x\\\\ 1,&y>x\\end{cases}"
+    },
+    {
+     "explanation": "(c) **Plug in.**",
+     "latex": "P\\big(Y<\\frac14\\ \\big|\\ X=\\frac12\\big)=\\frac{1/4}{1/2}=\\frac12"
+    },
+    {
+     "explanation": "(d) **Slice** at $y$: $x$ from $y$ to $1$ (length $1-y$). Flat → uniform.",
+     "latex": "f_Y(y)=2(1-y),\\qquad f_{X|Y}(x\\mid y)=\\frac1{1-y},\\qquad y\\le x\\le1"
+    },
+    {
+     "explanation": "(e) A triangle → **not** independent.",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) $2x$; $\\tfrac1x$ on $[0,x]$ (b) $0,\\ \\tfrac yx,\\ 1$ (c) $\\tfrac12$ (d) $\\tfrac1{1-y}$ on $[y,1]$ (e) no",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "07a91314-e9cd-45cd-b397-35b10dd7bfd3"
+    }
+   ],
+   "id": "9a9fda24-7be2-5b85-ae1d-d3c061e2c959"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 2 · A triangle with $24xy$ ★ · Tutorial 7 Q6 joint PDF",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=24xy$ for $x,y\\ge0,\\ x+y\\le1$. Find $f_{X|Y}(x\\mid y)$, $F_{X|Y}(x\\mid y)$, $P(X<\\tfrac14\\mid Y=\\tfrac12)$ and $E[X\\mid Y=y]$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Slice** at $y$: $x$ from $0$ to $1-y$. **Marginal.**",
+     "latex": "f_Y(y)=\\int_0^{1-y}24xy\\,dx=12y(1-y)^2,\\qquad 0<y<1"
+    },
+    {
+     "explanation": "**Divide.**",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{24xy}{12y(1-y)^2}=\\frac{2x}{(1-y)^2},\\qquad 0\\le x\\le1-y"
+    },
+    {
+     "explanation": "**Accumulate.**",
+     "latex": "F_{X|Y}(x\\mid y)=\\frac{x^2}{(1-y)^2}\\quad(0\\le x\\le1-y);\\ \\ 0\\text{ before},\\ 1\\text{ after}"
+    },
+    {
+     "explanation": "**Plug in** $y=\\tfrac12$, $x=\\tfrac14$.",
+     "latex": "P\\big(X<\\frac14\\ \\big|\\ Y=\\frac12\\big)=\\frac{1/16}{1/4}=\\frac14"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=y]=\\int_0^{1-y}\\frac{2x^2}{(1-y)^2}\\,dx=\\frac{2(1-y)}3"
+    }
+   ],
+   "answer": "$\\tfrac{2x}{(1-y)^2}$ on $[0,1-y]$; $\\tfrac{x^2}{(1-y)^2}$; $\\tfrac14$; $\\tfrac23(1-y)$",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "0fbffb43-2956-498c-9f5d-b1a897b31fdd"
+    }
+   ],
+   "id": "93fc8073-69d0-5370-b4b5-70ad8340e243"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 3 · Given $X$ on a square ★ · Tutorial 8 Q8 joint PDF",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=x+y$ on the unit square. Find $f_{Y|X}(y\\mid x)$ and $P(Y>\\tfrac12\\mid X=\\tfrac12)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Slice** at $x$: $y$ from $0$ to $1$. **Marginal.**",
+     "latex": "f_X(x)=x+\\frac12"
+    },
+    {
+     "explanation": "**Divide.**",
+     "latex": "f_{Y|X}(y\\mid x)=\\frac{x+y}{x+\\frac12},\\qquad 0<y<1"
+    },
+    {
+     "explanation": "**Plug in** $x=\\tfrac12$. The denominator becomes $1$.",
+     "latex": "P(Y>\\frac12\\mid X=\\frac12)=\\int_{1/2}^{1}(\\frac12+y)\\,dy=\\frac58"
+    }
+   ],
+   "answer": "$\\tfrac{x+y}{x+1/2}$ on $0<y<1$; $\\tfrac58$",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "3ab01077-9980-4b23-ba3e-e7135c520c63"
+    }
+   ],
+   "id": "203d84fa-789d-516d-988a-44565ba1535a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 4 · Find a probability from a conditional density ★ · Lecture 22",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=6xy(2-x-y)$ on the unit square, with $f_Y(y)=y(4-3y)$ as in the Question 2 note. Find $P(X<\\tfrac12\\mid Y=\\tfrac12)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Divide**, then **Plug in** $y=\\tfrac12$: $4-3y=\\tfrac52$.",
+     "latex": "f_{X|Y}\\big(x\\ \\big|\\ \\frac12\\big)=\\frac{6x(\\frac32-x)}{\\frac52}=\\frac{12}{5}\\,x\\Big(\\frac32-x\\Big),\\qquad 0<x<1"
+    },
+    {
+     "explanation": "Integrate from $0$ to $\\tfrac12$.",
+     "latex": "P=\\frac{12}5\\Big(\\frac32\\cdot\\frac18-\\frac1{24}\\Big)=\\frac{12}5\\cdot\\frac{7}{48}=\\frac7{20}"
+    }
+   ],
+   "answer": "$\\tfrac7{20}$",
+   "citations": [
+    {
+     "source_id": "e4d8b7bf-4c0d-4d5d-91de-e7c3678c21fc",
+     "version": 1,
+     "chunk_id": "e45fceff-56ef-4197-8f13-d60d0a09adb2"
+    }
+   ],
+   "id": "42621aff-a092-53dd-85a1-b0b517fe4b42"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 5 · An exponential pair",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "$f_{X,Y}(x,y)=e^{-y}$ for $0<x<y$. Find (a) $f_{X|Y}(x\\mid y)$ and $P(X<1\\mid Y=3)$, (b) $f_{Y|X}(y\\mid x)$ and $P(Y>3\\mid X=1)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Sketch:** above the line $y=x$, in the first quadrant, going up forever.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) **Slice** at $y$: $x$ from $0$ to $y$. **Marginal**, **Divide.**",
+     "latex": "\\begin{gathered}f_Y(y)=\\int_0^ye^{-y}\\,dx=y\\,e^{-y} \\\\ f_{X|Y}(x\\mid y)=\\frac1y,\\qquad 0<x<y\\end{gathered}"
+    },
+    {
+     "explanation": "Uniform on $(0,3)$.",
+     "latex": "P(X<1\\mid Y=3)=\\frac13"
+    },
+    {
+     "explanation": "(b) **Slice** at $x$: $y$ from $x$ to $\\infty$. **Marginal**, **Divide.**",
+     "latex": "\\begin{gathered}f_X(x)=\\int_x^{\\infty}e^{-y}\\,dy=e^{-x} \\\\ f_{Y|X}(y\\mid x)=e^{-(y-x)},\\qquad y>x\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in** $x=1$.",
+     "latex": "P(Y>3\\mid X=1)=\\int_3^{\\infty}e^{-(y-1)}\\,dy=e^{-2}\\approx0.1353"
+    }
+   ],
+   "answer": "(a) $\\tfrac1y$ on $(0,y)$; $\\tfrac13$ (b) $e^{-(y-x)}$ for $y>x$; $e^{-2}\\approx0.1353$",
+   "citations": [],
+   "id": "78322e4b-a282-5966-8c34-99c5104a61eb"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 6 · The parabola region ★ · Lecture 18 joint PDF",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=\\dfrac{5y}{4}$ on $-1\\le x\\le1,\\ x^2\\le y\\le1$. Find $P(Y>\\tfrac12\\mid X=0)$ and $E[Y\\mid X=0]$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "From the curved region example, $f_{Y|X}(y\\mid x)=\\dfrac{2y}{1-x^4}$ on $x^2\\le y\\le1$. **Plug in** $x=0$.",
+     "latex": "f_{Y|X}(y\\mid0)=2y,\\qquad 0\\le y\\le1"
+    },
+    {
+     "explanation": "Probability.",
+     "latex": "P\\big(Y>\\frac12\\ \\big|\\ X=0\\big)=\\int_{1/2}^12y\\,dy=\\frac34"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[Y\\mid X=0]=\\int_0^1y\\cdot2y\\,dy=\\frac23"
+    }
+   ],
+   "answer": "$\\tfrac34$; $\\tfrac23$",
+   "citations": [
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "119c7e09-14cc-4099-adb5-c0a6e9219422"
+    }
+   ],
+   "id": "022a9eb0-8f9a-5663-8362-ce7621e2e307"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 7 · A triangle with $6x$",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "$f_{X,Y}(x,y)=6x$ for $0<x<y<1$. Find $f_Y$, $f_{X|Y}(x\\mid y)$, $F_{X|Y}(x\\mid y)$, $P(X<\\tfrac12\\mid Y=\\tfrac34)$ and $E[X\\mid Y=y]$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Slice** at $y$: $x$ from $0$ to $y$. **Marginal.**",
+     "latex": "f_Y(y)=\\int_0^y6x\\,dx=3y^2,\\qquad 0<y<1"
+    },
+    {
+     "explanation": "**Divide.**",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{6x}{3y^2}=\\frac{2x}{y^2},\\qquad 0<x<y"
+    },
+    {
+     "explanation": "**Accumulate.**",
+     "latex": "F_{X|Y}(x\\mid y)=\\frac{x^2}{y^2}\\quad(0<x<y);\\ \\ 0\\text{ before},\\ 1\\text{ after}"
+    },
+    {
+     "explanation": "**Plug in.**",
+     "latex": "P\\big(X<\\frac12\\ \\big|\\ Y=\\frac34\\big)=\\frac{(1/2)^2}{(3/4)^2}=\\frac49"
+    },
+    {
+     "explanation": "**Mean.**",
+     "latex": "E[X\\mid Y=y]=\\int_0^y\\frac{2x^2}{y^2}\\,dx=\\frac{2y}3"
+    }
+   ],
+   "answer": "$3y^2$; $\\tfrac{2x}{y^2}$; $\\tfrac{x^2}{y^2}$; $\\tfrac49$; $\\tfrac{2y}3$",
+   "citations": [],
+   "id": "6e77ef47-1655-5f65-bb0c-d8eb62cda362"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 8 · Find $c$ first",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "$f_{X,Y}(x,y)=cx$ for $0\\le y\\le x\\le1$. Find $c$, $f_{Y|X}(y\\mid x)$, $f_{X|Y}(x\\mid y)$ and $P(X>\\tfrac12\\mid Y=\\tfrac14)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Find $c$:** slice at $x$, $y$ from $0$ to $x$.",
+     "latex": "\\int_0^1\\!\\!\\int_0^x cx\\,dy\\,dx=\\int_0^1cx^2\\,dx=\\frac c3=1\\quad\\Longrightarrow\\quad c=3"
+    },
+    {
+     "explanation": "Given $X=x$: **Marginal** $f_X=3x^2$, **Divide**. Flat in $y$ → uniform.",
+     "latex": "f_{Y|X}(y\\mid x)=\\frac{3x}{3x^2}=\\frac1x,\\qquad 0\\le y\\le x"
+    },
+    {
+     "explanation": "Given $Y=y$: slice $x$ from $y$ to $1$. **Marginal**, **Divide.**",
+     "latex": "\\begin{gathered}f_Y(y)=\\int_y^13x\\,dx=\\frac32(1-y^2) \\\\ f_{X|Y}(x\\mid y)=\\frac{2x}{1-y^2},\\qquad y\\le x\\le1\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in** $y=\\tfrac14$: $1-y^2=\\tfrac{15}{16}$.",
+     "latex": "P\\big(X>\\frac12\\ \\big|\\ Y=\\frac14\\big)=\\int_{1/2}^1\\frac{2x}{15/16}\\,dx=\\frac{3/4}{15/16}=\\frac45"
+    }
+   ],
+   "answer": "$c=3$; $\\tfrac1x$; $\\tfrac{2x}{1-y^2}$; $\\tfrac45$",
+   "citations": [],
+   "id": "8f1a0ef5-09d2-5beb-a0a2-6d541d107bd6"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 9 · Uniform on a disk",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "$(X,Y)$ is uniform on the unit disk: $f_{X,Y}=\\tfrac1\\pi$ for $x^2+y^2\\le1$. Find $f_{X|Y}(x\\mid y)$, $P(X<\\tfrac12\\mid Y=0.6)$ and $E[X\\mid Y=y]$. Independent?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Slice** at $y$: $x$ from $-\\sqrt{1-y^2}$ to $\\sqrt{1-y^2}$. Flat → uniform on that slice.",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{1}{2\\sqrt{1-y^2}},\\qquad |x|\\le\\sqrt{1-y^2}"
+    },
+    {
+     "explanation": "**Plug in** $y=0.6$: the slice is $-0.8<x<0.8$, length $1.6$.",
+     "latex": "P(X<0.5\\mid Y=0.6)=\\frac{0.5-(-0.8)}{1.6}=\\frac{13}{16}"
+    },
+    {
+     "explanation": "**Mean:** the midpoint of the slice.",
+     "latex": "E[X\\mid Y=y]=0"
+    },
+    {
+     "explanation": "The slice length changes with $y$ (a disk, not a rectangle) → **not** independent, even though $E[X\\mid Y=y]$ is constant.",
+     "latex": ""
+    }
+   ],
+   "answer": "$\\tfrac{1}{2\\sqrt{1-y^2}}$ on $|x|\\le\\sqrt{1-y^2}$; $\\tfrac{13}{16}$; $0$; not independent",
+   "citations": [],
+   "id": "035476da-3070-5682-b797-5c339af01c43"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 10 · Product form · Lecture 19 joint PDF",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=4xy$ on the unit square. Find $f_{X|Y}(x\\mid y)$ and $P(X>\\tfrac12\\mid Y=\\tfrac13)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Marginal** $f_Y=2y$. **Divide.**",
+     "latex": "f_{X|Y}(x\\mid y)=\\frac{4xy}{2y}=2x=f_X(x),\\qquad 0<x<1"
+    },
+    {
+     "explanation": "No $y$ left → **independent**; the $\\tfrac13$ doesn’t matter.",
+     "latex": "P\\big(X>\\frac12\\ \\big|\\ Y=\\frac13\\big)=\\int_{1/2}^12x\\,dx=\\frac34"
+    }
+   ],
+   "answer": "$2x$; $\\tfrac34$",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "df337ba1-34f3-4ede-80b2-8fabd31ffa75"
+    }
+   ],
+   "id": "f8896298-e1e8-5613-a711-6e8971b9eaea"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Test 3 formula sheet",
+   "citations": [],
+   "id": "d35c02f5-0197-5044-b715-93c8b4f9c752"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Formula sheet (given with Test 3).** Learn to use these, not to memorise them:\n\n$$\nf_X(x)=\\int_{-\\infty}^{\\infty}f_{X,Y}(x,y)\\,dy\\qquad f_Y(y)=\\int_{-\\infty}^{\\infty}f_{X,Y}(x,y)\\,dx\n$$\n\n$$\np_{X|Y}(x\\mid y)=\\frac{p_{X,Y}(x,y)}{p_Y(y)}\\qquad f_{X|Y}(x\\mid y)=\\frac{f_{X,Y}(x,y)}{f_Y(y)}\n$$\n\n$$\nF_X(x)=\\sum_{t\\le x}p_X(t)\\qquad F_X(x)=\\int_{-\\infty}^{x}f_X(t)\\,dt\n$$\n\n$$\nE[X\\mid Y=y]=\\sum_x x\\,p_{X|Y}(x\\mid y)\n$$\n\n$$\nE[X\\mid Y=y]=\\int_{-\\infty}^{\\infty}x\\,f_{X|Y}(x\\mid y)\\,dx\n$$",
+   "citations": [],
+   "id": "c8d5e12a-1b08-5dfe-a108-7a48b078c504"
+  }
+ ]
+}

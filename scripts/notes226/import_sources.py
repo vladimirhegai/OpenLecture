@@ -1,6 +1,10 @@
-"""Import the ELEC 226 PDFs once and record a citation (first chunk) for every page: out/citations.json."""
+"""Import ELEC 226 PDFs and record a citation (first chunk) for every page of every course source: out/citations.json.
+
+usage: import_sources.py [file.pdf ...]   (no arguments: every PDF in SOURCE; already-imported files are reused)
+"""
 
 import json
+import sys
 import time
 from pathlib import Path
 
@@ -12,7 +16,8 @@ OUT = Path(__file__).parent / "out"
 OUT.mkdir(exist_ok=True)
 api = httpx.Client(base_url=f"http://127.0.0.1:8000/api/v1/courses/{COURSE}", timeout=120)
 
-for file in sorted(SOURCE.glob("*.pdf")):
+files = [Path(a) for a in sys.argv[1:]] or sorted(SOURCE.glob("*.pdf"))
+for file in files:
     name = file.name.lower()
     kind = "lecture" if name.startswith("elec226") else "tutorial" if "tutorial" in name else "practice"
     r = api.post("/sources", data={"kind": kind}, files={"file": (file.name, file.read_bytes(), "application/pdf")})

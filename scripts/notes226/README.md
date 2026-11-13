@@ -17,6 +17,18 @@ one of these" and holds ~10 test-style problems; every solution starts with **Ty
 case's step words (Spot, Find c, Accumulate, Differentiate, Rewrite, …; Q3: Mean → Square → Subtract → Root).
 Write primes as `^{\prime}` (the 226 builder doesn't convert `\prime`).
 
+## Test 3 (Fri Nov 20 2026, 40 min, closed book, **formula sheet given**, Lectures 17–23)
+
+| Note | Builder | Covers |
+|---|---|---|
+| Test 3 - Question 1 | `t3q1.py` | joint PMF/PDF, find c, region probabilities, marginals, independence (+ joint CDF, Cov, Gaussian pair) (L17–20, T7–8) |
+| Test 3 - Question 2 | `t3q2.py` | discrete conditional PMF/CDF, conditional expectation (L21–22) |
+| Test 3 - Question 3 | `t3q3.py` | continuous conditional PDF/CDF, conditional probabilities (L21–22) |
+
+Same v3 layout. `D.SHEET3()` puts the test's formula sheet at the top; `D.REGION()` draws a joint PDF's support with
+a draggable slice (where the integral limits come from). Lecture 23 is not out yet: add it when it is.
+New PDFs: `import_sources.py <file.pdf> ...`, then add their tags to `FILES` in `lib226.py`.
+
 From the repository root:
 
 ```powershell

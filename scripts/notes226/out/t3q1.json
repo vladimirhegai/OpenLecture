@@ -1,0 +1,1123 @@
+{
+ "title": "Test 3 - Question 1",
+ "topic_keys": [
+  "joint_distribution",
+  "marginal_distribution",
+  "independence"
+ ],
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Test 3, Question 1 · Marginal distributions and independence**",
+   "citations": [],
+   "id": "9a6f3cd7-0149-55f5-9844-9717e0201bb2"
+  },
+  {
+   "type": "paragraph",
+   "text": "A **joint distribution** describes $X$ and $Y$ together. A **marginal distribution** describes one of them on its own. For example, to find the chance that $X=0$, count every way $X=0$ can happen across all possible values of $Y$.",
+   "citations": [
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "315f7fa4-65ba-40f1-af9c-b449fd9d16d1"
+    },
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "9288de14-f4e8-4c3c-8f12-d6e7473e62a7"
+    },
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "119c7e09-14cc-4099-adb5-c0a6e9219422"
+    }
+   ],
+   "id": "0214b911-b028-5702-ae01-189a32f7dec9"
+  },
+  {
+   "type": "paragraph",
+   "text": "If you get a table of probabilities (a PMF), add across it. If you get a density (a PDF), integrate over a slice. Once you have both marginals, you can test whether the variables are independent.",
+   "citations": [],
+   "id": "c262d644-d073-5e47-840d-468d8f6a5b6e"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Read the marginals from a table",
+   "citations": [],
+   "id": "3599862a-cc91-5eb7-b1cf-f73cf8a2acbc"
+  },
+  {
+   "type": "paragraph",
+   "text": "Each cell gives the chance of one pair of values. The cell at $x=0$ and $y=1$ gives $P(X=0,Y=1)$. To find $P(X=0)$, keep $x=0$ fixed and add the cells for all $y$.",
+   "citations": [
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "b59dbdf2-e35b-4def-a4a6-66306282e783"
+    },
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "9288de14-f4e8-4c3c-8f12-d6e7473e62a7"
+    }
+   ],
+   "id": "ea5565b0-5b12-560d-a6a4-7608119bfe51"
+  },
+  {
+   "type": "equation",
+   "latex": "p_X(x)=P(X=x)=\\sum_y p_{X,Y}(x,y)",
+   "display": true,
+   "citations": [],
+   "id": "85164cce-b4c4-53b7-86d2-832c422dbca6"
+  },
+  {
+   "type": "paragraph",
+   "text": "To find $P(Y=y)$, hold $y$ fixed and add over $x$. Follow the variable labels on the table. Either variable can appear in the rows.",
+   "citations": [],
+   "id": "221ad2e9-e7d4-55e9-8d9d-5a6eeb834f68"
+  },
+  {
+   "type": "equation",
+   "latex": "p_Y(y)=P(Y=y)=\\sum_x p_{X,Y}(x,y)",
+   "display": true,
+   "citations": [],
+   "id": "b19bffac-c747-5255-ba13-5978c41acff4"
+  },
+  {
+   "type": "paragraph",
+   "text": "A valid table has nonnegative cells that add to $1$. If a cell contains an unknown $c$, set the total equal to $1$ and solve for $c$. Each marginal should add to $1$ on its own.",
+   "citations": [],
+   "id": "238b81c0-07c3-5212-99b3-94984781fa3c"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · Add across the rows and down the columns",
+   "prompt": "Find the marginal distributions of $X$ and $Y$. Then find $P(X=1,\\,Y\\le1)$ and $P(X+Y\\le2)$.\n\n| | $y=0$ | $y=1$ | $y=2$ |\n|---|---|---|---|\n| $x=0$ | $0.10$ | $0.15$ | $0.05$ |\n| $x=1$ | $0.20$ | $0.30$ | $0.20$ |",
+   "steps": [
+    {
+     "explanation": "**Keep $X$ fixed.** For $X=0$, add all three cells in the first row. Repeat for $X=1$.",
+     "latex": "\\begin{gathered}p_X(0)=0.10+0.15+0.05=0.30 \\\\ p_X(1)=0.20+0.30+0.20=0.70\\end{gathered}"
+    },
+    {
+     "explanation": "**Keep $Y$ fixed.** For $Y=0$, add the two cells in the first column. Repeat for the other columns.",
+     "latex": "\\begin{gathered}p_Y(0)=0.10+0.20=0.30 \\\\ p_Y(1)=0.15+0.30=0.45 \\\\ p_Y(2)=0.05+0.20=0.25\\end{gathered}"
+    },
+    {
+     "explanation": "**Apply both conditions.** Stay in row $x=1$ and use the columns where $y\\le1$.",
+     "latex": "P(X=1,\\,Y\\le1)=0.20+0.30=0.50"
+    },
+    {
+     "explanation": "**Check the sum in each cell.** The pair $(1,2)$ is the only one where $x+y>2$. Subtract its probability from $1$.",
+     "latex": "P(X+Y\\le2)=1-0.20=0.80"
+    }
+   ],
+   "answer": "$p_X(0)=0.30$, $p_X(1)=0.70$. $p_Y(0)=0.30$, $p_Y(1)=0.45$, $p_Y(2)=0.25$. The two event probabilities are $0.50$ and $0.80$.",
+   "citations": [
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "4e7cccdb-c271-4557-95bc-41590badcef5"
+    },
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "9288de14-f4e8-4c3c-8f12-d6e7473e62a7"
+    },
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "a25bde00-9c60-4121-8f33-54a29f5be927"
+    }
+   ],
+   "id": "90aecaa2-ad5a-5d7d-a7a5-adf2a2279b4a"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Check independence in a table",
+   "citations": [],
+   "id": "63f1ed67-7f0f-5c5a-b156-212432fea363"
+  },
+  {
+   "type": "paragraph",
+   "text": "If $X$ and $Y$ are independent, learning $Y$ leaves the probabilities for $X$ unchanged. In the joint table, every cell then equals the product of the two marginal probabilities for that cell.",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "1e46f773-4923-484d-84b8-364e440a75f3"
+    }
+   ],
+   "id": "3f5755ae-59a1-5daf-8a84-c8a769249b54"
+  },
+  {
+   "type": "equation",
+   "latex": "p_{X,Y}(x,y)=p_X(x)\\,p_Y(y)\\quad\\text{for every pair }(x,y)",
+   "display": true,
+   "citations": [],
+   "id": "9f4cdc54-7c42-53c9-a6bf-147d59d8341c"
+  },
+  {
+   "type": "paragraph",
+   "text": "In the previous table, the chance of $X=0,Y=0$ is $0.10$. Independence would give $0.30\\times0.30=0.09$. That one mismatch shows that $X$ and $Y$ are dependent.",
+   "citations": [],
+   "id": "1394f28a-9682-5baf-a8a0-53e1c2c30f1d"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · Joint PMF table · independent ★ (Lecture 19)",
+   "prompt": "Are $X$ and $Y$ independent?\n\n| | $Y=0$ | $Y=1$ |\n|---|---|---|\n| $X=0$ | $0.12$ | $0.18$ |\n| $X=1$ | $0.28$ | $0.42$ |",
+   "steps": [
+    {
+     "explanation": "**Marginals.**",
+     "latex": "\\begin{gathered}p_X(0)=0.30,\\quad p_X(1)=0.70 \\\\ p_Y(0)=0.40,\\quad p_Y(1)=0.60\\end{gathered}"
+    },
+    {
+     "explanation": "**Compare** every cell with row × column.",
+     "latex": "\\begin{gathered}0.30\\times0.40=0.12\\ \\checkmark\\qquad 0.30\\times0.60=0.18\\ \\checkmark \\\\ 0.70\\times0.40=0.28\\ \\checkmark\\qquad 0.70\\times0.60=0.42\\ \\checkmark\\end{gathered}"
+    },
+    {
+     "explanation": "All four match.",
+     "latex": ""
+    }
+   ],
+   "answer": "Independent",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "1e46f773-4923-484d-84b8-364e440a75f3"
+    }
+   ],
+   "id": "4cefd4b7-d884-5e66-9a84-6c8f82935c74"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Set up a probability from a joint density",
+   "citations": [],
+   "id": "c593e124-f5ec-5102-8c61-4159110adba1"
+  },
+  {
+   "type": "paragraph",
+   "text": "A joint PDF gives a height at each point $(x,y)$. To get a probability, integrate that height over the part of the plane where the event happens.",
+   "citations": [
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "d92b2d3b-f156-4f34-a100-526b519600ee"
+    }
+   ],
+   "id": "f27e9aec-99d8-5a69-8be3-8d0098fcc321"
+  },
+  {
+   "type": "equation",
+   "latex": "P\\big((X,Y)\\in A\\big)=\\iint_A f_{X,Y}(x,y)\\,dx\\,dy",
+   "display": true,
+   "citations": [],
+   "id": "fef1af0a-91b7-5de8-9b74-66b845a3802f"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Sketch** the region where the density is positive. This region is the support. For an event like $Y>X$, keep only the part above the line $y=x$.",
+    "**Choose the inner limits.** Hold $x$ fixed and draw a vertical line. Read the lowest and highest $y$ on that slice. These are the limits for $dy$.",
+    "**Choose the outer limits.** Move the line from the first $x$ that hits the region to the last $x$ that hits it. These are the limits for $dx$."
+   ],
+   "ordered": true,
+   "citations": [],
+   "id": "a5ea07d9-2e36-5382-a102-ee96259839a8"
+  },
+  {
+   "type": "paragraph",
+   "text": "To find an unknown constant $c$, use the entire support and set the double integral equal to $1$.",
+   "citations": [],
+   "id": "0e4fb6ad-62b0-5dea-9941-9bed4f03caa9"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · Find $c$ and two probabilities ★ (Lecture 18)",
+   "prompt": "$f_{X,Y}(x,y)=c$ for $0\\le x\\le5,\\ 0\\le y\\le3$, and $0$ otherwise. (1) Find $c$. (2) $P(2\\le X<3,\\ 1\\le Y<3)$. (3) $P(Y>X)$.",
+   "steps": [
+    {
+     "explanation": "**Sketch:** a $5\\times3$ rectangle.",
+     "latex": ""
+    },
+    {
+     "explanation": "(1) **Find $c$:** a flat height $c$ over area $15$ has volume $15c$.",
+     "latex": "\\int_0^3\\!\\!\\int_0^5c\\,dx\\,dy=15c=1\\quad\\Longrightarrow\\quad c=\\frac1{15}"
+    },
+    {
+     "explanation": "(2) A small rectangle, $1\\times2$, under the same flat height.",
+     "latex": "P=\\int_2^3\\!\\!\\int_1^3\\frac1{15}\\,dy\\,dx=\\frac{(3-2)(3-1)}{15}=\\frac2{15}"
+    },
+    {
+     "explanation": "(3) **Inner limits.** A vertical slice starts at $y=x$ and stops at the top of the box, $y=3$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Outer limits.** Once $x$ reaches $3$, the slice runs out of room above $y=x$. So the outer integral stops at $x=3$.",
+     "latex": "P(Y>X)=\\int_0^3\\!\\!\\int_x^3\\frac1{15}\\,dy\\,dx"
+    },
+    {
+     "explanation": "**Integrate.** The inner integral gives the slice length $3-x$ times the density $1/15$.",
+     "latex": "P(Y>X)=\\frac1{15}\\int_0^3(3-x)\\,dx=\\frac1{15}\\Big(9-\\frac92\\Big)=\\frac3{10}"
+    }
+   ],
+   "answer": "(1) $c=\\tfrac1{15}$ (2) $\\tfrac2{15}$ (3) $\\tfrac3{10}$",
+   "citations": [
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "938d05c9-19ef-4c18-a2b3-f28384d87212"
+    },
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "4989703b-e809-437a-9567-982b4da14565"
+    }
+   ],
+   "id": "e0ad77db-140c-51e8-8ed8-80755ffe0a70"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Find a marginal density with one slice",
+   "citations": [],
+   "id": "390c07b5-a0bd-5071-9a56-f5aa1f914dde"
+  },
+  {
+   "type": "paragraph",
+   "text": "To find $f_X(x)$, pick a value of $x$ and add up the density along its vertical slice. Integrate over $y$ and leave $x$ in the answer.",
+   "citations": [
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "119c7e09-14cc-4099-adb5-c0a6e9219422"
+    }
+   ],
+   "id": "89d32e96-bc00-511c-adb8-b213ae8d2e83"
+  },
+  {
+   "type": "equation",
+   "latex": "f_X(x)=\\int_{-\\infty}^{\\infty} f_{X,Y}(x,y)\\,dy",
+   "display": true,
+   "citations": [],
+   "id": "62c1a859-ec4b-5612-8e47-5f3e3cfdde61"
+  },
+  {
+   "type": "paragraph",
+   "text": "To find $f_Y(y)$, hold $y$ fixed and integrate along a horizontal slice. The slice gives the limits because the density is zero outside the support.",
+   "citations": [],
+   "id": "b56fed4d-ea7a-5ca9-8429-750a86cd73b0"
+  },
+  {
+   "type": "equation",
+   "latex": "f_Y(y)=\\int_{-\\infty}^{\\infty} f_{X,Y}(x,y)\\,dx",
+   "display": true,
+   "citations": [],
+   "id": "a3e2b1fe-727f-5021-ab0b-78ad30ed9372"
+  },
+  {
+   "type": "paragraph",
+   "text": "For example, in the triangle $0<x<y<1$, a vertical slice at $x=0.4$ runs from $y=0.4$ to $1$. For a general $x$, its limits are $x$ and $1$. The marginal $f_X$ is zero outside the possible $x$ values.",
+   "citations": [],
+   "id": "25e0da73-042c-5900-95e7-b610296c0857"
+  },
+  {
+   "type": "paragraph",
+   "text": "Drag $x$ along the region for the next example. Which end of the slice moves as $x$ changes?\n\n```graph\ntitle \"Vertical slice through $x^2\\le y\\le1$\"\nx -1.2 1.2 label=\"$x$\"\ny -0.2 1.2 label=\"$y$\"\nequal\nregion \"(y>x^2)*(y<1)\" color=1 label=\"where $f_{X,Y}\\ne0$\"\nslider s -1 1 0.5 label=\"$x$\"\ncurve \"x^2\" from=-1.1 to=1.1 color=0 dash label=\"$y=x^2$\"\nsegment \"s\" \"s^2\" \"s\" \"1\" color=2 label=\"vertical slice: $y$ from $x^2$ to $1$\"\n```",
+   "citations": [],
+   "id": "c34ace4b-8d99-52b9-92dc-271272a58afb"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · Marginals on a curved region ★ (Lecture 18)",
+   "prompt": "$f_{X,Y}(x,y)=\\dfrac{5y}{4}$ for $-1\\le x\\le1,\\ x^2\\le y\\le1$, and $0$ otherwise. Find $f_X(x)$ and $f_Y(y)$.",
+   "steps": [
+    {
+     "explanation": "**Keep $x$ fixed.** The vertical slice starts at the curve $y=x^2$ and ends at the line $y=1$. A slice exists for $-1\\le x\\le1$.",
+     "latex": "f_X(x)=\\int_{x^2}^1\\frac{5y}{4}\\,dy=\\frac58\\big(1-x^4\\big)"
+    },
+    {
+     "explanation": "**Keep $y$ fixed.** Solve $x^2\\le y$ for $x$. The horizontal slice runs from $-\\sqrt y$ to $\\sqrt y$, for $0\\le y\\le1$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Integrate in $x$.** The height $5y/4$ stays constant along this horizontal slice. Multiply by the slice length $2\\sqrt y$.",
+     "latex": "f_Y(y)=\\int_{-\\sqrt y}^{\\sqrt y}\\frac{5y}{4}\\,dx=\\frac{5y}{4}\\cdot2\\sqrt y=\\frac52\\,y^{3/2}"
+    },
+    {
+     "explanation": "**State the ranges.** Each marginal is zero outside its own range.",
+     "latex": ""
+    }
+   ],
+   "answer": "$f_X(x)=\\tfrac58(1-x^4)$ on $[-1,1]$; $f_Y(y)=\\tfrac52y^{3/2}$ on $[0,1]$; $0$ elsewhere",
+   "citations": [
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "119c7e09-14cc-4099-adb5-c0a6e9219422"
+    },
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "2e2d07ef-0fa1-4599-92c9-e91fa179e9d1"
+    }
+   ],
+   "id": "9ecd1639-7f94-56bc-b1c3-6acbae4ec9a7"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Check independence for continuous variables",
+   "citations": [],
+   "id": "19d139c6-b95b-5213-acb6-87b2ca7bb445"
+  },
+  {
+   "type": "paragraph",
+   "text": "Compute $f_X$ and $f_Y$, multiply them, and compare the product with the joint density. Include the ranges where each density is positive.",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "1e46f773-4923-484d-84b8-364e440a75f3"
+    },
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "161d01b7-96d4-4db2-a54f-859c1189b766"
+    }
+   ],
+   "id": "866458de-dcce-5168-8ac8-90b402ffd8cf"
+  },
+  {
+   "type": "equation",
+   "latex": "X,Y\\text{ independent}\\iff f_{X,Y}(x,y)=f_X(x)\\,f_Y(y)\\quad\\text{almost everywhere}",
+   "display": true,
+   "citations": [],
+   "id": "e22f321e-b21f-584d-8b39-e2fe3f3b140a"
+  },
+  {
+   "type": "paragraph",
+   "text": "For densities, “almost everywhere” means differences on a boundary or at an isolated point have zero probability. To show dependence in these examples, look for a mismatch inside a region where it persists around the point you pick.",
+   "citations": [],
+   "id": "00c6cead-9b63-500a-880c-4ee3285d2f08"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Use the shape as a clue.** If $x$ and $y$ each have positive marginal density but a whole region of those pairs is missing from the joint support, the product test fails. On a rectangle, compare the formulas inside it.",
+   "citations": [],
+   "id": "d320f30c-bc5a-56f9-b904-430785f7b08e"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · Independent ★ (Lecture 19)",
+   "prompt": "$f_{X,Y}(x,y)=4xy$ for $0<x<1,\\ 0<y<1$, and $0$ otherwise. Are $X$ and $Y$ independent?",
+   "steps": [
+    {
+     "explanation": "**Spot:** a square, and $4xy=(2x)(2y)$ splits. Expect independent.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Marginals:** slice at $x$, $y$ runs $0$ to $1$; and the same the other way.",
+     "latex": "\\begin{gathered}f_X(x)=\\int_0^1 4xy\\,dy=2x,\\qquad 0<x<1 \\\\ f_Y(y)=\\int_0^1 4xy\\,dx=2y,\\qquad 0<y<1\\end{gathered}"
+    },
+    {
+     "explanation": "**Compare inside the square.**",
+     "latex": "f_X(x)\\,f_Y(y)=2x\\cdot2y=4xy=f_{X,Y}(x,y)"
+    },
+    {
+     "explanation": "**Check outside.** At least one marginal is zero there, and the joint density is zero too.",
+     "latex": ""
+    }
+   ],
+   "answer": "Independent",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "df337ba1-34f3-4ede-80b2-8fabd31ffa75"
+    }
+   ],
+   "id": "259990e5-47bd-5948-a30e-2234b6b808a3"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 6 · Not independent: the region ★ (Lecture 19)",
+   "prompt": "$f_{X,Y}(x,y)=\\dfrac{5y}{4}$ on $-1\\le x\\le1,\\ x^2\\le y\\le1$ (Example 4). Are $X$ and $Y$ independent?",
+   "steps": [
+    {
+     "explanation": "**Look for a missing pair.** The marginals allow $x=0.9$ and $y=0.25$. Can they occur together?",
+     "latex": ""
+    },
+    {
+     "explanation": "**Marginals** from Example 4.",
+     "latex": "f_X(x)\\,f_Y(y)=\\frac58(1-x^4)\\cdot\\frac52y^{3/2}=\\frac{25}{16}(1-x^4)\\,y^{3/2}"
+    },
+    {
+     "explanation": "**Compare** below the parabola. At $(0.9,0.25)$ and nearby, $y<x^2$, so the joint density is zero and both marginals are positive.",
+     "latex": "f_{X,Y}(0.9,\\,0.25)=0\\ne f_X(0.9)\\,f_Y(0.25)\\approx0.067"
+    }
+   ],
+   "answer": "Not independent",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "161d01b7-96d4-4db2-a54f-859c1189b766"
+    }
+   ],
+   "id": "3f18e14b-576e-5a33-adf9-e4f3daa6d8ad"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 7 · Not independent: the formula ★ (Tutorial 7 Q5)",
+   "prompt": "$f_{X,Y}(x,y)=x+y$ for $0<x<1,\\ 0<y<1$. (a) Find $f_X$ and $f_Y$. (b) Are they independent? (c) $P(X+Y<1)$.",
+   "steps": [
+    {
+     "explanation": "(a) **Marginals.**",
+     "latex": "\\begin{gathered}f_X(x)=\\int_0^1(x+y)\\,dy=x+\\frac12,\\qquad 0<x<1 \\\\ f_Y(y)=y+\\frac12,\\qquad 0<y<1\\ \\ \\text{(same by symmetry)}\\end{gathered}"
+    },
+    {
+     "explanation": "(b) **Compare** at $(\\tfrac14,\\tfrac14)$ inside the square. The formulas are continuous there, so the mismatch persists nearby.",
+     "latex": "f_X\\big(\\frac14\\big)f_Y\\big(\\frac14\\big)=\\frac34\\cdot\\frac34=\\frac9{16}\\ne\\frac12=f_{X,Y}\\big(\\frac14,\\frac14\\big)"
+    },
+    {
+     "explanation": "(c) **Sketch** the line $x+y=1$; below it. **Slice** at $x$: $y$ from $0$ to $1-x$.",
+     "latex": "\\begin{gathered}P(X+Y<1)=\\int_0^1\\!\\!\\int_0^{1-x}(x+y)\\,dy\\,dx \\\\ =\\int_0^1\\Big(x(1-x)+\\frac{(1-x)^2}{2}\\Big)dx\\end{gathered}"
+    },
+    {
+     "explanation": "**Integrate.**",
+     "latex": "=\\frac16+\\frac16=\\frac13"
+    }
+   ],
+   "answer": "(a) $x+\\tfrac12$, $y+\\tfrac12$ (b) not independent (c) $\\tfrac13$",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "0fbffb43-2956-498c-9f5d-b1a897b31fdd"
+    }
+   ],
+   "id": "b271d732-aea1-5884-829d-108625cd3413"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Review the joint CDF and covariance",
+   "citations": [],
+   "id": "2a584c11-531a-5042-925d-ac2df75cb3d6"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Joint CDF",
+   "citations": [],
+   "id": "637b391e-0d51-5590-96bb-817f8f97d5ed"
+  },
+  {
+   "type": "paragraph",
+   "text": "The joint CDF $F_{X,Y}(a,b)$ is the chance that both $X\\le a$ and $Y\\le b$. In Example 1, $F_{X,Y}(0,1)$ uses just the first row and first two columns, so it equals $0.10+0.15=0.25$.",
+   "citations": [
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "315f7fa4-65ba-40f1-af9c-b449fd9d16d1"
+    },
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "634203b2-daae-4712-a588-e6852a8f07f9"
+    }
+   ],
+   "id": "69a6771e-d75e-5e0a-a1ba-137e0e7a351e"
+  },
+  {
+   "type": "paragraph",
+   "text": "To find a rectangle probability from a joint CDF, start with the probability below and left of $(b,d)$. Subtract the strips left of $a$ and below $c$. Add their overlap back once.",
+   "citations": [],
+   "id": "caab0a12-2457-51e2-aa40-b2f7dcbc6fde"
+  },
+  {
+   "type": "equation",
+   "latex": "P(a<X\\le b,\\ c<Y\\le d)=F(b,d)-F(a,d)-F(b,c)+F(a,c)",
+   "display": true,
+   "citations": [
+    {
+     "source_id": "951581da-5f56-4a86-9c61-b84ad87d4f7f",
+     "version": 1,
+     "chunk_id": "634203b2-daae-4712-a588-e6852a8f07f9"
+    }
+   ],
+   "id": "7255b89b-f700-5586-a110-c0e81f1cdd39"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 8 · Rectangle from the joint CDF ★ (Tutorial 7 Q2)",
+   "prompt": "$F_{X,Y}(3,5)=0.85$, $F_{X,Y}(1,5)=0.30$, $F_{X,Y}(3,2)=0.40$, $F_{X,Y}(1,2)=0.15$. Find $P(1<X\\le3,\\ 2<Y\\le5)$. Also: how do you get $F_X(x)$ from $F_{X,Y}$?",
+   "steps": [
+    {
+     "explanation": "**Plug in** with $a=1,b=3,c=2,d=5$.",
+     "latex": "0.85-0.30-0.40+0.15=0.30"
+    },
+    {
+     "explanation": "**Marginal CDF:** let $y\\to\\infty$ (no limit on $Y$).",
+     "latex": "F_X(x)=F_{X,Y}(x,\\infty)"
+    }
+   ],
+   "answer": "$0.30$; $F_X(x)=F_{X,Y}(x,\\infty)$",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "a25bde00-9c60-4121-8f33-54a29f5be927"
+    }
+   ],
+   "id": "d90c0800-c4b1-518f-8329-6c5b6256349e"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 9 · Joint CDF from a PDF ★ (Lecture 18 Practice 2, Tutorial 8 Q2)",
+   "prompt": "$f_{X,Y}(x,y)=2$ for $0\\le y\\le x\\le1$. Find $F_{X,Y}(x,y)$.",
+   "steps": [
+    {
+     "explanation": "**Sketch:** the triangle under $y=x$. $F(x,y)$ = $2\\times$ (the triangle’s area to the lower-left of $(x,y)$).",
+     "latex": ""
+    },
+    {
+     "explanation": "Inside, $0\\le y\\le x\\le1$: the corner cuts a trapezoid of area $xy-\\tfrac{y^2}2$.",
+     "latex": "F=\\int_0^y\\!\\!\\int_v^x2\\,du\\,dv=2xy-y^2"
+    },
+    {
+     "explanation": "$0\\le x<y$, $x\\le1$: the corner holds the whole triangle up to $x$.",
+     "latex": "F=\\int_0^x\\!\\!\\int_0^u2\\,dv\\,du=x^2"
+    },
+    {
+     "explanation": "$x>1$, $0\\le y\\le1$: put $x=1$ in the inside formula. $y>1$, $0\\le x\\le1$: $x^2$. Both past $1$: $1$. Any negative: $0$.",
+     "latex": "F=2y-y^2\\ \\ (x>1),\\qquad F=1\\ \\ (x,y\\ge1)"
+    }
+   ],
+   "answer": "$F=0$ if $x<0$ or $y<0$; $2xy-y^2$ for $0\\le y\\le x\\le1$; $x^2$ for $0\\le x\\le1,\\ y\\ge x$; $2y-y^2$ for $x>1,\\ 0\\le y\\le1$; $1$ for $x,y\\ge1$",
+   "citations": [
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "4989703b-e809-437a-9567-982b4da14565"
+    },
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "07a91314-e9cd-45cd-b397-35b10dd7bfd3"
+    }
+   ],
+   "id": "d98c9345-f4dd-5c6d-9c43-175f80b61d41"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "Covariance and jointly Gaussian variables",
+   "citations": [],
+   "id": "4e0a7ee1-f013-5e6e-a66e-ca7ed91b7211"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Covariance** (Lectures 19–20) measures whether $X$ and $Y$ tend to move together. To get $E[XY]$, weight each product $xy$ by the joint distribution using a double sum or integral.",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "ea96bee0-dc3b-4eed-b746-31b3dd04bde0"
+    }
+   ],
+   "id": "76c2d564-047b-54ad-87fc-c58b3b3cc67e"
+  },
+  {
+   "type": "equation",
+   "latex": "\\operatorname{Cov}[X,Y]=E[XY]-E[X]\\,E[Y]\\qquad\\qquad \\rho_{X,Y}=\\frac{\\operatorname{Cov}[X,Y]}{\\sigma_X\\sigma_Y}",
+   "display": true,
+   "citations": [
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "7787bda3-4ba3-4565-bd45-de95bf5515ef"
+    }
+   ],
+   "id": "2d7a396a-3d21-5273-a816-b9b3d9229a14"
+  },
+  {
+   "type": "list",
+   "items": [
+    "Independent $\\Rightarrow E[XY]=E[X]E[Y]\\Rightarrow\\operatorname{Cov}=0$. **Not** the other way round in general.",
+    "**Jointly Gaussian** is the exception: there, $\\operatorname{Cov}=0\\iff$ independent.",
+    "A Gaussian pair has $f=c\\,e^{-(\\dots)}$. **No $xy$ term** in the exponent → $\\rho=0$ → independent. Match each square to $\\dfrac{(x-\\mu)^2}{2\\sigma^2}$ to read off $\\mu$ and $\\sigma^2$."
+   ],
+   "ordered": false,
+   "citations": [
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "7787bda3-4ba3-4565-bd45-de95bf5515ef"
+    },
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "1363b27a-4523-471c-835b-519d6482ed3b"
+    }
+   ],
+   "id": "edbddfd7-8d04-51c2-99cf-979049d0f75c"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 10 · A Gaussian pair ★ (Tutorial 8 Q9)",
+   "prompt": "$f_{X,Y}(x,y)=c\\exp\\Big(-2x^2-\\dfrac{y^2}{2}\\Big)$. (a) What is it, and what is $c$? (b) Independent? (c) $E[X],E[Y],\\operatorname{Var}(X),\\operatorname{Var}(Y)$. (d) The PDF of $Z=aX+bY$.",
+   "steps": [
+    {
+     "explanation": "(a) **Spot:** $e^{-(\\text{squares})}$ → bivariate Gaussian. Match $2x^2=\\dfrac{x^2}{2\\sigma_X^2}$ and $\\dfrac{y^2}2=\\dfrac{y^2}{2\\sigma_Y^2}$.",
+     "latex": "\\sigma_X^2=\\frac14,\\qquad \\sigma_Y^2=1,\\qquad \\mu_X=\\mu_Y=0"
+    },
+    {
+     "explanation": "With $\\rho=0$ the constant is $\\dfrac1{2\\pi\\sigma_X\\sigma_Y}$.",
+     "latex": "c=\\frac{1}{2\\pi\\cdot\\frac12\\cdot1}=\\frac1\\pi"
+    },
+    {
+     "explanation": "(b) No $xy$ term, so $f$ splits: $f=\\big(\\text{only }x\\big)\\big(\\text{only }y\\big)$ → **independent** (and uncorrelated).",
+     "latex": ""
+    },
+    {
+     "explanation": "(c) Read off.",
+     "latex": "E[X]=E[Y]=0,\\qquad \\operatorname{Var}(X)=\\frac14,\\qquad \\operatorname{Var}(Y)=1"
+    },
+    {
+     "explanation": "(d) A combination of independent Gaussians is Gaussian. Means add; variances add with $a^2$, $b^2$.",
+     "latex": "Z\\sim N\\Big(0,\\ \\frac{a^2}{4}+b^2\\Big),\\qquad f_Z(z)=\\frac{1}{\\sqrt{2\\pi\\big(\\frac{a^2}4+b^2\\big)}}\\,e^{-z^2/\\left(2\\left(\\frac{a^2}4+b^2\\right)\\right)}"
+    }
+   ],
+   "answer": "(a) Gaussian, $c=\\tfrac1\\pi$ (b) independent (c) $0,0,\\tfrac14,1$ (d) $Z\\sim N(0,\\tfrac{a^2}4+b^2)$",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "3ab01077-9980-4b23-ba3e-e7135c520c63"
+    },
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "1363b27a-4523-471c-835b-519d6482ed3b"
+    },
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "12636b80-804d-4379-b8a7-49c1ef7d6914"
+    }
+   ],
+   "id": "9b33ce31-22a1-595c-aeaf-80d34f2fe487"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Practice Questions",
+   "citations": [],
+   "id": "305f095b-9a2e-586f-9c7d-fef940ae2ea2"
+  },
+  {
+   "type": "paragraph",
+   "text": "Try the table first, then practise choosing the limits for a density. Open each solution after you try it. ★ marks problems based on the lectures or tutorials.",
+   "citations": [],
+   "id": "be8957e2-3399-577c-b1a2-141c8f90b559"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 1 · Joint PMF table · find $c$, marginals, independence",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "(a) Find $c$, the marginals, $P(X+Y\\le2)$ and $F_{X,Y}(1,1)$. Are $X$ and $Y$ independent?\n\n| | $y=0$ | $y=1$ | $y=2$ |\n|---|---|---|---|\n| $x=1$ | $0.10$ | $0.20$ | $c$ |\n| $x=2$ | $0.15$ | $0.30$ | $0.15$ |\n\n(b) Same question for this table: are $X$ and $Y$ independent? Find $P(X<Y)$.\n\n| | $y=0$ | $y=1$ |\n|---|---|---|\n| $x=0$ | $0.2$ | $0.1$ |\n| $x=1$ | $0.1$ | $0.3$ |\n| $x=2$ | $0.1$ | $0.2$ |",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Find $c$:** the cells add to $1$.",
+     "latex": "0.9+c=1\\quad\\Longrightarrow\\quad c=0.10"
+    },
+    {
+     "explanation": "**Marginals:** row and column totals.",
+     "latex": "\\begin{gathered}p_X(1)=0.40,\\quad p_X(2)=0.60 \\\\ p_Y(0)=0.25,\\quad p_Y(1)=0.50,\\quad p_Y(2)=0.25\\end{gathered}"
+    },
+    {
+     "explanation": "$x+y\\le2$: cells $(1,0),(1,1),(2,0)$.",
+     "latex": "P(X+Y\\le2)=0.10+0.20+0.15=0.45"
+    },
+    {
+     "explanation": "Lower-left of $(1,1)$: $x\\le1$, $y\\le1$.",
+     "latex": "F_{X,Y}(1,1)=0.10+0.20=0.30"
+    },
+    {
+     "explanation": "**Compare** all 6 cells with row × column.",
+     "latex": "\\begin{gathered}0.4(0.25)=0.10,\\ \\ 0.4(0.5)=0.20,\\ \\ 0.4(0.25)=0.10 \\\\ 0.6(0.25)=0.15,\\ \\ 0.6(0.5)=0.30,\\ \\ 0.6(0.25)=0.15\\end{gathered}"
+    },
+    {
+     "explanation": "All match → **independent**.",
+     "latex": ""
+    },
+    {
+     "explanation": "(b) **Marginals**, then **Compare** one cell.",
+     "latex": "p_X(0)\\,p_Y(0)=0.3\\times0.4=0.12\\ne0.2"
+    },
+    {
+     "explanation": "**Not** independent. $x<y$ only in cell $(0,1)$.",
+     "latex": "P(X<Y)=0.1"
+    }
+   ],
+   "answer": "(a) $c=0.1$; $p_X=0.4,0.6$; $p_Y=0.25,0.5,0.25$; $0.45$; $0.30$; independent (b) not independent; $0.1$",
+   "citations": [],
+   "id": "650e413d-9c90-5f68-8524-3b35477829d9"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 2 · Find $c$ and a circle probability ★ · Tutorial 8 Q1",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=cxy$ for $0\\le x\\le1,\\ 0\\le y\\le2$. Find $c$ and $P(X^2+Y^2\\le1)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Find $c$:** the formula splits, so the double integral is a product.",
+     "latex": "c\\int_0^1x\\,dx\\int_0^2y\\,dy=c\\cdot\\frac12\\cdot2=c=1"
+    },
+    {
+     "explanation": "**Sketch:** a quarter circle of radius $1$ (it fits inside the box, since $x\\le1$, $y\\le1<2$).",
+     "latex": ""
+    },
+    {
+     "explanation": "**Slice** at $x$: $y$ from $0$ to $\\sqrt{1-x^2}$.",
+     "latex": "P=\\int_0^1\\!\\!\\int_0^{\\sqrt{1-x^2}}xy\\,dy\\,dx=\\int_0^1x\\cdot\\frac{1-x^2}{2}\\,dx"
+    },
+    {
+     "explanation": "**Integrate.**",
+     "latex": "=\\frac12\\Big(\\frac12-\\frac14\\Big)=\\frac18"
+    }
+   ],
+   "answer": "$c=1$, $P=\\tfrac18$",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "07a91314-e9cd-45cd-b397-35b10dd7bfd3"
+    },
+    {
+     "source_id": "0f47f931-b362-40d3-8be9-68ad8c24477a",
+     "version": 1,
+     "chunk_id": "4989703b-e809-437a-9567-982b4da14565"
+    }
+   ],
+   "id": "01da8f2f-7c7c-56f3-b723-17328b56495b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 3 · Marginals and independence ★ · Tutorial 7 Q4",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=12xy(1-x)$ for $0<x<1,\\ 0<y<1$. (a) $f_X$, $f_Y$. (b) Independent? (c) $P(X<\\tfrac12,\\ Y<\\tfrac12)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Marginals.**",
+     "latex": "\\begin{gathered}f_X(x)=\\int_0^1 12xy(1-x)\\,dy=6x(1-x),\\qquad 0<x<1 \\\\ f_Y(y)=\\int_0^1 12xy(1-x)\\,dx=12y\\Big(\\frac12-\\frac13\\Big)=2y,\\qquad 0<y<1\\end{gathered}"
+    },
+    {
+     "explanation": "(b) **Compare.**",
+     "latex": "\\begin{gathered}f_X\\,f_Y=6x(1-x)\\cdot2y=12xy(1-x)=f_{X,Y} \\\\ \\Rightarrow\\quad\\text{independent}\\end{gathered}"
+    },
+    {
+     "explanation": "(c) Independent, so the joint probability is a product of the two single ones.",
+     "latex": "\\begin{gathered}P\\big(X<\\frac12\\big)=\\int_0^{1/2}6x(1-x)\\,dx=\\frac12 \\\\ P\\big(Y<\\frac12\\big)=\\int_0^{1/2}2y\\,dy=\\frac14\\end{gathered}"
+    },
+    {
+     "explanation": "Multiply.",
+     "latex": "P=\\frac12\\cdot\\frac14=\\frac18"
+    }
+   ],
+   "answer": "(a) $6x(1-x)$, $2y$ (b) independent (c) $\\tfrac18$",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "a25bde00-9c60-4121-8f33-54a29f5be927"
+    }
+   ],
+   "id": "aa213dcb-d9d6-5502-b16e-f0ada1cb3229"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 4 · Triangle region ★ · Tutorial 7 Q6",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=24xy$ for $x\\ge0,\\ y\\ge0,\\ x+y\\le1$. (a) Sketch the region. (b) Check it is a valid PDF. (c) $f_X(x)$. (d) Independent?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Sketch:** the triangle with corners $(0,0)$, $(1,0)$, $(0,1)$.",
+     "latex": ""
+    },
+    {
+     "explanation": "(c) first: **Slice** at $x$, $y$ from $0$ to $1-x$.",
+     "latex": "f_X(x)=\\int_0^{1-x}24xy\\,dy=12x(1-x)^2,\\qquad 0\\le x\\le1"
+    },
+    {
+     "explanation": "(b) $f\\ge0$, and the total is $1$:",
+     "latex": "\\int_0^1 12x(1-x)^2\\,dx=12\\Big(\\frac12-\\frac23+\\frac14\\Big)=1\\ \\checkmark"
+    },
+    {
+     "explanation": "(d) **Spot:** a triangle, not a rectangle → **not** independent. Proof: by symmetry $f_Y(y)=12y(1-y)^2$; at $(0.9,0.9)$, $f_{X,Y}=0$ (outside) but $f_X f_Y>0$.",
+     "latex": ""
+    }
+   ],
+   "answer": "(b) valid (c) $12x(1-x)^2$ on $[0,1]$ (d) not independent",
+   "citations": [
+    {
+     "source_id": "79f52518-90e0-41df-b0b0-5800904bbe9b",
+     "version": 1,
+     "chunk_id": "0fbffb43-2956-498c-9f5d-b1a897b31fdd"
+    }
+   ],
+   "id": "fcb82b55-089c-5a59-8e4a-37f07277be3a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 5 · Find $k$, marginals, joint CDF, two probabilities ★ · Tutorial 8 Q8",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=k(x+y)$ for $0\\le x\\le1,\\ 0\\le y\\le1$. (a) $k$. (b) $f_X$, $f_Y$. (c) Independent? (d) The joint CDF inside the square. (e) $P(X<Y)$ and $P(Y<X^2)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Find $c$.**",
+     "latex": "k\\int_0^1\\!\\!\\int_0^1(x+y)\\,dy\\,dx=k\\Big(\\frac12+\\frac12\\Big)=k=1"
+    },
+    {
+     "explanation": "(b) **Marginals** (as Example 7).",
+     "latex": "f_X(x)=x+\\frac12,\\qquad f_Y(y)=y+\\frac12"
+    },
+    {
+     "explanation": "(c) At $(\\tfrac14,\\tfrac14)$ the marginal product is $\\tfrac9{16}$ and the joint density is $\\tfrac12$. The mismatch persists nearby, so the variables are dependent.",
+     "latex": ""
+    },
+    {
+     "explanation": "(d) Integrate from the corner $(0,0)$.",
+     "latex": "F(x,y)=\\int_0^x\\!\\!\\int_0^y(u+v)\\,dv\\,du=\\frac{x^2y+xy^2}{2},\\qquad 0\\le x,y\\le1"
+    },
+    {
+     "explanation": "(e) $x+y$ is the same if you swap $x$ and $y$, so $X<Y$ and $Y<X$ are equally likely.",
+     "latex": "P(X<Y)=\\frac12"
+    },
+    {
+     "explanation": "**Slice** at $x$: $y$ from $0$ to $x^2$.",
+     "latex": "\\begin{gathered}P(Y<X^2)=\\int_0^1\\!\\!\\int_0^{x^2}(x+y)\\,dy\\,dx \\\\ =\\int_0^1\\Big(x^3+\\frac{x^4}2\\Big)dx=\\frac14+\\frac1{10}=\\frac7{20}\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $1$ (b) $x+\\tfrac12$, $y+\\tfrac12$ (c) no (d) $\\tfrac{x^2y+xy^2}2$ (e) $\\tfrac12$, $\\tfrac7{20}$",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "3ab01077-9980-4b23-ba3e-e7135c520c63"
+    }
+   ],
+   "id": "40dec0ea-47b7-5c9e-aee0-3c8985e9556f"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 6 · Region probability ★ · Tutorial 8 Q7",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=x-y+1$ for $x,y\\in[0,1]$. Find $P(X+Y\\ge\\tfrac12)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** most of the square has $x+y\\ge\\tfrac12$. Do the small corner and subtract.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Sketch:** the corner triangle $x+y<\\tfrac12$. **Slice** at $x$: $y$ from $0$ to $\\tfrac12-x$, for $0\\le x\\le\\tfrac12$.",
+     "latex": "P\\big(X+Y<\\frac12\\big)=\\int_0^{1/2}\\!\\!\\int_0^{1/2-x}(x-y+1)\\,dy\\,dx"
+    },
+    {
+     "explanation": "**Integrate.** (The $x-y$ part cancels on this triangle by symmetry; the $1$ gives the area $\\tfrac18$.)",
+     "latex": "=\\frac18"
+    },
+    {
+     "explanation": "Complement.",
+     "latex": "P\\big(X+Y\\ge\\frac12\\big)=1-\\frac18=\\frac78"
+    }
+   ],
+   "answer": "$\\tfrac78$",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "3ab01077-9980-4b23-ba3e-e7135c520c63"
+    }
+   ],
+   "id": "b43bcf57-4d24-58ff-9b09-ef721ef1aa4b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 7 · Two independent uniforms ★ · Lecture 20, Tutorial 8 Q3",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$X$ and $Y$ are independent, each uniform on $[-1,1]$. Find (a) $\\operatorname{Cov}[X,Y]$ (b) $P(X^2<\\tfrac14,\\ |Y-1|>\\tfrac12)$ (c) $P(X<Y,\\ Y>\\tfrac12)$ (d) $P(\\max\\{X,Y\\}<\\tfrac12)$ (e) $P(XY>\\tfrac14)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** independent, so $f_{X,Y}=\\tfrac12\\cdot\\tfrac12=\\tfrac14$ on the square $[-1,1]^2$. A probability = $\\tfrac14\\times$ the area.",
+     "latex": ""
+    },
+    {
+     "explanation": "(a) Independent → uncorrelated.",
+     "latex": "\\operatorname{Cov}[X,Y]=E[XY]-E[X]E[Y]=0"
+    },
+    {
+     "explanation": "(b) Split into one event per variable. $X^2<\\tfrac14\\iff|X|<\\tfrac12$. $|Y-1|>\\tfrac12\\iff Y<\\tfrac12$ (since $Y\\le1$).",
+     "latex": "P=P\\big(|X|<\\frac12\\big)\\,P\\big(Y<\\frac12\\big)=\\frac12\\cdot\\frac34=\\frac38"
+    },
+    {
+     "explanation": "(c) **Slice** at $y\\in(\\tfrac12,1)$: $x$ from $-1$ to $y$.",
+     "latex": "P=\\frac14\\int_{1/2}^{1}(y+1)\\,dy=\\frac14\\cdot\\frac78=\\frac7{32}"
+    },
+    {
+     "explanation": "(d) The max is below $\\tfrac12$ exactly when **both** are.",
+     "latex": "P=P\\big(X<\\frac12\\big)P\\big(Y<\\frac12\\big)=\\Big(\\frac34\\Big)^2=\\frac9{16}"
+    },
+    {
+     "explanation": "(e) $XY>\\tfrac14$: both positive or both negative, two mirror-image pieces. Positive piece: $x\\in(\\tfrac14,1)$, $y$ from $\\tfrac1{4x}$ to $1$.",
+     "latex": "\\text{area}=\\int_{1/4}^{1}\\Big(1-\\frac1{4x}\\Big)dx=\\frac34-\\frac{\\ln4}{4}"
+    },
+    {
+     "explanation": "Two pieces, times $\\tfrac14$.",
+     "latex": "P=2\\cdot\\frac14\\Big(\\frac34-\\frac{\\ln 4}{4}\\Big)=\\frac{3-2\\ln2}{8}\\approx0.2017"
+    }
+   ],
+   "answer": "(a) $0$ (b) $\\tfrac38$ (c) $\\tfrac7{32}$ (d) $\\tfrac9{16}$ (e) $\\tfrac{3-2\\ln2}8\\approx0.2017$",
+   "citations": [
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "487001ca-1a95-4ce7-8a1e-6b7f6efe0c4b"
+    },
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "07a91314-e9cd-45cd-b397-35b10dd7bfd3"
+    }
+   ],
+   "id": "df0cbb2c-d2e2-576f-bf45-701f4adfb51d"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 8 · A Gaussian pair · like Tutorial 8 Q9",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=c\\exp\\Big(-\\dfrac{x^2}{2}-\\dfrac{y^2}{8}\\Big)$. Find $c$, $\\operatorname{Var}(X)$, $\\operatorname{Var}(Y)$; are $X$, $Y$ independent? What is the distribution of $Z=X-2Y$?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Spot:** Gaussian, no $xy$ term → $\\rho=0$ → **independent**. Match $\\dfrac{x^2}{2\\sigma_X^2}$, $\\dfrac{y^2}{2\\sigma_Y^2}$.",
+     "latex": "\\sigma_X^2=1,\\qquad \\sigma_Y^2=4,\\qquad\\mu_X=\\mu_Y=0"
+    },
+    {
+     "explanation": "The constant.",
+     "latex": "c=\\frac{1}{2\\pi\\sigma_X\\sigma_Y}=\\frac1{2\\pi\\cdot1\\cdot2}=\\frac1{4\\pi}"
+    },
+    {
+     "explanation": "$Z=aX+bY$ with $a=1$, $b=-2$: Gaussian, mean $0$, variance $a^2\\sigma_X^2+b^2\\sigma_Y^2$.",
+     "latex": "\\operatorname{Var}(Z)=1\\cdot1+4\\cdot4=17,\\qquad Z\\sim N(0,17)"
+    }
+   ],
+   "answer": "$c=\\tfrac1{4\\pi}$, $\\operatorname{Var}(X)=1$, $\\operatorname{Var}(Y)=4$, independent, $Z\\sim N(0,17)$",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "3ab01077-9980-4b23-ba3e-e7135c520c63"
+    }
+   ],
+   "id": "7cb1b630-6d8c-5ccb-a0a4-244fea625a72"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 9 · A dome on a disk ★ · Tutorial 8 Q5 (a)(b)",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=c\\sqrt{1-x^2-y^2}$ for $x^2+y^2\\le1$. (a) Find $c$. (b) Are $X$ and $Y$ independent?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "(a) **Find $c$:** the graph of $\\sqrt{1-x^2-y^2}$ is the top half of a unit ball, volume $\\tfrac12\\cdot\\tfrac43\\pi=\\tfrac23\\pi$.",
+     "latex": "c\\cdot\\frac{2\\pi}{3}=1\\quad\\Longrightarrow\\quad c=\\frac{3}{2\\pi}"
+    },
+    {
+     "explanation": "(Without the ball: polar coordinates, $\\int_0^{2\\pi}\\!\\int_0^1\\sqrt{1-r^2}\\,r\\,dr\\,d\\theta=2\\pi\\cdot\\tfrac13$.)",
+     "latex": ""
+    },
+    {
+     "explanation": "(b) **Spot:** a disk is not a rectangle → **not** independent. At $(0.9,0.9)$ the joint PDF is $0$ (outside the disk), but $f_X(0.9)>0$ and $f_Y(0.9)>0$.",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) $c=\\tfrac3{2\\pi}$ (b) not independent",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "07a91314-e9cd-45cd-b397-35b10dd7bfd3"
+    }
+   ],
+   "id": "f5708681-5a40-5e62-8b34-ab14e2007247"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Question 10 · Covariance from a joint PDF ★ · Lecture 19",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=4xy$ on the unit square. Find $E[XY]$ and $\\operatorname{Cov}[X,Y]$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "$E[XY]$: put $xy$ in front of $f$, integrate over the square.",
+     "latex": "E[XY]=\\int_0^1\\!\\!\\int_0^1xy\\cdot4xy\\,dx\\,dy=4\\cdot\\frac13\\cdot\\frac13=\\frac49"
+    },
+    {
+     "explanation": "Means from the marginals $2x$ and $2y$ (Example 5).",
+     "latex": "E[X]=\\int_0^1x\\cdot2x\\,dx=\\frac23=E[Y]"
+    },
+    {
+     "explanation": "**Plug in.**",
+     "latex": "\\operatorname{Cov}=\\frac49-\\frac23\\cdot\\frac23=0"
+    }
+   ],
+   "answer": "$E[XY]=\\tfrac49$, $\\operatorname{Cov}=0$ (as expected: they are independent)",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "ed1390ee-43de-4120-8702-01e5373d8907"
+    }
+   ],
+   "id": "2abcdcba-be35-503a-a109-fef138f1cf56"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Test 3 formula sheet",
+   "citations": [],
+   "id": "e5425f3f-4661-5c17-8a7c-3b5ed16e5fed"
+  },
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Formula sheet (given with Test 3).** Learn to use these, not to memorise them:\n\n$$\nf_X(x)=\\int_{-\\infty}^{\\infty}f_{X,Y}(x,y)\\,dy\\qquad f_Y(y)=\\int_{-\\infty}^{\\infty}f_{X,Y}(x,y)\\,dx\n$$\n\n$$\np_{X|Y}(x\\mid y)=\\frac{p_{X,Y}(x,y)}{p_Y(y)}\\qquad f_{X|Y}(x\\mid y)=\\frac{f_{X,Y}(x,y)}{f_Y(y)}\n$$\n\n$$\nF_X(x)=\\sum_{t\\le x}p_X(t)\\qquad F_X(x)=\\int_{-\\infty}^{x}f_X(t)\\,dt\n$$\n\n$$\nE[X\\mid Y=y]=\\sum_x x\\,p_{X|Y}(x\\mid y)\n$$\n\n$$\nE[X\\mid Y=y]=\\int_{-\\infty}^{\\infty}x\\,f_{X|Y}(x\\mid y)\\,dx\n$$",
+   "citations": [],
+   "id": "399e14e6-c781-5d79-a5b0-1c7ed8166130"
+  }
+ ]
+}
