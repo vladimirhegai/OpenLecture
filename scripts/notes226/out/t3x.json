@@ -1,0 +1,244 @@
+{
+ "title": "Test 3 - Extra (Covariance & Gaussian)",
+ "topic_keys": [
+  "covariance",
+  "gaussian_pair"
+ ],
+ "blocks": [
+  {
+   "type": "callout",
+   "tone": "info",
+   "text": "**Probably not on Test 3.** The test announcement lists marginals, independence and conditional distributions only. These were taught in Lectures 19–20, so they are kept here to review when you have time.",
+   "citations": [],
+   "id": "8744901a-e4da-5643-b3fb-3f36f22a24a4"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Covariance",
+   "citations": [],
+   "id": "5140e6a7-cdf5-5d7c-847b-90fb4f505a11"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Covariance** answers one question: do $X$ and $Y$ move together?",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "ea96bee0-dc3b-4eed-b746-31b3dd04bde0"
+    }
+   ],
+   "id": "76a6f586-c45e-5d00-9f77-44cd0d4c4683"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$\\operatorname{Cov}>0$: big $X$ tends to come with big $Y$.",
+    "$\\operatorname{Cov}<0$: big $X$ tends to come with small $Y$.",
+    "$\\operatorname{Cov}=0$: no straight-line pattern."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "dd767749-bfa2-5ee1-8e4d-e87200fabc99"
+  },
+  {
+   "type": "equation",
+   "latex": "\\operatorname{Cov}[X,Y]=E[XY]-E[X]\\,E[Y]",
+   "display": true,
+   "citations": [
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "7787bda3-4ba3-4565-bd45-de95bf5515ef"
+    }
+   ],
+   "id": "67c36698-ca7e-57bc-8768-73332a04468e"
+  },
+  {
+   "type": "paragraph",
+   "text": "To get $E[XY]$, multiply each pair $xy$ by its probability, then add (or integrate):",
+   "citations": [],
+   "id": "468094eb-8ef2-5788-a4c8-43def5b909af"
+  },
+  {
+   "type": "equation",
+   "latex": "E[XY]=\\sum_x\\sum_y xy\\,p_{X,Y}(x,y)\\qquad\\qquad E[XY]=\\iint xy\\,f_{X,Y}(x,y)\\,dx\\,dy",
+   "display": true,
+   "citations": [],
+   "id": "976bf6fe-8101-5413-abf1-286e1efcc847"
+  },
+  {
+   "type": "list",
+   "items": [
+    "If $X$ and $Y$ are independent, then $E[XY]=E[X]E[Y]$, so $\\operatorname{Cov}=0$.",
+    "The reverse is **not** true in general. $\\operatorname{Cov}=0$ does not prove independent. (Gaussian pairs are the exception.)",
+    "The correlation $\\rho=\\dfrac{\\operatorname{Cov}[X,Y]}{\\sigma_X\\sigma_Y}$ is the covariance rescaled to sit between $-1$ and $1$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "6082fb84-2df9-5947-9ba4-7095d5b38c27"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · Covariance from a table",
+   "prompt": "Find $\\operatorname{Cov}[X,Y]$.\n\n| | $Y=0$ | $Y=1$ | $Y=2$ |\n|---|---|---|---|\n| $X=0$ | $0.10$ | $0.15$ | $0.05$ |\n| $X=1$ | $0.20$ | $0.30$ | $0.20$ |",
+   "steps": [
+    {
+     "explanation": "**$E[XY]$:** only cells with $x\\ne0$ and $y\\ne0$ matter: $(1,1)$ and $(1,2)$.",
+     "latex": "E[XY]=1\\cdot1\\cdot0.30+1\\cdot2\\cdot0.20=0.70"
+    },
+    {
+     "explanation": "**Marginals:** $p_X=0.30,\\ 0.70$ and $p_Y=0.30,\\ 0.45,\\ 0.25$.",
+     "latex": "\\begin{gathered}E[X]=0.70 \\\\ E[Y]=0\\cdot0.30+1\\cdot0.45+2\\cdot0.25=0.95\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in.**",
+     "latex": "\\operatorname{Cov}[X,Y]=0.70-0.70\\cdot0.95=0.035"
+    }
+   ],
+   "answer": "$\\operatorname{Cov}[X,Y]=0.035$",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "ed1390ee-43de-4120-8702-01e5373d8907"
+    }
+   ],
+   "id": "b35052c6-fac0-52f0-8b6c-5975641e7f56"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · Covariance from a density ★ · Lecture 19",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "$f_{X,Y}(x,y)=4xy$ on the unit square. Find $E[XY]$ and $\\operatorname{Cov}[X,Y]$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**$E[XY]$.**",
+     "latex": "E[XY]=\\int_0^1\\!\\!\\int_0^1xy\\cdot4xy\\,dx\\,dy=4\\cdot\\frac13\\cdot\\frac13=\\frac49"
+    },
+    {
+     "explanation": "**Means** from the marginals $2x$ and $2y$.",
+     "latex": "E[X]=\\int_0^1x\\cdot2x\\,dx=\\frac23=E[Y]"
+    },
+    {
+     "explanation": "**Plug in.**",
+     "latex": "\\operatorname{Cov}=\\frac49-\\frac49=0"
+    }
+   ],
+   "answer": "$E[XY]=\\tfrac49$, $\\operatorname{Cov}=0$ (this pair is independent)",
+   "citations": [
+    {
+     "source_id": "9e85760b-55af-4ca4-9d59-71e1035a301f",
+     "version": 1,
+     "chunk_id": "ed1390ee-43de-4120-8702-01e5373d8907"
+    }
+   ],
+   "id": "e1933353-43d2-5a5a-b1ae-1ba5faddc473"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Gaussian pairs",
+   "citations": [],
+   "id": "7515c3e2-4941-561c-8244-f9c24b96ee7b"
+  },
+  {
+   "type": "paragraph",
+   "text": "A **jointly Gaussian** pair has a density like a constant times $e^{-(\\text{stuff in }x\\text{ and }y)}$.",
+   "citations": [
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "1363b27a-4523-471c-835b-519d6482ed3b"
+    }
+   ],
+   "id": "c5c5ee8b-19f6-52c6-88ec-541be8d57866"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**No $xy$ term** in the exponent means $\\rho=0$, which for a Gaussian pair means **independent**.",
+    "**Read the variances.** Match the $x^2$ term with $\\dfrac{x^2}{2\\sigma_X^2}$ and the $y^2$ term with $\\dfrac{y^2}{2\\sigma_Y^2}$. A shifted square $(x-\\mu_X)^2$ gives the mean.",
+    "**The constant** is $c=\\dfrac{1}{2\\pi\\,\\sigma_X\\sigma_Y}$ when $\\rho=0$.",
+    "**$Z=aX+bY$** is Gaussian with mean $a\\mu_X+b\\mu_Y$; for independent $X,Y$ its variance is $a^2\\sigma_X^2+b^2\\sigma_Y^2$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "8ee54d45-951f-5993-8977-7c8febea2581"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · A Gaussian pair ★ (Tutorial 8 Q9)",
+   "prompt": "$f_{X,Y}(x,y)=c\\exp\\Big(-2x^2-\\dfrac{y^2}{2}\\Big)$.\n\n**(a)** Find $c$.\n\n**(b)** Independent?\n\n**(c)** Means and variances.\n\n**(d)** Distribution of $Z=aX+bY$.",
+   "steps": [
+    {
+     "explanation": "**Match the squares.**",
+     "latex": "\\begin{gathered}2x^2=\\dfrac{x^2}{2\\sigma_X^2}\\ \\Rightarrow\\ \\sigma_X^2=\\dfrac14 \\\\ \\dfrac{y^2}2=\\dfrac{y^2}{2\\sigma_Y^2}\\ \\Rightarrow\\ \\sigma_Y^2=1\\end{gathered}"
+    },
+    {
+     "explanation": "(a) **The constant.**",
+     "latex": "c=\\frac{1}{2\\pi\\cdot\\frac12\\cdot1}=\\frac1\\pi"
+    },
+    {
+     "explanation": "(b) **No $xy$ term** → independent.",
+     "latex": ""
+    },
+    {
+     "explanation": "(c) No shifts, so both means are $0$.",
+     "latex": "E[X]=E[Y]=0,\\qquad \\operatorname{Var}(X)=\\frac14,\\qquad \\operatorname{Var}(Y)=1"
+    },
+    {
+     "explanation": "(d) **Combination.**",
+     "latex": "Z\\sim N\\Big(0,\\ \\frac{a^2}{4}+b^2\\Big)"
+    }
+   ],
+   "answer": "**(a)** $\\tfrac1\\pi$\n\n**(b)** independent\n\n**(c)** $0,\\ 0,\\ \\tfrac14,\\ 1$\n\n**(d)** $N\\big(0,\\ \\tfrac{a^2}4+b^2\\big)$",
+   "citations": [
+    {
+     "source_id": "7d80bdef-0a85-4aa8-8247-f4431ad8aec6",
+     "version": 1,
+     "chunk_id": "3ab01077-9980-4b23-ba3e-e7135c520c63"
+    },
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "1363b27a-4523-471c-835b-519d6482ed3b"
+    },
+    {
+     "source_id": "eac2ddea-cbeb-4100-9540-f07fbf56e149",
+     "version": 1,
+     "chunk_id": "12636b80-804d-4379-b8a7-49c1ef7d6914"
+    }
+   ],
+   "id": "385a5cd4-6842-5d53-8c4d-f5f401809072"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · Shifted means",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "$f_{X,Y}(x,y)=c\\exp\\Big(-\\dfrac{(x-1)^2}{2}-\\dfrac{(y+2)^2}{18}\\Big)$. Find $c$, the means, the variances, and the distribution of $Z=X+Y$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Match the squares.**",
+     "latex": "\\begin{gathered}\\mu_X=1,\\ \\sigma_X^2=1 \\\\ \\mu_Y=-2,\\ \\sigma_Y^2=9\\end{gathered}"
+    },
+    {
+     "explanation": "**Constant.**",
+     "latex": "c=\\frac{1}{2\\pi\\cdot1\\cdot3}=\\frac1{6\\pi}"
+    },
+    {
+     "explanation": "**$Z=X+Y$:** means add, variances add (independent).",
+     "latex": "Z\\sim N(-1,\\ 10)"
+    }
+   ],
+   "answer": "$c=\\tfrac1{6\\pi}$; $1,\\,-2$; $1,\\,9$; $Z\\sim N(-1,10)$",
+   "citations": [],
+   "id": "e0661879-0e61-5af3-b4aa-6d566d697921"
+  }
+ ]
+}

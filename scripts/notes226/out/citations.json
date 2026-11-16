@@ -1026,5 +1026,37 @@
       "version": 1,
       "chunk_id": "3ab01077-9980-4b23-ba3e-e7135c520c63"
     }
+  },
+  "ELEC226_326 Lec23.pdf": {
+    "1": {
+      "source_id": "625ace99-ee24-45d3-afdd-300316ee5b2b",
+      "version": 1,
+      "chunk_id": "a1812630-fc1b-4785-ab54-9ae927229b54"
+    },
+    "2": {
+      "source_id": "625ace99-ee24-45d3-afdd-300316ee5b2b",
+      "version": 1,
+      "chunk_id": "c9932488-fdb1-4981-b219-d7325f2e9c1a"
+    },
+    "3": {
+      "source_id": "625ace99-ee24-45d3-afdd-300316ee5b2b",
+      "version": 1,
+      "chunk_id": "4ac5f29a-03a0-48e6-b5ad-479b25d5491f"
+    },
+    "4": {
+      "source_id": "625ace99-ee24-45d3-afdd-300316ee5b2b",
+      "version": 1,
+      "chunk_id": "bc2e9959-e3e6-4c56-8dd9-abb667d106c6"
+    },
+    "5": {
+      "source_id": "625ace99-ee24-45d3-afdd-300316ee5b2b",
+      "version": 1,
+      "chunk_id": "35191376-1a9a-45fd-9a70-2d6c5a690139"
+    },
+    "6": {
+      "source_id": "625ace99-ee24-45d3-afdd-300316ee5b2b",
+      "version": 1,
+      "chunk_id": "f2e165ef-b886-4cd2-bf36-e692c504d9c5"
+    }
   }
 }

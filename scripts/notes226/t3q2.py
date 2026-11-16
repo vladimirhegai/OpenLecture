@@ -1,262 +1,274 @@
-r"""Test 3 - Question 2: discrete conditional distributions and conditional expectation."""
+r"""Test 3 - Question 2: conditional distributions for discrete random variables and conditional expectation
+(Lectures 21-23, Tutorial 7).
+
+Rewritten 2026-11-15 (same shape as t3q1): Part A conditional PMF, Part B conditional CDF, Part C conditional
+expectation (incl. E[g(X)|Y], conditional variance, total expectation from Lecture 23). Discrete only: the
+continuous material lives in t3q3.py. Practice = 6 test-style questions (10 marks each).
+"""
 from fractions import Fraction as Fr
 
 from lib226 import Doc, S, cite
 
-D = Doc('t3q2', 'Test 3 - Question 2', ['conditional_pmf', 'conditional_cdf', 'conditional_expectation', 'independence'])
-
-D.P(r'**Test 3, Question 2 · Discrete conditional distributions and expectation**')
-D.P(r'Read the bar $\mid$ as “given.” In $P(X=x\mid Y=y)$, you already know that $Y=y$. The question is how likely $X=x$ is among the outcomes that fit that information.',
-    cites=cite('L21', 1))
-D.P(r'First turn the selected outcomes into a probability distribution. Then use those probabilities to find a running total (a CDF) or a weighted average (a conditional expectation).', cites=cite('L22', 4))
+D = Doc('t3q2', 'Test 3 - Question 2', ['conditional_pmf', 'conditional_cdf', 'conditional_expectation'])
 
 # =====================================================================================================
-D.H('Find a conditional PMF')
-D.P(r'A **conditional PMF** gives the probability of each possible value after you learn the condition. When you know $Y=y$, keep the cells labeled with that value of $Y$.', cites=cite('L21', 1))
-D.L([r'**Select.** Find the row or column labeled $Y=y$.',
-     r'**Add.** Its total is $p_Y(y)$, the chance of the condition itself.',
-     r'**Divide.** Divide each selected cell by that total. The new probabilities should add to $1$.'], ordered=True)
-D.EQ(r'p_{X|Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}\qquad\text{for }p_Y(y)>0')
-D.P(r'The numerator is the chance that both conditions hold. The denominator makes the selected group the whole set you are working with. If its total is zero, the formula is undefined.')
+D.P(r'**Test 3, Question 2 · Discrete conditional distributions and conditional expectation** (10 marks)')
+D.P(r'"Given $Y=y$" means: you already know $Y$. Keep only the outcomes with that $y$, and rescale them so they add to $1$. That new PMF gives probabilities, a CDF, and an average.')
+D.CO('tip', r'''**Formula sheet lines for this question:**
 
-D.EX('Condition on a row or column ★ (Tutorial 7 Q3)',
-     r'''Using the table, find $p_{X|Y}(x\mid1)$ and $p_{Y|X}(y\mid1)$.
+$$
+p_{X|Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}
+$$
+
+$$
+F_X(x)=\sum_{t\le x}p_X(t)\qquad\text{(use it with }p_{X|Y}\text{ for the conditional CDF)}
+$$
+
+$$
+E[X\mid Y=y]=\sum_x x\,p_{X|Y}(x\mid y)
+$$
+
+Expect: **conditional PMF → conditional CDF or probability → $E[X\mid Y=y]$ → independent?**''')
+
+# =====================================================================================================
+# PART A
+# =====================================================================================================
+D.H('Part A · Conditional PMF')
+
+# ---- A1 ----------------------------------------------------------------------------------------------
+D.H('A1 · From a table', level=2)
+D.EQ(r'p_{X|Y}(x\mid y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}', cites=cite('L21', 1))
+D.L([r'**Select** the row or column of the given value.',
+     r'**Total** it. That total is $p_Y(y)$.',
+     r'**Divide** each cell in it by the total. The new numbers add to $1$.'], ordered=True)
+D.EX('Given a column, given a row ★ (Lecture 17 / Tutorial 7 table)',
+     r'''Find $p_{X|Y}(x\mid1)$ and $p_{Y|X}(y\mid1)$.
 
 | | $y=0$ | $y=1$ | $y=2$ |
 |---|---|---|---|
 | $x=0$ | $0.10$ | $0.15$ | $0.05$ |
 | $x=1$ | $0.20$ | $0.30$ | $0.20$ |''',
-     [S(r'**Given $Y=1$.** The selected column contains $0.15$ and $0.30$. Its total is $0.45$.'),
-      S(r'**Divide each cell by $0.45$.** The cell for $X=1$ is twice as large as the one for $X=0$. After dividing, it still has twice the probability.',
-        (r'p_{X|Y}(0\mid1)=\frac{0.15}{0.45}=\frac13', r'p_{X|Y}(1\mid1)=\frac{0.30}{0.45}=\frac23')),
-      S(r'**Given $X=1$.** This time use the row labeled $X=1$. Its total is $0.20+0.30+0.20=0.70$.',
-        (r'p_{Y|X}(0\mid1)=\frac{0.20}{0.70}=\frac27', r'p_{Y|X}(1\mid1)=\frac{0.30}{0.70}=\frac37', r'p_{Y|X}(2\mid1)=\frac{0.20}{0.70}=\frac27')),
-      S(r'**Check.** The two probabilities in the first calculation add to $1$. The three in the second calculation also add to $1$.')],
-     r'Given $Y=1$, use $\tfrac13,\tfrac23$ at $x=0,1$. Given $X=1$, use $\tfrac27,\tfrac37,\tfrac27$ at $y=0,1,2$.', cites=cite('T7', 1))
+     [S(r'**Given $Y=1$:** column $y=1$ is $0.15,\ 0.30$. Total $0.45$.', r'p_{X|Y}(0\mid1)=\frac{0.15}{0.45}=\frac13,\qquad p_{X|Y}(1\mid1)=\frac{0.30}{0.45}=\frac23'),
+      S(r'**Given $X=1$:** row $x=1$ is $0.20,\ 0.30,\ 0.20$. Total $0.70$.', r'p_{Y|X}(y\mid1)=\frac27,\ \frac37,\ \frac27\quad(y=0,1,2)')],
+     r'$\tfrac13,\ \tfrac23$; $\tfrac27,\ \tfrac37,\ \tfrac27$', cites=cite('T7', 1))
+D.TRY('Your turn',
+      r'''Same table. Find $p_{X|Y}(x\mid2)$ and $p_{Y|X}(y\mid0)$.''',
+      [S(r'**Column $y=2$:** $0.05,\ 0.20$, total $0.25$.', r'p_{X|Y}(x\mid2)=0.2,\ 0.8\quad(x=0,1)'),
+       S(r'**Row $x=0$:** $0.10,\ 0.15,\ 0.05$, total $0.30$.', r'p_{Y|X}(y\mid0)=\frac13,\ \frac12,\ \frac16\quad(y=0,1,2)')],
+      r'$0.2,\,0.8$; $\tfrac13,\,\tfrac12,\,\tfrac16$', diff='introductory')
 
-D.H('Turn the conditional PMF into a CDF')
-D.P(r'The **conditional CDF** adds the conditional probabilities up to and including a cutoff. For instance, $F_{X|Y}(0.8\mid1)=\tfrac13$ in the table above because only $X=0$ is at or below $0.8$.', cites=cite('L21', 1))
-D.EQ(r'F_{X|Y}(x\mid y)=P(X\le x\mid Y=y)=\sum_{a\le x}p_{X|Y}(a\mid y)')
-D.P(r'The total jumps at each possible value of $X$. It stays flat between jumps because there are no new values to count. At a jump, include the probability at that value.')
+# ---- A2 ----------------------------------------------------------------------------------------------
+D.H('A2 · From an experiment', level=2)
+D.P(r'No table? List the equally likely outcomes that fit the condition, then count.', cites=cite('L21', 2))
+D.EQ(r'p_{X|Y}(x\mid y)=\frac{\#\text{ outcomes with }X=x\text{ and }Y=y}{\#\text{ outcomes with }Y=y}')
+D.EX('Two dice ★ (Lecture 21)',
+     r'Roll two fair dice. $X$ = first die, $Y$ = sum. Find $p_{X|Y}(x\mid7)$.',
+     [S(r'**Outcomes with sum $7$:** $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$. That is $6$.'),
+      S(r'**Each $x$ appears once.**', r'p_{X|Y}(x\mid7)=\frac16,\qquad x=1,2,\ldots,6\quad(0\text{ otherwise})')],
+     r'$\tfrac16$ for $x=1,\ldots,6$', cites=cite('L21', 2, 3))
+D.TRY('Three coins',
+      r'Toss a fair coin 3 times. $X$ = number of heads, $Y=1$ if the first toss is heads, else $0$. Find $p_{X|Y}(x\mid1)$.',
+      [S(r'**Outcomes with first toss $H$:** $HHH,\ HHT,\ HTH,\ HTT$ (4 of them).'),
+       S(r'**Count heads:** $3,\ 2,\ 2,\ 1$.', r'p_{X|Y}(x\mid1)=\frac14,\ \frac24,\ \frac14\quad(x=1,2,3)')],
+      r'$\tfrac14,\ \tfrac12,\ \tfrac14$ at $x=1,2,3$', diff='introductory')
 
-D.EX('List the dice rolls that fit the condition ★ (Lecture 21)',
-     r'Roll two fair dice. $X$ is the first die and $Y$ is their sum. Find the conditional PMF and CDF of $X$ given $Y=7$.',
-     [S(r'**Select.** Only six rolls have sum $7$. They are $(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)$.'),
-      S(r'**Divide.** The six rolls are equally likely. Exactly one has first die $x$, so each possible $x$ has one sixth of the selected probability.',
-        r'p_{X|Y}(x\mid7)=\frac{1/36}{6/36}=\frac16,\qquad x=1,2,\ldots,6'),
-      S(r'**Add up to the cutoff.** At $x=2.5$, include $1$ and $2$. At $x=3$, include $3$ as well.',
-        (r'F_{X|Y}(2.5\mid7)=\frac16+\frac16=\frac26', r'F_{X|Y}(3\mid7)=\frac36')),
-      S(r'**Write the whole CDF.** Between $k$ and the next integer, exactly $k$ values count.',
-        r'F_{X|Y}(x\mid7)=\begin{cases}0,&x<1\\ \frac k6,&k\le x<k+1,\ k=1,\ldots,5\\ 1,&x\ge6\end{cases}')],
-     r'The PMF is $\tfrac16$ at $1,\ldots,6$ and zero elsewhere. The CDF jumps by $\tfrac16$ at each of those values.',
-     cites=cite('L21', 2, 3))
+# ---- A3 ----------------------------------------------------------------------------------------------
+D.H('A3 · Independence from the conditional PMF', level=2)
+D.P(r'Independent means knowing $Y$ changes nothing:', cites=cite('L21', 1))
+D.EQ(r'p_{X|Y}(x\mid y)=p_X(x)\quad\text{for every }x\text{ and every possible }y')
+D.P(r'One mismatch → dependent.')
+D.EX('The dice are dependent ★ (Lecture 21)',
+     r'$X$ = first die, $Y$ = sum. Are $X$ and $Y$ independent?',
+     [S(r'**Pick an extreme $y$.** $Y=2$ forces $(1,1)$.', r'p_{X|Y}(1\mid2)=1'),
+      S(r'**Compare** with no information.', r'p_X(1)=\frac16\ne1')],
+     r'Not independent', cites=cite('L21', 3))
+D.TRY('Table check',
+      r'In the A1 table, compare $p_{X|Y}(0\mid1)$ with $p_X(0)$.',
+      [S(r'From A1, $p_{X|Y}(0\mid1)=\tfrac13$. The row total is $p_X(0)=0.30$.', r'\frac13\ne0.30\quad\Rightarrow\quad\text{dependent}')],
+      r'Dependent', diff='introductory')
 
 # =====================================================================================================
-D.H('Take a weighted average')
-D.P(r'The **conditional expectation** $E[X\mid Y=y]$ is the average of $X$ among the outcomes with $Y=y$. Multiply each possible $x$ by its conditional probability, then add the products.', cites=cite('L22', 4))
+# PART B
+# =====================================================================================================
+D.H('Part B · Conditional CDF')
+D.P(r'Add the conditional PMF up to and including $x$. It is a staircase.', cites=cite('L21', 1))
+D.EQ(r'F_{X|Y}(x\mid y)=P(X\le x\mid Y=y)=\sum_{t\le x}p_{X|Y}(t\mid y)')
+D.L([r'Jump at each possible value, flat in between. $0$ before the first value, $1$ after the last.',
+     r'Use $\le$ at each step: write "$1\le x<2$", not "$1<x\le2$".',
+     r'Discrete only: $P(X<2\mid\cdot)$ is **not** $F(2\mid\cdot)$. It is $F(1\mid\cdot)$ when the values are integers.'])
+D.EX('Dice ★ (Lecture 21)',
+     r'$X$ = first die, $Y$ = sum. Find $F_{X|Y}(x\mid7)$ and $P(X\le3\mid Y=7)$.',
+     [S(r'**From A2:** $\tfrac16$ at each of $1,\ldots,6$. **Add up.**',
+        r'F_{X|Y}(x\mid7)=\begin{cases}0,&x<1\\ \frac16,&1\le x<2\\ \frac26,&2\le x<3\\ \frac36,&3\le x<4\\ \frac46,&4\le x<5\\ \frac56,&5\le x<6\\ 1,&x\ge6\end{cases}'),
+      S(r'**Read off.**', r'P(X\le3\mid Y=7)=F_{X|Y}(3\mid7)=\frac36=\frac12')],
+     r'Staircase in steps of $\tfrac16$; $\tfrac12$', cites=cite('L21', 3))
+D.TRY('CDF from a table',
+      r'Use $p_{Y|X}(y\mid1)=\tfrac27,\tfrac37,\tfrac27$ at $y=0,1,2$ (A1). Find $F_{Y|X}(y\mid1)$ and $P(Y<2\mid X=1)$.',
+      [S(r'**Add up.**', r'F_{Y|X}(y\mid1)=\begin{cases}0,&y<0\\ \frac27,&0\le y<1\\ \frac57,&1\le y<2\\ 1,&y\ge2\end{cases}'),
+       S(r'**$Y<2$** means $Y\le1$.', r'P(Y<2\mid X=1)=F_{Y|X}(1\mid1)=\frac57')],
+      r'Staircase $\tfrac27,\tfrac57,1$; $\tfrac57$', diff='introductory')
+
+# =====================================================================================================
+# PART C
+# =====================================================================================================
+D.H('Part C · Conditional expectation')
+
+# ---- C1 ----------------------------------------------------------------------------------------------
+D.H('C1 · $E[X\\mid Y=y]$', level=2)
+D.P(r'The average of $X$ using the **conditional** probabilities as weights.', cites=cite('L22', 4))
 D.EQ(r'E[X\mid Y=y]=\sum_x x\,p_{X|Y}(x\mid y)')
-D.P(r'For a fixed condition such as $Y=7$, the answer is one number. If you leave the condition as $Y=y$, the answer can be a function of $y$.')
+D.L([r'For one value ($Y=7$) it is a number. With $y$ left as a letter it can be a formula in $y$.',
+     r'Independent → $E[X\mid Y=y]=E[X]$ for every $y$. So if it changes with $y$, they are **dependent**.'])
+D.EX('Dice and a table ★ (Lecture 22)',
+     r'(a) $X$ = first die, $Y$ = sum. Find $E[X\mid Y=7]$. (b) In the A1 table, find $E[Y\mid X=1]$.',
+     [S(r'(a) **Weights** $\tfrac16$ each (A2).', r'E[X\mid Y=7]=\frac{1+2+3+4+5+6}{6}=3.5'),
+      S(r'(b) **Weights** $\tfrac27,\tfrac37,\tfrac27$ at $y=0,1,2$.', r'E[Y\mid X=1]=0\cdot\frac27+1\cdot\frac37+2\cdot\frac27=1')],
+     r'(a) $3.5$ (b) $1$', cites=cite('L22', 5))
+D.TRY('Does the mean change?',
+      r'A1 table. Find $E[Y\mid X=0]$ and compare with $E[Y\mid X=1]=1$.',
+      [S(r'**Weights** $\tfrac13,\tfrac12,\tfrac16$ (A1 Try it).', r'E[Y\mid X=0]=0+\frac12+2\cdot\frac16=\frac56'),
+       S(r'$\tfrac56\ne1$: the mean changes with $x$ → dependent.')],
+      r'$\tfrac56$; dependent', diff='introductory')
 
-D.EX('Dice ★ (Lecture 22)',
-     r'Two dice, $X$ = the first die, $Y$ = the sum. Find $E[X\mid Y=7]$.',
-     [S(r'**Use the conditional PMF.** After keeping the rolls with sum $7$, each of the six first-die values has probability $\tfrac16$.'),
-      S(r'**Weight and add.** The weights are all the same here, so this is the usual average of the six values.',
-        r'E[X\mid Y=7]=\sum_{x=1}^{6}x\cdot\frac16=\frac{1+2+3+4+5+6}{6}=3.5')],
-     r'$3.5$', cites=cite('L22', 5))
-
-D.H('Conditional second moment and variance', level=2)
-D.P(r'To get the conditional second moment, square each possible value before you weight it. Use the same conditional probabilities.')
-D.EQ(r'E[X^2\mid Y=y]=\sum_x x^2\,p_{X|Y}(x\mid y)')
+# ---- C2 ----------------------------------------------------------------------------------------------
+D.H('C2 · $E[g(X)\\mid Y=y]$ and conditional variance', level=2)
+D.P(r'Same weights, but put $g(x)$ in front instead of $x$.', cites=cite('L22', 4))
+D.EQ(r'E[g(X)\mid Y=y]=\sum_x g(x)\,p_{X|Y}(x\mid y)')
 D.EQ(r'\operatorname{Var}(X\mid Y=y)=E[X^2\mid Y=y]-\big(E[X\mid Y=y]\big)^2')
-D.P(r'The same idea works for any $E[g(X)\mid Y=y]$. Use the value $g(x)$ with each weight.')
-
-D.EX('From a table: mean, square, variance',
-     r'Use the conditional probabilities from the first worked table. Find $E[X\mid Y=1]$, $E[Y\mid X=1]$ and $\operatorname{Var}(Y\mid X=1)$.',
-     [S(r'**Weight the values of $X$.** Given $Y=1$, $X=0$ has weight $\tfrac13$ and $X=1$ has weight $\tfrac23$.', r'E[X\mid Y=1]=0\cdot\frac13+1\cdot\frac23=\frac23'),
-      S(r'$p_{Y|X}(\cdot\mid1)=\tfrac27,\tfrac37,\tfrac27$ at $y=0,1,2$. **Mean.**', r'E[Y\mid X=1]=0\cdot\frac27+1\cdot\frac37+2\cdot\frac27=\frac77=1'),
-      S(r'**Square** inside the sum.', r'E[Y^2\mid X=1]=0+1\cdot\frac37+4\cdot\frac27=\frac{11}7'),
+D.EX('Conditional variance from a table',
+     r'A1 table. Find $\operatorname{Var}(Y\mid X=1)$.',
+     [S(r'**Mean** (C1).', r'E[Y\mid X=1]=1'),
+      S(r'**Square** each value, same weights.', r'E[Y^2\mid X=1]=0\cdot\frac27+1\cdot\frac37+4\cdot\frac27=\frac{11}7'),
       S(r'**Subtract.**', r'\operatorname{Var}(Y\mid X=1)=\frac{11}7-1^2=\frac47')],
-     r'$E[X\mid Y=1]=\tfrac23$, $E[Y\mid X=1]=1$, $\operatorname{Var}(Y\mid X=1)=\tfrac47$', cites=cite('T7', 1))
+     r'$\tfrac47$', cites=cite('T7', 1))
+D.TRY('Dice, a function of $X$',
+      r'$X$ = first die, $Y$ = sum. Find $E[X^2\mid Y=7]$ and $E[2^X\mid Y=7]$.',
+      [S(r'**Weights** $\tfrac16$.', r'E[X^2\mid Y=7]=\frac{1+4+9+16+25+36}{6}=\frac{91}6'),
+       S(r'**Put $2^x$ in front.**', r'E[2^X\mid Y=7]=\frac{2+4+8+16+32+64}{6}=\frac{126}6=21')],
+      r'$\tfrac{91}6$; $21$', diff='introductory')
 
-D.H('Use the conditional distribution to check independence')
-D.P(r'For independence, the conditional probability must match the ordinary marginal at each $x$, for every $y$ with $p_Y(y)>0$. One mismatch shows dependence.', cites=cite('L21', 3))
-D.EQ(r'p_{X|Y}(x\mid y)=p_X(x)\quad\text{for all }x\text{ and all }y\text{ with }p_Y(y)>0')
-D.P(r'In the dice example, $Y=2$ forces both dice to show $1$. That gives $p_{X|Y}(1\mid2)=1$, while $p_X(1)=\tfrac16$. The first die and the sum are dependent.')
-D.P(r'A changing conditional mean also shows dependence. A constant mean can come from different distributions. For instance, $X=1$ every time and an even split between $X=0$ and $X=2$ both have mean $1$.', cites=cite('L22', 4, 6))
-
-D.H('Conditional expectation with a density')
-D.P(r'If $X$ is continuous, use the conditional density as the weight and integrate over its range. Question 3 works through how to find the density.', cites=cite('L22', 4))
-D.EQ(r'E[X\mid Y=y]=\int_{-\infty}^{\infty}x\,f_{X|Y}(x\mid y)\,dx')
-
-D.EX('Continuous: $E[X\\mid Y=y]$ and independence ★ (Lecture 22)',
-     r'$f_{X,Y}(x,y)=6xy(2-x-y)$ for $0<x<1,\ 0<y<1$. (a) Find $E[X\mid Y=y]$ for $0<y<1$. (b) Are $X$ and $Y$ independent?',
-     [S(r'(a) **Marginal** $f_Y$: integrate $x$ out over $0$ to $1$.', r'f_Y(y)=\int_0^1 6xy(2-x-y)\,dx=6y\Big(\frac{2-y}{2}-\frac13\Big)=y(4-3y)'),
-      S(r'**Divide** (formula sheet).', r'f_{X|Y}(x\mid y)=\frac{6xy(2-x-y)}{y(4-3y)}=\frac{6x(2-x-y)}{4-3y},\qquad 0<x<1'),
-      S(r'**Mean.**', r'E[X\mid Y=y]=\int_0^1x\cdot\frac{6x(2-x-y)}{4-3y}\,dx=\frac{6}{4-3y}\Big(\frac{2-y}{3}-\frac14\Big)'),
-      S(r'Tidy up.', r'E[X\mid Y=y]=\frac{5-4y}{2(4-3y)},\qquad 0<y<1'),
-      S(r'(b) **Compare two allowed conditions.** The means differ, so $X$ and $Y$ are dependent.',
-        (r'E[X\mid Y=\tfrac13]=\frac{11}{18}', r'E[X\mid Y=\tfrac23]=\frac7{12}'))],
-     r'(a) $\dfrac{5-4y}{2(4-3y)}$ (b) not independent', cites=cite('L22', 6))
-
-D.EX('Continuous: a flat triangle ★ (Lecture 21–22)',
-     r'$f_{X,Y}(x,y)=2$ for $0<x<y<1$. Given $f_{X|Y}(x\mid y)=\tfrac1y$ on $0<x<y$ (Question 3, Example 1), find $E[X\mid Y=y]$.',
-     [S(r'**Spot:** $\tfrac1y$ is flat on $(0,y)$: uniform. The mean of a uniform is the midpoint.'),
-      S(r'**Mean.**', r'E[X\mid Y=y]=\int_0^y x\cdot\frac1y\,dx=\frac1y\cdot\frac{y^2}{2}=\frac y2')],
-     r'$E[X\mid Y=y]=\tfrac y2$', cites=cite('L22', 1))
+# ---- C3 ----------------------------------------------------------------------------------------------
+D.H('C3 · Total expectation (Lecture 23)', level=2)
+D.P(r'$E[X\mid Y]$ (no "$=y$") is a **random variable**: write $g(y)=E[X\mid Y=y]$, then $E[X\mid Y]=g(Y)$. It is your best guess of $X$ once you see $Y$.', cites=cite('L23', 4))
+D.P(r'Its average is the plain average of $X$. In words: weight each case’s average by how likely the case is.')
+D.EQ(r'E[X]=E\big[E[X\mid Y]\big]=\sum_y E[X\mid Y=y]\;p_Y(y)', cites=cite('L23', 5))
+D.EX('Router modes ★ (Lecture 23)',
+     r'A router is in normal mode or high-traffic mode, each with probability $\tfrac12$. Packets per second $X$ are Poisson with mean $2$ in normal mode and $5$ in high mode. Find $E[X]$.',
+     [S(r'**Name the cases:** $Y=1$ normal, $Y=0$ high. A Poisson mean is its $\lambda$.', (r'E[X\mid Y=1]=2,\quad E[X\mid Y=0]=5', r'P(Y=1)=P(Y=0)=\frac12')),
+      S(r'**Weight and add.**', r'E[X]=2\cdot\frac12+5\cdot\frac12=3.5')],
+     r'$3.5$', cites=cite('L23', 6))
+D.TRY('Check it on the table',
+      r'A1 table. Use $E[X\mid Y=y]$ for $y=0,1,2$ to get $E[X]$. Check against $p_X$.',
+      [S(r'**Case averages** ($X$ is $0$ or $1$, so it is the share of the column in row $x=1$).', (r'E[X\mid Y=0]=\frac{0.20}{0.30}=\frac23,\quad E[X\mid Y=1]=\frac{0.30}{0.45}=\frac23', r'E[X\mid Y=2]=\frac{0.20}{0.25}=0.8')),
+       S(r'**Weight** by $p_Y=0.30,\ 0.45,\ 0.25$.', r'E[X]=\frac23(0.30)+\frac23(0.45)+0.8(0.25)=0.2+0.3+0.2=0.7'),
+       S(r'**Check:** $E[X]=0\cdot0.30+1\cdot0.70=0.7\ \checkmark$')],
+      r'$0.7$')
 
 # =====================================================================================================
 D.H('Practice Questions')
-D.P('Start with the dice or the table. Write the conditional probabilities before you calculate the CDF or mean. Open each solution after you try it. ★ marks problems based on the lectures or tutorials.')
+D.P('Test 2 difficulty, 10 marks each. Formula sheet only. ★ = from the lectures/tutorials.')
 
-D.Q('Two dice, another sum · like Lecture 21–22',
-    r'Two fair dice. $X$ = the first die, $Y$ = the sum. Find (a) $p_{X|Y}(x\mid4)$, (b) $F_{X|Y}(x\mid4)$, (c) $E[X\mid Y=4]$.',
-    [S(r'**Column $Y=4$:** $(1,3),(2,2),(3,1)$, three equally likely outcomes.', r'P(Y=4)=\frac3{36}=\frac1{12}'),
-     S(r'(a) **Divide.**', r'p_{X|Y}(x\mid4)=\frac{1/36}{3/36}=\frac13,\qquad x=1,2,3'),
-     S(r'(b) **Accumulate.**', r'F_{X|Y}(x\mid4)=\begin{cases}0,&x<1\\ \frac13,&1\le x<2\\ \frac23,&2\le x<3\\ 1,&x\ge3\end{cases}'),
-     S(r'(c) **Mean.**', r'E[X\mid Y=4]=\frac{1+2+3}{3}=2')],
-    r'(a) $\tfrac13$ at $x=1,2,3$ (b) staircase $\tfrac13,\tfrac23,1$ (c) $2$', diff='introductory', cites=cite('L21', 2))
-
-D.Q('Two dice, the other way round',
-    r'Two fair dice, $X$ = the first die, $Y$ = the sum. Find $p_{Y|X}(y\mid2)$ and $E[Y\mid X=2]$. What is $E[Y\mid X=x]$ in general?',
-    [S(r'**Spot:** given $X=2$, $Y=2+(\text{second die})$, and the second die is still fair.'),
-     S(r'**Divide** (or just read it off).', r'p_{Y|X}(y\mid2)=\frac{1/36}{1/6}=\frac16,\qquad y=3,4,\dots,8'),
-     S(r'**Mean.**', r'E[Y\mid X=2]=\frac{3+4+5+6+7+8}{6}=5.5'),
-     S(r'In general: $x$ plus the second die’s mean.', r'E[Y\mid X=x]=x+3.5')],
-    r'$\tfrac16$ for $y=3..8$; $5.5$; $x+3.5$', diff='introductory')
+D.Q('[10 marks] Two dice, sum 4 ★ (like Lecture 21–22)',
+    r'Two fair dice. $X$ = first die, $Y$ = sum. (a) Find $p_{X|Y}(x\mid4)$. (3 marks) (b) Find $F_{X|Y}(x\mid4)$. (3 marks) (c) Find $E[X\mid Y=4]$. (2 marks) (d) Use (a) to show $X$ and $Y$ are not independent. (2 marks)',
+    [S(r'(a) **Sum 4:** $(1,3),(2,2),(3,1)$. Each $x$ once.', r'p_{X|Y}(x\mid4)=\frac13,\qquad x=1,2,3'),
+     S(r'(b) **Add up.**', r'F_{X|Y}(x\mid4)=\begin{cases}0,&x<1\\ \frac13,&1\le x<2\\ \frac23,&2\le x<3\\ 1,&x\ge3\end{cases}'),
+     S(r'(c) **Mean.**', r'E[X\mid Y=4]=\frac{1+2+3}{3}=2'),
+     S(r'(d) **Compare:** $p_{X|Y}(4\mid4)=0$ but $p_X(4)=\tfrac16$. Not equal → dependent.')],
+    r'(a) $\tfrac13$ at $1,2,3$ (b) $0,\tfrac13,\tfrac23,1$ (c) $2$ (d) $0\ne\tfrac16$', cites=cite('L21', 2))
 
 TB = {(1, 1): Fr(1, 10), (2, 1): Fr(1, 5), (3, 1): Fr(1, 10), (1, 2): Fr(3, 10), (2, 2): Fr(1, 10), (3, 2): Fr(1, 5)}
-assert sum(TB.values()) == 1
-
-
-def cond(T, y):
-    tot = sum(v for (a, b), v in T.items() if b == y)
-    return {a: v / tot for (a, b), v in T.items() if b == y}
-
-
-c1, c2 = cond(TB, 1), cond(TB, 2)
-m1 = sum(a * p for a, p in c1.items()); s1 = sum(a * a * p for a, p in c1.items())
-m2 = sum(a * p for a, p in c2.items())
-assert (m1, s1 - m1 ** 2, m2) == (2, Fr(1, 2), Fr(11, 6))
-D.Q('A table: PMF, CDF, mean, variance given $Y$',
-    r'''$X\in\{1,2,3\}$, $Y\in\{1,2\}$ with the joint PMF below. Find (a) $p_{X|Y}(x\mid1)$, $E[X\mid Y=1]$, $\operatorname{Var}(X\mid Y=1)$ (b) $p_{X|Y}(x\mid2)$, $F_{X|Y}(x\mid2)$, $E[X\mid Y=2]$ (c) are $X$, $Y$ independent?
+D.Q('[10 marks] A table, given $Y$',
+    r'''(a) Find $p_{X|Y}(x\mid1)$, $E[X\mid Y=1]$ and $\operatorname{Var}(X\mid Y=1)$. (4 marks) (b) Find $p_{X|Y}(x\mid2)$ and $P(X\ge2\mid Y=2)$. (3 marks) (c) Find $E[X\mid Y=2]$. Are $X$ and $Y$ independent? (3 marks)
 
 | | $x=1$ | $x=2$ | $x=3$ |
 |---|---|---|---|
 | $y=1$ | $0.10$ | $0.20$ | $0.10$ |
 | $y=2$ | $0.30$ | $0.10$ | $0.20$ |''',
-    [S(r'(a) **Select** the row labeled $Y=1$. Its total is $0.4$. Divide each cell in that row by $0.4$.', r'p_{X|Y}(x\mid1)=\frac14,\ \frac12,\ \frac14\quad(x=1,2,3)'),
-     S(r'**Mean**, **Square**, **Subtract.**', (r'E[X\mid Y=1]=\frac14+1+\frac34=2', r'E[X^2\mid Y=1]=\frac14+2+\frac94=4.5', r'\operatorname{Var}(X\mid Y=1)=4.5-2^2=0.5')),
-     S(r'(b) $Y=2$: total $p_Y(2)=0.6$. **Divide.**', r'p_{X|Y}(x\mid2)=\frac{0.3}{0.6},\ \frac{0.1}{0.6},\ \frac{0.2}{0.6}=\frac12,\ \frac16,\ \frac13'),
-     S(r'**Accumulate.**', r'F_{X|Y}(x\mid2)=\begin{cases}0,&x<1\\ \frac12,&1\le x<2\\ \frac23,&2\le x<3\\ 1,&x\ge3\end{cases}'),
-     S(r'**Mean.**', r'E[X\mid Y=2]=\frac12+\frac26+\frac36=\frac{11}6'),
-     S(r'(c) $E[X\mid Y=1]=2\ne\tfrac{11}6=E[X\mid Y=2]$: it changes with $y$ → **not** independent.')],
-    r'(a) $\tfrac14,\tfrac12,\tfrac14$; $2$; $0.5$ (b) $\tfrac12,\tfrac16,\tfrac13$; staircase $\tfrac12,\tfrac23,1$; $\tfrac{11}6$ (c) not independent')
-
-D.Q('Independent table ★ · Lecture 19 table',
-    r'''Find $p_{X|Y}(x\mid1)$ and $E[X\mid Y=1]$. Compare with $p_X$ and $E[X]$.
-
-| | $Y=0$ | $Y=1$ |
-|---|---|---|
-| $X=0$ | $0.12$ | $0.18$ |
-| $X=1$ | $0.28$ | $0.42$ |''',
-    [S(r'**Column** $Y=1$: total $0.60$. **Divide.**', r'p_{X|Y}(0\mid1)=\frac{0.18}{0.60}=0.3,\qquad p_{X|Y}(1\mid1)=\frac{0.42}{0.60}=0.7'),
-     S(r'**Mean.**', r'E[X\mid Y=1]=0.7'),
-     S(r'Plain marginal: $p_X=0.30,\,0.70$ and $E[X]=0.7$. Exactly the same, as it must be: these $X$, $Y$ are independent.')],
-    r'$0.3,\,0.7$; $E[X\mid Y=1]=0.7=E[X]$', diff='introductory', cites=cite('L19', 2))
-
-D.Q('A die and “even”',
-    r'Roll a fair die. $X$ = the number, $Y=1$ if it is even and $Y=0$ if odd. Find $p_{X|Y}(x\mid1)$, $E[X\mid Y=1]$ and $E[X\mid Y=0]$. Independent?',
-    [S(r'**Column** $Y=1$: the outcomes $2,4,6$, each $\tfrac16$, total $\tfrac12$. **Divide.**', r'p_{X|Y}(x\mid1)=\frac{1/6}{1/2}=\frac13,\qquad x=2,4,6'),
-     S(r'**Mean.**', r'E[X\mid Y=1]=\frac{2+4+6}{3}=4'),
-     S(r'Same for odd ($x=1,3,5$).', r'E[X\mid Y=0]=\frac{1+3+5}{3}=3'),
-     S(r'$4\ne3$ → **not** independent (of course: $Y$ is built from $X$).')],
-    r'$\tfrac13$ on $\{2,4,6\}$; $4$; $3$; not independent', diff='introductory')
+    [S(r'(a) **Row $y=1$**, total $0.4$. **Divide.**', r'p_{X|Y}(x\mid1)=\frac14,\ \frac12,\ \frac14\quad(x=1,2,3)'),
+     S(r'**Mean, square, subtract.**', (r'E[X\mid Y=1]=\frac14+1+\frac34=2', r'E[X^2\mid Y=1]=\frac14+2+\frac94=4.5', r'\operatorname{Var}(X\mid Y=1)=4.5-4=0.5')),
+     S(r'(b) **Row $y=2$**, total $0.6$.', r'p_{X|Y}(x\mid2)=\frac12,\ \frac16,\ \frac13'),
+     S(r'**Add** $x=2,3$.', r'P(X\ge2\mid Y=2)=\frac16+\frac13=\frac12'),
+     S(r'(c) **Mean.**', r'E[X\mid Y=2]=\frac12+\frac26+\frac36=\frac{11}6'),
+     S(r'$2\ne\tfrac{11}6$: the mean changes with $y$ → **dependent**.')],
+    r'(a) $\tfrac14,\tfrac12,\tfrac14$; $2$; $0.5$ (b) $\tfrac12,\tfrac16,\tfrac13$; $\tfrac12$ (c) $\tfrac{11}6$; dependent')
 
 TC = {(0, 0): Fr(1, 10), (0, 1): Fr(1, 5), (0, 2): Fr(1, 10), (1, 0): Fr(1, 5), (1, 1): Fr(1, 10), (1, 2): Fr(3, 10)}
-assert sum(TC.values()) == 1
-D.Q('Find $c$, then condition',
-    r'''Find $c$, then $p_{Y|X}(y\mid1)$, $E[Y\mid X=1]$ and $E[Y\mid X=0]$.
+D.Q('[10 marks] Find $c$, condition, total expectation',
+    r'''(a) Find $c$. (1 mark) (b) Find $p_{Y|X}(y\mid1)$ and $F_{Y|X}(y\mid1)$. (4 marks) (c) Find $E[Y\mid X=0]$ and $E[Y\mid X=1]$. (3 marks) (d) Use (c) to find $E[Y]$. (2 marks)
 
 | | $y=0$ | $y=1$ | $y=2$ |
 |---|---|---|---|
 | $x=0$ | $c$ | $2c$ | $c$ |
 | $x=1$ | $2c$ | $c$ | $3c$ |''',
-    [S(r'**Find $c$:** $10c=1$, so $c=0.1$.'),
-     S(r'Given $X=1$: the row $0.2,\,0.1,\,0.3$, total $p_X(1)=0.6$. **Divide.**', r'p_{Y|X}(y\mid1)=\frac13,\ \frac16,\ \frac12\quad(y=0,1,2)'),
-     S(r'**Mean.**', r'E[Y\mid X=1]=0+\frac16+2\cdot\frac12=\frac76'),
-     S(r'Given $X=0$: the row $0.1,\,0.2,\,0.1$, total $0.4$ → $\tfrac14,\tfrac12,\tfrac14$.', r'E[Y\mid X=0]=\frac12+2\cdot\frac14=1')],
-    r'$c=0.1$; $\tfrac13,\tfrac16,\tfrac12$; $\tfrac76$; $1$')
+    [S(r'(a) $10c=1$.', r'c=0.1'),
+     S(r'(b) **Row $x=1$:** $0.2,\ 0.1,\ 0.3$, total $0.6$.', r'p_{Y|X}(y\mid1)=\frac13,\ \frac16,\ \frac12\quad(y=0,1,2)'),
+     S(r'**Add up.**', r'F_{Y|X}(y\mid1)=\begin{cases}0,&y<0\\ \frac13,&0\le y<1\\ \frac12,&1\le y<2\\ 1,&y\ge2\end{cases}'),
+     S(r'(c) **Means.** Row $x=0$ gives $\tfrac14,\tfrac12,\tfrac14$.', (r'E[Y\mid X=0]=\frac12+2\cdot\frac14=1', r'E[Y\mid X=1]=\frac16+2\cdot\frac12=\frac76')),
+     S(r'(d) **Weight** by $p_X=0.4,\ 0.6$.', r'E[Y]=1(0.4)+\frac76(0.6)=0.4+0.7=1.1')],
+    r'(a) $0.1$ (b) $\tfrac13,\tfrac16,\tfrac12$; staircase $\tfrac13,\tfrac12,1$ (c) $1$; $\tfrac76$ (d) $1.1$')
 
-D.Q('Three coins',
-    r'Toss a fair coin 3 times. $X=1$ if the first toss is heads (else $0$); $Y$ = the total number of heads. Find $p_{X|Y}(x\mid2)$, $E[X\mid Y=2]$, $p_{Y|X}(y\mid1)$ and $E[Y\mid X=1]$.',
-    [S(r'**Column** $Y=2$: $HHT,\ HTH,\ THH$, equally likely. The first toss is $H$ in two of them.', r'p_{X|Y}(1\mid2)=\frac23,\qquad p_{X|Y}(0\mid2)=\frac13'),
-     S(r'**Mean.**', r'E[X\mid Y=2]=\frac23'),
-     S(r'Given $X=1$: $Y=1+$ (heads in the last two tosses): $HTT$; $HHT,HTH$; $HHH$.', r'p_{Y|X}(y\mid1)=\frac14,\ \frac12,\ \frac14\quad(y=1,2,3)'),
-     S(r'**Mean.**', r'E[Y\mid X=1]=\frac14+1+\frac34=2')],
-    r'$\tfrac13,\tfrac23$; $\tfrac23$; $\tfrac14,\tfrac12,\tfrac14$; $2$')
+D.Q('[10 marks] Three coins',
+    r'A fair coin is tossed 3 times. $X=1$ if the first toss is heads (else $0$); $Y$ = total number of heads. (a) Find $p_{X|Y}(x\mid2)$ and $E[X\mid Y=2]$. (4 marks) (b) Find $p_{Y|X}(y\mid1)$ and $E[Y\mid X=1]$. (4 marks) (c) Are $X$ and $Y$ independent? (2 marks)',
+    [S(r'(a) **$Y=2$:** $HHT,\ HTH,\ THH$. First toss $H$ in 2 of 3.', (r'p_{X|Y}(0\mid2)=\frac13,\quad p_{X|Y}(1\mid2)=\frac23', r'E[X\mid Y=2]=\frac23')),
+     S(r'(b) **$X=1$:** $HTT,\ HTH,\ HHT,\ HHH$ have $Y=1,2,2,3$.', (r'p_{Y|X}(y\mid1)=\frac14,\ \frac12,\ \frac14\quad(y=1,2,3)', r'E[Y\mid X=1]=\frac14+1+\frac34=2')),
+     S(r'(c) $p_{X|Y}(1\mid2)=\tfrac23\ne\tfrac12=p_X(1)$ → **dependent**.')],
+    r'(a) $\tfrac13,\tfrac23$; $\tfrac23$ (b) $\tfrac14,\tfrac12,\tfrac14$; $2$ (c) dependent')
 
-D.H('Practice with continuous conditional expectation', level=2)
+D.Q('[10 marks] A die and "even"',
+    r'Roll a fair die. $X$ = the number; $Y=1$ if it is even, $Y=0$ if odd. (a) Find $p_{X|Y}(x\mid1)$. (2 marks) (b) Find $E[X\mid Y=1]$ and $\operatorname{Var}(X\mid Y=1)$. (4 marks) (c) Find $E[X\mid Y=0]$, then $E[X]$ by total expectation. (4 marks)',
+    [S(r'(a) **Even:** $2,4,6$.', r'p_{X|Y}(x\mid1)=\frac13,\qquad x=2,4,6'),
+     S(r'(b) **Mean, square, subtract.**', (r'E[X\mid Y=1]=\frac{2+4+6}{3}=4', r'E[X^2\mid Y=1]=\frac{4+16+36}{3}=\frac{56}3', r'\operatorname{Var}(X\mid Y=1)=\frac{56}3-16=\frac83')),
+     S(r'(c) **Odd:** $1,3,5$.', r'E[X\mid Y=0]=3'),
+     S(r'**Weight** by $p_Y=\tfrac12,\tfrac12$.', r'E[X]=4\cdot\frac12+3\cdot\frac12=3.5\ \checkmark')],
+    r'(a) $\tfrac13$ on $2,4,6$ (b) $4$; $\tfrac83$ (c) $3$; $3.5$')
 
-D.Q('Continuous: on the square ★ · Tutorial 7 Q5 joint PDF',
-    r'$f_{X,Y}(x,y)=x+y$ for $0<x<1,\ 0<y<1$. Find $E[X\mid Y=y]$. Use it to show $X$, $Y$ are not independent.',
-    [S(r'**Marginal.**', r'f_Y(y)=\int_0^1(x+y)\,dx=y+\frac12'),
-     S(r'**Divide.**', r'f_{X|Y}(x\mid y)=\frac{x+y}{y+\frac12},\qquad 0<x<1'),
-     S(r'**Mean.**', r'E[X\mid Y=y]=\frac{\int_0^1x(x+y)\,dx}{y+\frac12}=\frac{\frac13+\frac y2}{y+\frac12}=\frac{2+3y}{3(1+2y)}'),
-     S(r'At $y=\tfrac14$ the mean is $\tfrac{11}{18}$. At $y=\tfrac12$ it is $\tfrac7{12}$. The change shows dependence.')],
-    r'$E[X\mid Y=y]=\dfrac{2+3y}{3(1+2y)}$; not independent', cites=cite('T7', 2))
-
-D.Q('Continuous: a triangle ★ · Tutorial 7 Q6 joint PDF',
-    r'$f_{X,Y}(x,y)=24xy$ for $x,y\ge0,\ x+y\le1$. Find $E[X\mid Y=y]$ for $0<y<1$.',
-    [S(r'**Marginal:** slice at $y$, $x$ from $0$ to $1-y$.', r'f_Y(y)=\int_0^{1-y}24xy\,dx=12y(1-y)^2'),
-     S(r'**Divide.**', r'f_{X|Y}(x\mid y)=\frac{24xy}{12y(1-y)^2}=\frac{2x}{(1-y)^2},\qquad 0\le x\le1-y'),
-     S(r'**Mean.**', r'E[X\mid Y=y]=\int_0^{1-y}\frac{2x^2}{(1-y)^2}\,dx=\frac{2(1-y)^3}{3(1-y)^2}=\frac{2(1-y)}{3}')],
-    r'$E[X\mid Y=y]=\tfrac23(1-y)$', cites=cite('T7', 2))
-
-D.Q('Continuous: mean and variance given $Y$',
-    r'$f_{X,Y}(x,y)=e^{-y}$ for $0<x<y$. Find $f_{X|Y}(x\mid y)$, $E[X\mid Y=y]$ and $\operatorname{Var}(X\mid Y=y)$.',
-    [S(r'**Marginal:** slice at $y$, $x$ from $0$ to $y$.', r'f_Y(y)=\int_0^y e^{-y}\,dx=y\,e^{-y},\qquad y>0'),
-     S(r'**Divide:** flat on $(0,y)$, so uniform.', r'f_{X|Y}(x\mid y)=\frac{e^{-y}}{y\,e^{-y}}=\frac1y,\qquad 0<x<y'),
-     S(r'**Mean** and **Square.**', r'E[X\mid Y=y]=\frac y2,\qquad E[X^2\mid Y=y]=\int_0^y\frac{x^2}{y}\,dx=\frac{y^2}3'),
-     S(r'**Subtract.**', r'\operatorname{Var}(X\mid Y=y)=\frac{y^2}3-\frac{y^2}4=\frac{y^2}{12}')],
-    r'$\tfrac1y$ on $(0,y)$; $\tfrac y2$; $\tfrac{y^2}{12}$')
+D.Q('[10 marks] Errors on two channels',
+    r'A message is sent on channel $Y=1$ with probability $0.3$ or channel $Y=2$ with probability $0.7$. The number of errors $X$ has: given $Y=1$, $P(X=0,1,2)=0.5,\ 0.3,\ 0.2$; given $Y=2$, $P(X=0,1)=0.8,\ 0.2$. (a) Find $E[X\mid Y=1]$ and $E[X\mid Y=2]$. (3 marks) (b) Find $E[X]$. (2 marks) (c) Build the joint PMF table. (3 marks) (d) Find $p_{Y|X}(1\mid1)$. (2 marks)',
+    [S(r'(a) **Means.**', (r'E[X\mid Y=1]=0.3+2(0.2)=0.7', r'E[X\mid Y=2]=0.2')),
+     S(r'(b) **Total expectation.**', r'E[X]=0.7(0.3)+0.2(0.7)=0.21+0.14=0.35'),
+     S(r'(c) **Joint = conditional × $p_Y$.** Rows $y=1,2$; columns $x=0,1,2$.', (r'y=1:\ \ 0.15,\ 0.09,\ 0.06', r'y=2:\ \ 0.56,\ 0.14,\ 0')),
+     S(r'(d) **Column $x=1$:** $0.09,\ 0.14$, total $0.23$.', r'p_{Y|X}(1\mid1)=\frac{0.09}{0.23}=\frac9{23}\approx0.391')],
+    r'(a) $0.7$; $0.2$ (b) $0.35$ (c) table above (d) $\tfrac9{23}$')
 
 D.H('Test 3 formula sheet')
 D.SHEET3()
 
 
 def verify():
-    import sympy as sp
-    x, y = sp.symbols('x y', positive=True)
-    I = sp.integrate
-    R = sp.Rational
-    # dice by enumeration
-    outs = [(a, b) for a in range(1, 7) for b in range(1, 7)]
-    for s, xs in ((7, range(1, 7)), (4, range(1, 4))):
-        hit = [a for a, b in outs if a + b == s]
-        assert sorted(hit) == list(xs) and R(sum(hit), len(hit)) == R(sum(xs), len(xs))
-    assert R(sum(range(3, 9)), 6) == R(11, 2)
-    assert R(15, 45) == R(1, 3) and R(3, 7) + 2 * R(2, 7) == 1 and R(3, 7) + 4 * R(2, 7) - 1 == R(4, 7)
-    # Lec 22 continuous
-    f = 6 * x * y * (2 - x - y)
-    fy = sp.factor(I(f, (x, 0, 1)))
-    assert sp.simplify(fy - y * (4 - 3 * y)) == 0
-    e = sp.simplify(I(x * f / fy, (x, 0, 1)))
-    assert sp.simplify(e - (5 - 4 * y) / (2 * (4 - 3 * y))) == 0 and e.subs(y, 0) == R(5, 8) and sp.limit(e, y, 1) == R(1, 2)
-    assert sp.simplify(I(x / y, (x, 0, y)) - y / 2) == 0
-    # coins
-    seq = [(a, b, c) for a in (0, 1) for b in (0, 1) for c in (0, 1)]
-    two = [s for s in seq if sum(s) == 2]
-    assert R(sum(s[0] for s in two), len(two)) == R(2, 3)
-    first = [sum(s) for s in seq if s[0] == 1]
-    assert R(sum(first), len(first)) == 2
-    # continuous practice
-    ex = sp.simplify(I(x * (x + y), (x, 0, 1)) / (y + R(1, 2)))
-    assert sp.simplify(ex - (2 + 3 * y) / (3 * (1 + 2 * y))) == 0 and ex.subs(y, 1) == R(5, 9)
-    fy2 = I(24 * x * y, (x, 0, 1 - y))
-    assert sp.simplify(I(x * 24 * x * y / fy2, (x, 0, 1 - y)) - R(2, 3) * (1 - y)) == 0
-    assert sp.simplify(I(x ** 2 / y, (x, 0, y)) - (y / 2) ** 2 - y ** 2 / 12) == 0
-    assert TC[(1, 0)] / Fr(3, 5) == Fr(1, 3) and sum(b * v / Fr(3, 5) for (a, b), v in TC.items() if a == 1) == Fr(7, 6)
-    assert sum(b * v / Fr(2, 5) for (a, b), v in TC.items() if a == 0) == 1
+    R = Fr
+    t = {(0, 0): R(1, 10), (0, 1): R(15, 100), (0, 2): R(5, 100), (1, 0): R(2, 10), (1, 1): R(3, 10), (1, 2): R(2, 10)}
+    px = lambda a: sum(v for (i, j), v in t.items() if i == a)
+    py = lambda b: sum(v for (i, j), v in t.items() if j == b)
+    assert t[(0, 1)] / py(1) == R(1, 3) and t[(1, 1)] / py(1) == R(2, 3)
+    assert [t[(1, j)] / px(1) for j in range(3)] == [R(2, 7), R(3, 7), R(2, 7)]
+    assert [t[(i, 2)] / py(2) for i in range(2)] == [R(1, 5), R(4, 5)]
+    assert [t[(0, j)] / px(0) for j in range(3)] == [R(1, 3), R(1, 2), R(1, 6)]
+    assert sum(j * t[(1, j)] / px(1) for j in range(3)) == 1 and sum(j * j * t[(1, j)] / px(1) for j in range(3)) == R(11, 7)
+    assert sum(j * t[(0, j)] / px(0) for j in range(3)) == R(5, 6)
+    assert sum(sum(i * t[(i, j)] for i in range(2)) / py(j) * py(j) for j in range(3)) == R(7, 10)
+    assert t[(1, 0)] / py(0) == R(2, 3) and t[(1, 2)] / py(2) == R(4, 5)
+    dice = [(a, b) for a in range(1, 7) for b in range(1, 7)]
+    s7 = [a for a, b in dice if a + b == 7]
+    assert R(sum(s7), 6) == R(7, 2) and R(sum(a * a for a in s7), 6) == R(91, 6) and R(sum(2 ** a for a in s7), 6) == 21
+    assert sorted(a for a, b in dice if a + b == 4) == [1, 2, 3]
+    coins = [(a, b, c) for a in (0, 1) for b in (0, 1) for c in (0, 1)]
+    assert [sum(s) for s in coins if s[0] == 1].count(2) == 2
+    assert R(sum(s[0] for s in coins if sum(s) == 2), 3) == R(2, 3) and R(sum(sum(s) for s in coins if s[0] == 1), 4) == 2
+    # practice tables
+    assert sum(TB.values()) == 1 and sum(TC.values()) == 1
+    c1 = {a: v / R(2, 5) for (a, b), v in TB.items() if b == 1}; c2 = {a: v / R(3, 5) for (a, b), v in TB.items() if b == 2}
+    assert c1 == {1: R(1, 4), 2: R(1, 2), 3: R(1, 4)} and c2 == {1: R(1, 2), 2: R(1, 6), 3: R(1, 3)}
+    m1 = sum(a * p for a, p in c1.items()); assert m1 == 2 and sum(a * a * p for a, p in c1.items()) - 4 == R(1, 2)
+    assert sum(a * p for a, p in c2.items()) == R(11, 6) and c2[2] + c2[3] == R(1, 2)
+    r1 = {b: v / R(3, 5) for (a, b), v in TC.items() if a == 1}; r0 = {b: v / R(2, 5) for (a, b), v in TC.items() if a == 0}
+    assert r1 == {0: R(1, 3), 1: R(1, 6), 2: R(1, 2)} and sum(b * p for b, p in r1.items()) == R(7, 6)
+    assert sum(b * p for b, p in r0.items()) == 1 and R(2, 5) * 1 + R(3, 5) * R(7, 6) == R(11, 10)
+    assert sum(b * v for (a, b), v in TC.items()) == R(11, 10)
+    assert R(56, 3) - 16 == R(8, 3)
+    e1 = R(3, 10) + 2 * R(2, 10); e2 = R(2, 10)
+    assert e1 == R(7, 10) and e1 * R(3, 10) + e2 * R(7, 10) == R(35, 100)
+    j11, j21 = R(3, 10) * R(3, 10), R(7, 10) * R(2, 10)
+    assert j11 / (j11 + j21) == R(9, 23)
     print('t3q2 verify ok')
 
 

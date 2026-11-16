@@ -1,192 +1,189 @@
-r"""Test 3 - Question 3: conditional distributions for continuous random variables."""
-from math import exp
+r"""Test 3 - Question 3: conditional distributions for continuous random variables (Lectures 21-23, Tutorials 7-8).
 
+Rewritten 2026-11-15 (same shape as t3q1): Part A conditional PDF, Part B conditional CDF and probabilities,
+Part C conditional expectation (incl. E[g(X)|Y] from Lecture 23 and the Lecture 22 independence check).
+Practice = 6 test-style questions (10 marks each).
+"""
 from lib226 import Doc, S, cite
 
-D = Doc('t3q3', 'Test 3 - Question 3', ['conditional_pdf', 'conditional_cdf', 'conditional_probability', 'independence'])
-
-D.P(r'**Test 3, Question 3 · Continuous conditional distributions**',
-    cites=cite('L21', 4) + cite('L22', 1))
-D.P(r'“Given $Y=y$” means you hold $y$ fixed and ask how $X$ can vary. On the $xy$-plane, this means working along the horizontal line at height $y$.')
-D.P(r'First find the conditional density on that line. Once you have it, you can calculate probabilities, a CDF, or a mean with a one-variable integral.')
+D = Doc('t3q3', 'Test 3 - Question 3', ['conditional_pdf', 'conditional_cdf', 'conditional_expectation'])
 
 # =====================================================================================================
-D.H('Find the slice and its conditional density')
-D.P(r'For continuous $Y$, the event $Y=y$ has probability zero. The denominator you need is the **marginal density** $f_Y(y)$, which is the integral of the joint density along the selected slice.', cites=cite('L21', 4))
-D.EQ(r'f_{X|Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}\qquad\text{wherever }f_Y(y)>0', cites=cite('L21', 4))
-D.L([r'**Slice.** Hold $y$ fixed. Use the inequalities in the question to find the possible $x$ values.',
-     r'**Integrate.** Add up the joint density along those $x$ values to get $f_Y(y)$.',
-     r'**Divide.** Dividing by the slice total makes the conditional density integrate to $1$. For an allowed $y$, the conditional density is zero outside the slice.'], ordered=True)
-D.P(r'If the question gives $X=x$, hold $x$ fixed and use a vertical slice. Integrate in $y$ to get $f_X(x)$, then divide by $f_X(x)$.')
+D.P(r'**Test 3, Question 3 · Conditional distributions for continuous random variables** (10 marks)')
+D.P(r'Same idea as Question 2, but with a formula $f_{X,Y}$. "Given $Y=y$" = stand on the horizontal line at height $y$. The conditional PDF is the joint PDF along that line, rescaled to have area $1$.')
+D.CO('tip', r'''**Formula sheet lines for this question** (it chains all of them):
 
+$$
+f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx\quad\longrightarrow\quad f_{X|Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
+$$
+
+$$
+F_X(x)=\int_{-\infty}^{x}f_X(t)\,dt\qquad\text{(use it with }f_{X|Y}\text{ for the conditional CDF)}
+$$
+
+$$
+E[X\mid Y=y]=\int_{-\infty}^{\infty}x\,f_{X|Y}(x\mid y)\,dx
+$$
+
+Expect the Lecture 21–22 chain: **$f_Y$ → $f_{X|Y}$ → $F_{X|Y}$ → a probability → $E[X\mid Y=y]$ → independent?**''')
+
+# =====================================================================================================
+# PART A
+# =====================================================================================================
+D.H('Part A · Conditional PDF')
+D.EQ(r'f_{X|Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}\qquad\text{for }y\text{ with }f_Y(y)>0', cites=cite('L21', 4))
+D.L([r'**Slice:** fix $y$. Read the $x$ range off the inequalities (it may contain $y$).',
+     r'**Marginal:** integrate $f_{X,Y}$ over that $x$ range to get $f_Y(y)$.',
+     r'**Divide**, and write the range: "for $0<x<y$, and $0$ otherwise; valid for $0<y<1$".'], ordered=True)
+D.P(r'Given $X=x$ instead? Swap the roles: vertical slice, $f_X(x)$, divide by $f_X(x)$.')
 D.REGION('Horizontal slice through $0<x<y<1$', '(x>0)*(y>x)*(y<1)', x=(-0.1, 1.15), y=(-0.1, 1.15),
          extra=['slider s 0.05 0.95 0.5 label="$y$"', 'curve "x" from=0 to=1 color=0 dash label="$y=x$"',
                 'segment "0" "s" "s" "s" color=2 label="slice at $Y=y$: $x$ from $0$ to $y$"'],
-         intro=r'Set $y=\tfrac12$ in the graph. Which $x$ values are still possible? Move $y$ up and watch what happens to the right endpoint.')
-D.EX('Find the density on a horizontal slice ★ (Lectures 21–22)',
-     r'$f_{X,Y}(x,y)=2$ for $0<x<y<1$ and zero elsewhere. Find $f_Y(y)$ and $f_{X|Y}(x\mid y)$.',
-     [S(r'**Read the range.** For a fixed $y$ between $0$ and $1$, the inequality $0<x<y$ says the slice starts at $0$ and ends at $y$.'),
-      S(r'**Find the marginal.** The joint density is $2$ along the whole slice, so its integral is $2$ times the length $y$.',
-        r'f_Y(y)=\int_0^y 2\,dx=2y,\qquad 0<y<1'),
-      S(r'**Divide.** The denominator $2y$ is the total from that same slice.',
-        r'f_{X|Y}(x\mid y)=\frac{2}{2y}=\frac1y,\qquad 0<x<y'),
-      S(r'**Check.** The conditional density has height $1/y$ and width $y$. Its area is $1$.')],
-     r'$f_Y(y)=2y$ for $0<y<1$ and zero elsewhere. For those $y$, $f_{X|Y}(x\mid y)=\tfrac1y$ on $(0,y)$ and zero outside that slice.',
-     cites=cite('L21', 5) + cite('L22', 1, 2, 3))
-
-D.P(r'When the joint density is constant along a slice, the conditional density is uniform on that slice. Its height is $1$ divided by the slice length, since its total area has to be $1$.')
-
-D.EX('Switch to a vertical slice',
-     r'Same $f_{X,Y}=2$ on $0<x<y<1$. Find $f_{Y|X}(y\mid x)$ and $P(Y<0.6\mid X=0.5)$.',
-     [S(r'**Fix $x$.** The line goes up from $y=x$ to $y=1$. Its length is $1-x$.',
-        r'f_X(x)=\int_x^1 2\,dy=2(1-x),\qquad 0<x<1'),
-      S(r'**Divide by $f_X(x)$.** This gives the new height for $Y$ along the vertical slice.',
-        r'f_{Y|X}(y\mid x)=\frac{2}{2(1-x)}=\frac1{1-x},\qquad x<y<1'),
-      S(r'**Use the requested slice.** At $x=0.5$, $Y$ ranges from $0.5$ to $1$. The part below $0.6$ has length $0.1$ out of the full length $0.5$.',
-        r'P(Y<0.6\mid X=0.5)=\int_{0.5}^{0.6}\frac{1}{0.5}\,dy=\frac{0.1}{0.5}=0.2')],
-     r'For $0<x<1$, the density is $\tfrac1{1-x}$ on $(x,1)$ and zero elsewhere. The probability is $0.2$.')
-
-D.EX('A curved region ★ (Lecture 18 joint PDF)',
-     r'$f_{X,Y}(x,y)=\dfrac{5y}{4}$ on $-1\le x\le1,\ x^2\le y\le1$, with $f_X=\tfrac58(1-x^4)$, $f_Y=\tfrac52y^{3/2}$ (Question 1). Find $f_{X|Y}(x\mid y)$ and $f_{Y|X}(y\mid x)$.',
-     [S(r'**Hold $y$ fixed.** Solve $x^2\le y$ to get the horizontal slice. For $0<y\le1$, the denominator $f_Y(y)$ is positive.',
-        r'f_{X|Y}(x\mid y)=\frac{5y/4}{\frac52y^{3/2}}=\frac{1}{2\sqrt y},\qquad -\sqrt y\le x\le\sqrt y'),
-      S(r'**Hold $x$ fixed.** The vertical slice runs from $x^2$ to $1$. For $-1<x<1$, the denominator $f_X(x)$ is positive.',
-        r'f_{Y|X}(y\mid x)=\frac{5y/4}{\frac58(1-x^4)}=\frac{2y}{1-x^4},\qquad x^2\le y\le1'),
-      S(r'**Check:** $\int_{x^2}^1\frac{2y}{1-x^4}\,dy=\frac{1-x^4}{1-x^4}=1$ ✓.')],
-     r'$f_{X|Y}=\tfrac1{2\sqrt y}$ on $|x|\le\sqrt y$; $f_{Y|X}=\tfrac{2y}{1-x^4}$ on $x^2\le y\le1$', cites=cite('L18', 6))
+         intro=r'Move $y$. Where does the slice start and stop?')
+D.EX('A flat triangle ★ (Lectures 21–22)',
+     r'$f_{X,Y}(x,y)=2$ for $0<x<y<1$, and $0$ otherwise. Find $f_Y(y)$ and $f_{X|Y}(x\mid y)$.',
+     [S(r'**Slice** at $y$: $x$ from $0$ to $y$.'),
+      S(r'**Marginal.**', r'f_Y(y)=\int_0^y2\,dx=2y,\qquad0<y<1'),
+      S(r'**Divide.**', r'f_{X|Y}(x\mid y)=\frac{2}{2y}=\frac1y,\qquad0<x<y\quad(0<y<1)')],
+     r'$f_Y=2y$ on $(0,1)$; $f_{X|Y}=\tfrac1y$ on $(0,y)$: uniform on the slice', cites=cite('L21', 5) + cite('L22', 2))
+D.P(r'Flat $f$ → the conditional is uniform: height $=1/(\text{slice length})$.')
+D.EX('A formula that is not flat ★ (Tutorial 7 Q5)',
+     r'$f_{X,Y}(x,y)=x+y$ for $0<x<1,\ 0<y<1$. Find $f_{X|Y}(x\mid y)$.',
+     [S(r'**Slice** at $y$: $x$ from $0$ to $1$. **Marginal.**', r'f_Y(y)=\int_0^1(x+y)\,dx=\frac12+y'),
+      S(r'**Divide.**', r'f_{X|Y}(x\mid y)=\frac{x+y}{y+\frac12},\qquad0<x<1\quad(0<y<1)')],
+     r'$\dfrac{x+y}{y+1/2}$ on $(0,1)$', cites=cite('T7', 2))
+D.TRY('Vertical slice, curved region',
+      r'(a) Same triangle $f=2$ on $0<x<y<1$: find $f_{Y|X}(y\mid x)$. (b) $f=\tfrac{5y}{4}$ on $-1\le x\le1,\ x^2\le y\le1$, with $f_Y=\tfrac52y^{3/2}$: find $f_{X|Y}(x\mid y)$. ★ Lecture 18',
+      [S(r'(a) **Vertical slice:** $y$ from $x$ to $1$.', (r'f_X(x)=\int_x^12\,dy=2(1-x)', r'f_{Y|X}(y\mid x)=\frac{1}{1-x},\qquad x<y<1')),
+       S(r'(b) **Horizontal slice:** $-\sqrt y\le x\le\sqrt y$. **Divide.**', r'f_{X|Y}(x\mid y)=\frac{5y/4}{\frac52y^{3/2}}=\frac1{2\sqrt y},\qquad|x|\le\sqrt y')],
+      r'(a) $\tfrac1{1-x}$ on $(x,1)$ (b) $\tfrac1{2\sqrt y}$ on $[-\sqrt y,\sqrt y]$', cites=cite('L18', 6))
 
 # =====================================================================================================
-D.H('Get the conditional CDF and probabilities')
-D.P(r'The **conditional CDF** gives the area to the left of a cutoff $x$ on your slice. The letter $u$ runs through the values you integrate over, while $x$ stays fixed at the cutoff.', cites=cite('L21', 4) + cite('L22', 2, 3))
-D.EQ(r'F_{X|Y}(x\mid y)=P(X\le x\mid Y=y)=\int_{-\infty}^x f_{X|Y}(u\mid y)\,du')
-D.L([r'**Before the slice**, the area is $0$.',
-     r'**Inside the slice**, integrate from the left endpoint to the cutoff.',
-     r'**After the slice**, the area is $1$.'])
+# PART B
+# =====================================================================================================
+D.H('Part B · Conditional CDF and probabilities')
+D.EQ(r'F_{X|Y}(x\mid y)=P(X\le x\mid Y=y)=\int_{-\infty}^{x}f_{X|Y}(u\mid y)\,du', cites=cite('L21', 4))
+D.L([r'Three pieces: **$0$** before the slice, **$\int$ from the slice start to $x$** inside, **$1$** after.',
+     r'For a probability, put the number $y$ in first. Then $P(a<X<b\mid Y=y)=\int_a^b f_{X|Y}(x\mid y)\,dx$, using only the part inside the slice.',
+     r'Continuous: $<$ and $\le$ give the same answer.'])
+D.EX('Triangle CDF ★ (Lecture 22)',
+     r'With $f_{X|Y}=\tfrac1y$ on $0<x<y$ (Part A), find $F_{X|Y}(x\mid y)$ and $P(X<\tfrac14\mid Y=\tfrac12)$.',
+     [S(r'**Inside** ($0<x<y$).', r'\int_0^x\frac1y\,du=\frac xy'),
+      S(r'**All three pieces.**', r'F_{X|Y}(x\mid y)=\begin{cases}0,&x\le0\\ \dfrac xy,&0<x<y\\ 1,&x\ge y\end{cases}\qquad(0<y<1)'),
+      S(r'**Plug in** $x=\tfrac14,\ y=\tfrac12$.', r'P\big(X<\tfrac14\ \big|\ Y=\tfrac12\big)=\frac{1/4}{1/2}=\frac12')],
+     r'$0$, $\tfrac xy$, $1$; $\tfrac12$', cites=cite('L22', 3))
+D.TRY('Not flat ★ (Tutorial 7 Q5 PDF)',
+      r'$f_{X|Y}(x\mid y)=\dfrac{x+y}{y+\frac12}$ on $0<x<1$ (Part A). Find $F_{X|Y}(x\mid y)$ and $P(X<\tfrac12\mid Y=\tfrac12)$.',
+      [S(r'**Inside.**', r'F_{X|Y}(x\mid y)=\int_0^x\frac{u+y}{y+\frac12}\,du=\frac{\frac{x^2}{2}+xy}{y+\frac12},\qquad0<x<1'),
+       S(r'$0$ for $x\le0$, $1$ for $x\ge1$. **Plug in** $y=\tfrac12$ (bottom $=1$), $x=\tfrac12$.', r'\frac18+\frac14=\frac38')],
+      r'$\dfrac{x^2/2+xy}{y+1/2}$ on $(0,1)$; $\tfrac38$', cites=cite('T7', 2))
 
-D.EX('Turn the triangle density into a CDF ★ (Lecture 22)',
-     r'Use $f_{X|Y}(x\mid y)=1/y$ on $0<x<y$, for $0<y<1$. Find $F_{X|Y}(x\mid y)$ and $P(X<\tfrac14\mid Y=\tfrac12)$.',
-     [S(r'**Inside the slice.** The rectangle from $0$ to $x$ has width $x$ and height $1/y$.',
-        r'\int_0^x\frac1y\,du=\frac xy'),
-      S(r'**Include the endpoints.** At the left endpoint you have collected zero area. At the right endpoint you have collected all of it.',
-        r'F_{X|Y}(x\mid y)=\begin{cases}0,&x\le0\\ \dfrac xy,&0<x<y\\ 1,&x\ge y\end{cases}'),
-      S(r'**Use the given $y$.** When $y=\tfrac12$, the slice is $(0,\tfrac12)$. The cutoff $\tfrac14$ is halfway through it. A single point has zero probability, so the CDF also gives the strict inequality.',
-        r'P(X<\tfrac14\mid Y=\tfrac12)=F_{X|Y}(\tfrac14\mid\tfrac12)=\frac{1/4}{1/2}=\frac12')],
-     r'The CDF is $0$ up to $0$, $x/y$ inside the slice, and $1$ from $y$ onward. The requested probability is $\tfrac12$.',
-     cites=cite('L22', 1, 2, 3))
+# =====================================================================================================
+# PART C
+# =====================================================================================================
+D.H('Part C · Conditional expectation')
 
-D.P(r'For an interval, use the difference between the CDF at the two cutoffs. If you integrate directly, use just the part of the interval that overlaps the slice.')
-D.EQ(r'P(a<X<b\mid Y=y)=F_{X|Y}(b\mid y)-F_{X|Y}(a\mid y)')
-D.P(r'For example, on the triangle at $y=\tfrac12$, the event $0.3<X<0.8$ overlaps the slice from $0.3$ to $0.5$. Its probability is $1-0.3/0.5=0.4$.')
+# ---- C1 ----------------------------------------------------------------------------------------------
+D.H('C1 · $E[X\\mid Y=y]$', level=2)
+D.EQ(r'E[X\mid Y=y]=\int_{-\infty}^{\infty}x\,f_{X|Y}(x\mid y)\,dx', cites=cite('L22', 4))
+D.L([r'Integrate over the slice only. The answer is usually a formula in $y$.',
+     r'**Shortcut:** uniform on $(a,b)$ → mean $=\tfrac{a+b}2$. Triangle: $E[X\mid Y=y]=\tfrac y2$.',
+     r'Independent → $E[X\mid Y=y]=E[X]$, a fixed number. If it **changes with $y$**, they are dependent, even on a rectangle.'])
+D.EX('Mean, then independence ★ (Lecture 22)',
+     r'$f_{X,Y}(x,y)=6xy(2-x-y)$ for $0<x<1,\ 0<y<1$. (a) Find $E[X\mid Y=y]$. (b) Are $X$ and $Y$ independent?',
+     [S(r'(a) **Marginal.**', r'f_Y(y)=\int_0^1 6xy(2-x-y)\,dx=6y\Big(1-\frac13-\frac y2\Big)=y(4-3y)'),
+      S(r'**Divide.**', r'f_{X|Y}(x\mid y)=\frac{6x(2-x-y)}{4-3y},\qquad0<x<1'),
+      S(r'**Mean.**', (r'E[X\mid Y=y]=\frac{6}{4-3y}\int_0^1x^2(2-x-y)\,dx', r'=\frac{6}{4-3y}\Big(\frac23-\frac14-\frac y3\Big)', r'=\frac{5-4y}{2(4-3y)},\qquad0<y<1')),
+      S(r'(b) It **changes with $y$** (e.g. $\tfrac58$ near $y=0$, $\tfrac12$ near $y=1$) → **dependent**, even though the region is a square.')],
+     r'(a) $\dfrac{5-4y}{2(4-3y)}$ (b) dependent', cites=cite('L22', 6))
+D.TRY('Two quick means',
+      r'(a) $f=x+y$ on the unit square. Find $E[X\mid Y=y]$. (b) $f=e^{-y}$ for $0<x<y$. Find $f_{X|Y}$ and $E[X\mid Y=y]$.',
+      [S(r'(a) **Weight** $\tfrac{x+y}{y+1/2}$ (Part A).', r'E[X\mid Y=y]=\frac{\int_0^1x(x+y)\,dx}{y+\frac12}=\frac{\frac13+\frac y2}{y+\frac12}=\frac{2+3y}{3(1+2y)}'),
+       S(r'(b) **Slice** $0<x<y$: $f_Y=ye^{-y}$, so $f_{X|Y}=\tfrac1y$. Uniform → midpoint.', r'E[X\mid Y=y]=\frac y2')],
+      r'(a) $\dfrac{2+3y}{3(1+2y)}$ (b) $\tfrac1y$ on $(0,y)$; $\tfrac y2$', cites=cite('T7', 2))
 
-D.EX('On a square ★ (Tutorial 7 Q5 joint PDF)',
-     r'$f_{X,Y}(x,y)=x+y$ on $0<x<1,\ 0<y<1$. Find $f_{X|Y}(x\mid y)$, $F_{X|Y}(x\mid y)$ and $P(X<\tfrac12\mid Y=\tfrac12)$.',
-     [S(r'**Slice** at $y$: $x$ from $0$ to $1$. **Marginal.**', r'f_Y(y)=\int_0^1(x+y)\,dx=y+\frac12'),
-      S(r'**Divide.**', r'f_{X|Y}(x\mid y)=\frac{x+y}{y+\frac12},\qquad 0<x<1'),
-      S(r'**Accumulate** from $0$. Here the height changes with $x$, so integrate the density over the slice up to the cutoff.',
-        r'F_{X|Y}(x\mid y)=\int_0^x\frac{u+y}{y+\frac12}\,du=\frac{\frac{x^2}2+xy}{y+\frac12},\qquad 0<x<1'),
-      S(r'**Complete the CDF.** It is $0$ for $x\le0$ and $1$ for $x\ge1$.'),
-      S(r'**Plug in** $y=\tfrac12$ and $x=\tfrac12$. The denominator becomes $1$.', r'P\big(X<\tfrac12\ \big|\ Y=\tfrac12\big)=\frac18+\frac14=\frac38')],
-     r'On $(0,1)$, the density is $\tfrac{x+y}{y+1/2}$ and the CDF is $\tfrac{x^2/2+xy}{y+1/2}$. The probability is $\tfrac38$.', cites=cite('T7', 2))
+# ---- C2 ----------------------------------------------------------------------------------------------
+D.H('C2 · $E[g(X)\\mid Y=y]$ (Lecture 23)', level=2)
+D.P(r'Put $g(x)$ in front instead of $x$. For the variance use $g(x)=x^2$, then subtract the mean squared.', cites=cite('L23', 1))
+D.EQ(r'E[g(X)\mid Y=y]=\int_{-\infty}^{\infty}g(x)\,f_{X|Y}(x\mid y)\,dx')
+D.EX('$E[g(X)\\mid Y=1]$ ★ (Lecture 23)',
+     r'$f_{X,Y}(x,y)=\tfrac12\,y\,e^{-xy}$ for $0<x<\infty,\ 0<y<2$. Find $E[e^{X/2}\mid Y=1]$.',
+     [S(r'**Marginal:** slice $x$ from $0$ to $\infty$.', r'f_Y(y)=\int_0^\infty\frac12ye^{-xy}\,dx=\frac12,\qquad0<y<2'),
+      S(r'**Divide**, then put $y=1$.', r'f_{X|Y}(x\mid y)=ye^{-xy}\quad\Rightarrow\quad f_{X|Y}(x\mid1)=e^{-x},\ x>0'),
+      S(r'**Put $g(x)=e^{x/2}$ in front.**', (r'E[e^{X/2}\mid Y=1]=\int_0^\infty e^{x/2}e^{-x}\,dx=\int_0^\infty e^{-x/2}\,dx', r'=\Big[-2e^{-x/2}\Big]_0^\infty=2'))],
+     r'$2$', cites=cite('L23', 2, 3))
+D.TRY('Conditional variance',
+      r'$f=e^{-y}$ for $0<x<y$, so $f_{X|Y}=\tfrac1y$ on $(0,y)$. Find $\operatorname{Var}(X\mid Y=y)$.',
+      [S(r'**Square.**', r'E[X^2\mid Y=y]=\int_0^y\frac{x^2}{y}\,dx=\frac{y^2}{3}'),
+       S(r'**Subtract** the mean squared ($\tfrac y2$).', r'\frac{y^2}3-\frac{y^2}4=\frac{y^2}{12}')],
+      r'$\tfrac{y^2}{12}$')
 
-D.H('Use the density for a mean or an independence check')
-D.P(r'To find a conditional mean, multiply the density by $x$ before you integrate. For a uniform slice, the mean is its midpoint. For the triangle above, that gives $E[X\mid Y=y]=y/2$.', cites=cite('L22', 4))
-D.EQ(r'E[X\mid Y=y]=\int_{-\infty}^{\infty} x\,f_{X|Y}(x\mid y)\,dx')
-D.P(r'For independence, the conditional density must match $f_X(x)$, the density before you learn $Y$. Compare the range of $x$ as well as the formula.')
-D.P(r'In the triangle, the upper endpoint moves with $y$. For instance, $x=0.4$ is possible when $y=0.5$, and its density is zero when $y=0.25$. Learning $Y$ changes the distribution of $X$.')
-
-D.EX('Independent: the conditional is the marginal ★ (Tutorial 7 Q4 joint PDF)',
-     r'$f_{X,Y}(x,y)=12xy(1-x)$ on the unit square. Find $f_{X|Y}(x\mid y)$ and $P(X<\tfrac12\mid Y=0.3)$.',
-     [S(r'**Find the marginal.** Integrate over $x$ from $0$ to $1$.',
-        r'f_Y(y)=12y\int_0^1x(1-x)\,dx=2y'),
-      S(r'**Divide and compare.** For every $0<y<1$, the conditional density equals the marginal $f_X$ and has the same range $0<x<1$.',
-        r'f_{X|Y}(x\mid y)=\frac{12xy(1-x)}{2y}=6x(1-x)=f_X(x)'),
-      S(r'**Integrate.** Because $X$ and $Y$ are independent, you get the same probability for any of those values of $y$.',
-        r'P(X<\tfrac12\mid Y=0.3)=\int_0^{1/2}6x(1-x)\,dx=\frac12')],
-     r'$6x(1-x)$; $\tfrac12$', cites=cite('T7', 1))
+# ---- C3 ----------------------------------------------------------------------------------------------
+D.H('C3 · Total expectation (Lecture 23)', level=2)
+D.P(r'Same rule as Question 2, with an integral: weight $E[X\mid Y=y]$ by $f_Y(y)$.', cites=cite('L23', 5))
+D.EQ(r'E[X]=\int_{-\infty}^{\infty}E[X\mid Y=y]\,f_Y(y)\,dy')
+D.EX('Back to the triangle',
+     r'$f_{X,Y}=2$ on $0<x<y<1$. Use $E[X\mid Y=y]=\tfrac y2$ (C1) and $f_Y=2y$ (Part A) to find $E[X]$.',
+     [S(r'**Weight and integrate.**', r'E[X]=\int_0^1\frac y2\cdot2y\,dy=\int_0^1y^2\,dy=\frac13'),
+      S(r'**Check** with $f_X=2(1-x)$ (Part A Try it).', r'\int_0^1x\cdot2(1-x)\,dx=1-\frac23=\frac13\ \checkmark')],
+     r'$\tfrac13$')
+D.TRY('Your turn',
+      r'$f=e^{-y}$ for $0<x<y$. You know $E[X\mid Y=y]=\tfrac y2$ and $f_Y=ye^{-y}$ for $y>0$. Find $E[X]$.',
+      [S(r'**Weight and integrate.** Use $\int_0^\infty y^2e^{-y}\,dy=2$.', r'E[X]=\int_0^\infty\frac y2\cdot ye^{-y}\,dy=\frac12\cdot2=1')],
+      r'$1$')
 
 # =====================================================================================================
 D.H('Practice Questions')
-D.P('Start each problem by writing down which variable is fixed and the range of the other variable. Open each solution after you try it. ★ marks problems based on the lectures or tutorials.')
+D.P('Test 2 difficulty, 10 marks each. Formula sheet only. ★ = from the lectures/tutorials.')
 
-D.Q('The mirror triangle ★ · Tutorial 8 Q2 joint PDF',
-    r'$f_{X,Y}(x,y)=2$ for $0\le y\le x\le1$. Find (a) $f_X$ and $f_{Y|X}(y\mid x)$, (b) $F_{Y|X}(y\mid x)$, (c) $P(Y<\tfrac14\mid X=\tfrac12)$, (d) $f_{X|Y}(x\mid y)$. (e) Independent?',
-    [S(r'**Sketch:** the triangle **below** the line $y=x$.'),
-     S(r'(a) **Slice** at $x$: $y$ from $0$ to $x$. **Marginal**, then **Divide**.', (r'f_X(x)=\int_0^x2\,dy=2x,\qquad 0<x\le1', r'f_{Y|X}(y\mid x)=\frac{2}{2x}=\frac1x,\qquad 0\le y\le x')),
-     S(r'(b) **Accumulate** from $0$.', r'F_{Y|X}(y\mid x)=\begin{cases}0,&y<0\\ \dfrac yx,&0\le y\le x\\ 1,&y>x\end{cases}'),
-     S(r'(c) **Plug in.**', r'P\big(Y<\tfrac14\ \big|\ X=\tfrac12\big)=\frac{1/4}{1/2}=\frac12'),
-     S(r'(d) **Slice** at $y$: $x$ from $y$ to $1$ (length $1-y$). Flat → uniform.', r'f_Y(y)=2(1-y),\qquad f_{X|Y}(x\mid y)=\frac1{1-y},\qquad y\le x\le1'),
-     S(r'(e) A triangle → **not** independent.')],
-    r'(a) $2x$; $\tfrac1x$ on $[0,x]$ (b) $0,\ \tfrac yx,\ 1$ (c) $\tfrac12$ (d) $\tfrac1{1-y}$ on $[y,1]$ (e) no', diff='introductory', cites=cite('T8', 1))
+D.Q('[10 marks] The mirror triangle ★ (Tutorial 8 Q2 PDF)',
+    r'$f_{X,Y}(x,y)=2$ for $0\le y\le x\le1$, and $0$ otherwise. (a) Find $f_X(x)$. (2 marks) (b) Find $f_{Y|X}(y\mid x)$. (2 marks) (c) Find $F_{Y|X}(y\mid x)$. (2 marks) (d) Find $P(Y<\tfrac14\mid X=\tfrac12)$. (2 marks) (e) Find $E[Y\mid X=x]$. Are $X,Y$ independent? (2 marks)',
+    [S(r'(a) **Vertical slice:** $y$ from $0$ to $x$.', r'f_X(x)=\int_0^x2\,dy=2x,\qquad0<x\le1'),
+     S(r'(b) **Divide.**', r'f_{Y|X}(y\mid x)=\frac{2}{2x}=\frac1x,\qquad0\le y\le x'),
+     S(r'(c) **Three pieces.**', r'F_{Y|X}(y\mid x)=\begin{cases}0,&y<0\\ \dfrac yx,&0\le y\le x\\ 1,&y>x\end{cases}'),
+     S(r'(d) **Plug in.**', r'F_{Y|X}\big(\tfrac14\mid\tfrac12\big)=\frac{1/4}{1/2}=\frac12'),
+     S(r'(e) **Uniform on $(0,x)$** → midpoint. It changes with $x$ → **dependent**.', r'E[Y\mid X=x]=\frac x2')],
+    r'(a) $2x$ (b) $\tfrac1x$ on $[0,x]$ (c) $0,\ \tfrac yx,\ 1$ (d) $\tfrac12$ (e) $\tfrac x2$; dependent', cites=cite('T8', 1))
 
-D.Q('A triangle with $24xy$ ★ · Tutorial 7 Q6 joint PDF',
-    r'$f_{X,Y}(x,y)=24xy$ for $x,y\ge0,\ x+y\le1$. Find $f_{X|Y}(x\mid y)$, $F_{X|Y}(x\mid y)$, $P(X<\tfrac14\mid Y=\tfrac12)$ and $E[X\mid Y=y]$.',
-    [S(r'**Slice** at $y$: $x$ from $0$ to $1-y$. **Marginal.**', r'f_Y(y)=\int_0^{1-y}24xy\,dx=12y(1-y)^2,\qquad 0<y<1'),
-     S(r'**Divide.**', r'f_{X|Y}(x\mid y)=\frac{24xy}{12y(1-y)^2}=\frac{2x}{(1-y)^2},\qquad 0\le x\le1-y'),
-     S(r'**Accumulate.**', r'F_{X|Y}(x\mid y)=\frac{x^2}{(1-y)^2}\quad(0\le x\le1-y);\ \ 0\text{ before},\ 1\text{ after}'),
-     S(r'**Plug in** $y=\tfrac12$, $x=\tfrac14$.', r'P\big(X<\tfrac14\ \big|\ Y=\tfrac12\big)=\frac{1/16}{1/4}=\frac14'),
-     S(r'**Mean.**', r'E[X\mid Y=y]=\int_0^{1-y}\frac{2x^2}{(1-y)^2}\,dx=\frac{2(1-y)}3')],
-    r'$\tfrac{2x}{(1-y)^2}$ on $[0,1-y]$; $\tfrac{x^2}{(1-y)^2}$; $\tfrac14$; $\tfrac23(1-y)$', cites=cite('T7', 2))
+D.Q('[10 marks] A triangle with $24xy$ ★ (Tutorial 7 Q6 PDF)',
+    r'$f_{X,Y}(x,y)=24xy$ for $x\ge0,\ y\ge0,\ x+y\le1$. (a) Find $f_Y(y)$. (3 marks) (b) Find $f_{X|Y}(x\mid y)$. (2 marks) (c) Find $P(X<\tfrac14\mid Y=\tfrac12)$. (2 marks) (d) Find $E[X\mid Y=y]$. (3 marks)',
+    [S(r'(a) **Horizontal slice:** $x$ from $0$ to $1-y$.', r'f_Y(y)=\int_0^{1-y}24xy\,dx=12y(1-y)^2,\qquad0\le y\le1'),
+     S(r'(b) **Divide.**', r'f_{X|Y}(x\mid y)=\frac{24xy}{12y(1-y)^2}=\frac{2x}{(1-y)^2},\qquad0\le x\le1-y'),
+     S(r'(c) **Put $y=\tfrac12$:** $f=8x$ on $(0,\tfrac12)$.', r'\int_0^{1/4}8x\,dx=4\cdot\frac1{16}=\frac14'),
+     S(r'(d) **Mean.**', r'E[X\mid Y=y]=\int_0^{1-y}\frac{2x^2}{(1-y)^2}\,dx=\frac{2(1-y)^3}{3(1-y)^2}=\frac{2(1-y)}{3}')],
+    r'(a) $12y(1-y)^2$ (b) $\tfrac{2x}{(1-y)^2}$ on $[0,1-y]$ (c) $\tfrac14$ (d) $\tfrac23(1-y)$', cites=cite('T7', 2))
 
-D.Q('Given $X$ on a square ★ · Tutorial 8 Q8 joint PDF',
-    r'$f_{X,Y}(x,y)=x+y$ on the unit square. Find $f_{Y|X}(y\mid x)$ and $P(Y>\tfrac12\mid X=\tfrac12)$.',
-    [S(r'**Slice** at $x$: $y$ from $0$ to $1$. **Marginal.**', r'f_X(x)=x+\frac12'),
-     S(r'**Divide.**', r'f_{Y|X}(y\mid x)=\frac{x+y}{x+\frac12},\qquad 0<y<1'),
-     S(r'**Plug in** $x=\tfrac12$. The denominator becomes $1$.',
-       r'P(Y>\tfrac12\mid X=\tfrac12)=\int_{1/2}^{1}(\tfrac12+y)\,dy=\frac58')],
-    r'$\tfrac{x+y}{x+1/2}$ on $0<y<1$; $\tfrac58$', diff='introductory', cites=cite('T8', 2))
+D.Q('[10 marks] Given $X$ on a square ★ (Tutorial 8 Q8 PDF)',
+    r'$f_{X,Y}(x,y)=x+y$ for $0\le x\le1,\ 0\le y\le1$. (a) Find $f_{Y|X}(y\mid x)$. (3 marks) (b) Find $P(Y>\tfrac12\mid X=0)$. (2 marks) (c) Find $E[Y\mid X=x]$. (3 marks) (d) Use (c) to decide if $X,Y$ are independent. (2 marks)',
+    [S(r'(a) **Marginal** $f_X=x+\tfrac12$. **Divide.**', r'f_{Y|X}(y\mid x)=\frac{x+y}{x+\frac12},\qquad0\le y\le1'),
+     S(r'(b) **Put $x=0$:** $f=2y$.', r'\int_{1/2}^1 2y\,dy=1-\frac14=\frac34'),
+     S(r'(c) **Mean.**', r'E[Y\mid X=x]=\frac{\int_0^1y(x+y)\,dy}{x+\frac12}=\frac{\frac x2+\frac13}{x+\frac12}=\frac{3x+2}{3(2x+1)}'),
+     S(r'(d) At $x=0$ it is $\tfrac23$, at $x=1$ it is $\tfrac59$. It changes → **dependent**.')],
+    r'(a) $\tfrac{x+y}{x+1/2}$ (b) $\tfrac34$ (c) $\tfrac{3x+2}{3(2x+1)}$ (d) dependent', cites=cite('T8', 2))
 
-D.Q('Find a probability from a conditional density ★ · Lecture 22',
-    r'$f_{X,Y}(x,y)=6xy(2-x-y)$ on the unit square, with $f_Y(y)=y(4-3y)$ as in the Question 2 note. Find $P(X<\tfrac12\mid Y=\tfrac12)$.',
-    [S(r'**Divide**, then **Plug in** $y=\tfrac12$: $4-3y=\tfrac52$.', r'f_{X|Y}\big(x\ \big|\ \tfrac12\big)=\frac{6x(\frac32-x)}{\frac52}=\frac{12}{5}\,x\Big(\frac32-x\Big),\qquad 0<x<1'),
-     S(r'Integrate from $0$ to $\tfrac12$.', r'P=\frac{12}5\Big(\frac32\cdot\frac18-\frac1{24}\Big)=\frac{12}5\cdot\frac{7}{48}=\frac7{20}')],
-    r'$\tfrac7{20}$', cites=cite('L22', 6))
+D.Q('[10 marks] An exponential pair',
+    r'$f_{X,Y}(x,y)=e^{-y}$ for $0<x<y$, and $0$ otherwise. (a) Find $f_X(x)$ and $f_{Y|X}(y\mid x)$. (4 marks) (b) Find $P(Y>x+1\mid X=x)$. (2 marks) (c) Find $E[Y\mid X=x]$. (2 marks) (d) Find $f_{X|Y}(x\mid y)$. (2 marks)',
+    [S(r'(a) **Vertical slice:** $y$ from $x$ to $\infty$.', (r'f_X(x)=\int_x^\infty e^{-y}\,dy=e^{-x},\qquad x>0', r'f_{Y|X}(y\mid x)=\frac{e^{-y}}{e^{-x}}=e^{-(y-x)},\qquad y>x')),
+     S(r'(b) **Integrate** from $x+1$.', r'\int_{x+1}^\infty e^{-(y-x)}\,dy=e^{-1}\approx0.368'),
+     S(r'(c) **Mean** (substitute $t=y-x$).', r'E[Y\mid X=x]=\int_x^\infty y\,e^{-(y-x)}\,dy=x+1'),
+     S(r'(d) **Horizontal slice** $0<x<y$: $f_Y=ye^{-y}$.', r'f_{X|Y}(x\mid y)=\frac{e^{-y}}{ye^{-y}}=\frac1y,\qquad0<x<y')],
+    r'(a) $e^{-x}$; $e^{-(y-x)}$ on $y>x$ (b) $e^{-1}$ (c) $x+1$ (d) $\tfrac1y$ on $(0,y)$')
 
-D.Q('An exponential pair',
-    r'$f_{X,Y}(x,y)=e^{-y}$ for $0<x<y$. Find (a) $f_{X|Y}(x\mid y)$ and $P(X<1\mid Y=3)$, (b) $f_{Y|X}(y\mid x)$ and $P(Y>3\mid X=1)$.',
-    [S(r'**Sketch:** above the line $y=x$, in the first quadrant, going up forever.'),
-     S(r'(a) **Slice** at $y$: $x$ from $0$ to $y$. **Marginal**, **Divide.**', (r'f_Y(y)=\int_0^ye^{-y}\,dx=y\,e^{-y}', r'f_{X|Y}(x\mid y)=\frac1y,\qquad 0<x<y')),
-     S(r'Uniform on $(0,3)$.', r'P(X<1\mid Y=3)=\frac13'),
-     S(r'(b) **Slice** at $x$: $y$ from $x$ to $\infty$. **Marginal**, **Divide.**', (r'f_X(x)=\int_x^{\infty}e^{-y}\,dy=e^{-x}', r'f_{Y|X}(y\mid x)=e^{-(y-x)},\qquad y>x')),
-     S(r'**Plug in** $x=1$.', r'P(Y>3\mid X=1)=\int_3^{\infty}e^{-(y-1)}\,dy=e^{-2}\approx' + f'{exp(-2):.4f}')],
-    f'(a) $\\tfrac1y$ on $(0,y)$; $\\tfrac13$ (b) $e^{{-(y-x)}}$ for $y>x$; $e^{{-2}}\\approx{exp(-2):.4f}$')
+D.Q('[10 marks] Like Lecture 23',
+    r'$f_{X,Y}(x,y)=\tfrac12\,y\,e^{-xy}$ for $x>0,\ 0<y<2$. (a) Find $f_Y(y)$ and $f_{X|Y}(x\mid y)$. (3 marks) (b) Find $P(X>1\mid Y=2)$. (2 marks) (c) Find $E[X\mid Y=y]$. (2 marks) (d) Find $E[e^{X}\mid Y=2]$. (3 marks)',
+    [S(r'(a) **Slice** $x$ from $0$ to $\infty$.', (r'f_Y(y)=\frac12,\quad0<y<2', r'f_{X|Y}(x\mid y)=ye^{-xy},\quad x>0')),
+     S(r'(b) **Put $y=2$:** $f=2e^{-2x}$.', r'\int_1^\infty2e^{-2x}\,dx=e^{-2}\approx0.135'),
+     S(r'(c) **Mean** (exponential with rate $y$).', r'E[X\mid Y=y]=\int_0^\infty x\,ye^{-xy}\,dx=\frac1y'),
+     S(r'(d) **$g(x)=e^x$**, $y=2$.', r'\int_0^\infty e^{x}\cdot2e^{-2x}\,dx=2\int_0^\infty e^{-x}\,dx=2')],
+    r'(a) $\tfrac12$; $ye^{-xy}$ (b) $e^{-2}$ (c) $\tfrac1y$ (d) $2$')
 
-D.Q('The parabola region ★ · Lecture 18 joint PDF',
-    r'$f_{X,Y}(x,y)=\dfrac{5y}{4}$ on $-1\le x\le1,\ x^2\le y\le1$. Find $P(Y>\tfrac12\mid X=0)$ and $E[Y\mid X=0]$.',
-    [S(r'From the curved region example, $f_{Y|X}(y\mid x)=\dfrac{2y}{1-x^4}$ on $x^2\le y\le1$. **Plug in** $x=0$.', r'f_{Y|X}(y\mid0)=2y,\qquad 0\le y\le1'),
-     S(r'Probability.', r'P\big(Y>\tfrac12\ \big|\ X=0\big)=\int_{1/2}^12y\,dy=\frac34'),
-     S(r'**Mean.**', r'E[Y\mid X=0]=\int_0^1y\cdot2y\,dy=\frac23')],
-    r'$\tfrac34$; $\tfrac23$', diff='introductory', cites=cite('L18', 5))
-
-D.Q('A triangle with $6x$',
-    r'$f_{X,Y}(x,y)=6x$ for $0<x<y<1$. Find $f_Y$, $f_{X|Y}(x\mid y)$, $F_{X|Y}(x\mid y)$, $P(X<\tfrac12\mid Y=\tfrac34)$ and $E[X\mid Y=y]$.',
-    [S(r'**Slice** at $y$: $x$ from $0$ to $y$. **Marginal.**', r'f_Y(y)=\int_0^y6x\,dx=3y^2,\qquad 0<y<1'),
-     S(r'**Divide.**', r'f_{X|Y}(x\mid y)=\frac{6x}{3y^2}=\frac{2x}{y^2},\qquad 0<x<y'),
-     S(r'**Accumulate.**', r'F_{X|Y}(x\mid y)=\frac{x^2}{y^2}\quad(0<x<y);\ \ 0\text{ before},\ 1\text{ after}'),
-     S(r'**Plug in.**', r'P\big(X<\tfrac12\ \big|\ Y=\tfrac34\big)=\frac{(1/2)^2}{(3/4)^2}=\frac49'),
-     S(r'**Mean.**', r'E[X\mid Y=y]=\int_0^y\frac{2x^2}{y^2}\,dx=\frac{2y}3')],
-    r'$3y^2$; $\tfrac{2x}{y^2}$; $\tfrac{x^2}{y^2}$; $\tfrac49$; $\tfrac{2y}3$')
-
-D.Q('Find $c$ first',
-    r'$f_{X,Y}(x,y)=cx$ for $0\le y\le x\le1$. Find $c$, $f_{Y|X}(y\mid x)$, $f_{X|Y}(x\mid y)$ and $P(X>\tfrac12\mid Y=\tfrac14)$.',
-    [S(r'**Find $c$:** slice at $x$, $y$ from $0$ to $x$.', r'\int_0^1\!\!\int_0^x cx\,dy\,dx=\int_0^1cx^2\,dx=\frac c3=1\quad\Longrightarrow\quad c=3'),
-     S(r'Given $X=x$: **Marginal** $f_X=3x^2$, **Divide**. Flat in $y$ → uniform.', r'f_{Y|X}(y\mid x)=\frac{3x}{3x^2}=\frac1x,\qquad 0\le y\le x'),
-     S(r'Given $Y=y$: slice $x$ from $y$ to $1$. **Marginal**, **Divide.**', (r'f_Y(y)=\int_y^13x\,dx=\frac32(1-y^2)', r'f_{X|Y}(x\mid y)=\frac{2x}{1-y^2},\qquad y\le x\le1')),
-     S(r'**Plug in** $y=\tfrac14$: $1-y^2=\tfrac{15}{16}$.', r'P\big(X>\tfrac12\ \big|\ Y=\tfrac14\big)=\int_{1/2}^1\frac{2x}{15/16}\,dx=\frac{3/4}{15/16}=\frac45')],
-    r'$c=3$; $\tfrac1x$; $\tfrac{2x}{1-y^2}$; $\tfrac45$')
-
-D.Q('Uniform on a disk',
-    r'$(X,Y)$ is uniform on the unit disk: $f_{X,Y}=\tfrac1\pi$ for $x^2+y^2\le1$. Find $f_{X|Y}(x\mid y)$, $P(X<\tfrac12\mid Y=0.6)$ and $E[X\mid Y=y]$. Independent?',
-    [S(r'**Slice** at $y$: $x$ from $-\sqrt{1-y^2}$ to $\sqrt{1-y^2}$. Flat → uniform on that slice.', r'f_{X|Y}(x\mid y)=\frac{1}{2\sqrt{1-y^2}},\qquad |x|\le\sqrt{1-y^2}'),
-     S(r'**Plug in** $y=0.6$: the slice is $-0.8<x<0.8$, length $1.6$.', r'P(X<0.5\mid Y=0.6)=\frac{0.5-(-0.8)}{1.6}=\frac{13}{16}'),
-     S(r'**Mean:** the midpoint of the slice.', r'E[X\mid Y=y]=0'),
-     S(r'The slice length changes with $y$ (a disk, not a rectangle) → **not** independent, even though $E[X\mid Y=y]$ is constant.')],
-    r'$\tfrac{1}{2\sqrt{1-y^2}}$ on $|x|\le\sqrt{1-y^2}$; $\tfrac{13}{16}$; $0$; not independent')
-
-D.Q('Product form · Lecture 19 joint PDF',
-    r'$f_{X,Y}(x,y)=4xy$ on the unit square. Find $f_{X|Y}(x\mid y)$ and $P(X>\tfrac12\mid Y=\tfrac13)$.',
-    [S(r'**Marginal** $f_Y=2y$. **Divide.**', r'f_{X|Y}(x\mid y)=\frac{4xy}{2y}=2x=f_X(x),\qquad 0<x<1'),
-     S(r'No $y$ left → **independent**; the $\tfrac13$ doesn’t matter.', r'P\big(X>\tfrac12\ \big|\ Y=\tfrac13\big)=\int_{1/2}^12x\,dx=\frac34')],
-    r'$2x$; $\tfrac34$', diff='introductory', cites=cite('L19', 3))
+D.Q('[10 marks] Find $c$ first',
+    r'$f_{X,Y}(x,y)=c\,x$ for $0<y<x<1$, and $0$ otherwise. (a) Find $c$. (2 marks) (b) Find $f_Y(y)$ and $f_{X|Y}(x\mid y)$. (4 marks) (c) Find $P(X>\tfrac12\mid Y=0.2)$. (2 marks) (d) Find $f_{Y|X}(y\mid x)$ and $E[Y\mid X=x]$. (2 marks)',
+    [S(r'(a) **Slice** $y$ from $0$ to $x$.', r'\int_0^1\!\!\int_0^x cx\,dy\,dx=c\int_0^1x^2\,dx=\frac c3=1\ \Rightarrow\ c=3'),
+     S(r'(b) **Horizontal slice:** $x$ from $y$ to $1$.', (r'f_Y(y)=\int_y^13x\,dx=\frac32(1-y^2),\qquad0<y<1', r'f_{X|Y}(x\mid y)=\frac{3x}{\frac32(1-y^2)}=\frac{2x}{1-y^2},\qquad y<x<1')),
+     S(r'(c) **Put $y=0.2$:** $1-y^2=0.96$.', r'\int_{0.5}^1\frac{2x}{0.96}\,dx=\frac{1-0.25}{0.96}=\frac{0.75}{0.96}=0.78125'),
+     S(r'(d) $f_X=3x^2$. **Divide:** flat in $y$ → uniform on $(0,x)$.', r'f_{Y|X}(y\mid x)=\frac{3x}{3x^2}=\frac1x,\quad0<y<x;\qquad E[Y\mid X=x]=\frac x2')],
+    r'(a) $3$ (b) $\tfrac32(1-y^2)$; $\tfrac{2x}{1-y^2}$ on $(y,1)$ (c) $0.78125=\tfrac{25}{32}$ (d) $\tfrac1x$; $\tfrac x2$')
 
 D.H('Test 3 formula sheet')
 D.SHEET3()
@@ -194,35 +191,40 @@ D.SHEET3()
 
 def verify():
     import sympy as sp
-    x, y, u = sp.symbols('x y u', positive=True)
+    x, y, u, t = sp.symbols('x y u t', positive=True)
     I = sp.integrate
     R = sp.Rational
-    assert I(2, (x, 0, y)) == 2 * y and I(1 / y, (u, 0, x)) == x / y and R(1, 4) / R(1, 2) == R(1, 2)
-    assert I(2, (y, x, 1)) == 2 * (1 - x) and I(2, (y, R(1, 2), R(3, 5))) == R(1, 5)
-    fy = R(5, 2) * y ** R(3, 2)
-    assert sp.simplify(R(5, 4) * y / fy - 1 / (2 * sp.sqrt(y))) == 0
-    assert sp.simplify(I(2 * y / (1 - x ** 4), (y, x ** 2, 1))) == 1
-    cdf = I((u + y) / (y + R(1, 2)), (u, 0, x))
-    assert sp.simplify(cdf - (x ** 2 / 2 + x * y) / (y + R(1, 2))) == 0 and cdf.subs({y: R(1, 2), x: R(1, 2)}) == R(3, 8)
-    assert I(6 * x * (1 - x), (x, 0, R(1, 2))) == R(1, 2)
+    S_ = sp.simplify
+    assert I(2, (x, 0, y)) == 2 * y and I(1 / y, (u, 0, x)) == x / y
+    assert S_(I(x + y, (x, 0, 1)) - (y + R(1, 2))) == 0
+    assert S_(I((u + y) / (y + R(1, 2)), (u, 0, x)) - (x ** 2 / 2 + x * y) / (y + R(1, 2))) == 0
+    assert ((x ** 2 / 2 + x * y) / (y + R(1, 2))).subs({x: R(1, 2), y: R(1, 2)}) == R(3, 8)
+    xx = sp.symbols('xx', real=True)
+    assert S_(I(5 * y / 4, (xx, -sp.sqrt(y), sp.sqrt(y))) - R(5, 2) * y ** R(3, 2)) == 0
+    f = 6 * x * y * (2 - x - y); fy = I(f, (x, 0, 1))
+    assert S_(fy - y * (4 - 3 * y)) == 0
+    e = S_(I(x * f / fy, (x, 0, 1)))
+    assert S_(e - (5 - 4 * y) / (2 * (4 - 3 * y))) == 0 and e.subs(y, 0) == R(5, 8) and sp.limit(e, y, 1) == R(1, 2)
+    assert S_(I(x * (x + y), (x, 0, 1)) / (y + R(1, 2)) - (2 + 3 * y) / (3 * (1 + 2 * y))) == 0
+    assert S_(I(sp.exp(-y), (x, 0, y)) - y * sp.exp(-y)) == 0 and S_(I(x ** 2 / y, (x, 0, y)) - y ** 2 / 4 - y ** 2 / 12) == 0
+    g = R(1, 2) * y * sp.exp(-x * y)
+    assert S_(I(g, (x, 0, sp.oo)) - R(1, 2)) == 0
+    assert I(sp.exp(x / 2) * sp.exp(-x), (x, 0, sp.oo)) == 2 and I(sp.exp(x) * 2 * sp.exp(-2 * x), (x, 0, sp.oo)) == 2
+    assert I(2 * sp.exp(-2 * x), (x, 1, sp.oo)) == sp.exp(-2) and S_(I(x * y * sp.exp(-x * y), (x, 0, sp.oo)) - 1 / y) == 0
+    assert I(y / 2 * 2 * y, (y, 0, 1)) == R(1, 3) and I(x * 2 * (1 - x), (x, 0, 1)) == R(1, 3)
+    assert I(y / 2 * y * sp.exp(-y), (y, 0, sp.oo)) == 1
     # practice
-    assert I(2 * y / (1 - x ** 4), (y, R(1, 2), 1)).subs(x, 0) == R(3, 4) and I(2 * y * y, (y, 0, 1)) == R(2, 3)
-    fy24 = I(24 * x * y, (x, 0, 1 - y))
-    assert sp.simplify(fy24 - 12 * y * (1 - y) ** 2) == 0
-    assert I(2 * x / R(1, 4), (x, 0, R(1, 4))) == R(1, 4)
-    assert I(R(1, 2) + y, (y, R(1, 2), 1)) == R(5, 8)
-    f6 = 6 * x * y * (2 - x - y)
-    fy6 = I(f6, (x, 0, 1))
-    assert I((f6 / fy6).subs(y, R(1, 2)), (x, 0, R(1, 2))) == R(7, 20)
-    assert I(sp.exp(-(y - 1)), (y, 3, sp.oo)) == sp.exp(-2) and I(sp.exp(-y), (y, x, sp.oo)) == sp.exp(-x)
-    assert I(6 * x, (x, 0, y)) == 3 * y ** 2 and (R(1, 2) / R(3, 4)) ** 2 == R(4, 9)
-    assert sp.simplify(I(x * 2 * x / y ** 2, (x, 0, y)) - 2 * y / 3) == 0
-    c = sp.Symbol('c')
-    assert sp.solve(I(c * x, (y, 0, x), (x, 0, 1)) - 1, c) == [3]
-    assert sp.simplify(I(3 * x, (x, y, 1)) - R(3, 2) * (1 - y ** 2)) == 0
-    assert I(2 * x / (1 - R(1, 16)), (x, R(1, 2), 1)) == R(4, 5)
-    assert (R(1, 2) + R(4, 5)) / R(8, 5) == R(13, 16)
-    assert I(2 * x, (x, R(1, 2), 1)) == R(3, 4)
+    fy2 = I(24 * x * y, (x, 0, 1 - y))
+    assert sp.expand(fy2 - 12 * y * (1 - y) ** 2) == 0
+    cond = S_(24 * x * y / fy2)
+    assert I(cond.subs(y, R(1, 2)), (x, 0, R(1, 4))) == R(1, 4) and S_(I(x * cond, (x, 0, 1 - y)) - R(2, 3) * (1 - y)) == 0
+    ey = S_(I(y * (x + y), (y, 0, 1)) / (x + R(1, 2)))
+    assert S_(ey - (3 * x + 2) / (3 * (2 * x + 1))) == 0 and ey.subs(x, 0) == R(2, 3) and ey.subs(x, 1) == R(5, 9)
+    assert I(2 * y, (y, R(1, 2), 1)) == R(3, 4)
+    assert S_(I(sp.exp(-y), (y, x, sp.oo)) - sp.exp(-x)) == 0 and S_(I(sp.exp(-(y - x)), (y, x + 1, sp.oo)) - sp.exp(-1)) == 0
+    assert S_(I(y * sp.exp(-(y - x)), (y, x, sp.oo)) - (x + 1)) == 0
+    assert I(3 * x, (y, 0, x), (x, 0, 1)) == 1 and S_(I(3 * x, (x, y, 1)) - R(3, 2) * (1 - y ** 2)) == 0
+    assert I(2 * x / R(96, 100), (x, R(1, 2), 1)) == R(25, 32)
     print('t3q3 verify ok')
 
 

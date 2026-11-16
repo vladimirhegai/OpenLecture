@@ -1,0 +1,1312 @@
+{
+ "title": "Midterm 2 · 2. RL and RC Circuits",
+ "topic_keys": [
+  "rl_circuits",
+  "rc_circuits",
+  "transient_response"
+ ],
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Note 2 of 3 · Textbook 7.1–7.5.** First-order RL and RC circuits: natural response, step response, the general method, sequential switching. (7.6 unbounded response and 7.7 the integrating amplifier are not on the midterm.)",
+   "citations": [],
+   "id": "eed32bc4-d012-5dce-b55d-a8ab05c65108"
+  },
+  {
+   "type": "paragraph",
+   "text": "Setup: a switch flips at $t=0$ in a circuit with **one** $L$ or **one** $C$ (or several you can combine into one). Before the flip everything has settled (DC). After it, $i_L$ or $v_C$ slides exponentially from its old value to a new one.",
+   "citations": [
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "83a30dd8-2e9a-464e-9f92-35361d48d8c6"
+    }
+   ],
+   "id": "d376550f-d144-5423-b89f-9613b7732574"
+  },
+  {
+   "type": "paragraph",
+   "text": "So every answer is \"final value plus a gap that shrinks\", and you only need **three numbers**: start, final, and $\\tau$.",
+   "citations": [],
+   "id": "12ab8ca7-3413-5875-8e81-9d0372cc43e0"
+  },
+  {
+   "type": "equation",
+   "latex": "x(t)=x(\\infty)+\\big[x(0^+)-x(\\infty)\\big]\\,e^{-t/\\tau}",
+   "display": true,
+   "citations": [],
+   "id": "492d02a5-0064-5364-a624-91fc407bea03"
+  },
+  {
+   "type": "paragraph",
+   "text": "Here $x$ is whatever you are asked for: usually $i_L$ or $v_C$.",
+   "citations": [],
+   "id": "ed020e84-048f-5d13-9823-2b747341d732"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Topic",
+    "What you are learning",
+    "Where"
+   ],
+   "rows": [
+    [
+     "1. The start value",
+     "Find $i_L$ or $v_C$ before the switch (DC)",
+     "A1"
+    ],
+    [
+     "2. The time constant $\\tau$",
+     "$\\tau=L/R$ or $RC$, with the right $R$",
+     "A2"
+    ],
+    [
+     "3. Natural response",
+     "No source after the switch: decay to 0, energy %",
+     "B"
+    ],
+    [
+     "4. Step response",
+     "A source after the switch: the one formula, six steps",
+     "C1"
+    ],
+    [
+     "5. Thévenin first",
+     "Messy circuits and dependent sources",
+     "C2"
+    ],
+    [
+     "6. Sequential switching",
+     "Two switch times: restart the clock",
+     "D"
+    ]
+   ],
+   "citations": [],
+   "id": "35bf8f9d-07a9-5ba4-bf78-5aa859e81c01"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Part A · The three numbers.** Start value and $\\tau$. Used in every question.",
+    "**Part B · Natural response.** The source is gone after the switch, so everything dies out.",
+    "**Part C · Step response.** A source is still there, so it settles at a new value.",
+    "**Part D · Sequential switching.** Two flips. Same method, done twice."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "7e878ef0-c76d-50b0-8738-fc0967971817"
+  },
+  {
+   "type": "paragraph",
+   "text": "Every topic: what it is → the formula → a worked example → a **Try it**. ★ = from your lectures, tutorials or Assessment Problems. Formula summary at the end; mixed questions in **Midterm 2 Practice Questions**.",
+   "citations": [],
+   "id": "9baa3f1b-a9e8-5c3c-9221-40811c601466"
+  },
+  {
+   "type": "callout",
+   "tone": "reminder",
+   "text": "**What you need from note 1 (A4):**\n\n- Long time (DC): an inductor is a **wire**, a capacitor is a **gap**.\n- At the switch: $i_L(0^+)=i_L(0^-)$ and $v_C(0^+)=v_C(0^-)$. Everything else may jump.",
+   "citations": [],
+   "id": "67e52786-b7c6-5a18-9cd4-a73feb1baef1"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part A · The three numbers: start, final, $\\tau$",
+   "citations": [],
+   "id": "29956e5c-a0ac-572d-b95b-6574e122a73d"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: find the start value and the time constant. (The final value is the same DC trick as the start value, so it gets its own spot in Part C.)",
+   "citations": [],
+   "id": "07a5c493-75ab-5121-a32d-980bb2e7cbe3"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "A1 · The start value: the circuit before the switch",
+   "citations": [
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "09962cd5-e950-4180-9e26-0739d833a019"
+    }
+   ],
+   "id": "b3cedf20-8095-5d4d-9a3c-df85319ab77f"
+  },
+  {
+   "type": "paragraph",
+   "text": "The switch has been closed for a long time. What is $i_L$ just before it opens?",
+   "citations": [],
+   "id": "8bef5130-484b-5b61-9272-bd5f1fe95caa"
+  },
+  {
+   "type": "paragraph",
+   "text": "\"A long time\" means DC. So redraw the circuit with:",
+   "citations": [],
+   "id": "400d024a-fe54-583a-818c-f791973a99a2"
+  },
+  {
+   "type": "list",
+   "items": [
+    "the **inductor** replaced by a **wire**, or",
+    "the **capacitor** replaced by a **gap**."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "40b0b84a-7bac-54d7-b480-391cad4c9dd6"
+  },
+  {
+   "type": "paragraph",
+   "text": "Solve that plain resistor circuit for $i_L(0^-)$ or $v_C(0^-)$. It carries straight over to $0^+$:",
+   "citations": [],
+   "id": "05141486-0de7-5303-b0fc-07c933c1656b"
+  },
+  {
+   "type": "equation",
+   "latex": "i_L(0^+)=i_L(0^-)\\qquad\\qquad v_C(0^+)=v_C(0^-)",
+   "display": true,
+   "citations": [],
+   "id": "ed9d3d24-53f9-5cab-9875-2a4ec0a0cd84"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · ★ Lecture example: inductor current before the switch",
+   "prompt": "The switch has been closed for a long time and opens at $t=0$. Find $i_L(0^-)$.\n\n```schematic\nI1 0,0 -> 0,3 \"$20\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$0.1\\,\\Omega$\"\nS1 3,3 -> 6,3 \"$t=0$\" state=closed action=open\nL1 6,3 -> 6,0 \"$2\\,\\mathrm{H}$\" i=\"$i_L$\"\nR2 6,3 -> 9,3 \"$2\\,\\Omega$\"\nR3 9,3 -> 9,0 \"$10\\,\\Omega$\"\nwire 9,3 -> 12,3\nR4 12,3 -> 12,0 \"$40\\,\\Omega$\" i=\"$i_o$\" v=\"$v_o$\"\nwire 12,0 -> 0,0\nlabel 3,3 \"$a$\" above\nlabel 6,3 \"$b$\" above\nground 0,0\n```",
+   "steps": [
+    {
+     "explanation": "**Before:** replace the inductor by a wire. Node $b$ is now tied to ground, so $v_b=0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Spot** what that does. The switch is closed, so $v_a=v_b=0$ too. Every resistor ($0.1$, $2$, $10$, $40\\,\\Omega$) has $0\\,\\mathrm{V}$ across it and carries no current.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Solve:** the whole $20\\,\\mathrm{A}$ goes through the switch and down the wire (the inductor).",
+     "latex": "i_L(0^-)=20\\,\\mathrm{A}=i_L(0^+)"
+    }
+   ],
+   "answer": "$i_L(0^-)=i_L(0^+)=20\\,\\mathrm{A}$",
+   "citations": [
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "eb2b02d2-0b12-49aa-8145-4f249a3bbb72"
+    }
+   ],
+   "id": "6de7cc58-0453-569a-956f-123da08c02cb"
+  },
+  {
+   "type": "callout",
+   "tone": "tip",
+   "text": "**Shortcut:** a wire (the inductor at DC) in parallel with resistors steals **all** the current. Those resistors get $0\\,\\mathrm{A}$.",
+   "citations": [],
+   "id": "d4e657e2-cc6d-553e-8abf-5c1ed4237ceb"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · ★ Week 8 Tutorial Q1: starting current",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "The switch has been closed for a long time and opens at $t=0$. Find $i_L(0^-)$, with $i_L$ pointing down.\n\n```schematic\nI1 0,0 -> 0,3 \"$30\\,\\mathrm{mA}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$1\\,\\mathrm{k\\Omega}$\"\nS1 3,3 -> 5,3 \"$t=0$\" state=closed action=open\nR2 5,3 -> 8,3 \"$9\\,\\mathrm{k\\Omega}$\"\nR3 8,3 -> 8,0 \"$10\\,\\Omega$\"\nwire 8,3 -> 11,3\nL1 11,3 -> 11,0 \"$L$\" i=\"$i_L$\" v=\"$v_o$\"\nwire 11,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Before:** $L$ is a wire, so it shorts out the $10\\,\\Omega$ (no current there).",
+     "latex": ""
+    },
+    {
+     "explanation": "**Split** the $30\\,\\mathrm{mA}$ between $1\\,\\mathrm{k\\Omega}$ and the $9\\,\\mathrm{k\\Omega}$ path (current divider).",
+     "latex": "i_L(0^-)=30\\,\\mathrm{mA}\\cdot\\frac{1\\,\\mathrm{k}}{1\\,\\mathrm{k}+9\\,\\mathrm{k}}=3\\,\\mathrm{mA}"
+    }
+   ],
+   "answer": "$i_L(0^-)=3\\,\\mathrm{mA}$",
+   "citations": [
+    {
+     "source_id": "785da18b-a0b0-493b-9059-06e4e956871e",
+     "version": 1,
+     "chunk_id": "39a709f6-b14e-417a-bee3-3b79f405edc6"
+    },
+    {
+     "source_id": "785da18b-a0b0-493b-9059-06e4e956871e",
+     "version": 1,
+     "chunk_id": "f2914016-eee5-4187-b041-bc9daa5b3ffe"
+    }
+   ],
+   "id": "4bb78ddc-ab81-5c06-a86a-0d845f1af426"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "A2 · The time constant $\\tau$",
+   "citations": [
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "9b10c7f7-73e9-43b1-a796-f105d96e23ce"
+    },
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "90fb941c-e465-4f54-8c05-b42591ac0354"
+    }
+   ],
+   "id": "b7e162eb-13ff-5489-b39f-da3d276f7c2b"
+  },
+  {
+   "type": "paragraph",
+   "text": "How fast does the circuit settle?",
+   "citations": [],
+   "id": "5f94c3d9-14c2-58df-a73d-f391a6d7795b"
+  },
+  {
+   "type": "equation",
+   "latex": "\\tau=\\frac{L}{R_{eq}}\\qquad\\qquad \\tau=R_{eq}\\,C",
+   "display": true,
+   "citations": [],
+   "id": "97992c12-fe86-5699-ab88-3cc62707b7e6"
+  },
+  {
+   "type": "paragraph",
+   "text": "$R_{eq}$ is the resistance the inductor or capacitor **sees** from its two ends, after the switch, with every independent source turned off:",
+   "citations": [],
+   "id": "ca5c1eb1-9e50-598f-b0fc-bf331ea6a21b"
+  },
+  {
+   "type": "list",
+   "items": [
+    "voltage source off $\\to$ a **wire**",
+    "current source off $\\to$ a **gap**"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "48ae859e-ab7b-56d7-ae7e-326dd1c778b9"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Example.** In the lecture example above, after the switch opens the inductor sees $2\\,\\Omega$ in series with $10\\parallel40$.",
+   "citations": [],
+   "id": "da25761e-69f9-5192-9d70-704a26f16a84"
+  },
+  {
+   "type": "equation",
+   "latex": "\\begin{gathered}R_{eq}=2+\\frac{10\\cdot40}{10+40}=2+8=10\\,\\Omega \\\\ \\tau=\\frac{2}{10}=0.2\\,\\mathrm{s}\\end{gathered}",
+   "display": true,
+   "citations": [],
+   "id": "efec4d86-74a9-51dd-beaa-5d3793549ff6"
+  },
+  {
+   "type": "paragraph",
+   "text": "After $5\\tau$ the curve has done more than $99\\%$ of its move ($e^{-5}=0.0067$). Treat it as finished.",
+   "citations": [],
+   "id": "21aa6de3-b3f1-5037-9cc3-838b843e2d78"
+  },
+  {
+   "type": "paragraph",
+   "text": "Fact worth knowing: at $t=\\tau$ there is always $e^{-1}\\approx37\\%$ of the gap left, whatever $\\tau$ is.",
+   "citations": [],
+   "id": "6c56f2b3-3244-5281-bbaa-0d954cbf763a"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · ★ Week 8 Tutorial Q3: $\\tau$ with three inductors",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "After the switches move, the $1.25\\,\\mathrm{H}$ inductor is in series with $(10\\,\\mathrm{H}\\parallel6\\,\\mathrm{H})$, and that combination discharges through a $7.5\\,\\mathrm{k\\Omega}$ resistor. Find $\\tau$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Combine** the inductors first.",
+     "latex": "L_{eq}=1.25+\\frac{10\\cdot6}{10+6}=1.25+3.75=5\\,\\mathrm{H}"
+    },
+    {
+     "explanation": "**Divide** by the resistance it sees.",
+     "latex": "\\tau=\\frac{5}{7500}=\\frac{1}{1500}\\,\\mathrm{s}\\approx0.667\\,\\mathrm{ms}"
+    }
+   ],
+   "answer": "$\\tau=\\dfrac{1}{1500}\\,\\mathrm{s}\\approx0.667\\,\\mathrm{ms}$",
+   "citations": [
+    {
+     "source_id": "785da18b-a0b0-493b-9059-06e4e956871e",
+     "version": 1,
+     "chunk_id": "3632ed63-e61a-4ed6-9523-f2c31b091894"
+    }
+   ],
+   "id": "1a8fe1c7-efa9-59d2-9ccb-465d5f3925ce"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part B · Natural response: no source after the switch",
+   "citations": [
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "2b19c062-cc8d-4c44-b6f9-73b5a7a7028e"
+    },
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "34eeba9d-375c-45c1-afb5-bf47a15bf3f1"
+    },
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "38a66937-d10d-4897-b80d-dd58d4e10b86"
+    },
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "5d81e1e4-8c7e-42a7-bff5-c7737812758d"
+    }
+   ],
+   "id": "fdbfc2cd-a4a6-562c-afc6-90682ed2b578"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: the stored energy drains into the resistors and everything dies out.",
+   "citations": [],
+   "id": "d6402780-74eb-5b8b-8fb0-7c872a546ade"
+  },
+  {
+   "type": "paragraph",
+   "text": "After the switch the inductor or capacitor is alone with resistors. So the final value is $0$, and the formula shrinks to:",
+   "citations": [],
+   "id": "727aed64-7413-52c0-931a-2fe6fd7f148e"
+  },
+  {
+   "type": "equation",
+   "latex": "x(t)=x(0^+)\\,e^{-t/\\tau}",
+   "display": true,
+   "citations": [],
+   "id": "9c400300-3ae7-59e0-b026-5ffef8a45d14"
+  },
+  {
+   "type": "list",
+   "items": [
+    "RL: $\\ i_L(t)=I_0\\,e^{-t/\\tau}$, with $\\tau=\\dfrac{L}{R}$",
+    "RC: $\\ v_C(t)=V_0\\,e^{-t/\\tau}$, with $\\tau=RC$"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "632d1b43-ad1c-5ad4-a7e3-985fc370a12f"
+  },
+  {
+   "type": "paragraph",
+   "text": "The recipe has four steps. Use the same words every time:",
+   "citations": [],
+   "id": "177b28a0-c268-5723-93a6-5b7e921bb9d5"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Step",
+    "Do this"
+   ],
+   "rows": [
+    [
+     "1. **Before**",
+     "DC circuit: find $i_L(0^-)$ or $v_C(0^-)$"
+    ],
+    [
+     "2. **$\\tau$**",
+     "$R_{eq}$ seen by $L$ or $C$ after the switch"
+    ],
+    [
+     "3. **Plug in**",
+     "$x(t)=x(0^+)e^{-t/\\tau}$"
+    ],
+    [
+     "4. **Other**",
+     "Other currents and voltages from $x(t)$"
+    ]
+   ],
+   "citations": [],
+   "id": "07407af3-d7c4-5a58-9d4f-6b9bc8fa11a4"
+  },
+  {
+   "type": "paragraph",
+   "text": "In step 4 you use plain circuit rules on the circuit **after** the switch: Ohm\\'s law, current division, voltage division. Those answers hold for $t\\ge0^+$ only, because they can jump at the switch.",
+   "citations": [],
+   "id": "9d255115-d509-5cf6-961e-ed29ceac2d20"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · ★ Lecture example: RL natural response and energy",
+   "prompt": "Same circuit as in A1: the switch opens at $t=0$ after a long time closed.\n\n```schematic\nI1 0,0 -> 0,3 \"$20\\,\\mathrm{A}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$0.1\\,\\Omega$\"\nS1 3,3 -> 6,3 \"$t=0$\" state=closed action=open\nL1 6,3 -> 6,0 \"$2\\,\\mathrm{H}$\" i=\"$i_L$\"\nR2 6,3 -> 9,3 \"$2\\,\\Omega$\"\nR3 9,3 -> 9,0 \"$10\\,\\Omega$\"\nwire 9,3 -> 12,3\nR4 12,3 -> 12,0 \"$40\\,\\Omega$\" i=\"$i_o$\" v=\"$v_o$\"\nwire 12,0 -> 0,0\nground 0,0\n```\n\nFind (a) $i_L(t)$, (b) $i_o(t)$, (c) $v_o(t)$, (d) the percentage of the inductor's initial energy that ends up in the $10\\,\\Omega$ resistor.",
+   "steps": [
+    {
+     "explanation": "**Before** (from A1).",
+     "latex": "i_L(0^+)=20\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**$\\tau$** (from A2).",
+     "latex": "R_{eq}=2+10\\parallel40=10\\,\\Omega,\\qquad \\tau=\\frac{2}{10}=0.2\\,\\mathrm{s}"
+    },
+    {
+     "explanation": "**Plug in** (a).",
+     "latex": "i_L(t)=20e^{-5t}\\ \\mathrm{A},\\qquad t\\ge0"
+    },
+    {
+     "explanation": "**Other (b).** The inductor current comes back up through $10\\parallel40$. The $40\\,\\Omega$ takes $\\frac{10}{10+40}$ of it, flowing **up**, against the $i_o$ arrow.",
+     "latex": "i_o(t)=-\\frac{10}{50}\\,i_L=-4e^{-5t}\\ \\mathrm{A},\\qquad t\\ge0^+"
+    },
+    {
+     "explanation": "**Other (c).** Ohm\\'s law on the $40\\,\\Omega$.",
+     "latex": "v_o(t)=40\\,i_o=-160e^{-5t}\\ \\mathrm{V},\\qquad t\\ge0^+"
+    },
+    {
+     "explanation": "**Energy (d).** Initial energy, then the $10\\,\\Omega$ power ($v_o$ is across it too), then integrate to $\\infty$.",
+     "latex": "\\begin{gathered}w(0)=\\frac12(2)(20)^2=400\\,\\mathrm{J} \\\\ p_{10\\Omega}=\\frac{v_o^2}{10}=2560e^{-10t}\\ \\mathrm{W} \\\\ w_{10\\Omega}=\\int_0^\\infty2560e^{-10t}\\,dt=\\frac{2560}{10}=256\\,\\mathrm{J} \\\\ \\frac{256}{400}=64\\%\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $20e^{-5t}\\,\\mathrm{A}$ (b) $-4e^{-5t}\\,\\mathrm{A}$ (c) $-160e^{-5t}\\,\\mathrm{V}$ (d) $64\\%$",
+   "citations": [
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "eb2b02d2-0b12-49aa-8145-4f249a3bbb72"
+    }
+   ],
+   "id": "aedc3af4-7de2-5e5b-a9f6-281caf74ecab"
+  },
+  {
+   "type": "callout",
+   "tone": "tip",
+   "text": "**Shortcut for energy integrals:**\n\n$$\n\\int_0^\\infty A\\,e^{-at}\\,dt=\\frac{A}{a}\n$$\n\nExample: $\\int_0^\\infty2560e^{-10t}\\,dt=256$. And if there is only **one** resistor, it gets all the energy: by time $t$ it has taken $w(0)\\left(1-e^{-2t/\\tau}\\right)$.",
+   "citations": [],
+   "id": "a33edfb5-2ed6-5316-9b0a-d7e9dd6ece84"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "Power has $e^{-2t/\\tau}$, not $e^{-t/\\tau}$, because $p$ uses $v^2$ or $i^2$. Forgetting the 2 is the most common mistake here.",
+   "citations": [],
+   "id": "bbe33525-4405-5ee8-8753-8c3af37c52c5"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · ★ Lecture example: RC natural response",
+   "prompt": "The switch has been at $x$ for a long time. At $t=0$ it moves to $y$.\n\n```schematic\nV1 0,3 -> 0,0 \"$100\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$10\\,\\mathrm{k\\Omega}$\"\nS1 3,3 -> 5,3 \"$x$\" state=closed action=open\nC1 5,3 -> 5,0 \"$0.5\\,\\mu\\mathrm{F}$\" v=\"$v_C$\"\nS2 5,3 -> 7,3 \"$y$\" action=close\nR2 7,3 -> 10,3 \"$32\\,\\mathrm{k\\Omega}$\"\nR3 10,3 -> 10,0 \"$240\\,\\mathrm{k\\Omega}$\" v=\"$v_o$\"\nwire 10,3 -> 13,3\nR4 13,3 -> 13,0 \"$60\\,\\mathrm{k\\Omega}$\" i=\"$i_o$\"\nwire 13,0 -> 0,0\nground 0,0\n```\n\nFind (a) $v_C(t)$, (b) $v_o(t)$, (c) $i_o(t)$, (d) the total energy dissipated in the $60\\,\\mathrm{k\\Omega}$ resistor.",
+   "steps": [
+    {
+     "explanation": "**Before:** $C$ is a gap, so no current flows in the $10\\,\\mathrm{k\\Omega}$. The capacitor charges to the full source.",
+     "latex": "v_C(0^+)=v_C(0^-)=100\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**$\\tau$:** the capacitor sees $32\\,\\mathrm{k}$ in series with $240\\,\\mathrm{k}\\parallel60\\,\\mathrm{k}=48\\,\\mathrm{k}$.",
+     "latex": "\\begin{gathered}R_{eq}=32+48=80\\,\\mathrm{k\\Omega} \\\\ \\tau=(80\\times10^3)(0.5\\times10^{-6})=40\\,\\mathrm{ms}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in** (a).",
+     "latex": "v_C(t)=100e^{-25t}\\ \\mathrm{V},\\qquad t\\ge0"
+    },
+    {
+     "explanation": "**Other (b):** voltage divider, $48\\,\\mathrm{k}$ out of $80\\,\\mathrm{k}$.",
+     "latex": "v_o=\\frac{48}{80}\\,v_C=60e^{-25t}\\ \\mathrm{V},\\qquad t\\ge0^+"
+    },
+    {
+     "explanation": "**Other (c):** Ohm\\'s law.",
+     "latex": "i_o=\\frac{v_o}{60\\,\\mathrm{k}}=e^{-25t}\\ \\mathrm{mA},\\qquad t\\ge0^+"
+    },
+    {
+     "explanation": "**Energy (d).**",
+     "latex": "\\begin{gathered}p_{60k}=\\frac{v_o^2}{60\\,\\mathrm{k}}=\\frac{3600}{60000}e^{-50t}=0.06e^{-50t}\\ \\mathrm{W} \\\\ w_{60k}=\\frac{0.06}{50}=1.2\\,\\mathrm{mJ}\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $100e^{-25t}\\,\\mathrm{V}$ (b) $60e^{-25t}\\,\\mathrm{V}$ (c) $e^{-25t}\\,\\mathrm{mA}$ (d) $1.2\\,\\mathrm{mJ}$",
+   "citations": [
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "67442752-c714-48f0-8c04-e748209df30d"
+    }
+   ],
+   "id": "488c236f-b760-56c3-b50a-e4ce0b8292ab"
+  },
+  {
+   "type": "paragraph",
+   "text": "Two switches with the letters $x$ and $y$ mean one switch arm that moves from $x$ to $y$.",
+   "citations": [],
+   "id": "cea16f80-d6d5-5f1f-b2bc-7949a2588e5c"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 3 · ★ Week 8 Tutorial Q2 = AP 7.3: RC natural response",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "The switch has been on the left for a long time. At $t=0$ it moves right and stays there.\n\n```schematic\nV1 0,3 -> 0,0 \"$150\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$10\\,\\mathrm{k\\Omega}$\"\nS1 3,3 -> 5,3 \"$t=0$\" state=closed action=open\nC1 5,3 -> 5,0 \"$40\\,\\mathrm{nF}$\" v=\"$v$\"\nS2 5,3 -> 7,3 \"$t=0$\" action=close\nR2 7,3 -> 10,3 \"$5\\,\\mathrm{k\\Omega}$\"\nR3 10,3 -> 10,0 \"$30\\,\\mathrm{k\\Omega}$\"\nwire 10,3 -> 13,3\nR4 13,3 -> 13,0 \"$60\\,\\mathrm{k\\Omega}$\"\nwire 13,0 -> 0,0\nground 0,0\n```\n\nFind (a) $v(0)$, (b) the initial stored energy, (c) $\\tau$, (d) $v(t)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Before:** $C$ is a gap, no current in $10\\,\\mathrm{k}$.",
+     "latex": "v(0)=150\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**Energy.**",
+     "latex": "w(0)=\\frac12(40\\times10^{-9})(150)^2=450\\,\\mu\\mathrm{J}"
+    },
+    {
+     "explanation": "**$\\tau$:** $5\\,\\mathrm{k}+30\\,\\mathrm{k}\\parallel60\\,\\mathrm{k}$.",
+     "latex": "\\begin{gathered}R_{eq}=5+20=25\\,\\mathrm{k\\Omega} \\\\ \\tau=(25\\times10^3)(40\\times10^{-9})=1\\,\\mathrm{ms}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in.**",
+     "latex": "v(t)=150e^{-1000t}\\ \\mathrm{V},\\qquad t\\ge0"
+    }
+   ],
+   "answer": "(a) $150\\,\\mathrm{V}$ (b) $450\\,\\mu\\mathrm{J}$ (c) $1\\,\\mathrm{ms}$ (d) $150e^{-1000t}\\,\\mathrm{V}$",
+   "citations": [
+    {
+     "source_id": "785da18b-a0b0-493b-9059-06e4e956871e",
+     "version": 1,
+     "chunk_id": "e8bc703b-4ea9-4d3e-b82b-44bfa0ccf09e"
+    },
+    {
+     "source_id": "785da18b-a0b0-493b-9059-06e4e956871e",
+     "version": 1,
+     "chunk_id": "f359ba1b-fe9e-4224-8ead-cd06998146b6"
+    },
+    {
+     "source_id": "e96cd60a-ed25-4db9-83f9-f146af22f07b",
+     "version": 1,
+     "chunk_id": "dc77c513-246d-459f-b492-39da7af4f17e"
+    },
+    {
+     "source_id": "e96cd60a-ed25-4db9-83f9-f146af22f07b",
+     "version": 1,
+     "chunk_id": "61638e56-5569-4d22-8932-e28e5fadc70e"
+    }
+   ],
+   "id": "e3a53d41-7fb7-5802-b8a4-f8a44305836b"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part C · Step response: a source is still there",
+   "citations": [],
+   "id": "1511ae9a-a956-5ee8-aca5-f51e71fede26"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: one formula and six steps that solve every first-order question, natural or step.",
+   "citations": [],
+   "id": "a998b106-f73e-5d2d-bf8e-c3a64cc10ff8"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "C1 · One formula, six steps",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "eba7587d-64f3-4c16-a4b5-5acee9116321"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "2fff8a08-86ab-4f84-9f04-aa1eba68773b"
+    }
+   ],
+   "id": "f48934a8-e07a-5780-a6cb-7619d805ac61"
+  },
+  {
+   "type": "paragraph",
+   "text": "Now a source is still connected after the switch. Where does the curve end up?",
+   "citations": [],
+   "id": "56217b14-3240-5336-a5d6-93449fd52fa6"
+  },
+  {
+   "type": "paragraph",
+   "text": "At a new DC value, $x(\\infty)$. You find it the same way as the start value: inductor = wire, capacitor = gap, but with the switch in its **new** position.",
+   "citations": [],
+   "id": "423d05e2-daac-5811-b375-4275cf1caaab"
+  },
+  {
+   "type": "equation",
+   "latex": "x(t)=x(\\infty)+\\big[x(0^+)-x(\\infty)\\big]\\,e^{-t/\\tau}",
+   "display": true,
+   "citations": [],
+   "id": "9fa0cf7e-456b-5357-9abb-da73daffaad5"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$x(0^+)$: the **start** value, just after the switch.",
+    "$x(\\infty)$: the **final** value, long after the switch.",
+    "$\\tau$: how fast. Same $\\tau$ for every current and voltage in the circuit."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "f622c314-e1a6-5243-8f8c-30605cf4f390"
+  },
+  {
+   "type": "paragraph",
+   "text": "Natural response is the special case $x(\\infty)=0$.",
+   "citations": [],
+   "id": "cc8e707f-b225-58bf-a6eb-271401d0a1a8"
+  },
+  {
+   "type": "paragraph",
+   "text": "The curve always heads straight for $x(\\infty)$, fast at first, then slower. It never overshoots (that only happens with RLC).",
+   "citations": [],
+   "id": "7cded82a-6de6-5dbf-bfa8-15aca343c915"
+  },
+  {
+   "type": "paragraph",
+   "text": "Your course solves every question with the same six steps:",
+   "citations": [],
+   "id": "6f7c8a8a-65a2-5da3-a2b9-fd07e9bde77a"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Step",
+    "Do this"
+   ],
+   "rows": [
+    [
+     "1. **Before** ($0^-$)",
+     "$L$ = wire, $C$ = gap. Find $i_L(0^-)$ or $v_C(0^-)$"
+    ],
+    [
+     "2. **Jump** ($0^+$)",
+     "Carry it over: $i_L(0^+)=i_L(0^-)$, $v_C(0^+)=v_C(0^-)$"
+    ],
+    [
+     "3. **After** ($\\infty$)",
+     "Switch in new position, $L$ = wire, $C$ = gap. Find $x(\\infty)$"
+    ],
+    [
+     "4. **$\\tau$**",
+     "$R_{eq}$ seen by $L$ or $C$, sources off"
+    ],
+    [
+     "5. **Plug in**",
+     "The formula above"
+    ],
+    [
+     "6. **Other**",
+     "$v_L=L\\dfrac{di_L}{dt}$, $i_C=C\\dfrac{dv_C}{dt}$, Ohm\\'s law"
+    ]
+   ],
+   "citations": [
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "09962cd5-e950-4180-9e26-0739d833a019"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "42a21f6e-3d1c-4c89-83d7-b10946e9872e"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "e36fd0dd-5e15-40f1-ab48-8e9e224f37b4"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "1b7017ab-273f-490b-b969-c39da7393d91"
+    }
+   ],
+   "id": "5e9be27c-d949-58bb-b7f6-9c94f0e2fda9"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "Steps 1–5 work best on $i_L$ (for an RL circuit) or $v_C$ (for an RC circuit), because those cannot jump. For any other quantity, get its start value from the $0^+$ circuit: the inductor becomes a **current source** $i_L(0^+)$, the capacitor a **voltage source** $v_C(0^+)$.",
+   "citations": [],
+   "id": "722e1053-0720-5a8b-a354-a36510ddedaf"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · ★ Lecture example: RL step response",
+   "prompt": "The switch has been at $a$ for a long time. At $t=0$ it moves to $b$ (make-before-break, so the inductor current is never interrupted).\n\n```schematic\nV1 0,3 -> 0,0 \"$24\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nS1 3,3 -> 6,3 \"$b$\" action=close\nS2 9,3 -> 6,3 \"$a$\" state=closed action=open\nL1 6,3 -> 6,0 \"$200\\,\\mathrm{mH}$\" i=\"$i$\" v=\"$v$\"\nR2 9,3 -> 9,0 \"$10\\,\\Omega$\"\nwire 9,3 -> 12,3\nI1 12,3 -> 12,0 \"$8\\,\\mathrm{A}$\"\nwire 0,0 -> 6,0 -> 9,0 -> 12,0\nground 0,0\n#~ flow\n```\n\n(a) Find $i(t)$. (b) Find $v(0^+)$. (c) When does $v$ equal $24\\,\\mathrm{V}$?",
+   "steps": [
+    {
+     "explanation": "**Before:** the inductor (a wire) sits on the right side with the $10\\,\\Omega$ and the $8\\,\\mathrm{A}$ source. The wire shorts the $10\\,\\Omega$. The source pulls $8\\,\\mathrm{A}$ **down** on its side, so it pulls $8\\,\\mathrm{A}$ **up** through the inductor, against the $i$ arrow.",
+     "latex": "i(0^-)=-8\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**Jump.**",
+     "latex": "i(0^+)=-8\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**After:** the inductor (a wire) is now in a loop with $24\\,\\mathrm{V}$ and $2\\,\\Omega$.",
+     "latex": "i(\\infty)=\\frac{24}{2}=12\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**$\\tau$:** turn the $24\\,\\mathrm{V}$ off (wire). The inductor sees $2\\,\\Omega$.",
+     "latex": "\\tau=\\frac{0.2}{2}=0.1\\,\\mathrm{s}"
+    },
+    {
+     "explanation": "**Plug in** (a).",
+     "latex": "\\begin{gathered}i(t)=12+(-8-12)e^{-10t} \\\\ i(t)=12-20e^{-10t}\\ \\mathrm{A},\\qquad t\\ge0\\end{gathered}"
+    },
+    {
+     "explanation": "**Other (b):** $v=L\\dfrac{di}{dt}$.",
+     "latex": "\\begin{gathered}v=0.2\\cdot200e^{-10t}=40e^{-10t}\\ \\mathrm{V} \\\\ v(0^+)=40\\,\\mathrm{V}\\end{gathered}"
+    },
+    {
+     "explanation": "**Solve (c)** $40e^{-10t}=24$.",
+     "latex": "\\begin{gathered}e^{-10t}=0.6 \\\\ t=\\frac{\\ln(1/0.6)}{10}=51.08\\,\\mathrm{ms}\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $i=12-20e^{-10t}\\,\\mathrm{A}$ (b) $40\\,\\mathrm{V}$ (c) $51.08\\,\\mathrm{ms}$",
+   "citations": [
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "dce03e8e-9fd4-4e28-b691-536a7e1d0f69"
+    },
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "025c3ea2-691c-4380-a67b-0a4e92464915"
+    }
+   ],
+   "id": "f22867ee-4549-5620-9ef1-11d238afa97b"
+  },
+  {
+   "type": "paragraph",
+   "text": "Check (b) with the $0^+$ circuit: the inductor is an $-8\\,\\mathrm{A}$ source, so the $2\\,\\Omega$ carries $-8\\,\\mathrm{A}$ and drops $-16\\,\\mathrm{V}$. Then $v=24-(-16)=40\\,\\mathrm{V}$. Same answer.",
+   "citations": [],
+   "id": "da9b7509-a58a-5b49-9bc5-614d0256eba4"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · ★ Lecture example: RC step response",
+   "prompt": "The switch has been in position 1 for a long time. At $t=0$ it moves to position 2.\n\n```schematic\nV1 0,3 -> 0,0 \"$40\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$20\\,\\mathrm{k\\Omega}$\"\nR2 3,3 -> 3,0 \"$60\\,\\mathrm{k\\Omega}$\"\nS1 3,3 -> 5,3 \"$1$\" state=closed action=open\nC1 5,3 -> 5,0 \"$0.25\\,\\mu\\mathrm{F}$\" v=\"$v_o$\"\nS2 5,3 -> 7,3 \"$2$\" action=close\nR3 10,3 -> 7,3 \"$8\\,\\mathrm{k\\Omega}$\" i=\"$i_o$\"\nR4 10,3 -> 10,0 \"$160\\,\\mathrm{k\\Omega}$\"\nR5 10,3 -> 13,3 \"$40\\,\\mathrm{k\\Omega}$\"\nV2 13,0 -> 13,3 \"$75\\,\\mathrm{V}$\"\nwire 13,0 -> 0,0\nlabel 10,3 \"$B$\" above\nground 0,0\n```\n\n(a) Find $v_o(t)$. (b) Find $i_o(t)$.",
+   "steps": [
+    {
+     "explanation": "**Before:** $C$ is a gap. The $40\\,\\mathrm{V}$ divides over $20\\,\\mathrm{k}$ and $60\\,\\mathrm{k}$.",
+     "latex": "v_o(0^-)=40\\cdot\\frac{60}{20+60}=30\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**Jump.**",
+     "latex": "v_o(0^+)=30\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**After:** $C$ is a gap, so no current in the $8\\,\\mathrm{k}$ and $v_o=v_B$. The $75\\,\\mathrm{V}$ source has its $+$ at the bottom, so node $B$ is negative.",
+     "latex": "v_o(\\infty)=-75\\cdot\\frac{160}{160+40}=-60\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**$\\tau$:** source off; $8\\,\\mathrm{k}$ plus $160\\,\\mathrm{k}\\parallel40\\,\\mathrm{k}$.",
+     "latex": "\\begin{gathered}R_{eq}=8+32=40\\,\\mathrm{k\\Omega} \\\\ \\tau=(40\\times10^3)(0.25\\times10^{-6})=10\\,\\mathrm{ms}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in** (a).",
+     "latex": "\\begin{gathered}v_o(t)=-60+(30+60)e^{-100t} \\\\ v_o(t)=-60+90e^{-100t}\\ \\mathrm{V},\\qquad t\\ge0\\end{gathered}"
+    },
+    {
+     "explanation": "**Other (b):** $i_o$ flows into the $+$ end of the capacitor, so $i_o=C\\dfrac{dv_o}{dt}$.",
+     "latex": "i_o=0.25\\times10^{-6}\\cdot(-9000e^{-100t})=-2.25e^{-100t}\\ \\mathrm{mA},\\qquad t\\ge0^+"
+    }
+   ],
+   "answer": "(a) $-60+90e^{-100t}\\,\\mathrm{V}$ (b) $-2.25e^{-100t}\\,\\mathrm{mA}$",
+   "citations": [
+    {
+     "source_id": "0f475566-8a57-416c-ad78-e8f58b07d011",
+     "version": 1,
+     "chunk_id": "db0076ef-7212-49fe-b805-a8cc20c17889"
+    }
+   ],
+   "id": "e62de400-97bd-568b-8143-22e6cdbbfa12"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 4 · ★ Lecture example: use the formula on any current",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "The switch has been open for a long time and the capacitor is uncharged. It closes at $t=0$. Find $i(t)$ and $v(t)$ for $t\\ge0^+$.\n\n```schematic\nI1 0,0 -> 0,3 \"$7.5\\,\\mathrm{mA}$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$20\\,\\mathrm{k\\Omega}$\" v=\"$v$\"\nS1 3,3 -> 5,3 \"$t=0$\" action=close\nC1 5,3 -> 8,3 \"$0.1\\,\\mu\\mathrm{F}$\" i=\"$i$\"\nR2 8,3 -> 8,0 \"$30\\,\\mathrm{k\\Omega}$\"\nwire 8,0 -> 0,0\nground 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Before:** uncharged, so $v_C(0^-)=0$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Jump:** in the $0^+$ circuit the capacitor is a $0\\,\\mathrm{V}$ source (a wire). The $7.5\\,\\mathrm{mA}$ splits between $20\\,\\mathrm{k}$ and $30\\,\\mathrm{k}$.",
+     "latex": "i(0^+)=7.5\\cdot\\frac{20}{20+30}=3\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "**After:** the capacitor is a gap.",
+     "latex": "i(\\infty)=0"
+    },
+    {
+     "explanation": "**$\\tau$:** current source off (gap). The capacitor sees $20\\,\\mathrm{k}+30\\,\\mathrm{k}$.",
+     "latex": "\\tau=(50\\times10^3)(0.1\\times10^{-6})=5\\,\\mathrm{ms}"
+    },
+    {
+     "explanation": "**Plug in.**",
+     "latex": "i(t)=3e^{-200t}\\ \\mathrm{mA},\\qquad t\\ge0^+"
+    },
+    {
+     "explanation": "**Other:** KCL at the top node: the $20\\,\\mathrm{k}$ gets $7.5-i$.",
+     "latex": "v=20\\,\\mathrm{k}\\,(7.5-3e^{-200t})\\,\\mathrm{mA}=150-60e^{-200t}\\ \\mathrm{V}"
+    }
+   ],
+   "answer": "$i=3e^{-200t}\\,\\mathrm{mA}$; $v=150-60e^{-200t}\\,\\mathrm{V}$",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "16f2d215-0272-4e7a-9d40-0a4feb37f15f"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "cb344575-f457-4916-8c50-ef00b9202d00"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "b06d8bf2-0f4b-4c6c-a23a-d715ebcaa927"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "9a32ebbc-4256-43df-9852-89955d8e5248"
+    }
+   ],
+   "id": "1b2c202c-e3e0-5edc-a5e6-c3425d84b8a4"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "C2 · Thévenin first: messy circuits and dependent sources",
+   "citations": [
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "777379a9-a806-49ec-a9a8-d0ec20f9a881"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "4d83de9f-e9af-4c45-8949-e74b1ad51425"
+    },
+    {
+     "source_id": "8e626642-ef93-4848-ba98-0f97c72b7d87",
+     "version": 1,
+     "chunk_id": "e7430302-ba2e-4663-82f8-b3c725af3f9b"
+    }
+   ],
+   "id": "15df444b-a3f3-5540-bffc-15ead7e16d70"
+  },
+  {
+   "type": "paragraph",
+   "text": "Lots of resistors, or a dependent source. How do you get $\\tau$ and the final value?",
+   "citations": [],
+   "id": "1ff917a8-78e9-5aac-b15d-6fe0b71a1275"
+  },
+  {
+   "type": "paragraph",
+   "text": "Replace everything the $L$ or $C$ sees by its Thévenin equivalent ($V_{Th}$ in series with $R_{Th}$). Then read off:",
+   "citations": [],
+   "id": "c5513e06-6375-57c4-8818-0188dd52e5f2"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "",
+    "RC circuit",
+    "RL circuit"
+   ],
+   "rows": [
+    [
+     "Final value",
+     "$v_C(\\infty)=V_{Th}$",
+     "$i_L(\\infty)=\\dfrac{V_{Th}}{R_{Th}}=I_N$"
+    ],
+    [
+     "$\\tau$",
+     "$R_{Th}\\,C$",
+     "$\\dfrac{L}{R_{Th}}$"
+    ]
+   ],
+   "citations": [],
+   "id": "518676e8-40c0-5b57-966f-0d769a254770"
+  },
+  {
+   "type": "paragraph",
+   "text": "Why: at DC the capacitor is a gap, so it sees the open-circuit voltage. The inductor is a wire, so it carries the short-circuit current.",
+   "citations": [],
+   "id": "7654284b-20f4-5e31-9297-83f5cd4b189f"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 6 · ★ AP 7.6: Thévenin for an RC step",
+   "prompt": "For $t\\ge0$ the $25\\,\\mathrm{mF}$ capacitor sits in this circuit, and $v_c(0^+)=-50\\,\\mathrm{V}$.\n\n```schematic\nV1 0,0 -> 0,3 \"$30\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$5\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$20\\,\\Omega$\"\nwire 3,3 -> 6,3\nC1 6,3 -> 6,0 \"$25\\,\\mathrm{mF}$\" v=\"$v_c$\" i=\"$i$\"\nwire 6,0 -> 0,0\nground 0,0\n```\n\nFind $V_{Th}$, $R_{Th}$, $\\tau$, $v_c(t)$, and $i(t)$.",
+   "steps": [
+    {
+     "explanation": "**Thévenin voltage:** remove $C$. The $30\\,\\mathrm{V}$ (its $+$ at the bottom) divides over $5$ and $20\\,\\Omega$.",
+     "latex": "V_{Th}=\\frac{20}{25}(-30)=-24\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**Thévenin resistance:** source off (wire), so $5\\parallel20$.",
+     "latex": "R_{Th}=\\frac{5\\cdot20}{25}=4\\,\\Omega"
+    },
+    {
+     "explanation": "**$\\tau$** and **After**.",
+     "latex": "\\begin{gathered}\\tau=4\\cdot0.025=0.1\\,\\mathrm{s} \\\\ v_c(\\infty)=V_{Th}=-24\\,\\mathrm{V}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in.**",
+     "latex": "\\begin{gathered}v_c=-24+(-50+24)e^{-10t} \\\\ v_c=-24-26e^{-10t}\\ \\mathrm{V},\\qquad t\\ge0\\end{gathered}"
+    },
+    {
+     "explanation": "**Other:** $i=C\\dfrac{dv_c}{dt}$.",
+     "latex": "i=0.025\\cdot(260e^{-10t})=6.5e^{-10t}\\ \\mathrm{A},\\qquad t\\ge0^+"
+    }
+   ],
+   "answer": "$V_{Th}=-24\\,\\mathrm{V}$, $R_{Th}=4\\,\\Omega$, $\\tau=0.1\\,\\mathrm{s}$, $v_c=-24-26e^{-10t}\\,\\mathrm{V}$, $i=6.5e^{-10t}\\,\\mathrm{A}$",
+   "citations": [
+    {
+     "source_id": "e96cd60a-ed25-4db9-83f9-f146af22f07b",
+     "version": 1,
+     "chunk_id": "62b386b6-b133-4ed5-9273-13f3bb0fc85e"
+    },
+    {
+     "source_id": "e96cd60a-ed25-4db9-83f9-f146af22f07b",
+     "version": 1,
+     "chunk_id": "9583698c-963f-41cd-ae91-492a24323e38"
+    }
+   ],
+   "id": "55aee1c6-d862-5f61-b889-3cb081f8bcf8"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Dependent source?** Use your Midterm 1 rule for $R_{Th}$, and keep the dependent source **on**:",
+   "citations": [],
+   "id": "04206e9e-ba16-5da4-8a15-4ba0b8c35f31"
+  },
+  {
+   "type": "list",
+   "items": [
+    "dependent **and** independent sources: $R_{Th}=\\dfrac{V_{oc}}{I_{sc}}$",
+    "dependent sources only: a test source, $R_{Th}=\\dfrac{V_{test}}{I_{test}}$"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "4f2ffa46-5ed0-5c64-9c1b-c414c57d3e3f"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 7 · Own example: RL step with a dependent source",
+   "prompt": "The inductor has no current before the switch closes at $t=0$. The diamond is a current source $0.5\\,i_x$ pointing down, where $i_x$ is the current down through the right $4\\,\\Omega$.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$4\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$4\\,\\Omega$\" i=\"$i_x$\"\nwire 3,3 -> 6,3\nG1 6,3 -> 6,0 \"$0.5\\,i_x$\"\nwire 6,3 -> 8,3\nS1 8,3 -> 10,3 \"$t=0$\" action=close\nL1 10,3 -> 10,0 \"$1\\,\\mathrm{H}$\" i=\"$i_L$\"\nwire 10,0 -> 0,0\nlabel 3,3 \"$a$\" above\nground 0,0\n```\n\nFind $i_L(t)$.",
+   "steps": [
+    {
+     "explanation": "**Open circuit** (no inductor). Node $a$ at voltage $v$, so $i_x=\\dfrac v4$. KCL at $a$: in from the left = out through $4\\,\\Omega$ and the diamond.",
+     "latex": "\\begin{gathered}\\frac{12-v}{4}=\\frac v4+0.5\\cdot\\frac v4 \\\\ 12-v=1.5v\\quad\\Longrightarrow\\quad V_{oc}=4.8\\,\\mathrm{V}\\end{gathered}"
+    },
+    {
+     "explanation": "**Short circuit** (a wire from $a$ to ground). Then $v=0$, so $i_x=0$ and the diamond is $0$.",
+     "latex": "I_{sc}=\\frac{12}{4}=3\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**Thévenin resistance.**",
+     "latex": "R_{Th}=\\frac{V_{oc}}{I_{sc}}=\\frac{4.8}{3}=1.6\\,\\Omega"
+    },
+    {
+     "explanation": "**After:** at DC the inductor **is** the short, so its final current is $I_{sc}$.",
+     "latex": "i_L(\\infty)=3\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**$\\tau$** and **Plug in** (start at $0$).",
+     "latex": "\\begin{gathered}\\tau=\\frac{1}{1.6}=0.625\\,\\mathrm{s} \\\\ i_L(t)=3-3e^{-1.6t}\\ \\mathrm{A},\\qquad t\\ge0\\end{gathered}"
+    }
+   ],
+   "answer": "$i_L=3-3e^{-1.6t}\\,\\mathrm{A}$",
+   "citations": [],
+   "id": "b65d388a-6e68-59f5-bd03-ba3170b7b29c"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 5 · ★ AP 7.8: RC step with two circuits",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "Before $t=0$ the capacitor sits in circuit (1) for a long time. At $t=0$ it is moved into circuit (2).\n\n(1) before:\n\n```schematic\nV1 0,3 -> 0,0 \"$75\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$5\\,\\mathrm{k\\Omega}$\"\nR2 3,3 -> 3,0 \"$10\\,\\mathrm{k\\Omega}$\"\nwire 3,3 -> 6,3\nC1 6,3 -> 6,0 \"$40\\,\\mathrm{nF}$\" v=\"$v_o$\"\nwire 6,0 -> 0,0\n```\n\n(2) after:\n\n```schematic\nC1 0,3 -> 0,0 \"$40\\,\\mathrm{nF}$\" v=\"$v_o$\"\nwire 0,3 -> 3,3\nR1 3,3 -> 3,0 \"$40\\,\\mathrm{k\\Omega}$\"\nR2 3,3 -> 6,3 \"$10\\,\\mathrm{k\\Omega}$\" i=\"$i_o$\"\nV1 6,0 -> 6,3 \"$100\\,\\mathrm{V}$\"\nwire 6,0 -> 0,0\n```\n\nFind (a) $v_o(t)$ and (b) $i_o(t)$ for $t\\ge0$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Before:** divider in circuit (1).",
+     "latex": "v_o(0^-)=75\\cdot\\frac{10}{15}=50\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**After:** divider in circuit (2). The $100\\,\\mathrm{V}$ has its $+$ at the bottom.",
+     "latex": "v_o(\\infty)=\\frac{40}{50}(-100)=-80\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**$\\tau$:** source off, $40\\,\\mathrm{k}\\parallel10\\,\\mathrm{k}$.",
+     "latex": "\\begin{gathered}R_{eq}=8\\,\\mathrm{k\\Omega} \\\\ \\tau=(8000)(40\\times10^{-9})=0.32\\,\\mathrm{ms}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in** (a).",
+     "latex": "v_o=-80+(50+80)e^{-3125t}=-80+130e^{-3125t}\\ \\mathrm{V}"
+    },
+    {
+     "explanation": "**Other (b):** Ohm\\'s law on the $10\\,\\mathrm{k}$. Its right end sits at $-100\\,\\mathrm{V}$.",
+     "latex": "i_o=\\frac{v_o-(-100)}{10\\,\\mathrm{k}}=13e^{-3125t}+2\\ \\mathrm{mA}"
+    }
+   ],
+   "answer": "(a) $v_o=-80+130e^{-3125t}\\,\\mathrm{V}$ (b) $i_o=13e^{-3125t}+2\\,\\mathrm{mA}$",
+   "citations": [
+    {
+     "source_id": "e96cd60a-ed25-4db9-83f9-f146af22f07b",
+     "version": 1,
+     "chunk_id": "6c93f791-8f3f-4f98-bc42-b332b626f929"
+    }
+   ],
+   "id": "ae3b461b-3213-5589-b1b5-eae4f0b8695c"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part D · Sequential switching",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "01b8771a-cb95-48f1-8971-e6859d443704"
+    }
+   ],
+   "id": "3227e5c2-3282-5715-ac7b-95e4c45e052f"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: two switches flip at different times. Solve one time window at a time.",
+   "citations": [],
+   "id": "1746c97d-4294-5af9-a535-0c82b77baa12"
+  },
+  {
+   "type": "paragraph",
+   "text": "A second switch flips at $t=35\\,\\mathrm{ms}$. What now?",
+   "citations": [],
+   "id": "b7bc6be0-b221-59c8-80c0-cc8179091cc9"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Window 1** ($0\\le t\\le t_1$): the usual six steps.",
+    "**Hand-off:** plug $t_1$ into window 1. That value is the start of window 2, because $i_L$ and $v_C$ cannot jump.",
+    "**Window 2** ($t\\ge t_1$): new circuit, new $\\tau$, new final value. **Restart the clock** with $t-t_1$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "109c8d4b-a81b-5f7d-9b38-dcaea551efe6"
+  },
+  {
+   "type": "equation",
+   "latex": "x(t)=x(\\infty)+\\big[x(t_1^+)-x(\\infty)\\big]\\,e^{-(t-t_1)/\\tau_2},\\qquad t\\ge t_1",
+   "display": true,
+   "citations": [],
+   "id": "f0af583b-6707-5dc8-a075-60fed6d9643c"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 8 · ★ Lecture example: two switches, one inductor",
+   "prompt": "Both switches have been closed for a long time. Switch 1 opens at $t=0$. Switch 2 opens at $t=35\\,\\mathrm{ms}$.\n\n```schematic\nV1 0,3 -> 0,0 \"$60\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$4\\,\\Omega$\"\nR2 3,3 -> 3,0 \"$12\\,\\Omega$\"\nS1 3,3 -> 6,3 \"$t=0$\" state=closed action=open\nR3 6,3 -> 6,0 \"$6\\,\\Omega$\"\nR4 6,3 -> 9,3 \"$3\\,\\Omega$\"\nL1 9,3 -> 9,0 \"$150\\,\\mathrm{mH}$\" i=\"$i_L$\" v=\"$v_L$\"\nS2 9,3 -> 12,3 \"$t=35\\,\\mathrm{ms}$\" state=closed action=open\nR5 12,3 -> 12,0 \"$18\\,\\Omega$\"\nwire 12,0 -> 0,0\nlabel 3,3 \"$a$\" above\nground 0,0\n```\n\nFind $i_L(t)$ for (a) $0\\le t\\le35\\,\\mathrm{ms}$ and (b) $t\\ge35\\,\\mathrm{ms}$.",
+   "steps": [
+    {
+     "explanation": "**Before:** $L$ is a wire, so the $18\\,\\Omega$ is shorted and the $3\\,\\Omega$ goes to ground. Right of the switch: $6\\parallel3=2\\,\\Omega$. Node $a$ sees $12\\parallel2=\\frac{12}{7}\\,\\Omega$.",
+     "latex": "\\begin{gathered}v_a=60\\cdot\\frac{12/7}{4+12/7}=18\\,\\mathrm{V} \\\\ i_L(0^-)=\\frac{18}{3}=6\\,\\mathrm{A}\\end{gathered}"
+    },
+    {
+     "explanation": "**Window 1 $\\tau$:** switch 1 open, so the source side is gone. $L$ sees $18\\,\\Omega\\parallel(3+6)\\,\\Omega$.",
+     "latex": "\\begin{gathered}R=18\\parallel9=6\\,\\Omega \\\\ \\tau_1=\\frac{0.15}{6}=25\\,\\mathrm{ms}\\end{gathered}"
+    },
+    {
+     "explanation": "**Window 1 (a):** no source, so it decays to $0$.",
+     "latex": "i_L=6e^{-40t}\\ \\mathrm{A},\\qquad 0\\le t\\le35\\,\\mathrm{ms}"
+    },
+    {
+     "explanation": "**Hand-off** at $35\\,\\mathrm{ms}$.",
+     "latex": "i_L(0.035)=6e^{-1.4}=1.480\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**Window 2 $\\tau$:** switch 2 open too. Only $3+6\\,\\Omega$ is left.",
+     "latex": "\\tau_2=\\frac{0.15}{9}=16.67\\,\\mathrm{ms}"
+    },
+    {
+     "explanation": "**Window 2 (b):** restart the clock at $35\\,\\mathrm{ms}$.",
+     "latex": "i_L=1.48\\,e^{-60(t-0.035)}\\ \\mathrm{A},\\qquad t\\ge35\\,\\mathrm{ms}"
+    }
+   ],
+   "answer": "(a) $6e^{-40t}\\,\\mathrm{A}$ (b) $1.48\\,e^{-60(t-0.035)}\\,\\mathrm{A}$",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "0ed874ef-3747-4967-acb9-da7572570775"
+    }
+   ],
+   "id": "6c838de0-3153-5c75-bddd-c6bfa4bc4f61"
+  },
+  {
+   "type": "paragraph",
+   "text": "Look at the curve at $t=35\\,\\mathrm{ms}$. Does $i_L$ jump there, or does only its slope change?\n\n```graph\ntitle \"$i_L(t)$ in the two windows\"\nx 0 0.12 label=\"$t$ (s)\"\ny 0 6.5 label=\"$i_L$ (A)\"\ncurve \"if(x<0.035, 6*exp(-40*x), 1.4796*exp(-60*(x-0.035)))\" color=1 label=\"$i_L$\"\nvline \"0.035\" label=\"switch 2 opens\"\n```",
+   "citations": [],
+   "id": "698dcd44-f2e4-5a8c-a7d0-da6c4d2f3264"
+  },
+  {
+   "type": "paragraph",
+   "text": "Only the slope changes. The current is continuous; it just starts falling faster because $\\tau_2<\\tau_1$.",
+   "citations": [],
+   "id": "34f97a27-f5ea-54f1-a558-9fcf457cea30"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 6 · ★ Lecture example: three-position switch (RC)",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "The capacitor is uncharged, with the switch at an open position $a$. At $t=0$ the switch moves to $b$. After $15\\,\\mathrm{ms}$ it moves to $c$ and stays there.\n\n```schematic\nV1 0,3 -> 0,0 \"$400\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$100\\,\\mathrm{k\\Omega}$\"\nS1 3,3 -> 6,3 \"$b$\" action=close\nC1 6,3 -> 6,0 \"$0.1\\,\\mu\\mathrm{F}$\" v=\"$v$\"\nS2 6,3 -> 9,3 \"$c$\"\nR2 9,3 -> 9,0 \"$50\\,\\mathrm{k\\Omega}$\"\nwire 9,0 -> 0,0\nground 0,0\n```\n\n(a) Find $v(t)$. (b) When is $v=200\\,\\mathrm{V}$?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Window 1** (at $b$): start $0$, final $400\\,\\mathrm{V}$, $\\tau_1=(100\\,\\mathrm{k})(0.1\\,\\mu\\mathrm{F})=10\\,\\mathrm{ms}$.",
+     "latex": "v=400-400e^{-100t}\\ \\mathrm{V},\\qquad 0\\le t\\le15\\,\\mathrm{ms}"
+    },
+    {
+     "explanation": "**Hand-off** at $15\\,\\mathrm{ms}$.",
+     "latex": "v(0.015)=400\\left(1-e^{-1.5}\\right)=310.75\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**Window 2** (at $c$): no source, $\\tau_2=(50\\,\\mathrm{k})(0.1\\,\\mu\\mathrm{F})=5\\,\\mathrm{ms}$. Restart the clock.",
+     "latex": "v=310.75\\,e^{-200(t-0.015)}\\ \\mathrm{V},\\qquad t\\ge15\\,\\mathrm{ms}"
+    },
+    {
+     "explanation": "**200 V on the way up** (window 1).",
+     "latex": "\\begin{gathered}400-400e^{-100t}=200 \\\\ t=\\frac{\\ln2}{100}=6.93\\,\\mathrm{ms}\\end{gathered}"
+    },
+    {
+     "explanation": "**200 V on the way down** (window 2).",
+     "latex": "\\begin{gathered}310.75\\,e^{-200(t-0.015)}=200 \\\\ t=0.015+\\frac{1}{200}\\ln\\frac{310.75}{200}=17.20\\,\\mathrm{ms}\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $400-400e^{-100t}\\,\\mathrm{V}$, then $310.75\\,e^{-200(t-0.015)}\\,\\mathrm{V}$ (b) $6.93\\,\\mathrm{ms}$ and $17.20\\,\\mathrm{ms}$",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "f47ad8ad-5f52-41da-bcca-a679deead670"
+    }
+   ],
+   "id": "65e2d0ce-b472-52f2-8b2f-f954ac7645fd"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 7 · ★ AP 7.10: an inductor shorted out ($\\tau=\\infty$)",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "Before $t=0$, a $5\\,\\mathrm{H}$ inductor carries $i_L(0^-)=2\\,\\mathrm{A}$ (from a $10\\,\\mathrm{V}$ source and $5\\,\\Omega$). At $t=0$ a wire is connected straight across the inductor, so it sees $0\\,\\Omega$. At $t=5\\,\\mathrm{s}$ everything except a $1\\,\\Omega$ resistor is disconnected, leaving the inductor with only that $1\\,\\Omega$. Find $i_L(t)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Window 1:** the inductor sees $R=0$.",
+     "latex": "\\tau_1=\\frac{L}{0}=\\infty\\quad\\Longrightarrow\\quad e^{-t/\\tau_1}=1"
+    },
+    {
+     "explanation": "So the current just stays where it was. A shorted inductor keeps its current.",
+     "latex": "i_L=2\\,\\mathrm{A},\\qquad 0\\le t\\le5\\,\\mathrm{s}"
+    },
+    {
+     "explanation": "**Window 2:** only $1\\,\\Omega$.",
+     "latex": "\\tau_2=\\frac51=5\\,\\mathrm{s}"
+    },
+    {
+     "explanation": "**Restart the clock** at $5\\,\\mathrm{s}$.",
+     "latex": "i_L=2e^{-0.2(t-5)}\\ \\mathrm{A},\\qquad t\\ge5\\,\\mathrm{s}"
+    }
+   ],
+   "answer": "$2\\,\\mathrm{A}$ for $0\\le t\\le5\\,\\mathrm{s}$; $2e^{-0.2(t-5)}\\,\\mathrm{A}$ after",
+   "citations": [
+    {
+     "source_id": "e96cd60a-ed25-4db9-83f9-f146af22f07b",
+     "version": 1,
+     "chunk_id": "88787e92-da59-427c-a654-fc48aeb05e74"
+    },
+    {
+     "source_id": "e96cd60a-ed25-4db9-83f9-f146af22f07b",
+     "version": 1,
+     "chunk_id": "197a924d-9256-4c18-9e7f-584e546c2329"
+    }
+   ],
+   "id": "848e85da-9f7c-53b2-be06-1afaa8ffb170"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Formula summary",
+   "citations": [],
+   "id": "90c3ad1a-303d-5c4f-9ca7-d8fe909096d7"
+  },
+  {
+   "type": "equation",
+   "latex": "x(t)=x(\\infty)+\\big[x(0^+)-x(\\infty)\\big]\\,e^{-t/\\tau}",
+   "display": true,
+   "citations": [],
+   "id": "008da489-377c-5bfd-b7e0-da3c8d6d3300"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "What",
+    "Formula / move"
+   ],
+   "rows": [
+    [
+     "Time constant",
+     "$\\tau=\\dfrac{L}{R_{eq}}$ or $\\tau=R_{eq}C$ ($R_{eq}$ seen by $L$/$C$, sources off)"
+    ],
+    [
+     "Sources off",
+     "voltage source $\\to$ wire, current source $\\to$ gap"
+    ],
+    [
+     "Start",
+     "DC before the switch: $L$ = wire, $C$ = gap; carry $i_L$, $v_C$ over to $0^+$"
+    ],
+    [
+     "Final",
+     "DC after the switch; natural response: $x(\\infty)=0$"
+    ],
+    [
+     "Thévenin",
+     "$v_C(\\infty)=V_{Th}$, $i_L(\\infty)=\\dfrac{V_{Th}}{R_{Th}}$, $\\tau=R_{Th}C$ or $\\dfrac{L}{R_{Th}}$"
+    ],
+    [
+     "Dependent source",
+     "$R_{Th}=\\dfrac{V_{oc}}{I_{sc}}$ (or a test source if no independent source)"
+    ],
+    [
+     "Other quantities",
+     "$v_L=L\\dfrac{di_L}{dt}$, $i_C=C\\dfrac{dv_C}{dt}$, Ohm, dividers (valid for $t\\ge0^+$)"
+    ],
+    [
+     "Energy",
+     "$p_R\\propto e^{-2t/\\tau}$; $\\displaystyle\\int_0^\\infty Ae^{-at}dt=\\dfrac{A}{a}$"
+    ],
+    [
+     "Sequential",
+     "$x(t)=x(\\infty)+[x(t_1)-x(\\infty)]e^{-(t-t_1)/\\tau_2}$ for $t\\ge t_1$"
+    ]
+   ],
+   "citations": [],
+   "id": "38986dab-cf56-5e74-9f20-9e3a5a75563b"
+  },
+  {
+   "type": "paragraph",
+   "text": "Six steps every time: **Before, Jump, After, $\\tau$, Plug in, Other.** Practice: questions 5–8 in **Midterm 2 Practice Questions**.",
+   "citations": [],
+   "id": "393eb5d6-b760-5e13-8322-6265607ece22"
+  }
+ ]
+}

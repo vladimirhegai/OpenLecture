@@ -1,0 +1,882 @@
+{
+ "title": "Midterm 2 · 3. Parallel RLC Circuits",
+ "topic_keys": [
+  "rlc_circuits",
+  "second_order_response"
+ ],
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Note 3 of 3 · Textbook 8.1–8.3.** The parallel RLC circuit: natural response and step response. (8.4–8.5 series RLC is **not** on the midterm, so it is left out.)",
+   "citations": [],
+   "id": "d4a09385-855f-5159-9ecf-154a30d49873"
+  },
+  {
+   "type": "paragraph",
+   "text": "With both $L$ and $C$, energy sloshes back and forth between them; $R$ is the friction. How much friction decides the shape of the response:",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "a716989d-452f-4848-806f-375ae725f09e"
+    }
+   ],
+   "id": "9e4a88d9-31a4-518d-b016-290b28e4cbee"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Overdamped:** lots of friction. Creeps back to rest, no swinging.",
+    "**Critically damped:** just enough friction. Fastest return without swinging.",
+    "**Underdamped:** little friction. Swings past zero with shrinking swings."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "417002d6-100e-5ec6-99ad-59d07c6d6dca"
+  },
+  {
+   "type": "paragraph",
+   "text": "Every question is the same three moves: find the shape, find **two** starting values (two storage elements, so two), solve for two constants.",
+   "citations": [],
+   "id": "7c0d6e97-bf57-5cfb-a93b-d6140db39e1c"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Topic",
+    "What you are learning",
+    "Where"
+   ],
+   "rows": [
+    [
+     "1. Which damping?",
+     "$\\alpha$, $\\omega_0$, the roots, the $R$ for critical damping",
+     "A"
+    ],
+    [
+     "2. Natural response",
+     "$v(t)$ from $v(0^+)$ and $\\dfrac{dv}{dt}(0^+)$",
+     "B"
+    ],
+    [
+     "3. Step response",
+     "$i_L(t)$ when a DC current source turns on",
+     "C"
+    ]
+   ],
+   "citations": [],
+   "id": "ed852496-474b-5fc6-8ac2-66c9818d0e2c"
+  },
+  {
+   "type": "paragraph",
+   "text": "Every topic: what it is → the formula → a worked example → a **Try it**. ★ = from your lectures or Assessment Problems. Formula summary at the end; mixed questions in **Midterm 2 Practice Questions**.",
+   "citations": [],
+   "id": "6b2a80da-82ba-55af-8304-ecfd1e63d21f"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part A · Which damping?",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "e21f79b4-9fc0-43d5-b233-9a1a88e53a8e"
+    },
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "712fc4cf-5239-4692-a920-5e6b2c82c627"
+    },
+    {
+     "source_id": "d28cd690-29f8-4513-9501-34d2958f3a98",
+     "version": 1,
+     "chunk_id": "eecf7a6c-517f-4a25-b879-cd08d7baa98c"
+    }
+   ],
+   "id": "b0f193b1-0236-5dec-8652-07b7979f4cec"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: from $R$, $L$, $C$, decide the shape and find the roots.",
+   "citations": [],
+   "id": "b4c22465-caff-55f1-9664-469cbd0c8c2e"
+  },
+  {
+   "type": "paragraph",
+   "text": "You are given $R$, $L$ and $C$. Will the response swing?",
+   "citations": [],
+   "id": "a8e03173-787a-520d-9130-832f0fd97080"
+  },
+  {
+   "type": "paragraph",
+   "text": "Compute two numbers. The **neper frequency** $\\alpha$ measures the friction. The **resonant frequency** $\\omega_0$ measures how fast it wants to swing.",
+   "citations": [],
+   "id": "957baace-4967-58d0-87d6-9d7b2175c611"
+  },
+  {
+   "type": "equation",
+   "latex": "\\alpha=\\frac{1}{2RC}",
+   "display": true,
+   "citations": [],
+   "id": "2faa54bb-d7fc-5b4d-8657-d0aa59e45d05"
+  },
+  {
+   "type": "equation",
+   "latex": "\\omega_0=\\frac{1}{\\sqrt{LC}}",
+   "display": true,
+   "citations": [],
+   "id": "2994bcd1-5f29-520d-967d-8586642dc2d3"
+  },
+  {
+   "type": "paragraph",
+   "text": "Then compare them:",
+   "citations": [],
+   "id": "c6f56aad-b316-5a42-a9af-a99fb11cbd73"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Compare",
+    "Shape",
+    "Roots"
+   ],
+   "rows": [
+    [
+     "$\\alpha>\\omega_0$",
+     "overdamped",
+     "two real: $s_{1,2}=-\\alpha\\pm\\sqrt{\\alpha^2-\\omega_0^2}$"
+    ],
+    [
+     "$\\alpha=\\omega_0$",
+     "critically damped",
+     "one repeated: $s=-\\alpha$"
+    ],
+    [
+     "$\\alpha<\\omega_0$",
+     "underdamped",
+     "complex: $s=-\\alpha\\pm j\\omega_d$"
+    ]
+   ],
+   "citations": [],
+   "id": "f52fdac5-190d-51d7-8af6-ad9b1f5856f7"
+  },
+  {
+   "type": "paragraph",
+   "text": "For the underdamped case, $\\omega_d$ is the swing frequency:",
+   "citations": [],
+   "id": "1207d34a-8bd8-5b1b-ac45-6b95576e6ed9"
+  },
+  {
+   "type": "equation",
+   "latex": "\\omega_d=\\sqrt{\\omega_0^2-\\alpha^2}",
+   "display": true,
+   "citations": [],
+   "id": "693ef35c-57a9-5f87-8601-0726b99d36b2"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · ★ Lecture example: three values of $R$",
+   "prompt": "A parallel RLC circuit has $L=50\\,\\mathrm{mH}$ and $C=0.2\\,\\mu\\mathrm{F}$.\n\n(a) Find the roots for $R=200\\,\\Omega$. Which shape? (b) Repeat for $R=312.5\\,\\Omega$. (c) Which $R$ gives critical damping?",
+   "steps": [
+    {
+     "explanation": "**$\\omega_0$** (same for every $R$).",
+     "latex": "\\begin{gathered}\\omega_0^2=\\frac{1}{(0.05)(0.2\\times10^{-6})}=10^8 \\\\ \\omega_0=10\\,000\\ \\mathrm{rad/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**(a) $\\alpha$** for $200\\,\\Omega$. It is bigger than $\\omega_0$: overdamped.",
+     "latex": "\\begin{gathered}\\alpha=\\frac{1}{2(200)(0.2\\times10^{-6})}=12\\,500 \\\\ s_{1,2}=-12\\,500\\pm\\sqrt{12\\,500^2-10^8}=-12\\,500\\pm7500 \\\\ s_1=-5000,\\qquad s_2=-20\\,000\\ \\mathrm{rad/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**(b) $\\alpha$** for $312.5\\,\\Omega$. Now it is smaller than $\\omega_0$: underdamped.",
+     "latex": "\\begin{gathered}\\alpha=\\frac{1}{2(312.5)(0.2\\times10^{-6})}=8000 \\\\ \\omega_d=\\sqrt{10^8-8000^2}=6000 \\\\ s_{1,2}=-8000\\pm j6000\\ \\mathrm{rad/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**(c) Critical:** set $\\alpha=\\omega_0$ and solve for $R$.",
+     "latex": "\\begin{gathered}\\frac{1}{2R(0.2\\times10^{-6})}=10\\,000 \\\\ R=250\\,\\Omega\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $-5000$, $-20\\,000\\,\\mathrm{rad/s}$, overdamped (b) $-8000\\pm j6000\\,\\mathrm{rad/s}$, underdamped (c) $250\\,\\Omega$",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "f3931095-9e20-459d-9547-25aabdc4524e"
+    }
+   ],
+   "id": "1976aad8-313b-59e2-a3bc-fef3a7d46fcc"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "In a **parallel** RLC, a bigger $R$ means a **smaller** $\\alpha=\\dfrac{1}{2RC}$: less damping, more swinging. (Feels backwards: a big parallel $R$ draws almost no current, so it barely brakes anything.)",
+   "citations": [],
+   "id": "f970fb83-84af-5bf8-ae42-fa5d13e3924c"
+  },
+  {
+   "type": "callout",
+   "tone": "tip",
+   "text": "**Shortcut: $R$ for critical damping** (set $\\alpha=\\omega_0$ and solve once):\n\n$$\nR=\\frac12\\sqrt{\\frac LC}\n$$\n\nExample: $\\dfrac12\\sqrt{\\dfrac{0.05}{0.2\\times10^{-6}}}=\\dfrac12(500)=250\\,\\Omega$, as above.",
+   "citations": [],
+   "id": "7ccc4093-ab40-5bff-b407-f32cc0060387"
+  },
+  {
+   "type": "paragraph",
+   "text": "Slide $R$ from $100\\,\\Omega$ up. At which $R$ does the curve start to swing below zero and back?\n\n```graph\ntitle \"Parallel RLC: $v(t)$ for $L=50\\,\\mathrm{mH}$, $C=0.2\\,\\mu\\mathrm{F}$, $v(0)=0$, $i_L(0)=-12\\,\\mathrm{mA}$\"\nx 0 1.5 label=\"$t$ (ms)\"\ny -5 7 label=\"$v$ (V)\"\nslider R 100 600 150 step=10 label=\"$R$ ($\\Omega$)\"\nlet C \"2/10000000\"\nlet L \"0.05\"\nlet a \"1/(2*R*C)\"\nlet w \"1/sqrt(L*C)\"\nlet d \"a^2-w^2\"\nlet q \"sqrt(abs(d))\"\nlet D0 \"0.012/C\"\ncurve \"if(d>1000000, (D0/(2*q))*(exp((-a+q)*x/1000)-exp((-a-q)*x/1000)), if(d<-1000000, (D0/q)*exp(-a*x/1000)*sin(q*x/1000), D0*(x/1000)*exp(-a*x/1000)))\" color=1 label=\"$v(t)$\"\nhline \"0\"\nreadout \"$\\alpha$\" \"a\" unit=\" rad/s\"\nreadout \"$\\omega_0$\" \"w\" unit=\" rad/s\"\n```",
+   "citations": [],
+   "id": "bd7ae222-0835-5e06-89a4-113e4700d6c9"
+  },
+  {
+   "type": "paragraph",
+   "text": "Up to $250\\,\\Omega$ the curve rises once and dies out (overdamped, then critically damped at exactly $250\\,\\Omega$). Above $250\\,\\Omega$, $\\alpha<\\omega_0$ and it swings (underdamped).",
+   "citations": [],
+   "id": "5a772709-610a-5ca1-a194-6026bff7a7e3"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "\"No swinging\" does not mean \"never crosses zero\". With other starting values an overdamped $v$ can cross zero **once** (the first example in Part B does). Only the underdamped shape crosses again and again.",
+   "citations": [],
+   "id": "fb042494-75eb-52b2-a292-65cf82f9a05e"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · ★ AP 8.1: roots and critical $R$",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "A parallel RLC circuit has $R=1\\,\\mathrm{k\\Omega}$, $L=12.5\\,\\mathrm{H}$, $C=2\\,\\mu\\mathrm{F}$. (a) Find the roots. (b) Which shape? (c) Find the roots for $R=1562.5\\,\\Omega$. (d) Which $R$ gives critical damping?",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**$\\alpha$ and $\\omega_0^2$.**",
+     "latex": "\\begin{gathered}\\alpha=\\frac{1}{2(1000)(2\\times10^{-6})}=250 \\\\ \\omega_0^2=\\frac{1}{(12.5)(2\\times10^{-6})}=40\\,000\\quad(\\omega_0=200)\\end{gathered}"
+    },
+    {
+     "explanation": "**(a, b) Roots.** $\\alpha>\\omega_0$: overdamped.",
+     "latex": "\\begin{gathered}s_{1,2}=-250\\pm\\sqrt{250^2-40\\,000}=-250\\pm150 \\\\ s_1=-100,\\qquad s_2=-400\\ \\mathrm{rad/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**(c)** New $\\alpha$, now below $\\omega_0$.",
+     "latex": "\\begin{gathered}\\alpha=\\frac{1}{2(1562.5)(2\\times10^{-6})}=160 \\\\ s_{1,2}=-160\\pm j\\sqrt{40\\,000-160^2}=-160\\pm j120\\ \\mathrm{rad/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**(d)** Set $\\alpha=\\omega_0=200$.",
+     "latex": "R=\\frac{1}{2(200)(2\\times10^{-6})}=1250\\,\\Omega"
+    }
+   ],
+   "answer": "(a) $-100$, $-400\\,\\mathrm{rad/s}$ (b) overdamped (c) $-160\\pm j120\\,\\mathrm{rad/s}$ (d) $1250\\,\\Omega$",
+   "citations": [
+    {
+     "source_id": "fac249fc-9f9d-4aef-9d15-3a9cdec0cb3c",
+     "version": 1,
+     "chunk_id": "1be30af1-cad8-4b93-a204-19a26684f1c1"
+    }
+   ],
+   "id": "2f664b4c-c234-5e15-8ba2-4329948748e2"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part B · Natural response",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "7de1a92d-fbac-40d7-9999-9365e3fffd04"
+    },
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "560744e7-4e40-4658-958c-cfb0c4da8470"
+    },
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "70cd21a0-a2cc-4787-8701-054d4ea1b0f5"
+    },
+    {
+     "source_id": "d28cd690-29f8-4513-9501-34d2958f3a98",
+     "version": 1,
+     "chunk_id": "ea9f4d33-f701-4b24-b6c2-b25983006ca8"
+    },
+    {
+     "source_id": "d28cd690-29f8-4513-9501-34d2958f3a98",
+     "version": 1,
+     "chunk_id": "7d9125be-343a-4cb5-9135-2da606a39d96"
+    },
+    {
+     "source_id": "d28cd690-29f8-4513-9501-34d2958f3a98",
+     "version": 1,
+     "chunk_id": "b573b578-7fa9-4f3e-a81b-676dacfb6564"
+    }
+   ],
+   "id": "a4880785-a129-536b-9d34-ed5df8dd19d5"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: the capacitor is charged and the inductor carries current. At $t=0$ they are left alone with $R$. Find $v(t)$.",
+   "citations": [],
+   "id": "0ae9c0b2-0ce1-5384-b3fb-bbb4a2de9b80"
+  },
+  {
+   "type": "paragraph",
+   "text": "In a parallel circuit all three elements share **one** voltage $v$. So solve for $v$ first; every branch current follows from it.",
+   "citations": [],
+   "id": "4e20026a-2637-5cb4-a88d-05c174e7cb0d"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Each shape has its own formula** with two unknown constants:",
+   "citations": [],
+   "id": "2519345a-c099-598f-af1e-90dc86f4903b"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Shape",
+    "$v(t)$"
+   ],
+   "rows": [
+    [
+     "overdamped",
+     "$A_1e^{s_1t}+A_2e^{s_2t}$"
+    ],
+    [
+     "critically damped",
+     "$D_1te^{-\\alpha t}+D_2e^{-\\alpha t}$"
+    ],
+    [
+     "underdamped",
+     "$B_1e^{-\\alpha t}\\cos\\omega_dt+B_2e^{-\\alpha t}\\sin\\omega_dt$"
+    ]
+   ],
+   "citations": [],
+   "id": "7ed26b07-1f03-5572-aed8-996364fb4bc6"
+  },
+  {
+   "type": "paragraph",
+   "text": "You find the two constants from two starting values: $v(0^+)$ and the starting slope $\\dfrac{dv}{dt}(0^+)$.",
+   "citations": [],
+   "id": "310cc1c6-6b2d-5524-9609-9dab4569590f"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The starting slope** is the one new move. The capacitor rule $i_C=C\\dfrac{dv}{dt}$ gives it, once you know $i_C(0^+)$. Get that from KCL at the top node (all three branch currents pointing down):",
+   "citations": [],
+   "id": "96041aaa-03a9-563b-a71c-eb836792756b"
+  },
+  {
+   "type": "equation",
+   "latex": "\\begin{gathered}i_C(0^+)=-\\,i_L(0^+)-\\frac{v(0^+)}{R} \\\\ \\frac{dv}{dt}(0^+)=\\frac{i_C(0^+)}{C}\\end{gathered}",
+   "display": true,
+   "citations": [],
+   "id": "e9ddfa6a-e2e3-55b5-a91b-93636351433a"
+  },
+  {
+   "type": "paragraph",
+   "text": "The recipe, with the same words every time:",
+   "citations": [],
+   "id": "b191a2b2-f63b-5966-8d23-d2a9fc760cce"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Step",
+    "Do this"
+   ],
+   "rows": [
+    [
+     "1. **Shape**",
+     "$\\alpha$, $\\omega_0$: which case, and the roots"
+    ],
+    [
+     "2. **Start**",
+     "$v(0^+)=V_0$ and $\\dfrac{dv}{dt}(0^+)=\\dfrac{i_C(0^+)}{C}$"
+    ],
+    [
+     "3. **Constants**",
+     "Two equations, two unknowns (below)"
+    ],
+    [
+     "4. **Plug in**",
+     "Constants into the formula"
+    ]
+   ],
+   "citations": [],
+   "id": "094377f8-3c10-5305-b721-80055e4216e9"
+  },
+  {
+   "type": "paragraph",
+   "text": "Step 3 always uses $t=0$ in $v$ and in $\\dfrac{dv}{dt}$. Each case gives its own pair of equations:",
+   "citations": [],
+   "id": "d0b79e7b-17ae-57f0-93d3-25d080c17f98"
+  },
+  {
+   "type": "solution",
+   "title": "Overdamped constants, with an example",
+   "text": "Set $t=0$ in $v$ and in its derivative:\n\n$$\nv(0^+)=A_1+A_2\n$$\n\n$$\n\\frac{dv}{dt}(0^+)=s_1A_1+s_2A_2\n$$\n\nExample: $s_1=-5000$, $s_2=-20\\,000$, $v(0^+)=12$, $\\dfrac{dv}{dt}(0^+)=-450\\,000$. Solve the pair:\n\n$$\nA_1+A_2=12\n$$\n\n$$\n-5000A_1-20\\,000A_2=-450\\,000\n$$\n\n$$\nA_1=-14,\\qquad A_2=26\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "c8a630e6-6ba8-5ebb-8fda-938d142aae19"
+  },
+  {
+   "type": "solution",
+   "title": "Critically damped constants, with an example",
+   "text": "At $t=0$ the $t\\,e^{-\\alpha t}$ term is $0$, so $D_2$ comes for free:\n\n$$\nv(0^+)=D_2\n$$\n\n$$\n\\frac{dv}{dt}(0^+)=D_1-\\alpha D_2\n$$\n\nExample: $\\alpha=10\\,000$, $v(0^+)=12$, $\\dfrac{dv}{dt}(0^+)=-390\\,000$.\n\n$$\nD_2=12\n$$\n\n$$\nD_1=-390\\,000+10\\,000(12)=-270\\,000\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "476084ac-1bbc-57c1-8cc4-ddb9dae3e757"
+  },
+  {
+   "type": "solution",
+   "title": "Underdamped constants, with an example",
+   "text": "At $t=0$, $\\cos=1$ and $\\sin=0$, so $B_1$ comes for free:\n\n$$\nv(0^+)=B_1\n$$\n\n$$\n\\frac{dv}{dt}(0^+)=-\\alpha B_1+\\omega_dB_2\n$$\n\nExample: $\\alpha=200$, $\\omega_d=979.8$, $v(0^+)=0$, $\\dfrac{dv}{dt}(0^+)=98\\,000$.\n\n$$\nB_1=0\n$$\n\n$$\nB_2=\\frac{98\\,000}{979.8}=100.02\n$$",
+   "collapsed": true,
+   "citations": [],
+   "id": "428b1897-cf3f-509a-bb0f-f1722b4fe37b"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · ★ Lecture example: overdamped",
+   "prompt": "For the circuit below, $v(0^+)=12\\,\\mathrm{V}$ and $i_L(0^+)=30\\,\\mathrm{mA}$.\n\n```schematic\nC1 0,3 -> 0,0 \"$0.2\\,\\mu\\mathrm{F}$\" i=\"$i_C$\" v=\"$v$\"\nwire 0,3 -> 3,3 -> 6,3\nL1 3,3 -> 3,0 \"$50\\,\\mathrm{mH}$\" i=\"$i_L$\"\nR1 6,3 -> 6,0 \"$200\\,\\Omega$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\n```\n\n(a) Find the starting current in each branch. (b) Find $\\dfrac{dv}{dt}(0^+)$. (c) Find $v(t)$.",
+   "steps": [
+    {
+     "explanation": "**Shape** (from Part A): overdamped.",
+     "latex": "s_1=-5000,\\qquad s_2=-20\\,000\\ \\mathrm{rad/s}"
+    },
+    {
+     "explanation": "**Start (a):** $i_L$ is given, $i_R$ from Ohm\\'s law, $i_C$ from KCL.",
+     "latex": "\\begin{gathered}i_L(0^+)=30\\,\\mathrm{mA},\\qquad i_R(0^+)=\\frac{12}{200}=60\\,\\mathrm{mA} \\\\ i_C(0^+)=-30-60=-90\\,\\mathrm{mA}\\end{gathered}"
+    },
+    {
+     "explanation": "**Start (b):** the slope.",
+     "latex": "\\frac{dv}{dt}(0^+)=\\frac{-0.09}{0.2\\times10^{-6}}=-450\\,000\\ \\mathrm{V/s}"
+    },
+    {
+     "explanation": "**Constants.**",
+     "latex": "\\begin{gathered}A_1+A_2=12 \\\\ -5000A_1-20\\,000A_2=-450\\,000 \\\\ A_1=-14,\\qquad A_2=26\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in (c).**",
+     "latex": "v(t)=-14e^{-5000t}+26e^{-20\\,000t}\\ \\mathrm{V},\\qquad t\\ge0"
+    }
+   ],
+   "answer": "(a) $i_L=30$, $i_R=60$, $i_C=-90\\,\\mathrm{mA}$ (b) $-450\\,000\\,\\mathrm{V/s}$ (c) $v=-14e^{-5000t}+26e^{-20\\,000t}\\,\\mathrm{V}$",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "a4b67084-4e39-48c3-86ee-69b36f79dafb"
+    }
+   ],
+   "id": "69e20cb5-c18c-5b76-8b90-9dc2c4509a35"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · ★ Lecture example: underdamped",
+   "prompt": "Parallel RLC with $C=0.125\\,\\mu\\mathrm{F}$, $L=8\\,\\mathrm{H}$, $R=20\\,\\mathrm{k\\Omega}$. At $t=0$: $V_0=0$ and $I_0=-12.25\\,\\mathrm{mA}$ (inductor current, pointing down).\n\n```schematic\nC1 0,3 -> 0,0 \"$0.125\\,\\mu\\mathrm{F}$\" i=\"$i_C$\" v=\"$v$\"\nwire 0,3 -> 3,3 -> 6,3\nL1 3,3 -> 3,0 \"$8\\,\\mathrm{H}$\" i=\"$i_L$\"\nR1 6,3 -> 6,0 \"$20\\,\\mathrm{k\\Omega}$\" i=\"$i_R$\"\nwire 6,0 -> 0,0\n```\n\n(a) Find the roots. (b) Find $v$ and $\\dfrac{dv}{dt}$ at $t=0^+$. (c) Find $v(t)$.",
+   "steps": [
+    {
+     "explanation": "**Shape (a).** $\\alpha<\\omega_0$: underdamped.",
+     "latex": "\\begin{gathered}\\alpha=\\frac{1}{2(20\\,000)(0.125\\times10^{-6})}=200 \\\\ \\omega_0=\\frac{1}{\\sqrt{8(0.125\\times10^{-6})}}=1000 \\\\ \\omega_d=\\sqrt{1000^2-200^2}=979.8 \\\\ s_{1,2}=-200\\pm j979.8\\ \\mathrm{rad/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**Start (b).** $v(0^+)=0$, so $i_R(0^+)=0$ too.",
+     "latex": "\\begin{gathered}i_C(0^+)=-(-12.25)-0=12.25\\,\\mathrm{mA} \\\\ \\frac{dv}{dt}(0^+)=\\frac{12.25\\times10^{-3}}{0.125\\times10^{-6}}=98\\,000\\ \\mathrm{V/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**Constants.**",
+     "latex": "\\begin{gathered}B_1=v(0^+)=0 \\\\ -200(0)+979.8\\,B_2=98\\,000\\quad\\Longrightarrow\\quad B_2=100.02\\ \\mathrm{V}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in (c).**",
+     "latex": "v(t)=100.02\\,e^{-200t}\\sin979.8t\\ \\mathrm{V},\\qquad t\\ge0"
+    }
+   ],
+   "answer": "(a) $-200\\pm j979.8\\,\\mathrm{rad/s}$ (b) $0$, $98\\,000\\,\\mathrm{V/s}$ (c) $v=100.02\\,e^{-200t}\\sin979.8t\\,\\mathrm{V}$",
+   "citations": [
+    {
+     "source_id": "5a58de0c-cd3a-49db-81f7-fb001720cc20",
+     "version": 1,
+     "chunk_id": "b8dfb3db-8086-41fe-916d-811ef467e579"
+    }
+   ],
+   "id": "4b09ed28-a13f-5b28-88ff-fb96ec0142fc"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · Critically damped (own variant of the first example)",
+   "prompt": "Same circuit as the overdamped example, but $R=250\\,\\Omega$ (the critical value from Part A). Still $v(0^+)=12\\,\\mathrm{V}$ and $i_L(0^+)=30\\,\\mathrm{mA}$. Find $v(t)$.",
+   "steps": [
+    {
+     "explanation": "**Shape:** critically damped.",
+     "latex": "\\alpha=\\omega_0=10\\,000\\ \\mathrm{rad/s}"
+    },
+    {
+     "explanation": "**Start.**",
+     "latex": "\\begin{gathered}i_R(0^+)=\\frac{12}{250}=48\\,\\mathrm{mA},\\qquad i_C(0^+)=-30-48=-78\\,\\mathrm{mA} \\\\ \\frac{dv}{dt}(0^+)=\\frac{-0.078}{0.2\\times10^{-6}}=-390\\,000\\ \\mathrm{V/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**Constants.**",
+     "latex": "\\begin{gathered}D_2=12 \\\\ D_1=-390\\,000+10\\,000(12)=-270\\,000\\ \\mathrm{V/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in.**",
+     "latex": "v(t)=(12-270\\,000\\,t)\\,e^{-10\\,000t}\\ \\mathrm{V},\\qquad t\\ge0"
+    }
+   ],
+   "answer": "$v=(12-270\\,000\\,t)\\,e^{-10\\,000t}\\,\\mathrm{V}$",
+   "citations": [],
+   "id": "f3694a58-e0ac-581a-9168-f7ffbfb4a584"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Branch currents** come from $v(t)$ afterwards: $i_R=\\dfrac vR$, $i_C=C\\dfrac{dv}{dt}$, and $i_L=-i_R-i_C$ (KCL).",
+   "citations": [],
+   "id": "b6297778-3bbc-5760-b10c-62f6642e34ba"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · ★ AP 8.2: overdamped",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "A parallel RLC has $R=5\\,\\mathrm{k\\Omega}$, $L=6.25\\,\\mathrm{H}$, $C=40\\,\\mathrm{nF}$. At $t=0$: $v(0^+)=-10\\,\\mathrm{V}$ and $i_L(0^+)=8\\,\\mathrm{mA}$ (down). Find (a) $i_R(0^+)$, (b) $i_C(0^+)$, (c) $\\dfrac{dv}{dt}(0^+)$, (d) $v(t)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Shape.**",
+     "latex": "\\begin{gathered}\\alpha=\\frac{1}{2(5000)(40\\times10^{-9})}=2500 \\\\ \\omega_0=\\frac{1}{\\sqrt{6.25(40\\times10^{-9})}}=2000 \\\\ s_1=-1000,\\qquad s_2=-4000\\ \\mathrm{rad/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**Start (a, b).**",
+     "latex": "\\begin{gathered}i_R(0^+)=\\frac{-10}{5000}=-2\\,\\mathrm{mA} \\\\ i_C(0^+)=-8-(-2)=-6\\,\\mathrm{mA}\\end{gathered}"
+    },
+    {
+     "explanation": "**Start (c).**",
+     "latex": "\\frac{dv}{dt}(0^+)=\\frac{-0.006}{40\\times10^{-9}}=-150\\,000\\ \\mathrm{V/s}"
+    },
+    {
+     "explanation": "**Constants.**",
+     "latex": "\\begin{gathered}A_1+A_2=-10 \\\\ -1000A_1-4000A_2=-150\\,000 \\\\ A_1=-63.33,\\qquad A_2=53.33\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in (d).**",
+     "latex": "v(t)=-63.33e^{-1000t}+53.33e^{-4000t}\\ \\mathrm{V}"
+    }
+   ],
+   "answer": "(a) $-2\\,\\mathrm{mA}$ (b) $-6\\,\\mathrm{mA}$ (c) $-150\\,000\\,\\mathrm{V/s}$ (d) $v=-63.33e^{-1000t}+53.33e^{-4000t}\\,\\mathrm{V}$",
+   "citations": [
+    {
+     "source_id": "fac249fc-9f9d-4aef-9d15-3a9cdec0cb3c",
+     "version": 1,
+     "chunk_id": "1be30af1-cad8-4b93-a204-19a26684f1c1"
+    },
+    {
+     "source_id": "fac249fc-9f9d-4aef-9d15-3a9cdec0cb3c",
+     "version": 1,
+     "chunk_id": "52baf06f-2c0f-4ace-b7dd-0d03feb9fe33"
+    }
+   ],
+   "id": "202c8f5a-cbeb-5b58-9a44-ae7d3bdf17ce"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 3 · ★ AP 8.5: critically damped",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "A parallel RLC with $L=4\\,\\mathrm{H}$ is critically damped with $\\alpha=500\\,\\mathrm{rad/s}$. At $t=0$: $v(0^+)=8\\,\\mathrm{V}$ and $i_L(0^+)=-10\\,\\mathrm{mA}$ (down). Find (a) $C$, (b) $R$, (c) $v(t)$, (d) $i_C(t)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**(a)** Critical means $\\omega_0=\\alpha=500$.",
+     "latex": "\\frac{1}{LC}=500^2\\quad\\Longrightarrow\\quad C=\\frac{1}{500^2(4)}=1\\,\\mu\\mathrm{F}"
+    },
+    {
+     "explanation": "**(b)** From $\\alpha=\\dfrac{1}{2RC}$.",
+     "latex": "R=\\frac{1}{2(500)(10^{-6})}=1\\,\\mathrm{k\\Omega}"
+    },
+    {
+     "explanation": "**Start.**",
+     "latex": "\\begin{gathered}i_R(0^+)=\\frac{8}{1000}=8\\,\\mathrm{mA},\\qquad i_C(0^+)=-(-10)-8=2\\,\\mathrm{mA} \\\\ \\frac{dv}{dt}(0^+)=\\frac{0.002}{10^{-6}}=2000\\ \\mathrm{V/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**Constants.**",
+     "latex": "\\begin{gathered}D_2=8 \\\\ D_1=2000+500(8)=6000\\ \\mathrm{V/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in (c).**",
+     "latex": "v(t)=6000\\,te^{-500t}+8e^{-500t}\\ \\mathrm{V}"
+    },
+    {
+     "explanation": "**(d)** $i_C=C\\dfrac{dv}{dt}$ (product rule on the $t\\,e^{-500t}$ term).",
+     "latex": "\\begin{gathered}\\frac{dv}{dt}=(2000-3\\times10^6\\,t)\\,e^{-500t} \\\\ i_C=(2-3000\\,t)\\,e^{-500t}\\ \\mathrm{mA}\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $1\\,\\mu\\mathrm{F}$ (b) $1\\,\\mathrm{k\\Omega}$ (c) $v=6000te^{-500t}+8e^{-500t}\\,\\mathrm{V}$ (d) $i_C=(2-3000t)e^{-500t}\\,\\mathrm{mA}$",
+   "citations": [
+    {
+     "source_id": "fac249fc-9f9d-4aef-9d15-3a9cdec0cb3c",
+     "version": 1,
+     "chunk_id": "936d0835-271a-4e5a-9a77-e86a33553ae6"
+    }
+   ],
+   "id": "ff27ac11-6df4-5997-add3-feee452a2966"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part C · Step response",
+   "citations": [
+    {
+     "source_id": "d28cd690-29f8-4513-9501-34d2958f3a98",
+     "version": 1,
+     "chunk_id": "7547f029-49de-4a55-9b9a-a25b15624f4b"
+    },
+    {
+     "source_id": "d28cd690-29f8-4513-9501-34d2958f3a98",
+     "version": 1,
+     "chunk_id": "952df43c-4152-4f61-a640-2715fc571248"
+    }
+   ],
+   "id": "e159f0ca-70c7-55b4-abb8-a6902fd9364f"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: a DC current source $I$ is switched in at $t=0$. Find $i_L(t)$.",
+   "citations": [],
+   "id": "5a1bce13-d98f-5cf6-b885-02768ae17015"
+  },
+  {
+   "type": "paragraph",
+   "text": "Where does $i_L$ end up? After a long time the inductor is a wire, so it carries the **whole** source current:",
+   "citations": [],
+   "id": "ce533392-e99c-58d7-a7b5-2795cb1f35e2"
+  },
+  {
+   "type": "equation",
+   "latex": "i_L(\\infty)=I",
+   "display": true,
+   "citations": [],
+   "id": "069d1da4-a13e-53c0-aea3-f117c1c3eca5"
+  },
+  {
+   "type": "paragraph",
+   "text": "The answer is that final value plus the same three natural shapes as Part B (constants get a prime):",
+   "citations": [],
+   "id": "79b52429-b7aa-5d1a-b3b6-d70cea7e1c07"
+  },
+  {
+   "type": "equation",
+   "latex": "i_L(t)=I+\\big(\\text{natural shape}\\big)",
+   "display": true,
+   "citations": [],
+   "id": "1dda7788-309c-5847-abf9-dcc4c40e8be2"
+  },
+  {
+   "type": "list",
+   "items": [
+    "overdamped: $\\ i_L=I+A_1^{\\prime}e^{s_1t}+A_2^{\\prime}e^{s_2t}$",
+    "critically damped: $\\ i_L=I+D_1^{\\prime}te^{-\\alpha t}+D_2^{\\prime}e^{-\\alpha t}$",
+    "underdamped: $\\ i_L=I+B_1^{\\prime}e^{-\\alpha t}\\cos\\omega_dt+B_2^{\\prime}e^{-\\alpha t}\\sin\\omega_dt$"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "ab85e8cf-d107-5988-9ebc-1ba5109936db"
+  },
+  {
+   "type": "paragraph",
+   "text": "**The two starting values** come from the inductor this time. The inductor rule $v=L\\dfrac{di_L}{dt}$ gives the slope:",
+   "citations": [],
+   "id": "a50f0a28-ae3e-59a3-bef0-f3155797d9f9"
+  },
+  {
+   "type": "equation",
+   "latex": "i_L(0^+)=I_0\\qquad\\qquad \\frac{di_L}{dt}(0^+)=\\frac{v(0^+)}{L}=\\frac{V_0}{L}",
+   "display": true,
+   "citations": [],
+   "id": "6fb10767-c372-59d3-b68c-92966c0e5fd4"
+  },
+  {
+   "type": "paragraph",
+   "text": "The constants come out exactly as in Part B, except you subtract $I$ from the start: $D_2^{\\prime}=I_0-I$, $B_1^{\\prime}=I_0-I$, and $A_1^{\\prime}+A_2^{\\prime}=I_0-I$. The slope equations do not change.",
+   "citations": [],
+   "id": "a94da586-803a-547e-ba1c-c863c7543dea"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · ★ Lecture example: one circuit, three resistors",
+   "prompt": "No energy is stored at $t=0$, when a $24\\,\\mathrm{mA}$ source is switched in (the switch across it opens).\n\n```schematic\nI1 0,0 -> 0,3 \"$24\\,\\mathrm{mA}$\"\nS1 2,3 -> 2,0 \"$t=0$\" state=closed action=open\nwire 0,3 -> 2,3 -> 4,3 -> 7,3 -> 10,3\nC1 4,3 -> 4,0 \"$25\\,\\mathrm{nF}$\" i=\"$i_C$\" v=\"$v$\"\nL1 7,3 -> 7,0 \"$25\\,\\mathrm{mH}$\" i=\"$i_L$\"\nR1 10,3 -> 10,0 \"$R$\" i=\"$i_R$\"\nwire 10,0 -> 0,0\n```\n\n(a) Find $i_L(0^+)$ and $\\dfrac{di_L}{dt}(0^+)$. (b) Find $i_L(t)$ for $R=400\\,\\Omega$. (c) For $R=625\\,\\Omega$. (d) For $R=500\\,\\Omega$.",
+   "steps": [
+    {
+     "explanation": "**Start (a).** No stored energy: $I_0=0$ and $V_0=0$.",
+     "latex": "i_L(0^+)=0,\\qquad \\frac{di_L}{dt}(0^+)=\\frac{0}{L}=0"
+    },
+    {
+     "explanation": "**Final.**",
+     "latex": "i_L(\\infty)=24\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "**$\\omega_0$** (same for all three).",
+     "latex": "\\omega_0=\\frac{1}{\\sqrt{(25\\times10^{-3})(25\\times10^{-9})}}=40\\,000\\ \\mathrm{rad/s}"
+    },
+    {
+     "explanation": "**(b) $R=400$:** $\\alpha=\\dfrac{1}{2(400)(25\\times10^{-9})}=50\\,000>\\omega_0$. Overdamped.",
+     "latex": "\\begin{gathered}s_{1,2}=-50\\,000\\pm30\\,000=-20\\,000,\\ -80\\,000 \\\\ A_1^{\\prime}+A_2^{\\prime}=0-24 \\\\ -20\\,000A_1^{\\prime}-80\\,000A_2^{\\prime}=0 \\\\ A_1^{\\prime}=-32,\\qquad A_2^{\\prime}=8 \\\\ i_L=24-32e^{-20\\,000t}+8e^{-80\\,000t}\\ \\mathrm{mA}\\end{gathered}"
+    },
+    {
+     "explanation": "**(c) $R=625$:** $\\alpha=32\\,000<\\omega_0$. Underdamped.",
+     "latex": "\\begin{gathered}\\omega_d=\\sqrt{40\\,000^2-32\\,000^2}=24\\,000 \\\\ B_1^{\\prime}=0-24=-24 \\\\ -32\\,000(-24)+24\\,000B_2^{\\prime}=0\\Rightarrow B_2^{\\prime}=-32 \\\\ i_L=24-24e^{-32\\,000t}\\cos24\\,000t \\\\ \\qquad-32e^{-32\\,000t}\\sin24\\,000t\\ \\mathrm{mA}\\end{gathered}"
+    },
+    {
+     "explanation": "**(d) $R=500$:** $\\alpha=40\\,000=\\omega_0$. Critically damped.",
+     "latex": "\\begin{gathered}D_2^{\\prime}=0-24=-24,\\qquad D_1^{\\prime}-40\\,000(-24)=0\\Rightarrow D_1^{\\prime}=-960\\,000 \\\\ i_L=24-960\\,000\\,te^{-40\\,000t}-24e^{-40\\,000t}\\ \\mathrm{mA}\\end{gathered}"
+    }
+   ],
+   "answer": "(b) $24-32e^{-20000t}+8e^{-80000t}$ (c) $24-24e^{-32000t}\\cos24000t-32e^{-32000t}\\sin24000t$ (d) $24-960000te^{-40000t}-24e^{-40000t}$, all in mA",
+   "citations": [
+    {
+     "source_id": "d28cd690-29f8-4513-9501-34d2958f3a98",
+     "version": 1,
+     "chunk_id": "afefc65e-3d4d-43ed-a58f-7e40d9759393"
+    },
+    {
+     "source_id": "d28cd690-29f8-4513-9501-34d2958f3a98",
+     "version": 1,
+     "chunk_id": "792fff17-3109-4011-abcb-61a960425441"
+    }
+   ],
+   "id": "0cb95380-d4b3-5b42-a2bc-220f171fd98b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 4 · ★ AP 8.6: underdamped step with stored energy",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "A parallel RLC has $R=12.5\\,\\Omega$, $L=25\\,\\mathrm{mH}$, $C=62.5\\,\\mu\\mathrm{F}$. A $2\\,\\mathrm{A}$ DC source is switched in at $t=0$. At that instant $V_0=50\\,\\mathrm{V}$ and $I_0=1\\,\\mathrm{A}$ (inductor current, down). Find (a) $i_R(0^+)$, (b) $i_C(0^+)$, (c) $\\dfrac{di_L}{dt}(0^+)$, (d) the roots, (e) $i_L(t)$, (f) $v(t)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Start (a, b).** KCL: the source current splits three ways.",
+     "latex": "\\begin{gathered}i_R(0^+)=\\frac{50}{12.5}=4\\,\\mathrm{A} \\\\ i_C(0^+)=2-4-1=-3\\,\\mathrm{A}\\end{gathered}"
+    },
+    {
+     "explanation": "**Start (c).**",
+     "latex": "\\frac{di_L}{dt}(0^+)=\\frac{50}{0.025}=2000\\ \\mathrm{A/s}"
+    },
+    {
+     "explanation": "**Shape (d).**",
+     "latex": "\\begin{gathered}\\alpha=\\frac{1}{2(12.5)(62.5\\times10^{-6})}=640 \\\\ \\omega_0^2=\\frac{1}{(0.025)(62.5\\times10^{-6})}=640\\,000 \\\\ s_{1,2}=-640\\pm j480\\ \\mathrm{rad/s}\\end{gathered}"
+    },
+    {
+     "explanation": "**Constants.** Final value $I=2\\,\\mathrm{A}$.",
+     "latex": "\\begin{gathered}B_1^{\\prime}=1-2=-1 \\\\ -640(-1)+480B_2^{\\prime}=2000\\quad\\Longrightarrow\\quad B_2^{\\prime}=2.833\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in (e).**",
+     "latex": "i_L=2+e^{-640t}\\left(-\\cos480t+2.833\\sin480t\\right)\\ \\mathrm{A}"
+    },
+    {
+     "explanation": "**(f)** $v=L\\dfrac{di_L}{dt}$ (work it out, or check: $v(0)$ must be $50\\,\\mathrm{V}$).",
+     "latex": "v=e^{-640t}\\left(50\\cos480t-33.33\\sin480t\\right)\\ \\mathrm{V}"
+    }
+   ],
+   "answer": "(a) $4\\,\\mathrm{A}$ (b) $-3\\,\\mathrm{A}$ (c) $2000\\,\\mathrm{A/s}$ (d) $-640\\pm j480$ (e) $i_L=2+e^{-640t}(-\\cos480t+2.833\\sin480t)\\,\\mathrm{A}$ (f) $v=e^{-640t}(50\\cos480t-33.33\\sin480t)\\,\\mathrm{V}$",
+   "citations": [
+    {
+     "source_id": "fac249fc-9f9d-4aef-9d15-3a9cdec0cb3c",
+     "version": 1,
+     "chunk_id": "936d0835-271a-4e5a-9a77-e86a33553ae6"
+    },
+    {
+     "source_id": "fac249fc-9f9d-4aef-9d15-3a9cdec0cb3c",
+     "version": 1,
+     "chunk_id": "d37aa6ee-8f73-42d5-80fc-de5ed097de3b"
+    }
+   ],
+   "id": "bac73c97-03d5-5ee6-afbf-6f35aa3a6845"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Formula summary",
+   "citations": [],
+   "id": "f8eb9d61-f7c4-5f02-9a12-7076b27d45ca"
+  },
+  {
+   "type": "equation",
+   "latex": "\\alpha=\\frac{1}{2RC}\\qquad \\omega_0=\\frac{1}{\\sqrt{LC}}\\qquad \\omega_d=\\sqrt{\\omega_0^2-\\alpha^2}\\qquad s_{1,2}=-\\alpha\\pm\\sqrt{\\alpha^2-\\omega_0^2}",
+   "display": true,
+   "citations": [],
+   "id": "9b56e9a6-bb06-5873-a1e1-21c85dbfa2ea"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Shape",
+    "When",
+    "Natural $v(t)$",
+    "Constants ($x_0$ = start value, $x_0^{\\prime}$ = start slope)"
+   ],
+   "rows": [
+    [
+     "overdamped",
+     "$\\alpha>\\omega_0$",
+     "$A_1e^{s_1t}+A_2e^{s_2t}$",
+     "$A_1+A_2=x_0$, $\\ s_1A_1+s_2A_2=x_0^{\\prime}$"
+    ],
+    [
+     "critical",
+     "$\\alpha=\\omega_0$",
+     "$D_1te^{-\\alpha t}+D_2e^{-\\alpha t}$",
+     "$D_2=x_0$, $\\ D_1-\\alpha D_2=x_0^{\\prime}$"
+    ],
+    [
+     "underdamped",
+     "$\\alpha<\\omega_0$",
+     "$e^{-\\alpha t}(B_1\\cos\\omega_dt+B_2\\sin\\omega_dt)$",
+     "$B_1=x_0$, $\\ -\\alpha B_1+\\omega_dB_2=x_0^{\\prime}$"
+    ]
+   ],
+   "citations": [],
+   "id": "e089c83f-34d7-533a-9ed4-48f8d95e0673"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "",
+    "Natural response",
+    "Step response (DC source $I$)"
+   ],
+   "rows": [
+    [
+     "Solve for",
+     "$v$",
+     "$i_L=I+$ natural shape"
+    ],
+    [
+     "Start value",
+     "$v(0^+)=V_0$",
+     "$i_L(0^+)=I_0$"
+    ],
+    [
+     "Start slope",
+     "$\\dfrac{dv}{dt}(0^+)=\\dfrac{i_C(0^+)}{C}$, $\\ i_C=-I_0-\\dfrac{V_0}{R}$",
+     "$\\dfrac{di_L}{dt}(0^+)=\\dfrac{V_0}{L}$"
+    ],
+    [
+     "$x_0$ in the constants",
+     "$V_0$",
+     "$I_0-I$ (subtract the final value)"
+    ]
+   ],
+   "citations": [],
+   "id": "295bbf40-866c-5153-930d-756919fe037f"
+  },
+  {
+   "type": "paragraph",
+   "text": "Critical damping: $R=\\dfrac12\\sqrt{L/C}$. Branch currents: $i_R=\\dfrac vR$, $i_C=C\\dfrac{dv}{dt}$, $i_L=-i_R-i_C$. Practice: questions 9–12 in **Midterm 2 Practice Questions**.",
+   "citations": [],
+   "id": "51136147-00bc-5a52-870b-88916d1683d3"
+  }
+ ]
+}

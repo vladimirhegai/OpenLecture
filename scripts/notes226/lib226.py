@@ -27,7 +27,7 @@ FILES = {
     **{f'L{n}': f'ELEC226_326 Lec{n:02}{s}.pdf' for n, s in
        [(1, '-1'), (2, '-1'), (3, '-1'), (4, '-1'), (5, '-1'), (6, '-2'), (7, '-1'), (8, ''), (9, ''), (10, ''),
         (11, ''), (12, ''), (13, ''), (14, ''), (15, ''), (17, ''), (18, ''), (19, ''), (20, ''), (21, ''),
-        (22, '')]},
+        (22, ''), (23, '')]},
     'T2': 'Tutorial 2-2.pdf', 'T3': 'Tutorial 3-2.pdf', 'T4': 'Tutorial 4.pdf', 'T5': 'Tutorial 5.pdf',
     'T6': 'Tutorial 6.pdf', 'T7': 'Tutorial 7.pdf', 'T8': 'Tutorial 8.pdf','P1': 'Practice 01 (week1&2)-1.pdf', 'P2': 'Practice 02.pdf', 'P3': 'Practice 03.pdf',
 }
@@ -43,6 +43,28 @@ def S(explanation, latex=''):
     if isinstance(latex, tuple):
         latex = '\\begin{gathered}' + ' \\\\ '.join(latex) + '\\end{gathered}' if len(latex) > 1 else latex[0]
     return {"explanation": explanation, "latex": latex}
+
+
+def parts(text, loose=False):
+    """Readable multi-part prompts: every '(a) ', '(b) ', ... starts its own line with a bold label, and a Markdown
+    table that came after the parts is moved above them (setup first, then the questions)."""
+    import re
+    tables = re.findall(r'(?m)(?:^\|.*\n?)+', text)
+    # a part label starts a line, or follows a sentence end / ')' / '$' (so "Use (c) to find" stays inline)
+    label = re.compile(r'(?m)(^|[ \t]+)\(([a-h])\)(?=\s)[ \t]*' if loose else
+                       r'(?m)(^|(?<=[.?!)$:])[ \t]+)\(([a-h])\)(?=\s)[ \t]*')
+    first = label.search(text)
+    # one table that sits after the first part label, with no part label after it: move it above the parts
+    if len(tables) == 1 and first and text.index(tables[0]) > first.start() \
+            and not label.search(text, text.index(tables[0]) + len(tables[0])):
+        rest = text.replace(tables[0], '').strip()
+        f = label.search(rest)
+        text = (rest[:f.start()].strip() + '\n\n' if rest[:f.start()].strip() else '') + tables[0].strip() + '\n\n' + rest[f.start():].strip()
+    out = []
+    for block in re.compile(r'((?:^\|.*\n?)+)', re.M).split(text):
+        out.append(block if block.startswith('|') else
+                   label.sub(lambda m: f'\n\n**({m.group(2)})** ', block))
+    return re.sub(r'\n{3,}', '\n\n', ''.join(out)).strip()
 
 
 def _get(url):
@@ -156,13 +178,13 @@ class Doc:
     def EX(self, title, prompt, steps_, answer, cites=()):
         """Worked example (shown solved)."""
         self.ex += 1
-        self._add({"type": "worked_example", "title": f'Example {self.ex} · {title}', "prompt": prompt,
-                   "steps": steps_, "answer": answer, "citations": list(cites)}, 'x' + title)
+        self._add({"type": "worked_example", "title": f'Example {self.ex} · {title}', "prompt": parts(prompt),
+                   "steps": steps_, "answer": parts(answer, loose=True), "citations": list(cites)}, 'x' + title)
 
     def _prob(self, label, title, prompt, steps_, answer, diff, cites):
         self._add({"type": "practice_problem", "title": f'{label} · {title}', "difficulty": diff,
-                   "origin": "source" if cites else "original", "prompt": prompt, "solution": "",
-                   "steps": steps_, "answer": answer, "citations": list(cites)}, 'q' + label + title)
+                   "origin": "source" if cites else "original", "prompt": parts(prompt), "solution": "",
+                   "steps": steps_, "answer": parts(answer, loose=True), "citations": list(cites)}, 'q' + label + title)
 
     def TRY(self, title, prompt, steps_, answer, diff='intermediate', cites=()):
         """A short practice problem inside a topic (solution hidden)."""

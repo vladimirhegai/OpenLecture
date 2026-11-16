@@ -1,0 +1,1044 @@
+{
+ "title": "Midterm 2 · 1. Inductors and Capacitors",
+ "topic_keys": [
+  "inductance",
+  "capacitance"
+ ],
+ "blocks": [
+  {
+   "type": "paragraph",
+   "text": "**Note 1 of 3 · Textbook 6.1–6.3.** Inductors, capacitors, and combining them. (6.4 mutual inductance is not on the midterm.)",
+   "citations": [],
+   "id": "df47f6ae-95f1-55c9-a487-7e189fe7c319"
+  },
+  {
+   "type": "paragraph",
+   "text": "The one idea: $L$ and $C$ **store** energy instead of burning it, and each one resists sudden change. An inductor resists a jump in its **current**, a capacitor a jump in its **voltage**. RL/RC and RLC circuits (notes 2 and 3) are just consequences of that.",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "528585d1-fb2b-4537-9f5b-60493d6379f4"
+    }
+   ],
+   "id": "8965923d-930a-56b1-ab72-b5881819bd48"
+  },
+  {
+   "type": "paragraph",
+   "text": "A typical question gives you $i(t)$ or $v(t)$ for one element and asks for the other one, the power and the stored energy. Or it gives a few $L$s or $C$s to combine, and asks where the energy ends up.",
+   "citations": [],
+   "id": "ce24491f-2ff9-5d01-baa2-18a1bea22311"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "Topic",
+    "What you are learning",
+    "Where"
+   ],
+   "rows": [
+    [
+     "1. Inductor $v$ and $i$",
+     "Turn $i(t)$ into $v(t)$, and back",
+     "A1"
+    ],
+    [
+     "2. Capacitor $v$ and $i$",
+     "The same moves for a capacitor",
+     "A2"
+    ],
+    [
+     "3. Power and energy",
+     "Absorbing or delivering? Stored energy, max energy",
+     "A3"
+    ],
+    [
+     "4. DC rules",
+     "$L$ = wire, $C$ = gap, what cannot jump",
+     "A4"
+    ],
+    [
+     "5. Series and parallel",
+     "Combine $L$s and $C$s with their starting values",
+     "B1"
+    ],
+    [
+     "6. Trapped energy",
+     "The \"black box\" question",
+     "B2"
+    ]
+   ],
+   "citations": [],
+   "id": "0ab94389-0b2f-5386-9a2f-1a6bca10b9b9"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Part A · One element.** The four rules you use in every question.",
+    "**Part B · Several elements.** Combine them, then track where the energy goes."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "9379aef3-b283-58ce-b5ad-111d2b3dd356"
+  },
+  {
+   "type": "paragraph",
+   "text": "Every topic runs the same way: what it is → the formula → a worked example → a **Try it** (attempt it before opening the solution). ★ = from your lectures, tutorials or Assessment Problems. A formula summary is at the end; mixed test-style questions are in **Midterm 2 Practice Questions**.",
+   "citations": [],
+   "id": "7205d116-ee5d-5f33-911e-8f19d078a28b"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part A · One element",
+   "citations": [],
+   "id": "191c175f-7f6b-513c-8328-974adef413d7"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: given $i(t)$ or $v(t)$ for one $L$ or one $C$, find everything else.",
+   "citations": [],
+   "id": "b824f17d-56f0-5bf0-beea-587d93e336d2"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "A1 · Inductor: from $i$ to $v$, and back",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "9863e74f-513b-47d0-8259-6d08e5b27264"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "752b85b7-120d-491f-8527-e0eb37b2d132"
+    }
+   ],
+   "id": "4c21cc58-1260-5c24-a853-a36dd1e3002e"
+  },
+  {
+   "type": "paragraph",
+   "text": "You know the current through an inductor. What is its voltage?",
+   "citations": [],
+   "id": "5267a325-d6f0-588b-867f-111ad83ddf32"
+  },
+  {
+   "type": "equation",
+   "latex": "v=L\\,\\frac{di}{dt}",
+   "display": true,
+   "citations": [],
+   "id": "a5f01601-e307-5c2b-a633-a27162ad75ac"
+  },
+  {
+   "type": "paragraph",
+   "text": "The voltage depends on how **fast** the current changes, not on how big it is.",
+   "citations": [],
+   "id": "3aa42abc-5600-5ea6-a74f-8daaa7bbac2b"
+  },
+  {
+   "type": "list",
+   "items": [
+    "Current constant: $\\dfrac{di}{dt}=0$, so $v=0$.",
+    "Current rising fast: big positive $v$.",
+    "Current falling: negative $v$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "715f9768-1012-5e9c-9fa7-22f4d39b1d13"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 1 · ★ Lecture example: voltage from current",
+   "prompt": "The current through a $100\\,\\mathrm{mH}$ inductor is $i=10te^{-5t}\\ \\mathrm{A}$ for $t\\ge0$ (and $0$ before). Find $v(t)$.\n\n```schematic\nI1 0,0 -> 0,3 \"$i(t)$\"\nwire 0,3 -> 3,3\nL1 3,3 -> 3,0 \"$100\\,\\mathrm{mH}$\" v=\"$v$\" i=\"$i$\"\nwire 3,0 -> 0,0\n```",
+   "steps": [
+    {
+     "explanation": "**Check the signs.** $i$ enters the $+$ end of $v$, so use $v=+L\\,\\dfrac{di}{dt}$.",
+     "latex": ""
+    },
+    {
+     "explanation": "**Differentiate** with the product rule ($t$ times $e^{-5t}$).",
+     "latex": "\\begin{gathered}\\frac{di}{dt}=10\\left[e^{-5t}+t(-5e^{-5t})\\right] \\\\ =10e^{-5t}(1-5t)\\end{gathered}"
+    },
+    {
+     "explanation": "**Multiply** by $L=0.1\\,\\mathrm{H}$.",
+     "latex": "v=0.1\\cdot10e^{-5t}(1-5t)=e^{-5t}(1-5t)\\ \\mathrm{V}"
+    }
+   ],
+   "answer": "$v=e^{-5t}(1-5t)\\ \\mathrm{V}$ for $t>0$",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "18dc5511-2e38-4b18-a11c-03f3cb00ef0d"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "b9eb9392-4c9f-44ae-9c38-c397980fbf6c"
+    }
+   ],
+   "id": "81493e9d-4a10-5f90-b907-ba38b1f94651"
+  },
+  {
+   "type": "callout",
+   "tone": "reminder",
+   "text": "**Product rule** (you need it in almost every Ch 6 question):\n\n$$\n\\frac{d}{dt}\\left(t\\,e^{-at}\\right)=e^{-at}(1-at)\n$$\n\nExample: $\\dfrac{d}{dt}\\left(te^{-10t}\\right)=e^{-10t}(1-10t)$.",
+   "citations": [],
+   "id": "06c49b14-1ede-5e07-9036-a0bd17af109e"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "**Sign check.** $v=+L\\dfrac{di}{dt}$ only when the arrow for $i$ points **into the $+$ end** of $v$. If it points into the $-$ end, use $v=-L\\dfrac{di}{dt}$.",
+   "citations": [],
+   "id": "99c9d4b5-6f35-5cfc-9c09-54debc18d005"
+  },
+  {
+   "type": "paragraph",
+   "text": "Now the other way. You know $v(t)$. What is $i(t)$?",
+   "citations": [],
+   "id": "4928cfc9-e69d-5e19-932e-f6fb0774c0af"
+  },
+  {
+   "type": "equation",
+   "latex": "i(t)=\\frac{1}{L}\\int_{t_0}^{t}v\\,d\\tau+i(t_0)",
+   "display": true,
+   "citations": [],
+   "id": "1ea9dd61-72fa-5d65-bcaf-c50b53d58689"
+  },
+  {
+   "type": "paragraph",
+   "text": "Add up the voltage over time, divide by $L$, then add the current you **started** with.",
+   "citations": [],
+   "id": "c066648b-bac5-5f90-8af0-1e96eea46e40"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Example.** $L=0.5\\,\\mathrm{H}$, $i(0)=1\\,\\mathrm{A}$, and $v=6\\,\\mathrm{V}$ for $0\\le t\\le2\\,\\mathrm{s}$, then $v=0$.",
+   "citations": [],
+   "id": "113ff24f-da32-5ad8-b42f-da2d19517230"
+  },
+  {
+   "type": "equation",
+   "latex": "\\begin{gathered}i(t)=\\frac{1}{0.5}\\int_0^t 6\\,d\\tau+1 \\\\ i(t)=1+12t\\ \\mathrm{A}\\qquad(0\\le t\\le2\\,\\mathrm{s})\\end{gathered}",
+   "display": true,
+   "citations": [],
+   "id": "610d5cf1-0db4-56de-ba0d-57d7416334f7"
+  },
+  {
+   "type": "paragraph",
+   "text": "At $t=2\\,\\mathrm{s}$ the current is $1+24=25\\,\\mathrm{A}$. After that, $v=0$ so nothing is added: the current **stays** at $25\\,\\mathrm{A}$. It does not fall back to $0$.",
+   "citations": [],
+   "id": "08992bd2-b26f-5caf-a25c-e275e346e9f6"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 1 · ★ Tutorial 6 Q1: a voltage pulse",
+   "difficulty": "introductory",
+   "origin": "source",
+   "prompt": "The voltage across a $200\\,\\mu\\mathrm{H}$ inductor is $5\\,\\mathrm{mV}$ for $0\\le t\\le2\\,\\mathrm{ms}$ and $0$ after. The current is $0$ for $t\\le0$, and it enters the $+$ end of $v$.\n\n(a) Find $i(t)$ for $0\\le t\\le2\\,\\mathrm{ms}$. (b) Find $i(t)$ for $t\\ge2\\,\\mathrm{ms}$. (c) Sketch $i(t)$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Integrate** over the pulse, starting from $i(0)=0$.",
+     "latex": "\\begin{gathered}i(t)=\\frac{1}{200\\times10^{-6}}\\int_0^t 5\\times10^{-3}\\,d\\tau+0 \\\\ i(t)=25t\\ \\mathrm{A}\\qquad(t\\ \\text{in seconds})\\end{gathered}"
+    },
+    {
+     "explanation": "**End of the pulse.** Plug in $t=2\\,\\mathrm{ms}$.",
+     "latex": "i(2\\,\\mathrm{ms})=25(0.002)=50\\,\\mathrm{mA}"
+    },
+    {
+     "explanation": "**After the pulse** $v=0$, so the current stays where it was.",
+     "latex": "i(t)=50\\,\\mathrm{mA}\\qquad(t\\ge2\\,\\mathrm{ms})"
+    },
+    {
+     "explanation": "**Sketch:** a straight ramp from $0$ to $50\\,\\mathrm{mA}$ over $2\\,\\mathrm{ms}$, then flat.",
+     "latex": ""
+    }
+   ],
+   "answer": "(a) $i=25t\\ \\mathrm{A}$ (b) $i=50\\,\\mathrm{mA}$ (c) ramp, then flat",
+   "citations": [
+    {
+     "source_id": "32625862-f1b4-49dc-850e-01f5a083deac",
+     "version": 1,
+     "chunk_id": "54b76ba0-0e47-472c-ae8b-eccd60267f64"
+    }
+   ],
+   "id": "80d11d6d-7e20-59f0-a968-34a1322cfee6"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "A2 · Capacitor: the same moves, $v$ and $i$ swapped",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "a669dc80-5693-4b20-bb9c-f3ff85a167b4"
+    }
+   ],
+   "id": "315b4042-390f-587d-805d-a2bbbbf0ed4d"
+  },
+  {
+   "type": "paragraph",
+   "text": "For a capacitor, the current depends on how fast the **voltage** changes.",
+   "citations": [],
+   "id": "d16eb692-1387-5fff-87aa-4bf94cb49dc4"
+  },
+  {
+   "type": "equation",
+   "latex": "i=C\\,\\frac{dv}{dt}",
+   "display": true,
+   "citations": [],
+   "id": "72710fc5-b7f0-5527-ab28-9bc134cf83d6"
+  },
+  {
+   "type": "equation",
+   "latex": "v(t)=\\frac{1}{C}\\int_{t_0}^{t}i\\,d\\tau+v(t_0)",
+   "display": true,
+   "citations": [],
+   "id": "4ec02658-9533-537a-a842-d0e271c2e3eb"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Example.** $C=4\\,\\mu\\mathrm{F}$ and $v=20e^{-1000t}\\ \\mathrm{V}$, with $i$ entering the $+$ end.",
+   "citations": [],
+   "id": "ba6ec25a-afa4-534d-8117-94bdb63a164d"
+  },
+  {
+   "type": "equation",
+   "latex": "\\begin{gathered}i=4\\times10^{-6}\\cdot\\left(-20000\\,e^{-1000t}\\right) \\\\ i=-0.08\\,e^{-1000t}\\ \\mathrm{A}=-80\\,e^{-1000t}\\ \\mathrm{mA}\\end{gathered}",
+   "display": true,
+   "citations": [],
+   "id": "8ab9ce4d-33d0-5b24-80aa-756e67825a0d"
+  },
+  {
+   "type": "paragraph",
+   "text": "The minus sign means the current really flows the other way: the capacitor is discharging.",
+   "citations": [],
+   "id": "9a560fc0-415f-5403-8c46-d23ad815bbab"
+  },
+  {
+   "type": "paragraph",
+   "text": "Here is the same toolbox side by side. Learn one column, and the other is the same with $v\\leftrightarrow i$ and $L\\leftrightarrow C$.",
+   "citations": [],
+   "id": "9f058c46-b200-5584-9b31-ef4de193e3d9"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "",
+    "Inductor $L$",
+    "Capacitor $C$"
+   ],
+   "rows": [
+    [
+     "Rule",
+     "$v=L\\dfrac{di}{dt}$",
+     "$i=C\\dfrac{dv}{dt}$"
+    ],
+    [
+     "Integral",
+     "$i=\\dfrac{1}{L}\\displaystyle\\int v\\,d\\tau+i(t_0)$",
+     "$v=\\dfrac{1}{C}\\displaystyle\\int i\\,d\\tau+v(t_0)$"
+    ],
+    [
+     "Energy",
+     "$w=\\tfrac12Li^2$",
+     "$w=\\tfrac12Cv^2$"
+    ],
+    [
+     "Cannot jump",
+     "current $i_L$",
+     "voltage $v_C$"
+    ],
+    [
+     "At DC",
+     "a wire (short)",
+     "a gap (open)"
+    ]
+   ],
+   "citations": [],
+   "id": "47d163f6-a3a1-5cdb-a3b8-876df547ab0b"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 2 · Voltage from a constant current",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "A $2\\,\\mu\\mathrm{F}$ capacitor starts at $v(0)=3\\,\\mathrm{V}$. A constant $6\\,\\mathrm{mA}$ flows into its $+$ end for $5\\,\\mathrm{ms}$. Find $v(t)$ and $v(5\\,\\mathrm{ms})$.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Integrate** the constant current, then add the starting voltage.",
+     "latex": "\\begin{gathered}v(t)=\\frac{1}{2\\times10^{-6}}\\int_0^t 6\\times10^{-3}\\,d\\tau+3 \\\\ v(t)=3+3000t\\ \\mathrm{V}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in** $t=5\\,\\mathrm{ms}$.",
+     "latex": "v(5\\,\\mathrm{ms})=3+3000(0.005)=18\\,\\mathrm{V}"
+    }
+   ],
+   "answer": "$v=3+3000t\\ \\mathrm{V}$; $v(5\\,\\mathrm{ms})=18\\,\\mathrm{V}$",
+   "citations": [],
+   "id": "63eb373a-bc22-579d-8931-fc9b0730f830"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "A3 · Power and energy",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "8a1b34c0-76e1-4f17-aca6-4d090da150d4"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "819b4db3-76c9-4b17-9c98-b4f17923d0e6"
+    }
+   ],
+   "id": "d152c2b3-a74b-535f-8e4c-3ce2e1e3f467"
+  },
+  {
+   "type": "paragraph",
+   "text": "Is the element taking energy in right now, or giving it back?",
+   "citations": [],
+   "id": "8617b13e-2f0e-50f2-b496-818acebaeb2b"
+  },
+  {
+   "type": "equation",
+   "latex": "p=v\\,i",
+   "display": true,
+   "citations": [],
+   "id": "c18cfcbb-c75d-5777-b4f6-05cb761c3df2"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$p>0$: **absorbing**. The element is storing energy.",
+    "$p<0$: **delivering**. It is giving stored energy back."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "a256c819-6757-586b-bcf4-707b4eb37be5"
+  },
+  {
+   "type": "paragraph",
+   "text": "How much energy is stored right now?",
+   "citations": [],
+   "id": "3c14bbde-7f81-5f8d-84b0-ac90bd74240f"
+  },
+  {
+   "type": "equation",
+   "latex": "w_L=\\frac12Li^2\\qquad\\qquad w_C=\\frac12Cv^2",
+   "display": true,
+   "citations": [],
+   "id": "38643ee1-ca8d-5574-849b-a52aea79c467"
+  },
+  {
+   "type": "paragraph",
+   "text": "Energy is never negative, because $i$ and $v$ are squared. It only depends on the current (for $L$) or voltage (for $C$) at that moment.",
+   "citations": [],
+   "id": "e5df27d9-0aef-5ab7-9540-3718b9f8c515"
+  },
+  {
+   "type": "paragraph",
+   "text": "**Maximum energy.** $w_L$ is biggest when $|i|$ is biggest. So set $\\dfrac{di}{dt}=0$, solve for $t$, and plug that $t$ into $w$. For a capacitor, use $\\dfrac{dv}{dt}=0$ instead. Also compare with the values at $t=0$ and $t\\to\\infty$, in case the biggest value sits at an end.",
+   "citations": [],
+   "id": "75dc18c2-ad2d-5b0d-8843-0dd03a31981c"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 2 · ★ Lecture example continued: power and maximum energy",
+   "prompt": "Same inductor: $L=100\\,\\mathrm{mH}$, $i=10te^{-5t}\\ \\mathrm{A}$, $v=e^{-5t}(1-5t)\\ \\mathrm{V}$. When is the inductor storing energy, and when is it delivering? What is the maximum stored energy?",
+   "steps": [
+    {
+     "explanation": "**Power** is $v$ times $i$.",
+     "latex": "p=vi=10t\\,e^{-10t}(1-5t)\\ \\mathrm{W}"
+    },
+    {
+     "explanation": "**Read the sign.** $10te^{-10t}$ is positive for $t>0$. So the sign comes from $(1-5t)$.",
+     "latex": "\\begin{gathered}p>0\\quad\\text{for }0<t<0.2\\,\\mathrm{s}\\quad\\text{(storing)} \\\\ p<0\\quad\\text{for }t>0.2\\,\\mathrm{s}\\quad\\text{(delivering)}\\end{gathered}"
+    },
+    {
+     "explanation": "**Max current:** set $\\dfrac{di}{dt}=10e^{-5t}(1-5t)=0$.",
+     "latex": "\\begin{gathered}t=0.2\\,\\mathrm{s} \\\\ i_{\\max}=10(0.2)e^{-1}=0.7358\\ \\mathrm{A}\\end{gathered}"
+    },
+    {
+     "explanation": "**Max energy.** At the ends, $i(0)=0$ and $i(\\infty)=0$, so the peak really is at $0.2\\,\\mathrm{s}$.",
+     "latex": "w_{\\max}=\\frac12(0.1)(0.7358)^2=27.07\\ \\mathrm{mJ}"
+    }
+   ],
+   "answer": "Storing for $0<t<0.2\\,\\mathrm{s}$, delivering after; $w_{\\max}=27.07\\,\\mathrm{mJ}$ at $t=0.2\\,\\mathrm{s}$",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "18dc5511-2e38-4b18-a11c-03f3cb00ef0d"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "85570977-bc70-4a77-81b7-0887b28f46a1"
+    }
+   ],
+   "id": "ab631152-f2ee-515d-a2c0-0f76d44c8c90"
+  },
+  {
+   "type": "paragraph",
+   "text": "Notice: the current peak ($t=0.2\\,\\mathrm{s}$) is exactly where $v=0$ and where $p$ flips sign. Before the peak the inductor charges up, after it gives energy back.",
+   "citations": [],
+   "id": "ddb847ff-d7fd-5cdb-96f6-414915c86498"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 3 · ★ AP 6.2–6.3: a capacitor, absorbing or delivering?",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "The voltage across a $5\\,\\mu\\mathrm{F}$ capacitor is $v=500te^{-2500t}\\ \\mathrm{V}$ for $t\\ge0$ (passive sign convention).\n\n(a) Find $i(t)$. (b) Find $p$ at $t=100\\,\\mu\\mathrm{s}$. Is the capacitor absorbing or delivering? (c) Find the stored energy at $100\\,\\mu\\mathrm{s}$. (d) Find the maximum stored energy.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Differentiate** with the product rule, then multiply by $C$.",
+     "latex": "\\begin{gathered}\\frac{dv}{dt}=500e^{-2500t}(1-2500t) \\\\ i=5\\times10^{-6}\\cdot500e^{-2500t}(1-2500t) \\\\ i=2.5e^{-2500t}(1-2500t)\\ \\mathrm{mA}\\end{gathered}"
+    },
+    {
+     "explanation": "**Plug in** $t=100\\,\\mu\\mathrm{s}$, so $2500t=0.25$.",
+     "latex": "\\begin{gathered}v=500(10^{-4})e^{-0.25}=38.94\\,\\mathrm{mV} \\\\ i=2.5e^{-0.25}(0.75)=1.460\\,\\mathrm{mA}\\end{gathered}"
+    },
+    {
+     "explanation": "**Power.** It is positive, so the capacitor is absorbing.",
+     "latex": "p=vi=56.86\\,\\mu\\mathrm{W}"
+    },
+    {
+     "explanation": "**Energy now.**",
+     "latex": "w=\\frac12(5\\times10^{-6})(0.03894)^2=3.79\\,\\mathrm{nJ}"
+    },
+    {
+     "explanation": "**Max energy:** set $\\dfrac{dv}{dt}=0$, so $1-2500t=0$.",
+     "latex": "\\begin{gathered}t=0.4\\,\\mathrm{ms},\\qquad v_{\\max}=500(0.0004)e^{-1}=73.58\\,\\mathrm{mV} \\\\ w_{\\max}=\\frac12(5\\times10^{-6})(0.07358)^2=13.53\\,\\mathrm{nJ}\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $i=2.5e^{-2500t}(1-2500t)\\ \\mathrm{mA}$ (b) $56.86\\,\\mu\\mathrm{W}$, absorbing (c) $3.79\\,\\mathrm{nJ}$ (d) $13.53\\,\\mathrm{nJ}$ at $0.4\\,\\mathrm{ms}$",
+   "citations": [
+    {
+     "source_id": "5821edf5-9d63-4d10-8e39-bd48ceb20a56",
+     "version": 1,
+     "chunk_id": "a9d07665-364d-4b2d-a10c-f7aa812d45e9"
+    }
+   ],
+   "id": "0cc92056-0897-5192-b681-54060fcc9295"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "A4 · DC rules and what cannot jump",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "bea3b58f-9c5c-4da0-9bc1-0ef3a1725965"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "9ffa3e8b-9b70-41ce-bb82-7e152f5a9563"
+    }
+   ],
+   "id": "d5a76c4e-5459-5967-a185-ce551df0b65a"
+  },
+  {
+   "type": "paragraph",
+   "text": "This topic is short, but Ch 7 and Ch 8 use it in every question.",
+   "citations": [],
+   "id": "c0e492b2-c49a-5c6b-9fed-438e980be4e7"
+  },
+  {
+   "type": "paragraph",
+   "text": "What does an inductor look like after a switch has been still for a long time? All values are constant (DC).",
+   "citations": [],
+   "id": "6db29627-d992-56b3-acb9-996f0e749fc2"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Inductor at DC:** $i$ is constant, so $v=L\\dfrac{di}{dt}=0$. It acts like a **wire** (short circuit).",
+    "**Capacitor at DC:** $v$ is constant, so $i=C\\dfrac{dv}{dt}=0$. It acts like a **gap** (open circuit)."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "b05fc59b-bee1-5229-b09e-ce86278db437"
+  },
+  {
+   "type": "paragraph",
+   "text": "What happens at the instant a switch flips ($t=0^-$ is just before, $t=0^+$ just after)?",
+   "citations": [],
+   "id": "cd25d54a-d483-570a-ae57-35ff62995027"
+  },
+  {
+   "type": "equation",
+   "latex": "i_L(0^+)=i_L(0^-)\\qquad\\qquad v_C(0^+)=v_C(0^-)",
+   "display": true,
+   "citations": [],
+   "id": "15d8f992-d06c-5ce6-ad34-e660edbf0104"
+  },
+  {
+   "type": "paragraph",
+   "text": "A sudden jump in $i_L$ would need $\\dfrac{di}{dt}=\\infty$, which means infinite voltage. Same for $v_C$. Everything else **can** jump: $v_L$, $i_C$, and every resistor current.",
+   "citations": [],
+   "id": "e3adba42-8923-59ae-affd-e0fa257ece89"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 3 · Inductor current at DC",
+   "prompt": "The circuit has been on for a long time. Find $i_L$ and the current in the $4\\,\\Omega$ resistor.\n\n```schematic\nV1 0,3 -> 0,0 \"$12\\,\\mathrm{V}$\"\nR1 0,3 -> 3,3 \"$2\\,\\Omega$\"\nL1 3,3 -> 3,0 \"$L$\" i=\"$i_L$\"\nwire 3,3 -> 6,3\nR2 6,3 -> 6,0 \"$4\\,\\Omega$\"\nwire 6,0 -> 0,0\nground 0,0\n```",
+   "steps": [
+    {
+     "explanation": "**Replace** the inductor by a wire (DC).",
+     "latex": ""
+    },
+    {
+     "explanation": "**Spot** the short: the wire is in parallel with $4\\,\\Omega$, so the $4\\,\\Omega$ has $0\\,\\mathrm{V}$ across it.",
+     "latex": "i_{4\\Omega}=0"
+    },
+    {
+     "explanation": "**Solve** the loop: all the current goes through $2\\,\\Omega$ and the wire.",
+     "latex": "i_L=\\frac{12}{2}=6\\,\\mathrm{A}"
+    }
+   ],
+   "answer": "$i_L=6\\,\\mathrm{A}$, $i_{4\\Omega}=0$",
+   "citations": [],
+   "id": "6c934833-f840-56a1-8f01-b615aa57c2e5"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 4 · Capacitor voltage at DC",
+   "difficulty": "introductory",
+   "origin": "original",
+   "prompt": "Same circuit, but the inductor is replaced by a $10\\,\\mu\\mathrm{F}$ capacitor (with $v_C$ $+$ at the top). It has been on for a long time. Find $v_C$, $i_C$, and the stored energy.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Replace** the capacitor by a gap. No current flows in it.",
+     "latex": "i_C=0"
+    },
+    {
+     "explanation": "**Divide** the voltage: $2\\,\\Omega$ and $4\\,\\Omega$ are now in series.",
+     "latex": "v_C=12\\cdot\\frac{4}{2+4}=8\\,\\mathrm{V}"
+    },
+    {
+     "explanation": "**Energy.**",
+     "latex": "w=\\frac12(10\\times10^{-6})(8)^2=320\\,\\mu\\mathrm{J}"
+    }
+   ],
+   "answer": "$v_C=8\\,\\mathrm{V}$, $i_C=0$, $w=320\\,\\mu\\mathrm{J}$",
+   "citations": [],
+   "id": "84e18e71-7d05-5622-ace7-1455167f3e76"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Part B · Several inductors or capacitors",
+   "citations": [],
+   "id": "fc64de82-45c1-57dd-9359-fa50a79cfede"
+  },
+  {
+   "type": "paragraph",
+   "text": "Goal: replace a group by one element, keep track of the starting values, and follow the energy.",
+   "citations": [],
+   "id": "4f068d25-84a3-57ef-bc80-77fd0dc48aa6"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B1 · Series and parallel, with starting values",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "60ce9f3a-bc7c-4b80-86f8-04969f4b5295"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "3abf92f5-ec07-4340-8675-6041fa950992"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "169af448-b1b9-450b-9d55-f2ebbefe037b"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "3b705982-60e8-4e96-b6c5-ac49e9978317"
+    }
+   ],
+   "id": "81c922e1-6f5a-5d80-a167-7c223d294bc1"
+  },
+  {
+   "type": "paragraph",
+   "text": "Two inductors in parallel. Can you swap them for one?",
+   "citations": [],
+   "id": "63527e0b-57d8-5dc3-8541-7b4e0355e498"
+  },
+  {
+   "type": "paragraph",
+   "text": "Yes. Inductors combine like resistors. Capacitors do the **opposite**.",
+   "citations": [],
+   "id": "9ebbe642-a61d-5037-85d1-effa3e7b293b"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "",
+    "Series",
+    "Parallel"
+   ],
+   "rows": [
+    [
+     "Inductors",
+     "$L_1+L_2$",
+     "$\\dfrac{L_1L_2}{L_1+L_2}$"
+    ],
+    [
+     "Capacitors",
+     "$\\dfrac{C_1C_2}{C_1+C_2}$",
+     "$C_1+C_2$"
+    ]
+   ],
+   "citations": [],
+   "id": "a64be5d9-3493-54fc-a770-578f244bc214"
+  },
+  {
+   "type": "list",
+   "items": [
+    "$24\\,\\mathrm{mH}\\parallel48\\,\\mathrm{mH}=\\dfrac{24\\cdot48}{72}=16\\,\\mathrm{mH}$",
+    "$100\\,\\mu\\mathrm{F}$ in series with $25\\,\\mu\\mathrm{F}$: $\\dfrac{100\\cdot25}{125}=20\\,\\mu\\mathrm{F}$"
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "9420bdfc-1ad3-5ba9-8896-068a1f8bb9d3"
+  },
+  {
+   "type": "paragraph",
+   "text": "The new element also needs a **starting value**:",
+   "citations": [],
+   "id": "d77fe961-545a-5e0e-ac1b-99d51b41110d"
+  },
+  {
+   "type": "list",
+   "items": [
+    "**Parallel inductors:** add the starting currents (KCL). Example: $-0.6\\,\\mathrm{A}$ and $0.2\\,\\mathrm{A}$ give $i(0)=-0.4\\,\\mathrm{A}$.",
+    "**Series capacitors:** add the starting voltages (KVL). Example: $15\\,\\mathrm{V}$ and $-10\\,\\mathrm{V}$ give $v(0)=5\\,\\mathrm{V}$."
+   ],
+   "ordered": false,
+   "citations": [],
+   "id": "5872e7fe-188c-54aa-966c-ee328768beec"
+  },
+  {
+   "type": "callout",
+   "tone": "warning",
+   "text": "Keep the signs. A current that points the other way, or a voltage with its $+$ on the other side, goes in with a minus.",
+   "citations": [],
+   "id": "1eb69870-1739-5751-b5d0-187e595f24af"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 4 · ★ AP 6.4: two inductors in parallel",
+   "prompt": "Two inductors are in parallel. At $t=0$, $i_1(0)=-0.6\\,\\mathrm{A}$ and $i_2(0)=0.2\\,\\mathrm{A}$. For $t\\ge0$ the voltage is $v=0.1e^{-25t}\\ \\mathrm{V}$.\n\n```schematic\nX1 0,3 -> 0,0 \"rest of circuit\" i=\"$i$\" i_rev\nwire 0,3 -> 6,3\nL1 3,3 -> 3,0 \"$48\\,\\mathrm{mH}$\" i=\"$i_1$\" v=\"$v$\"\nL2 6,3 -> 6,0 \"$24\\,\\mathrm{mH}$\" i=\"$i_2$\"\nwire 6,0 -> 0,0\n```\n\nFind (a) $L_{eq}$, (b) $i(0)$, (c) $i(t)$, (d) $i_1(t)$ and $i_2(t)$.",
+   "steps": [
+    {
+     "explanation": "**Combine.**",
+     "latex": "L_{eq}=\\frac{48\\cdot24}{48+24}=16\\,\\mathrm{mH}"
+    },
+    {
+     "explanation": "**Start:** add the starting currents.",
+     "latex": "i(0)=-0.6+0.2=-0.4\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**Integrate** the voltage once. You reuse this number three times.",
+     "latex": "\\int_0^t0.1e^{-25\\tau}\\,d\\tau=0.004\\left(1-e^{-25t}\\right)"
+    },
+    {
+     "explanation": "**Total current:** divide by $L_{eq}$ and add $i(0)$.",
+     "latex": "\\begin{gathered}i=\\frac{0.004}{0.016}\\left(1-e^{-25t}\\right)-0.4 \\\\ i=-0.15-0.25e^{-25t}\\ \\mathrm{A}\\end{gathered}"
+    },
+    {
+     "explanation": "**Each branch:** same voltage, own $L$, own start.",
+     "latex": "\\begin{gathered}i_1=\\frac{0.004}{0.048}\\left(1-e^{-25t}\\right)-0.6=-0.5167-0.0833e^{-25t}\\ \\mathrm{A} \\\\ i_2=\\frac{0.004}{0.024}\\left(1-e^{-25t}\\right)+0.2=0.3667-0.1667e^{-25t}\\ \\mathrm{A}\\end{gathered}"
+    },
+    {
+     "explanation": "**Check:** $i_1+i_2$ should equal $i$.",
+     "latex": "\\begin{gathered}i_1+i_2=(-0.5167+0.3667)+(-0.0833-0.1667)e^{-25t} \\\\ =-0.15-0.25e^{-25t}\\ \\checkmark\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $16\\,\\mathrm{mH}$ (b) $-0.4\\,\\mathrm{A}$ (c) $i=-0.15-0.25e^{-25t}\\ \\mathrm{A}$ (d) $i_1=-0.5167-0.0833e^{-25t}\\ \\mathrm{A}$, $i_2=0.3667-0.1667e^{-25t}\\ \\mathrm{A}$",
+   "citations": [
+    {
+     "source_id": "5821edf5-9d63-4d10-8e39-bd48ceb20a56",
+     "version": 1,
+     "chunk_id": "a9d07665-364d-4b2d-a10c-f7aa812d45e9"
+    }
+   ],
+   "id": "133b8e18-e8b1-55a6-b288-34b65c72d07f"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 5 · ★ Lecture example: series capacitors",
+   "difficulty": "intermediate",
+   "origin": "source",
+   "prompt": "A source $v_s=3\\sin2t\\ \\mathrm{V}$ drives $C_1=1\\,\\mu\\mathrm{F}$, $C_2=2\\,\\mu\\mathrm{F}$ and $C_3=2\\,\\mu\\mathrm{F}$ in series. Given $v_{C1}(0)=10\\,\\mathrm{V}$, find the loop current $i_s(t)$ and $v_{C1}(t)$.\n\n```schematic\nV1 0,3 -> 0,0 \"$v_s(t)$\" i=\"$i_s$\" i_rev\nC1 0,3 -> 3,3 \"$1\\,\\mu\\mathrm{F}$\" v=\"$v_{C1}$\"\nC2 3,3 -> 6,3 \"$2\\,\\mu\\mathrm{F}$\"\nC3 6,3 -> 6,0 \"$2\\,\\mu\\mathrm{F}$\"\nwire 6,0 -> 0,0\n```",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Combine** the series capacitors.",
+     "latex": "\\begin{gathered}\\frac{1}{C_{eq}}=\\frac11+\\frac12+\\frac12=2 \\\\ C_{eq}=0.5\\,\\mu\\mathrm{F}\\end{gathered}"
+    },
+    {
+     "explanation": "**Current** from the source voltage: $i_s=C_{eq}\\dfrac{dv_s}{dt}$.",
+     "latex": "i_s=0.5\\times10^{-6}\\cdot6\\cos2t=3\\cos2t\\ \\mu\\mathrm{A}"
+    },
+    {
+     "explanation": "**Integrate** that current through $C_1$ and add its start.",
+     "latex": "\\begin{gathered}v_{C1}=\\frac{1}{10^{-6}}\\int_0^t3\\times10^{-6}\\cos2\\tau\\,d\\tau+10 \\\\ v_{C1}=10+1.5\\sin2t\\ \\mathrm{V}\\end{gathered}"
+    }
+   ],
+   "answer": "$i_s=3\\cos2t\\ \\mu\\mathrm{A}$; $v_{C1}=10+1.5\\sin2t\\ \\mathrm{V}$",
+   "citations": [
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "f7c03ced-1869-4ef4-bf6e-cc63f36f9b26"
+    },
+    {
+     "source_id": "2183e972-3934-4c40-987b-de0a5ce76e03",
+     "version": 1,
+     "chunk_id": "d837e91c-a13a-4b42-8259-967452247a2d"
+    }
+   ],
+   "id": "d42ad711-cc3b-56b9-b0d0-821b0835de89"
+  },
+  {
+   "type": "heading",
+   "level": 2,
+   "text": "B2 · Trapped energy (the black box question)",
+   "citations": [
+    {
+     "source_id": "32625862-f1b4-49dc-850e-01f5a083deac",
+     "version": 1,
+     "chunk_id": "cd5ffb9b-ef04-493c-bb8a-6ad789d20c71"
+    }
+   ],
+   "id": "ee92e735-153c-5772-ae90-1a7083c92c91"
+  },
+  {
+   "type": "paragraph",
+   "text": "Charged inductors are connected to a \"black box\" at $t=0$. How much energy reaches the box? How much stays stuck in the inductors forever?",
+   "citations": [],
+   "id": "061dff5c-e6a9-53e4-b5b8-8f83efc4e38e"
+  },
+  {
+   "type": "paragraph",
+   "text": "The trick: the **total** current into the box can die out, while each inductor still carries current. That leftover current just circles around the loop of parallel inductors. Its energy is **trapped**.",
+   "citations": [],
+   "id": "a63ce239-66b6-5616-bf24-115b644cecb5"
+  },
+  {
+   "type": "equation",
+   "latex": "w_{\\text{delivered}}=\\frac12L_{eq}\\,i(0)^2\\qquad(\\text{when }i(\\infty)=0)",
+   "display": true,
+   "citations": [],
+   "id": "a12c739e-779a-52cd-816a-f4b51eaf4eb3"
+  },
+  {
+   "type": "equation",
+   "latex": "w_{\\text{trapped}}=w_{\\text{initial}}-w_{\\text{delivered}}",
+   "display": true,
+   "citations": [],
+   "id": "faff3a15-cead-556a-a29c-b90afc00286c"
+  },
+  {
+   "type": "paragraph",
+   "text": "Check it with the final currents: $w_{\\text{trapped}}=\\tfrac12L_1i_1(\\infty)^2+\\tfrac12L_2i_2(\\infty)^2+\\dots$",
+   "citations": [],
+   "id": "05e46b69-c5f5-5cc0-8dc6-a1f2a12ff299"
+  },
+  {
+   "type": "worked_example",
+   "title": "Example 5 · ★ Tutorial 6 Q2: three inductors and a black box",
+   "prompt": "The switch opens at $t=0$ and connects the inductors to the black box. For $t\\ge0$, $v_b=1250e^{-25t}\\ \\mathrm{V}$. Given $i_1(0)=10\\,\\mathrm{A}$ and $i_2(0)=-5\\,\\mathrm{A}$.\n\n```schematic\nL1 0,0 -> 0,3 \"$8\\,\\mathrm{H}$\" i=\"$i_1$\"\nL2 3,0 -> 3,3 \"$32\\,\\mathrm{H}$\" i=\"$i_2$\"\nwire 0,3 -> 3,3 -> 6,3 -> 9,3\nwire 0,0 -> 3,0\nL3 6,0 -> 3,0 \"$3.6\\,\\mathrm{H}$\" i=\"$i_o$\"\nwire 6,0 -> 9,0\nS1 6,3 -> 6,0 \"$t=0$\" state=closed action=open\nX1 9,3 -> 9,0 \"black box\" v=\"$v_b$\"\n```\n\nFind (a) $i_o(0)$, (b) $i_o(t)$, (c) $i_1(t)$ and $i_2(t)$, (d) the initial stored energy, (e) the energy delivered to the box, (f) the trapped energy.",
+   "steps": [
+    {
+     "explanation": "**Start (a).** KCL where the three inductors meet.",
+     "latex": "i_o(0)=i_1(0)+i_2(0)=10-5=5\\,\\mathrm{A}"
+    },
+    {
+     "explanation": "**Combine** into one inductor.",
+     "latex": "L_{eq}=(8\\parallel32)+3.6=6.4+3.6=10\\,\\mathrm{H}"
+    },
+    {
+     "explanation": "**Integrate (b).** $i_o$ leaves the box at its $-$ end and enters the inductors there. So the sign is minus.",
+     "latex": "\\begin{gathered}i_o=-\\frac{1}{10}\\int_0^t1250e^{-25\\tau}\\,d\\tau+5 \\\\ =-5\\left(1-e^{-25t}\\right)+5=5e^{-25t}\\ \\mathrm{A}\\end{gathered}"
+    },
+    {
+     "explanation": "**Split the voltage.** The $3.6\\,\\mathrm{H}$ takes $3.6\\dfrac{di_o}{dt}$. The parallel pair gets the rest.",
+     "latex": "\\begin{gathered}3.6\\cdot\\frac{d}{dt}\\left(5e^{-25t}\\right)=-450e^{-25t}\\ \\mathrm{V} \\\\ v_{\\text{pair}}=1250e^{-25t}-450e^{-25t}=800e^{-25t}\\ \\mathrm{V}\\end{gathered}"
+    },
+    {
+     "explanation": "**Each branch (c).** Same minus sign as before, own $L$, own start.",
+     "latex": "\\begin{gathered}i_1=-\\frac18\\int_0^t800e^{-25\\tau}\\,d\\tau+10=6+4e^{-25t}\\ \\mathrm{A} \\\\ i_2=-\\frac1{32}\\int_0^t800e^{-25\\tau}\\,d\\tau-5=-6+e^{-25t}\\ \\mathrm{A}\\end{gathered}"
+    },
+    {
+     "explanation": "**Initial energy (d).** Add $\\tfrac12Li^2$ for all three.",
+     "latex": "\\frac12(8)(10)^2+\\frac12(32)(5)^2+\\frac12(3.6)(5)^2=400+400+45=845\\,\\mathrm{J}"
+    },
+    {
+     "explanation": "**Delivered (e).** The box sees one $10\\,\\mathrm{H}$ inductor whose current goes from $5\\,\\mathrm{A}$ to $0$.",
+     "latex": "w_{\\text{del}}=\\frac12(10)(5)^2=125\\,\\mathrm{J}"
+    },
+    {
+     "explanation": "**Trapped (f)** and **check** with the final currents $i_1(\\infty)=6$, $i_2(\\infty)=-6$.",
+     "latex": "\\begin{gathered}845-125=720\\,\\mathrm{J} \\\\ \\frac12(8)(6)^2+\\frac12(32)(6)^2=144+576=720\\,\\mathrm{J}\\ \\checkmark\\end{gathered}"
+    }
+   ],
+   "answer": "(a) $5\\,\\mathrm{A}$ (b) $5e^{-25t}\\,\\mathrm{A}$ (c) $i_1=6+4e^{-25t}$, $i_2=-6+e^{-25t}\\,\\mathrm{A}$ (d) $845\\,\\mathrm{J}$ (e) $125\\,\\mathrm{J}$ (f) $720\\,\\mathrm{J}$",
+   "citations": [
+    {
+     "source_id": "32625862-f1b4-49dc-850e-01f5a083deac",
+     "version": 1,
+     "chunk_id": "cd5ffb9b-ef04-493c-bb8a-6ad789d20c71"
+    },
+    {
+     "source_id": "32625862-f1b4-49dc-850e-01f5a083deac",
+     "version": 1,
+     "chunk_id": "3a124e09-4fbd-4279-989a-1e26b12bf7cf"
+    },
+    {
+     "source_id": "32625862-f1b4-49dc-850e-01f5a083deac",
+     "version": 1,
+     "chunk_id": "5724fd0c-419e-4c2d-a282-818e02059239"
+    },
+    {
+     "source_id": "32625862-f1b4-49dc-850e-01f5a083deac",
+     "version": 1,
+     "chunk_id": "feb302e2-7261-44c1-9cd3-f4b95216e236"
+    }
+   ],
+   "id": "06baf887-6738-5342-bba3-c8b81cb428f1"
+  },
+  {
+   "type": "practice_problem",
+   "title": "Try it 6 · Trapped energy, two inductors",
+   "difficulty": "intermediate",
+   "origin": "original",
+   "prompt": "A $6\\,\\mathrm{H}$ inductor with $i_1(0)=3\\,\\mathrm{A}$ and a $3\\,\\mathrm{H}$ inductor with $i_2(0)=-1\\,\\mathrm{A}$ (both arrows pointing the same way) are connected in parallel across a resistor at $t=0$. The total current dies out. Find the initial energy, the energy delivered to the resistor, and the trapped energy.",
+   "solution": "",
+   "steps": [
+    {
+     "explanation": "**Start and combine.**",
+     "latex": "\\begin{gathered}i(0)=3+(-1)=2\\,\\mathrm{A} \\\\ L_{eq}=\\frac{6\\cdot3}{6+3}=2\\,\\mathrm{H}\\end{gathered}"
+    },
+    {
+     "explanation": "**Initial energy.**",
+     "latex": "\\frac12(6)(3)^2+\\frac12(3)(1)^2=27+1.5=28.5\\,\\mathrm{J}"
+    },
+    {
+     "explanation": "**Delivered.**",
+     "latex": "\\frac12(2)(2)^2=4\\,\\mathrm{J}"
+    },
+    {
+     "explanation": "**Trapped.**",
+     "latex": "28.5-4=24.5\\,\\mathrm{J}"
+    }
+   ],
+   "answer": "$28.5\\,\\mathrm{J}$; $4\\,\\mathrm{J}$ delivered; $24.5\\,\\mathrm{J}$ trapped",
+   "citations": [],
+   "id": "f21deaf3-2654-59a2-b176-e171157134d7"
+  },
+  {
+   "type": "heading",
+   "level": 1,
+   "text": "Formula summary",
+   "citations": [],
+   "id": "0ec144e6-970f-5503-8ec4-02b139192dcc"
+  },
+  {
+   "type": "paragraph",
+   "text": "Everything from this note on one screen. Swap $v\\leftrightarrow i$ and $L\\leftrightarrow C$ to go from one column to the other.",
+   "citations": [],
+   "id": "7f89dcb3-c15f-54eb-b415-64cecbcdcfe6"
+  },
+  {
+   "type": "table",
+   "columns": [
+    "",
+    "Inductor $L$",
+    "Capacitor $C$"
+   ],
+   "rows": [
+    [
+     "Rule",
+     "$v=L\\dfrac{di}{dt}$",
+     "$i=C\\dfrac{dv}{dt}$"
+    ],
+    [
+     "Integral",
+     "$i=\\dfrac{1}{L}\\displaystyle\\int_{t_0}^{t} v\\,d\\tau+i(t_0)$",
+     "$v=\\dfrac{1}{C}\\displaystyle\\int_{t_0}^{t} i\\,d\\tau+v(t_0)$"
+    ],
+    [
+     "Power",
+     "$p=vi$ ($>0$ storing, $<0$ delivering)",
+     "$p=vi$"
+    ],
+    [
+     "Energy",
+     "$w=\\tfrac12Li^2$",
+     "$w=\\tfrac12Cv^2$"
+    ],
+    [
+     "Max energy",
+     "at $\\dfrac{di}{dt}=0$",
+     "at $\\dfrac{dv}{dt}=0$"
+    ],
+    [
+     "At DC",
+     "wire (short)",
+     "gap (open)"
+    ],
+    [
+     "Cannot jump",
+     "$i_L(0^+)=i_L(0^-)$",
+     "$v_C(0^+)=v_C(0^-)$"
+    ],
+    [
+     "Series",
+     "$L_1+L_2$",
+     "$\\dfrac{C_1C_2}{C_1+C_2}$, add starting $v$s"
+    ],
+    [
+     "Parallel",
+     "$\\dfrac{L_1L_2}{L_1+L_2}$, add starting $i$s",
+     "$C_1+C_2$"
+    ],
+    [
+     "Trapped energy",
+     "$w_{\\text{del}}=\\tfrac12L_{eq}i(0)^2$, trapped $=$ initial $-$ delivered",
+     ""
+    ]
+   ],
+   "citations": [],
+   "id": "a68eff73-4dab-5986-b968-a5df2b26bcc4"
+  },
+  {
+   "type": "paragraph",
+   "text": "Product rule you keep needing: $\\dfrac{d}{dt}\\left(te^{-at}\\right)=e^{-at}(1-at)$. Practice: questions 1–4 in **Midterm 2 Practice Questions**.",
+   "citations": [],
+   "id": "be3aee3f-5a92-5cf9-a84d-5ac77392bc10"
+  }
+ ]
+}

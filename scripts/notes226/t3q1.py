@@ -1,284 +1,337 @@
 r"""Test 3 - Question 1: marginal distributions and independence (Lectures 17-20, Tutorials 7-8).
 
-Starts with joint tables, moves to slices of a joint density, and uses both to explain independence.
-Supplementary topics, practice questions, and the formula sheet follow the worked examples.
+Rewritten 2026-11-15 to the user's outline: Part A discrete tables, Part B continuous densities, Part C joint CDFs.
+Each topic = 1-3 line rule -> one worked example -> one Try it. Covariance and Gaussian pairs moved to t3x.py (Extra).
+Practice = 6 test-style questions (10 marks each, Test 2 difficulty).
 """
-from fractions import Fraction as Fr
-from math import log
-
 from lib226 import Doc, S, cite
 
 D = Doc('t3q1', 'Test 3 - Question 1', ['joint_distribution', 'marginal_distribution', 'independence'])
 
-D.P(r'**Test 3, Question 1 · Marginal distributions and independence**')
-D.P(r'A **joint distribution** describes $X$ and $Y$ together. A **marginal distribution** describes one of them on its own. For example, to find the chance that $X=0$, count every way $X=0$ can happen across all possible values of $Y$.',
-    cites=cite('L17', 3, 7) + cite('L18', 5))
-D.P(r'If you get a table of probabilities (a PMF), add across it. If you get a density (a PDF), integrate over a slice. Once you have both marginals, you can test whether the variables are independent.')
+# =====================================================================================================
+D.P(r'**Test 3, Question 1 · Marginal distributions and independence** (10 marks)')
+D.P(r'You get two random variables, $X$ and $Y$, described together: a table (discrete) or a formula $f_{X,Y}(x,y)$ (continuous). You pull out $X$ alone and $Y$ alone (the **marginals**). Then you decide if they are **independent**.')
+D.CO('tip', r'''**Formula sheet lines for this question.** They are on the sheet, so a question that needs them is very likely:
+
+$$
+f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy\qquad f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx
+$$
+
+$$
+F_X(x)=\sum_{t\le x}p_X(t)\qquad F_X(x)=\int_{-\infty}^{x}f_X(t)\,dt
+$$
+
+Expect: **find $c$ → a probability → marginals → independent? → a CDF**.''')
 
 # =====================================================================================================
-D.H('Read the marginals from a table')
-D.P(r'Each cell gives the chance of one pair of values. The cell at $x=0$ and $y=1$ gives $P(X=0,Y=1)$. To find $P(X=0)$, keep $x=0$ fixed and add the cells for all $y$.', cites=cite('L17', 5, 7))
-D.EQ(r'p_X(x)=P(X=x)=\sum_y p_{X,Y}(x,y)')
-D.P(r'To find $P(Y=y)$, hold $y$ fixed and add over $x$. Follow the variable labels on the table. Either variable can appear in the rows.')
-D.EQ(r'p_Y(y)=P(Y=y)=\sum_x p_{X,Y}(x,y)')
-D.P(r'A valid table has nonnegative cells that add to $1$. If a cell contains an unknown $c$, set the total equal to $1$ and solve for $c$. Each marginal should add to $1$ on its own.')
+# PART A
+# =====================================================================================================
+D.H('Part A · Discrete (PMF tables)')
 
-D.EX('Add across the rows and down the columns',
-     r'''Find the marginal distributions of $X$ and $Y$. Then find $P(X=1,\,Y\le1)$ and $P(X+Y\le2)$.
+# ---- A1 ----------------------------------------------------------------------------------------------
+D.H('A1 · Joint probability tables', level=2)
+D.P(r'Each cell is the chance that **both** happen: $p_{X,Y}(x,y)=P(X=x,\ Y=y)$.', cites=cite('L17', 5))
+D.L([r'Every cell is $\ge0$, and all cells add to $1$. An unknown $c$ comes from that.',
+     r'For any event, add the cells that fit it.'])
+D.EX('Find $c$, then add cells ★ (Lecture 17 table)',
+     r'''Find $c$, $P(X=1,\ Y\le1)$ and $P(X+Y\le2)$.
+
+| | $y=0$ | $y=1$ | $y=2$ |
+|---|---|---|---|
+| $x=0$ | $0.10$ | $0.15$ | $0.05$ |
+| $x=1$ | $0.20$ | $c$ | $0.20$ |''',
+     [S(r'**Find $c$:** all cells add to $1$.', r'0.70+c=1\quad\Longrightarrow\quad c=0.30'),
+      S(r'**$P(X=1,\ Y\le1)$:** row $x=1$, columns $y=0,1$.', r'0.20+0.30=0.50'),
+      S(r'**$P(X+Y\le2)$:** only $(1,2)$ has $x+y>2$. Take it away from $1$.', r'1-0.20=0.80')],
+     r'$c=0.30$; $0.50$; $0.80$', cites=cite('L17', 6) + cite('T7', 1))
+D.TRY('Build the table from an experiment',
+      r'Toss a fair coin twice. $X$ = number of heads, $Y=1$ if the first toss is heads and $Y=0$ if not. Write the joint PMF table and find $P(X\ge Y)$.',
+      [S(r'**List the 4 outcomes** (each $\tfrac14$) as $(x,y)$: $HH\to(2,1)$, $HT\to(1,1)$, $TH\to(1,0)$, $TT\to(0,0)$.'),
+       S(r'**Table** (rows $x=0,1,2$, columns $y=0,1$).', (r'x=0:\ \ \tfrac14,\ 0', r'x=1:\ \ \tfrac14,\ \tfrac14', r'x=2:\ \ 0,\ \tfrac14')),
+       S(r'**$P(X\ge Y)$:** every outcome has $x\ge y$.', r'P(X\ge Y)=1')],
+      r'Table above; $P(X\ge Y)=1$', diff='introductory')
+
+# ---- A2 ----------------------------------------------------------------------------------------------
+D.H('A2 · Finding marginals', level=2)
+D.P(r'$p_X(x)$ = the chance of $X=x$ whatever $Y$ is. So add the whole row of $x$. For $p_Y$, add the column.', cites=cite('L17', 7))
+D.EQ(r'p_X(x)=\sum_y p_{X,Y}(x,y)\qquad\qquad p_Y(y)=\sum_x p_{X,Y}(x,y)')
+D.EX('Row and column totals ★ (Lecture 17)',
+     r'''Find $p_X$ and $p_Y$.
 
 | | $y=0$ | $y=1$ | $y=2$ |
 |---|---|---|---|
 | $x=0$ | $0.10$ | $0.15$ | $0.05$ |
 | $x=1$ | $0.20$ | $0.30$ | $0.20$ |''',
-     [S(r'**Keep $X$ fixed.** For $X=0$, add all three cells in the first row. Repeat for $X=1$.',
-        (r'p_X(0)=0.10+0.15+0.05=0.30', r'p_X(1)=0.20+0.30+0.20=0.70')),
-      S(r'**Keep $Y$ fixed.** For $Y=0$, add the two cells in the first column. Repeat for the other columns.',
-        (r'p_Y(0)=0.10+0.20=0.30', r'p_Y(1)=0.15+0.30=0.45', r'p_Y(2)=0.05+0.20=0.25')),
-      S(r'**Apply both conditions.** Stay in row $x=1$ and use the columns where $y\le1$.',
-        r'P(X=1,\,Y\le1)=0.20+0.30=0.50'),
-      S(r'**Check the sum in each cell.** The pair $(1,2)$ is the only one where $x+y>2$. Subtract its probability from $1$.',
-        r'P(X+Y\le2)=1-0.20=0.80')],
-     r'$p_X(0)=0.30$, $p_X(1)=0.70$. $p_Y(0)=0.30$, $p_Y(1)=0.45$, $p_Y(2)=0.25$. The two event probabilities are $0.50$ and $0.80$.',
-     cites=cite('L17', 6, 7) + cite('T7', 1))
+     [S(r'**Row totals** give $p_X$.', (r'p_X(0)=0.10+0.15+0.05=0.30', r'p_X(1)=0.20+0.30+0.20=0.70')),
+      S(r'**Column totals** give $p_Y$.', r'p_Y(0)=0.30,\quad p_Y(1)=0.45,\quad p_Y(2)=0.25'),
+      S(r'**Check:** each marginal adds to $1$. Both are $0$ at any other value.')],
+     r'$p_X=0.30,\ 0.70$; $p_Y=0.30,\ 0.45,\ 0.25$', cites=cite('L17', 7))
+D.CO('warning', r'Read the labels. If $y$ is down the side, the **row** totals are $p_Y$.')
+D.TRY('Marginals, then use them',
+      r'''Find $p_X$, $p_Y$, $P(X\ge2)$.
 
-D.H('Check independence in a table')
-D.P(r'If $X$ and $Y$ are independent, learning $Y$ leaves the probabilities for $X$ unchanged. In the joint table, every cell then equals the product of the two marginal probabilities for that cell.', cites=cite('L19', 2))
-D.EQ(r'p_{X,Y}(x,y)=p_X(x)\,p_Y(y)\quad\text{for every pair }(x,y)')
-D.P(r'In the previous table, the chance of $X=0,Y=0$ is $0.10$. Independence would give $0.30\times0.30=0.09$. That one mismatch shows that $X$ and $Y$ are dependent.')
+| | $x=1$ | $x=2$ | $x=3$ |
+|---|---|---|---|
+| $y=0$ | $0.10$ | $0.20$ | $0.10$ |
+| $y=1$ | $0.15$ | $0.25$ | $0.20$ |''',
+      [S(r'Here $x$ is across the top, so **column totals** give $p_X$.', r'p_X(1)=0.25,\quad p_X(2)=0.45,\quad p_X(3)=0.30'),
+       S(r'**Row totals** give $p_Y$.', r'p_Y(0)=0.40,\quad p_Y(1)=0.60'),
+       S(r'**Add** the marginal for $x=2,3$.', r'P(X\ge2)=0.45+0.30=0.75')],
+      r'$p_X=0.25,\,0.45,\,0.30$; $p_Y=0.40,\,0.60$; $0.75$', diff='introductory')
 
-D.EX('Joint PMF table · independent ★ (Lecture 19)',
+# ---- A3 ----------------------------------------------------------------------------------------------
+D.H('A3 · Checking independence', level=2)
+D.P(r'Independent means every cell = its row total × its column total.', cites=cite('L19', 2))
+D.EQ(r'p_{X,Y}(x,y)=p_X(x)\,p_Y(y)\quad\text{for EVERY }(x,y)')
+D.L([r'**Dependent:** show one cell that fails. Done.',
+     r'**Independent:** you must check every cell.',
+     r'**Shortcut:** a $0$ cell whose row and column totals are not $0$ means dependent.'])
+D.EX('Every cell passes ★ (Lecture 19)',
      r'''Are $X$ and $Y$ independent?
 
 | | $Y=0$ | $Y=1$ |
 |---|---|---|
 | $X=0$ | $0.12$ | $0.18$ |
 | $X=1$ | $0.28$ | $0.42$ |''',
-     [S(r'**Marginals.**', (r'p_X(0)=0.30,\quad p_X(1)=0.70', r'p_Y(0)=0.40,\quad p_Y(1)=0.60')),
-      S(r'**Compare** every cell with row × column.', (r'0.30\times0.40=0.12\ \checkmark\qquad 0.30\times0.60=0.18\ \checkmark', r'0.70\times0.40=0.28\ \checkmark\qquad 0.70\times0.60=0.42\ \checkmark')),
-      S(r'All four match.')],
+     [S(r'**Marginals.**', r'p_X=0.30,\ 0.70\qquad p_Y=0.40,\ 0.60'),
+      S(r'**Check all 4 cells.**', (r'0.30\times0.40=0.12\ \checkmark\qquad0.30\times0.60=0.18\ \checkmark', r'0.70\times0.40=0.28\ \checkmark\qquad0.70\times0.60=0.42\ \checkmark'))],
      r'Independent', cites=cite('L19', 2))
+D.P(r'The Lecture 17 table (A2) is **dependent**: $p_X(0)\,p_Y(0)=0.30\times0.30=0.09\ne0.10$.')
+D.TRY('Independent or not?',
+      r'''(a)
+
+| | $Y=0$ | $Y=1$ |
+|---|---|---|
+| $X=0$ | $0.06$ | $0.14$ |
+| $X=1$ | $0.24$ | $0.56$ |
+
+(b) The coin table from the A1 Try it.''',
+      [S(r'(a) **Marginals** $p_X=0.20,\,0.80$ and $p_Y=0.30,\,0.70$. **Check all 4.**', (r'0.06,\ 0.14,\ 0.24,\ 0.56\ \text{all match}\ \checkmark')),
+       S(r'(b) **Zero cell:** $p_{X,Y}(2,0)=0$, but $p_X(2)\,p_Y(0)=\tfrac14\cdot\tfrac12=\tfrac18\ne0$.')],
+      r'(a) independent (b) dependent', diff='introductory')
 
 # =====================================================================================================
-D.H('Set up a probability from a joint density')
-D.P(r'A joint PDF gives a height at each point $(x,y)$. To get a probability, integrate that height over the part of the plane where the event happens.', cites=cite('L18', 2))
-D.EQ(r'P\big((X,Y)\in A\big)=\iint_A f_{X,Y}(x,y)\,dx\,dy')
-D.L([r'**Sketch** the region where the density is positive. This region is the support. For an event like $Y>X$, keep only the part above the line $y=x$.',
-     r'**Choose the inner limits.** Hold $x$ fixed and draw a vertical line. Read the lowest and highest $y$ on that slice. These are the limits for $dy$.',
-     r'**Choose the outer limits.** Move the line from the first $x$ that hits the region to the last $x$ that hits it. These are the limits for $dx$.'], ordered=True)
-D.P(r'To find an unknown constant $c$, use the entire support and set the double integral equal to $1$.')
+# PART B
+# =====================================================================================================
+D.H('Part B · Continuous (PDFs)')
+D.P(r'Same ideas as Part A. Add up cells → **integrate**.')
 
-c15 = Fr(1, 15)
-D.EX('Find $c$ and two probabilities ★ (Lecture 18)',
-     r'$f_{X,Y}(x,y)=c$ for $0\le x\le5,\ 0\le y\le3$, and $0$ otherwise. (1) Find $c$. (2) $P(2\le X<3,\ 1\le Y<3)$. (3) $P(Y>X)$.',
-     [S(r'**Sketch:** a $5\times3$ rectangle.'),
-      S(r'(1) **Find $c$:** a flat height $c$ over area $15$ has volume $15c$.', r'\int_0^3\!\!\int_0^5c\,dx\,dy=15c=1\quad\Longrightarrow\quad c=\frac1{15}'),
-      S(r'(2) A small rectangle, $1\times2$, under the same flat height.', r'P=\int_2^3\!\!\int_1^3\frac1{15}\,dy\,dx=\frac{(3-2)(3-1)}{15}=\frac2{15}'),
-      S(r'(3) **Inner limits.** A vertical slice starts at $y=x$ and stops at the top of the box, $y=3$.'),
-      S(r'**Outer limits.** Once $x$ reaches $3$, the slice runs out of room above $y=x$. So the outer integral stops at $x=3$.',
-        r'P(Y>X)=\int_0^3\!\!\int_x^3\frac1{15}\,dy\,dx'),
-      S(r'**Integrate.** The inner integral gives the slice length $3-x$ times the density $1/15$.',
-        r'P(Y>X)=\frac1{15}\int_0^3(3-x)\,dx=\frac1{15}\Big(9-\frac92\Big)=\frac3{10}')],
-     r'(1) $c=\tfrac1{15}$ (2) $\tfrac2{15}$ (3) $\tfrac3{10}$', cites=cite('L18', 3, 4))
+# ---- B1 ----------------------------------------------------------------------------------------------
+D.H('B1 · Joint PDFs and finding $c$', level=2)
+D.P(r'The joint PDF $f_{X,Y}(x,y)$ is a height over the $xy$-plane. Probability = volume under it. Total volume $=1$, which gives $c$.', cites=cite('L18', 2))
+D.EQ(r'\iint_{\text{region}} f_{X,Y}(x,y)\,dx\,dy=1')
+D.P(r'**Shortcut.** On a rectangle, if $f$ is an $x$-part times a $y$-part, integrate each part alone and multiply.')
+D.EX('Find $c$ ★ (Tutorial 8 Q1)',
+     r'$f_{X,Y}(x,y)=c\,xy$ for $0\le x\le1,\ 0\le y\le2$, and $0$ otherwise. Find $c$.',
+     [S(r'**Rectangle** and $xy$ splits. Integrate each part.', (r'\int_0^1x\,dx=\frac12', r'\int_0^2y\,dy=2')),
+      S(r'**Set the volume to $1$.**', r'c\cdot\frac12\cdot2=1\quad\Longrightarrow\quad c=1')],
+     r'$c=1$', cites=cite('T8', 1))
+D.TRY('Two more $c$’s',
+      r'(a) $f=k(x+y)$ on $0\le x\le1,\ 0\le y\le1$ (Tutorial 8 Q8). (b) $f=c$ (a constant) on the triangle $0\le y\le x\le2$.',
+      [S(r'(a) $x+y$ does not split, so integrate in two steps.', r'k\int_0^1\Big(x+\frac12\Big)dx=k\Big(\frac12+\frac12\Big)=k=1'),
+       S(r'(b) A flat $f$: volume $=c\times$ area. The triangle has area $\tfrac12\cdot2\cdot2=2$.', r'2c=1\quad\Longrightarrow\quad c=\frac12')],
+      r'(a) $k=1$ (b) $c=\tfrac12$', diff='introductory', cites=cite('T8', 2))
 
-D.H('Find a marginal density with one slice')
-D.P(r'To find $f_X(x)$, pick a value of $x$ and add up the density along its vertical slice. Integrate over $y$ and leave $x$ in the answer.', cites=cite('L18', 5))
-D.EQ(r'f_X(x)=\int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dy')
-D.P(r'To find $f_Y(y)$, hold $y$ fixed and integrate along a horizontal slice. The slice gives the limits because the density is zero outside the support.')
-D.EQ(r'f_Y(y)=\int_{-\infty}^{\infty} f_{X,Y}(x,y)\,dx')
-D.P(r'For example, in the triangle $0<x<y<1$, a vertical slice at $x=0.4$ runs from $y=0.4$ to $1$. For a general $x$, its limits are $x$ and $1$. The marginal $f_X$ is zero outside the possible $x$ values.')
-D.REGION('Vertical slice through $x^2\\le y\\le1$', '(y>x^2)*(y<1)', x=(-1.2, 1.2), y=(-0.2, 1.2),
-         extra=['slider s -1 1 0.5 label="$x$"', 'curve "x^2" from=-1.1 to=1.1 color=0 dash label="$y=x^2$"',
-                'segment "s" "s^2" "s" "1" color=2 label="vertical slice: $y$ from $x^2$ to $1$"'],
-         intro=r'Drag $x$ along the region for the next example. Which end of the slice moves as $x$ changes?')
-D.EX('Marginals on a curved region ★ (Lecture 18)',
-     r'$f_{X,Y}(x,y)=\dfrac{5y}{4}$ for $-1\le x\le1,\ x^2\le y\le1$, and $0$ otherwise. Find $f_X(x)$ and $f_Y(y)$.',
-     [S(r'**Keep $x$ fixed.** The vertical slice starts at the curve $y=x^2$ and ends at the line $y=1$. A slice exists for $-1\le x\le1$.',
-        r'f_X(x)=\int_{x^2}^1\frac{5y}{4}\,dy=\frac58\big(1-x^4\big)'),
-      S(r'**Keep $y$ fixed.** Solve $x^2\le y$ for $x$. The horizontal slice runs from $-\sqrt y$ to $\sqrt y$, for $0\le y\le1$.'),
-      S(r'**Integrate in $x$.** The height $5y/4$ stays constant along this horizontal slice. Multiply by the slice length $2\sqrt y$.',
-        r'f_Y(y)=\int_{-\sqrt y}^{\sqrt y}\frac{5y}{4}\,dx=\frac{5y}{4}\cdot2\sqrt y=\frac52\,y^{3/2}'),
-      S(r'**State the ranges.** Each marginal is zero outside its own range.')],
-     r'$f_X(x)=\tfrac58(1-x^4)$ on $[-1,1]$; $f_Y(y)=\tfrac52y^{3/2}$ on $[0,1]$; $0$ elsewhere', cites=cite('L18', 5, 6))
+# ---- B2 ----------------------------------------------------------------------------------------------
+D.H('B2 · Double integrals and bounds', level=2)
+D.EQ(r'P\big((X,Y)\in A\big)=\iint_A f_{X,Y}(x,y)\,dy\,dx', cites=cite('L18', 2))
+D.P(r'The limits are the hard part. Do this every time:')
+D.L([r'**Sketch** where $f\ne0$, plus the event’s edge (e.g. the line $x+y=1$).',
+     r'**Slice:** a vertical line at $x$. Where it enters and leaves the shaded part = the $dy$ limits.',
+     r'**Sweep:** first to last $x$ that has a slice = the $dx$ limits.',
+     r'**Integrate** $dy$ first (treat $x$ as a number), then $dx$.'], ordered=True)
+D.P(r'Drag the slice. Where does it start and stop?')
+D.REGION('The event $X+Y<1$ inside the unit square', '(x>0)*(x<1)*(y>0)*(y<1)', x=(-0.2, 1.3), y=(-0.2, 1.3),
+         label='the square where $f\\ne0$',
+         extra=['region "(x>0)*(y>0)*(x+y<1)" color=2 label="the event $X+Y<1$"',
+                'slider s 0 1 0.3 label="$x$"',
+                'segment "s" "0" "s" "1-s" color=3 label="slice: $y$ from $0$ to $1-x$"'])
+D.EX('Probability under a slanted line ★ (Tutorial 7 Q5)',
+     r'$f_{X,Y}(x,y)=x+y$ for $0<x<1,\ 0<y<1$. Find $P(X+Y<1)$.',
+     [S(r'**Sketch:** the triangle under the line $y=1-x$.'),
+      S(r'**Slice** at $x$: $y$ from $0$ to $1-x$. **Sweep:** $x$ from $0$ to $1$.', r'P=\int_0^1\!\!\int_0^{1-x}(x+y)\,dy\,dx'),
+      S(r'**Inner** ($dy$).', r'\int_0^{1-x}(x+y)\,dy=x(1-x)+\frac{(1-x)^2}{2}=\frac{1-x^2}{2}'),
+      S(r'**Outer** ($dx$).', r'\int_0^1\frac{1-x^2}{2}\,dx=\frac12\Big(1-\frac13\Big)=\frac13')],
+     r'$\tfrac13$', cites=cite('T7', 2))
+D.TRY('Two regions ★ (Tutorial 8 Q1, Q8)',
+      r'(a) $f=xy$ on $0\le x\le1,\ 0\le y\le2$. Find $P(X^2+Y^2\le1)$. (b) $f=x+y$ on the unit square. Find $P(Y<X^2)$.',
+      [S(r'(a) **Sketch:** a quarter circle of radius $1$. **Slice:** $y$ from $0$ to $\sqrt{1-x^2}$, for $0\le x\le1$.', r'\int_0^1\!\!\int_0^{\sqrt{1-x^2}}xy\,dy\,dx=\int_0^1\frac{x(1-x^2)}{2}\,dx=\frac18'),
+       S(r'(b) **Slice:** $y$ from $0$ to $x^2$, for $0\le x\le1$.', (r'\int_0^1\!\!\int_0^{x^2}(x+y)\,dy\,dx=\int_0^1\Big(x^3+\frac{x^4}{2}\Big)dx', r'=\frac14+\frac1{10}=\frac7{20}'))],
+      r'(a) $\tfrac18$ (b) $\tfrac7{20}$', cites=cite('T8', 1, 2))
+
+# ---- B3 ----------------------------------------------------------------------------------------------
+D.H('B3 · Finding marginal densities', level=2)
+D.P(r'Integrate the **other** variable away. Same slice idea as B2, but you keep $x$ as a letter.', cites=cite('L18', 5))
+D.EQ(r'f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy\qquad f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx')
+D.L([r'**$f_X$:** vertical slice at $x$ → $y$ limits (they can contain $x$).',
+     r'**$f_Y$:** horizontal slice at $y$ → $x$ limits (they can contain $y$).',
+     r'**State the range** ("$0<x<1$, and $0$ otherwise"). Marks are lost without it.'])
+D.REGION('Slices through $-1\\le x\\le1,\\ x^2\\le y\\le1$', '(y>x^2)*(y<1)', x=(-1.3, 1.3), y=(-0.2, 1.3),
+         extra=['slider s -1 1 0.5 label="$x$"', 'slider t 0 1 0.5 label="$y$"',
+                'segment "s" "s^2" "s" "1" color=2 label="vertical: $y$ from $x^2$ to $1$"',
+                'segment "-sqrt(t)" "t" "sqrt(t)" "t" color=3 label="horizontal: $x$ from $-\\sqrt y$ to $\\sqrt y$"'],
+         intro=r'For the next example: drag both slices. Which ends move?')
+D.EX('Curved region ★ (Lecture 18)',
+     r'$f_{X,Y}(x,y)=\dfrac{5y}{4}$ for $-1\le x\le1,\ x^2\le y\le1$, and $0$ otherwise. Find $f_X$ and $f_Y$.',
+     [S(r'**$f_X$:** vertical slice, $y$ from $x^2$ to $1$.', r'f_X(x)=\int_{x^2}^{1}\frac{5y}{4}\,dy=\frac58\big(1-x^4\big),\qquad -1\le x\le1'),
+      S(r'**$f_Y$:** horizontal slice. $x^2\le y$ means $-\sqrt y\le x\le\sqrt y$.', r'f_Y(y)=\int_{-\sqrt y}^{\sqrt y}\frac{5y}{4}\,dx=\frac{5y}{4}\cdot2\sqrt y=\frac52y^{3/2},\qquad 0\le y\le1'),
+      S(r'**Range:** both are $0$ outside those intervals.')],
+     r'$f_X=\tfrac58(1-x^4)$ on $[-1,1]$; $f_Y=\tfrac52y^{3/2}$ on $[0,1]$', cites=cite('L18', 5, 6))
+D.TRY('Triangle ★ (Tutorial 7 Q6)',
+      r'$f_{X,Y}(x,y)=24xy$ for $x\ge0,\ y\ge0,\ x+y\le1$. Find $f_X(x)$ and $f_Y(y)$.',
+      [S(r'**$f_X$:** slice at $x$, $y$ from $0$ to $1-x$.', r'f_X(x)=\int_0^{1-x}24xy\,dy=12x(1-x)^2,\qquad0\le x\le1'),
+       S(r'**$f_Y$:** same shape with $x$ and $y$ swapped.', r'f_Y(y)=12y(1-y)^2,\qquad0\le y\le1')],
+      r'$f_X=12x(1-x)^2$, $f_Y=12y(1-y)^2$, both on $[0,1]$', cites=cite('T7', 2))
+
+# ---- B4 ----------------------------------------------------------------------------------------------
+D.H('B4 · Checking independence', level=2)
+D.EQ(r'X,Y\text{ independent}\iff f_{X,Y}(x,y)=f_X(x)\,f_Y(y)\text{ for all }x,y', cites=cite('L19', 2))
+D.T(['You see', 'Answer', 'Justify with'],
+    [['region is NOT a rectangle (triangle, curve)', 'dependent', r'a point outside the region where $f_X f_Y>0$'],
+     ['rectangle, and $f$ = ($x$-part)×($y$-part)', 'independent', r'$f_X\,f_Y=f_{X,Y}$'],
+     ['rectangle, $f$ does not split (e.g. $x+y$)', 'dependent', r'one point where $f_X f_Y\ne f_{X,Y}$']])
+D.P(r'A rectangle alone does not prove independence. The formula must split too.', cites=cite('L19', 4))
+D.EX('Show it with the marginals ★ (Tutorial 7 Q4)',
+     r'$f_{X,Y}(x,y)=12xy(1-x)$ for $0<x<1,\ 0<y<1$. Find $f_X$, $f_Y$. Are $X$ and $Y$ independent?',
+     [S(r'**Marginals.**', (r'f_X(x)=\int_0^1 12xy(1-x)\,dy=6x(1-x),\qquad0<x<1', r'f_Y(y)=\int_0^1 12xy(1-x)\,dx=12y\Big(\frac12-\frac13\Big)=2y,\qquad0<y<1')),
+      S(r'**Multiply** and compare.', r'f_X(x)\,f_Y(y)=6x(1-x)\cdot2y=12xy(1-x)=f_{X,Y}(x,y)'),
+      S(r'Outside the square both sides are $0$. So it holds everywhere.')],
+     r'Independent', cites=cite('T7', 1))
+D.TRY('Dependent: say why',
+      r'(a) $f=24xy$ on the triangle $x+y\le1$ (B3). (b) $f=x+y$ on the unit square, with $f_X=x+\tfrac12$, $f_Y=y+\tfrac12$.',
+      [S(r'(a) **Not a rectangle.** At $(0.9,\,0.9)$: $x+y>1$, so $f_{X,Y}=0$, but $f_X(0.9)\,f_Y(0.9)=(0.108)(0.108)>0$.'),
+       S(r'(b) **Doesn’t split.** At $(0,0)$:', r'f_X(0)\,f_Y(0)=\frac12\cdot\frac12=\frac14\ne0=f_{X,Y}(0,0)')],
+      r'Both dependent', cites=cite('T7', 2))
 
 # =====================================================================================================
-D.H('Check independence for continuous variables')
-D.P(r'Compute $f_X$ and $f_Y$, multiply them, and compare the product with the joint density. Include the ranges where each density is positive.', cites=cite('L19', 2, 4))
-D.EQ(r'X,Y\text{ independent}\iff f_{X,Y}(x,y)=f_X(x)\,f_Y(y)\quad\text{almost everywhere}')
-D.P(r'For densities, “almost everywhere” means differences on a boundary or at an isolated point have zero probability. To show dependence in these examples, look for a mismatch inside a region where it persists around the point you pick.')
-D.P(r'**Use the shape as a clue.** If $x$ and $y$ each have positive marginal density but a whole region of those pairs is missing from the joint support, the product test fails. On a rectangle, compare the formulas inside it.')
-
-D.EX('Independent ★ (Lecture 19)',
-     r'$f_{X,Y}(x,y)=4xy$ for $0<x<1,\ 0<y<1$, and $0$ otherwise. Are $X$ and $Y$ independent?',
-     [S(r'**Spot:** a square, and $4xy=(2x)(2y)$ splits. Expect independent.'),
-      S(r'**Marginals:** slice at $x$, $y$ runs $0$ to $1$; and the same the other way.', (r'f_X(x)=\int_0^1 4xy\,dy=2x,\qquad 0<x<1', r'f_Y(y)=\int_0^1 4xy\,dx=2y,\qquad 0<y<1')),
-      S(r'**Compare inside the square.**', r'f_X(x)\,f_Y(y)=2x\cdot2y=4xy=f_{X,Y}(x,y)'),
-      S(r'**Check outside.** At least one marginal is zero there, and the joint density is zero too.')],
-     r'Independent', cites=cite('L19', 3))
-
-D.EX('Not independent: the region ★ (Lecture 19)',
-     r'$f_{X,Y}(x,y)=\dfrac{5y}{4}$ on $-1\le x\le1,\ x^2\le y\le1$ (Example 4). Are $X$ and $Y$ independent?',
-     [S(r'**Look for a missing pair.** The marginals allow $x=0.9$ and $y=0.25$. Can they occur together?'),
-      S(r'**Marginals** from Example 4.', r'f_X(x)\,f_Y(y)=\frac58(1-x^4)\cdot\frac52y^{3/2}=\frac{25}{16}(1-x^4)\,y^{3/2}'),
-      S(r'**Compare** below the parabola. At $(0.9,0.25)$ and nearby, $y<x^2$, so the joint density is zero and both marginals are positive.', r'f_{X,Y}(0.9,\,0.25)=0\ne f_X(0.9)\,f_Y(0.25)\approx' + f'{5 / 8 * (1 - 0.9 ** 4) * 5 / 2 * 0.25 ** 1.5:.3f}')],
-     r'Not independent', cites=cite('L19', 4))
-
-D.EX('Not independent: the formula ★ (Tutorial 7 Q5)',
-     r'$f_{X,Y}(x,y)=x+y$ for $0<x<1,\ 0<y<1$. (a) Find $f_X$ and $f_Y$. (b) Are they independent? (c) $P(X+Y<1)$.',
-     [S(r'(a) **Marginals.**', (r'f_X(x)=\int_0^1(x+y)\,dy=x+\frac12,\qquad 0<x<1', r'f_Y(y)=y+\frac12,\qquad 0<y<1\ \ \text{(same by symmetry)}')),
-      S(r'(b) **Compare** at $(\tfrac14,\tfrac14)$ inside the square. The formulas are continuous there, so the mismatch persists nearby.',
-        r'f_X\big(\tfrac14\big)f_Y\big(\tfrac14\big)=\frac34\cdot\frac34=\frac9{16}\ne\frac12=f_{X,Y}\big(\tfrac14,\tfrac14\big)'),
-      S(r'(c) **Sketch** the line $x+y=1$; below it. **Slice** at $x$: $y$ from $0$ to $1-x$.', (r'P(X+Y<1)=\int_0^1\!\!\int_0^{1-x}(x+y)\,dy\,dx', r'=\int_0^1\Big(x(1-x)+\frac{(1-x)^2}{2}\Big)dx')),
-      S(r'**Integrate.**', r'=\frac16+\frac16=\frac13')],
-     r'(a) $x+\tfrac12$, $y+\tfrac12$ (b) not independent (c) $\tfrac13$', cites=cite('T7', 2))
-
+# PART C
 # =====================================================================================================
-D.H('Review the joint CDF and covariance')
-D.H('Joint CDF', level=2)
-D.P(r'The joint CDF $F_{X,Y}(a,b)$ is the chance that both $X\le a$ and $Y\le b$. In Example 1, $F_{X,Y}(0,1)$ uses just the first row and first two columns, so it equals $0.10+0.15=0.25$.', cites=cite('L17', 3, 4))
-D.P(r'To find a rectangle probability from a joint CDF, start with the probability below and left of $(b,d)$. Subtract the strips left of $a$ and below $c$. Add their overlap back once.')
-D.EQ(r'P(a<X\le b,\ c<Y\le d)=F(b,d)-F(a,d)-F(b,c)+F(a,c)', cites=cite('L17', 4))
-D.EX('Rectangle from the joint CDF ★ (Tutorial 7 Q2)',
-     r'$F_{X,Y}(3,5)=0.85$, $F_{X,Y}(1,5)=0.30$, $F_{X,Y}(3,2)=0.40$, $F_{X,Y}(1,2)=0.15$. Find $P(1<X\le3,\ 2<Y\le5)$. Also: how do you get $F_X(x)$ from $F_{X,Y}$?',
-     [S(r'**Plug in** with $a=1,b=3,c=2,d=5$.', r'0.85-0.30-0.40+0.15=0.30'),
-      S(r'**Marginal CDF:** let $y\to\infty$ (no limit on $Y$).', r'F_X(x)=F_{X,Y}(x,\infty)')],
-     r'$0.30$; $F_X(x)=F_{X,Y}(x,\infty)$', cites=cite('T7', 1))
+D.H('Part C · Joint CDFs')
 
-D.EX('Joint CDF from a PDF ★ (Lecture 18 Practice 2, Tutorial 8 Q2)',
-     r'$f_{X,Y}(x,y)=2$ for $0\le y\le x\le1$. Find $F_{X,Y}(x,y)$.',
-     [S(r'**Sketch:** the triangle under $y=x$. $F(x,y)$ = $2\times$ (the triangle’s area to the lower-left of $(x,y)$).'),
-      S(r'Inside, $0\le y\le x\le1$: the corner cuts a trapezoid of area $xy-\tfrac{y^2}2$.', r'F=\int_0^y\!\!\int_v^x2\,du\,dv=2xy-y^2'),
-      S(r'$0\le x<y$, $x\le1$: the corner holds the whole triangle up to $x$.', r'F=\int_0^x\!\!\int_0^u2\,dv\,du=x^2'),
-      S(r'$x>1$, $0\le y\le1$: put $x=1$ in the inside formula. $y>1$, $0\le x\le1$: $x^2$. Both past $1$: $1$. Any negative: $0$.', r'F=2y-y^2\ \ (x>1),\qquad F=1\ \ (x,y\ge1)')],
-     r'$F=0$ if $x<0$ or $y<0$; $2xy-y^2$ for $0\le y\le x\le1$; $x^2$ for $0\le x\le1,\ y\ge x$; $2y-y^2$ for $x>1,\ 0\le y\le1$; $1$ for $x,y\ge1$',
-     cites=cite('L18', 4) + cite('T8', 1))
+# ---- C1 ----------------------------------------------------------------------------------------------
+D.H('C1 · What a joint CDF is', level=2)
+D.EQ(r'F_{X,Y}(x,y)=P(X\le x,\ Y\le y)', cites=cite('L17', 3))
+D.P(r'It is everything to the **lower left** of the point $(x,y)$.')
+D.L([r'**Table:** add the cells with $x$-value $\le x$ and $y$-value $\le y$. Lecture 17 table: $F_{X,Y}(0,1)=0.10+0.15=0.25$.',
+     r'**Density:** integrate from the bottom-left corner of the region up to $(x,y)$.'])
+D.EQ(r'F_{X,Y}(x,y)=\int_{-\infty}^{x}\!\int_{-\infty}^{y}f_{X,Y}(u,v)\,dv\,du', cites=cite('L19', 1))
+D.EX('Joint CDF on a square ★ (Tutorial 8 Q8d)',
+     r'$f_{X,Y}(x,y)=x+y$ for $0\le x\le1,\ 0\le y\le1$. Find $F_{X,Y}(x,y)$ for all $x,y$.',
+     [S(r'**Inside the square** ($0\le x,y\le1$): integrate from $(0,0)$.', r'F=\int_0^x\!\!\int_0^y(u+v)\,dv\,du=\frac{x^2y+xy^2}{2}'),
+      S(r'**Past an edge:** that variable is "everything", so put in the edge value ($1$).', (r'x>1,\ 0\le y\le1:\quad F=\frac{y+y^2}{2}', r'y>1,\ 0\le x\le1:\quad F=\frac{x^2+x}{2}')),
+      S(r'**Past both edges** $F=1$. **Left of or below** the square $F=0$.')],
+     r'$\tfrac{x^2y+xy^2}2$ inside; $\tfrac{y+y^2}2$, $\tfrac{x^2+x}2$ past one edge; $1$ past both; $0$ below/left',
+     cites=cite('T8', 2))
+D.TRY('Joint CDF with a split formula',
+      r'$f_{X,Y}(x,y)=4xy$ on $0\le x\le1,\ 0\le y\le1$. Find $F_{X,Y}(x,y)$ inside the square and $F_{X,Y}(0.5,\,2)$.',
+      [S(r'**Inside.**', r'F=\int_0^x2u\,du\int_0^y2v\,dv=x^2y^2'),
+       S(r'**$y=2$ is past the top**, so use $y=1$.', r'F(0.5,\,2)=F(0.5,\,1)=0.25')],
+      r'$x^2y^2$; $0.25$', diff='introductory')
 
-D.H('Covariance and jointly Gaussian variables', level=2)
-D.P(r'**Covariance** (Lectures 19–20) measures whether $X$ and $Y$ tend to move together. To get $E[XY]$, weight each product $xy$ by the joint distribution using a double sum or integral.', cites=cite('L19', 7))
-D.EQ(r'\operatorname{Cov}[X,Y]=E[XY]-E[X]\,E[Y]\qquad\qquad \rho_{X,Y}=\frac{\operatorname{Cov}[X,Y]}{\sigma_X\sigma_Y}', cites=cite('L20', 2))
-D.L([r'Independent $\Rightarrow E[XY]=E[X]E[Y]\Rightarrow\operatorname{Cov}=0$. **Not** the other way round in general.',
-     r'**Jointly Gaussian** is the exception: there, $\operatorname{Cov}=0\iff$ independent.',
-     r'A Gaussian pair has $f=c\,e^{-(\dots)}$. **No $xy$ term** in the exponent → $\rho=0$ → independent. Match each square to $\dfrac{(x-\mu)^2}{2\sigma^2}$ to read off $\mu$ and $\sigma^2$.'],
-     cites=cite('L20', 2, 4))
-D.EX('A Gaussian pair ★ (Tutorial 8 Q9)',
-     r'$f_{X,Y}(x,y)=c\exp\Big(-2x^2-\dfrac{y^2}{2}\Big)$. (a) What is it, and what is $c$? (b) Independent? (c) $E[X],E[Y],\operatorname{Var}(X),\operatorname{Var}(Y)$. (d) The PDF of $Z=aX+bY$.',
-     [S(r'(a) **Spot:** $e^{-(\text{squares})}$ → bivariate Gaussian. Match $2x^2=\dfrac{x^2}{2\sigma_X^2}$ and $\dfrac{y^2}2=\dfrac{y^2}{2\sigma_Y^2}$.', r'\sigma_X^2=\frac14,\qquad \sigma_Y^2=1,\qquad \mu_X=\mu_Y=0'),
-      S(r'With $\rho=0$ the constant is $\dfrac1{2\pi\sigma_X\sigma_Y}$.', r'c=\frac{1}{2\pi\cdot\frac12\cdot1}=\frac1\pi'),
-      S(r'(b) No $xy$ term, so $f$ splits: $f=\big(\text{only }x\big)\big(\text{only }y\big)$ → **independent** (and uncorrelated).'),
-      S(r'(c) Read off.', r'E[X]=E[Y]=0,\qquad \operatorname{Var}(X)=\frac14,\qquad \operatorname{Var}(Y)=1'),
-      S(r'(d) A combination of independent Gaussians is Gaussian. Means add; variances add with $a^2$, $b^2$.', r'Z\sim N\Big(0,\ \frac{a^2}{4}+b^2\Big),\qquad f_Z(z)=\frac{1}{\sqrt{2\pi\big(\frac{a^2}4+b^2\big)}}\,e^{-z^2/\left(2\left(\frac{a^2}4+b^2\right)\right)}')],
-     r'(a) Gaussian, $c=\tfrac1\pi$ (b) independent (c) $0,0,\tfrac14,1$ (d) $Z\sim N(0,\tfrac{a^2}4+b^2)$', cites=cite('T8', 2) + cite('L20', 4, 6))
+# ---- C2 ----------------------------------------------------------------------------------------------
+D.H('C2 · Finding probabilities using CDFs', level=2)
+D.P(r'For a rectangle: top-right corner, minus the two side strips, plus the bottom-left corner (it was taken away twice).', cites=cite('L17', 4))
+D.REGION('Which corner is subtracted twice?', '(x<3)*(y<5)', x=(-0.5, 4), y=(-0.5, 6),
+         label='$F(b,d)$: lower-left of $(b,d)$',
+         extra=['region "(x>1)*(x<3)*(y>2)*(y<5)" color=2 label="the rectangle we want"',
+                'point "1" "2" color=0', 'point "3" "2" color=0', 'point "1" "5" color=0', 'point "3" "5" color=0',
+                'text "0.55" "1.7" "$(a,c)$"', 'text "3.45" "1.7" "$(b,c)$"',
+                'text "0.55" "5.3" "$(a,d)$"', 'text "3.45" "5.3" "$(b,d)$"'])
+D.EQ(r'P(a<X\le b,\ c<Y\le d)=F(b,d)-F(a,d)-F(b,c)+F(a,c)')
+D.EX('Four corner values ★ (Tutorial 7 Q2)',
+     r'$F_{X,Y}(3,5)=0.85$, $F_{X,Y}(1,5)=0.30$, $F_{X,Y}(3,2)=0.40$, $F_{X,Y}(1,2)=0.15$. Find $P(1<X\le3,\ 2<Y\le5)$.',
+     [S(r'**Match:** $a=1,\ b=3,\ c=2,\ d=5$.'),
+      S(r'**Plug in** with signs $+,-,-,+$.', r'0.85-0.30-0.40+0.15=0.30')],
+     r'$0.30$', cites=cite('T7', 1))
+D.TRY('Rectangle from a CDF formula',
+      r'$F_{X,Y}(x,y)=x^2y^2$ on the unit square (C1 Try it). Find $P(0.5<X\le1,\ 0<Y\le0.5)$.',
+      [S(r'**Match:** $a=0.5,\ b=1,\ c=0,\ d=0.5$. Anything with $y=0$ is $0$.', r'F(1,0.5)-F(0.5,0.5)-0+0=0.25-0.0625=0.1875')],
+      r'$0.1875=\tfrac3{16}$', diff='introductory')
+
+# ---- C3 ----------------------------------------------------------------------------------------------
+D.H('C3 · Getting marginal CDFs', level=2)
+D.P(r'For $F_X$, let $Y$ be anything: push $y$ to $\infty$. In practice, put in the top edge of the region.', cites=cite('L17', 3))
+D.EQ(r'F_X(x)=F_{X,Y}(x,\infty)\qquad F_Y(y)=F_{X,Y}(\infty,y)')
+D.P(r'Other route (formula sheet): find $f_X$ first, then $F_X(x)=\int_{-\infty}^{x}f_X(t)\,dt$. Both give the same answer.')
+D.EX('Marginal CDF from the joint CDF',
+     r'From C1, $F_{X,Y}=\dfrac{x^2y+xy^2}{2}$ on the unit square. Find $F_X(x)$.',
+     [S(r'**Put in the top edge** $y=1$.', r'F_X(x)=F_{X,Y}(x,1)=\frac{x^2+x}{2},\qquad0\le x\le1'),
+      S(r'**Full answer.**', r'F_X(x)=\begin{cases}0,&x<0\\ \dfrac{x^2+x}{2},&0\le x\le1\\ 1,&x>1\end{cases}'),
+      S(r'**Check** with the formula sheet: $f_X=x+\tfrac12$ (B4 Try it).', r'\int_0^x\Big(t+\frac12\Big)dt=\frac{x^2}{2}+\frac x2\ \checkmark')],
+     r'$F_X(x)=\tfrac{x^2+x}{2}$ on $[0,1]$')
+D.TRY('Marginal CDFs and independence',
+      r'$F_{X,Y}=x^2y^2$ on the unit square. Find $F_X$ and $F_Y$. Are $X,Y$ independent?',
+      [S(r'**Top edges.**', r'F_X(x)=F(x,1)=x^2,\qquad F_Y(y)=F(1,y)=y^2'),
+       S(r'**Independent** when the joint CDF splits: $F_{X,Y}=F_X\,F_Y$ (Lecture 19).', r'x^2\cdot y^2=x^2y^2\ \checkmark')],
+      r'$x^2$, $y^2$; independent', diff='introductory', cites=cite('L19', 2))
 
 # =====================================================================================================
 D.H('Practice Questions')
-D.P('Try the table first, then practise choosing the limits for a density. Open each solution after you try it. ★ marks problems based on the lectures or tutorials.')
+D.P('Test 2 difficulty, 10 marks each like the real test. Do them closed-book with the formula sheet only. ★ = from the tutorials.')
 
-# ---- tables
-TA = {(1, 0): Fr(1, 10), (1, 1): Fr(1, 5), (1, 2): Fr(1, 10), (2, 0): Fr(3, 20), (2, 1): Fr(3, 10), (2, 2): Fr(3, 20)}
-assert sum(TA.values()) == 1
-pxA = {x: sum(v for (a, _), v in TA.items() if a == x) for x in (1, 2)}
-pyA = {y: sum(v for (_, b), v in TA.items() if b == y) for y in (0, 1, 2)}
-assert all(TA[x, y] == pxA[x] * pyA[y] for x, y in TA)
-TB = {(0, 0): Fr(1, 5), (0, 1): Fr(1, 10), (1, 0): Fr(1, 10), (1, 1): Fr(3, 10), (2, 0): Fr(1, 10), (2, 1): Fr(1, 5)}
-assert sum(TB.values()) == 1
-D.Q('Joint PMF table · find $c$, marginals, independence',
-    r'''(a) Find $c$, the marginals, $P(X+Y\le2)$ and $F_{X,Y}(1,1)$. Are $X$ and $Y$ independent?
+D.Q('[10 marks] A table with $c$',
+    r'''(a) Find $c$. (2 marks) (b) Find $p_X(x)$ and $p_Y(y)$. (3 marks) (c) Find $P(X+Y\le2)$ and $F_{X,Y}(1,1)$. (2 marks) (d) Are $X$ and $Y$ independent? Justify. (3 marks)
 
 | | $y=0$ | $y=1$ | $y=2$ |
 |---|---|---|---|
 | $x=1$ | $0.10$ | $0.20$ | $c$ |
-| $x=2$ | $0.15$ | $0.30$ | $0.15$ |
+| $x=2$ | $0.15$ | $0.30$ | $0.15$ |''',
+    [S(r'(a) **Cells add to $1$.**', r'0.90+c=1\ \Rightarrow\ c=0.10'),
+     S(r'(b) **Row / column totals.**', (r'p_X(1)=0.40,\quad p_X(2)=0.60', r'p_Y(0)=0.25,\quad p_Y(1)=0.50,\quad p_Y(2)=0.25')),
+     S(r'(c) $x+y\le2$: cells $(1,0),(1,1),(2,0)$. $F(1,1)$: $x\le1,\ y\le1$.', (r'P(X+Y\le2)=0.10+0.20+0.15=0.45', r'F_{X,Y}(1,1)=0.10+0.20=0.30')),
+     S(r'(d) **Check all 6 cells.**', (r'0.4(0.25)=0.10,\ \ 0.4(0.5)=0.20,\ \ 0.4(0.25)=0.10', r'0.6(0.25)=0.15,\ \ 0.6(0.5)=0.30,\ \ 0.6(0.25)=0.15')),
+     S(r'All match → **independent**.')],
+    r'(a) $0.10$ (b) $0.4,\,0.6$; $0.25,\,0.5,\,0.25$ (c) $0.45$; $0.30$ (d) independent')
 
-(b) Same question for this table: are $X$ and $Y$ independent? Find $P(X<Y)$.
+COIN = {}
+for a in 'HT':
+    for b in 'HT':
+        for c_ in 'HT':
+            k = ((a + b).count('H'), (b + c_).count('H'))
+            COIN[k] = COIN.get(k, 0) + 1
+D.Q('[10 marks] Build the table from coins',
+    r'A fair coin is tossed 3 times. $X$ = number of heads in tosses 1–2, $Y$ = number of heads in tosses 2–3. (a) List the outcomes and write the joint PMF table. (4 marks) (b) Find $p_X$ and $p_Y$. (2 marks) (c) Find $P(X=Y)$. (1 mark) (d) Are $X$ and $Y$ independent? Justify. (3 marks)',
+    [S(r'(a) **8 outcomes**, each $\tfrac18$. As $(x,y)$: $HHH(2,2)$, $HHT(2,1)$, $HTH(1,1)$, $HTT(1,0)$, $THH(1,2)$, $THT(1,1)$, $TTH(0,1)$, $TTT(0,0)$.'),
+     S(r'**Count** each pair (in eighths). Rows $x=0,1,2$; columns $y=0,1,2$.', (r'x=0:\ \ 1,\ 1,\ 0', r'x=1:\ \ 1,\ 2,\ 1', r'x=2:\ \ 0,\ 1,\ 1')),
+     S(r'(b) **Totals.**', r'p_X=p_Y=\frac28,\ \frac48,\ \frac28\quad(\text{at }0,1,2)'),
+     S(r'(c) **Diagonal.**', r'P(X=Y)=\frac{1+2+1}{8}=\frac12'),
+     S(r'(d) **Zero cell** $(0,2)$:', r'p_{X,Y}(0,2)=0\ne\frac28\cdot\frac28=p_X(0)\,p_Y(2)'),
+     S(r'→ **dependent** (they share toss 2).')],
+    r'(b) $\tfrac14,\tfrac12,\tfrac14$ each (c) $\tfrac12$ (d) dependent')
 
-| | $y=0$ | $y=1$ |
-|---|---|---|
-| $x=0$ | $0.2$ | $0.1$ |
-| $x=1$ | $0.1$ | $0.3$ |
-| $x=2$ | $0.1$ | $0.2$ |''',
-    [S(r'(a) **Find $c$:** the cells add to $1$.', r'0.9+c=1\quad\Longrightarrow\quad c=0.10'),
-     S(r'**Marginals:** row and column totals.', (r'p_X(1)=0.40,\quad p_X(2)=0.60', r'p_Y(0)=0.25,\quad p_Y(1)=0.50,\quad p_Y(2)=0.25')),
-     S(r'$x+y\le2$: cells $(1,0),(1,1),(2,0)$.', r'P(X+Y\le2)=0.10+0.20+0.15=0.45'),
-     S(r'Lower-left of $(1,1)$: $x\le1$, $y\le1$.', r'F_{X,Y}(1,1)=0.10+0.20=0.30'),
-     S(r'**Compare** all 6 cells with row × column.', (r'0.4(0.25)=0.10,\ \ 0.4(0.5)=0.20,\ \ 0.4(0.25)=0.10', r'0.6(0.25)=0.15,\ \ 0.6(0.5)=0.30,\ \ 0.6(0.25)=0.15')),
-     S(r'All match → **independent**.'),
-     S(r'(b) **Marginals**, then **Compare** one cell.', r'p_X(0)\,p_Y(0)=0.3\times0.4=0.12\ne0.2'),
-     S(r'**Not** independent. $x<y$ only in cell $(0,1)$.', r'P(X<Y)=0.1')],
-    r'(a) $c=0.1$; $p_X=0.4,0.6$; $p_Y=0.25,0.5,0.25$; $0.45$; $0.30$; independent (b) not independent; $0.1$', diff='introductory')
-
-D.Q('Find $c$ and a circle probability ★ · Tutorial 8 Q1',
-    r'$f_{X,Y}(x,y)=cxy$ for $0\le x\le1,\ 0\le y\le2$. Find $c$ and $P(X^2+Y^2\le1)$.',
-    [S(r'**Find $c$:** the formula splits, so the double integral is a product.', r'c\int_0^1x\,dx\int_0^2y\,dy=c\cdot\frac12\cdot2=c=1'),
-     S(r'**Sketch:** a quarter circle of radius $1$ (it fits inside the box, since $x\le1$, $y\le1<2$).'),
-     S(r'**Slice** at $x$: $y$ from $0$ to $\sqrt{1-x^2}$.', r'P=\int_0^1\!\!\int_0^{\sqrt{1-x^2}}xy\,dy\,dx=\int_0^1x\cdot\frac{1-x^2}{2}\,dx'),
-     S(r'**Integrate.**', r'=\frac12\Big(\frac12-\frac14\Big)=\frac18')],
-    r'$c=1$, $P=\tfrac18$', cites=cite('T8', 1) + cite('L18', 4))
-
-D.Q('Marginals and independence ★ · Tutorial 7 Q4',
-    r'$f_{X,Y}(x,y)=12xy(1-x)$ for $0<x<1,\ 0<y<1$. (a) $f_X$, $f_Y$. (b) Independent? (c) $P(X<\tfrac12,\ Y<\tfrac12)$.',
-    [S(r'(a) **Marginals.**', (r'f_X(x)=\int_0^1 12xy(1-x)\,dy=6x(1-x),\qquad 0<x<1', r'f_Y(y)=\int_0^1 12xy(1-x)\,dx=12y\Big(\frac12-\frac13\Big)=2y,\qquad 0<y<1')),
-     S(r'(b) **Compare.**', (r'f_X\,f_Y=6x(1-x)\cdot2y=12xy(1-x)=f_{X,Y}', r'\Rightarrow\quad\text{independent}')),
-     S(r'(c) Independent, so the joint probability is a product of the two single ones.', (r'P\big(X<\tfrac12\big)=\int_0^{1/2}6x(1-x)\,dx=\frac12', r'P\big(Y<\tfrac12\big)=\int_0^{1/2}2y\,dy=\frac14')),
-     S(r'Multiply.', r'P=\frac12\cdot\frac14=\frac18')],
-    r'(a) $6x(1-x)$, $2y$ (b) independent (c) $\tfrac18$', cites=cite('T7', 1))
-
-D.Q('Triangle region ★ · Tutorial 7 Q6',
-    r'$f_{X,Y}(x,y)=24xy$ for $x\ge0,\ y\ge0,\ x+y\le1$. (a) Sketch the region. (b) Check it is a valid PDF. (c) $f_X(x)$. (d) Independent?',
+D.Q('[10 marks] A triangle ★ (Tutorial 7 Q6)',
+    r'$f_{X,Y}(x,y)=24xy$ for $x\ge0,\ y\ge0,\ x+y\le1$, and $0$ otherwise. (a) Sketch the region. (1 mark) (b) Show it is a valid joint PDF. (3 marks) (c) Find $f_X(x)$. (3 marks) (d) Are $X$ and $Y$ independent? Explain. (3 marks)',
     [S(r'(a) **Sketch:** the triangle with corners $(0,0)$, $(1,0)$, $(0,1)$.'),
-     S(r'(c) first: **Slice** at $x$, $y$ from $0$ to $1-x$.', r'f_X(x)=\int_0^{1-x}24xy\,dy=12x(1-x)^2,\qquad 0\le x\le1'),
-     S(r'(b) $f\ge0$, and the total is $1$:', r'\int_0^1 12x(1-x)^2\,dx=12\Big(\frac12-\frac23+\frac14\Big)=1\ \checkmark'),
-     S(r'(d) **Spot:** a triangle, not a rectangle → **not** independent. Proof: by symmetry $f_Y(y)=12y(1-y)^2$; at $(0.9,0.9)$, $f_{X,Y}=0$ (outside) but $f_X f_Y>0$.')],
-    r'(b) valid (c) $12x(1-x)^2$ on $[0,1]$ (d) not independent', cites=cite('T7', 2))
+     S(r'(b) $24xy\ge0$ there. **Volume:** slice $y$ from $0$ to $1-x$.', (r'\int_0^1\!\!\int_0^{1-x}24xy\,dy\,dx=\int_0^1 12x(1-x)^2\,dx', r'=12\Big(\frac12-\frac23+\frac14\Big)=1\ \checkmark')),
+     S(r'(c) **The inner integral above** is $f_X$.', r'f_X(x)=12x(1-x)^2,\quad 0\le x\le1;\quad 0\text{ otherwise}'),
+     S(r'(d) **Not a rectangle → dependent.** At $(0.9,0.9)$, $f_{X,Y}=0$ but $f_X(0.9)\,f_Y(0.9)>0$ (by symmetry $f_Y=12y(1-y)^2$).')],
+    r'(c) $12x(1-x)^2$ on $[0,1]$ (d) dependent', cites=cite('T7', 2))
 
-D.Q('Find $k$, marginals, joint CDF, two probabilities ★ · Tutorial 8 Q8',
-    r'$f_{X,Y}(x,y)=k(x+y)$ for $0\le x\le1,\ 0\le y\le1$. (a) $k$. (b) $f_X$, $f_Y$. (c) Independent? (d) The joint CDF inside the square. (e) $P(X<Y)$ and $P(Y<X^2)$.',
-    [S(r'(a) **Find $c$.**', r'k\int_0^1\!\!\int_0^1(x+y)\,dy\,dx=k\Big(\frac12+\frac12\Big)=k=1'),
-     S(r'(b) **Marginals** (as Example 7).', r'f_X(x)=x+\frac12,\qquad f_Y(y)=y+\frac12'),
-     S(r'(c) At $(\tfrac14,\tfrac14)$ the marginal product is $\tfrac9{16}$ and the joint density is $\tfrac12$. The mismatch persists nearby, so the variables are dependent.'),
-     S(r'(d) Integrate from the corner $(0,0)$.', r'F(x,y)=\int_0^x\!\!\int_0^y(u+v)\,dv\,du=\frac{x^2y+xy^2}{2},\qquad 0\le x,y\le1'),
-     S(r'(e) $x+y$ is the same if you swap $x$ and $y$, so $X<Y$ and $Y<X$ are equally likely.', r'P(X<Y)=\frac12'),
-     S(r'**Slice** at $x$: $y$ from $0$ to $x^2$.', (r'P(Y<X^2)=\int_0^1\!\!\int_0^{x^2}(x+y)\,dy\,dx', r'=\int_0^1\Big(x^3+\frac{x^4}2\Big)dx=\frac14+\frac1{10}=\frac7{20}'))],
-    r'(a) $1$ (b) $x+\tfrac12$, $y+\tfrac12$ (c) no (d) $\tfrac{x^2y+xy^2}2$ (e) $\tfrac12$, $\tfrac7{20}$', cites=cite('T8', 2))
+D.Q('[10 marks] Find $k$, marginals, CDF ★ (Tutorial 8 Q8)',
+    r'$f_{X,Y}(x,y)=k(x+y)$ for $0\le x\le1,\ 0\le y\le1$, and $0$ otherwise. (a) Find $k$. (2 marks) (b) Find $f_X$ and $f_Y$. (2 marks) (c) Are $X$ and $Y$ independent? (2 marks) (d) Find $F_{X,Y}(x,y)$ for $0\le x,y\le1$ and $F_X(x)$. (2 marks) (e) Find $P(X<Y)$. (2 marks)',
+    [S(r'(a) **Volume $=1$.**', r'k\int_0^1\!\!\int_0^1(x+y)\,dy\,dx=k=1'),
+     S(r'(b) **Integrate the other variable away.**', r'f_X(x)=x+\frac12,\quad f_Y(y)=y+\frac12\quad(\text{on }[0,1])'),
+     S(r'(c) **Doesn’t split.** At $(0,0)$: $f_Xf_Y=\tfrac14\ne0$ → dependent.'),
+     S(r'(d) **From $(0,0)$**, then the top edge $y=1$.', (r'F_{X,Y}=\frac{x^2y+xy^2}{2}', r'F_X(x)=\frac{x^2+x}{2}')),
+     S(r'(e) **Slice** at $x$: $y$ from $x$ to $1$.', r'\int_0^1\!\!\int_x^1(x+y)\,dy\,dx=\int_0^1\Big(x+\frac12-\frac{3x^2}{2}\Big)dx=\frac12+\frac12-\frac12=\frac12')],
+    r'(a) $1$ (b) $x+\tfrac12$, $y+\tfrac12$ (c) dependent (d) $\tfrac{x^2y+xy^2}2$; $\tfrac{x^2+x}2$ (e) $\tfrac12$', cites=cite('T8', 2))
 
-D.Q('Region probability ★ · Tutorial 8 Q7',
-    r'$f_{X,Y}(x,y)=x-y+1$ for $x,y\in[0,1]$. Find $P(X+Y\ge\tfrac12)$.',
-    [S(r'**Spot:** most of the square has $x+y\ge\tfrac12$. Do the small corner and subtract.'),
-     S(r'**Sketch:** the corner triangle $x+y<\tfrac12$. **Slice** at $x$: $y$ from $0$ to $\tfrac12-x$, for $0\le x\le\tfrac12$.', r'P\big(X+Y<\tfrac12\big)=\int_0^{1/2}\!\!\int_0^{1/2-x}(x-y+1)\,dy\,dx'),
-     S(r'**Integrate.** (The $x-y$ part cancels on this triangle by symmetry; the $1$ gives the area $\tfrac18$.)', r'=\frac18'),
-     S(r'Complement.', r'P\big(X+Y\ge\tfrac12\big)=1-\frac18=\frac78')],
-    r'$\tfrac78$', cites=cite('T8', 2))
+D.Q('[10 marks] Exponential pair',
+    r'$f_{X,Y}(x,y)=c\,e^{-x-2y}$ for $x>0,\ y>0$, and $0$ otherwise. (a) Find $c$. (2 marks) (b) Find $f_X$ and $f_Y$. (3 marks) (c) Are $X$ and $Y$ independent? (1 mark) (d) Find $F_{X,Y}(x,y)$ and $F_X(x)$. (2 marks) (e) Find $P(X<Y)$. (2 marks)',
+    [S(r'(a) **Splits** ($e^{-x}\cdot e^{-2y}$) on a (infinite) rectangle.', r'c\int_0^\infty e^{-x}dx\int_0^\infty e^{-2y}dy=c\cdot1\cdot\frac12=1\ \Rightarrow\ c=2'),
+     S(r'(b) **Integrate away.**', (r'f_X(x)=\int_0^\infty2e^{-x-2y}dy=e^{-x}\quad(x>0)', r'f_Y(y)=\int_0^\infty2e^{-x-2y}dx=2e^{-2y}\quad(y>0)')),
+     S(r'(c) $f_Xf_Y=2e^{-x-2y}=f_{X,Y}$ → **independent**.'),
+     S(r'(d) **From $(0,0)$.** Then $y\to\infty$.', (r'F_{X,Y}=\int_0^x e^{-u}du\int_0^y2e^{-2v}dv=(1-e^{-x})(1-e^{-2y})', r'F_X(x)=1-e^{-x},\quad x>0')),
+     S(r'(e) **Slice:** $y$ from $x$ to $\infty$.', r'\int_0^\infty e^{-x}\Big(\int_x^\infty2e^{-2y}dy\Big)dx=\int_0^\infty e^{-3x}\,dx=\frac13')],
+    r'(a) $2$ (b) $e^{-x}$, $2e^{-2y}$ (c) independent (d) $(1-e^{-x})(1-e^{-2y})$; $1-e^{-x}$ (e) $\tfrac13$')
 
-e_val = (3 - 2 * log(2)) / 8
-D.Q('Two independent uniforms ★ · Lecture 20, Tutorial 8 Q3',
-    r'$X$ and $Y$ are independent, each uniform on $[-1,1]$. Find (a) $\operatorname{Cov}[X,Y]$ (b) $P(X^2<\tfrac14,\ |Y-1|>\tfrac12)$ (c) $P(X<Y,\ Y>\tfrac12)$ (d) $P(\max\{X,Y\}<\tfrac12)$ (e) $P(XY>\tfrac14)$.',
-    [S(r'**Spot:** independent, so $f_{X,Y}=\tfrac12\cdot\tfrac12=\tfrac14$ on the square $[-1,1]^2$. A probability = $\tfrac14\times$ the area.'),
-     S(r'(a) Independent → uncorrelated.', r'\operatorname{Cov}[X,Y]=E[XY]-E[X]E[Y]=0'),
-     S(r'(b) Split into one event per variable. $X^2<\tfrac14\iff|X|<\tfrac12$. $|Y-1|>\tfrac12\iff Y<\tfrac12$ (since $Y\le1$).', r'P=P\big(|X|<\tfrac12\big)\,P\big(Y<\tfrac12\big)=\frac12\cdot\frac34=\frac38'),
-     S(r'(c) **Slice** at $y\in(\tfrac12,1)$: $x$ from $-1$ to $y$.', r'P=\frac14\int_{1/2}^{1}(y+1)\,dy=\frac14\cdot\frac78=\frac7{32}'),
-     S(r'(d) The max is below $\tfrac12$ exactly when **both** are.', r'P=P\big(X<\tfrac12\big)P\big(Y<\tfrac12\big)=\Big(\frac34\Big)^2=\frac9{16}'),
-     S(r'(e) $XY>\tfrac14$: both positive or both negative, two mirror-image pieces. Positive piece: $x\in(\tfrac14,1)$, $y$ from $\tfrac1{4x}$ to $1$.', r'\text{area}=\int_{1/4}^{1}\Big(1-\frac1{4x}\Big)dx=\frac34-\frac{\ln4}{4}'),
-     S(r'Two pieces, times $\tfrac14$.', r'P=2\cdot\frac14\Big(\frac34-\frac{\ln 4}{4}\Big)=\frac{3-2\ln2}{8}\approx' + f'{e_val:.4f}')],
-    f'(a) $0$ (b) $\\tfrac38$ (c) $\\tfrac7{{32}}$ (d) $\\tfrac9{{16}}$ (e) $\\tfrac{{3-2\\ln2}}8\\approx{e_val:.4f}$', cites=cite('L20', 3) + cite('T8', 1))
-
-D.Q('A Gaussian pair · like Tutorial 8 Q9',
-    r'$f_{X,Y}(x,y)=c\exp\Big(-\dfrac{x^2}{2}-\dfrac{y^2}{8}\Big)$. Find $c$, $\operatorname{Var}(X)$, $\operatorname{Var}(Y)$; are $X$, $Y$ independent? What is the distribution of $Z=X-2Y$?',
-    [S(r'**Spot:** Gaussian, no $xy$ term → $\rho=0$ → **independent**. Match $\dfrac{x^2}{2\sigma_X^2}$, $\dfrac{y^2}{2\sigma_Y^2}$.', r'\sigma_X^2=1,\qquad \sigma_Y^2=4,\qquad\mu_X=\mu_Y=0'),
-     S(r'The constant.', r'c=\frac{1}{2\pi\sigma_X\sigma_Y}=\frac1{2\pi\cdot1\cdot2}=\frac1{4\pi}'),
-     S(r'$Z=aX+bY$ with $a=1$, $b=-2$: Gaussian, mean $0$, variance $a^2\sigma_X^2+b^2\sigma_Y^2$.', r'\operatorname{Var}(Z)=1\cdot1+4\cdot4=17,\qquad Z\sim N(0,17)')],
-    r'$c=\tfrac1{4\pi}$, $\operatorname{Var}(X)=1$, $\operatorname{Var}(Y)=4$, independent, $Z\sim N(0,17)$', cites=cite('T8', 2))
-
-D.Q('A dome on a disk ★ · Tutorial 8 Q5 (a)(b)',
-    r'$f_{X,Y}(x,y)=c\sqrt{1-x^2-y^2}$ for $x^2+y^2\le1$. (a) Find $c$. (b) Are $X$ and $Y$ independent?',
-    [S(r'(a) **Find $c$:** the graph of $\sqrt{1-x^2-y^2}$ is the top half of a unit ball, volume $\tfrac12\cdot\tfrac43\pi=\tfrac23\pi$.', r'c\cdot\frac{2\pi}{3}=1\quad\Longrightarrow\quad c=\frac{3}{2\pi}'),
-     S(r'(Without the ball: polar coordinates, $\int_0^{2\pi}\!\int_0^1\sqrt{1-r^2}\,r\,dr\,d\theta=2\pi\cdot\tfrac13$.)'),
-     S(r'(b) **Spot:** a disk is not a rectangle → **not** independent. At $(0.9,0.9)$ the joint PDF is $0$ (outside the disk), but $f_X(0.9)>0$ and $f_Y(0.9)>0$.')],
-    r'(a) $c=\tfrac3{2\pi}$ (b) not independent', cites=cite('T8', 1))
-
-D.Q('Covariance from a joint PDF ★ · Lecture 19',
-    r'$f_{X,Y}(x,y)=4xy$ on the unit square. Find $E[XY]$ and $\operatorname{Cov}[X,Y]$.',
-    [S(r'$E[XY]$: put $xy$ in front of $f$, integrate over the square.', r'E[XY]=\int_0^1\!\!\int_0^1xy\cdot4xy\,dx\,dy=4\cdot\frac13\cdot\frac13=\frac49'),
-     S(r'Means from the marginals $2x$ and $2y$ (Example 5).', r'E[X]=\int_0^1x\cdot2x\,dx=\frac23=E[Y]'),
-     S(r'**Plug in.**', r'\operatorname{Cov}=\frac49-\frac23\cdot\frac23=0')],
-    r'$E[XY]=\tfrac49$, $\operatorname{Cov}=0$ (as expected: they are independent)', cites=cite('L19', 6))
+D.Q('[10 marks] A flat triangle',
+    r'$f_{X,Y}(x,y)=c$ for $0\le y\le x\le2$, and $0$ otherwise. (a) Find $c$. (2 marks) (b) Find $f_X(x)$ and $f_Y(y)$. (4 marks) (c) Are $X$ and $Y$ independent? (2 marks) (d) Find $P(X+Y\le2)$. (2 marks)',
+    [S(r'(a) **Area** of the triangle is $\tfrac12\cdot2\cdot2=2$.', r'2c=1\ \Rightarrow\ c=\frac12'),
+     S(r'(b) **$f_X$:** $y$ from $0$ to $x$. **$f_Y$:** $x$ from $y$ to $2$.', (r'f_X(x)=\int_0^x\frac12\,dy=\frac x2,\qquad0\le x\le2', r'f_Y(y)=\int_y^2\frac12\,dx=\frac{2-y}{2},\qquad0\le y\le2')),
+     S(r'(c) **Triangle → dependent.** At $(0.5,\,1.5)$: $f_{X,Y}=0$ (needs $y\le x$), but $f_X(0.5)f_Y(1.5)=\tfrac14\cdot\tfrac14>0$.'),
+     S(r'(d) **Sketch:** inside the triangle and under $x+y=2$. Slice horizontally: $x$ from $y$ to $2-y$, for $0\le y\le1$.', r'\int_0^1\!\!\int_y^{2-y}\frac12\,dx\,dy=\int_0^1(1-y)\,dy=\frac12')],
+    r'(a) $\tfrac12$ (b) $\tfrac x2$; $\tfrac{2-y}2$ (c) dependent (d) $\tfrac12$')
 
 D.H('Test 3 formula sheet')
 D.SHEET3()
@@ -286,46 +339,43 @@ D.SHEET3()
 
 def verify():
     import sympy as sp
-    x, y, u, v, r, th = sp.symbols('x y u v r theta', real=True)
+    x, y, u, v = sp.symbols('x y u v', positive=True)
+    X, Y = sp.symbols('X Y', positive=True)
     I = sp.integrate
     R = sp.Rational
-    # Lec 18
-    assert I(R(1, 15), (x, 2, 3), (y, 1, 3)) == R(2, 15) and I(R(1, 15), (y, x, 3), (x, 0, 3)) == R(3, 10)
-    fx = I(5 * y / 4, (y, x ** 2, 1)); fy = I(5 * y / 4, (x, -sp.sqrt(y), sp.sqrt(y)))
-    assert sp.simplify(fx - R(5, 8) * (1 - x ** 4)) == 0 and sp.simplify(fy - R(5, 2) * y ** R(3, 2)) == 0
-    assert (fx * fy).subs({x: R(9, 10), y: R(1, 4)}) > 0
-    # Lec 19 / Tutorial 7 Q5
-    assert I(4 * x * y, (y, 0, 1)) == 2 * x
-    assert I(x + y, (y, 0, 1)) == x + R(1, 2) and I(x + y, (y, 0, 1 - x), (x, 0, 1)) == R(1, 3)
-    # Extras
-    assert R(85, 100) - R(30, 100) - R(40, 100) + R(15, 100) == R(3, 10)
-    X, Y = sp.symbols('X Y', positive=True)
-    assert sp.expand(I(2, (u, v, X), (v, 0, Y)) - (2 * X * Y - Y ** 2)) == 0 and I(2, (v, 0, u), (u, 0, X)) == X ** 2
-    sx, sy = R(1, 2), 1
-    cG = 1 / (2 * sp.pi * sx * sy)
-    assert sp.simplify(I(cG * sp.exp(-2 * x ** 2 - y ** 2 / 2), (x, -sp.oo, sp.oo), (y, -sp.oo, sp.oo)) - 1) == 0
-    assert sp.simplify(I(x ** 2 * cG * sp.exp(-2 * x ** 2 - y ** 2 / 2), (x, -sp.oo, sp.oo), (y, -sp.oo, sp.oo)) - R(1, 4)) == 0
-    # practice
-    assert I(x * y, (x, 0, 1), (y, 0, 2)) == 1 and I(x * y, (y, 0, sp.sqrt(1 - x ** 2)), (x, 0, 1)) == R(1, 8)
-    g = 12 * x * y * (1 - x)
-    assert sp.expand(I(g, (y, 0, 1)) - 6 * x * (1 - x)) == 0 and sp.expand(I(g, (x, 0, 1)) - 2 * y) == 0
-    assert I(g, (x, 0, R(1, 2)), (y, 0, R(1, 2))) == R(1, 8)
+    t = [[R(10, 100), R(15, 100), R(5, 100)], [R(20, 100), R(30, 100), R(20, 100)]]
+    assert sum(map(sum, t)) == 1 and t[1][0] + t[1][1] == R(1, 2) and 1 - t[1][2] == R(4, 5)
+    px = [sum(r) for r in t]; py = [t[0][j] + t[1][j] for j in range(3)]
+    assert px == [R(3, 10), R(7, 10)] and py == [R(3, 10), R(45, 100), R(25, 100)] and px[0] * py[0] == R(9, 100)
+    e = [[R(10, 100), R(20, 100), R(10, 100)], [R(15, 100), R(25, 100), R(20, 100)]]
+    assert [e[0][j] + e[1][j] for j in range(3)] == [R(1, 4), R(45, 100), R(3, 10)] and [sum(r) for r in e] == [R(2, 5), R(3, 5)]
+    for tt in ([[R(12, 100), R(18, 100)], [R(28, 100), R(42, 100)]], [[R(6, 100), R(14, 100)], [R(24, 100), R(56, 100)]]):
+        a = [sum(r) for r in tt]; b = [tt[0][j] + tt[1][j] for j in range(2)]
+        assert all(tt[i][j] == a[i] * b[j] for i in range(2) for j in range(2))
+    # B
+    assert I(x, (x, 0, 1)) * I(y, (y, 0, 2)) == 1 and I(x + y, (y, 0, 1), (x, 0, 1)) == 1
+    assert I(x + y, (y, 0, 1 - x), (x, 0, 1)) == R(1, 3) and sp.expand(I(x + y, (y, 0, 1 - x)) - (1 - x ** 2) / 2) == 0
+    assert I(x * y, (y, 0, sp.sqrt(1 - x ** 2)), (x, 0, 1)) == R(1, 8) and I(x + y, (y, 0, x ** 2), (x, 0, 1)) == R(7, 20)
+    xx = sp.symbols('xx', real=True)
+    assert sp.simplify(I(5 * y / 4, (y, xx ** 2, 1)) - R(5, 8) * (1 - xx ** 4)) == 0
+    assert sp.simplify(I(5 * y / 4, (xx, -sp.sqrt(y), sp.sqrt(y))) - R(5, 2) * y ** R(3, 2)) == 0
     assert sp.expand(I(24 * x * y, (y, 0, 1 - x)) - 12 * x * (1 - x) ** 2) == 0 and I(12 * x * (1 - x) ** 2, (x, 0, 1)) == 1
-    assert I(x + y, (y, 0, 1), (x, 0, 1)) == 1
+    g = 12 * x * y * (1 - x)
+    assert sp.expand(I(g, (y, 0, 1)) - 6 * x * (1 - x)) == 0 and I(g, (x, 0, 1)) == 2 * y
+    assert abs(12 * 0.9 * 0.1 ** 2 - 0.108) < 1e-12
+    # C
     assert sp.expand(I(u + v, (v, 0, Y), (u, 0, X)) - (X ** 2 * Y + X * Y ** 2) / 2) == 0
-    assert I(x + y, (y, x, 1), (x, 0, 1)) == R(1, 2) and I(x + y, (y, 0, x ** 2), (x, 0, 1)) == R(7, 20)
-    assert I(x - y + 1, (y, 0, R(1, 2) - x), (x, 0, R(1, 2))) == R(1, 8)
-    assert I(x - y + 1, (x, 0, 1), (y, 0, 1)) == 1
-    q = R(1, 4)
-    assert q * I(1, (x, -R(1, 2), R(1, 2)), (y, -1, R(1, 2))) == R(3, 8)
-    assert q * I(1, (x, -1, y), (y, R(1, 2), 1)) == R(7, 32)
-    assert q * I(1, (x, -1, R(1, 2)), (y, -1, R(1, 2))) == R(9, 16)
-    pe = 2 * q * I(1 - 1 / (4 * x), (x, R(1, 4), 1))
-    assert sp.simplify(pe - (3 - 2 * sp.log(2)) / 8) == 0 and abs(float(pe) - e_val) < 1e-12
-    cg2 = 1 / (4 * sp.pi)
-    assert sp.simplify(I(cg2 * sp.exp(-x ** 2 / 2 - y ** 2 / 8), (x, -sp.oo, sp.oo), (y, -sp.oo, sp.oo)) - 1) == 0
-    assert sp.simplify(I(sp.sqrt(1 - r ** 2) * r, (r, 0, 1), (th, 0, 2 * sp.pi)) - 2 * sp.pi / 3) == 0
-    assert I(x * y * 4 * x * y, (x, 0, 1), (y, 0, 1)) == R(4, 9) and I(2 * x * x, (x, 0, 1)) == R(2, 3)
+    assert sp.expand(I(4 * u * v, (v, 0, Y), (u, 0, X)) - X ** 2 * Y ** 2) == 0
+    F = lambda a, b: R(a) ** 2 * R(b) ** 2
+    assert F(1, '0.5') - F('0.5', '0.5') == R(3, 16)
+    assert R(85, 100) - R(30, 100) - R(40, 100) + R(15, 100) == R(3, 10)
+    assert sp.expand(I(u + R(1, 2), (u, 0, X)) - (X ** 2 + X) / 2) == 0
+    # practice
+    assert COIN == {(2, 2): 1, (2, 1): 1, (1, 1): 2, (1, 0): 1, (1, 2): 1, (0, 1): 1, (0, 0): 1}
+    assert I(x + y, (y, x, 1), (x, 0, 1)) == R(1, 2)
+    assert I(2 * sp.exp(-x - 2 * y), (x, 0, sp.oo), (y, 0, sp.oo)) == 1
+    assert I(2 * sp.exp(-x - 2 * y), (y, x, sp.oo), (x, 0, sp.oo)) == R(1, 3)
+    assert I(R(1, 2), (y, 0, x), (x, 0, 2)) == 1 and I(R(1, 2), (x, y, 2 - y), (y, 0, 1)) == R(1, 2)
     print('t3q1 verify ok')
 
 

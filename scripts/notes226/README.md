@@ -21,12 +21,16 @@ Write primes as `^{\prime}` (the 226 builder doesn't convert `\prime`).
 
 | Note | Builder | Covers |
 |---|---|---|
-| Test 3 - Question 1 | `t3q1.py` | joint PMF/PDF, find c, region probabilities, marginals, independence (+ joint CDF, Cov, Gaussian pair) (L17–20, T7–8) |
-| Test 3 - Question 2 | `t3q2.py` | discrete conditional PMF/CDF, conditional expectation (L21–22) |
-| Test 3 - Question 3 | `t3q3.py` | continuous conditional PDF/CDF, conditional probabilities (L21–22) |
+| Test 3 - Question 1 | `t3q1.py` | Part A tables (joint PMF, marginals, independence), Part B densities (find c, double-integral bounds, marginal PDFs, independence), Part C joint CDFs (rectangle formula, marginal CDFs) (L17-20, T7-8) |
+| Test 3 - Question 2 | `t3q2.py` | discrete only: conditional PMF (table/experiment), conditional CDF, E[X\|Y=y], E[g(X)\|Y], total expectation (L21-23) |
+| Test 3 - Question 3 | `t3q3.py` | continuous: conditional PDF, conditional CDF + probabilities, E[X\|Y=y], E[g(X)\|Y] (L21-23, T7-8) |
+| Test 3 - Extra (Covariance & Gaussian) | `t3x.py` | covariance, Gaussian pairs: not in the Test 3 announcement, kept for later review |
 
-Same v3 layout. `D.SHEET3()` puts the test's formula sheet at the top; `D.REGION()` draws a joint PDF's support with
-a draggable slice (where the integral limits come from). Lecture 23 is not out yet: add it when it is.
+Layout (2026-11-15): one-line "what it is" + a tip callout with the **formula sheet lines** this question uses and the
+expected chain of parts → Parts → topics, each = 1-3 line rule + one worked example + one Try it → 6 practice
+questions marked "[10 marks]" with per-part marks, at Test 2 difficulty → full sheet (`D.SHEET3()`).
+`D.REGION()` draws a joint PDF's support with
+a draggable slice (where the integral limits come from).
 New PDFs: `import_sources.py <file.pdf> ...`, then add their tags to `FILES` in `lib226.py`.
 
 From the repository root:
