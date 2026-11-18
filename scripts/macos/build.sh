@@ -7,8 +7,9 @@ if [[ "$(uname -s)" != Darwin ]]; then
   exit 1
 fi
 
-root="$PWD"
+root="$(pwd -P)"
 work="$(mktemp -d)"
+work="$(cd "$work" && pwd -P)"
 trap 'rm -rf "$work"' EXIT
 stage="$work/stage"
 app="$stage/Open Lecture.app"
@@ -19,7 +20,7 @@ mkdir -p "$contents/MacOS" "$resources" "$root/dist/macos"
 npm ci --prefix frontend
 npm run build --prefix frontend
 uv build --wheel --out-dir "$work/wheel"
-uv export --locked --no-dev --no-emit-project --output-file "$work/requirements.txt"
+uv export --locked --no-dev --no-emit-project --output-file "$work/requirements.txt" > /dev/null
 
 uv python install --no-bin 3.12
 python="$(uv python find --managed-python --no-project 3.12)"
@@ -28,7 +29,7 @@ ditto "$runtime" "$resources/python"
 python="$resources/python/bin/python3"
 site_packages="$("$python" -I -c 'import sysconfig; print(sysconfig.get_path("purelib"))')"
 case "$site_packages" in "$resources/python/"*) ;; *)
-  echo 'The bundled interpreter resolved packages outside the app.' >&2
+  printf 'The bundled interpreter resolved packages outside %s: %s\n' "$resources/python" "$site_packages" >&2
   exit 1
 esac
 uv pip install --python "$python" --target "$site_packages" --link-mode copy --require-hashes -r "$work/requirements.txt"
