@@ -8,6 +8,7 @@ if [[ "$(uname -s)" != Darwin ]]; then
 fi
 
 root="$(pwd -P)"
+arch="$(uname -m)"
 work="$(mktemp -d)"
 work="$(cd "$work" && pwd -P)"
 trap 'rm -rf "$work"' EXIT
@@ -22,8 +23,8 @@ npm run build --prefix frontend
 uv build --wheel --out-dir "$work/wheel"
 uv export --locked --no-dev --no-emit-project --output-file "$work/requirements.txt" > /dev/null
 
-uv python install --no-bin 3.12
-python="$(uv python find --managed-python --no-project 3.12)"
+UV_PYTHON_INSTALL_DIR="$work/runtime" uv python install --no-bin 3.12
+python="$(UV_PYTHON_INSTALL_DIR="$work/runtime" uv python find --managed-python --no-project 3.12)"
 runtime="$("$python" -I -c 'import sys; print(sys.base_prefix)')"
 ditto "$runtime" "$resources/python"
 python="$resources/python/bin/python3"
@@ -32,8 +33,19 @@ case "$site_packages" in "$resources/python/"*) ;; *)
   printf 'The bundled interpreter resolved packages outside %s: %s\n' "$resources/python" "$site_packages" >&2
   exit 1
 esac
+if [[ "$arch" == x86_64 ]]; then
+  # The locked cryptography version builds from source on Intel. Embed OpenSSL for portability.
+  export OPENSSL_DIR="$(brew --prefix openssl@3)"
+  export OPENSSL_STATIC=1
+  export MACOSX_DEPLOYMENT_TARGET=14.0
+  export UV_NO_CACHE=1
+fi
 uv pip install --python "$python" --target "$site_packages" --link-mode copy --require-hashes -r "$work/requirements.txt"
 uv pip install --python "$python" --target "$site_packages" --link-mode copy --no-deps "$work"/wheel/*.whl
+if otool -L "$site_packages"/cryptography/hazmat/bindings/_rust*.so | grep -E 'lib(ssl|crypto)\.'; then
+  echo 'The bundle must not depend on an external OpenSSL installation.' >&2
+  exit 1
+fi
 cp scripts/macos/serve.py LICENSE "$resources/"
 
 version="$("$python" -I -c 'from importlib.metadata import version; print(version("open-lecture"))')"
@@ -54,7 +66,6 @@ cat > "$contents/Info.plist" <<EOF
 </plist>
 EOF
 
-arch="$(uname -m)"
 xcrun swiftc -swift-version 5 -O -target "$arch-apple-macosx14.0" scripts/macos/Launcher.swift -o "$contents/MacOS/OpenLecture"
 codesign --force --sign - "$app"
 codesign --verify --strict "$app"

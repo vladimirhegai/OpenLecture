@@ -36,6 +36,8 @@ jobs:
         with:
           version: 0.11.21
           enable-cache: false
+      - if: matrix.arch == 'x86_64'
+        run: brew list --versions openssl@3 || brew install openssl@3
       - run: bash scripts/macos/build.sh
       - uses: actions/upload-artifact@v7
         with:

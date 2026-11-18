@@ -56,7 +56,7 @@ Use the Apple Silicon (`arm64`) or Intel (`x86_64`) disk image for your Mac. Ope
 
 The download includes Python and the web interface and creates a fresh workspace in `~/Library/Application Support/Open Lecture/`. AI chat still needs Claude Code or Codex installed and signed in. The build targets macOS 14 and later. The test builds use an ad hoc signature, so macOS may ask you to approve the first launch in **System Settings → Privacy & Security**.
 
-To build the disk image, run `bash scripts/macos/build.sh` on a Mac with Xcode command-line tools, Node.js 24, and uv. It writes the `.dmg` to `dist/macos/`. The **Build macOS download** GitHub Actions workflow builds both architectures.
+To build the disk image, run `bash scripts/macos/build.sh` on a Mac with Xcode command-line tools, Node.js 24, and uv. Intel builds also need Rust and Homebrew's `openssl@3`. The script writes the `.dmg` to `dist/macos/`. The **Build macOS download** GitHub Actions workflow builds both architectures.
 
 ## Your data
 
