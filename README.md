@@ -50,6 +50,14 @@ The API is single-user. Keep it on loopback unless you provide authentication an
 
 Install Python 3.12+ and Node.js once ([uv](https://docs.astral.sh/uv/) is optional), then double-click `Open-Lecture.bat`. It reuses the server if one is already running; otherwise it sets up `.venv` when it is missing or broken, rebuilds the interface when its sources changed, starts the server in the background (on the next free port if 8000 is taken by another program) and opens the browser. `Stop-Open-Lecture.bat` stops only Open Lecture. Both call `scripts\launcher.ps1` (`start`, `stop`, `status`). The server log is `.openlecture\server.log`, and a failed start prints its last lines.
 
+## Install on macOS
+
+Use the Apple Silicon (`arm64`) or Intel (`x86_64`) disk image for your Mac. Open the `.dmg`, drag **Open Lecture** to **Applications**, then open it from Applications. The app starts its local server and opens your default browser. Quit from the Open Lecture menu or Dock to stop the server.
+
+The download includes Python and the web interface and creates a fresh workspace in `~/Library/Application Support/Open Lecture/`. AI chat still needs Claude Code or Codex installed and signed in. The build targets macOS 14 and later. The test builds use an ad hoc signature, so macOS may ask you to approve the first launch in **System Settings → Privacy & Security**.
+
+To build the disk image, run `bash scripts/macos/build.sh` on a Mac with Xcode command-line tools, Node.js 24, and uv. It writes the `.dmg` to `dist/macos/`. The **Build macOS download** GitHub Actions workflow builds both architectures.
+
 ## Your data
 
-Notes, chats and settings live in `.openlecture/workspace.sqlite3`, and the uploaded PDFs in `.openlecture/sources/`. Both are committed (private repo), so cloning on another machine brings your notes along. Commit the database only while the server is stopped (`Stop-Open-Lecture.bat`). `uv run python scripts/export_notes.py` writes every note as Markdown to `notes/`, readable without the app.
+Notes, chats and settings live in `.openlecture/workspace.sqlite3`, and the uploaded PDFs in `.openlecture/sources/`. This repository currently tracks those files, so cloning it copies that workspace. Commit the database only while the server is stopped (`Stop-Open-Lecture.bat`). `uv run python scripts/export_notes.py` writes every note as Markdown to `notes/`, readable without the app.

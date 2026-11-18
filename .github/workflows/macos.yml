@@ -1,0 +1,44 @@
+name: Build macOS download
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [codex/macos-download]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: macOS (${{ matrix.arch }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            arch: arm64
+          - runner: macos-15-intel
+            arch: x86_64
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            frontend
+            scripts/macos
+            src
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+      - uses: astral-sh/setup-uv@v7
+        with:
+          version: 0.11.21
+          enable-cache: false
+      - run: bash scripts/macos/build.sh
+      - uses: actions/upload-artifact@v7
+        with:
+          name: OpenLecture-macOS-${{ matrix.arch }}
+          path: dist/macos/*.dmg
+          if-no-files-found: error
